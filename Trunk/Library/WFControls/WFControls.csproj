@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E9F9595F-12CC-43EF-8504-98D5259374CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WFControls</RootNamespace>
+    <AssemblyName>WFControls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+    </Reference>
+    <Reference Include="System.Core">
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing">
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+    </Reference>
+    <Reference Include="System.Xml">
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Controls\Combo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Controls\Combo.Designer.cs">
+      <DependentUpon>Combo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Controls\FolderPathGetter.cs" />
+    <Compile Include="Components\Controls\Edit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Controls\Edit.Designer.cs">
+      <DependentUpon>Edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Controls\EditPath.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Controls\EditPath.Designer.cs">
+      <DependentUpon>EditPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Controls\FilePathGetter.cs" />
+    <Compile Include="Components\Controls\IPathGetter.cs" />
+    <Compile Include="Components\DataManagers\CheckedItemsMan.cs" />
+    <Compile Include="Components\DataManagers\CheckedList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataManagers\CheckedList.Designer.cs">
+      <DependentUpon>CheckedList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataManagers\CheckedListBoxMan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataManagers\CheckedListBoxMan.designer.cs">
+      <DependentUpon>CheckedListBoxMan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataManagers\ComboBoxMan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataManagers\ComboBoxMan.designer.cs">
+      <DependentUpon>ComboBoxMan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataManagers\DataMan.cs" />
+    <Compile Include="Components\DataManagers\ItemsMan.cs" />
+    <Compile Include="Components\DataManagers\ItemsWorker.cs" />
+    <Compile Include="Components\DataManagers\ListBoxMan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DataManagers\ListBoxMan.designer.cs">
+      <DependentUpon>ListBoxMan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Dialogs\Base.cs" />
+    <Compile Include="Components\Dialogs\InputFolderPath.cs" />
+    <Compile Include="Components\Dialogs\InputText.cs" />
+    <Compile Include="Components\Dialogs\InputTextList.cs" />
+    <Compile Include="ControlsDataLoader\Data\BaseData.cs" />
+    <Compile Include="ControlsDataLoader\ControlsDataMan.cs" />
+    <Compile Include="ControlsDataLoader\Data\TextBoxData.cs" />
+    <Compile Include="ControlsDataLoader\Data\IData.cs" />
+    <Compile Include="Forms\InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputBox.designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InputComboBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputComboBox.designer.cs">
+      <DependentUpon>InputComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Progress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Progress.designer.cs">
+      <DependentUpon>Progress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log\CaptionedLog.cs" />
+    <Compile Include="Log\MsgLog.cs" />
+    <Compile Include="Log\TrayLog.cs" />
+    <Compile Include="OS\GuiHelper.cs" />
+    <Compile Include="OS\MT.cs" />
+    <Compile Include="OS\OneInstance.cs" />
+    <Compile Include="OS\Tr.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
+      <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Controls\Combo.resx">
+      <DependentUpon>Combo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Controls\Edit.resx">
+      <DependentUpon>Edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Controls\EditPath.resx">
+      <DependentUpon>EditPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataManagers\CheckedList.resx">
+      <DependentUpon>CheckedList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataManagers\CheckedListBoxMan.resx">
+      <DependentUpon>CheckedListBoxMan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\DataManagers\ComboBoxMan.resx">
+      <DependentUpon>ComboBoxMan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputComboBox.resx">
+      <DependentUpon>InputComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Progress.resx">
+      <DependentUpon>Progress.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

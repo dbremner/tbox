@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using Common.Tools;
+using Common.UI.Model;
+using WPFControls.Code.Dialogs;
+using WPFControls.Components.Units;
+using WPFControls.Dialogs.Menu;
+
+namespace WPFControls.Tools
+{
+	public static class SelectorExtensions
+	{
+		public static void SelectItemByKey<T>(this Selector selector, string value)
+			where T : Data
+		{
+			foreach (var item in selector.Items.Cast<Data>()
+									.Where(item => item.Key.EqualsIgnoreCase(value)))
+			{
+				selector.SelectedValue = item;
+				return;
+			}
+			selector.SelectedIndex = -1;
+		}
+
+		public static void SelectItemByKey(this Selector selector, string value)
+		{
+			foreach (var item in selector.Items.Cast<string>()
+									.Where(item => item.EqualsIgnoreCase(value)))
+			{
+				selector.SelectedValue = item;
+				return;
+			}
+			selector.SelectedIndex = -1;
+		}
+
+		public static string GetSelectKey<T>(this Selector selector)
+			where T : Data
+		{
+			var o = selector.GetSelectObject<T>();
+			return (o == null) ? string.Empty : o.Key;
+		}
+
+		public static T GetSelectObject<T>(this Selector selector)
+		{
+			return (T)selector.SelectedValue;
+		}
+
+		public static void AddRange<T>(this ItemCollection collection, IEnumerable<T> values)
+		{
+			foreach (var value in values)
+			{
+				collection.Add(value);
+			}
+		}
+
+		public static void AddRange(this ItemCollection collection, params object[] values)
+		{
+			foreach (var value in values)
+			{
+				collection.Add(value);
+			}
+		}
+
+		public static void ConfigureInputText<T>(this IUnit unit, string caption, Collection<T> items, Templates templates = null, Func<string,bool> validator = null, Window owner = null)
+			where T: Data, new()
+		{
+			unit.Configure(items, new InputText(caption, templates ?? Templates.Default, validator??items.IsUniqIgnoreCase, owner));
+		}
+
+		public static void ConfigureInputTextList<T>(this IUnit unit, string caption, Collection<T> items, Templates templates = null, Window owner = null)
+			where T : Data, new()
+		{
+			unit.Configure(items, new InputTextList(caption, templates ?? Templates.Default, items.IsUniqIgnoreCase, owner));
+		}
+
+		public static void ConfigureInputTextList<T>(this IUnit unit, string caption, Collection<T> items, IList<string> itemSource, Templates templates = null, Window owner = null)
+			where T : Data, new()
+		{
+			unit.Configure(items, new InputTextList(caption, templates ?? Templates.Default, items.IsUniqIgnoreCase, owner) { ItemsSource = itemSource });
+		}
+
+		public static void ConfigureInputSelect<T>(this IUnit unit, string caption, Collection<T> items, IList<string> itemSource = null, Templates templates = null, Window owner = null)
+			where T : Data, new()
+		{
+			unit.Configure(items, new InputSelect(caption, templates ?? Templates.Default, items.IsUniqIgnoreCase, owner) { ItemsSource = itemSource });
+		}
+
+		public static void ConfigureInputFilePath<T>(this IUnit unit, string caption, Collection<T> items, PathTemplates templates = null, Func<string, bool> validator = null, Window owner = null)
+			where T : Data, new()
+		{
+			unit.Configure(items, new InputFilePath(caption, templates ?? PathTemplates.Default, validator ?? items.IsUniqIgnoreCase, owner));
+		}
+
+		public static void ConfigureInputFolderPath<T>(this IUnit unit, string caption, Collection<T> items, PathTemplates templates = null, Func<string, bool> validator = null, Window owner = null)
+			where T : Data, new()
+		{
+			unit.Configure(items, new InputFolderPath(caption, templates ?? PathTemplates.Default, validator ?? items.IsUniqIgnoreCase, owner));
+		}
+
+		public static void ConfigureInputMenuItem<T>(this IUnit unit, string caption, Collection<T> items, IList<MenuDialogItem> itemSource, Templates templates = null, Window owner = null, Func<string, bool> validator=null)
+			where T : Data, new()
+		{
+			unit.Configure(items, new InputMenuDialog(caption, templates ?? Templates.Default, validator??items.IsUniqIgnoreCase, owner) { ItemsSource = itemSource });
+		}
+
+		public static string GetNewSelection(this SelectionChangedEventArgs e)
+		{
+			return e.AddedItems.Count > 0 ? e.AddedItems[0].ToString() : string.Empty;
+		}
+	}
+}

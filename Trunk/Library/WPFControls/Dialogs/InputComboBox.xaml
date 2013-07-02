@@ -1,0 +1,22 @@
+﻿<Dialogs:DialogWindow x:Class="WPFControls.Dialogs.InputComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="130" Width="350" 
+             MinHeight="130" MinWidth="350" MaxHeight="130"
+             xmlns:Dialogs="clr-namespace:WPFControls.Dialogs" 
+             WindowStyle="ToolWindow" 
+             IsVisibleChanged="OnIsVisibleChanged">
+    <DockPanel >
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
+            <Button Name="btnOk" Content="OK" Width="64" Margin="10" IsDefault="True" Click="BtnOk_OnClick"/>
+            <Button Content="Cancel" Width="64" Margin="10" IsCancel="True"/>
+        </StackPanel>
+        <StackPanel Margin="5" VerticalAlignment="Center">
+            <Label Name="lbCaption" Padding="0" Content="label"/>
+            <ComboBox Name="edData" Margin="0" Focusable="True" IsTabStop="True" HorizontalAlignment="Stretch"/>
+        </StackPanel>
+    </DockPanel>
+</Dialogs:DialogWindow>

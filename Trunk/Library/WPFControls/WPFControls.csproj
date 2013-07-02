@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6C4F391F-69BD-44B0-BC18-99414493A885}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPFControls</RootNamespace>
+    <AssemblyName>WPFControls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\Base.cs" />
+    <Compile Include="Code\ControlsDataLoader\ControlsDataMan.cs" />
+    <Compile Include="Code\ControlsDataLoader\Data\BaseData.cs" />
+    <Compile Include="Code\ControlsDataLoader\Data\IData.cs" />
+    <Compile Include="Code\ControlsDataLoader\Data\TextBoxData.cs" />
+    <Compile Include="Code\DataManagers\CustomDataManager.cs" />
+    <Compile Include="Code\Dialogs\InputSelect.cs" />
+    <Compile Include="Code\Dialogs\PathTemplates.cs" />
+    <Compile Include="Code\Dialogs\Templates.cs" />
+    <Compile Include="Code\LazyDialog.cs" />
+    <Compile Include="Code\Log\LogCache.cs" />
+    <Compile Include="Code\Log\ICaptionedLog.cs" />
+    <Compile Include="Code\Log\MultiCaptionedLog.cs" />
+    <Compile Include="Code\EditPanel\Controller.cs" />
+    <Compile Include="Code\DataManagers\DataItemManager.cs" />
+    <Compile Include="Code\DataManagers\StringDataManager.cs" />
+    <Compile Include="Code\Dialogs\InputFilePath.cs" />
+    <Compile Include="Code\EditPanel\ControllerExtensions.cs" />
+    <Compile Include="Code\Log\CaptionedLog.cs" />
+    <Compile Include="Code\Log\TrayLog.cs" />
+    <Compile Include="Components\ButtonsPanelInfo.cs" />
+    <Compile Include="Components\CheckableFileListBox.cs" />
+    <Compile Include="Components\CheckableListBox.cs" />
+    <Compile Include="Components\EditButtons\EditButtonsPanel.cs" />
+    <Compile Include="Components\EditButtons\PanelException.cs" />
+    <Compile Include="Components\ExtListBox.cs" />
+    <Compile Include="Components\HotKeyBox.cs" />
+    <Compile Include="Components\ButtonsPanel.cs" />
+    <Compile Include="Components\PanelToICheckable.cs" />
+    <Compile Include="Components\Units\BaseCheckableCollectionUnit.cs" />
+    <Compile Include="Components\Units\BaseCollectionUnit.cs" />
+    <Compile Include="Components\Units\CheckableFileListBoxUnit.cs" />
+    <Compile Include="Components\Units\CheckableListBoxUnit.cs" />
+    <Compile Include="Code\EditPanel\Configuration.cs" />
+    <Compile Include="Code\DataManagers\IDataManager.cs" />
+    <Compile Include="Components\Units\ComboBoxUnit.cs" />
+    <Compile Include="Components\ICheckableItemsView.cs" />
+    <Compile Include="Components\Units\GraphUnit.xaml.cs">
+      <DependentUpon>GraphUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Units\ICheckableUnit.cs" />
+    <Compile Include="Components\Units\IUnit.cs" />
+    <Compile Include="Components\Units\ListBoxUnit.cs" />
+    <Compile Include="Components\Units\Properties\UnitConfigurator.cs" />
+    <Compile Include="Components\Units\Properties\UnitTypes.cs" />
+    <Compile Include="Components\Updater\Progress.cs" />
+    <Compile Include="Components\Updater\ProgressModelSinglethreaded.cs" />
+    <Compile Include="Components\Updater\ProgressModeMultithreaded.cs" />
+    <Compile Include="Components\Updater\SimpleUpdater.cs" />
+    <Compile Include="Components\Updater\SimpleProgress.xaml.cs">
+      <DependentUpon>SimpleProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Updater\Updater.cs" />
+    <Compile Include="Controls\AutoComboBox.cs" />
+    <Compile Include="Controls\Captioned\CaptionedTimeBox.cs" />
+    <Compile Include="Controls\DropDown\BaseDropDownControl.xaml.cs">
+      <DependentUpon>BaseDropDownControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Captioned\CaptionedComboBox.cs" />
+    <Compile Include="Controls\Captioned\CaptionedControl.cs" />
+    <Compile Include="Controls\Captioned\CaptionedEditPath.cs" />
+    <Compile Include="Controls\Captioned\CaptionedEnumDropDownList.cs" />
+    <Compile Include="Controls\Captioned\CaptionedNumericUpDown.cs" />
+    <Compile Include="Controls\Captioned\CaptionedTextBox.cs" />
+    <Compile Include="Controls\DropDown\DoubleUpDown.cs" />
+    <Compile Include="Controls\DpHelper.cs" />
+    <Compile Include="Controls\EditPath.cs" />
+    <Compile Include="Controls\FlagsCheckBoxes.cs" />
+    <Compile Include="Controls\ExtCheckBox.cs" />
+    <Compile Include="Controls\FolderPathGetter.cs" />
+    <Compile Include="Controls\FilePathGetter.cs" />
+    <Compile Include="Controls\IPathGetter.cs" />
+    <Compile Include="Code\Dialogs\BaseDialog.cs" />
+    <Compile Include="Code\Dialogs\InputFolderPath.cs" />
+    <Compile Include="Code\Dialogs\InputText.cs" />
+    <Compile Include="Code\Dialogs\InputTextList.cs" />
+    <Compile Include="Controls\DropDown\NumericUpDown.cs" />
+    <Compile Include="Controls\PathGetterType.cs" />
+    <Compile Include="Controls\DropDown\TimeBox.cs" />
+    <Compile Include="Dialogs\DialogsCache.cs" />
+    <Compile Include="Dialogs\DialogWindow.cs" />
+    <Compile Include="Dialogs\IDialog.cs" />
+    <Compile Include="Dialogs\InputFolderPath.cs" />
+    <Compile Include="Dialogs\InputTextBox.xaml.cs">
+      <DependentUpon>InputTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InputComboBox.xaml.cs">
+      <DependentUpon>InputComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InputFilePath.cs" />
+    <Compile Include="Dialogs\Menu\InputMenuDialog.cs" />
+    <Compile Include="Dialogs\Menu\InputMenuItem.xaml.cs">
+      <DependentUpon>InputMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Menu\MenuDialogItem.cs" />
+    <Compile Include="Dialogs\Menu\MenuExtensions.cs" />
+    <Compile Include="Dialogs\PerfomanceCounters\Entity.cs" />
+    <Compile Include="Dialogs\PerfomanceCounters\SelectedEntity.cs" />
+    <Compile Include="Dialogs\PerfomanceCounters\SelectPerfomanceCounters.xaml.cs">
+      <DependentUpon>SelectPerfomanceCounters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProgressDialog.cs" />
+    <Compile Include="Code\Log\MsgLog.cs" />
+    <Compile Include="Code\OS\DispatcherHelper.cs" />
+    <Compile Include="Code\OS\MT.cs" />
+    <Compile Include="Code\OS\OneInstance.cs" />
+    <Compile Include="Code\OS\NotifyIconMan.cs" />
+    <Compile Include="Dialogs\InputSelect.xaml.cs">
+      <DependentUpon>InputSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StateSaver\DialogState.cs" />
+    <Compile Include="Dialogs\StateSaver\StateExtensions.cs" />
+    <Compile Include="Drawings\Background\CaptionedGridBackground.cs" />
+    <Compile Include="Drawings\Background\GridBackground.cs" />
+    <Compile Include="Drawings\Background\SolidBackground.cs" />
+    <Compile Include="Drawings\DirectionsTable\DirectionsTable.cs" />
+    <Compile Include="Drawings\DirectionsTable\IDirectionable.cs" />
+    <Compile Include="Drawings\GraphPanel.cs" />
+    <Compile Include="Drawings\Graphics\Graph.cs" />
+    <Compile Include="Drawings\Background\IBackground.cs" />
+    <Compile Include="Drawings\Graphics\IGraphic.cs" />
+    <Compile Include="Drawings\Graphics\Painters\IGraphicPainter.cs" />
+    <Compile Include="Drawings\Graphics\Graphic.cs" />
+    <Compile Include="Drawings\Graphics\Painters\PointsGraphicPainter.cs" />
+    <Compile Include="Drawings\Graphics\Painters\PolylinesStretchGraphicPainter.cs" />
+    <Compile Include="Drawings\Graphics\PolilynesDrawler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ControlsExtensions.cs" />
+    <Compile Include="Tools\DrawingContextExtensions.cs" />
+    <Compile Include="Tools\SelectorExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
+      <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\WPFWinForms\WPFWinForms.csproj">
+      <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
+      <Name>WPFWinForms</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Components\Units\GraphUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Updater\SimpleProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DropDown\BaseDropDownControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\InputTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\InputComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Menu\InputMenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\PerfomanceCounters\SelectPerfomanceCounters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\InputSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Down.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Up.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

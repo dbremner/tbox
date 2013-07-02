@@ -1,0 +1,30 @@
+﻿<dialogs:DialogWindow x:Class="WPFControls.Dialogs.Menu.InputMenuItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:forms="clr-namespace:WPFControls.Dialogs.Menu"
+              xmlns:dialogs="clr-namespace:WPFControls.Dialogs"
+              mc:Ignorable="d" 
+             WindowStyle="ToolWindow" 
+             Height="200" Width="350" MinHeight="300" MinWidth="350" 
+             FocusManager.FocusedElement="{Binding ElementName=edData}" >
+<DockPanel>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
+        <Button Name="btnOk" Content="OK" Width="64" Margin="10" Click="BtnOk_OnClick" IsDefault="True"/>
+        <Button Content="Cancel" Width="64" Margin="10" IsCancel="True" Click="BtnCancelClick"/>
+    </StackPanel>
+        <TextBlock Name="Question" Padding="5,0" DockPanel.Dock="Top"/>
+        <TreeView Name="Items" SelectedItemChanged="Selector_OnSelectionChanged">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type forms:MenuDialogItem}" ItemsSource="{Binding Children}"  >
+                    <DockPanel HorizontalAlignment="Stretch">
+                        <Image Source="{Binding Path=Icon, Mode=OneTime}" Width="16" Height="16" DockPanel.Dock="Left" Margin="2"/>
+                        <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButton"/>
+                    </DockPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+    </DockPanel>
+</dialogs:DialogWindow>
+
