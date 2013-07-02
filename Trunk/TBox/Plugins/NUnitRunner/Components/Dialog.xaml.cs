@@ -1,0 +1,117 @@
+﻿using System;
+using System.IO;
+using System.Windows;
+using NUnitRunner.Code;
+using NUnitRunner.Code.Settings;
+using NUnitRunner.Code.Updater;
+using WPFControls.Code.OS;
+using WPFControls.Dialogs;
+
+namespace NUnitRunner.Components
+{
+	/// <summary>
+	/// Interaction logic for Dialog.xaml
+	/// </summary>
+	public partial class Dialog
+	{
+		private TestsPackage package;
+		private TestConfig config;
+		public Dialog()
+		{
+			InitializeComponent();
+		}
+
+		public void ShowDialog(TestConfig cfg, string nunitAgentPath)
+		{
+			if (IsVisible) return;
+			config = cfg;
+			DisposePackage();
+            package = new TestsPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin);
+			Panel.Children.Add(package.Results);
+			DataContext = config;
+			Title = Path.GetFileName(package.Path);
+			ShowAndActivate();
+			RefreshClick(this, null);
+		}
+
+		private void DisposePackage()
+		{
+			if (package != null)
+			{
+				package.Dispose();
+			}
+			Panel.Children.Clear();
+		}
+
+		private void CancelClick(object sender, RoutedEventArgs e)
+		{
+			Close();
+		}
+
+		private void RefreshClick(object sender, RoutedEventArgs e)
+		{
+			if (!package.EnsurePathIsValid())
+			{
+				Close();
+				return;
+			}
+            package.Reset(config.RunAsx86, config.RunAsAdmin);
+			var caption = Path.GetFileName(config.Key);
+			DialogsCache.ShowProgress(
+				u => package.DoRefresh(DoRefresh, o => Mt.Do(this, Close)), 
+				caption, this);
+		}
+
+		private void DoRefresh(TestsPackage o)
+		{
+			Mt.Do(this, () =>
+			{
+				Title = Path.GetFileName(o.Path) + " - [ " + package.Count + " ]";
+				package.ApplyResults();
+				FilterChanged(null, null);
+			});
+		}
+
+		private void StartClick(object sender, RoutedEventArgs e)
+		{
+			if (!package.EnsurePathIsValid())
+			{
+				return;
+			}
+			var caption = Path.GetFileName(config.Key);
+			package.Reset(config.RunAsx86, config.RunAsAdmin);
+			var packages = package.PrepareToRun(config.ProcessCount);
+			var time = Environment.TickCount;
+			var synchronizer = new Synchronizer(config.ProcessCount);
+			DialogsCache.ShowProgress(
+				u => package.DoRun(o => DoRun(time), packages, config.CopyToSeparateFolders, config.CopyDeep, config.NeedSynchronizationForTests, synchronizer, new SimpleUpdater(u, synchronizer)),
+				caption, this);
+		}
+
+		private void DoRun(int time)
+		{
+			Mt.Do(this,
+				  () =>
+				  {
+					  Title = string.Format("{0} - tests: [ {1} ], failed = [ {2} ] time: {3:0.0}",
+											Path.GetFileName(package.Path),
+											package.Count, package.FailedCount,
+											(Environment.TickCount - time) / 1000.0);
+					  package.ApplyResults();
+					  package.Results.Refresh();
+				  }
+				);
+		}
+
+		private void FilterChanged(object sender, RoutedEventArgs e)
+		{
+			package.UpdateFilter(Filter.IsChecked == true);
+		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			DisposePackage();
+		}
+	}
+}

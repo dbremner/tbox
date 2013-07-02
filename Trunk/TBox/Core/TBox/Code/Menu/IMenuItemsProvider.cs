@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using WPFControls.Dialogs.Menu;
+using WPFWinForms;
+
+namespace TBox.Code.Menu
+{
+	public interface IMenuItemsProvider
+	{
+		event Action OnRefresh;
+		event Action<string> OnRefreshItem;
+
+		void Refresh(IList<UMenuItem> items);
+		void Refresh(string name, IList<UMenuItem> items);
+
+		UMenuItem Get(string path);
+		UMenuItem GetRoot(string path);
+		IEnumerable<UMenuItem> GetItems();
+		IList<MenuDialogItem> GetDialogItems();
+	}
+}

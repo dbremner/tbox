@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Searcher.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
+             xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
+             xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel>
+        <TabControl>
+            <TabItem Header="Folders to search">
+                <Units:CheckableFileListBoxUnit ItemsSource="{Binding Index.FileNames}" UnitType="FolderPath" Title="Configure files folders to create index" PathGetterType="Folder"/>
+            </TabItem>
+            <TabItem Header="File types to include">
+                <Units:ListBoxUnit ItemsSource="{Binding Index.FileTypes}" UnitType="Text" Title="Configure files types to create index"/>
+            </TabItem>
+            <TabItem Header="Parsing settings">
+                <DockPanel>
+                    <GroupBox Header="File parsing" Margin="5" DockPanel.Dock="Top">
+                        <StackPanel>
+                            <Controls:ExtCheckBox Content="Skip comments" Margin="5" IsChecked="{Binding Index.SkipComments}" />
+                            <Controls:ExtCheckBox Content="Decode strings" Margin="5" IsChecked="{Binding Index.DecodeStrings}" />
+                            <Controls:ExtCheckBox Content="Decode comments" Margin="5" IsChecked="{Binding Index.DecodeComments}" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="File masks to exclude" Margin="5" >
+                        <Units:ListBoxUnit ItemsSource="{Binding Index.FileMasksToExclude}" UnitType="Text" Title="Configure file masks to exclude unused items"/>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Search results" >
+                <StackPanel Margin="5">
+                    <Controls:ExtCheckBox Content="Load file on select" DockPanel.Dock="Right" Margin="5" IsChecked="{Binding Result.AutoLoadFile}"/>
+                    <captioned:CaptionedEditPath Caption="Executable path:" Value="{Binding Result.OpenWith}" PathGetterType="File" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</UserControl>

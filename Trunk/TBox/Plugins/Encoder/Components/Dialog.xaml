@@ -1,0 +1,37 @@
+﻿<dialogs:DialogWindow x:Class="Encoder.Components.Dialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dialogs="clr-namespace:WPFControls.Dialogs;assembly=WPFControls" mc:Ignorable="d" 
+             xmlns:wpfSyntaxHighlighter="clr-namespace:WPFSyntaxHighlighter;assembly=WPFSyntaxHighlighter"
+                      xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
+                      xmlns:components="clr-namespace:WPFControls.Components;assembly=WPFControls"
+                      xmlns:components1="clr-namespace:Encoder.Components"
+                      ShowInTaskbar="True" Title="Encoder"
+             Width="640" Height="480"
+             d:DesignHeight="300" d:DesignWidth="300"
+             MinWidth="640" MinHeight="480"
+             FocusManager.FocusedElement="{Binding ElementName=Source}"
+                      >
+    <DockPanel>
+        <DockPanel Name="Operations" Grid.Column="2" DockPanel.Dock="Right" >
+            <Button Content="Swap texts" Margin="5" Click="ButtonSwapClick" DockPanel.Dock="Top"/>
+            <Button Content="To Clipboard" Margin="5" IsDefault="True" Click="BtnToClipboardClick" DockPanel.Dock="Top" />
+            <Button Content="Clear" Margin="5" Click="BtnClearClick" DockPanel.Dock="Top" />
+            <controls:ExtCheckBox Name="ConvertOnSourceChanged" Content="Convert on source changed" Margin="5" IsChecked="{Binding ConvertOnSourceChanged}" DockPanel.Dock="Top"/>
+            <Button Content="Cancel" HorizontalAlignment="Right" Padding="5,0" IsCancel="True" Margin="5" Click="CancelClick" DockPanel.Dock="Bottom"/>
+            <components:ExtListBox Name="Encoders" Margin="2" SelectedIndex="{Binding SelectedEncoder}" ItemsSource="{Binding KnownEncoders, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type components1:Dialog}}}" SelectionChanged="Selector_OnSelectionChanged"/>
+        </DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <wpfSyntaxHighlighter:SyntaxHighlighter x:Name="Source" IsWordWrap="{Binding ElementName=Result, Path=IsWordWrap}" IsWhitespaces="{Binding ElementName=Result, Path=IsWhitespaces}" Format="{Binding ElementName=Result, Path=Format}" IsStatusBarVisible="False" TextChanged="Source_OnTextChanged" Value="{Binding SourceText}"/>
+            <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1"/>
+            <wpfSyntaxHighlighter:SyntaxHighlighter x:Name="Result" Grid.Row="2" IsWordWrap="True"/>
+        </Grid>
+    </DockPanel>
+</dialogs:DialogWindow>
