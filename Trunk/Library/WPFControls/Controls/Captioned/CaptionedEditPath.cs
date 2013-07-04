@@ -21,6 +21,7 @@ namespace WPFControls.Controls.Captioned
 			set
 			{
 				SetValue(ValueProperty, value);
+				OnValueChanged(this, null);
 				child.Value = value;
 			}
 		}
