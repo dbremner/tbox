@@ -70,12 +70,16 @@ namespace NUnitRunner.Components
 			if (Results.ItemsSource == null) return;
 			var view = CollectionViewSource.GetDefaultView(Results.ItemsSource);
 			if (view == null) return;
+			Predicate<Result> failedFilter = null;
 			Predicate<Result> filter = null;
-			if (OnlyFailed) filter = IsFailed;
+			if (OnlyFailed) filter = failedFilter = IsFailed;
 			var text = Filter.Text.Trim();
 			if (!string.IsNullOrEmpty(text))
 			{
-				filter += x => x.Key.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >=0;
+				Predicate<Result> textFilter = x => x.Key.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0;
+				filter = filter!=null ?
+					x => failedFilter(x) && textFilter(x) : 
+					textFilter;
 			}
 			if (filter != null)
 			{
