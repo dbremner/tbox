@@ -35,7 +35,6 @@ namespace ProjectMan.Code
 			AppendSvnSubMenu();
 			AppendSeparator();
 			AppendBatSubMenu();
-			AppendSeparator();
 			AppendMsBuildSubMenu();
 		}
 
@@ -140,10 +139,15 @@ namespace ProjectMan.Code
 				Union(GetFiles("*.cmd")).
 				OrderBy(x => x.Key);
 			if (!files.Any()) return;
-			foreach (var item in files)
+			var item = AddNewMenuItem("Batch - *.cmd and *.bat", pluginContext.GetIcon("c:\\windows\\system32\\cmd.exe", 0));
+			foreach (var m in files)
 			{
-				var path = item.Value;
-				AppendItem(item.Key, o => Cmd.Start(path, Log, string.Empty, false), pluginContext.GetIcon("c:\\windows\\system32\\cmd.exe", 0));
+				var path = m.Value;
+				item.Items.Add(new UMenuItem
+					{
+						Header = m.Key,
+						OnClick = o => Cmd.Start(path, Log, string.Empty, false)
+					});
 			}
 		}
 
@@ -151,14 +155,27 @@ namespace ProjectMan.Code
 		{
 			var files = GetFiles("*.build").OrderBy(x => x.Key);
 			if (!files.Any()) return;
-			foreach (var item in files)
+			var item = AddNewMenuItem("MsBuild - *.build", pluginContext.GetIcon(projectContext.MsBuildProvider.PathToMsBuild, 0));
+			foreach (var m in files)
 			{
-				var path = item.Value;
-				AppendItem(Path.GetFileName(path),
-				           o => projectContext.MsBuildProvider.Build(path),
-				           pluginContext.GetIcon(projectContext.MsBuildProvider.PathToMsBuild, 0)
-					);
+				var path = m.Value;
+				item.Items.Add(new UMenuItem
+					{
+						Header = m.Key,
+						OnClick = o => projectContext.MsBuildProvider.Build(path)
+					});
 			}
+		}
+
+		private UMenuItem AddNewMenuItem(string header, Icon icon)
+		{
+			var item = new UMenuItem
+				{
+					Header = header,
+					Icon = icon
+				};
+			MenuItem.Items.Add(item);
+			return item;
 		}
 	}
 }
