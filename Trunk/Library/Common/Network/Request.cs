@@ -16,7 +16,7 @@ namespace Common.Network
 			try
 			{
 				var request=(HttpWebRequest)WebRequest.Create(url);
-				request.Timeout = timeOut;
+				request.ReadWriteTimeout = request.Timeout = timeOut;
 				request.Proxy = null;
 				request.Credentials = CredentialCache.DefaultCredentials;
 				if (headers != null)
@@ -30,7 +30,10 @@ namespace Common.Network
 				if (!string.IsNullOrEmpty(body))
 				{
 				    var buffer = Encoding.UTF8.GetBytes(body);
-                    request.GetRequestStream().Write(buffer, 0, buffer.Length);
+					using (var s = request.GetRequestStream())
+					{
+						s.Write(buffer, 0, buffer.Length);
+					}
 				}
 				return GetResponse(request);
 			}
