@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using Common.Base;
 using Common.Base.Log;
 using Common.Console;
 using Common.Data;
@@ -36,6 +35,8 @@ namespace ProjectMan.Code
 			AppendSvnSubMenu();
 			AppendSeparator();
 			AppendBatSubMenu();
+			AppendSeparator();
+			AppendMsBuildSubMenu();
 		}
 
 		private void AppendSeparator()
@@ -143,6 +144,20 @@ namespace ProjectMan.Code
 			{
 				var path = item.Value;
 				AppendItem(item.Key, o => Cmd.Start(path, Log, string.Empty, false), pluginContext.GetIcon("c:\\windows\\system32\\cmd.exe", 0));
+			}
+		}
+
+		private void AppendMsBuildSubMenu()
+		{
+			var files = GetFiles("*.build").OrderBy(x => x.Key);
+			if (!files.Any()) return;
+			foreach (var item in files)
+			{
+				var path = item.Value;
+				AppendItem(Path.GetFileName(path),
+				           o => projectContext.MsBuildProvider.Build(path),
+				           pluginContext.GetIcon(projectContext.MsBuildProvider.PathToMsBuild, 0)
+					);
 			}
 		}
 	}

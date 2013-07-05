@@ -19,7 +19,12 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <DockPanel>
-            <components2:PanelToICheckable Name="Panel" DockPanel.Dock="Top" />
+            <DockPanel DockPanel.Dock="Top" Margin="2" >
+                <TextBlock Margin="2" Text="Filter:"/>
+                <TextBlock Margin="2" Text="{Binding ElementName=Results, Path=Items.Count}" DockPanel.Dock="Right"/>
+                <TextBox Name="Filter" TextChanged="FilterChanged" />
+            </DockPanel>
+            <components2:PanelToICheckable Name="Panel" DockPanel.Dock="Bottom" />
             <components2:CheckableListBox Name="Results" SelectionChanged="SelectedTestChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="settings:Result">

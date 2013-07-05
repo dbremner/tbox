@@ -70,9 +70,16 @@ namespace NUnitRunner.Components
 			if (Results.ItemsSource == null) return;
 			var view = CollectionViewSource.GetDefaultView(Results.ItemsSource);
 			if (view == null) return;
-			if (OnlyFailed)
+			Predicate<Result> filter = null;
+			if (OnlyFailed) filter = IsFailed;
+			var text = Filter.Text.Trim();
+			if (!string.IsNullOrEmpty(text))
 			{
-				view.Filter = x => IsFailed((Result)x);
+				filter += x => x.Key.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >=0;
+			}
+			if (filter != null)
+			{
+				view.Filter = x => filter((Result)x);
 			}
 			else
 			{
@@ -84,6 +91,5 @@ namespace NUnitRunner.Components
 		{
 			return i.State == ResultState.Failure || i.State == ResultState.Error;
 		}
-
 	}
 }

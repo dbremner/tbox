@@ -1,4 +1,8 @@
-﻿19/06/2013 Add x86 support for AnyCpu TBox, for parallel unit tests runner. Fix critical issue with progressbar. Update usage license. Update searcher - now it clear previous index on reindex end.
+﻿05/07/2013 Add filtering unit test by name. add build build files for project manager
+
+03/07/2013 Move sources and documentation to http://tbox.codeplex.com
+
+19/06/2013 Add x86 support for AnyCpu TBox, for parallel unit tests runner. Fix critical issue with progressbar. Update usage license. Update searcher - now it clear previous index on reindex end.
 
 02/06/2013 Add fast start window.
 
