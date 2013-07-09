@@ -5,7 +5,7 @@ using System.Text;
 namespace WPFWinForms.Communication
 {
 	[Serializable]
-	sealed class Client
+	public sealed class Client
 	{
 		private readonly int windowId;
 		public Client(int windowId)

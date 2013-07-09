@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace WPFWinForms.Communication
 {
-	sealed class Server : NativeWindow, IDisposable
+	public sealed class Server : NativeWindow, IDisposable
 	{
 		public event Action<object, string> MessageReceived;
 		public Server()
