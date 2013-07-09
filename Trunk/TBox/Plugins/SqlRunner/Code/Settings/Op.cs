@@ -10,6 +10,7 @@ namespace SqlRunner.Code.Settings
 		public int Threads { get; set; }
 		public int Delay { get; set; }
 		public int Timeout { get; set; }
+        public bool UseTransaction { get; set; }
 		public string Command { get; set; }
 
 		public Op()
@@ -17,6 +18,7 @@ namespace SqlRunner.Code.Settings
 			Delay = 0;
 			Threads = 1;
 			Timeout = 120;
+		    UseTransaction = true;
 		}
 
 		public override object Clone()
@@ -28,7 +30,8 @@ namespace SqlRunner.Code.Settings
 				Threads = Threads,
 				Delay = Delay,
 				Timeout = Timeout,
-				Command = Command
+				Command = Command,
+                UseTransaction = UseTransaction
 			};
 			return p;
 		}

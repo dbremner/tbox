@@ -17,24 +17,21 @@ namespace PluginsShared.Tools
 			PathToMsBuild = pathToMsBuild;
 		}
 
-		private string CmdPath
+		private string GetCmdPath(string name)
 		{
-			get
-			{
-				var cmd = Path.Combine(rootDir, "msbuild.cmd");
-				if (!File.Exists(cmd)) Log.Write("Can't find: {0}", cmd);
-				return cmd;
-			}
+			var cmd = Path.Combine(rootDir, name + ".cmd");
+			if (!File.Exists(cmd)) Log.Write("Can't find: {0}", cmd);
+			return cmd;
 		}
 
-		public void Build(string path)
+		public void BuildBuildFile(string path, string args)
 		{
-			Cmd.Start(CmdPath, Log, string.Format("\"{0}\" \"{1}\"", PathToMsBuild, path), false);
+			Cmd.Start(GetCmdPath("build_build"), Log, string.Format("\"{0}\" \"{1}\" \"{2}\"", PathToMsBuild, path, args), false);
 		}
 
 		public void Build(string mode, string path, bool waitEnd = false)
 		{
-			Cmd.Start(CmdPath, Log, string.Format("\"{0}\" \"{1}\" \"{2}\"", PathToMsBuild, path, mode), waitEnd);
+			Cmd.Start(GetCmdPath("build_project"), Log, string.Format("\"{0}\" \"{1}\" \"{2}\"", PathToMsBuild, path, mode), waitEnd);
 		}
 	}
 }

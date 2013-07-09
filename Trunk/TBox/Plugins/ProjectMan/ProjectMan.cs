@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Base;
 using Common.Base.Log;
 using Interface;
 using Interface.Atrributes;
 using PluginsShared.Tools;
 using ProjectMan.Code;
+using ProjectMan.Code.Settings;
 using WPFWinForms;
 
 namespace ProjectMan
@@ -26,7 +26,7 @@ namespace ProjectMan
 			var list = new List<KeyValuePair<string, UMenuItem>>();
 			foreach (var dir in items)
 			{
-				CreateNewProject(list, dir.Key, projectContext);
+				CreateNewProject(list, dir, projectContext);
 			}
 			var pathes = items.Select(x => x.Key).ToArray();
 			var menu = list.OrderBy(x => x.Key).Select(x => x.Value).ToList();
@@ -49,16 +49,16 @@ namespace ProjectMan
 				);
 		}
 
-		private void CreateNewProject(ICollection<KeyValuePair<string, UMenuItem>> list, string path, ProjectContext context)
+		private void CreateNewProject(ICollection<KeyValuePair<string, UMenuItem>> list, ProjectInfo info, ProjectContext context)
 		{
-			if (!Directory.Exists(path))
+			if (!Directory.Exists(info.Key))
 			{
-				Log.Write("Path not exist: '{0}'", path);
+				Log.Write("Path not exist: '{0}'", info.Key);
 				return;
 			}
 			list.Add(new KeyValuePair<string, UMenuItem>(
-							 path,
-							 (new Project(path, context, Context)).MenuItem
+							 info.Key,
+							 (new Project(info, context, Context)).MenuItem
 							 ));
 		}
 	}

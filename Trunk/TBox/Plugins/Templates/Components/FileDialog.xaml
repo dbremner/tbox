@@ -1,14 +1,12 @@
-﻿<Dialogs:DialogWindow x:Class="Templates.Components.FileDialog"
+﻿<dialogs:DialogWindow x:Class="Templates.Components.FileDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:Dialogs="clr-namespace:WPFControls.Dialogs;assembly=WPFControls"
-                  xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
-                      xmlns:Controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
-                      xmlns:components="clr-namespace:WPFControls.Components;assembly=WPFControls"
-                      xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
-                      mc:Ignorable="d" 
+             xmlns:dialogs="clr-namespace:WPFControls.Dialogs;assembly=WPFControls"
+             xmlns:components="clr-namespace:WPFControls.Components;assembly=WPFControls"
+             xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
+             mc:Ignorable="d" 
              MinWidth="480" MinHeight="320"
              Width="480" Height="320"
              ShowInTaskbar="True">
@@ -30,4 +28,4 @@
             </components:ExtListBox.ItemTemplate>
         </components:ExtListBox>
     </DockPanel>
-</Dialogs:DialogWindow>
+</dialogs:DialogWindow>

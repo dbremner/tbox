@@ -3,7 +3,7 @@
 	public interface IMsBuildProvider
 	{
 		void Build(string mode, string path, bool waitEnd = false);
-		void Build(string path);
+		void BuildBuildFile(string path, string args);
 		string PathToMsBuild { get; }
 	}
 }

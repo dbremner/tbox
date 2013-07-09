@@ -69,24 +69,13 @@ namespace ServicesCommander.Code
 
 		public void RestartService(ServiceInfo info)
 		{
-			var operation = string.Empty;
 			try
 			{
-				var name = ResolveName(info.Key);
-				using (var s = new ServiceController(name))
-				{
-					if (IsRunning(s))
-					{
-						operation = "stop";
-						StopService(name);
-					}
-					operation = "start";
-					StartService(name);
-				}
+                ReStartService(ResolveName(info.Key));
 			}
 			catch (Exception ex)
 			{
-				Log.Write(ex, "Can't " + operation + " service: " + info.Key);
+				Log.Write(ex, "Can't restart service: " + info.Key);
 			}
 			context.RebuildMenu();
 		}
@@ -111,22 +100,27 @@ namespace ServicesCommander.Code
 
 		private void StopService(string name)
 		{
-			DoWork(name, "stop");
+            DoWork("net stop " + name);
 		}
 
 		private void StartService(string name)
 		{
-			DoWork(name, "start");
+            DoWork("net start " + name);
 		}
 
-		private void DoWork(string name, string operation)
+        private void ReStartService(string name)
+        {
+            DoWork(string.Format("net stop {0} & net start {0}", name));
+        }
+
+		private void DoWork(string operation)
 		{
 		    try
 		    {
 		        var pi = new ProcessStartInfo
 		            {
-		                Arguments = operation + " " + name,
-		                FileName = "net",
+                        Arguments = "/c " + operation,
+		                FileName = "cmd",
 		                UseShellExecute = true,
 		                CreateNoWindow = true,
                         Verb = "runas"
@@ -139,7 +133,7 @@ namespace ServicesCommander.Code
 		    }
 		    catch (Exception ex)
 		    {
-		        Log.Write(ex, "Can't " + operation + " service " + name);
+		        Log.Write(ex, "Can't run " + operation);
 		    }
 		}
 

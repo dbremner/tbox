@@ -17,7 +17,10 @@
         </StackPanel>
         <TabControl Name="Tabs">
             <TabItem Header="Request">
-                <sh:SyntaxHighlighter Value="{Binding Command}" Format="mssql"/>
+                <DockPanel>
+                    <CheckBox Content="Use Transaction" IsChecked="{Binding UseTransaction}" Margin="5" DockPanel.Dock="Top" HorizontalAlignment="Left"/>
+                    <sh:SyntaxHighlighter Value="{Binding Command}" Format="mssql"/>
+                </DockPanel>
             </TabItem>
             <TabItem Header="Response">
                 <sh:SyntaxHighlighter Name="Response" IsReadOnly="True" Format="mssql"/>

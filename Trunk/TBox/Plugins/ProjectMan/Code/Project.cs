@@ -7,6 +7,8 @@ using Common.Base.Log;
 using Common.Console;
 using Common.Data;
 using Interface;
+using ProjectMan.Code.Settings;
+using WPFControls.Dialogs;
 using WPFWinForms;
 
 namespace ProjectMan.Code
@@ -14,14 +16,17 @@ namespace ProjectMan.Code
 	sealed class Project
 	{
 		private static readonly ILog Log = LogManager.GetLogger<Project>();
+		private static readonly List<string> KnownArgs = new List<string>(); 
 		private readonly DirectoryInfo info;
+		private readonly ProjectInfo projectInfo;
 		private readonly ProjectContext projectContext;
 		private readonly IPluginContext pluginContext;
 		public UMenuItem MenuItem { get; private set; }
 
-		public Project(string path, ProjectContext projectContext, IPluginContext pluginContext)
+		public Project(ProjectInfo projectInfo, ProjectContext projectContext, IPluginContext pluginContext)
 		{
-			info = new DirectoryInfo(path);
+			info = new DirectoryInfo(projectInfo.Key);
+			this.projectInfo = projectInfo;
 			this.projectContext = projectContext;
 			this.pluginContext = pluginContext;
 			CreateMenu();
@@ -158,12 +163,29 @@ namespace ProjectMan.Code
 			var item = AddNewMenuItem("MsBuild - *.build", pluginContext.GetIcon(projectContext.MsBuildProvider.PathToMsBuild, 0));
 			foreach (var m in files)
 			{
+				var key = m.Key;
 				var path = m.Value;
 				item.Items.Add(new UMenuItem
 					{
-						Header = m.Key,
-						OnClick = o => projectContext.MsBuildProvider.Build(path)
+						Header = key,
+						OnClick = o => BuildBuildFile(key, path)
 					});
+			}
+		}
+
+		private void BuildBuildFile(string key, string path)
+		{
+			var r = DialogsCache
+				.GetDialog<InputComboBox>()
+				.ShowDialog("Please, specify build arguments:",
+				            "Build: " + key, projectInfo.MsBuildParams,
+				            x => !string.IsNullOrWhiteSpace(x),
+				            KnownArgs,
+				            null);
+			if (r.Key)
+			{
+				projectInfo.MsBuildParams = r.Value;
+				projectContext.MsBuildProvider.BuildBuildFile(path, projectInfo.MsBuildParams);
 			}
 		}
 
