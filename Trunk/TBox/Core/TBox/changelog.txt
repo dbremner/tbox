@@ -1,4 +1,8 @@
-﻿05/07/2013 Add filtering unit test by name. add build build files for project manager
+﻿12/07/2013 Add console unit tests runner, to use with CI. This subtool generate valid xml report.
+
+08/07/2013 Add optional transactions for sql Runner. Optimize restart for services commander. Add support for build files for project manager.
+
+05/07/2013 Add filtering unit test by name. add build build files for project manager
 
 03/07/2013 Move sources and documentation to http://tbox.codeplex.com
 

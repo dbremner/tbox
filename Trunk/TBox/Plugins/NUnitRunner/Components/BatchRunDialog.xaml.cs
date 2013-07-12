@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
-using NUnitRunner.Code;
+using ConsoleUnitTestsRunner.Code;
+using ConsoleUnitTestsRunner.Code.Interfaces;
+using ConsoleUnitTestsRunner.Code.Settings;
+using ConsoleUnitTestsRunner.Code.Updater;
 using NUnitRunner.Code.Settings;
-using NUnitRunner.Code.Updater;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
 
@@ -30,10 +32,10 @@ namespace NUnitRunner.Components
 			DllsPanel.View = Dlls;
 		}
 
-		public void ShowDialog(Config cfg, string nunitAgentPath)
+		public void ShowDialog(Config cfg, string nunitPath)
 		{
 			if(IsVisible)return;
-			this.nunitAgentPath = nunitAgentPath;
+			this.nunitAgentPath = nunitPath;
 			DisposePackages();
 			config = cfg;
 			DataContext = config;
@@ -92,7 +94,7 @@ namespace NUnitRunner.Components
 											(Environment.TickCount - time) / 1000.0);
 					  foreach (var p in packages)
 					  {
-						  p.Results.Refresh();
+						  ((UnitTestsView)p.Results).Refresh();
 					  }
 				  }
 				);
@@ -111,7 +113,7 @@ namespace NUnitRunner.Components
 			DisposePackages();
 			foreach (var item in config.DllPathes.CheckedItems)
 			{
-                var p = new TestsPackage(item.Key, nunitAgentPath, item.RunAsx86, item.RunAsAdmin);
+                var p = new TestsPackage(item.Key, nunitAgentPath, item.RunAsx86, item.RunAsAdmin, new UnitTestsView());
 				if (!p.EnsurePathIsValid())
 				{
 					return;

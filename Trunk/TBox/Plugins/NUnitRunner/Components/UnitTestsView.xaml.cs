@@ -3,6 +3,9 @@ using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using Common.UI.ModelsContainers;
+using ConsoleUnitTestsRunner.Code.Interfaces;
+using ConsoleUnitTestsRunner.Code.Settings;
 using NUnit.Core;
 using NUnitRunner.Code.Settings;
 
@@ -11,7 +14,7 @@ namespace NUnitRunner.Components
 	/// <summary>
 	/// Interaction logic for UnitTestsView.xaml
 	/// </summary>
-	public partial class UnitTestsView
+	public partial class UnitTestsView : IUnitTestsView
 	{
 		public UnitTestsView()
 		{
@@ -94,6 +97,22 @@ namespace NUnitRunner.Components
 		private static bool IsFailed(Result i)
 		{
 			return i.State == ResultState.Failure || i.State == ResultState.Error;
+		}
+
+		public void UpdateFilter(bool onlyFail)
+		{
+			if (ItemsSource == null) return;
+			OnlyFailed = onlyFail;
+		}
+
+		public void SetItems(CheckableDataCollection<Result> items)
+		{
+			ItemsSource = items;
+		}
+
+		public void Clear()
+		{
+			ItemsSource = null;
 		}
 	}
 }

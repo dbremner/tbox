@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-using NUnitRunner.Code;
+using ConsoleUnitTestsRunner.Code;
+using ConsoleUnitTestsRunner.Code.Updater;
 using NUnitRunner.Code.Settings;
-using NUnitRunner.Code.Updater;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
 
@@ -26,8 +26,9 @@ namespace NUnitRunner.Components
 			if (IsVisible) return;
 			config = cfg;
 			DisposePackage();
-            package = new TestsPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin);
-			Panel.Children.Add(package.Results);
+			var view = new UnitTestsView();
+            package = new TestsPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin, view);
+			Panel.Children.Add(view);
 			DataContext = config;
 			Title = Path.GetFileName(package.Path);
 			ShowAndActivate();
@@ -98,7 +99,7 @@ namespace NUnitRunner.Components
 											package.Count, package.FailedCount,
 											(Environment.TickCount - time) / 1000.0);
 					  package.ApplyResults();
-					  package.Results.Refresh();
+					  ((UnitTestsView)package.Results).Refresh();
 				  }
 				);
 		}

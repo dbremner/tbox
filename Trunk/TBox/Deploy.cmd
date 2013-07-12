@@ -1,8 +1,7 @@
 @echo off
 
 set source=bin\Release
-set target=d:\Updates\TBox
-set donor=d:\Soft\tbox\Data\
+set target=c:\data\1\Releases\TBox\
 set dataFolder=%target%\Data
 set toolsFolder=%target%\Tools
 RD /S /Q %target%
@@ -27,15 +26,6 @@ copy Tools\*.cmd  %toolsFolder%
 md %dataFolder%
 md %dataFolder%\Automater
 xcopy Shared\Automater\*.* %dataFolder%\Automater\ /s /i
-
-md %dataFolder%\LocalizationTool
-xcopy %donor%\LocalizationTool\*.* %dataFolder%\LocalizationTool /s /i
-
-md %dataFolder%\Templates
-xcopy %donor%\Templates\*.* %dataFolder%\Templates /s /i
-
-md %dataFolder%\ProjectMan\
-xcopy %donor%\ProjectMan\* %dataFolder%\ProjectMan /s /i
 
 copy %source%\*.txt %target%
 copy %source%\*.config %target%

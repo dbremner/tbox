@@ -20,4 +20,12 @@ namespace Common.Data
 
 		}
 	}
+
+	public static class Pair
+	{
+		public static Pair<TKey, TValue> Create<TKey, TValue>(TKey key, TValue value)
+		{
+			return new Pair<TKey, TValue>(key, value);
+		}
+	}
 }
