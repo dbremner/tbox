@@ -13,7 +13,7 @@ namespace FileWatcher.Components
 		public int MaxEntries { get; set; }
 		public int EntriesCount { get { return outputData.Count; } }
 		private readonly ObservableCollection<CaptionedEntity> outputData = new ObservableCollection<CaptionedEntity>();
-		public event Action OnClear;
+		public event EventHandler OnClear;
 
 		public MemoBoxLog()
 		{
@@ -84,7 +84,7 @@ namespace FileWatcher.Components
 		{
 			outputData.Clear();
 			UpdateStatus();
-			if (OnClear != null) OnClear();
+			if (OnClear != null) OnClear(this, null);
 		}
 	}
 }

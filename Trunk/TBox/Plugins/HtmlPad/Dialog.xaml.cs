@@ -1,4 +1,5 @@
-﻿using Common.Base;
+﻿using System;
+using Common.Base;
 using Common.Base.Log;
 using WPFControls.Tools;
 
@@ -17,7 +18,7 @@ namespace HtmlPad
 			Editor.TextChanged += EditorOnTextChanged;
 		}
 
-		private void EditorOnTextChanged()
+		private void EditorOnTextChanged(object sender, EventArgs e)
 		{
 			if (!string.IsNullOrWhiteSpace(Editor.Value))
 			{

@@ -41,7 +41,7 @@ namespace MarketClient.Components.Installers
 
 		private void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
-			DialogsCache.ShowProgress(u => Do(() => Synchronizer.RefreshTables(u)));
+			DialogsCache.ShowProgress(u => Do((o,arg) => Synchronizer.RefreshTables(u)));
 		}
 
 		public Plugin[] Items
@@ -92,12 +92,12 @@ namespace MarketClient.Components.Installers
 				});
 		}
 
-		protected void Do(Action action)
+		protected void Do(EventHandler action)
 		{
 			try
 			{
 				EnableControls(false);
-				action();
+				action(this, null);
 			}
 			finally
 			{
@@ -105,7 +105,7 @@ namespace MarketClient.Components.Installers
 			}
 		}
 
-		public event Action OnAction;
+		public event EventHandler OnAction;
 
 		private void btnAction_Click(object sender, RoutedEventArgs e)
 		{
@@ -135,16 +135,16 @@ namespace MarketClient.Components.Installers
 			get { return cbAuthor.Value; }
 		}
 
-		public event Action OnNameSelectionChanged;
+		public event EventHandler OnNameSelectionChanged;
 
 		protected void cbType_SelectedIndexChanged(object sender, RoutedEventArgs e)
 		{
-			if (OnNameSelectionChanged != null) OnNameSelectionChanged();
+			if (OnNameSelectionChanged != null) OnNameSelectionChanged(this, null);
 		}
 
 		private void cbAuthor_SelectedIndexChanged(object sender, RoutedEventArgs e)
 		{
-			if (OnNameSelectionChanged != null) OnNameSelectionChanged();
+			if (OnNameSelectionChanged != null) OnNameSelectionChanged(this, null);
 		}
 
 	}

@@ -13,10 +13,12 @@ using extended.nunit.Interfaces;
 
 namespace ConsoleUnitTestsRunner.Code
 {
-	public class TestsPackage : IDisposable
+	public sealed class TestsPackage : IDisposable
 	{
 	    private bool runAsx86;
 		private bool runAsAdmin;
+	    private string dirToCloneTests;
+	    private string commandToExecuteBeforeTests;
 		private static readonly ILog Log = LogManager.GetLogger<TestsPackage>();
 		
 		public IUnitTestsView Results { get; private set; }
@@ -28,10 +30,12 @@ namespace ConsoleUnitTestsRunner.Code
 		public int Count { get { return items.Count; } }
 		public int FailedCount{get{return items.Count(x => x.State == ResultState.Failure || x.State == ResultState.Error);}}
 
-		public TestsPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, IUnitTestsView view)
+        public TestsPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view)
 		{
 		    this.runAsx86 = runAsx86;
 			this.runAsAdmin = runAsAdmin;
+            this.dirToCloneTests = dirToCloneTests;
+            this.commandToExecuteBeforeTests = commandToExecuteBeforeTests;
 			Path = path;
 			server = new Server<INunitRunnerClient>(new NunitRunnerClient());
             calculator = new Calculator(nunitAgentPath);
@@ -79,7 +83,7 @@ namespace ConsoleUnitTestsRunner.Code
 		{
 			try
 			{
-				runner.Run(Path, packages, server, copyToSeparateFolders, copyDeep, needSynchronizationForTests, runAsx86, runAsAdmin, synchronizer, u);
+                runner.Run(Path, packages, server, copyToSeparateFolders, copyDeep, needSynchronizationForTests, runAsx86, runAsAdmin, dirToCloneTests, commandToExecuteBeforeTests, synchronizer, u);
 				onReceive(this);
 			}
 			catch (Exception ex)
@@ -103,10 +107,12 @@ namespace ConsoleUnitTestsRunner.Code
 			server.Dispose();
 		}
 
-	    public void Reset(bool asx86, bool asAdmin)
+        public void Reset(bool asx86, bool asAdmin, string dirToClone, string commandBeforeTests)
 	    {
 	        runAsx86 = asx86;
 		    runAsAdmin = asAdmin;
+            dirToCloneTests = dirToClone;
+            commandToExecuteBeforeTests = commandBeforeTests;
 	        Results.Clear();
 	    }
 	}

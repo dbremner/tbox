@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,10 +27,10 @@ namespace RegExpTester
 
 		private void DataChanged(object sender, RoutedEventArgs e)
 		{
-			OnTextChanged();
+			OnTextChanged(this, e);
 		}
 
-		private void OnTextChanged()
+		private void OnTextChanged(object sender, EventArgs e)
 		{
 			if(TestManual.IsChecked == true)return;
 			DoTest();

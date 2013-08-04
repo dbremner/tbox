@@ -44,7 +44,7 @@ namespace TBox.Code.AutoUpdate
 			return true;
 		}
 
-		private static void AfterExit()
+		private static void AfterExit(object sender, EventArgs e)
 		{
 			using(Process.Start(Process.GetCurrentProcess().MainModule.FileName)){}
 		}

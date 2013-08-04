@@ -7,22 +7,22 @@ namespace Solution.Scripts
 {
 	public class EnableFeatures : IScript
 	{
-		[FileList(true)]
+		[FileList()]
 		public string[] ConfigFiles { get; set; }
 
-		[StringDictionary(false, "Feature.Sample", "true")]
+		[StringDictionary( "Feature.Sample", "true")]
 		public IDictionary<string, string> Features { get; set; }
 
-		[String(false, "appSettings")]
+		[String("appSettings")]
 		public string XmlSelector { get; set; }
 
-		[String(false, "key")]
+		[String("key")]
 		public string KeyKey { get; set; }
 
-		[String(false, "value")]
+		[String("value")]
 		public string ValueKey { get; set; }
 
-		[String(false, "add")]
+		[String("add")]
 		public string SectionName { get; set; }
 
 		public void Run()

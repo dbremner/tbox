@@ -24,7 +24,7 @@ namespace Automator
 {
 	[PluginName("Automater")]
 	[PluginDescription("Simple tool to automate everything what is possible. :)")]
-	public class Automater : ConfigurablePlugin<Settings, Config>, IDisposable
+	public sealed class Automater : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly LazyDialog<EditorDialog> editor;
 		private readonly LazyDialog<ScriptsRunner> runner;

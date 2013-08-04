@@ -11,7 +11,7 @@ namespace WPFControls.Dialogs
 	/// <summary>
 	/// Interaction logic for InputSelect.xaml
 	/// </summary>
-	partial class InputSelect : IDialog
+	 sealed partial class InputSelect : IDialog
 	{
 		private bool isSuccess = false;
 		private Func<string, bool> validator;

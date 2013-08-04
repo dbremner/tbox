@@ -17,7 +17,7 @@ namespace Requestor
 {
 	[PluginName("Request maker")]
 	[PluginDescription("Ability to build and send any requests. Also you can do DDos\nto find perfomance issues or memory leaks.")]
-	public class Requestor : ConfigurablePlugin<Settings, Config>, IDisposable
+	public sealed class Requestor : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly LazyDialog<FormDdos> formDdos;
 		private readonly Lazy<Executor> executor;

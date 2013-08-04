@@ -7,6 +7,7 @@
              xmlns:settings="clr-namespace:NUnitRunner.Code.Settings"
              xmlns:components="clr-namespace:NUnitRunner.Components"
              xmlns:components2="clr-namespace:WPFControls.Components;assembly=WPFControls"
+             xmlns:settings2="clr-namespace:ConsoleUnitTestsRunner.Code.Settings;assembly=ConsoleUnitTestsRunner"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -22,12 +23,13 @@
             <DockPanel DockPanel.Dock="Top" Margin="2" >
                 <TextBlock Margin="2" Text="Filter:"/>
                 <TextBlock Margin="2" Text="{Binding ElementName=Results, Path=Items.Count}" DockPanel.Dock="Right"/>
+                <TextBlock Margin="2" Text="Displayed:" DockPanel.Dock="Right"/>
                 <TextBox Name="Filter" TextChanged="FilterChanged" />
             </DockPanel>
             <components2:PanelToICheckable Name="Panel" DockPanel.Dock="Bottom" />
-            <components2:CheckableListBox Name="Results" SelectionChanged="SelectedTestChanged">
+            <components2:CheckableListBox Name="Results" SelectionChanged="SelectedTestChanged" SelectionMode="Extended">
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="settings:Result">
+                    <DataTemplate DataType="settings2:Result">
                         <DockPanel Margin="5">
                             <controls:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="OnTestChecked"/>
                             <Image Source="{Binding State, Converter={StaticResource IconConverter}}" DockPanel.Dock="Left" Margin="5,0" Width="16" Height="16"/>

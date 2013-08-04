@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ namespace WPFSyntaxHighlighter
 {
 	public sealed class SyntaxHighlighter : UserControl
 	{
+        private bool holded = false; 
 		private static readonly IDictionary<string, string[]> KnownTypes = new Dictionary<string, string[]>
 			{
 				{"xml", new[]{"config", "csproj", "build", "props", "xaml", "resx"}},
@@ -41,7 +43,7 @@ namespace WPFSyntaxHighlighter
 				IsBraceMatching = true,
 				MatchBraces = true,
 			};
-		public event Action TextChanged;
+		public event EventHandler TextChanged;
 		public SyntaxHighlighter()
 		{
 			var panel = new DockPanel();
@@ -70,6 +72,8 @@ namespace WPFSyntaxHighlighter
 			Content = panel;
 		}
 
+        bool CanEdit { get { return !IsReadOnly && !holded; } }
+
 		private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
 		{
 			var p = Parent.GetParentWindow();
@@ -86,14 +90,16 @@ namespace WPFSyntaxHighlighter
 
 		private void EditorLostFocus(object sender, EventArgs e)
 		{
+            if (!CanEdit) return;
 			SetValue(ValueProperty, editor.Text);
 		}
 
 		private void EditorTextChanged(object sender, EventArgs e)
 		{
-			sbSize.Content = editor.Text.Length;
+			sbSize.Content = editor.TextLength;
+            if (!CanEdit) return;
 			if (TextChanged != null)
-				TextChanged();
+				TextChanged(this, e);
 		}
 
 		public static readonly DependencyProperty FormatProperty =
@@ -131,28 +137,76 @@ namespace WPFSyntaxHighlighter
 			get { return editor.Text; }
 			set
 			{
+                if (CanEdit && string.Equals(editor.Text, value)) return;
 				SetValue(value);
-				editor.UndoRedo.EmptyUndoBuffer();
-				editor.Modified = false;
 			}
+		}
+
+		public int Length
+		{
+			get { return editor.TextLength; }
 		}
 
 		private void SetValue(string value)
 		{
-			if (string.Equals(editor.Text, value)) return;
-			if (IsReadOnly)
-			{
-				IsReadOnly = false;
-				editor.Text = value;
-				IsReadOnly = true;
-			}
-			else
-			{
-				editor.Text = value;
-			}
+            ApplyValue(() =>
+                {
+                    editor.Text = value;
+                });
+
 		}
 
-		public void Select(int start, int end)
+        public void Read(StreamReader s)
+        {
+            ApplyValue(()=>
+            {
+                editor.ResetText();
+                var i = 0;
+                var buf = new char[32000];
+                while (!s.EndOfStream)
+                {
+                    if (i != 0) editor.AppendText(Environment.NewLine);
+                    var size = s.ReadBlock(buf, 0, buf.Length);
+                    i += size;
+                    editor.AppendText(new string(buf,0,size));
+                }
+            });
+        }
+
+	    private void ApplyValue(Action setter)
+	    {
+	        holded = true;
+	        editor.SuspendLayout();
+	        try
+	        {
+                HandleReadOnly(setter);
+	            editor.UndoRedo.EmptyUndoBuffer();
+	            editor.Modified = false;
+	            editor.Caret.Position = 0;
+                editor.Scrolling.ScrollToLine(0);
+	        }
+	        finally
+	        {
+	            editor.ResumeLayout(true);
+	            holded = false;
+	        }
+	    }
+
+        private void HandleReadOnly(Action action)
+        {
+            var readOnly = IsReadOnly;
+            try
+            {
+                if (readOnly) IsReadOnly = false;
+                action();
+            }
+            finally
+            {
+                if (readOnly) IsReadOnly = true;
+            }
+        }
+
+	    public void Select(int start, int end)
 		{
 			editor.Selection.Range.Start = start;
 			editor.Selection.Range.End = end;
@@ -243,12 +297,12 @@ namespace WPFSyntaxHighlighter
 
 		public void AppendText(string s)
 		{
-			editor.AppendText(s);
+            HandleReadOnly(()=>editor.AppendText(s));
 		}
 
 		public void Clear()
 		{
-			Value = string.Empty;
+			ApplyValue(()=>editor.ResetText());
 		}
 	}
 }

@@ -17,7 +17,7 @@ namespace SqlRunner
 {
 	[PluginName("Sql Runner")]
 	[PluginDescription("Ability to build and run any sql commands. Also you can do DDos\nto find perfomance issues.")]
-	public class SqlRunner : ConfigurablePlugin<Settings, Config>, IDisposable
+	public sealed class SqlRunner : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private Ddoser ddoser;
 		private readonly LazyDialog<FormDdos> formDdos;
@@ -95,6 +95,7 @@ namespace SqlRunner
 		public void Dispose()
 		{
 			formDdos.Dispose();
+			formBatch.Dispose();
 			if(executor.IsValueCreated)executor.Value.Dispose();
 		}
 

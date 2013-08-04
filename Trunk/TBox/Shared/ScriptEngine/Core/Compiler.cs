@@ -20,6 +20,7 @@ namespace ScriptEngine.Core
 		private const int MaxCacheSize = 16;
 		private static readonly IList<Pair<int, CompilerResults>> CachedResults = 
 			new List<Pair<int, CompilerResults>>();
+		private static readonly object Locker = new object();
 		static Compiler()
 		{
 			var time = Environment.TickCount;
@@ -40,7 +41,7 @@ namespace ScriptEngine.Core
 
 		protected static void DoOperation(string sourceText, Action<CompilerResults> action)
 		{
-			lock (Provider)
+			lock (Locker)
 			{
 				var results = GetResults(sourceText);
 				CheckErrors(results);

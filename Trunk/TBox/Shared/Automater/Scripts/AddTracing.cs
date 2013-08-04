@@ -8,7 +8,7 @@ namespace Solution.Scripts
 {
     public class AddTracing : IScript
     {
-        [FileDictionary(true, "d:/Web.config", "d:/sample.log")]
+        [FileDictionary("d:/project/Web.config", "d:/sample.log")]
         public IDictionary<string, string> Files { get; set; }
 
         public void Run()

@@ -13,7 +13,7 @@ namespace WPFWinForms
 		private readonly NotifyIcon notifyIcon = new NotifyIcon();
 		
 		public event Action<MouseButton> MouseClick;
-		public event Action DoubleClick;
+		public event EventHandler DoubleClick;
 
 		public TrayIcon()
 		{
@@ -34,7 +34,7 @@ namespace WPFWinForms
 
 		private void NotifyIconDoubleClick(object sender, EventArgs e)
 		{
-			if (DoubleClick != null) DoubleClick();
+			if (DoubleClick != null) DoubleClick(this, e);
 		}
 
 		private void NotifyIconMouseClick(object sender, MouseEventArgs e)

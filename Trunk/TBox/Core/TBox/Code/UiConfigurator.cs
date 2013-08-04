@@ -60,7 +60,7 @@ namespace TBox.Code
 				}
 			}
 			menuMan = new MenuMan(menuItems.ToArray(), menuCallsVisitor);
-			pluginsSettings.EnableHotKeys += Configure;
+			pluginsSettings.EnableHotKeys += (o,e)=>Configure();
 		}
 
 		public void Init(Window owner, Config config, AppUpdater appUpdater, IEnumerable<EnginePluginInfo> toAdd)

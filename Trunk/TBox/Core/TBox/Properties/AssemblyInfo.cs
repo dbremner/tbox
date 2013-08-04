@@ -8,6 +8,6 @@ using System.Windows;
 [assembly: AssemblyCompany( "Mnk" )]
 [assembly: AssemblyProduct( "TBox" )]
 [assembly: ComVisible( false )]
-[assembly: AssemblyVersion("1.0.21.*")]
+[assembly: AssemblyVersion("1.0.*")]
 [assembly: GuidAttribute( "B6B390F4-74FC-4C63-820D-E8812513D9AE" )]
 [assembly: NeutralResourcesLanguageAttribute("en")]

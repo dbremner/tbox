@@ -9,7 +9,7 @@ namespace WPFControls.Dialogs
 	/// <summary>
 	/// Interaction logic for InputTextBox.xaml
 	/// </summary>
-	partial class InputTextBox : IDialog 
+	sealed partial class InputTextBox : IDialog
 	{
 		private bool isSuccess;
 		private string initValue;

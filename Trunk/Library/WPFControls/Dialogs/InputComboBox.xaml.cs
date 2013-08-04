@@ -11,7 +11,7 @@ namespace WPFControls.Dialogs
 	/// <summary>
 	/// Interaction logic for InputComboBox.xaml
 	/// </summary>
-	partial class InputComboBox : IDialog 
+	sealed partial  class InputComboBox : IDialog
 	{
 		private bool isSuccess = false;
 		private Func<string, bool> validator;

@@ -7,7 +7,7 @@ namespace TBox.Code.Menu
 {
 	public interface IMenuItemsProvider
 	{
-		event Action OnRefresh;
+		event EventHandler OnRefresh;
 		event Action<string> OnRefreshItem;
 
 		void Refresh(IList<UMenuItem> items);

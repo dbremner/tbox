@@ -16,14 +16,14 @@ namespace WPFControls.Components.Units
 {
 	public abstract class BaseCollectionUnit : UserControl, IUnit
 	{
-		protected readonly UnitConfigurator unitConfigurator;
+		protected UnitConfigurator UnitConfigurator;
 		public EditButtonsPanel Buttons { get; private set; }
 		public Selector Items { get; private set; }
-		protected readonly DockPanel Panel;
+		protected DockPanel Panel;
 
-		protected BaseCollectionUnit()
+		protected void Init()
 		{
-			unitConfigurator = CreateConfigurator();
+			UnitConfigurator = CreateConfigurator();
 			Panel = new DockPanel();
 			Panel.Children.Add(Buttons = CreateEditButtonsPanel());
 			Panel.Children.Add(Items = CreateItems());
@@ -77,7 +77,7 @@ namespace WPFControls.Components.Units
 			set
 			{
 				SetValue(TitleProperty, value);
-				unitConfigurator.SetTitle(value);
+				UnitConfigurator.SetTitle(value);
 			}
 		}
 
@@ -89,7 +89,7 @@ namespace WPFControls.Components.Units
 			set
 			{
 				SetValue(ItemsSourceProperty, value);
-				unitConfigurator.SetCollection(value);
+				UnitConfigurator.SetCollection(value);
 			}
 		}
 
@@ -101,7 +101,7 @@ namespace WPFControls.Components.Units
 			set
 			{
 				SetValue(UnitTypeProperty, value);
-				unitConfigurator.SetUnitType(value);
+				UnitConfigurator.SetUnitType(value);
 			}
 		}
 

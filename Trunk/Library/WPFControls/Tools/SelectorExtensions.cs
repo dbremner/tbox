@@ -50,6 +50,17 @@ namespace WPFControls.Tools
 			return (T)selector.SelectedValue;
 		}
 
+        public static IEnumerable<int> GetSelectedIds(this ListBox selector)
+        {
+            var i = 0;
+            var selected = selector.SelectedItems;
+            foreach (var item in selector.Items)
+            {
+                if (selected.Contains(item)) yield return i;
+                ++i;
+            }
+        }
+
 		public static void AddRange<T>(this ItemCollection collection, IEnumerable<T> values)
 		{
 			foreach (var value in values)

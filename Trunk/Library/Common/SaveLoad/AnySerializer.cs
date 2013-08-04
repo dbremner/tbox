@@ -23,7 +23,10 @@ namespace Common.SaveLoad
 			{
 				try
 				{
-				    return JsonSerializer.DeserializeFromString(File.ReadAllText(configPath), type);
+                    using (var s = File.Open(configPath, FileMode.Open))
+                    {
+                        return JsonSerializer.DeserializeFromStream(type, s);
+                    }
 				}
 				catch (Exception ex)
 				{
@@ -41,7 +44,10 @@ namespace Common.SaveLoad
 		{
 			try
 			{
-				File.WriteAllText(configPath, JsonSerializer.SerializeToString(data, type));
+                using (var s = File.Open(configPath, FileMode.Create))
+                {
+                    JsonSerializer.SerializeToStream(data, type, s);
+                }
 				return true;
 			}
 			catch (Exception ex)

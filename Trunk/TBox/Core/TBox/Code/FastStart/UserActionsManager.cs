@@ -1,4 +1,5 @@
-﻿using TBox.Code.FastStart.Settings;
+﻿using System;
+using TBox.Code.FastStart.Settings;
 using TBox.Code.Menu;
 using TBox.Forms;
 using WPFControls.Components.Units;
@@ -6,7 +7,7 @@ using WPFControls.Tools;
 
 namespace TBox.Code.FastStart
 {
-	class UserActionsManager
+	sealed class UserActionsManager : IDisposable
 	{
 		private readonly CheckableListBoxUnit view;
 		private readonly IMenuItemsProvider menuItemsProvider;
@@ -20,7 +21,7 @@ namespace TBox.Code.FastStart
 			menuItemsProvider.OnRefreshItem += RefreshItem;
 		}
 
-		public void Refresh()
+		public void Refresh(object sender, EventArgs e)
 		{
 			view.ConfigureInputText("User Actions", 
 				originalConfig.MenuItemsSequence, 
@@ -39,6 +40,11 @@ namespace TBox.Code.FastStart
 		public void ShowDialog(MenuItemsSequence cfg)
 		{
 			userActionsDialog.ShowDialog(cfg, menuItemsProvider);
+		}
+
+		public void Dispose()
+		{
+			userActionsDialog.Dispose();
 		}
 	}
 }

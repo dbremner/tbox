@@ -13,13 +13,13 @@ namespace ConsoleUnitTestsRunner.Code
 	{
 		private static readonly ILog Log = LogManager.GetLogger<DirectoriesManipulator>();
 
-		public List<string> GenerateFolders(string path, IList<IList<Result>> packages, bool copyToLocalFolders, int copyDeep, IProgressStatus u)
+		public List<string> GenerateFolders(string path, IList<IList<Result>> packages, bool copyToLocalFolders, int copyDeep, string dirToCloneTests, IProgressStatus u)
 		{
 			var dllPathes = new List<string>();
 			if (copyToLocalFolders)
 			{
 				u.Update("Start Clonning unit tests folder");
-				CopyToLocalFolders(path, packages, copyDeep, u, dllPathes);
+				CopyToLocalFolders(path, packages, copyDeep, dirToCloneTests, u, dllPathes);
 				u.Update("Finish Clonning unit tests folder");
 			}
 			else
@@ -32,7 +32,7 @@ namespace ConsoleUnitTestsRunner.Code
 			return dllPathes;
 		}
 
-		private static void CopyToLocalFolders(string path, IList<IList<Result>> packages, int copyDeep, IProgressStatus u, List<string> dllPathes)
+        private static void CopyToLocalFolders(string path, IList<IList<Result>> packages, int copyDeep, string dirToCloneTests, IProgressStatus u, List<string> dllPathes)
 		{
 			var dir = new DirectoryInfo(Path.GetDirectoryName(path));
 			var name = Path.GetFileName(path);
@@ -41,14 +41,15 @@ namespace ConsoleUnitTestsRunner.Code
 				name = Path.Combine(dir.Name, name);
 				dir = dir.Parent;
 			}
-			var temp = Path.GetTempPath();
+            dirToCloneTests = Path.GetFullPath(dirToCloneTests);
 			var fileId = 0;
 			for (var i = 0; i < packages.Count; i++)
 			{
 				var folder = string.Empty;
 				while (true)
 				{
-					folder = Path.Combine(temp, (++fileId).ToString(CultureInfo.InvariantCulture));
+                    if(u.UserPressClose)return;
+                    folder = Path.Combine(dirToCloneTests, (++fileId).ToString(CultureInfo.InvariantCulture));
 					var info = new DirectoryInfo(folder);
 					if (info.Exists || File.Exists(folder)) continue;
 					info.Create();
@@ -72,7 +73,11 @@ namespace ConsoleUnitTestsRunner.Code
 					{
 						name = Path.GetDirectoryName(name);
 					}
-					Directory.Delete(name, true);
+				    name = name ?? string.Empty;
+                    if (Directory.Exists(name))
+                    {
+                        Directory.Delete(name, true);
+                    }
 				}
 				catch (Exception ex)
 				{

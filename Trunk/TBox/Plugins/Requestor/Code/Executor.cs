@@ -9,7 +9,7 @@ using WPFControls.Dialogs.StateSaver;
 
 namespace Requestor.Code
 {
-	public class Executor : BaseExecutor, IDisposable
+	public sealed class Executor : BaseExecutor, IDisposable
 	{
 		private readonly LazyDialog<RequestDialog> message = new LazyDialog<RequestDialog>(
 			() => new RequestDialog(), "message");

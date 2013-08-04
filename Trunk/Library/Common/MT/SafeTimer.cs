@@ -6,6 +6,7 @@ namespace Common.MT
 {
 	public sealed class SafeTimer : IDisposable
 	{
+		private readonly object locker = new object();
 		private readonly Timer timer;
 		private volatile bool operationInProgress = false;
 		public SafeTimer(Action action)
@@ -22,7 +23,7 @@ namespace Common.MT
 
 		public void Start(int interval)
 		{
-			lock (timer)
+			lock (locker)
 			{
 				WailtOperaionEnd();
 				Enabled = true;
@@ -39,7 +40,7 @@ namespace Common.MT
 
 		public void Stop()
 		{
-			lock (timer)
+			lock (locker)
 			{
 				Enabled = false;
 			}
@@ -49,7 +50,7 @@ namespace Common.MT
 
 		public void Dispose()
 		{
-			lock (timer)
+			lock (locker)
 			{
 				WailtOperaionEnd();
 				timer.Stop();

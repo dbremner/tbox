@@ -22,7 +22,7 @@ namespace WPFControls.Code.OS
 			NotifyIcon.DoubleClick += OnDoubleClick;
 		}
 
-		private void OnDoubleClick()
+		private void OnDoubleClick(object sender, EventArgs e)
 		{
 			if (onDoubleClick != null)
 			{

@@ -11,7 +11,7 @@ namespace Searcher
 {
 	[PluginName("Searcher")]
 	[PluginDescription("Ability to search in the big set of files for words and file names.")]
-	public class Searcher : ConfigurablePlugin<Settings, Config>, IDisposable
+	public sealed class Searcher : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private AvailabilityChecker availabilityChecker;
 		private readonly Lazy<Worker> worker;

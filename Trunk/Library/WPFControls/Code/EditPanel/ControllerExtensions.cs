@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Common.UI.Model;
 using WPFControls.Code.DataManagers;
 using WPFControls.Code.Dialogs;
 using WPFControls.Components.EditButtons;
+using WPFControls.Tools;
 
 namespace WPFControls.Code.EditPanel
 {
@@ -17,7 +20,7 @@ namespace WPFControls.Code.EditPanel
 		{
 			var controller = new Controller(selector.Items.Refresh);
 			controller.Config = new Configuration(collection,
-					() => selector.SelectedIndex,
+                    () => (selector is ListBox) ? ((ListBox)selector).GetSelectedIds().ToArray() : new[] { selector.SelectedIndex },
 					(selector is ComboBox) ? SelectCb(selector) : Select(selector),
 					dialog,
 					dataManager,
@@ -28,7 +31,7 @@ namespace WPFControls.Code.EditPanel
 			editButtonsPanel.SetConfig(controller.Config);
 		}
 
-		public static void ConfigureSelector<T>(this Selector selector,
+	    public static void ConfigureSelector<T>(this Selector selector,
 			Collection<T> collection, EditButtonsPanel editButtonsPanel, BaseDialog dialog)
 			where T : Data, ICloneable, new()
 		{
@@ -43,10 +46,11 @@ namespace WPFControls.Code.EditPanel
 		private static Action<int> SelectCb(Selector cb)
 		{
 			return id =>
-			{
-				if (cb.SelectedIndex == id)
+			    {
+			        var i = id;
+				if (cb.SelectedIndex == i)
 					cb.SelectedIndex = -1;
-				cb.SelectedIndex = id;
+				cb.SelectedIndex = i;
 			};
 		}
 	}

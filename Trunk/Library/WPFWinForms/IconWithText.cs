@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Runtime.InteropServices;
 
 namespace WPFWinForms
 {
@@ -21,9 +20,6 @@ namespace WPFWinForms
 				                                   LineAlignment = StringAlignment.Center,
 				                                   FormatFlags = StringFormatFlags.NoWrap,
 			                                   };
-
-		[DllImport("user32.dll", CharSet = CharSet.Auto)]
-		extern static bool DestroyIcon(IntPtr handle);
 
 		public IconWithText(string fontName = "calibri", int fontSize = Size/2+1, Color background = default(Color))
 		{
@@ -46,7 +42,7 @@ namespace WPFWinForms
 		private void DestroyIcon()
 		{
 			if(Icon==null)return;
-			DestroyIcon(Icon.Handle);
+			NativeMethods.DestroyIcon(Icon.Handle);
 			Icon.Dispose();
 			Icon = null;
 		}

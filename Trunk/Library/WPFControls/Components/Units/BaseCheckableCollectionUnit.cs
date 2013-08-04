@@ -16,6 +16,7 @@ namespace WPFControls.Components.Units
 
 		protected BaseCheckableCollectionUnit()
 		{
+			Init();
 			Checkable = new PanelToICheckable{Margin = new Thickness(1)};
 			Panel.Children.Insert(1, Checkable);
 			DockPanel.SetDock(Checkable, Dock.Bottom);

@@ -22,9 +22,10 @@ namespace WPFControls.Controls
 		public EditPath()
 		{
 			child.ItemsSource = KnownPathes;
-			child.AddHandler(TextBoxBase.TextChangedEvent, new RoutedEventHandler((o, e) =>
+			child.AddHandler(LostKeyboardFocusEvent, new RoutedEventHandler((o, e) =>
 				{
-					OnValueChanged(o, e);
+                    if (string.Equals(child.Text, GetValue(ValueProperty)))return;
+                    OnValueChanged(o, e);
 					SetValue(ValueProperty, child.Text);
 				}));
 			btn.Click += OnBtnClick;
@@ -78,12 +79,13 @@ namespace WPFControls.Controls
 
 		public IPathGetter PathGetter { get; set; }
 
-		private void OnBtnClick(object sender, EventArgs e)
+		private void OnBtnClick(object sender, RoutedEventArgs e)
 		{
 			var path = Value;
 			if (PathGetter.Get(ref path))
 			{
 				Value = path;
+                OnValueChanged(sender, e);
 			}
 		}
 

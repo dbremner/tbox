@@ -70,7 +70,7 @@ namespace Encoder.Components
 			var tmp = Source.Value;
 			Source.Value = Result.Value;
 			Result.Value = tmp;
-			Source_OnTextChanged();
+			Source_OnTextChanged(this, null);
 		}
 
 		private void RunLastCommand()
@@ -78,7 +78,7 @@ namespace Encoder.Components
 			if (last != null) Selector_OnSelectionChanged(null, null);
 		}
 
-		private void Source_OnTextChanged()
+		private void Source_OnTextChanged(object sender, EventArgs e)
 		{
 			if (ConvertOnSourceChanged.IsChecked == true)
 			{

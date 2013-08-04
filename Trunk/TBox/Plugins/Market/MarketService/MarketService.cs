@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Common.Base;
+﻿using System;
+using System.Linq;
 using Common.Base.Log;
 using MarketInterfaces;
 using MarketInterfaces.Contracts;
@@ -7,7 +7,7 @@ using MarketService.Service;
 
 namespace MarketService
 {
-	class MarketService : IMarketService
+	sealed class MarketService : IMarketService, IDisposable
 	{
 		private static readonly ILog Log = LogManager.GetLogger<MarketService>();
 		private readonly PluginService pluginService;
@@ -95,5 +95,9 @@ namespace MarketService
 			return ret;
 		}
 
+		public void Dispose()
+		{
+			marketEntities.Dispose();
+		}
 	}
 }

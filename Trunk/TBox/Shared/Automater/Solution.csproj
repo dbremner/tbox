@@ -53,6 +53,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,6 +73,8 @@
     <Compile Include="Scripts\params.cs" />
     <Compile Include="Scripts\PutObjects.cs" />
     <Compile Include="Scripts\RunDevServers.cs" />
+    <Compile Include="Scripts\SelectDatabases.cs" />
+    <Compile Include="Scripts\StopDevServers.cs" />
     <Compile Include="Scripts\SelectDatabases.cs" />
     <Compile Include="Scripts\StopDevServers.cs" />
     <Compile Include="Runner.cs" />

@@ -19,7 +19,7 @@ namespace NUnitRunner.Components
 	/// <summary>
 	/// Interaction logic for BatchRunDialog.xaml
 	/// </summary>
-	public partial class BatchRunDialog
+	sealed partial class BatchRunDialog
 	{
 		private Config config;
 		private string nunitAgentPath;
@@ -34,8 +34,12 @@ namespace NUnitRunner.Components
 
 		public void ShowDialog(Config cfg, string nunitPath)
 		{
-			if(IsVisible)return;
-			this.nunitAgentPath = nunitPath;
+			if (IsVisible)
+			{
+                ShowAndActivate();
+			    return;
+			}
+			nunitAgentPath = nunitPath;
 			DisposePackages();
 			config = cfg;
 			DataContext = config;
@@ -113,7 +117,7 @@ namespace NUnitRunner.Components
 			DisposePackages();
 			foreach (var item in config.DllPathes.CheckedItems)
 			{
-                var p = new TestsPackage(item.Key, nunitAgentPath, item.RunAsx86, item.RunAsAdmin, new UnitTestsView());
+                var p = new TestsPackage(item.Key, nunitAgentPath, item.RunAsx86, item.RunAsAdmin, item.DirToCloneTests, item.CommandBeforeTestsRun, new UnitTestsView());
 				if (!p.EnsurePathIsValid())
 				{
 					return;

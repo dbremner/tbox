@@ -13,7 +13,7 @@ namespace Automator
 	/// <summary>
 	/// Interaction logic for Settings.xaml
 	/// </summary>
-	public partial class Settings : ISettings, IDisposable
+	public sealed partial class Settings : ISettings, IDisposable
 	{
 		private readonly LazyDialog<OperationDialog> operationsDialog = 
 			new LazyDialog<OperationDialog>(()=>new OperationDialog(), "operation");

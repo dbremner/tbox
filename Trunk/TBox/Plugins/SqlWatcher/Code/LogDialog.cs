@@ -19,11 +19,11 @@ namespace SqlWatcher.Code
 
 		public LogDialog(Icon icon)
 		{
-			Dialog = new MemoBox{Title = "SqlWatcher"};
+			Dialog = new MemoBox{Title = "SqlWatcher", IsReadOnly = true};
 			Dialog.SetIcon(icon);
 		}
 
-		public event Action OnClear
+		public event EventHandler OnClear
 		{
 			add { Dialog.OnClear += value; }
 			remove { Dialog.OnClear -= value; }

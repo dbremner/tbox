@@ -17,7 +17,7 @@ namespace PluginsShared.Ddos.Components
 	/// <summary>
 	/// Interaction logic for FormDdos.xaml
 	/// </summary>
-	public partial class FormDdos 
+	sealed partial class FormDdos 
 	{
 		private IDdoser ddoser;
 		private Analizer analizer;

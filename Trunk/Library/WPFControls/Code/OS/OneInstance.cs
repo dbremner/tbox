@@ -9,9 +9,9 @@ namespace WPFControls.Code.OS
 {
 	public static class OneInstance
 	{
-		private static class WinApi
+		private static class NativeMethods
 		{
-			[DllImport( "user32" )]
+			[DllImport( "user32", CharSet = CharSet.Unicode)]
 			private static extern int RegisterWindowMessage( string message );
 
 			public static int RegisterWindowMessage( string format, params object[] args )
@@ -22,7 +22,7 @@ namespace WPFControls.Code.OS
 
 			public const int HwndBroadcast = 0xffff;
 
-			[DllImport( "user32" )]
+			[DllImport("user32", CharSet = CharSet.Unicode)]
 			public static extern bool PostMessage( IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam );
 		}
 
@@ -41,7 +41,7 @@ namespace WPFControls.Code.OS
 		}
 
 		private static readonly int WmShowfirstinstance =
-			WinApi.RegisterWindowMessage( "WM_SHOWFIRSTINSTANCE|{0}", ProgramInfo.AssemblyGuid );
+			NativeMethods.RegisterWindowMessage( "WM_SHOWFIRSTINSTANCE|{0}", ProgramInfo.AssemblyGuid );
 
 		public static class MainWindow
 		{
@@ -77,7 +77,7 @@ namespace WPFControls.Code.OS
 			private static volatile Mutex mutex;
 			private static bool createdNew;
 			public static bool CreatedNew { get { return createdNew; } }
-			public static event Action AfterExit;
+			public static event EventHandler AfterExit;
 
 			[STAThread]
 			private static void Exit( object sender, ExitEventArgs e )
@@ -86,14 +86,14 @@ namespace WPFControls.Code.OS
 				{
 					mutex.Dispose();
 				}
-				if (AfterExit != null) AfterExit();
+				if (AfterExit != null) AfterExit(Application.Current, null);
 			}
 
 			private static void Startup( object sender, StartupEventArgs e )
 			{
 				if (createdNew) return;
-				WinApi.PostMessage(
-					(IntPtr)WinApi.HwndBroadcast,
+				NativeMethods.PostMessage(
+					(IntPtr)NativeMethods.HwndBroadcast,
 					WmShowfirstinstance,
 					IntPtr.Zero,
 					IntPtr.Zero );

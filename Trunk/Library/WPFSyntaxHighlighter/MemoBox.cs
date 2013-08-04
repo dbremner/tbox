@@ -12,7 +12,7 @@ namespace WPFSyntaxHighlighter
 	public class MemoBox : DialogWindow, ICaptionedLog
 	{
 		public int EntriesCount { get; set; }
-		public event Action OnClear;
+		public event EventHandler OnClear;
 		private readonly SyntaxHighlighter shText = new SyntaxHighlighter();
 		private readonly Button btnClear = new Button { Content = "Clear" };
 		private readonly Button btnToClipboard = new Button { Content = "To clipboard", IsDefault = true };
@@ -48,7 +48,13 @@ namespace WPFSyntaxHighlighter
 			set { shText.Format = value; }
 		}
 
-		private void btnClear_Click(object sender, RoutedEventArgs e)
+	    public bool IsReadOnly
+	    {
+	        get { return shText.IsReadOnly; }
+            set { shText.IsReadOnly = value; }
+	    }
+
+	    private void btnClear_Click(object sender, RoutedEventArgs e)
 		{
 			Clear();
 		}
@@ -85,7 +91,7 @@ namespace WPFSyntaxHighlighter
 		{
 			EntriesCount = 0;
 			shText.Clear();
-			if (OnClear != null) { OnClear(); }
+			if (OnClear != null) { OnClear(this, null); }
 		}
 	}
 }

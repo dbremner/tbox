@@ -35,12 +35,12 @@ namespace WPFControls.Dialogs.PerfomanceCounters
 			}
 		}
 		
-		public event Action OnDataChanged;
+		public event EventHandler OnDataChanged;
 
 		protected virtual void OnOnDataChanged()
 		{
 			var handler = OnDataChanged;
-			if (handler != null) handler();
+			if (handler != null) handler(this, null);
 		}
 
 		public SelectPerfomanceCounters()
@@ -101,36 +101,45 @@ namespace WPFControls.Dialogs.PerfomanceCounters
 					item.Instances = new ObservableCollection<string>(names);
 					foreach (var p in cat.GetCounters(names.First()).OrderBy(x => x.CounterName))
 					{
-						using (p)
-						{
-							item.Children.Add(new Entity
-							{
-								Title = p.CounterName,
-								Parent = item,
-								ToolTip = p.CounterType + Environment.NewLine + p.CounterHelp
-							});
-						}
+						AddCounter(item, p);
 					}
 				}
 				else
 				{
 					foreach (var p in cat.GetCounters().OrderBy(x => x.CounterName))
 					{
-						using (p)
-						{
-							item.Children.Add(new Entity
-							{
-								Title = p.CounterName,
-								Parent = item,
-								ToolTip = p.CounterType + Environment.NewLine + p.CounterHelp
-							});
-						}
+						AddCounter(item, p);
 					}
 				}
 				u.Update(cat.CategoryName, i++/(float)cats.Length);
 				knownCounters.Add(item);
 			}
 			Mt.Do(Counters, ()=>Counters.ItemsSource = knownCounters);
+		}
+
+		private static void AddCounter(Entity item, PerformanceCounter p)
+		{
+			using (p)
+			{
+				item.Children.Add(new Entity
+				{
+					Title = p.CounterName,
+					Parent = item,
+					ToolTip = p.CounterType + Environment.NewLine + GetHelp(p)
+				});
+			}
+		}
+
+		private static string GetHelp(PerformanceCounter p)
+		{
+			try
+			{
+				return p.CounterHelp;
+			}
+			catch
+			{
+				return string.Empty;
+			}
 		}
 
 		private void AddClick(object sender, RoutedEventArgs e)

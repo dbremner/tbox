@@ -11,9 +11,6 @@ namespace WPFWinForms.Icons
 {
 	public static class IconsExtensions
 	{
-		[DllImport("gdi32.dll", SetLastError = true)]
-		private static extern bool DeleteObject(IntPtr hObject);
-
 
 		public static ImageSource ToImageSource(this Icon icon)
 		{
@@ -26,7 +23,7 @@ namespace WPFWinForms.Icons
 				Int32Rect.Empty,
 				BitmapSizeOptions.FromEmptyOptions());
 
-			if (!DeleteObject(hBitmap))
+			if (!NativeMethods.DeleteObject(hBitmap))
 			{
 				throw new Win32Exception();
 			}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -7,6 +8,7 @@ using System.Windows.Data;
 using Common.UI.Model;
 using Common.UI.ModelsContainers;
 using WPFControls.Controls;
+using WPFControls.Tools;
 
 namespace WPFControls.Components
 {
@@ -52,6 +54,19 @@ namespace WPFControls.Components
 		public event RoutedEventHandler OnCheckChanged;
 		public void OnCheckChangedEvent(object sender, RoutedEventArgs e)
 		{
+            var item = sender as CheckBox;
+            if (item != null )
+            {
+                var selected = this.GetSelectedIds().ToArray();
+                if (selected.Length > 1)
+                {
+                    foreach (var i in selected)
+                    {
+                        items.SetCheck(i, item.IsChecked.HasValue && item.IsChecked.Value);
+                    }
+                    Refresh();
+                }
+            }
 			if (OnCheckChanged != null) OnCheckChanged(sender, e);
 		}
 

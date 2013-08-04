@@ -25,12 +25,12 @@ namespace WPFControls.Drawings.DirectionsTable
 
 		public int MaxCount = 10;
 		public event Action<object, IDirectionable> Selected;
-		public event Action Cleared;
+		public event EventHandler Cleared;
 
 		private void OnCleared()
 		{
 			var handler = Cleared;
-			if (handler != null) handler();
+			if (handler != null) handler(this, null);
 		}
 
 		private void OnSelected(object sender, IDirectionable arg)

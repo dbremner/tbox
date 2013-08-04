@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Common.Base.Log;
 using Common.Communications;
+using Common.Console;
 using ConsoleUnitTestsRunner.Code.Communication;
 using ConsoleUnitTestsRunner.Code.Interfaces;
 using ConsoleUnitTestsRunner.Code.Settings;
@@ -10,15 +12,16 @@ namespace ConsoleUnitTestsRunner.Code
 {
 	class Runner
 	{
-		private readonly AgentProcessCreator processCreator;
+	    private static readonly ILog Log = LogManager.GetLogger<Runner>();
+	    private readonly AgentProcessCreator processCreator;
 		private readonly DirectoriesManipulator dirMan = new DirectoriesManipulator();
 
-		public Runner(string nunitAgentPath)
-		{
-			processCreator = new AgentProcessCreator(nunitAgentPath);
-		}
+        public Runner(string nunitAgentPath)
+        {
+            processCreator = new AgentProcessCreator(nunitAgentPath);
+        }
 
-		public IEnumerable<IList<Result>> DivideTestsToRun(IList<Result> files, int threadCount)
+	    public IEnumerable<IList<Result>> DivideTestsToRun(IList<Result> files, int threadCount)
 		{
 			var result = new List<IList<Result>>();
 			for (var j = 0; j < threadCount; ++j)
@@ -35,12 +38,13 @@ namespace ConsoleUnitTestsRunner.Code
 			return result;
 		}
 
-		public void Run(string path, IList<IList<Result>> packages, Server<INunitRunnerClient> server, bool copyToLocalFolders, int copyDeep, bool needSynchronizationForTests, bool runAsx86, bool runAsAdmin, Synchronizer synchronizer, IProgressStatus u)
+        public void Run(string path, IList<IList<Result>> packages, Server<INunitRunnerClient> server, bool copyToLocalFolders, int copyDeep, bool needSynchronizationForTests, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, Synchronizer synchronizer, IProgressStatus u)
 		{
-			var dllPathes = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyDeep, u);
+			var dllPathes = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyDeep, dirToCloneTests, u);
 			var s = (NunitRunnerClient)server.Owner;
 			try
 			{
+                if (u.UserPressClose) return;
 				var handle = server.Handle;
 				s.PrepareToRun(synchronizer, u);
 				foreach (var items in packages)
@@ -51,6 +55,10 @@ namespace ConsoleUnitTestsRunner.Code
 					}
 					s.TestsToRun.Add(items.Select(x => x.Id));
 				}
+                if (!string.IsNullOrEmpty(commandToExecuteBeforeTests))
+                {
+                    Cmd.Start(commandToExecuteBeforeTests, Log, waitEnd: true, nowindow: true);
+                }
 				s.Processes.AddRange(packages
 					.AsParallel()
 					.Select((items, i) => processCreator.Create(dllPathes[i], handle, needSynchronizationForTests ? "test" : "fasttest", runAsx86, runAsAdmin)));

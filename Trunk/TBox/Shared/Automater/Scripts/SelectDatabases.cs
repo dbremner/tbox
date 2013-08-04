@@ -15,19 +15,19 @@ namespace Solution.Scripts
 			)]
 		public IDictionary<string, string> ConnectionStrings{get;set;}
 
-		[String(false, "add")]
+		[String("add")]
 		public string SectionKey { get; set; }
 
-		[String(false, "name")]
+		[String("name")]
 		public string KeyAttribute { get; set; }
 
-		[String(false, "connectionString")]
+		[String("connectionString")]
 		public string ValueAttribute { get; set; }
 
-		[String(false, "connectionStrings")]
+		[String("connectionStrings")]
 		public string XmlPath { get; set; }
 
-		[FileList(true)]
+		[FileList()]
 		public string[] WebConfigsPathes { get; set; }
 
 		public void Run()

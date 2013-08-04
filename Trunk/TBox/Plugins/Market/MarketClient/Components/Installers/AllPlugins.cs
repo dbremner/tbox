@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using Common.MT;
 using MarketClient.Code;
@@ -19,7 +20,7 @@ namespace MarketClient.Components.Installers
 			OnNameSelectionChanged += DoOnNameSelectionChanged;
 		}
 
-		private void DoOnNameSelectionChanged()
+		private void DoOnNameSelectionChanged(object sender, EventArgs e)
 		{
 			Synchronizer.Do(ReloadTable);
 		}
@@ -47,12 +48,9 @@ namespace MarketClient.Components.Installers
 				});
 		}
 
-		private void DoOnAction()
+		private void DoOnAction(object sender, EventArgs e)
 		{
-			Synchronizer.Do(service =>
-			{
-				DialogsCache.ShowProgress((updater) => DoUploading(service, updater), "Download plugins");
-			});
+			Synchronizer.Do(service => DialogsCache.ShowProgress((updater) => DoUploading(service, updater), "Download plugins"));
 		}
 
 		private void DoUploading(IMarketService service, IUpdater uploader)

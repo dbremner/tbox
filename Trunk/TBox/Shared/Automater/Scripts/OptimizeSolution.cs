@@ -15,16 +15,16 @@ namespace Solution.Scripts
 	{
 		private static readonly ILog Log = LogManager.GetLogger<OptimizeSolution>();
 
-		[DirectoryList(true)]
+		[DirectoryList()]
 		public string[] Solutions { get; set; }
 
-        [StringList(false, "..\\Libraries", "..\\packages")]
+        [StringList("..\\Libraries", "..\\packages")]
         public string[] PathesToLibs { get; set; }
 
-        [StringList(false, "Content", "None" )]
+        [StringList("Content", "None" )]
         public string[] SectionToPreserveNewestNames { get; set; }
 
-        [StringList(false, "AjaxMin")]
+        [StringList("AjaxMin")]
         public string[] TasksToRemove { get; set; }
 
         [Bool(true)]

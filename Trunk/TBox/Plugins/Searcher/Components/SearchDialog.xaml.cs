@@ -25,7 +25,7 @@ namespace Searcher.Components
 	/// <summary>
 	/// Interaction logic for SearchDialog.xaml
 	/// </summary>
-	partial class SearchDialog : IDisposable
+	sealed partial class SearchDialog : IDisposable
 	{
 		private static readonly ILog Log = LogManager.GetLogger<SearchDialog>();
 		private Config config;
@@ -142,7 +142,10 @@ namespace Searcher.Components
 				Title = string.Format("Searcher - [ {0} ]", path);
 				edText.Clear();
 				edText.Format = GetSelectedFileExt();
-				edText.Value = File.ReadAllText(path, Encoding.UTF8);
+			    using (var s = new StreamReader(File.OpenRead(path), Encoding.UTF8) )
+			    {
+			        edText.Read(s);
+			    }
 				sbiWords.Content = edText.MarkAll(SearchText.Text, 
 					config.Search.MatchCase);
 				sbiLoadFileTime.Content = sw.ElapsedMilliseconds / 1000.0;
@@ -272,10 +275,20 @@ namespace Searcher.Components
 			{
 				var path = searchEngine.FileInformer.GetFilePath(i);
 				if (!File.Exists(path)) return false;
-				return File.ReadAllLines(path, Encoding.UTF8).Any(
-                    x=>x.IndexOf(searchText, config.Search.MatchCase
-					                                ? StringComparison.Ordinal
-					                                : StringComparison.OrdinalIgnoreCase)  > -1);
+			    using (var s = new StreamReader(File.OpenRead(path), Encoding.UTF8))
+			    {
+			        while (!s.EndOfStream)
+			        {
+			            var line = s.ReadLine();
+			            if (!string.IsNullOrEmpty(line) &&  line.IndexOf(searchText, config.Search.MatchCase
+			                                             ? StringComparison.Ordinal
+			                                             : StringComparison.OrdinalIgnoreCase) > -1)
+			            {
+			                return true;
+			            }
+			        }
+                    return false;
+			    }
 			}
 			catch (Exception)
 			{

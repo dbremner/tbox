@@ -8,7 +8,7 @@ using WPFSyntaxHighlighter;
 
 namespace SqlRunner.Code
 {
-	public class Executor : BaseExecutor, IDisposable
+	sealed class Executor : BaseExecutor, IDisposable
 	{
 		private readonly LazyDialog<MemoBox> message = new LazyDialog<MemoBox>(()=>new MemoBox(), "message");
 

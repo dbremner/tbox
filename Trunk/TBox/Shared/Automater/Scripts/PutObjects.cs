@@ -10,18 +10,18 @@ namespace Solution.Scripts
 {
 	public class PutObjects : IScript
 	{
-		[DirectoryList(true)]
+		[DirectoryList()]
 		public string[] TargetPathes { get; set; }
 
-		[Directory(true)]
+		[Directory()]
 		public string PathToDirectoryWithPackage { get; set; }
 
 		public bool RemoveAfterUnpack { get; set; }
 
-		[String(false, "Sample.*.zip")]
+		[String("Sample.*.zip")]
 		public string PackageMask { get; set; }
 
-		[StringList(false, "Sample.*.dll", "Sample.*.pdb")]
+		[StringList("Sample.*.dll", "Sample.*.pdb")]
 		public string[] FilesMasks { get; set; }
 
 		public void Run()

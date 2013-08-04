@@ -70,7 +70,7 @@ namespace RequestsWatcher.Components
 				};
 		}
 
-		public event Action OnClear
+		public event EventHandler OnClear
 		{
 			add { table.Cleared += value; }
 			remove { table.Cleared -= value; }

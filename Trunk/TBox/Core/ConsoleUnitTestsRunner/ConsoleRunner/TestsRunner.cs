@@ -11,11 +11,11 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 	{
 		private static readonly ILog Log = LogManager.GetLogger<TestsRunner>();
 
-		public int Run(string path, int nCores, bool x86, bool cloneTests, int cloneDeep, bool needSynchronization, bool needReport)
+        public int Run(string path, int nCores, bool x86, bool cloneTests, int cloneDeep, bool needSynchronization, bool needReport, string dirToCloneTests, string commandToExecuteBeforeTests)
 		{
 			var time = Environment.TickCount;
 			var view = new ConsoleView();
-			using (var p = new TestsPackage(path, "NUnitAgent.exe", x86, false, view))
+			using (var p = new TestsPackage(path, "NUnitAgent.exe", x86, false, dirToCloneTests, commandToExecuteBeforeTests, view))
 			{
 				Console.WriteLine("Calculating tests..");
 				if (!p.EnsurePathIsValid())

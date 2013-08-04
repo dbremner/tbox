@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Interface;
 using MarketClient.Code;
@@ -19,7 +20,7 @@ namespace MarketClient.Components.Installers
 			OnNameSelectionChanged += DoOnNameSelectionChanged;
 		}
 
-		private void DoOnNameSelectionChanged()
+		private void DoOnNameSelectionChanged(object sender, EventArgs e)
 		{
 			UpdatePluginsList();
 		}
@@ -62,7 +63,7 @@ namespace MarketClient.Components.Installers
 			ReloadData();
 		}
 
-		private void DoOnAction()
+		private void DoOnAction(object sender, EventArgs e )
 		{
 			foreach (var plugin in Items)
 			{

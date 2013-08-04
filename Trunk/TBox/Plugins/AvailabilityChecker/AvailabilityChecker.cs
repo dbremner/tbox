@@ -8,7 +8,7 @@ namespace AvailabilityChecker
 {
 	[PluginName("Availability checker")]
 	[PluginDescription("Check by timer, availability of the shared folders and web sites.")]
-	public class AvailabilityChecker : ConfigurablePlugin<Settings, Config>, IDisposable
+	public sealed class AvailabilityChecker : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly Lazy<Worker> worker;
 

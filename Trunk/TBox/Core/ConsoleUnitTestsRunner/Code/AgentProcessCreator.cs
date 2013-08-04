@@ -17,7 +17,7 @@ namespace ConsoleUnitTestsRunner.Code
 		{
 			var fileName = nunitAgentPath;
 			var args = string.Format("{0} \"{1}\" {2}", handle, path, command);
-			if (runAsx86) ApplyCommand("RunAsx86.exe", ref args, ref fileName);
+            if (runAsx86) ApplyCommand(Path.Combine(Environment.CurrentDirectory, "Tools/RunAsx86.exe"), ref args, ref fileName);
 			var pi = new ProcessStartInfo
 			{
 				FileName = fileName,

@@ -18,7 +18,7 @@ namespace ScriptEngine
 	public sealed class BoolAttribute : ParameterAttribute
 	{
 		public bool Value { get; set; }
-		public BoolAttribute(bool value=true)
+		public BoolAttribute(bool value = false)
 		{
 			Value = value;
 		}
@@ -31,9 +31,9 @@ namespace ScriptEngine
 		public string Value { get; set; }
 		public bool CanBeEmpty { get; set; }
 
-		public StringAttribute(bool canBeEmpty = false, string value = "" )
+        public StringAttribute(string value = "")
 		{
-			CanBeEmpty = canBeEmpty;
+			CanBeEmpty = false;
 			Value = value;
 		}
 		public override Parameter CreateParameter() { return new StringParameter { CanBeEmpty = CanBeEmpty, Value = Value }; }
@@ -43,14 +43,12 @@ namespace ScriptEngine
 	public sealed class GuidAttribute : ParameterAttribute
 	{
 		public Guid Value { get; set; }
-		public bool Autogenerate { get; set; }
 
-		public GuidAttribute(bool autogenerate = true, string value = "")
+        public GuidAttribute(string value = "")
 		{
-			Autogenerate = autogenerate;
-			Value = autogenerate ? Guid.NewGuid() : Guid.Parse(value);
+			Value = !string.IsNullOrEmpty(value) ? Guid.Parse(value) : Guid.NewGuid();
 		}
-		public override Parameter CreateParameter() { return new GuidParameter { Autogenerate = Autogenerate, Value = Value }; }
+		public override Parameter CreateParameter() { return new GuidParameter { Value = Value }; }
 		public override Type GetTypeForAttribute() { return typeof(Guid); }
 	}
 
@@ -59,10 +57,10 @@ namespace ScriptEngine
 		public string Value { get; set; }
 		public bool ShouldExist { get; set; }
 
-		public FileAttribute(bool shouldExist = true, string value = "")
+        public FileAttribute(string value = "")
 		{
 			Value = value;
-			ShouldExist = shouldExist;
+			ShouldExist = true;
 		}
 		public override Parameter CreateParameter() { return new FileParameter { ShouldExist = ShouldExist, Value = Value }; }
 		public override Type GetTypeForAttribute() { return typeof(string); }
@@ -73,10 +71,10 @@ namespace ScriptEngine
 		public string Value { get; set; }
 		public bool ShouldExist { get; set; }
 
-		public DirectoryAttribute(bool shouldExist = true, string value = "")
+		public DirectoryAttribute(string value="")
 		{
 			Value = value;
-			ShouldExist = shouldExist;
+			ShouldExist = true;
 		}
 		public override Parameter CreateParameter() { return new DirectoryParameter { ShouldExist = ShouldExist, Value = Value }; }
 		public override Type GetTypeForAttribute() { return typeof(string); }
@@ -88,11 +86,11 @@ namespace ScriptEngine
 		public int Max { get; set; }
 		public int Min { get; set; }
 
-		public IntegerAttribute(int min = int.MinValue, int max = int.MaxValue, int value = 0 )
+		public IntegerAttribute(int value=0)
 		{
 			Value = value;
-			Min = min;
-			Max = max;
+			Min = int.MinValue;
+            Max = int.MaxValue;
 		}
 		public override Parameter CreateParameter() { return new IntegerParameter { Min = Min, Max = Max, Value = Value }; }
 		public override Type GetTypeForAttribute() { return typeof(int); }
@@ -104,11 +102,11 @@ namespace ScriptEngine
 		public double Max { get; set; }
 		public double Min { get; set; }
 
-		public DoubleAttribute(double min = double.MinValue, double max = double.MaxValue, double value = 0)
+		public DoubleAttribute(double value=0)
 		{
 			Value = value;
-			Min = min;
-			Max = max;
+			Min = double.MinValue;
+			Max = double.MaxValue;
 		}
 		public override Parameter CreateParameter() { return new DoubleParameter { Min = Min, Max = Max, Value = Value }; }
 		public override Type GetTypeForAttribute() { return typeof(double); }
@@ -119,9 +117,9 @@ namespace ScriptEngine
 		public string []Values { get; set; }
 		public bool CanBeEmpty { get; set; }
 
-		public StringListAttribute(bool canBeEmpty = false, params string[] values)
+		public StringListAttribute(params string[] values)
 		{
-			CanBeEmpty = canBeEmpty;
+			CanBeEmpty = false;
 			Values = values;
 		}
 		public override Parameter CreateParameter(){return new StringListParameter { CanBeEmpty = CanBeEmpty, Values = new CheckableDataCollection<CheckableData<string>>(Values.Select(x=>new CheckableData<string>{Value = x})) };}
@@ -145,9 +143,9 @@ namespace ScriptEngine
 		public string[] Values { get; set; }
 		public bool ShouldExist { get; set; }
 
-		public FileListAttribute(bool shouldExist = true, params string[] values)
+		public FileListAttribute(params string[] values)
 		{
-			ShouldExist = shouldExist;
+			ShouldExist = true;
 			Values = values;
 		}
 		public override Parameter CreateParameter() { return new FileListParameter { ShouldExist = ShouldExist, Values = new CheckableDataCollection<CheckableData<string>>(Values.Select(x => new CheckableData<string> { Value = x })) }; }
@@ -159,9 +157,9 @@ namespace ScriptEngine
 		public string[] Values { get; set; }
 		public bool ShouldExist { get; set; }
 
-		public DirectoryListAttribute(bool shouldExist = true, params string[] values)
+		public DirectoryListAttribute(params string[] values)
 		{
-			ShouldExist = shouldExist;
+			ShouldExist = true;
 			Values = values;
 		}
 		public override Parameter CreateParameter() { return new DirectoryListParameter { ShouldExist = ShouldExist, Values = new CheckableDataCollection<CheckableData<string>>(Values.Select(x => new CheckableData<string> { Value = x })) }; }
@@ -174,11 +172,11 @@ namespace ScriptEngine
 		public int Max { get; set; }
 		public int Min { get; set; }
 
-		public IntegerListAttribute(int min = int.MinValue, int max = int.MaxValue, params int[] values)
+		public IntegerListAttribute(params int[] values)
 		{
 			Values = values;
-			Min = min;
-			Max = max;
+			Min = int.MinValue;
+			Max = int.MaxValue;
 		}
 		public override Parameter CreateParameter() { return new IntegerListParameter { Min = Min, Max = Max, Values = new CheckableDataCollection<CheckableData<int>>(Values.Select(x => new CheckableData<int> { Value = x })) }; }
 		public override Type GetTypeForAttribute() { return typeof(IList<int>); }
@@ -190,11 +188,11 @@ namespace ScriptEngine
 		public double Max { get; set; }
 		public double Min { get; set; }
 
-		public DoubleListAttribute(double min=double.MinValue, double max=double.MaxValue, params double[] values)
+		public DoubleListAttribute(params double[] values)
 		{
 			Values = values;
-			Min = min;
-			Max = max;
+			Min = double.MaxValue;
+			Max = double.MaxValue;
 		}
 		public override Parameter CreateParameter() { return new DoubleListParameter { Min = Min, Max = Max, Values = new CheckableDataCollection<CheckableData<double>>(Values.Select(x => new CheckableData<double> { Value = x })) }; }
 		public override Type GetTypeForAttribute() { return typeof(IList<double>); }
@@ -205,10 +203,10 @@ namespace ScriptEngine
 		public IDictionary<string, string> Values { get; set; }
 		public bool CanBeEmpty { get; set; }
 
-		public StringDictionaryAttribute(bool canBeEmpty = false, params object[] values)
+		public StringDictionaryAttribute(params object[] values)
 		{
 			Values = values.ToDictionary<string>();
-			CanBeEmpty = canBeEmpty;
+			CanBeEmpty = false;
 		}
 		public override Parameter CreateParameter() { return new StringDictionaryParameter { CanBeEmpty = CanBeEmpty, Values = Values.ToCollection() }; }
 		public override Type GetTypeForAttribute() { return typeof(IDictionary<string,string>); }
@@ -217,14 +215,12 @@ namespace ScriptEngine
 	public sealed class GuidDictionaryAttribute : ParameterAttribute
 	{
 		public IDictionary<string, Guid> Values { get; set; }
-		public bool Autogenerate { get; set; }
 
-		public GuidDictionaryAttribute(bool autogenerate = false, params object[] values)
+		public GuidDictionaryAttribute(params object[] values)
 		{
 			Values = values.ToDictionary<string>().ToDictionary(x=>x.Key, x=>new Guid(x.Value));
-			Autogenerate = autogenerate;
 		}
-		public override Parameter CreateParameter() { return new GuidDictionaryParameter { Autogenerate = Autogenerate, Values = Values.ToCollection() }; }
+		public override Parameter CreateParameter() { return new GuidDictionaryParameter { Values = Values.ToCollection() }; }
 		public override Type GetTypeForAttribute() { return typeof(IDictionary<string, Guid>); }
 	}
 
@@ -245,10 +241,10 @@ namespace ScriptEngine
 		public IDictionary<string, string> Values { get; set; }
 		public bool ShouldExist { get; set; }
 
-		public FileDictionaryAttribute(bool shouldExist = true, params object[] values)
+		public FileDictionaryAttribute(params object[] values)
 		{
 			Values = values.ToDictionary<string>();
-			ShouldExist = shouldExist;
+			ShouldExist = true;
 		}
 		public override Parameter CreateParameter() { return new FileDictionaryParameter { ShouldExist = ShouldExist, Values = Values.ToCollection() }; }
 		public override Type GetTypeForAttribute() { return typeof(IDictionary<string, string>); }
@@ -259,10 +255,10 @@ namespace ScriptEngine
 		public IDictionary<string, string> Values { get; set; }
 		public bool ShouldExist { get; set; }
 
-		public DirectoryDictionaryAttribute(bool shouldExist = true, params object[] values)
+		public DirectoryDictionaryAttribute(params object[] values)
 		{
 			Values = values.ToDictionary<string>();
-			ShouldExist = shouldExist;
+			ShouldExist = true;
 		}
 		public override Parameter CreateParameter() { return new DirectoryDictionaryParameter { ShouldExist = ShouldExist, Values = Values.ToCollection() }; }
 		public override Type GetTypeForAttribute() { return typeof(IDictionary<string, string>); }
@@ -274,11 +270,11 @@ namespace ScriptEngine
 		public int Min { get; set; }
 		public int Max { get; set; }
 
-		public IntegerDictionaryAttribute(int min=int.MinValue, int max=int.MaxValue, params object[] values)
+		public IntegerDictionaryAttribute(params object[] values)
 		{
 			Values = values.ToDictionary<int>();
-			Min = min;
-			Max = max;
+			Min = int.MinValue;
+			Max = int.MaxValue;
 		}
 		public override Parameter CreateParameter() { return new IntegerDictionaryParameter { Min = Min, Max = Max, Values = Values.ToCollection() }; }
 		public override Type GetTypeForAttribute() { return typeof(IDictionary<string, int>); }
@@ -290,11 +286,11 @@ namespace ScriptEngine
 		public double Min { get; set; }
 		public double Max { get; set; }
 
-		public DoubleDictionaryAttribute(double min = double.MinValue, double max = double.MaxValue, params object[] values)
+		public DoubleDictionaryAttribute(params object[] values)
 		{
 			Values = values.ToDictionary<double>();
-			Min = min;
-			Max = max;
+			Min = double.MinValue;
+			Max = double.MaxValue;
 		}
 		public override Parameter CreateParameter() { return new DoubleDictionaryParameter { Min = Min, Max = Max, Values = Values.ToCollection() }; }
 		public override Type GetTypeForAttribute() { return typeof(IDictionary<string, double>); }

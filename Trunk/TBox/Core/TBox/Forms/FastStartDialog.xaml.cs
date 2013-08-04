@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Common.Data;
 using Common.Tools;
 using Interface;
 using TBox.Code.FastStart;
@@ -19,7 +20,7 @@ namespace TBox.Forms
 	/// <summary>
 	/// Interaction logic for FastStartDialog.xaml
 	/// </summary>
-	public partial class FastStartDialog
+	public sealed partial class FastStartDialog
 	{
 		private RecentItemsCollector recentItemsCollector;
 		private FastStartConfig config;
@@ -51,13 +52,17 @@ namespace TBox.Forms
 			foreach (var item in config.MenuItemsSequence.CheckedItems)
 			{
 				var selected = item.MenuItems.CheckedItems.ToArray();
-				if (!selected.Any()) continue;
-				var items = selected.Select(x => menuItemsProvider.Get(x.Key)).ToArray();
+				if (!selected.Any() ) continue;
+				var items = selected.Select(o => 
+                    new Pair<UMenuItem, UMenuItem>(
+                        menuItemsProvider.Get(o.Key),
+                        menuItemsProvider.GetRoot(o.Key.Split(new[]{Environment.NewLine},StringSplitOptions.RemoveEmptyEntries).First())
+                        )).ToArray();
+                if (items.Any(x => x.Key == null || x.Value == null)) continue;
 				UserActions.Children.Add(
 					CreateButton(
-							PrepareItem(item, items),
-							items.Select((x,i)=>x.Icon??
-								menuItemsProvider.GetRoot(selected[i].Key.Split(new[]{Environment.NewLine},StringSplitOptions.RemoveEmptyEntries).First()).Icon
+							PrepareItem(item, items.Select(x=>x.Key)),
+							items.Select(x=>x.Key.Icon??x.Value.Icon
 								).ToArray()
 						)
 					);

@@ -11,12 +11,6 @@ namespace WPFWinForms.GlobalHotKeys
 	{
 		private static ILog Log = LogManager.GetLogger<GlobalHotkeys>();
 
-		[DllImport("user32.dll")]
-		private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
-
-		[DllImport("user32.dll")]
-		private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-
 		private readonly Window window = new Window();
 		private int currentId = 0;
 		private readonly IDictionary<ModifierKeys, IDictionary<Key, Action>> 
@@ -53,7 +47,7 @@ namespace WPFWinForms.GlobalHotKeys
 			}
 			if (!dict.ContainsKey(hotKey.Key))
 			{
-				if (!RegisterHotKey(window.Handle, currentId, (uint) hotKey.Modifier, (uint) key))
+				if (!NativeMethods.RegisterHotKey(window.Handle, currentId, (uint)hotKey.Modifier, (uint)key))
 				{
 					Log.Write("Can't register hotkey: " + hotKey);
 					return;
@@ -65,7 +59,7 @@ namespace WPFWinForms.GlobalHotKeys
 
 		public void Dispose()
 		{
-			while (currentId >= 0)UnregisterHotKey(window.Handle, currentId--);
+			while (currentId >= 0) NativeMethods.UnregisterHotKey(window.Handle, currentId--);
 			currentId = 0;
 			dictionary.Clear();
 			window.Dispose();

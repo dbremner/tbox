@@ -21,7 +21,7 @@ namespace TBox.Code.HotKeys
 		{
 			this.view = view;
 			this.menuItemsProvider = menuItemsProvider;
-			menuItemsProvider.OnRefresh += Refresh;
+			menuItemsProvider.OnRefresh += (o,e)=>Refresh();
 			menuItemsProvider.OnRefreshItem += RefreshItem;
 		}
 

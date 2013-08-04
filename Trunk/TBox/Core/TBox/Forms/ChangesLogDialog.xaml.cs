@@ -1,12 +1,11 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace TBox.Forms
 {
 	/// <summary>
 	/// Interaction logic for ChangesLogDialog.xaml
 	/// </summary>
-	public partial class ChangesLogDialog : IDisposable
+	public sealed partial class ChangesLogDialog
 	{
 		public ChangesLogDialog()
 		{

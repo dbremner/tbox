@@ -34,9 +34,9 @@ namespace WPFControls.Code.Dialogs
 			return Edit(name + id, out newName);
 		}
 
-		public virtual bool Del(string name)
+		public virtual bool Del(string[] names)
 		{
-			return MessageBox.Show(string.Format(Buttons.Del, name), Caption,
+			return MessageBox.Show(string.Format(Buttons.Del, string.Join(Environment.NewLine, names)), Caption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
 		}
 

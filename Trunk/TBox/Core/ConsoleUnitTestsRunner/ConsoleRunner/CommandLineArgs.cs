@@ -12,6 +12,8 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 		public int CloneDeep { get; set; }
 		public bool Sync { get; set; }
 		public bool Report { get; set; }
+        public string DirToCloneTests { get; set; }
+        public string CommandBeforeTestsRun { get; set; }
 
 		public CommandLineArgs()
 		{
@@ -21,6 +23,8 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 			CloneDeep = 1;
 			Sync = false;
 			Report = false;
+		    DirToCloneTests = System.IO.Path.GetTempPath();
+		    CommandBeforeTestsRun = string.Empty;
 		}
 
 		public void Parse(string[] args)
@@ -30,8 +34,8 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 			{
 				ParseArgument(s);
 			}
-			Console.WriteLine("Start with arguments: -p={0}, -x86={1}, -clone={2}, -cloneDeep={3}, -sync={4}, -report={5}, path={6}",
-				ProcessCount, X86, Clone, CloneDeep, Sync, Report, Path);
+            Console.WriteLine("Start with arguments: -p={0}, -x86={1}, -clone={2}, -cloneDeep={3}, -sync={4}, -report={5}, path='{6}', -dirToCloneTests='{7}', -commandBeforeTestsRun='{8}' ",
+				ProcessCount, X86, Clone, CloneDeep, Sync, Report, Path, DirToCloneTests, CommandBeforeTestsRun);
 		}
 
 		private void ParseArgument(string arg)
@@ -52,6 +56,14 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 			{
 				CloneDeep = int.Parse(arg.Substring(11));
 			}
+            else if (Starts(arg, "-dirToCloneTests="))
+            {
+                DirToCloneTests = arg.Substring(17);
+            }
+            else if (Starts(arg, "-commandBeforeTestsRun="))
+            {
+                CommandBeforeTestsRun = arg.Substring(23);
+            }
 			else if (Equals(arg, "-sync"))
 			{
 				Sync = true;

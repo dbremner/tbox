@@ -9,33 +9,37 @@
                       xmlns:components="clr-namespace:NUnitRunner.Components"
                       mc:Ignorable="d" 
              ShowInTaskbar="True" WindowStartupLocation="CenterOwner"
-             Width="850" Height="480"
-             MinWidth="850" MinHeight="480">
+             Width="900" Height="480"
+             MinWidth="900" MinHeight="480">
     <DockPanel>
-        <DockPanel DockPanel.Dock="Bottom">
-            <StackPanel VerticalAlignment="Center" Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="5,0">
-                        <controls:ExtCheckBox Name="Filter" IsChecked="{Binding OnlyFailed}" Content="Show only failed tests" ValueChanged="FilterChanged" Margin="2" />
-                        <controls:ExtCheckBox Content="Need synchronization for tests agents" IsChecked="{Binding NeedSynchronizationForTests}" Margin="2"/>
-                    </StackPanel>
-                    <StackPanel Margin="5,0">
+        <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="15" Orientation="Horizontal" >
+            <Button Content="Refresh" Margin="5" Padding="5,0" Width="70" Click="RefreshClick"/>
+            <Button Content="Start" Margin="5" Padding="5,0" Width="70" IsDefault="True" Click="StartClick"/>
+            <Button Content="Cancel" Margin="5" Padding="5,0" Width="70" IsCancel="True" Click="CancelClick"/>
+        </StackPanel>
+        <DockPanel DockPanel.Dock="Left">
+            <StackPanel VerticalAlignment="Top" >
+                <GroupBox Margin="5" Header="View">
+                    <controls:ExtCheckBox Name="Filter" IsChecked="{Binding OnlyFailed}" Content="Show only failed tests" ValueChanged="FilterChanged" Margin="2" />
+                </GroupBox>
+                <GroupBox Margin="5" Header="Configuration">
+                    <StackPanel >
+                        <controls:ExtCheckBox Content="Synchronize tests agents" IsChecked="{Binding NeedSynchronizationForTests}" Margin="2"/>
                         <controls:ExtCheckBox Content="Run as x86" IsChecked="{Binding RunAsx86}" Margin="2"/>
                         <controls:ExtCheckBox Content="Run as Admin" IsChecked="{Binding RunAsAdmin}" Margin="2"/>
+                        <captioned:CaptionedEditPath Caption="Command to run before tests" Value="{Binding CommandBeforeTestsRun}" PathGetterType="File" />
                     </StackPanel>
-                    <StackPanel Margin="5,0">
-                        <captioned:CaptionedNumericUpDown Name="ProcessCount" Caption="Process count" Value="{Binding ProcessCount}" Minimum="1" Maximum="16"/>
-                    </StackPanel>
-                    <StackPanel Margin="5,0" >
-                        <controls:ExtCheckBox Name="CopyToSeparateFolders" IsChecked="{Binding CopyToSeparateFolders}" Content="Copy to separate folders"  Margin="2"/>
+                </GroupBox>
+                <GroupBox Margin="5" Header="Clonning">
+                     <StackPanel >
+                        <controls:ExtCheckBox Name="CopyToSeparateFolders" IsChecked="{Binding CopyToSeparateFolders}" Content="Copy to separate folders"  Margin="2" />
+                        <captioned:CaptionedEditPath Caption="Folder to clone tests" Value="{Binding DirToCloneTests}" PathGetterType="Folder" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}"/>
                         <captioned:CaptionedNumericUpDown Name="CopyDeep" Caption="Copy deep" Value="{Binding CopyDeep}" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Minimum="1" Maximum="64"/>
                     </StackPanel>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="15" Orientation="Horizontal">
-                <Button Content="Refresh" Margin="5" Padding="5,0" Width="70" Click="RefreshClick"/>
-                <Button Content="Start" Margin="5" Padding="5,0" Width="70" IsDefault="True" Click="StartClick"/>
-                <Button Content="Cancel" Margin="5" Padding="5,0" Width="70" IsCancel="True" Click="CancelClick"/>
+                </GroupBox>
+                <GroupBox Margin="5" Header="Multithreading">
+                    <captioned:CaptionedNumericUpDown Name="ProcessCount" Caption="Process count" Value="{Binding ProcessCount}" Minimum="1" Maximum="16"/>
+                </GroupBox>
             </StackPanel>
         </DockPanel>
         <DockPanel Name="Panel" />

@@ -7,7 +7,7 @@ namespace PluginsShared.Watcher
 	public interface ILogDialog : ICaptionedLog
 	{
 		int EntriesCount { get; }
-		event Action OnClear;
+		event EventHandler OnClear;
 		void ShowLogs();
 		void Clear();
 		DialogWindow DialogWindow { get; }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Navigation;
 using Common.OS;
 using Common.Tools;
@@ -30,7 +31,7 @@ namespace TBox.Forms
 		public CheckableDataCollection<EnginePluginInfo> Collection { get; private set; }
 		private AppUpdater appUpdater;
 		private readonly ThemesManager themesManager = new ThemesManager();
-		public event Action EnableHotKeys;
+		public event EventHandler EnableHotKeys;
 		private readonly HotKeysManager hotKeysManager;
 		private readonly SchedulerManager schedulerManager;
 		private readonly UserActionsManager userActionsManager;
@@ -99,12 +100,12 @@ namespace TBox.Forms
 
 		private void HotKeysEnabledChecked(object sender, RoutedEventArgs e)
 		{
-			if (EnableHotKeys != null ) EnableHotKeys();
+			if (EnableHotKeys != null ) EnableHotKeys(sender, e);
 		}
 
 		private void SheldulerEnabledChecked(object sender, RoutedEventArgs e)
 		{
-			if (EnableHotKeys != null) EnableHotKeys();
+			if (EnableHotKeys != null) EnableHotKeys(sender, e);
 		}
 
 		private void ButtonClearHotkeyClick(object sender, RoutedEventArgs e)
@@ -139,7 +140,7 @@ namespace TBox.Forms
 
 		private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
 		{
-			using (var p = Process.Start("https://tbox.codeplex.com/")) { }
+            using (Process.Start(((Hyperlink)sender).NavigateUri.ToString())) { }
 		}
 
 		private void UserActionsCheckChanged(object sender, RoutedEventArgs e)

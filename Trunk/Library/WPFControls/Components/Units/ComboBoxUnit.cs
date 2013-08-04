@@ -14,6 +14,7 @@ namespace WPFControls.Components.Units
 	{
 		public ComboBoxUnit()
 		{
+			Init();
 			Items.SelectionChanged += ItemsOnSelectionChanged;
 		}
 

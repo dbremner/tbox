@@ -5,7 +5,7 @@ namespace Solution.Scripts
 {
 	public class StopDevServers : IScript
 	{
-		[File(true, "c:/")]
+		[File("c:/")]
 		public string PathToDevServer { get; set; }
 
 		public void Run()

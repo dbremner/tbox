@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using WPFControls.Tools;
 
 namespace WPFControls.Dialogs.Menu
 {
 	/// <summary>
 	/// Interaction logic for MenuDialog.xaml
 	/// </summary>
-	public partial class InputMenuItem : IDialog
+	public sealed partial class InputMenuItem : IDialog
 	{
 		private bool isSuccess = false;
 		private Func<string, bool> validator;

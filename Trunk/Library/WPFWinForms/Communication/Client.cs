@@ -19,11 +19,11 @@ namespace WPFWinForms.Communication
 			var data = CreateMessage(message);
 			try
 			{
-				Win32.SendMessageTimeout(new IntPtr(windowId),
-										 Win32.WM_COPYDATA,
-										 (int)IntPtr.Zero,
+				NativeMethods.SendMessageTimeout(new IntPtr(windowId),
+										 NativeMethods.WM_COPYDATA,
+										 (long)IntPtr.Zero,
 										 ref data,
-										 Win32.SendMessageTimeoutFlags.SMTO_ABORTIFHUNG,
+										 NativeMethods.SendMessageTimeoutFlags.SMTO_ABORTIFHUNG,
 										 timeOut,
 										 out dummy);
 			}
@@ -34,9 +34,9 @@ namespace WPFWinForms.Communication
 			return dummy;
 		}
 
-		private static Win32.COPYDATASTRUCT CreateMessage(string message)
+		private static NativeMethods.COPYDATASTRUCT CreateMessage(string message)
 		{
-			var data = new Win32.COPYDATASTRUCT();
+			var data = new NativeMethods.COPYDATASTRUCT();
 			var bytes = Encoding.UTF8.GetBytes(message);
 			var intPtr = Marshal.AllocCoTaskMem(bytes.Length);
 			Marshal.Copy(bytes, 0, intPtr, bytes.Length);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Common.UI.Model;
 
 namespace NUnitRunner.Code.Settings
@@ -14,6 +15,8 @@ namespace NUnitRunner.Code.Settings
         public bool RunAsx86 { get; set; }
         public bool RunAsAdmin { get; set; }
 		public bool NeedSynchronizationForTests { get; set; }
+        public string DirToCloneTests { get; set; }
+        public string CommandBeforeTestsRun { get; set; }
 
 		public TestConfig()
 		{
@@ -24,6 +27,8 @@ namespace NUnitRunner.Code.Settings
             RunAsx86 = true;
 			RunAsAdmin = false;
 			NeedSynchronizationForTests = false;
+		    DirToCloneTests = Path.GetTempPath();
+		    CommandBeforeTestsRun = string.Empty;
 		}
 
 		public override object Clone()
@@ -38,7 +43,10 @@ namespace NUnitRunner.Code.Settings
 					CopyDeep = CopyDeep,
                     RunAsx86 = RunAsx86,
                     RunAsAdmin = RunAsAdmin,
-					NeedSynchronizationForTests = NeedSynchronizationForTests
+					NeedSynchronizationForTests = NeedSynchronizationForTests,
+                    Multithreaded = Multithreaded,
+                    DirToCloneTests = DirToCloneTests,
+                    CommandBeforeTestsRun = CommandBeforeTestsRun
 				};
 		}
 	}

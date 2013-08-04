@@ -12,7 +12,7 @@ namespace NUnitRunner.Components
 	/// <summary>
 	/// Interaction logic for Dialog.xaml
 	/// </summary>
-	public partial class Dialog
+	sealed partial class Dialog
 	{
 		private TestsPackage package;
 		private TestConfig config;
@@ -23,11 +23,15 @@ namespace NUnitRunner.Components
 
 		public void ShowDialog(TestConfig cfg, string nunitAgentPath)
 		{
-			if (IsVisible) return;
+			if (IsVisible)
+			{
+                ShowAndActivate();
+			    return;
+			}
 			config = cfg;
 			DisposePackage();
 			var view = new UnitTestsView();
-            package = new TestsPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin, view);
+            package = new TestsPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin, config.DirToCloneTests, config.CommandBeforeTestsRun, view);
 			Panel.Children.Add(view);
 			DataContext = config;
 			Title = Path.GetFileName(package.Path);
@@ -56,7 +60,7 @@ namespace NUnitRunner.Components
 				Close();
 				return;
 			}
-            package.Reset(config.RunAsx86, config.RunAsAdmin);
+            package.Reset(config.RunAsx86, config.RunAsAdmin, config.DirToCloneTests, config.CommandBeforeTestsRun);
 			var caption = Path.GetFileName(config.Key);
 			DialogsCache.ShowProgress(
 				u => package.DoRefresh(DoRefresh, o => Mt.Do(this, Close)), 
@@ -80,7 +84,7 @@ namespace NUnitRunner.Components
 				return;
 			}
 			var caption = Path.GetFileName(config.Key);
-			package.Reset(config.RunAsx86, config.RunAsAdmin);
+			package.Reset(config.RunAsx86, config.RunAsAdmin, config.DirToCloneTests, config.CommandBeforeTestsRun);
 			var packages = package.PrepareToRun(config.ProcessCount);
 			var time = Environment.TickCount;
 			var synchronizer = new Synchronizer(config.ProcessCount);

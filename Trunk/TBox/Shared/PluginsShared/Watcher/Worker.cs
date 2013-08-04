@@ -30,7 +30,7 @@ namespace PluginsShared.Watcher
 		{
 			iconWithText = new IconWithText(background: background);
 			Log = loggedList;
-			Log.OnClear += () => loggedList_OnDataChanged(null, null);
+			Log.OnClear += (o,e) => loggedList_OnDataChanged(null,null);
 			logCache = new LogCache(Log, loggedList_OnDataChanged);
 			this.workerId = workerId;
 			watcher = new WatchEngine(workerId, dataParser);

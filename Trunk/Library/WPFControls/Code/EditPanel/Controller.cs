@@ -28,7 +28,7 @@ namespace WPFControls.Code.EditPanel
 		public bool Clone()
 		{
 			string newName;
-			var item = Config.Items[Config.SelectedIndex];
+			var item = Config.Items[Config.SelectedIndexes.First()];
 			if (!Config.Dialog.Clone(Config.DataManager.GetKey(item), out newName))
 				return false;
 			Config.Items.Add(Config.DataManager.Clone(item, newName));
@@ -39,7 +39,7 @@ namespace WPFControls.Code.EditPanel
 		public bool Edit()
 		{
 			string newName;
-			var id = Config.SelectedIndex;
+			var id = Config.SelectedIndexes.First();
 			var item = Config.Items[id];
 			if (!Config.Dialog.Edit(Config.DataManager.GetKey(item), out newName))
 				return false;
@@ -52,14 +52,19 @@ namespace WPFControls.Code.EditPanel
 		public bool Del()
 		{
 			if (!Config.Dialog.Del(
-					Config.DataManager.GetKey(
-						Config.Items[Config.SelectedIndex])))
+					Config.SelectedIndexes
+                    .Select(
+                        x=>Config.DataManager.GetKey(Config.Items[x])).ToArray() ))
 				return false;
-			var id = Config.SelectedIndex;
-			Config.Items.RemoveAt(id);
+			var ids = Config.SelectedIndexes;
+		    var items = ids.Select(x => Config.Items[x]).ToArray();
+		    foreach (var item in items)
+		    {
+                Config.Items.Remove(item);
+		    }
 			if (Config.Items.Count > 0)
 			{
-				Config.SelectedIndex = Math.Min(id, Config.Items.Count-1);
+				Config.SelectedIndex = Math.Min(ids.Last(), Config.Items.Count-1);
 			}
 			return true;
 		}

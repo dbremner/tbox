@@ -21,7 +21,7 @@ namespace LeaksInterceptor.Components
 	/// <summary>
 	/// Interaction logic for Dialog.xaml
 	/// </summary>
-	public partial class Dialog
+	sealed partial class Dialog
 	{
 		private static readonly ILog Log = LogManager.GetLogger<Dialog>();
 		private readonly DispatcherTimer viewTimer;
@@ -40,7 +40,7 @@ namespace LeaksInterceptor.Components
 			CountersPanel.View = Counters;
 			CountersPanel.CheckChangedByPanel += CountersOnOnCheckChanged;
 			trayIcon.MouseClick += TrayIconOnMouseClick;
-			PerfomanceCounters.OnDataChanged += EnableStartButton;
+			PerfomanceCounters.OnDataChanged += (o,e) => EnableStartButton();
 		}
 
 		public void Init(Icon icon)
@@ -60,7 +60,7 @@ namespace LeaksInterceptor.Components
 			base.Dispose();
 		}
 
-		protected void OnViewTimer(object sender, EventArgs eventArgs)
+		private void OnViewTimer(object sender, EventArgs eventArgs)
 		{
 			switch (Tabs.SelectedIndex)
 			{
@@ -274,7 +274,7 @@ namespace LeaksInterceptor.Components
 			RedrawGraphic();
 		}
 
-		protected Config Config
+		private Config Config
 		{
 			get { return (Config)DataContext; }
 		}

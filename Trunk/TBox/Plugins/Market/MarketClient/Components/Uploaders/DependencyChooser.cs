@@ -17,7 +17,7 @@ namespace MarketClient.Components.Uploaders
 			OnNameSelectionChanged += DoOnNameSelectionChanged;
 		}
 
-		private void DoOnNameSelectionChanged()
+		private void DoOnNameSelectionChanged(object sender, EventArgs e)
 		{
 			Synchronizer.Do(ReloadTable);
 		}

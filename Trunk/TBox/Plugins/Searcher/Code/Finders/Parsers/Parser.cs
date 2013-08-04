@@ -136,9 +136,12 @@ namespace Searcher.Code.Finders.Parsers
 		{
 			try
 			{
-                foreach (var line in File.ReadAllLines(info.Path, Encoding.UTF8))
+			    using (var s = new StreamReader(File.OpenRead(info.Path), Encoding.UTF8))
 			    {
-                    ParseFileData(line, info.Id);
+			        while (!s.EndOfStream)
+			        {
+			            ParseFileData(s.ReadLine(), info.Id);
+			        }
 			    }
 			}
 			catch

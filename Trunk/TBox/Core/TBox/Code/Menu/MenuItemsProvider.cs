@@ -11,7 +11,7 @@ namespace TBox.Code.Menu
 {
 	class MenuItemsProvider : IMenuItemsProvider
 	{
-		public event Action OnRefresh;
+		public event EventHandler OnRefresh;
 		public event Action<string> OnRefreshItem;
 
 		private readonly IDictionary<string, UMenuItem> items = new Dictionary<string, UMenuItem>();
@@ -25,7 +25,7 @@ namespace TBox.Code.Menu
 
 			menuDialogItems = CreateMenuDialogItems(menuItems, null);
 
-			OnRefresh();
+			OnRefresh(this, null);
 		}
 
 		public void Refresh(string name, IList<UMenuItem> menuItems)

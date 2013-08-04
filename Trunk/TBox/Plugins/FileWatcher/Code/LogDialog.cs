@@ -19,7 +19,7 @@ namespace FileWatcher.Code
 		public MemoBoxLog Dialog { get; private set; }
 		public DialogWindow DialogWindow { get { return Dialog; } }
 		public int EntriesCount { get { return Dialog.EntriesCount; } }
-		public event Action OnClear
+		public event EventHandler OnClear
 		{
 			add { Dialog.OnClear += value; }
 			remove { Dialog.OnClear -= value; }

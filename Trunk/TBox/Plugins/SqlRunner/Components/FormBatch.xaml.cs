@@ -15,7 +15,7 @@ namespace SqlRunner.Components
 	/// <summary>
 	/// Interaction logic for FormBatcg.xaml
 	/// </summary>
-	public sealed partial class FormBatch
+	sealed partial class FormBatch
 	{
 		private Profile profile;
 		private Config config;
@@ -29,7 +29,11 @@ namespace SqlRunner.Components
 
 		public void ShowDialog(Profile profile, Config config)
 		{
-			if(IsVisible)return;
+			if (IsVisible)
+			{
+                ShowAndActivate();
+			    return;
+			}
 			this.profile = profile;
 			this.config = config;
 			Title = "Batch run: [" + profile.Key + "]";

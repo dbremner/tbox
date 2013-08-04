@@ -18,7 +18,7 @@ namespace MarketClient.Components.Uploaders
 		}
 
 		private bool userPressActionButton;
-		private void OnAction()
+		private void OnAction(object sender, EventArgs e)
 		{
 			userPressActionButton = true;
 			dialog.Hide();

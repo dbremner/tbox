@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using Common.Base;
 using Common.Base.Log;
 using Common.Tools;
 using Interface;
@@ -17,7 +14,7 @@ namespace AppConfigManager
 	/// <summary>
 	/// Interaction logic for Settings.xaml
 	/// </summary>
-	public partial class Settings : ISettings
+	public sealed partial class Settings : ISettings, IDisposable
 	{
 		private static readonly ILog Log = LogManager.GetLogger<Settings>();
 		public ObservableCollection<string> KnownAttributesValues { get; set; }
@@ -70,6 +67,11 @@ namespace AppConfigManager
 			config.Options.Sort<Option>(
 				(x,y) => string.Compare(x.Key, y.Key, StringComparison.CurrentCultureIgnoreCase), 
 				config.Options.Count);
+		}
+
+		public void Dispose()
+		{
+			buildDialog.Dispose();
 		}
 	}
 }

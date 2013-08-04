@@ -130,9 +130,12 @@ namespace Automator.Components
 				executionContexts = GetPathes().Select(x => compiler.GetExecutionContext(File.ReadAllText(x), Invoke)).ToArray();
 				IList<Parameter> parameters = new List<Parameter>();
 				parameters = executionContexts.Aggregate(parameters, (current, x) => parametersMerger.Merge(current, x.Parameters));
-				config.Parameters = new ObservableCollection<Parameter>(
-					parametersMerger.Clarify(config.Parameters, parameters));
-				Mt.Do(this, ()=> Parameters.ItemsSource = config.Parameters);
+				Mt.Do(this, () =>
+				    {
+                        config.Parameters = new ObservableCollection<Parameter>(
+					        parametersMerger.Clarify(config.Parameters, parameters));
+				        Parameters.ItemsSource = config.Parameters;
+				    });
 				return;
 			}
 			catch (CompilerExceptions cex)

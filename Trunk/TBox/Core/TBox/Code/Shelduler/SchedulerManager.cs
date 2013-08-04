@@ -26,7 +26,7 @@ namespace TBox.Code.Shelduler
 			this.view = view;
 			this.menuItemsProvider = menuItemsProvider;
 			timer.Tick += TimerOnTick;
-			menuItemsProvider.OnRefresh += Refresh;
+			menuItemsProvider.OnRefresh += (o,e) => Refresh();
 			menuItemsProvider.OnRefreshItem += RefreshItem;
 		}
 

@@ -73,9 +73,9 @@ namespace WPFControls.Components.EditButtons
 		{
 			var itemsCount = config.Items.Count;
 			btnClear.IsEnabled = itemsCount > 0;
-			btnClone.IsEnabled =
-			btnDel.IsEnabled =
-			btnEdit.IsEnabled = btnClear.IsEnabled && config.SelectedIndex > -1;
+            btnDel.IsEnabled = btnClear.IsEnabled && config.SelectedIndexes.Length > 0;
+            btnClone.IsEnabled =
+			btnEdit.IsEnabled = btnClear.IsEnabled && config.SelectedIndexes.Length == 1;
 		}
 
 		private void btnAdd_Click(object sender, System.Windows.RoutedEventArgs e)

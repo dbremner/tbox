@@ -16,7 +16,7 @@ namespace TBox.Code.FastStart
 		{
 			this.menuItems = menuItems;
 			this.menuItemsProvider = menuItemsProvider;
-			menuItemsProvider.OnRefresh += RefreshMenuItems;
+			menuItemsProvider.OnRefresh += (o,e)=>RefreshMenuItems();
 			menuItemsProvider.OnRefreshItem += name => RefreshMenuItems();
 			RefreshMenuItems();
 		}
