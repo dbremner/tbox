@@ -1,4 +1,6 @@
-﻿12/07/2013 Add console unit tests runner, to use with CI. This subtool generate valid xml report.
+﻿02/08/2013 Big bugfixing. Add ability to specify clone folder for unit tests, add ability to run command before tests.
+
+12/07/2013 Add console unit tests runner, to use with CI. This subtool generate valid xml report.
 
 08/07/2013 Add optional transactions for sql Runner. Optimize restart for services commander. Add support for build files for project manager.
 

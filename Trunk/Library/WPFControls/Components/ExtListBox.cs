@@ -21,7 +21,7 @@ namespace WPFControls.Components
 	    public void OnListBoxItemContainerFocused(object sender, RoutedEventArgs e)
 	    {
 	        var item = sender as ListBoxItem;
-	        if (item == null || item.IsSelected) return;
+	        if (item == null || item is ComboBoxItem || item.IsSelected) return;
 	        if (!Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
 	        {
 	            if (SelectionMode != SelectionMode.Single)
