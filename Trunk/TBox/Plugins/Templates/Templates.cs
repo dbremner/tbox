@@ -69,7 +69,7 @@ namespace Templates
 
 		private IEnumerable<UMenuItem> EnumerateDirectories()
 		{
-			return Directory.EnumerateDirectories(Context.DataProvider.DataPath)
+			return Directory.EnumerateDirectories(Context.DataProvider.ReadOnlyDataPath)
 				.Select(path => new UMenuItem
 				{
 					Header = Path.GetFileName(path),

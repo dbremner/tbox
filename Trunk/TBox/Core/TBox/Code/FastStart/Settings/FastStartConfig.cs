@@ -19,7 +19,7 @@ namespace TBox.Code.FastStart.Settings
 		public FastStartConfig()
 		{
 			MaxCount = 20;
-			IsFastStart = true;
+			IsFastStart = false;
 			MenuItems = new ObservableCollection<MenuItemStatistic>();
 			MenuItemsSequence = new CheckableDataCollection<MenuItemsSequence>();
 		}

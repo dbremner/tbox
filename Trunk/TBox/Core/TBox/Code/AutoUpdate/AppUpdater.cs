@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using Common.AutoUpdate;
 using Common.Base.Log;
+using Common.Tools;
 using WPFControls.Code.OS;
 
 namespace TBox.Code.AutoUpdate
 {
-	public class AppUpdater
+	public class AppUpdater : IAutoUpdater
 	{
 		private static readonly ILog Log = LogManager.GetLogger<AppUpdater>();
 		private readonly Window owner;

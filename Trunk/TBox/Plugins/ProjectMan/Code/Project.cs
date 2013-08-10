@@ -168,25 +168,25 @@ namespace ProjectMan.Code
 				item.Items.Add(new UMenuItem
 					{
 						Header = key,
-						OnClick = o => BuildBuildFile(key, path)
+						OnClick = o => BuildBuildFile(key, path, o)
 					});
 			}
 		}
 
-		private void BuildBuildFile(string key, string path)
+		private void BuildBuildFile(string key, string path, object context)
 		{
-			var r = DialogsCache
-				.GetDialog<InputComboBox>()
-				.ShowDialog("Please, specify build arguments:",
-				            "Build: " + key, projectInfo.MsBuildParams,
-				            x => !string.IsNullOrWhiteSpace(x),
-				            KnownArgs,
-				            null);
-			if (r.Key)
+			if (!(context is NonUserRunContext))
 			{
+				var r = DialogsCache.GetDialog<InputComboBox>()
+						.ShowDialog("Please, specify build arguments:",
+									"Build: " + key, projectInfo.MsBuildParams,
+				x => true,
+				KnownArgs,
+				null);
+				if (!r.Key) return;
 				projectInfo.MsBuildParams = r.Value;
-				projectContext.MsBuildProvider.BuildBuildFile(path, projectInfo.MsBuildParams);
 			}
+			projectContext.MsBuildProvider.BuildBuildFile(path, projectInfo.MsBuildParams);
 		}
 
 		private UMenuItem AddNewMenuItem(string header, Icon icon)

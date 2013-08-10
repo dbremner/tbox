@@ -2,7 +2,8 @@
 {
 	public interface IDataProvider
 	{
-		string DataPath { get; }
+		string ReadOnlyDataPath { get; }
+		string WritebleDataPath { get; }
 		string ToolsPath { get; }
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
@@ -13,7 +14,7 @@ namespace WPFControls.Components.Updater
 	{
 		protected object Locker { get; private set; }
 		protected bool UserPressClose { get; set; }
-		private Action onEnd;
+		public double Value { get { return pbValue.Value; } }
 
 		public SimpleProgress()
 		{
@@ -25,12 +26,7 @@ namespace WPFControls.Components.Updater
 		{
 			pbValue.Value = 0;
 			pbValue.IsIndeterminate = true;
-			ProgressModel = new ProgressModeMultithreaded();
 		}
-
-		public IProgressModel ProgressModel { get; set; }
-
-		public double Value { get { return pbValue.Value; } }
 
 		internal bool IsUserPressClose()
 		{
@@ -40,23 +36,21 @@ namespace WPFControls.Components.Updater
 			}
 		}
 		
-		protected virtual IUpdater CreateUpdater(Action action)
+		protected virtual IUpdater CreateUpdater()
 		{
-			return new SimpleUpdater<SimpleProgress>(this, action);
+			return new SimpleUpdater<SimpleProgress>(this);
 		}
 
 		public void Start(Action<IUpdater> func, Action endAction=null)
 		{
 			UserPressClose = false;
-			onEnd = endAction;
-			ProgressModel.Start(
-				CreateUpdater(ProgressModel.DoEvents), func, OnProgressEnd);
-		}
-
-		private void OnProgressEnd()
-		{
-			if ( onEnd != null ) onEnd();
-			Mt.SetEnabled(Button, true);
+			var u = CreateUpdater();
+			ThreadPool.QueueUserWorkItem(o=>
+				{
+					func(u);
+					if(endAction!=null)endAction();
+					Mt.SetEnabled(Button, true);
+				});
 		}
 
 		internal void Button_Click( object sender, RoutedEventArgs e )

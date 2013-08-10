@@ -9,7 +9,7 @@ using Common.Base.Log;
 using Common.Tools;
 using ScriptEngine;
 
-namespace Solution.Scripts
+namespace Solution.Msc
 {
 	public class OptimizeSolution : IScript
 	{
@@ -18,7 +18,7 @@ namespace Solution.Scripts
 		[DirectoryList()]
 		public string[] Solutions { get; set; }
 
-        [StringList("..\\Libraries", "..\\packages")]
+        [StringList("..\\Lib", "..\\packages")]
         public string[] PathesToLibs { get; set; }
 
         [StringList("Content", "None" )]

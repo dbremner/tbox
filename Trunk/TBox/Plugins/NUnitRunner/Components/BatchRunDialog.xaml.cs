@@ -81,7 +81,7 @@ namespace NUnitRunner.Components
 			Parallel.ForEach(packages,
 				p => p.DoRun(
 					o => DoRun(o, time, ref count), 
-					tests[p], false, 1, true,
+					tests[p], false, 1, config.NeedSyncForBatch,
 					synchronizer,
 					u));
 		}

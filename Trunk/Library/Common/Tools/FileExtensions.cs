@@ -14,5 +14,13 @@ namespace Common.Tools
 				return Encoding.UTF8.GetString(data);
 			}
 		}
+
+		public static void MoveIfExist(this FileInfo source, string destination)
+		{
+			if (!source.Exists) return;
+			if (File.Exists(destination)) File.Delete(destination);
+			source.CopyTo(destination);
+            source.Delete();
+		}
 	}
 }

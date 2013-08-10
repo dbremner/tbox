@@ -90,7 +90,7 @@ namespace WPFControls.Dialogs
 		private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			if ((bool)e.NewValue)
-				Dispatcher.BeginInvoke(new ThreadStart(() => edData.Focus()));
+				Dispatcher.BeginInvoke(new Func<bool>(()=> edData.Focus()));
 		}
 	}
 }

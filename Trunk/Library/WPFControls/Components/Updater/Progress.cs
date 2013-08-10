@@ -27,9 +27,9 @@ namespace WPFControls.Components.Updater
 			Mt.SetText(lMessage, value);
 		}
 
-		protected override IUpdater CreateUpdater(Action action)
+		protected override IUpdater CreateUpdater()
 		{
-			return new Updater(this, action);
+			return new Updater(this);
 		}
 	}
 }

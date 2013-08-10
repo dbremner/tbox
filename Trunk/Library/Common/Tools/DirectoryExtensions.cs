@@ -82,5 +82,12 @@ namespace Common.Tools
 			return new FileInfo[0];
 		}
 
+		public static void MoveIfExist(this DirectoryInfo source, string destination)
+		{
+			if(!source.Exists)return;
+			source.MoveFilesTo(destination);
+            source.Delete();
+		}
+
 	}
 }

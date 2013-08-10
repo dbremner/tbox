@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using Common.Tools;
 using ScriptEngine;
 
-namespace Solution.Scripts
+namespace Solution.Msc
 {
 	public class SelectDatabases: IScript
 	{

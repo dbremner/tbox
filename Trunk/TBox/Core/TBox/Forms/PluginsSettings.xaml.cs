@@ -118,15 +118,6 @@ namespace TBox.Forms
 			themesManager.Load(Themes.Value);
 		}
 		
-		private void InformationSelected(object sender, RoutedEventArgs e)
-		{
-			const string changeLogFilePath = "changelog.txt";
-			if (File.Exists(changeLogFilePath))
-			{
-				tbChangeLog.Text = File.ReadAllText(changeLogFilePath);
-			}
-		}
-
 		public void Dispose()
 		{
 			hotKeysManager.Dispose();

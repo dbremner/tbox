@@ -31,12 +31,12 @@
             </StatusBarItem>
         </StatusBar>
         <DockPanel DockPanel.Dock="Top">
-            <Label Content="Word:" Width="45" />
+            <Label Content="Word:" Width="50" />
             <Button Content="Go" Name="btnSearch" IsEnabled="false" DockPanel.Dock="Right" Margin="5" Width="32" Click="SearchClick"/>
             <Controls:AutoComboBox Name="SearchText" IsEditable="True"  Margin="5" KeyUp="CbSearchTextKeyUp" Text="{Binding Search.SearchText}" ItemsSource="{Binding Search.LastSearchValues}" SelectionChanged="SelectedTextChanged"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Label Content="Folder:" Width="45"/>
+            <Label Content="Folder:" Width="50"/>
             <ComboBox Name="FoldersFilter" IsEditable="False" Margin="5" SelectionChanged="NeedSearch"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Right">

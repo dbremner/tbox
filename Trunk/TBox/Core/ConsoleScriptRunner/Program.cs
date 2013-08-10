@@ -24,7 +24,7 @@ namespace ConsoleScriptRunner
 				Console.WriteLine("Load libraries");
 				var loader = new Loader();
 				loader.Load(rootPath);
-				var worker = new Worker(rootPath);
+				var worker = new Worker(Folders.Application);
 				foreach (var s in args)
 				{
 					Console.WriteLine("Execute: " + s);

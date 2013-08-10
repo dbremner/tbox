@@ -17,7 +17,7 @@ namespace TBox.Code.Shelduler
 		private SchedulerTasks originalConfig;
 		private SchedulerTasks config;
 		private readonly DispatcherTimer timer = new DispatcherTimer();
-		private readonly SchedulerContext schedulerArg = new SchedulerContext();
+		private readonly NonUserRunContext nonUserRunArg = new NonUserRunContext();
 		private static readonly ShortDayOfWeek[] ShortDaysOfWeeks =
 			Enum.GetValues(typeof(ShortDayOfWeek)).Cast<ShortDayOfWeek>().ToArray();
 
@@ -139,7 +139,7 @@ namespace TBox.Code.Shelduler
 			foreach (var task in context.Tasks)
 			{
 				var a = task.OnClick;
-				if (a != null) a(schedulerArg);
+				if (a != null) a(nonUserRunArg);
 			}
 			ProcessNext(context.StartTime.AddSeconds(1));
 		}

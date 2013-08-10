@@ -59,9 +59,8 @@ namespace ConsoleUnitTestsRunner.Code
                 {
                     Cmd.Start(commandToExecuteBeforeTests, Log, waitEnd: true, nowindow: true);
                 }
-				s.Processes.AddRange(packages
-					.AsParallel()
-					.Select((items, i) => processCreator.Create(dllPathes[i], handle, needSynchronizationForTests ? "test" : "fasttest", runAsx86, runAsAdmin)));
+				s.Processes.AddRange(packages.Select(
+					(items, i) => processCreator.Create(dllPathes[i], handle, needSynchronizationForTests ? "test" : "fasttest", runAsx86, runAsAdmin)));
 			}
 			finally
 			{

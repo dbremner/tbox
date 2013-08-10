@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ScriptEngine;
 
-namespace Solution.Scripts
+namespace Solution.Msc
 {
 	public class ClearFolders : IScript
 	{
@@ -17,7 +17,7 @@ namespace Solution.Scripts
 		[StringList("bin", "obj", "log", "logs")]
 		public IList<string> DirectoryNamesToClean { get; set; }
 
-		[StringList("libs")]
+		[StringList("Libs", "Lib")]
 		public IList<string> StopOnFolders { get; set; }
 
 		public void Run()

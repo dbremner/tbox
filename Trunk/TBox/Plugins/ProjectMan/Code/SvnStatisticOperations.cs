@@ -10,7 +10,7 @@ namespace ProjectMan.Code
 	{
 		public void Append(IList<UMenuItem> menu, ProjectContext context, IPluginContext pluginContext, string userName)
 		{
-			var dirs = Directory.EnumerateDirectories(pluginContext.DataProvider.DataPath).ToArray();
+			var dirs = Directory.EnumerateDirectories(pluginContext.DataProvider.ReadOnlyDataPath).ToArray();
 			if(dirs.Length == 0)return;
 			menu.Add(new USeparator());
 			foreach (var dir in dirs)

@@ -42,7 +42,7 @@ namespace Automator.Components
 
 		private void OnSelectFile(object sender, SelectionChangedEventArgs e)
 		{
-			var path = Path.Combine(Context.DataProvider.DataPath, e.GetNewSelection());
+			var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, e.GetNewSelection());
 			ExceptionsHelper.HandleException(
 				() => Source.Value = File.ReadAllText(path),
 				() => "Can't open file:" + path,
@@ -78,7 +78,7 @@ namespace Automator.Components
 
 		private void SaveClick(object sender, RoutedEventArgs e)
 		{
-			var path = Path.Combine(Context.DataProvider.DataPath, Files.Text);
+			var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, Files.Text);
 			ExceptionsHelper.HandleException(
 				() => File.WriteAllText(path, Source.Value, Encoding.UTF8),
 				() => "Can't save file:" + path,

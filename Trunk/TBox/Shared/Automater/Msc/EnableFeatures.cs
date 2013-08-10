@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using PluginsShared.Tools;
 using ScriptEngine;
 
-namespace Solution.Scripts
+namespace Solution.Msc
 {
 	public class EnableFeatures : IScript
 	{

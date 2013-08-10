@@ -37,7 +37,8 @@
                 <GroupBox Header="Auto update" Margin="5" Width="300">
                     <StackPanel Orientation="Vertical">
                         <captioned:CaptionedEnumDropDownList Caption="Update interval:" Margin="5" Value="{Binding Update.Interval}" SourceEnumType="autoUpdate:UpdateInterval" />
-                        <captioned:CaptionedEditPath Caption="Path to the mirror directory:" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder"/>
+                        <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="Update from shared folder" Name="UpdateFromSharedlFolder"/>
+                        <captioned:CaptionedEditPath Caption="Path to the mirror directory:" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
                         <CheckBox IsChecked="{Binding Update.ShowChanglog}" Content="Show changelog on update" Margin="5"/>
                         <Button Content="Check for updates" Margin="5" Width="128" Click="Button_Click" />
                     </StackPanel>
@@ -130,22 +131,17 @@
                 </units:CheckableListBoxUnit>
             </DockPanel>
         </TabItem>
-        <TabItem Header="Information" Selector.Selected="InformationSelected">
-            <TabControl TabStripPlacement="Bottom" >
-                <TabItem Header="Change log">
-                    <TextBox Name="tbChangeLog" IsReadOnly="True" TextWrapping="Wrap" IsReadOnlyCaretVisible="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" />
-                </TabItem>
-                <TabItem Header="About">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top">
-                        <Label Name="Version" HorizontalAlignment="Center" />
-                        <Label Content="Web site:" HorizontalAlignment="Center" />
-                        <TextBlock HorizontalAlignment="Center"> 
-                            <Hyperlink FontWeight="Black" Foreground="#0066B3" RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://tbox.codeplex.com/">https://tbox.codeplex.com/</Hyperlink>
-                        </TextBlock>
-                        <Label Content="Licensed under GPLv2 license." HorizontalAlignment="Center" />
-                    </StackPanel>
-                </TabItem>
-            </TabControl>
+        <TabItem Header="Information" >
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top">
+                <Label Name="Version" HorizontalAlignment="Center" />
+                <Label Content="Licensed under GPLv2 license." HorizontalAlignment="Center" Padding="20"/>
+                <Label Content="Created by Mnk from Brest." HorizontalAlignment="Center" Padding="0"/>
+                <Label Content="In development since 2010." HorizontalAlignment="Center" Padding="0"/>
+                <Label Content="Web site:" HorizontalAlignment="Center" Padding="0 20 0 0"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0"> 
+                    <Hyperlink FontWeight="Black" Foreground="#0066B3" RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://tbox.codeplex.com">https://tbox.codeplex.com</Hyperlink>
+                </TextBlock>
+            </StackPanel>
         </TabItem>
     </TabControl>
 </UserControl>

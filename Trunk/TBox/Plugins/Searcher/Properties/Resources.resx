@@ -133,7 +133,7 @@
     <value>Sorry, can't load file!</value>
   </data>
   <data name="ProgressString" xml:space="preserve">
-    <value>Directories: {0}  time: {1}s  speed: {2} mb/s</value>
+    <value>Directories: {0}  time: {1}s  speed: {2} kb/s</value>
   </data>
   <data name="Starting_CollectMemory" xml:space="preserve">
     <value>Collect memory</value>

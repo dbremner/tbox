@@ -21,7 +21,8 @@
             <StackPanel VerticalAlignment="Center" Margin="10">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="5,0">
-                        <controls:ExtCheckBox Name="Filter" Content="Show only failed" ValueChanged="FilterChanged" Margin="2" IsChecked="True" />
+                        <controls:ExtCheckBox Name="Filter" Content="Show only failed" ValueChanged="FilterChanged" Margin="2" IsChecked="{Binding ShowOnlyFailed}" />
+                        <controls:ExtCheckBox Name="Sync" Content="Synchronize tests agents" ValueChanged="FilterChanged" Margin="2" IsChecked="{Binding NeedSyncForBatch}" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

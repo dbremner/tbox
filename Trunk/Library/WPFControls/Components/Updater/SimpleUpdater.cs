@@ -8,12 +8,10 @@ namespace WPFControls.Components.Updater
 		where T : SimpleProgress
 	{
 		protected readonly T Owner;
-		private readonly Action onUpdate;
 
-		public SimpleUpdater(T owner, Action onUpdate)
+		public SimpleUpdater(T owner)
 		{
 			Owner = owner;
-			this.onUpdate = onUpdate;
 		}
 
 		public void Update(float value)
@@ -27,7 +25,6 @@ namespace WPFControls.Components.Updater
 						Owner.pbValue.Value = value;
 					}
 				);
-			onUpdate();
 		}
 
 		public virtual void Update(string caption, float value)

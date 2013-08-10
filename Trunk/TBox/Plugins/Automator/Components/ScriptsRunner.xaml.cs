@@ -68,7 +68,7 @@ namespace Automator.Components
 		{
 			return config.Pathes
 				.CheckedItems
-				.Select(x => Path.Combine(Context.DataProvider.DataPath, x.Key))
+				.Select(x => Path.Combine(Context.DataProvider.ReadOnlyDataPath, x.Key))
 				.ToArray();
 		}
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using Common.Communications;
 using Common.Data;
@@ -29,9 +28,9 @@ namespace ConsoleUnitTestsRunner.Code
 				if (agent.Value) continue;
 				var id = agent.Key;
 				agent.Value = true;
-				new Thread(
-					() => new Client<INunitRunnerServer>(id).Instance.CanClose())
-					.Start();
+				ThreadPool.QueueUserWorkItem(
+					o => new Client<INunitRunnerServer>(id).Instance.CanClose())
+					;
 			}
 		}
 	}

@@ -22,7 +22,7 @@ namespace Searcher
 			{
 				var w = new Worker(availabilityChecker, Context.DoSync);
 				w.Fill(Config);
-				w.InitFolders(Context.DataProvider.DataPath);
+				w.InitFolders(Context.DataProvider.WritebleDataPath);
 				return w;
 			});
 			Icon = Properties.Resources.Icon;
@@ -81,7 +81,7 @@ namespace Searcher
 
 		private void DoRebuild(object o)
 		{
-			if (o is SchedulerContext || 
+			if (o is NonUserRunContext || 
 				MessageBox.Show("Are you realy want rebuild all indexes?", "Searcher", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
 			{
 				worker.Value.RebuildIndexes();

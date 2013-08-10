@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Variables.wxi?>
+	<Fragment>
+    <DirectoryRef Id="INSTALLLOCATION" FileSource="..\bin\Release\" >
+      <Directory Id="Data" Name="Data">
+        <Directory Id="Automater" Name="Automater" FileSource="..\Shared\Automater\">
+          <Directory Id="Msc" Name="Msc">
+            <Component Id="AutomaterMsc" Guid="4928F203-E455-475C-B093-F53B734530BF">
+              <File Name='AddTracing.cs'/>
+              <File Name='ClearFolders.cs'/>
+              <File Name='EnableFeatures.cs'/>
+              <File Name='OptimizeSolution.cs'/>
+              <File Name='params.cs'/>
+              <File Name='PutObjects.cs'/>
+              <File Name='PutResources.cs'/>
+              <File Name='RunDevServers.cs'/>
+              <File Name='SelectDatabases.cs'/>
+              <File Name='StopDevServers.cs'/>
+            </Component>
+          </Directory>
+          <Component Id="Automater" Guid="5A061B69-86E0-40CD-A474-0E013E4684E1">
+            <File Name='Runner.cs'/>
+            <File Name='Solution.csproj'/>
+            <File Name='Solution.sln'/>
+          </Component>
+        </Directory>
+        <Directory Id="LocalizationTool" Name="LocalizationTool">
+          <Component Id="LocalizationTool" Guid="3E9C0AFC-3DE6-49E9-9E23-B0757C7E377D">
+            <CreateFolder/>
+          </Component>
+        </Directory>
+        <Directory Id="ProjectMan" Name="ProjectMan">
+          <Component Id="ProjectMan" Guid="6DC7D5CC-A546-4A41-AE15-0FC499E15D73">
+            <CreateFolder/>
+          </Component>
+        </Directory>
+        <Directory Id="Templates" Name="Templates" FileSource="..\Shared\Templates\">
+          <Directory Id="TemplatesSample" Name="Sample">
+            <Component Id="TemplatesSample" Guid="B31CFEB1-760F-4CB8-A608-BB57B724B6AE">
+              <File Name='{#test#}.cs'/>
+            </Component>
+          </Directory>
+          <Component Id="Templates" Guid="FF5BB7D8-7E57-42B2-810D-9AB5D7DAABEF">
+            <CreateFolder/>
+          </Component>
+        </Directory>
+      </Directory>
+      <Directory Id="Libraries" Name="Libraries">
+        <Component Id="Libraries" Guid="A7042115-AEAB-4632-A691-38B8AF4D7CC7">
+          <File Name='Common.dll'/>
+          <File Name='extended.nunit.dll'/>
+          <File Name='ICSharpCode.SharpZipLib.dll'/>
+          <File Name='Interface.dll'/>
+          <File Name='nunit.core.dll'/>
+          <File Name='nunit.core.interfaces.dll'/>
+          <File Name='nunit.util.dll'/>
+          <File Name='PluginsShared.dll'/>
+          <File Name='ScintillaNET.dll'/>
+          <File Name='ScintillaNET.xml'/>
+          <File Name='ScriptEngine.dll'/>
+          <File Name='ServiceStack.Text.dll'/>
+          <File Name='WPFControls.dll'/>
+          <File Name='WPFSyntaxHighlighter.dll'/>
+          <File Name='WPFWinForms.dll'/>
+        </Component>
+      </Directory>
+      <Directory Id='Plugins' Name='Plugins'>
+        <Component Id="Plugins" Guid="B194EA31-6D91-4383-AC4E-CF8173784F35">
+          <File Name='AppConfigManager.dll'/>
+          <File Name='Automator.dll'/>
+          <File Name='AvailabilityChecker.dll'/>
+          <File Name='BookletPagesGenerator.dll'/>
+          <File Name='DevServerRunner.dll'/>
+          <File Name='DirectoryProcessor.dll'/>
+          <File Name='Encoder.dll'/>
+          <File Name='FileWatcher.dll'/>
+          <File Name='HtmlPad.dll'/>
+          <File Name='LeaksInterceptor.dll'/>
+          <File Name='NUnitRunner.dll'/>
+          <File Name='ProjectMan.dll'/>
+          <File Name='RegExpTester.dll'/>
+          <File Name='Requestor.dll'/>
+          <File Name='RequestsWatcher.dll'/>
+          <File Name='Searcher.dll'/>
+          <File Name='ServicesCommander.dll'/>
+          <File Name='SourcesUniter.dll'/>
+          <File Name='SqlRunner.dll'/>
+          <File Name='SqlWatcher.dll'/>
+          <File Name='Templates.dll'/>
+          <File Name='TextGenerator.dll'/>
+        </Component>
+      </Directory>
+      <Directory Id="Themes" Name="Themes">
+        <Component Id="Themes" Guid="dbcbef7c-89cf-49c7-92c3-e73f9f7d3146">
+          <File Name='Default.xaml'/>
+        </Component>
+      </Directory>
+      <Directory Id="Tools" Name="Tools" FileSource="..\Tools\">
+        <Component Id="Tools" Guid="f692d112-c019-491e-8f0d-d9953fdc85fd">
+          <File Name='build_build.cmd'/>
+          <File Name='build_project.cmd'/>
+          <File Name='RunAsx86.exe'/>
+          <File Name='sudo.exe'/>
+        </Component>
+      </Directory>
+      <Component Id="Binaries" Guid="0439B8A8-E960-4D96-808A-052940992E18">
+        <File Name='changelog.txt'/>
+        <File Name='License.rtf'/>
+        <File Name='ConsoleScriptRunner.exe'/>
+        <File Name='ConsoleScriptRunner.exe.config'/>
+        <File Name='ConsoleUnitTestsRunner.exe'/>
+        <File Name='ConsoleUnitTestsRunner.exe.config'/>
+        <File Name='NUnitAgent.exe'/>
+        <File Name='NUnitAgent.exe.config'/>
+        <File Name='SciLexer.dll'/>
+        <File Name='SciLexer64.dll'/>
+        <File Name='TBox.exe' Id='Application.exe' KeyPath='yes'/>
+        <File Name='TBox.exe.config'/>
+        <File Name='TBox32.exe'/>
+        <File Name='TBox32.exe.config'/>
+      </Component>
+    </DirectoryRef>
+	</Fragment>
+</Wix>

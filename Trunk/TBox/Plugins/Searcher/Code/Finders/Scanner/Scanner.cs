@@ -26,6 +26,7 @@ namespace Searcher.Code.Finders.Scanner
 		private long readedSize;
 		private IndexSettings settings;
 		private Filter filter;
+		private int calcDirsTime;
 
 		internal Scanner(IParser parser)
 		{
@@ -34,6 +35,7 @@ namespace Searcher.Code.Finders.Scanner
 
 		public void ScanDirectory(IndexSettings index, IUpdater upd)
 		{
+			calcDirsTime = Environment.TickCount;
 			updater = upd;
 			updater.Update(Properties.Resources.CalcDirsCount, -1);
 			filter = new Filter(index.FileMasksToExclude.Select(x => x.Key));
@@ -46,6 +48,7 @@ namespace Searcher.Code.Finders.Scanner
 			{
 				Files.Add(s.Key, new FilesList());
 			}
+			calcDirsTime = (Environment.TickCount - calcDirsTime)/1000;
 			Parallel.ForEach(Scan(), Parse);
 			updater.Update(dirsCount);
 		}
@@ -87,7 +90,7 @@ namespace Searcher.Code.Finders.Scanner
 			++currDirNo;
 			updater.Update(
 					time=>string.Format(Properties.Resources.ProgressString,
-						currDirNo, time, (time == 0) ? 0 : (readedSize / time / 1024 / 1024)),
+						currDirNo, time, (time - calcDirsTime <= 0) ? 0 : (readedSize / (time - calcDirsTime) / 1024)),
 					currDirNo, dirsCount);
 
 			path.Add(Dirs.Add(dirName));

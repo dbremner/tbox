@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -20,7 +21,14 @@ namespace TextGenerator
 				new UMenuItem{Header = "Generate Text form clipboard", OnClick = o=>GenerateText(Clipboard.GetText())},
 				new UMenuItem{Header = "Generate Text", OnClick = o=>GenerateText(string.Empty)},
 				new UMenuItem{Header = "Generate Guid", OnClick = o=>GenerateGuid()},
+				new UMenuItem{Header = "Calc Clipboard text length", OnClick = o=>CalcClipboardTextLength()},
 			};
+		}
+
+		private static void CalcClipboardTextLength()
+		{
+			MessageBox.Show("Length of the clipboard text = " + Clipboard.GetText().Length.ToString(), "Text generator",
+			                MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		private static void GenerateGuid()
@@ -28,17 +36,18 @@ namespace TextGenerator
 			Clipboard.SetText(Guid.NewGuid().ToString());
 		}
 
-		private static void GenerateText(string text)
+		private void GenerateText(string text)
 		{
-			int tmp;
-			var value = DialogsCache.ShowInputBox("Please specify text length", "Generate text", "64", (x)=>int.TryParse(x, out tmp), Application.Current.MainWindow);
+			var tmp = 0;
+			var value = DialogsCache.ShowInputBox("Please specify text length", "Generate text", Config.TextLength.ToString(CultureInfo.InvariantCulture), (x)=>int.TryParse(x, out tmp), Application.Current.MainWindow);
 			if(!value.Key)return;
-			var count = int.Parse(value.Value);
-			var sb = new StringBuilder(count);
+
+			Config.TextLength = int.Parse(value.Value);
+			var sb = new StringBuilder(Config.TextLength);
 			if (string.IsNullOrEmpty(text)) 
 				text = "Sample default text. ";
-			while (sb.Length < count) sb.Append(text);
-			Clipboard.SetText(sb.ToString().Substring(0, count));
+			while (sb.Length < Config.TextLength) sb.Append(text);
+			Clipboard.SetText(sb.ToString().Substring(0, Config.TextLength));
 		}
 
 		private void PrepareTable()

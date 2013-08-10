@@ -92,6 +92,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\AutoUpdate\CodePlexUpdater.cs" />
+    <Compile Include="Code\AutoUpdate\IAutoUpdater.cs" />
     <Compile Include="Code\ErrorsSender\LogsSender.cs" />
     <Compile Include="Code\AutoUpdate\AppUpdater.cs" />
     <Compile Include="Code\FastStart\FastStartShower.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Code\FastStart\Settings\MenuItemsSequence.cs" />
     <Compile Include="Code\FastStart\Settings\MenuItemStatistic.cs" />
     <Compile Include="Code\FastStart\UserActionsManager.cs" />
+    <Compile Include="Code\Folders.cs" />
     <Compile Include="Code\Menu\IMenuItemsProvider.cs" />
     <Compile Include="Code\Menu\IMenuRunHandler.cs" />
     <Compile Include="Code\Menu\MenuItemsProvider.cs" />
@@ -147,6 +150,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <None Include="License.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TBox32.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

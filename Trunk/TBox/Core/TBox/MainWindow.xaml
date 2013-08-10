@@ -10,7 +10,7 @@
         WindowState="Normal" ShowInTaskbar="True">
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom" Margin="10">
-            <StackPanel DockPanel.Dock="Left">
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                 <Button Content="Fast Start"  Name="btnFastStart" Width="80" Margin="5" Click="BtnFastStartClick" />
             </StackPanel>
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >

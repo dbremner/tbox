@@ -111,8 +111,6 @@
     <Compile Include="Components\Units\Properties\UnitConfigurator.cs" />
     <Compile Include="Components\Units\Properties\UnitTypes.cs" />
     <Compile Include="Components\Updater\Progress.cs" />
-    <Compile Include="Components\Updater\ProgressModelSinglethreaded.cs" />
-    <Compile Include="Components\Updater\ProgressModeMultithreaded.cs" />
     <Compile Include="Components\Updater\SimpleUpdater.cs" />
     <Compile Include="Components\Updater\SimpleProgress.xaml.cs">
       <DependentUpon>SimpleProgress.xaml</DependentUpon>

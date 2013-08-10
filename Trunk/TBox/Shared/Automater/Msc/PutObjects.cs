@@ -6,7 +6,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using ScriptEngine;
 using WPFControls.Dialogs;
 
-namespace Solution.Scripts
+namespace Solution.Msc
 {
 	public class PutObjects : IScript
 	{

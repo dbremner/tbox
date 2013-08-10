@@ -5,19 +5,21 @@ namespace TBox.Code.Objects
 {
 	class DataProvider : IDataProvider
 	{
-		private readonly string dataPath;
-		public DataProvider(string toolsPath, string dataPath)
+		private readonly string writebleDataPath;
+		public DataProvider(string toolsPath, string readOnlyDataPath, string writebleDataPath)
 		{
-			this.dataPath = dataPath;
+			ReadOnlyDataPath = readOnlyDataPath;
+			this.writebleDataPath = writebleDataPath;
 			ToolsPath = toolsPath;
 		}
 
-		public string DataPath
+		public string ReadOnlyDataPath { get; private set; }
+		public string WritebleDataPath
 		{
 			get
 			{
-				if (!Directory.Exists(dataPath)) Directory.CreateDirectory(dataPath);
-				return dataPath;
+				if (!Directory.Exists(writebleDataPath)) Directory.CreateDirectory(writebleDataPath);
+				return writebleDataPath;
 			}
 		}
 

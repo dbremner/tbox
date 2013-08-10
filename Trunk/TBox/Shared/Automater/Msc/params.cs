@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using ScriptEngine;
 
-namespace Solution.Scripts
+namespace Solution.Msc
 {
 	public sealed class TestParams : IScript 
 	{

@@ -74,7 +74,7 @@ namespace TBox.Forms
 			return new MenuItemStatistic
 				{
 					Path = item.Key,
-					OnClick = o=>items.ForEach(x=>x.OnClick(new SchedulerContext()))
+					OnClick = o=>items.ForEach(x=>x.OnClick(new NonUserRunContext()))
 				};
 		}
 

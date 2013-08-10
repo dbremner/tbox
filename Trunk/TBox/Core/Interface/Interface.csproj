@@ -65,7 +65,7 @@
     <Compile Include="Atrributes\PluginDescriptionAttribute.cs" />
     <Compile Include="Atrributes\ValueAttribute.cs" />
     <Compile Include="IConfigWithDialogStates.cs" />
-    <Compile Include="SchedulerContext.cs" />
+    <Compile Include="NonUserRunContext.cs" />
     <Compile Include="SingleDialogConfigurablePlugin.cs" />
     <Compile Include="SingleDialogPlugin.cs" />
     <Compile Include="SimpleConfigurablePlugin.cs" />

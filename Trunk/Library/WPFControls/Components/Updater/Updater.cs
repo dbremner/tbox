@@ -6,7 +6,7 @@ namespace WPFControls.Components.Updater
 	{
 		private readonly long begin = Environment.TickCount;
 		private long lastTime = 0;
-		public Updater(Progress owner, Action onUpdate):base(owner, onUpdate){}
+		public Updater(Progress owner):base(owner){}
 
 		public override void Update(string caption, float value)
 		{

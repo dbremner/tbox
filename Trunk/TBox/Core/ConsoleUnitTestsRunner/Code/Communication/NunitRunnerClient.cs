@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using Common.Base.Log;
 using ConsoleUnitTestsRunner.Code.Interfaces;
 using ConsoleUnitTestsRunner.Code.Settings;
 using NUnit.Core;
@@ -13,6 +15,7 @@ namespace ConsoleUnitTestsRunner.Code.Communication
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] 
 	class NunitRunnerClient : INunitRunnerClient
 	{
+		private ILog Log = LogManager.GetLogger<NunitRunnerClient>();
 		public Result[] Collection { get; private set; }
 		public List<IEnumerable<int>> TestsToRun { get; private set; }
 		public IDictionary<int, Result> AllTestsResults { get; private set; }
@@ -82,9 +85,16 @@ namespace ConsoleUnitTestsRunner.Code.Communication
 			}
 			progress.Update(AllTestsResults.Count, items.Length, failed);
 			if (!progress.UserPressClose) return;
-			foreach (var p in Processes)
+			try
 			{
-				p.Kill();
+				foreach (var p in Processes)
+				{
+					p.Kill();
+				}
+			}
+			catch (Exception ex)
+			{
+				Log.Write(ex, "Error stopping tests");
 			}
 
 		}

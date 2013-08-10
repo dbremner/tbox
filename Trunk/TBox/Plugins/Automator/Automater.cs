@@ -73,7 +73,7 @@ namespace Automator
 						Items = p.Operations.Select(o => new UMenuItem
 							{
 								Header = o.Key,
-								OnClick = x=>DoWork(o)
+								OnClick = x=>DoWork(o, x)
 							})
 							.Concat(new[]
 								{
@@ -96,15 +96,15 @@ namespace Automator
 
 		private void RunAll(Profile profile)
 		{
-			DialogsCache.ShowProgress(u=>RunAll(u, profile), "Run script: " + profile.Key, topmost:false, showInTaskBar:true);
+			DialogsCache.ShowProgress(u=>RunAll(u, profile.Operations), "Run script: " + profile.Key, topmost:false, showInTaskBar:true);
 		}
 		 
-		private void RunAll(IUpdater u, Profile profile)
+		private void RunAll(IUpdater u, IList<Operation> operations)
 		{
 			var i = 0;
-			var count = profile.Operations.Sum(x => x.Pathes.CheckedItems.Count());
-			var folder = Context.DataProvider.DataPath;
-			foreach (var op in profile.Operations)
+			var count = operations.Sum(x => x.Pathes.CheckedItems.Count());
+			var folder = Context.DataProvider.ReadOnlyDataPath;
+			foreach (var op in operations)
 			{
 				using (var r = new Runner(folder, op.Parameters))
 				{
@@ -143,10 +143,17 @@ namespace Automator
 			editor.Do(Context.DoSync, x=>x.ShowDialog(GetPathes()), Config.States);
 		}
 
-		private void DoWork(Operation operation)
+		private void DoWork(Operation operation, object context)
 		{
-			runner.LoadState(Config.States);
-			runner.Value.ShowDialog(operation);
+			if (context is NonUserRunContext)
+			{
+				RunAll(new NullUpdater(), new[] {operation});
+			}
+			else
+			{
+				runner.LoadState(Config.States);
+				runner.Value.ShowDialog(operation);
+			}
 		}
 
 		public override void Save(bool autoSaveOnExit)
@@ -166,7 +173,7 @@ namespace Automator
 
 		private IList<string> GetPathes()
 		{
-			var dir = new DirectoryInfo(Context.DataProvider.DataPath);
+			var dir = new DirectoryInfo(Context.DataProvider.ReadOnlyDataPath);
 			var length = dir.FullName.Length + 1;
 			return dir
 				.EnumerateFiles("*.cs", SearchOption.AllDirectories)

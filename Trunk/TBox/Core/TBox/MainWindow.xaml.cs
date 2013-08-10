@@ -28,7 +28,7 @@ namespace TBox
 	{
 		private static readonly ILog Log = LogManager.GetLogger<MainWindow>();
 		private static readonly ILog InfoLog = LogManager.GetInfoLogger<MainWindow>();
-		private static readonly string LogsFolder = Path.Combine(Environment.CurrentDirectory, "Logs");
+		private static readonly string LogsFolder = Path.Combine(Folders.UserFolder, "Logs");
 		private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder,  "errors.log");
 		private const string Caption = "Settings";
 		private readonly LogsSender logsSender;
@@ -91,7 +91,7 @@ namespace TBox
 
 		private void CheckUpdates(object o)
 		{
-			engine.CheckUpdates(o is SchedulerContext);
+			engine.CheckUpdates(o is NonUserRunContext);
 		}
 
 		private void ShowChangeLog()

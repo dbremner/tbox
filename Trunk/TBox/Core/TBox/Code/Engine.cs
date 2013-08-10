@@ -7,11 +7,11 @@ using System.Windows;
 using Common.Base.Log;
 using Common.Plugins;
 using Common.SaveLoad;
+using Common.Tools;
 using Interface;
 using Interface.Atrributes;
 using TBox.Code.AutoUpdate;
 using TBox.Code.Managers;
-using TBox.Code.Menu;
 using TBox.Code.Objects;
 using WPFControls.Code.OS;
 using WPFWinForms.Icons;
@@ -26,8 +26,10 @@ namespace TBox.Code
 		private readonly UiConfigurator uiConfigurator;
 		private readonly PluginsMan plugMan;
 		public Config Config { get; private set; }
-		private readonly ParamSerializer<Config> paramSer = new ParamSerializer<Config>("Config.config");
-		private readonly string pluginsDataFolder = Path.Combine(Environment.CurrentDirectory, "Data");
+		private readonly ParamSerializer<Config> paramSer;
+		private readonly string configFile = Path.Combine(Folders.UserFolder, "Config.config");
+		private readonly string pluginsReadOnlyDataFolder = Path.Combine(Environment.CurrentDirectory, "Data");
+		private readonly string pluginsStoreDataFolder = Path.Combine(Folders.UserFolder, "Data");
 		private readonly string toolsDataFolder = Path.Combine(Environment.CurrentDirectory, "Tools");
 		private readonly AppUpdater appUpdater;
 		private readonly IconsCache iconsCache = new IconsCache();
@@ -39,9 +41,11 @@ namespace TBox.Code
 
 		public Engine(Window owner, IUpdater updater, UiConfigurator uiConfigurator)
 		{
-			this.uiConfigurator = uiConfigurator;
 			var time = Environment.TickCount;
+			this.uiConfigurator = uiConfigurator;
 			updater.Update("Load configuration...", 0.01f);
+			CopySystemConfigIfNeed();
+			paramSer = new ParamSerializer<Config>(configFile);
 			Config = paramSer.Load(Config=new Config());
 			InfoLog.Write("Load first config time: {0}", Environment.TickCount - time);
 			updater.Update("Check for updates...", 0.06f);
@@ -54,7 +58,7 @@ namespace TBox.Code
 					Path.Combine(Environment.CurrentDirectory, "Plugins"),
 					Path.Combine(Environment.CurrentDirectory, "Libraries")
 					),
-				Path.Combine(Environment.CurrentDirectory, "Config"),
+				Path.Combine(Folders.UserFolder, "Config"),
 				a=>Mt.Do(owner, a)
 				);
 			var toAdd = new List<string>();
@@ -62,6 +66,27 @@ namespace TBox.Code
 			pluginsContextShared = new PluginsContextShared(iconsCache, iconsExtractor, uiConfigurator.Sync, warmingUpManager);
 			AddPlugins(toAdd, updater);
 			uiConfigurator.DoHoldOperation(()=> { });
+		}
+
+		private void CopySystemConfigIfNeed()
+		{
+			try
+			{
+                new FileInfo(Path.Combine(Environment.CurrentDirectory, "Config.config"))
+                    .MoveIfExist(configFile);
+			}
+			catch {}
+
+			try
+			{
+                new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Config"))
+                    .MoveIfExist(Path.Combine(Folders.UserFolder, "Config"));
+			}
+			catch (Exception ex)
+			{
+				Log.Write(ex, "Can't migrate config files");
+			}
+
 		}
 
 		private IEnumerable<EnginePluginInfo> SetupPlugins(ICollection<string> toAdd )
@@ -118,7 +143,7 @@ namespace TBox.Code
 			var pmu = new PluginMenuUpdater(x => uiConfigurator.ConfigurePlugin(plg, x));
 			plg.Init(
 				new PluginContext(
-					new DataProvider(toolsDataFolder, Path.Combine(pluginsDataFolder, name)),
+					new DataProvider(toolsDataFolder, Path.Combine(pluginsReadOnlyDataFolder, name), Path.Combine(pluginsStoreDataFolder, name)),
 					pmu.Do,
 					pluginsContextShared));
 			var ui = InitPlugin(name, plg);

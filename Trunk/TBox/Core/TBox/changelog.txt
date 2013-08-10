@@ -1,4 +1,6 @@
-﻿02/08/2013 Big bugfixing. Add ability to specify clone folder for unit tests, add ability to run command before tests.
+﻿08/08/2013 Add wix installer. Fix multithreading issues. Bug fixing for authomator and Nunit runner.
+
+02/08/2013 Big bugfixing. Add ability to specify clone folder for unit tests, add ability to run command before tests.
 
 12/07/2013 Add console unit tests runner, to use with CI. This subtool generate valid xml report.
 

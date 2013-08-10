@@ -8,8 +8,10 @@ namespace WPFControls.Dialogs
 {
 	class ProgressDialog : Window, IDialog
 	{
-	    private bool shouldStart = false;
 		private readonly Progress progress = new Progress{Margin = new Thickness(5)};
+		public double Value { get { return progress.Value; } }
+		protected bool CanClose { get; set; }
+
 		public ProgressDialog()
 		{
 			CanClose = false;
@@ -21,7 +23,6 @@ namespace WPFControls.Dialogs
 			WindowStartupLocation = WindowStartupLocation.CenterOwner;
 			ShowInTaskbar = false;
 			WindowStyle = WindowStyle.ToolWindow;
-			IsVisibleChanged += OnVisibleChanged;
 			Background = SystemColors.ControlBrush;
 			Content = progress;
 			Topmost = true;
@@ -31,14 +32,6 @@ namespace WPFControls.Dialogs
 		{
 			progress.SetMessage(value);
 		}
-		public double Value { get { return progress.Value; } }
-		public IProgressModel ProgressModel
-		{
-			get { return progress.ProgressModel; }
-			set { progress.ProgressModel = value; }
-		}
-
-		protected bool CanClose { get; set; }
 
 		protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
 		{
@@ -58,23 +51,9 @@ namespace WPFControls.Dialogs
 			Owner = owner;
 			Title = title;
 			func = function;
-		    shouldStart = true;
 			progress.Reset();
+			progress.Start(func, () => Mt.Do(this, Hide));
 			return base.ShowDialog();
-		}
-
-		private void OnVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			if(IsVisible && shouldStart)
-			{
-				progress.Start( func, OnProgressEnd );
-			    shouldStart = false;
-			}
-		}
-
-		public void OnProgressEnd()
-		{
-			Mt.Do(this, Hide);
 		}
 
 		public void Dispose()

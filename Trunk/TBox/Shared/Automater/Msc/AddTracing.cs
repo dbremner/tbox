@@ -4,7 +4,7 @@ using ScriptEngine;
 using Common.Tools;
 using PluginsShared.Tools;
 
-namespace Solution.Scripts
+namespace Solution.Msc
 {
     public class AddTracing : IScript
     {
