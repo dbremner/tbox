@@ -71,12 +71,6 @@ namespace TBox.Forms
 			userActionsManager.OnConfigUpdated(cfg.FastStartConfig);
 		}
 
-		private void GcCollectClick(object sender, RoutedEventArgs e)
-		{
-			GC.Collect();
-			GC.WaitForFullGCComplete();
-		}
-
 		private void ShortcutToDesktopClick(object sender, RoutedEventArgs e)
 		{
 			Shortcuts.CreateOnDesktop(FilePath);

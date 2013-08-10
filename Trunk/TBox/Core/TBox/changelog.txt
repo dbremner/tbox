@@ -1,4 +1,4 @@
-﻿08/08/2013 Add wix installer. Fix multithreading issues. Bug fixing for authomator and Nunit runner.
+﻿08/08/2013 Add wix installer. Fix multithreading issues. Bug fixing.
 
 02/08/2013 Big bugfixing. Add ability to specify clone folder for unit tests, add ability to run command before tests.
 

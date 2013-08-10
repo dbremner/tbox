@@ -34,7 +34,7 @@
         </TabItem>
         <TabItem Header="Settings">
             <WrapPanel Orientation="Vertical">
-                <GroupBox Header="Auto update" Margin="5" Width="300">
+                <GroupBox Header="Auto update" Margin="5" >
                     <StackPanel Orientation="Vertical">
                         <captioned:CaptionedEnumDropDownList Caption="Update interval:" Margin="5" Value="{Binding Update.Interval}" SourceEnumType="autoUpdate:UpdateInterval" />
                         <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="Update from shared folder" Name="UpdateFromSharedlFolder"/>
@@ -43,19 +43,19 @@
                         <Button Content="Check for updates" Margin="5" Width="128" Click="Button_Click" />
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Error reports" Margin="5"  Width="300">
+                <GroupBox Header="Error reports" Margin="5" >
                     <StackPanel>
                         <CheckBox Name="AllowErrorReports" Content="Send error reports" IsChecked="{Binding ErrorReports.AllowSend}" Margin="5"/>
                         <captioned:CaptionedEditPath Caption="Path to the errors directory:" Margin="5" Value="{Binding ErrorReports.Directory}" PathGetterType="Folder" IsEnabled="{Binding IsChecked, ElementName=AllowErrorReports}"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Fast start" Margin="5"  Width="300">
+                <GroupBox Header="Fast start" Margin="5" >
                     <StackPanel>
                         <captioned:CaptionedNumericUpDown Caption="Max items in history" Minimum="0" Maximum="100" Value="{Binding FastStartConfig.MaxCount}" />
                         <Button Content="Clear History" Margin="5" Width="100" HorizontalAlignment="Right" Click="ButtonClearHistoryClick"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Usability" Margin="5"  Width="300">
+                <GroupBox Header="Usability" Margin="5" >
                     <StackPanel>
                         <captioned:CaptionedComboBox Name="Themes" Caption="Theme:" IsEditable="False" Value="{Binding Theme}" SelectedIndexChanged="ThemeChanged"/>
                         <CheckBox IsChecked="{Binding UseMenuWithIcons}" Content="Use tray menu with icons" Margin="5"/>
@@ -65,14 +65,11 @@
                         <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="Show settings by single click on tray icon" Margin="5"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Shortcuts" Margin="5"  Width="300">
+                <GroupBox Header="Shortcuts" Margin="5" >
                     <StackPanel>
                         <Button Content="Shortcut to desktop" Click="ShortcutToDesktopClick" Margin="5" Width="128" />
                         <Button Content="Shortcut to autorun" Click="ShortcutToAutorunClick" Margin="5" Width="128"/>
                     </StackPanel>
-                </GroupBox>
-                <GroupBox Header="Advanced" Margin="5"  Width="300">
-                    <Button Content="GC Collect" Click="GcCollectClick" Margin="5" Width="72"/>
                 </GroupBox>
             </WrapPanel>
         </TabItem>
