@@ -37,7 +37,7 @@ namespace TBox.Code.AutoUpdate
 				if (!config.UpdateFromSharedlFolder)return;
 				if (string.IsNullOrEmpty(config.Update.Directory)) return;
 				var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
-				if (currentVersion <= new Version(config.LastKnownVersion)) return;
+				if (!string.IsNullOrEmpty(config.LastKnownVersion) && currentVersion <= new Version(config.LastKnownVersion)) return;
 				new DirectoryInfo(config.Update.Directory)
 					.CopyFilesTo(AppDomain.CurrentDomain.BaseDirectory, false);
 				config.LastKnownVersion = currentVersion.ToString();
