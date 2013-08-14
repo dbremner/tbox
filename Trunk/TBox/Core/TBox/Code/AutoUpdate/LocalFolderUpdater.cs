@@ -40,6 +40,8 @@ namespace TBox.Code.AutoUpdate
 				if (!string.IsNullOrEmpty(config.LastKnownVersion) && currentVersion <= new Version(config.LastKnownVersion)) return;
 				new DirectoryInfo(config.Update.Directory)
 					.CopyFilesTo(AppDomain.CurrentDomain.BaseDirectory, false);
+				new DirectoryInfo(Path.Combine(config.Update.Directory, "Data"))
+					.CopyFilesTo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data"));
 				config.LastKnownVersion = currentVersion.ToString();
 			}
 			catch (Exception ex)
