@@ -6,7 +6,8 @@
                                      xmlns:dialogs="clr-namespace:WPFControls.Dialogs"
                       xmlns:components="clr-namespace:WPFControls.Components"
                       mc:Ignorable="d" 
-             WindowStyle="ToolWindow" 
+             WindowStyle="SingleBorderWindow" 
+             ResizeMode="NoResize"
              Height="200" Width="350"
              MinHeight="300" MinWidth="350" 
              FocusManager.FocusedElement="{Binding ElementName=edData}" >

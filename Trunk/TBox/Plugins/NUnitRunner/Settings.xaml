@@ -6,8 +6,9 @@
              xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <DockPanel>
-        <Label Content="Select libraries:" DockPanel.Dock="Top" Padding="0" Margin="0"/>
-        <Units:CheckableFileListBoxUnit ItemsSource="{Binding DllPathes}" UnitType="FilePath" Title="Configure nunit test dlls" PathGetterType="File"/>
-    </DockPanel>
+    <TabControl>
+        <TabItem Header="Configure libraries with unit tests">
+            <Units:CheckableFileListBoxUnit ItemsSource="{Binding DllPathes}" UnitType="FilePath" Title="Configure nunit test dlls" PathGetterType="File"/>
+        </TabItem>
+    </TabControl>
 </UserControl>

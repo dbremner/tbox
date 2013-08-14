@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using Common.Communications;
+using Common.Communications.Interprocess;
 using extended.nunit.Interfaces;
 
 namespace NUnitAgent.Code

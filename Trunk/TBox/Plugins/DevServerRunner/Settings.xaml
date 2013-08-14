@@ -9,7 +9,7 @@
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
-        <TabItem Header="Projects directories">
+        <TabItem Header="Configure projects directories">
             <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding ServerInfos}" UnitType="FolderPath" Title="Select project folder" SmoothScrolling="True" >
                 <Units:CheckableListBoxUnit.ItemTemplate>
                     <DataTemplate DataType="Settings:ServerInfo">
@@ -19,12 +19,12 @@
                                 <Controls:EditPath Value="{Binding Key}" Padding="0" FontWeight="Bold" IsEnabled="{Binding IsChecked}" PathGetterType="Folder"/>
                             </DockPanel>
                             <DockPanel>
-                                <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                                <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
                                     <CheckBox IsChecked="{Binding AdminPrivilegies}" IsEnabled="{Binding IsChecked}"/>
                                     <TextBlock Text="Run as admin" />
                                 </StackPanel>
                                 <captioned:CaptionedNumericUpDown Caption="Port:" Value="{Binding Port}" DockPanel.Dock="Left" IsEnabled="{Binding IsChecked}"/>
-                                <captioned:CaptionedTextBox Caption="VPath:" Value="{Binding VPath}" IsEnabled="{Binding IsChecked}"/>
+                                <captioned:CaptionedTextBox Caption="Virtual path:" Value="{Binding VPath}" IsEnabled="{Binding IsChecked}"/>
                             </DockPanel>
                         </StackPanel>
                     </DataTemplate>

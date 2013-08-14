@@ -27,6 +27,7 @@ namespace TBox.Code
 		public DialogState DialogState { get; set; }
 		public FastStartConfig FastStartConfig { get; set; }
 		public bool UpdateFromSharedlFolder { get; set; }
+		public string LastKnownVersion { get; set; }
 
 		public Config()
 		{
@@ -42,7 +43,7 @@ namespace TBox.Code
 			Theme = "Default.xaml";
 			UseMenuWithIcons = true;
 			ShowSettingsByTraySingleClick = true;
-			UpdateFromSharedlFolder = true;
+			UpdateFromSharedlFolder = false;
 		}
 	}
 }

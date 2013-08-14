@@ -1,4 +1,6 @@
-﻿08/08/2013 Add wix installer. Fix multithreading issues. Bug fixing.
+﻿14/08/2013 Add autoupdate from tbox website. Add ability for user to send feedback. Big ui and styles fixes. Implement new teamwork functionality. Extend default configurations for plugins.
+
+08/08/2013 Add wix installer. Fix multithreading issues. Bug fixing.
 
 02/08/2013 Big bugfixing. Add ability to specify clone folder for unit tests, add ability to run command before tests.
 

@@ -11,7 +11,14 @@ namespace DirectoryProcessor
 
 		public Config()
 		{
-			Directories = new CheckableDataCollection<DirInfo>();
+			Directories = new CheckableDataCollection<DirInfo>
+				{
+					new DirInfo
+						{
+							Key = "c:\\data",
+							Executable = "explorer.exe"
+						}
+				};
 		}
 	}
 }

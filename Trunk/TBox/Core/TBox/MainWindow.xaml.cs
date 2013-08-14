@@ -11,6 +11,7 @@ using TBox.Code;
 using TBox.Code.ErrorsSender;
 using TBox.Code.FastStart;
 using TBox.Code.Menu;
+using TBox.Code.Objects;
 using TBox.Forms;
 using WPFControls.Code.Log;
 using WPFControls.Code.OS;
@@ -30,7 +31,7 @@ namespace TBox
 		private static readonly ILog InfoLog = LogManager.GetInfoLogger<MainWindow>();
 		private static readonly string LogsFolder = Path.Combine(Folders.UserFolder, "Logs");
 		private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder,  "errors.log");
-		private const string Caption = "Settings";
+		private const string Caption = "TBox - Settings";
 		private readonly LogsSender logsSender;
 		private readonly PluginsSettings settings;
 		private readonly FastStartDialog fastStartDialog;
@@ -40,6 +41,7 @@ namespace TBox
 		private Engine engine;
 		private ChangesLogDialog changesLogDialog;
 		private readonly int startTime = Environment.TickCount;
+		private readonly FeedbackSender feedbackSender = new FeedbackSender();
 
 		public MainWindow()
 		{
@@ -61,16 +63,15 @@ namespace TBox
 				new[]
 					{
 						new USeparator(),
-						new UMenuItem{Header = Caption + "...", OnClick = o=>MenuShowSettings(), Icon = Properties.Resources.Icon},
+						new UMenuItem{Header = "Settings...", OnClick = o=>MenuShowSettings(), Icon = Properties.Resources.Icon},
 						new UMenuItem{Header = "Fast Start...", OnClick = o=>MenuShowFastStart(), Icon = Properties.Resources.Icon},
 						new UMenuItem{Header = "Check updates", OnClick = CheckUpdates},
 						new UMenuItem{Header = "Exit", OnClick = o=>MenuClose()}
 					},
-				new[] { new Pair<string, Control>(Caption, settings) },
+				new[] { new Pair<PluginName, Control>(new PluginName("Settings", "Here you can configure global settings of this tool"), settings) },
 				OnPluginChanged
 				);
 			ShowProgress( "Initialize...", CreateEngine, false );
-			if (!engine.IsInitialized) return;
 			InitFastMenu();
 			ExceptionsHelper.HandleException(ShowChangeLog, () => "Error processing changelog", Log);
 			this.SetState(engine.Config.DialogState);
@@ -106,21 +107,22 @@ namespace TBox
 			cfg.LastChanglogPosition = file.Length;
 		}
 
-		private void OnPluginChanged(string name)
+		private void OnPluginChanged(PluginName name)
 		{
-			if (string.Equals(name, Caption))
+			if (string.Equals(name.Name, Caption))
 			{
 				Title = Caption;
 			}
 			else
 			{
-				Title = Caption + " - [" + name + "]";
+				Title = Caption + " - [" + name.Name + "]";
 			}
+			Description.Content = name.Description.Replace('\n', ' ');
 		}
 
 		private void ShowProgress( string caption, Action<IUpdater> action, bool withOwner = true)
 		{
-			DialogsCache.ShowProgress(action, caption, withOwner?this:null);
+			DialogsCache.ShowProgress(action, caption, withOwner?this:null, topmost:false, icon: Icon);
 		}
 
 		public void MenuClose(bool criticalError = false )
@@ -194,6 +196,15 @@ namespace TBox
 		{
 			uiConfigurator.FastStartShower.ShowFastStart();
 			Close();
+		}
+
+		private void SendFeedback(object sender, RoutedEventArgs e)
+		{
+			var r = DialogsCache.ShowMemoBox("Write some words or ideas about how to improve TBox.", "TBox - feedback", "", x => !string.IsNullOrEmpty(x), this);
+			if (r.Key)
+			{
+				feedbackSender.Send("feedback", r.Value);
+			}
 		}
 	}
 }

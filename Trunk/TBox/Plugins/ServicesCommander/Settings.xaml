@@ -10,7 +10,10 @@
         <GroupBox Header="Profile:" DockPanel.Dock="Top">
             <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="Profile" />
         </GroupBox>
-        <Label Content="Windows services:" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-        <Units:CheckableListBoxUnit Name="Services" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Services}" Title="Services" UnitType="DropDownList" />
+        <TabControl>
+            <TabItem Header="Select windows services to use">
+                <Units:CheckableListBoxUnit Name="Services" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Services}" Title="Services" UnitType="DropDownList" />
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </UserControl>

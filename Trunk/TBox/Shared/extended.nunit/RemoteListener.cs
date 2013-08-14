@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Common.Communications.Interprocess;
 using NUnit.Core;
 using Common.Communications;
 using ServiceStack.Text;

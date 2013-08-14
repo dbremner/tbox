@@ -34,12 +34,7 @@ namespace Common.AutoUpdate
 			return true;
 		}
 
-		public static bool CheckNeedUpdate(IApplicationUpdater updater)
-		{
-			return updater.NeedUpdate();
-		}
-
-		public static void Merge(IApplicationUpdater updater)
+		public static void Merge(IUpdater updater)
 		{
 			DeleteBackup();
 			try
@@ -69,7 +64,7 @@ namespace Common.AutoUpdate
 			new DirectoryInfo(source).MoveFilesTo(destination, mask);
 		}
 
-		private static void DoUpdate(IApplicationUpdater updater)
+		private static void DoUpdate(IUpdater updater)
 		{
 			MoveFiles(CurrentPath, BackupPath, "*.dll;*.exe;*.pdb");
 			updater.Copy(CurrentPath);

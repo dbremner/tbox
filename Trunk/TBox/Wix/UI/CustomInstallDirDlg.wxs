@@ -28,7 +28,7 @@
                 <Control Id="ChangeFolder" Type="PushButton" X="20" Y="120" Width="56" Height="17" Text="!(loc.InstallDirDlgChange)" />
                 <Control Id="StartShortcutCheckBox" Type="CheckBox" X="20" Y="170" Width="290" Height="17" Property="INSTALLSTARTSHORTCUT" CheckBoxValue="1" Text="Create a shortcut for this program on the start menu." />
                 <Control Id="DesktopShortcutCheckBox" Type="CheckBox" X="20" Y="190" Width="290" Height="17" Property="INSTALLDESKTOPSHORTCUT" CheckBoxValue="1" Text="Create a shortcut for this program on the desktop." />
-                <Control Id="DesktopStartupCheckBox" Type="CheckBox" X="20" Y="210" Width="290" Height="17" Property="INSTALLSTARTUPSHORTCUT" CheckBoxValue="1" Text="Add this program to autorun." />
+                <Control Id="StartUpShortcutCheckBox" Type="CheckBox" X="20" Y="210" Width="290" Height="17" Property="INSTALLSTARTUPSHORTCUT" CheckBoxValue="0" Text="Add this program to autorun." />
             </Dialog>
         </UI>
     </Fragment>

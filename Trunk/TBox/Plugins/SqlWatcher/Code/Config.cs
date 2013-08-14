@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.UI.ModelsContainers;
 using Interface;
 using PluginsShared.Watcher;
 using WPFControls.Dialogs.StateSaver;
@@ -24,7 +25,18 @@ namespace SqlWatcher.Code
 			RescanLogsInterval = 1000;
 			ToolTipsEnabled = false;
 		    RemoveTypeInfo = true;
-			Watches = new WatchSettings();
+			Watches = new WatchSettings
+				{
+					Files = new CheckableDataCollection<DirInfo>
+						{
+							new DirInfo
+								{
+									Key = "Sample",
+									Path = "c:\\www\\logs",
+									Mask = "nhibernate.log"
+								}
+						}
+				};
 			States = new Dictionary<string, DialogState>();
 		}
 

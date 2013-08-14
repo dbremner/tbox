@@ -212,5 +212,15 @@ namespace Common.Tools
 				collection.Add(item);
 			}
 		}
+
+		public static void FillCollection<T>(this IList<T> collection, params string[] values)
+			where T : IData, new()
+		{
+			foreach (var s in values)
+			{
+				collection.Add(new T { Key = s });
+			}
+		}
+
 	}
 }

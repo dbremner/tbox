@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Common.Base.Log;
@@ -31,27 +33,26 @@ namespace TBox.Code
 		private readonly string pluginsReadOnlyDataFolder = Path.Combine(Environment.CurrentDirectory, "Data");
 		private readonly string pluginsStoreDataFolder = Path.Combine(Folders.UserFolder, "Data");
 		private readonly string toolsDataFolder = Path.Combine(Environment.CurrentDirectory, "Tools");
-		private readonly AppUpdater appUpdater;
+		private readonly IAutoUpdater appUpdater;
 		private readonly IconsCache iconsCache = new IconsCache();
 		private readonly IconsExtractor iconsExtractor = new IconsExtractor();
 		private readonly WarmingUpManager warmingUpManager = new WarmingUpManager();
 		private readonly PluginsContextShared pluginsContextShared;
 
-		public bool IsInitialized { get; private set; }
-
 		public Engine(Window owner, IUpdater updater, UiConfigurator uiConfigurator)
 		{
+			var localUpdater = new LocalFolderUpdater();
 			var time = Environment.TickCount;
 			this.uiConfigurator = uiConfigurator;
 			updater.Update("Load configuration...", 0.01f);
-			CopySystemConfigIfNeed();
+			localUpdater.PrepareConfigs(configFile);
 			paramSer = new ParamSerializer<Config>(configFile);
 			Config = paramSer.Load(Config=new Config());
 			InfoLog.Write("Load first config time: {0}", Environment.TickCount - time);
 			updater.Update("Check for updates...", 0.06f);
-			appUpdater = new AppUpdater(owner, Config);
-			IsInitialized = !appUpdater.TryUpdate();
-			if (!IsInitialized) return;
+			appUpdater = new ApplicationUpdater(owner, Config, new CodePlexUpdater() /*new DirectoryApplicationUpdater(config.Update.Directory)*/);
+			ThreadPool.QueueUserWorkItem(o=>appUpdater.TryUpdate());
+			localUpdater.Update(Config);
 			updater.Update("Prepare...", 0.07f);
 			plugMan = new PluginsMan(
 				new Factory<IPlugin>(
@@ -66,27 +67,6 @@ namespace TBox.Code
 			pluginsContextShared = new PluginsContextShared(iconsCache, iconsExtractor, uiConfigurator.Sync, warmingUpManager);
 			AddPlugins(toAdd, updater);
 			uiConfigurator.DoHoldOperation(()=> { });
-		}
-
-		private void CopySystemConfigIfNeed()
-		{
-			try
-			{
-                new FileInfo(Path.Combine(Environment.CurrentDirectory, "Config.config"))
-                    .MoveIfExist(configFile);
-			}
-			catch {}
-
-			try
-			{
-                new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Config"))
-                    .MoveIfExist(Path.Combine(Folders.UserFolder, "Config"));
-			}
-			catch (Exception ex)
-			{
-				Log.Write(ex, "Can't migrate config files");
-			}
-
 		}
 
 		private IEnumerable<EnginePluginInfo> SetupPlugins(ICollection<string> toAdd )
@@ -149,7 +129,7 @@ namespace TBox.Code
 			var ui = InitPlugin(name, plg);
 			if (ui != null)
 			{
-				pmu.Init(ui.Name);
+				pmu.Init(ui.Name.Name);
 				lock (ret)
 				{
 					ret.Add(ui);

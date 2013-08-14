@@ -5,10 +5,13 @@
                       xmlns:components="clr-namespace:WPFControls.Components;assembly=WPFControls" 
         Title="TBox - Settings" 
         Icon="/TBox;component/Resources/Icon.ico" 
-        Width="720" Height="540" 
-        MinWidth="720" MinHeight="540" 
+        Width="800" Height="540" 
+        MinWidth="800" MinHeight="540" 
         WindowState="Normal" ShowInTaskbar="True">
     <DockPanel>
+        <StatusBar DockPanel.Dock="Top" Background="White" >
+            <StatusBarItem Name="Description" Margin="3"/>
+        </StatusBar>
         <DockPanel DockPanel.Dock="Bottom" Margin="10">
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                 <Button Content="Fast Start"  Name="btnFastStart" Width="80" Margin="5" Click="BtnFastStartClick" />
@@ -18,12 +21,12 @@
                 <Button Content="Reload" Name="btnReload" Width="64" Margin="5" IsCancel="True" Click="BtnReloadClick" />
                 <Button Content="Close" Name="btnClose" Width="64" Margin="5" IsDefault="True" Click="BtnCloseClick" />
             </StackPanel>
-            <Label/>
+            <Button Content="Send feedback" Click="SendFeedback" Margin="5" Width="100" ToolTip="Help author to improove this tool"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
             <Label Content="Plugins list:" DockPanel.Dock="Top" Padding="5,0"/>
-            <components:ExtListBox  Name="PluginsNames" Width="128" Margin="5,0,5,5" />
+            <components:ExtListBox  Name="PluginsNames" Width="140" Margin="5,0,5,5" />
         </DockPanel>
-        <ContentControl Name="PluginsBack"/>
+        <ContentControl Name="PluginsBack" Margin="5,0,5,5"/>
     </DockPanel>
 </Dialogs:DialogWindow>

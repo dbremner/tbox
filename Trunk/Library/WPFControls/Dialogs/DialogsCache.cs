@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using Common.MT;
 using WPFControls.Dialogs.Menu;
 
@@ -11,14 +12,19 @@ namespace WPFControls.Dialogs
 	{
 		private static readonly IDictionary<Type, IList<IDialog>> Dialogs = new Dictionary<Type, IList<IDialog>>();
 
-		public static void ShowProgress(Action<IUpdater> function, string title = "", Window owner = null, bool topmost = true, bool showInTaskBar= false)
+		public static void ShowProgress(Action<IUpdater> function, string title = "", Window owner = null, bool topmost = true, bool showInTaskBar= false, ImageSource icon = null)
 		{
-			GetDialog<ProgressDialog>().ShowDialog(function, title, owner, topmost, showInTaskBar);
+			GetDialog<ProgressDialog>().ShowDialog(function, title, owner, topmost, showInTaskBar, icon);
 		}
 
 		public static KeyValuePair<bool, string> ShowInputBox(string question, string caption, string value, Func<string, bool> validator, Window owner = null)
 		{
 			return GetDialog<InputTextBox>().ShowDialog(question, caption, value, validator, owner);
+		}
+
+		public static KeyValuePair<bool, string> ShowMemoBox(string question, string caption, string value, Func<string, bool> validator, Window owner = null)
+		{
+			return GetDialog<InputMemoBox>().ShowDialog(question, caption, value, validator, owner);
 		}
 
 		public static KeyValuePair<bool, string> ShowInputComboBox(string question, string caption, string value, Func<string, bool> validator, IList<string> source, Window owner = null)

@@ -7,9 +7,14 @@
              xmlns:units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <DockPanel>
-        <captioned:CaptionedNumericUpDown Caption="Check interval:" Value="{Binding CheckInterval}" Minimum="1" Maximum="86400" Margin="1" DockPanel.Dock="Top"/>
-        <Label Content="Web sites urls and local shares to test:" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-        <units:CheckableListBoxUnit UnitType="Text" Title="Specify resource url" ItemsSource="{Binding Items}"/>
-    </DockPanel>
+    <TabControl>
+        <TabItem Header="Web sites urls and local shares to test">
+            <units:CheckableListBoxUnit UnitType="Text" Title="Specify resource url" ItemsSource="{Binding Items}"/>
+        </TabItem>
+        <TabItem Header="Advanced">
+            <StackPanel>
+                <captioned:CaptionedNumericUpDown Caption="Check interval:" Value="{Binding CheckInterval}" Minimum="1" Maximum="86400" Margin="1" />
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 </UserControl>

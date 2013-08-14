@@ -69,6 +69,7 @@ namespace Templates
 
 		private IEnumerable<UMenuItem> EnumerateDirectories()
 		{
+			if (!Directory.Exists(Context.DataProvider.ReadOnlyDataPath))return new UMenuItem[0];
 			return Directory.EnumerateDirectories(Context.DataProvider.ReadOnlyDataPath)
 				.Select(path => new UMenuItem
 				{

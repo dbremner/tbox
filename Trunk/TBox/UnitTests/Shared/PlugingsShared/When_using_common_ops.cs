@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Common.Encoders;
 using NUnit.Framework;
 using PluginsShared.Encoders;
 

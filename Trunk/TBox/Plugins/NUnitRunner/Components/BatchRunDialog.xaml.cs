@@ -80,8 +80,8 @@ namespace NUnitRunner.Components
 			var synchronizer = new Synchronizer(tests.Count);
 			Parallel.ForEach(packages,
 				p => p.DoRun(
-					o => DoRun(o, time, ref count), 
-					tests[p], false, 1, config.NeedSyncForBatch,
+					o => DoRun(o, time, ref count),
+					tests[p], false, 1, config.NeedSyncForBatch && tests.Count > 1,
 					synchronizer,
 					u));
 		}

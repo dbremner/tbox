@@ -45,7 +45,7 @@
             <captioned:CaptionedEnumDropDownList Caption="Search mode:" Margin="5" DockPanel.Dock="Top" SelectedIndexChanged="NeedSearch" SourceEnumType="Settings:SearchMode" Value="{Binding Search.SearchMode}"/>
             <Controls:ExtCheckBox Content="Case sensitive search" Margin="10,5" DockPanel.Dock="Top" ValueChanged="NeedSearch" IsChecked="{Binding Search.MatchCase}"/>
             <Controls:ExtCheckBox Content="Full text search" Margin="10,5" DockPanel.Dock="Top" ValueChanged="NeedSearch" IsChecked="{Binding Search.FullTextSearch}"/>
-            <GroupBox Header="File types:" >
+            <GroupBox Header="File types:" Margin="3">
                 <DockPanel>
                     <Components:PanelToICheckable DockPanel.Dock="Bottom" Name="FileTypesPanel" PanelHorizontalAlignment="Right"/>
                     <Components:CheckableListBox Name="FileTypes" Margin="5" ItemsSource="{Binding Index.FileTypes}" OnCheckChanged="NeedSearch"/>

@@ -1,6 +1,6 @@
 ﻿namespace TBox.Code.AutoUpdate
 {
-	interface IAutoUpdater
+	public interface IAutoUpdater
 	{
 		bool TryUpdate(bool manual = false);
 	}

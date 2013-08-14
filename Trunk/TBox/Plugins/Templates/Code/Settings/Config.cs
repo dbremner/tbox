@@ -19,8 +19,18 @@ namespace Templates.Code.Settings
 		public Config()
 		{
 			ItemTemplate = "{#item#}";
-			KnownValues = new ObservableCollection<PairData>();
-			StringTemplates = new ObservableCollection<Template>();
+			KnownValues = new ObservableCollection<PairData>
+				{
+					new PairData{Key = "SampleKey", Value = "SampleValue"}
+				};
+			StringTemplates = new ObservableCollection<Template>
+				{
+					new Template
+						{
+							Key = "nunit",
+							Value = "[Test]\npublic void Should_{#name#}()\n{\n//Arrange\n\n//Act\n\n//Assert\n}"
+						}
+				};
 			FileTemplates = new ObservableCollection<Template>();
 			States = new Dictionary<string, DialogState>();
 		}

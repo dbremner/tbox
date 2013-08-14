@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.Tools;
 using Common.UI.ModelsContainers;
 using Interface;
 using WPFControls.Dialogs.StateSaver;
@@ -16,7 +17,8 @@ namespace NUnitRunner.Code.Settings
 
 		public Config()
 		{
-			DllPathes = new CheckableDataCollection<TestConfig>();
+			(DllPathes = new CheckableDataCollection<TestConfig>()).
+				FillCollection("c:\\projects\\sample.lib.tests.dll");
 			States = new Dictionary<string, DialogState>();
 			ShowOnlyFailed = true;
 			NeedSyncForBatch = true;

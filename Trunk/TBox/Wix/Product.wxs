@@ -20,7 +20,6 @@
     <Property Id="ARPPRODUCTICON" Value="Icon.ico" />
     <Property Id="INSTALLSTARTSHORTCUT" Value="1"/>
     <Property Id="INSTALLDESKTOPSHORTCUT" Value="1"/>
-    <Property Id="INSTALLSTARTUPSHORTCUT" Value="1"/>
     <Property Id="LAUNCHAPPONEXIT" Value="1"/>
 
     <Directory Id="TARGETDIR" Name="SourceDir">

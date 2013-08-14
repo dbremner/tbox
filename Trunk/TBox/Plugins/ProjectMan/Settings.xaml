@@ -8,7 +8,7 @@
              xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls">
     <TabControl>
-        <TabItem Header="Solutions folders">
+        <TabItem Header="Configure solutions folders">
             <Units:CheckableFileListBoxUnit ItemsSource="{Binding Dirs}" UnitType="FolderPath" Title="Configure projects directories" PathGetterType="Folder"/>
         </TabItem>
         <TabItem Header="Build tools pathes">

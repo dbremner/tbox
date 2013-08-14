@@ -55,6 +55,9 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -94,19 +97,22 @@
     </Compile>
     <Compile Include="Code\AutoUpdate\CodePlexUpdater.cs" />
     <Compile Include="Code\AutoUpdate\IAutoUpdater.cs" />
+    <Compile Include="Code\AutoUpdate\LocalFolderUpdater.cs" />
+    <Compile Include="Code\ErrorsSender\ErrorReports.cs" />
+    <Compile Include="Code\AutoUpdate\ApplicationUpdater.cs" />
     <Compile Include="Code\ErrorsSender\LogsSender.cs" />
-    <Compile Include="Code\AutoUpdate\AppUpdater.cs" />
     <Compile Include="Code\FastStart\FastStartShower.cs" />
     <Compile Include="Code\FastStart\RecentItemsCollector.cs" />
     <Compile Include="Code\FastStart\Settings\MenuItemsSequence.cs" />
     <Compile Include="Code\FastStart\Settings\MenuItemStatistic.cs" />
     <Compile Include="Code\FastStart\UserActionsManager.cs" />
+    <Compile Include="Code\FeedbackSender.cs" />
     <Compile Include="Code\Folders.cs" />
     <Compile Include="Code\Menu\IMenuItemsProvider.cs" />
     <Compile Include="Code\Menu\IMenuRunHandler.cs" />
     <Compile Include="Code\Menu\MenuItemsProvider.cs" />
     <Compile Include="Code\Objects\DataProvider.cs" />
-    <Compile Include="Code\AutoUpdate\DirectoryApplicationUpdater.cs" />
+    <Compile Include="Code\AutoUpdate\SharedFolderUpdater.cs" />
     <Compile Include="Code\FastStart\Settings\FastStartConfig.cs" />
     <Compile Include="Code\Menu\MenuCallsVisitor.cs" />
     <Compile Include="Code\Managers\WarmingUpManager.cs" />
@@ -114,6 +120,7 @@
     <Compile Include="Code\HotKeys\HotKeyAction.cs" />
     <Compile Include="Code\HotKeys\HotKeysManager.cs" />
     <Compile Include="Code\Objects\ItemContainer.cs" />
+    <Compile Include="Code\Objects\PluginName.cs" />
     <Compile Include="Code\Shelduler\SchedulerManager.cs" />
     <Compile Include="Code\Themes\ThemesManager.cs" />
     <Compile Include="Code\Shelduler\SchedulerRunContext.cs" />
@@ -121,7 +128,6 @@
     <Compile Include="Code\Objects\PluginMenuUpdater.cs" />
     <Compile Include="Code\Objects\PluginUi.cs" />
     <Compile Include="Code\Objects\PluginsContextShared.cs" />
-    <Compile Include="Code\ErrorsSender\ErrorReports.cs" />
     <Compile Include="Code\HotKeys\Settings\HotKeyTask.cs" />
     <Compile Include="Code\Config.cs" />
     <Compile Include="Code\Engine.cs" />

@@ -2,6 +2,7 @@
 using System.Linq;
 using Common.Base.Log;
 using Common.Communications;
+using Common.Communications.Interprocess;
 using Common.Console;
 using ConsoleUnitTestsRunner.Code.Communication;
 using ConsoleUnitTestsRunner.Code.Interfaces;

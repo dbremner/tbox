@@ -8,7 +8,7 @@ namespace Common.Tools
 {
 	public static class DirectoryExtensions
 	{
-		public static void CopyFilesTo(this DirectoryInfo info, string destination)
+		public static void CopyFilesTo(this DirectoryInfo info, string destination, bool overwrite = true)
 		{
 			var dirs = info.GetDirectories();
 			if (!Directory.Exists(destination))
@@ -17,11 +17,13 @@ namespace Common.Tools
 			}
 			foreach (var file in info.GetFiles())
 			{
-				file.CopyTo(Path.Combine(destination, file.Name), true);
+				var target = Path.Combine(destination, file.Name);
+				if (!overwrite && File.Exists(target)) continue;
+				file.CopyTo(target, overwrite);
 			}
 			foreach (var dir in dirs)
 			{
-				dir.CopyFilesTo(Path.Combine(destination, dir.Name));
+				dir.CopyFilesTo(Path.Combine(destination, dir.Name), overwrite);
 			}
 		}
 

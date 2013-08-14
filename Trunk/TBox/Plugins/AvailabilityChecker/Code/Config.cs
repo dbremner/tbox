@@ -1,8 +1,9 @@
 ﻿using System;
+using Common.Tools;
 using Common.UI.Model;
 using Common.UI.ModelsContainers;
 
-namespace AvailabilityChecker
+namespace AvailabilityChecker.Code
 {
 	[Serializable]
 	public class Config
@@ -15,7 +16,8 @@ namespace AvailabilityChecker
 		{
 			CheckInterval = 60;
 			Started = false;
-			Items = new CheckableDataCollection<CheckableData>();
+			(Items = new CheckableDataCollection<CheckableData>())
+				.FillCollection("http://tbox.codeplex.com");
 		}
 	}
 }

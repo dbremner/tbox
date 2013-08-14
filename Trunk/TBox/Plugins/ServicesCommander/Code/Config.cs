@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Common.UI.ModelsContainers;
 
 namespace ServicesCommander.Code
 {
@@ -11,7 +12,22 @@ namespace ServicesCommander.Code
 
 		public Config()
 		{
-			Profiles=new ObservableCollection<Profile>();
+			SelectedProfile = "Sample";
+			Profiles = new ObservableCollection<Profile>
+				{
+					new Profile
+						{
+							Key = SelectedProfile,
+							Services = new CheckableDataCollection<ServiceInfo>
+								{
+									new ServiceInfo
+										{
+											Key = "Sample service",
+											IsChecked = false
+										}
+								}
+						}
+				};
 		}
 	}
 }

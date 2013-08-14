@@ -9,30 +9,44 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>
         <TabControl>
-            <TabItem Header="Folders to search">
-                <Units:CheckableFileListBoxUnit ItemsSource="{Binding Index.FileNames}" UnitType="FolderPath" Title="Configure files folders to create index" PathGetterType="Folder"/>
+            <TabItem Header="Files and folders to search">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Folders to search" Margin="5" Grid.ColumnSpan="2">
+                        <Units:CheckableFileListBoxUnit ItemsSource="{Binding Index.FileNames}" UnitType="FolderPath" Title="Configure files folders to create index" PathGetterType="Folder"/>
+                    </GroupBox>
+                    <GridSplitter Grid.Row="1" Grid.ColumnSpan="2" ResizeDirection="Rows" HorizontalAlignment="Stretch"/>
+                    <GroupBox Header="File types to include" Margin="5" Grid.Row="2">
+                        <Units:ListBoxUnit ItemsSource="{Binding Index.FileTypes}" UnitType="Text" Title="Configure files types to create index"/>
+                    </GroupBox>
+                    <GroupBox Header="File masks to exclude" Margin="5" Grid.Row="2" Grid.Column="1" >
+                        <Units:ListBoxUnit ItemsSource="{Binding Index.FileMasksToExclude}" UnitType="Text" Title="Configure file masks to exclude unused items"/>
+                    </GroupBox>
+                </Grid>
             </TabItem>
-            <TabItem Header="File types to include">
-                <Units:ListBoxUnit ItemsSource="{Binding Index.FileTypes}" UnitType="Text" Title="Configure files types to create index"/>
-            </TabItem>
-            <TabItem Header="Parsing settings">
-                <DockPanel>
-                    <GroupBox Header="File parsing" Margin="5" DockPanel.Dock="Top">
+            <TabItem Header="Advanced">
+                <StackPanel>
+                    <GroupBox Header="File parsing" Margin="5">
                         <StackPanel>
                             <Controls:ExtCheckBox Content="Skip comments" Margin="5" IsChecked="{Binding Index.SkipComments}" />
                             <Controls:ExtCheckBox Content="Decode strings" Margin="5" IsChecked="{Binding Index.DecodeStrings}" />
                             <Controls:ExtCheckBox Content="Decode comments" Margin="5" IsChecked="{Binding Index.DecodeComments}" />
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="File masks to exclude" Margin="5" >
-                        <Units:ListBoxUnit ItemsSource="{Binding Index.FileMasksToExclude}" UnitType="Text" Title="Configure file masks to exclude unused items"/>
+                    <GroupBox Header="Search results view" Margin="5">
+                        <StackPanel Margin="5">
+                            <Controls:ExtCheckBox Content="Load file on select" DockPanel.Dock="Right" Margin="5" IsChecked="{Binding Result.AutoLoadFile}"/>
+                            <captioned:CaptionedEditPath Caption="Executable path:" Value="{Binding Result.OpenWith}" PathGetterType="File" />
+                        </StackPanel>
                     </GroupBox>
-                </DockPanel>
-            </TabItem>
-            <TabItem Header="Search results" >
-                <StackPanel Margin="5">
-                    <Controls:ExtCheckBox Content="Load file on select" DockPanel.Dock="Right" Margin="5" IsChecked="{Binding Result.AutoLoadFile}"/>
-                    <captioned:CaptionedEditPath Caption="Executable path:" Value="{Binding Result.OpenWith}" PathGetterType="File" />
                 </StackPanel>
             </TabItem>
         </TabControl>

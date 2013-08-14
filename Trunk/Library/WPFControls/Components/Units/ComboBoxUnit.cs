@@ -20,7 +20,7 @@ namespace WPFControls.Components.Units
 
 		protected override Selector CreateItems()
 		{
-			return new ComboBox{Margin = new Thickness(3), TabIndex = 0};
+			return new ComboBox{Margin = new Thickness(5), TabIndex = 0};
 		}
 
 		protected override EditButtonsPanel CreateEditButtonsPanel()

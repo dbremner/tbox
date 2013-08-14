@@ -13,7 +13,7 @@
             <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="Profile" />
         </GroupBox>
         <TabControl IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}">
-            <TabItem Header="Configuration options">
+            <TabItem Header="Application settings to set">
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right" >
                         <Button Content="Fill options from template" Margin="5" Padding="5,0" Click="BuildClick"/>
@@ -32,7 +32,7 @@
                     </Units:CheckableListBoxUnit>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Config files">
+            <TabItem Header="Configuration files">
                 <Units:CheckableFileListBoxUnit ItemsSource="{Binding Files}" UnitType="FilePath" Title="Files" PathGetterType="File"/>
             </TabItem>
         </TabControl>

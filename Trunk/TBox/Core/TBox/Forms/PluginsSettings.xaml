@@ -37,14 +37,14 @@
                 <GroupBox Header="Auto update" Margin="5" >
                     <StackPanel Orientation="Vertical">
                         <captioned:CaptionedEnumDropDownList Caption="Update interval:" Margin="5" Value="{Binding Update.Interval}" SourceEnumType="autoUpdate:UpdateInterval" />
-                        <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="Update from shared folder" Name="UpdateFromSharedlFolder"/>
-                        <captioned:CaptionedEditPath Caption="Path to the mirror directory:" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
                         <CheckBox IsChecked="{Binding Update.ShowChanglog}" Content="Show changelog on update" Margin="5"/>
                         <Button Content="Check for updates" Margin="5" Width="128" Click="Button_Click" />
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Error reports" Margin="5" >
+                <GroupBox Header="Team work settings" Margin="5" >
                     <StackPanel>
+                        <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="Update from shared folder" Name="UpdateFromSharedlFolder" Margin="5,5,5,0" />
+                        <captioned:CaptionedEditPath Caption="Path to the mirror directory:" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
                         <CheckBox Name="AllowErrorReports" Content="Send error reports" IsChecked="{Binding ErrorReports.AllowSend}" Margin="5"/>
                         <captioned:CaptionedEditPath Caption="Path to the errors directory:" Margin="5" Value="{Binding ErrorReports.Directory}" PathGetterType="Folder" IsEnabled="{Binding IsChecked, ElementName=AllowErrorReports}"/>
                     </StackPanel>
@@ -63,10 +63,6 @@
                         <CheckBox IsChecked="{Binding HideOnCancel}" Content="Hide on cancel" Margin="5"/>
                         <CheckBox IsChecked="{Binding StartHidden}" Content="Start hidden" Margin="5"/>
                         <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="Show settings by single click on tray icon" Margin="5"/>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="Shortcuts" Margin="5" >
-                    <StackPanel>
                         <Button Content="Shortcut to desktop" Click="ShortcutToDesktopClick" Margin="5" Width="128" />
                         <Button Content="Shortcut to autorun" Click="ShortcutToAutorunClick" Margin="5" Width="128"/>
                     </StackPanel>

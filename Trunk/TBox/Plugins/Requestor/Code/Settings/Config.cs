@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Common.Network;
+using Common.UI.ModelsContainers;
 using Interface;
 using WPFControls.Dialogs.StateSaver;
 
@@ -15,7 +17,34 @@ namespace Requestor.Code.Settings
 
 		public Config()
 		{
-			Profiles = new ObservableCollection<Profile>();
+			SelectedProfile = "Sample";
+			Profiles = new ObservableCollection<Profile>
+				{
+					new Profile
+						{
+							Key = "Sample",
+							Ops = new CheckableDataCollection<Op>
+								{
+									new Op
+										{
+											Key = "Sample request",
+											Request = new RequestConfig
+												{
+													Method = Methods.GET,
+													Url = "http://tbox.codeplex.com",
+													Headers = new ObservableCollection<Header>
+														{
+															new Header
+																{
+																	Key = "Accept-Encoding",
+																	Value = "gzip, deflate"
+																}
+														}
+												}
+										}
+								}
+						}
+				};
 			States = new Dictionary<string, DialogState>();
 		}
 

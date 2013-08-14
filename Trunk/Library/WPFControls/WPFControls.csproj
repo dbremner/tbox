@@ -142,6 +142,9 @@
     <Compile Include="Controls\DropDown\NumericUpDown.cs" />
     <Compile Include="Controls\PathGetterType.cs" />
     <Compile Include="Controls\DropDown\TimeBox.cs" />
+    <Compile Include="Dialogs\InputMemoBox.xaml.cs">
+      <DependentUpon>InputMemoBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\DialogsCache.cs" />
     <Compile Include="Dialogs\DialogWindow.cs" />
     <Compile Include="Dialogs\IDialog.cs" />
@@ -223,6 +226,10 @@
     <Page Include="Controls\DropDown\BaseDropDownControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\InputMemoBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialogs\InputTextBox.xaml">
       <SubType>Designer</SubType>

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using Common.Tools;
 using Common.UI.Model;
 using Common.UI.ModelsContainers;
 
@@ -17,12 +20,16 @@ namespace Searcher.Code.Settings
 
 		public IndexSettings()
 		{
-			FileNames = new CheckableDataCollection<CheckableData>();
-			FileTypes = new CheckableDataCollection<CheckableData>();
+			(FileNames = new CheckableDataCollection<CheckableData>())
+				.FillCollection(Path.GetTempPath());
+			(FileTypes = new CheckableDataCollection<CheckableData>())
+				.FillCollection("cs", "cpp", "h", "hpp", "xaml", "csproj", 
+					"config", "js", "css", "html", "htm", "ascx", "aspx");
 			SkipComments = true;
 			DecodeStrings = true;
 			DecodeComments = true;
-			FileMasksToExclude = new ObservableCollection<Data>();
+			(FileMasksToExclude = new ObservableCollection<Data>())
+				.FillCollection("*.min.js", "*.min.css");
 		}
 	}
 

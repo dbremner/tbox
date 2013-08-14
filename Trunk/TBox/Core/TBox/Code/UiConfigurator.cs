@@ -41,8 +41,8 @@ namespace TBox.Code
 			MenuCallsVisitor menuCallsVisitor,
 			FastStartDialog fastStartDialog,
 			IEnumerable<UMenuItem> menuItems,
-			IEnumerable<Pair<string, Control>> existWindows,
-			Action<string> onPluginSettingsChanged
+			IEnumerable<Pair<PluginName, Control>> existWindows,
+			Action<PluginName> onPluginSettingsChanged
 			)
 		{
 			this.pluginsList = pluginsList;
@@ -63,7 +63,7 @@ namespace TBox.Code
 			pluginsSettings.EnableHotKeys += (o,e)=>Configure();
 		}
 
-		public void Init(Window owner, Config config, AppUpdater appUpdater, IEnumerable<EnginePluginInfo> toAdd)
+		public void Init(Window owner, Config config, IAutoUpdater appUpdater, IEnumerable<EnginePluginInfo> toAdd)
 		{
 			Mt.Do(Sync, () =>
 			{
@@ -96,7 +96,7 @@ namespace TBox.Code
 				{
 				menuItemsProvider.Refresh(menuMan.MenuItems.ToArray());
 				notifyIconMan.SetMenuItems(menuMan.MenuItems, cfg.UseMenuWithIcons);
-				notifyIconMan.NotifyIcon.HoverText = "ToolBox. Load " + menuMan.Count + " plugin(s).";
+				notifyIconMan.NotifyIcon.HoverText = "TBox. Load " + menuMan.Count + " plugin(s).";
 				pluginsList.Items.Refresh();
 				controlsMan.UpdateSelection();
 			});
@@ -171,7 +171,7 @@ namespace TBox.Code
 			return new PluginUi
 				       {
 						   Key = key,
-					       Name = info.Name, 
+					       Name = new PluginName(info.Name, info.Description), 
 						   Icon = plugin.Icon, 
 						   Menu = menu, 
 						   Settings = settingsGetter
@@ -217,9 +217,9 @@ namespace TBox.Code
 
 		public void InitUi(List<PluginUi> ret)
 		{
-			foreach (var p in ret.OrderBy(x=>x.Name))
+			foreach (var p in ret.OrderBy(x=>x.Name.ToString()))
 			{
-				if (p.Menu != null) menuMan.Add(p.Name, p.Icon, p.Menu);
+				if (p.Menu != null) menuMan.Add(p.Name.Name, p.Icon, p.Menu);
 				if (p.Settings != null) controlsMan.Add(p.Name, p.Settings);
 			}
 		}

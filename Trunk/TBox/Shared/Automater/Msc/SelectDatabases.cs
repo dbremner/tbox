@@ -11,7 +11,7 @@ namespace Solution.Msc
 	{
 		[StringDictionary(false, 
 			"DB1", "Data Source=(local);Initial Catalog=DB1;",
-			"DB2", "Data Source=(local);Initial Catalog=DB2;",
+			"DB2", "Data Source=(local);Initial Catalog=DB2;"
 			)]
 		public IDictionary<string, string> ConnectionStrings{get;set;}
 

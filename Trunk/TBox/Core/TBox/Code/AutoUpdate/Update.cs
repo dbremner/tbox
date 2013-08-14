@@ -14,7 +14,7 @@ namespace TBox.Code.AutoUpdate
 
 		public Update()
 		{
-			Interval = UpdateInterval.Never;
+			Interval = UpdateInterval.Startup;
 			Directory = @"\\tboxserver\Updates\TBox\";
 			ShowChanglog = true;
 			LastChanglogPosition = 0;

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Common.UI.Model;
+using Common.UI.ModelsContainers;
 using Interface;
+using ScriptEngine;
 using WPFControls.Dialogs.StateSaver;
 
 namespace Automator.Code.Settings
@@ -15,7 +18,22 @@ namespace Automator.Code.Settings
 
 		public Config()
 		{
-			Profiles = new ObservableCollection<Profile>();
+			SelectedProfile = "Sample";
+			Profiles = new ObservableCollection<Profile>
+				{
+					new Profile
+						{
+							Key = "Sample",
+							Operations = new ObservableCollection<Operation>
+								{
+									new Operation
+									{
+										Key = "simple script package",
+										Pathes = new CheckableDataCollection<CheckableData>{new CheckableData{Key = "Msc\\params.cs"}} 
+									}
+								}
+						}
+				};
 			States = new Dictionary<string, DialogState>();
 		}
 

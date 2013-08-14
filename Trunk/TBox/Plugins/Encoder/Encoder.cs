@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Windows;
+using Common.Encoders;
 using Encoder.Code;
 using Encoder.Components;
 using Interface;

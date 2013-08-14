@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
-        <TabItem Header="Pathes to files with trace log">
+        <TabItem Header="Configure files with trace log">
             <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Watches.Files}" UnitType="Text" Title="Configure watches" SmoothScrolling="True">
                 <Units:CheckableListBoxUnit.ItemTemplate>
                     <DataTemplate DataType="watcher:DirInfo">

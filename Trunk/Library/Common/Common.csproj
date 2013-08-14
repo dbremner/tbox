@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assemblies\AssembliesCollector.cs" />
-    <Compile Include="AutoUpdate\IApplicationUpdater.cs" />
+    <Compile Include="AutoUpdate\IUpdater.cs" />
     <Compile Include="AutoUpdate\Merger.cs" />
     <Compile Include="AutoUpdate\UpdateInterval.cs" />
     <Compile Include="Base\ExceptionsHelper.cs" />
@@ -80,11 +80,15 @@
     <Compile Include="Base\Log\MemLog.cs" />
     <Compile Include="Base\Log\TypedLogger.cs" />
     <Compile Include="Assemblies\Console\Cmd.cs" />
-    <Compile Include="Communications\Client.cs" />
-    <Compile Include="Communications\Server.cs" />
+    <Compile Include="Communications\Interprocess\Client.cs" />
+    <Compile Include="Communications\Interprocess\Server.cs" />
+    <Compile Include="Communications\Network\Client.cs" />
+    <Compile Include="Communications\Network\Server.cs" />
     <Compile Include="MT\ConsoleUpdater.cs" />
     <Compile Include="MT\NullUpdater.cs" />
-    <Compile Include="Network\EmailSender.cs" />
+    <Compile Include="Communications\EmailSender.cs" />
+    <Compile Include="Network\Header.cs" />
+    <Compile Include="Encoders\CommonOps.cs" />
     <Compile Include="Tools\EqualityDataComparer.cs" />
     <Compile Include="MT\IProgressModel.cs" />
     <Compile Include="MT\IUpdater.cs" />

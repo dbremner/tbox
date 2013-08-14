@@ -7,23 +7,30 @@
              xmlns:Settings="clr-namespace:SqlRunner.Code.Settings"
              mc:Ignorable="d" d:DesignHeight="360" d:DesignWidth="600" 
              >
-    <DockPanel>
-        <GroupBox Header="Connection strings:" DockPanel.Dock="Bottom" >
-            <Units:ComboBoxUnit ValueCaption="{Binding ConnectionString}" ItemsSource="{Binding ConnectionStrings}" UnitType="Text" Title="Configure connection string"/>
-        </GroupBox>
-        <GroupBox Header="Profile:" DockPanel.Dock="Top">
-            <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="Configure profile"/>
-        </GroupBox>
-        <Label Content="Sql scripts:" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-        <Units:ListBoxUnit IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Ops}" UnitType="Text" Title="Configure operation">
-            <Units:ListBoxUnit.ItemTemplate>
-                <DataTemplate DataType="{x:Type Settings:Op}">
-                    <DockPanel>
-                        <Button Content="..." VerticalAlignment="Center" Width="32" Margin="1" Click="BtnRequestClick" DockPanel.Dock="Right" Tag="{Binding Key}"/>
-                        <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
-                    </DockPanel>
-                </DataTemplate>
-            </Units:ListBoxUnit.ItemTemplate>
-        </Units:ListBoxUnit>
-    </DockPanel>
+    <TabControl>
+        <TabItem Header="Sql scripts">
+            <DockPanel>
+                <GroupBox Header="Profile:" DockPanel.Dock="Top">
+                    <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="Configure profile"/>
+                </GroupBox>
+                <Units:ListBoxUnit IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Ops}" UnitType="Text" Title="Configure operation">
+                    <Units:ListBoxUnit.ItemTemplate>
+                        <DataTemplate DataType="{x:Type Settings:Op}">
+                            <DockPanel>
+                                <Button Content="..." VerticalAlignment="Center" Width="32" Margin="1" Click="BtnRequestClick" DockPanel.Dock="Right" Tag="{Binding Key}"/>
+                                <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </Units:ListBoxUnit.ItemTemplate>
+                </Units:ListBoxUnit>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="Configure connection to database">
+            <StackPanel>
+                <GroupBox Header="Connection string to use by default to run scripts:" DockPanel.Dock="Bottom" >
+                    <Units:ComboBoxUnit ValueCaption="{Binding ConnectionString}" ItemsSource="{Binding ConnectionStrings}" UnitType="Text" Title="Configure connection string"/>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 </UserControl>

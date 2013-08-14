@@ -102,7 +102,6 @@
     <Compile Include="Encoders\Base64Encode.cs" />
     <Compile Include="Encoders\BracketsFormatter.cs" />
     <Compile Include="Encoders\CCodeFormatter.cs" />
-    <Compile Include="Encoders\CommonOps.cs" />
     <Compile Include="Encoders\HtmlParser.cs" />
     <Compile Include="Encoders\JsonParser.cs" />
     <Compile Include="Encoders\SQLParser.cs" />

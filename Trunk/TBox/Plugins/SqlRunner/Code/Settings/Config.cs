@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Common.Tools;
 using Common.UI.Model;
 using Common.UI.ModelsContainers;
 using Interface;
@@ -19,8 +20,25 @@ namespace SqlRunner.Code.Settings
 
 		public Config()
 		{
-			Profiles = new ObservableCollection<Profile>();
-			ConnectionStrings = new CheckableDataCollection<CheckableData>();
+			SelectedProfile = "Sample";
+			Profiles = new ObservableCollection<Profile>
+				{
+					new Profile
+						{
+							Key = SelectedProfile,
+							Ops = new CheckableDataCollection<Op>
+								{
+									new Op
+										{
+											Key = "test command",
+											Command = "select * from sampleTable",
+										}
+								}
+						}
+				};
+			ConnectionString = "Data Source=(local);Initial Catalog=DB";
+			(ConnectionStrings = new CheckableDataCollection<CheckableData>())
+				.FillCollection(ConnectionString);
 			States = new Dictionary<string, DialogState>();
 		}
 

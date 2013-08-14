@@ -9,26 +9,25 @@
              xmlns:my="clr-namespace:WPFControls.Controls;assembly=WPFControls"
              xmlns:Code="clr-namespace:DirectoryProcessor.Code"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls">
-    <DockPanel>
-        <Label Content="Directories pathes:" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-        <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Directories}" UnitType="FolderPath" Title="Configure directory" SmoothScrolling="True" >
-            <Units:CheckableListBoxUnit.ItemTemplate>
-                <DataTemplate DataType="Code:DirInfo">
-                    <StackPanel Margin="0,10">
-                        <DockPanel>
-                            <my:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" DockPanel.Dock="Left" Padding="5,0" ValueChanged="CheckBoxChecked" />
-                            <my:EditPath Value="{Binding Key}" Padding="0" FontWeight="Bold" IsEnabled="{Binding IsChecked}" PathGetterType="Folder" HorizontalAlignment="Stretch"/>
+    <TabControl>
+        <TabItem Header="Configure directories to process">
+            <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Directories}" UnitType="FolderPath" Title="Configure directory" SmoothScrolling="True" >
+                <Units:CheckableListBoxUnit.ItemTemplate>
+                    <DataTemplate DataType="Code:DirInfo">
+                        <DockPanel Margin="0,10">
+                            <DockPanel Dock="Top">
+                                <my:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" DockPanel.Dock="Left" Padding="5,0" ValueChanged="CheckBoxChecked" />
+                                <my:EditPath Value="{Binding Key}" Padding="0" FontWeight="Bold" IsEnabled="{Binding IsChecked}" PathGetterType="Folder" HorizontalAlignment="Stretch"/>
+                            </DockPanel>
+                            <DockPanel Dock="Bottom">
+                                <captioned:CaptionedNumericUpDown Caption="Deep:" Margin="1" Width="80" Minimum="0" Maximum="8" Value="{Binding Deep}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
+                                <captioned:CaptionedTextBox Caption="Extended arguments:" Margin="1" HorizontalAlignment="Stretch" Value="{Binding ExtendedArguments}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
+                                <captioned:CaptionedEditPath Caption="Executable:" Margin="1" DockPanel.Dock="Top" PathGetterType="File" Value="{Binding Executable}" IsEnabled="{Binding IsChecked}"/>
+                            </DockPanel>
                         </DockPanel>
-                        <DockPanel>
-                            <captioned:CaptionedEditPath Caption="Executable:" Margin="1" DockPanel.Dock="Top" PathGetterType="File" Value="{Binding Executable}" IsEnabled="{Binding IsChecked}"/>
-                            <StackPanel Orientation="Horizontal">
-                                <captioned:CaptionedNumericUpDown Caption="Deep:" Margin="1" Width="140" Minimum="0" Maximum="8" Value="{Binding Deep}" IsEnabled="{Binding IsChecked}"/>
-                                <captioned:CaptionedTextBox Caption="Extended arguments:" Margin="1" HorizontalAlignment="Stretch" Value="{Binding ExtendedArguments}" IsEnabled="{Binding IsChecked}"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </Units:CheckableListBoxUnit.ItemTemplate>
-        </Units:CheckableListBoxUnit>
-    </DockPanel>
+                    </DataTemplate>
+                </Units:CheckableListBoxUnit.ItemTemplate>
+            </Units:CheckableListBoxUnit>
+        </TabItem>
+    </TabControl>
 </UserControl>

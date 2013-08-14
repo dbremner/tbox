@@ -6,7 +6,7 @@
                       xmlns:forms="clr-namespace:WPFControls.Dialogs.Menu"
               xmlns:dialogs="clr-namespace:WPFControls.Dialogs"
               mc:Ignorable="d" 
-             WindowStyle="ToolWindow" 
+              WindowStyle="ToolWindow" 
              Height="200" Width="350" MinHeight="300" MinWidth="350" 
              FocusManager.FocusedElement="{Binding ElementName=edData}" >
 <DockPanel>

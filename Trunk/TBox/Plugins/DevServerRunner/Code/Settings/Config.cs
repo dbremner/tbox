@@ -17,7 +17,14 @@ namespace DevServerRunner.Code.Settings
 			PathToDevServer = @"c:\Program Files\Common Files\microsoft shared\DevServer\11.0\WebDev.WebServer40.EXE";
 			PathToBrowser = "iexplore";
 			RunBrowser = true;
-			ServerInfos = new CheckableDataCollection<ServerInfo>();
+			ServerInfos = new CheckableDataCollection<ServerInfo>
+				{
+					new ServerInfo
+						{
+							Key = "c:\\www\\service",
+							Port = 12345
+						}
+				};
 		}
 	}
 }

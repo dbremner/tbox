@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300"
             >
     <TabControl>
-        <TabItem Header="Pathes to folders with sql logs">
+        <TabItem Header="Configure folders with sql logs">
             <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Watches.Files}" UnitType="Text" Title="Configure watches" SmoothScrolling="True" >
                 <Units:CheckableListBoxUnit.ItemTemplate>
                     <DataTemplate DataType="watcher:DirInfo">

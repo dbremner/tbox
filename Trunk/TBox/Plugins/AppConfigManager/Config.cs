@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using AppConfigManager.Code;
+using Common.UI.Model;
+using Common.UI.ModelsContainers;
 
 namespace AppConfigManager
 {
@@ -18,7 +20,23 @@ namespace AppConfigManager
 		{
 			ItemSourceTemplate = "showfeature{item}";
 			ItemResultTemplate = "Show.Feature.{item}";
-			Profiles = new ObservableCollection<Profile>();
+			Profiles = new ObservableCollection<Profile>
+				{
+					new Profile
+						{
+							Key = "Sample",
+							Options = new CheckableDataCollection<Option>
+								{
+									new Option{Key = "SampleFeature", Value = "True"}
+								},
+							Files = new CheckableDataCollection<CheckableData>
+								{
+									new CheckableData{Key = "c:\\Web.config"}
+								} 
+							
+						}
+				};
+			SelectedProfile = "Sample";
 		}
 	}
 }

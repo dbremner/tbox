@@ -29,7 +29,7 @@ namespace TBox.Forms
 	{
 		private static readonly  string FilePath = Process.GetCurrentProcess().MainModule.FileName;
 		public CheckableDataCollection<EnginePluginInfo> Collection { get; private set; }
-		private AppUpdater appUpdater;
+		private IAutoUpdater appUpdater;
 		private readonly ThemesManager themesManager = new ThemesManager();
 		public event EventHandler EnableHotKeys;
 		private readonly HotKeysManager hotKeysManager;
@@ -48,7 +48,7 @@ namespace TBox.Forms
 			Themes.ItemsSource = themesManager.AvailableThemes;
 		}
 
-		public void Init(AppUpdater updater)
+		public void Init(IAutoUpdater updater)
 		{
 			appUpdater = updater;
 		}

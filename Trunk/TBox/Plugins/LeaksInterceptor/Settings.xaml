@@ -7,12 +7,16 @@
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <GroupBox Header="Refresh intervals">
-            <WrapPanel >
-                <captioned:CaptionedNumericUpDown Caption="UI interval:" Value="{Binding RefreshViewInterval}" Minimum="100" Margin="5"/>
-                <captioned:CaptionedNumericUpDown Caption="Data interval:" Value="{Binding RefreshDataInterval}" Minimum="16" Margin="5"/>
-            </WrapPanel>
-        </GroupBox>
-    </StackPanel>
+    <TabControl>
+        <TabItem Header="Configure timers">
+            <StackPanel>
+                <GroupBox Header="Refresh intervals">
+                    <WrapPanel >
+                        <captioned:CaptionedNumericUpDown Caption="UI interval:" Value="{Binding RefreshViewInterval}" Minimum="100" Margin="5"/>
+                        <captioned:CaptionedNumericUpDown Caption="Data interval:" Value="{Binding RefreshDataInterval}" Minimum="16" Margin="5"/>
+                    </WrapPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
 </UserControl>

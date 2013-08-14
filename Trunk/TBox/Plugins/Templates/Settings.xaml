@@ -10,10 +10,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
     <TabControl>
-        <TabItem Header="Global settings">
+        <TabItem Header="Files &amp; folders templates settings">
             <DockPanel>
-                <captioned:CaptionedTextBox Value="{Binding ItemTemplate}" Caption="Item template (should contains 'item'):" DockPanel.Dock="Top" Margin="5"/>
-                <Label Content="Known values:" DockPanel.Dock="Top" Padding="5,5,5,0"/>
+                <captioned:CaptionedTextBox Value="{Binding ItemTemplate}" Caption="Item name template (should contains 'item'):" DockPanel.Dock="Top" Margin="5"/>
+                <Label Content="Known values to use on run by default:" DockPanel.Dock="Top" Padding="5,5,5,0"/>
                 <Units:ListBoxUnit ItemsSource="{Binding KnownValues}" UnitType="Text" Title="Configure known values">
                     <Units:ListBoxUnit.ItemTemplate>
                         <DataTemplate DataType="Models:PairData">
@@ -26,7 +26,7 @@
                 </Units:ListBoxUnit>
             </DockPanel>
         </TabItem>
-        <TabItem Header="String templates">
+        <TabItem Header="String templates settings">
             <DockPanel>
                 <Units:ComboBoxUnit Name="StringTemplates" ItemsSource="{Binding StringTemplates}" Title="String templates" UnitType="ComboBox" DockPanel.Dock="Top" />
                 <wpfSyntaxHighlighter:SyntaxHighlighter DataContext="{Binding ElementName=StringTemplates, Path=SelectedValue}" Value="{Binding Value}" IsEnabled="{Binding ElementName=StringTemplates, Path=IsSelected}"/>

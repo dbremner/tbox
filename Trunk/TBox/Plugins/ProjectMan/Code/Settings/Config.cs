@@ -15,9 +15,15 @@ namespace ProjectMan.Code.Settings
 		{
 			PathToMsBuild = @"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe";
 			PathToSvn = @"C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe";
-			SvnUserName = "Mnk";
-			Dirs = new CheckableDataCollection<ProjectInfo>();
-
+			SvnUserName = "user name";
+			Dirs = new CheckableDataCollection<ProjectInfo>
+				{
+					new ProjectInfo
+						{
+							Key = "c:\\projects\\sampleProject",
+							IsChecked = false
+						}
+				};
 		}
 	}
 }

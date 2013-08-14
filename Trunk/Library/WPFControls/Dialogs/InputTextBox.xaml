@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Dialogs="clr-namespace:WPFControls.Dialogs" mc:Ignorable="d" 
-             WindowStyle="ToolWindow" 
+             WindowStyle="SingleBorderWindow" 
+             ResizeMode="NoResize"
              Height="130" Width="350"
              MinHeight="130" MinWidth="350" MaxHeight="130" 
              FocusManager.FocusedElement="{Binding ElementName=edData}" >

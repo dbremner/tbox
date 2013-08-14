@@ -89,7 +89,7 @@ namespace NUnitRunner.Components
 			var time = Environment.TickCount;
 			var synchronizer = new Synchronizer(config.ProcessCount);
 			DialogsCache.ShowProgress(
-				u => package.DoRun(o => DoRun(time), packages, config.CopyToSeparateFolders, config.CopyDeep, config.NeedSynchronizationForTests, synchronizer, new SimpleUpdater(u, synchronizer)),
+				u => package.DoRun(o => DoRun(time), packages, config.CopyToSeparateFolders, config.CopyDeep, config.NeedSynchronizationForTests && config.ProcessCount > 1, synchronizer, new SimpleUpdater(u, synchronizer)),
 				caption, this);
 		}
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common.Communications;
+using Common.Communications.Interprocess;
 using NUnit.Core;
 using NUnit.Util;
 using ServiceStack.Text;

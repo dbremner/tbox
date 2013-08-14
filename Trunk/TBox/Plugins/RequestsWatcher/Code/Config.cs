@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common.UI.ModelsContainers;
 using Interface;
 using PluginsShared.Watcher;
 using WPFControls.Dialogs.StateSaver;
@@ -24,7 +25,18 @@ namespace RequestsWatcher.Code
 			RescanLogsInterval = 100;
 			ToolTipsEnabled = false;
 			MaxEntriesInLog = 16;
-			Watches = new WatchSettings();
+			Watches = new WatchSettings
+				{
+					Files = new CheckableDataCollection<DirInfo>
+						{
+							new DirInfo
+								{
+									Key = "Sample",
+									Path = "c:\\www\\trace",
+									Mask = "*.trace"
+								}
+						}
+				};
 			States = new Dictionary<string, DialogState>();
 		}
 

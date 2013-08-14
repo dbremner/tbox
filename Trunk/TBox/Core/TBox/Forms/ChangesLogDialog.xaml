@@ -4,7 +4,9 @@
                                      xmlns:dialogs="clr-namespace:WPFControls.Dialogs;assembly=WPFControls"
                                      Title="TBox was updated, the latest changes:" 
         Height="300" Width="300" MinHeight="300" MinWidth="300" 
-        ShowInTaskbar="True" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+        ShowInTaskbar="True" Topmost="True" WindowStartupLocation="CenterScreen" 
+        WindowStyle="SingleBorderWindow" 
+        ResizeMode="NoResize" >
     <DockPanel>
         <StackPanel DockPanel.Dock="Bottom">
             <Button Content="Close" HorizontalAlignment="Right" Margin="10" Padding="4" IsCancel="True" Click="CloseClick"/>

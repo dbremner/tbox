@@ -7,7 +7,8 @@
              Height="130" Width="350" 
              MinHeight="130" MinWidth="350" MaxHeight="130"
              xmlns:Dialogs="clr-namespace:WPFControls.Dialogs" 
-             WindowStyle="ToolWindow" 
+             WindowStyle="SingleBorderWindow" 
+             ResizeMode="NoResize"
              IsVisibleChanged="OnIsVisibleChanged">
     <DockPanel >
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">

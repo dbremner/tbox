@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows;
+using System.Windows.Media;
 using Common.MT;
 using WPFControls.Code.OS;
 using WPFControls.Components.Updater;
+using SystemColors = System.Windows.SystemColors;
 
 namespace WPFControls.Dialogs
 {
@@ -22,8 +25,8 @@ namespace WPFControls.Dialogs
 			MinWidth = 200;
 			WindowStartupLocation = WindowStartupLocation.CenterOwner;
 			ShowInTaskbar = false;
-			WindowStyle = WindowStyle.ToolWindow;
 			Background = SystemColors.ControlBrush;
+			ResizeMode = ResizeMode.NoResize;
 			Content = progress;
 			Topmost = true;
 		}
@@ -44,8 +47,9 @@ namespace WPFControls.Dialogs
 		}
 
 		private Action<IUpdater> func;
-		public bool? ShowDialog(Action<IUpdater> function, string title = "", Window owner = null, bool topmost = true, bool showInTaskBar = false)
+		public bool? ShowDialog(Action<IUpdater> function, string title = "", Window owner = null, bool topmost = true, bool showInTaskBar = false, ImageSource icon = null)
 		{
+			Icon = icon;
 			ShowInTaskbar = showInTaskBar;
 			Topmost = topmost;
 			Owner = owner;

@@ -22,7 +22,7 @@
             <components:ExtListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type params:Parameter}">
                     <DockPanel Margin="5">
-                        <TextBlock Text="{Binding Key}" DockPanel.Dock="Top" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Key}" DockPanel.Dock="Top" FontWeight="Bold" HorizontalAlignment="Left"/>
                         <components1:ParameterTemplate DataContext="{Binding}"/>
                     </DockPanel>
                 </DataTemplate>
