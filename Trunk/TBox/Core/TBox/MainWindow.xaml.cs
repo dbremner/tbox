@@ -2,6 +2,8 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
+using System.Windows.Media;
 using Common.Base;
 using Common.Base.Log;
 using Common.Data;
@@ -45,6 +47,7 @@ namespace TBox
 
 		public MainWindow()
 		{
+			RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
 			if (!OneInstance.MainWindow.Init(this)) return;
 			if (!Directory.Exists(LogsFolder)) Directory.CreateDirectory(LogsFolder);
 			LogManager.Init( new MultiLog(new IBaseLog[]{

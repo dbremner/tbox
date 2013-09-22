@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
 using Common.Base.Log;
 using Common.Plugins;
 using Common.SaveLoad;

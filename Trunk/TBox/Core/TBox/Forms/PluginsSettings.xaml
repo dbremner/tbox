@@ -63,6 +63,7 @@
                         <CheckBox IsChecked="{Binding HideOnCancel}" Content="Hide on cancel" Margin="5"/>
                         <CheckBox IsChecked="{Binding StartHidden}" Content="Start hidden" Margin="5"/>
                         <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="Show settings by single click on tray icon" Margin="5"/>
+                        <controls:ExtCheckBox IsChecked="{Binding EnableGPUAccelerationForUI}" Content="Use GPU for UI render" Margin="5" />
                         <Button Content="Shortcut to desktop" Click="ShortcutToDesktopClick" Margin="5" Width="128" />
                         <Button Content="Shortcut to autorun" Click="ShortcutToAutorunClick" Margin="5" Width="128"/>
                     </StackPanel>

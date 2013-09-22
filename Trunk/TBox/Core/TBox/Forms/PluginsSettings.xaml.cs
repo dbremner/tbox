@@ -5,6 +5,8 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Common.OS;
 using Common.Tools;
@@ -19,6 +21,7 @@ using TBox.Code.Objects;
 using TBox.Code.Shelduler;
 using TBox.Code.Themes;
 using WPFControls.Components;
+using WPFControls.Controls;
 
 namespace TBox.Forms
 {
@@ -69,6 +72,9 @@ namespace TBox.Forms
 			hotKeysManager.OnConfigUpdated(cfg.HotKeys);
 			schedulerManager.OnConfigUpdated(cfg.SchedulerTasks);
 			userActionsManager.OnConfigUpdated(cfg.FastStartConfig);
+			RenderOptions.ProcessRenderMode = cfg.EnableGPUAccelerationForUI
+				? RenderMode.Default
+				: RenderMode.SoftwareOnly;
 		}
 
 		private void ShortcutToDesktopClick(object sender, RoutedEventArgs e)
@@ -136,13 +142,18 @@ namespace TBox.Forms
 		private void BtnEditUserActionClick(object sender, RoutedEventArgs e)
 		{
 			var selectedKey = ((TextBlock)((DockPanel)((Button)sender).Parent).Children[2]).Text;
-			var cfg = ((Config) DataContext).FastStartConfig.MenuItemsSequence.GetExistByKeyIgnoreCase(selectedKey);
+			var cfg = Config.FastStartConfig.MenuItemsSequence.GetExistByKeyIgnoreCase(selectedKey);
 			userActionsManager.ShowDialog(cfg);
+		}
+
+		private Config Config
+		{
+			get { return ((Config) DataContext); }
 		}
 
 		private void ButtonClearHistoryClick(object sender, RoutedEventArgs e)
 		{
-			((Config) DataContext).FastStartConfig.MenuItems.Clear();
+			Config.FastStartConfig.MenuItems.Clear();
 		}
 	}
 }

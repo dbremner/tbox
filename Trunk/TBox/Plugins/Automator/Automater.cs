@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Threading;
 using Automator.Code;
 using Automator.Code.Settings;
 using Automator.Components;
-using Common.Base;
 using Common.Base.Log;
 using Common.MT;
 using Interface;
@@ -174,6 +172,7 @@ namespace Automator
 		private IList<string> GetPathes()
 		{
 			var dir = new DirectoryInfo(Context.DataProvider.ReadOnlyDataPath);
+			if(!dir.Exists)return new string[0];
 			var length = dir.FullName.Length + 1;
 			return dir
 				.EnumerateFiles("*.cs", SearchOption.AllDirectories)

@@ -10,14 +10,12 @@ namespace Automator.Code
 	sealed class Runner : IRunner, IDisposable
 	{
 		private readonly ICollection<Parameter> parameters;
-		private readonly IScriptContext context;
 		private readonly IScriptCompiler compiler;
-		private readonly string undoPath;
 		public Runner(string rootPath, ICollection<Parameter> parameters)
 		{
 			this.parameters = parameters;
-			undoPath = Path.Combine(rootPath, "Undo");
-			context = new ScriptContext(undoPath);
+			var undoPath = Path.Combine(rootPath, "Undo");
+			var context = new ScriptContext(undoPath);
 			compiler = new ScriptCompiler(context);
 		}
 

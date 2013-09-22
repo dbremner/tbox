@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Interop;
 using TBox.Code.AutoUpdate;
 using TBox.Code.ErrorsSender;
 using TBox.Code.FastStart.Settings;
@@ -28,6 +29,7 @@ namespace TBox.Code
 		public FastStartConfig FastStartConfig { get; set; }
 		public bool UpdateFromSharedlFolder { get; set; }
 		public string LastKnownVersion { get; set; }
+		public bool EnableGPUAccelerationForUI { get; set; }
 
 		public Config()
 		{
@@ -44,6 +46,7 @@ namespace TBox.Code
 			UseMenuWithIcons = true;
 			ShowSettingsByTraySingleClick = true;
 			UpdateFromSharedlFolder = false;
+			EnableGPUAccelerationForUI = false;
 		}
 	}
 }
