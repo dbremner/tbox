@@ -21,7 +21,7 @@
                 <Button Content="Reload" Name="btnReload" Width="64" Margin="5" IsCancel="True" Click="BtnReloadClick" />
                 <Button Content="Close" Name="btnClose" Width="64" Margin="5" IsDefault="True" Click="BtnCloseClick" />
             </StackPanel>
-            <Button Content="Send feedback" Click="SendFeedback" Margin="5" Width="100" ToolTip="Help author to improove this tool"/>
+            <Button Content="Send feedback" Name="Feedback" Click="SendFeedback" Margin="5" Width="100" ToolTip="Help author to improove this tool"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Left">
             <Label Content="Plugins list:" DockPanel.Dock="Top" Padding="5,0"/>

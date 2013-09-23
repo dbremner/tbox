@@ -24,7 +24,7 @@ namespace Searcher.Code
 
 		public bool CanInclude(FileInfo info)
 		{
-			return CheckAttribute(info.Attributes) && !filter.Any(x => x.IsMatch(info.Name));
+			return CheckAttribute(info.Attributes) && !filter.Any(x => x.IsMatch(info.FullName));
 		}
 	}
 }

@@ -125,6 +125,11 @@ namespace Common.Tools
 			ArrayList.Adapter(list).Sort(begin, end, new Comparer<T>(comparer));
 		}
 
+		public static void Sort(this IList list, int end, int begin = 0)
+		{
+			ArrayList.Adapter(list).Sort(begin, end, new Comparer<object>((x, y) => string.Compare(x.ToString(), y.ToString(), StringComparison.CurrentCultureIgnoreCase)));
+		}
+
 		public static void Swap<T>(this IList<T> list, int i, int j)
 		{
 			var tmp = list[i];

@@ -11,7 +11,7 @@ namespace TBox.Code
 		private readonly ILog log = LogManager.GetLogger<FeedbackSender>();
 		private readonly Request request = new Request();
 
-		public void Send(string title, string body)
+		public bool Send(string title, string body)
 		{
 			var url = string.Format("http://mnk.dyndns-pics.com:61234/send/{0}", HttpUtility.UrlPathEncode(title));
 			var result = request.GetResult(url,
@@ -26,7 +26,9 @@ namespace TBox.Code
 			if (result.HttpStatusCode != HttpStatusCode.OK)
 			{
 				log.Write("Can't send feedback, status code: " + result.HttpStatusCode);
+				return false;
 			}
+			return true;
 		}
 	}
 }

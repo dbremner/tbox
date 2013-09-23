@@ -25,9 +25,6 @@ namespace AppConfigManager
 			KnownAttributesValues = new ObservableCollection<string>();
 			DataContextChanged += OnDataContextChanged;
 			InitializeComponent();
-			var btn = new Button {Content = "Sort", Margin = new Thickness(2), MinWidth = 40};
-			btn.Click += SortClick;
-			Options.Buttons.SpPanel.Children.Add(btn);
 		}
 
 		private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -59,14 +56,6 @@ namespace AppConfigManager
 		private void CheckBox_Checked(object sender, RoutedEventArgs e)
 		{
 			Options.OnCheckChangedEvent(sender, e);
-		}
-
-		private void SortClick(object sender, RoutedEventArgs e)
-		{
-			var config = (Profile) Options.DataContext;
-			config.Options.Sort<Option>(
-				(x,y) => string.Compare(x.Key, y.Key, StringComparison.CurrentCultureIgnoreCase), 
-				config.Options.Count);
 		}
 
 		public void Dispose()

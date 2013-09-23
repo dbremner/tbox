@@ -7,7 +7,6 @@ using Common.MT;
 using Common.Tools;
 using Interface;
 using WPFControls.Code.Log;
-using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
 using WPFWinForms;
 

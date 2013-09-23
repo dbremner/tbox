@@ -25,6 +25,7 @@ namespace WPFControls.Dialogs
 			ShowInTaskbar = showInTaskBar;
 			this.validator = validator;
 			Owner = owner;
+			Icon = owner == null ? null : owner.Icon;
 			Title = caption;
 			Question.Text = question;
 			isSuccess = false;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Common.Tools;
 
 namespace WPFControls.Code.EditPanel
 {
@@ -74,6 +75,12 @@ namespace WPFControls.Code.EditPanel
 			if (!Config.Dialog.Clear())
 				return false;
 			Config.Items.Clear();
+			return true;
+		}
+
+		public bool Sort()
+		{
+			Config.Items.Sort(Config.Items.Count);
 			return true;
 		}
 	}

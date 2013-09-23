@@ -14,6 +14,7 @@ namespace WPFControls.Components.EditButtons
 		private readonly Button btnEdit;
 		private readonly Button btnDel;
 		private readonly Button btnClear;
+		private readonly Button btnSort;
 
 		public EditButtonsPanel()
 		{
@@ -23,6 +24,7 @@ namespace WPFControls.Components.EditButtons
 			SpPanel.Children.Add(btnEdit = CreatButton("Edit", btnEdit_Click));
 			SpPanel.Children.Add(btnDel = CreatButton("Del", btnDel_Click));
 			SpPanel.Children.Add(btnClear = CreatButton("Clear", btnClear_Click));
+			SpPanel.Children.Add(btnSort = CreatButton("Sort", btnSort_Click));
 			Content = SpPanel;
 
 			EnableButtons(false);
@@ -52,6 +54,7 @@ namespace WPFControls.Components.EditButtons
 			btnClone.SetVisibility(config.Dialog.IsCloneVisible);
 			btnDel.SetVisibility(config.Dialog.IsDelVisible);
 			btnEdit.SetVisibility(config.Dialog.IsEditVisible);
+			btnSort.SetVisibility(true);
 		}
 
 		public void OnSelectionChanged()
@@ -65,7 +68,9 @@ namespace WPFControls.Components.EditButtons
 			btnClear.IsEnabled =
 			btnClone.IsEnabled =
 			btnDel.IsEnabled =
-			btnEdit.IsEnabled = setting;
+			btnEdit.IsEnabled = 
+			btnSort.IsEnabled = 
+			setting;
 			if (setting) UpdateButtons();
 		}
 
@@ -76,6 +81,7 @@ namespace WPFControls.Components.EditButtons
             btnDel.IsEnabled = btnClear.IsEnabled && config.SelectedIndexes.Length > 0;
             btnClone.IsEnabled =
 			btnEdit.IsEnabled = btnClear.IsEnabled && config.SelectedIndexes.Length == 1;
+			btnSort.IsEnabled = itemsCount > 1;
 		}
 
 		private void btnAdd_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -101,6 +107,11 @@ namespace WPFControls.Components.EditButtons
 		private void btnClear_Click(object sender, System.Windows.RoutedEventArgs e)
 		{
 			if (config.Controller.Clear()) UpdateButtons();
+		}
+
+		private void btnSort_Click(object sender, System.Windows.RoutedEventArgs e)
+		{
+			if (config.Controller.Sort()) UpdateButtons();
 		}
 
 	}

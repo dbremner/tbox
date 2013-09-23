@@ -72,7 +72,7 @@ namespace TBox.Forms
 			hotKeysManager.OnConfigUpdated(cfg.HotKeys);
 			schedulerManager.OnConfigUpdated(cfg.SchedulerTasks);
 			userActionsManager.OnConfigUpdated(cfg.FastStartConfig);
-			RenderOptions.ProcessRenderMode = cfg.EnableGPUAccelerationForUI
+			RenderOptions.ProcessRenderMode = cfg.EnableGPUAccelerationForUi
 				? RenderMode.Default
 				: RenderMode.SoftwareOnly;
 		}

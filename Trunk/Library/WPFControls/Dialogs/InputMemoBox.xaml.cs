@@ -32,6 +32,7 @@ namespace WPFControls.Dialogs
 			initValue = value;
 			Value = value;
 			Owner = owner;
+			Icon = owner == null ? null : owner.Icon;
 			this.validator = validator;
 			Title = caption;
 			lbCaption.Content = question;

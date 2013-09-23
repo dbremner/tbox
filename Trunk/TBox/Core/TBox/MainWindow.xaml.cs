@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Common.Base;
@@ -203,11 +204,16 @@ namespace TBox
 
 		private void SendFeedback(object sender, RoutedEventArgs e)
 		{
-			var r = DialogsCache.ShowMemoBox("Write some words or ideas about how to improve TBox.", "TBox - feedback", "", x => !string.IsNullOrEmpty(x), this);
-			if (r.Key)
+			var r = DialogsCache.ShowMemoBox("Write some words or ideas about how to improve TBox.", "TBox - feedback", engine.Config.FeedBackMessage, x => !string.IsNullOrEmpty(x), this);
+			if (!r.Key) return;
+			engine.Config.FeedBackMessage = r.Value;
+			DialogsCache.ShowProgress(u =>
 			{
-				feedbackSender.Send("feedback", r.Value);
-			}
+				if (!feedbackSender.Send("feedback", engine.Config.FeedBackMessage))
+				{
+					Dispatcher.BeginInvoke(new Action(()=>Feedback.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent))));
+				}
+			}, "Sending feedback", this, false);
 		}
 	}
 }

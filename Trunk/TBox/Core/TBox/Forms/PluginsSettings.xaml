@@ -63,7 +63,7 @@
                         <CheckBox IsChecked="{Binding HideOnCancel}" Content="Hide on cancel" Margin="5"/>
                         <CheckBox IsChecked="{Binding StartHidden}" Content="Start hidden" Margin="5"/>
                         <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="Show settings by single click on tray icon" Margin="5"/>
-                        <controls:ExtCheckBox IsChecked="{Binding EnableGPUAccelerationForUI}" Content="Use GPU for UI render" Margin="5" />
+                        <controls:ExtCheckBox IsChecked="{Binding EnableGPUAccelerationForUi}" Content="Use GPU for UI render" Margin="5" />
                         <Button Content="Shortcut to desktop" Click="ShortcutToDesktopClick" Margin="5" Width="128" />
                         <Button Content="Shortcut to autorun" Click="ShortcutToAutorunClick" Margin="5" Width="128"/>
                     </StackPanel>
@@ -129,7 +129,7 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top">
                 <Label Name="Version" HorizontalAlignment="Center" />
                 <Label Content="Licensed under GPLv2 license." HorizontalAlignment="Center" Padding="20"/>
-                <Label Content="Created by Mnk from Brest." HorizontalAlignment="Center" Padding="0"/>
+                <Label Content="Created by Alex H (Mnk) from Brest." HorizontalAlignment="Center" Padding="0"/>
                 <Label Content="In development since 2010." HorizontalAlignment="Center" Padding="0"/>
                 <Label Content="Web site:" HorizontalAlignment="Center" Padding="0 20 0 0"/>
                 <TextBlock HorizontalAlignment="Center" Margin="0"> 

@@ -29,7 +29,8 @@ namespace TBox.Code
 		public FastStartConfig FastStartConfig { get; set; }
 		public bool UpdateFromSharedlFolder { get; set; }
 		public string LastKnownVersion { get; set; }
-		public bool EnableGPUAccelerationForUI { get; set; }
+		public bool EnableGPUAccelerationForUi { get; set; }
+		public string FeedBackMessage { get; set; }
 
 		public Config()
 		{
@@ -46,7 +47,8 @@ namespace TBox.Code
 			UseMenuWithIcons = true;
 			ShowSettingsByTraySingleClick = true;
 			UpdateFromSharedlFolder = false;
-			EnableGPUAccelerationForUI = false;
+			EnableGPUAccelerationForUi = true;
+			FeedBackMessage = string.Empty;
 		}
 	}
 }
