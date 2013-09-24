@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Common.Base.Log;
 using Common.SaveLoad;
@@ -13,10 +14,12 @@ namespace ConsoleScriptRunner
 		private static readonly ILog Log = LogManager.GetLogger<Worker>();
 		private readonly ParamSerializer<Config> serializer;
 		private readonly string rootPath;
+		private readonly IDictionary<string, IList<string>> knownReferences;
 
-		public Worker(string rootPath)
+		public Worker(string rootPath, IDictionary<string, IList<string>> knownReferences)
 		{
 			this.rootPath = rootPath;
+			this.knownReferences = knownReferences;
 			serializer = new ParamSerializer<Config>(Path.Combine(rootPath, "Config/Automater.config"));
 		}
 
@@ -34,7 +37,7 @@ namespace ConsoleScriptRunner
 				Log.Write("Can't load profile: " + profileToRun);
 				return;
 			}
-			var compiler = new ScriptCompiler();
+			var compiler = new ScriptCompiler(knownReferences);
 
 			foreach (var op in profile.Operations)
 			{

@@ -84,8 +84,8 @@ namespace WPFControls.Dialogs
 
 		private void Validate(string value)
 		{
-			btnOk.IsEnabled = (value.Length > 0) && 
-				(validator != null && (validator(value) || value.EqualsIgnoreCase(initValue)));
+			btnOk.IsEnabled = (validator == null ) || 
+				(validator != null && value.Length > 0 && (validator(value) || value.EqualsIgnoreCase(initValue)));
 		}
 
 		private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

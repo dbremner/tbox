@@ -3,9 +3,9 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
-using Common.Assemblies;
-using Common.Base.Log;
+using System.Threading.Tasks;
 using Common.Data;
 using ScriptEngine.Core.Interfaces;
 
@@ -13,20 +13,16 @@ namespace ScriptEngine.Core
 {
 	public class Compiler : ICompiler
 	{
-		private static readonly ILog InfoLog = LogManager.GetInfoLogger<Compiler>();
 		private readonly static CodeDomProvider Provider = CodeDomProvider.CreateProvider("CSharp");
-		private readonly static IDictionary<string, IList<string>> KnownReferences;
+		private readonly IDictionary<string, IList<string>> knownReferences;
 		private readonly static Regex Regex = new Regex("using (?<assembly>.{1,});", RegexOptions.Compiled);
 		private const int MaxCacheSize = 16;
 		private static readonly IList<Pair<int, CompilerResults>> CachedResults = 
 			new List<Pair<int, CompilerResults>>();
 		private static readonly object Locker = new object();
-		static Compiler()
+		public Compiler(IDictionary<string, IList<string>> knownReferences)
 		{
-			var time = Environment.TickCount;
-			var collector = new AssembliesCollector();
-			KnownReferences = collector.Collect();
-			InfoLog.Write("Create compiler time: {0}", Environment.TickCount - time);
+			this.knownReferences = knownReferences;
 		}
 
 		public void Execute(string sourceText)
@@ -39,7 +35,7 @@ namespace ScriptEngine.Core
 			DoOperation(sourceText, x=>Build(x));
 		}
 
-		protected static void DoOperation(string sourceText, Action<CompilerResults> action)
+		protected void DoOperation(string sourceText, Action<CompilerResults> action)
 		{
 			lock (Locker)
 			{
@@ -49,7 +45,7 @@ namespace ScriptEngine.Core
 			}
 		}
 
-		private static CompilerResults GetResults(string sourceText)
+		private CompilerResults GetResults(string sourceText)
 		{
 			var hash = sourceText.GetHashCode();
 			var cache = CachedResults.FirstOrDefault(x => x.Key == hash);
@@ -58,15 +54,18 @@ namespace ScriptEngine.Core
 				return cache.Value;
 			}
 			var results = Provider.CompileAssemblyFromSource(CreateParameters(sourceText), sourceText);
-			CachedResults.Add(new Pair<int, CompilerResults>(hash, results));
-			if (CachedResults.Count > MaxCacheSize)
+			if (!results.Errors.HasErrors)
 			{
-				CachedResults.RemoveAt(0);
+				CachedResults.Add(new Pair<int, CompilerResults>(hash, results));
+				if (CachedResults.Count > MaxCacheSize)
+				{
+					CachedResults.RemoveAt(0);
+				}
 			}
 			return results;
 		}
 
-		private static CompilerParameters CreateParameters(string sourceText)
+		private CompilerParameters CreateParameters(string sourceText)
 		{
 			var parameters = new CompilerParameters
 				{
@@ -75,28 +74,28 @@ namespace ScriptEngine.Core
 					IncludeDebugInformation = false,
 					CompilerOptions = "/optimize"
 				};
-			if (!string.IsNullOrEmpty(sourceText))
+			if (string.IsNullOrEmpty(sourceText)) return parameters;
+			var set = new HashSet<string>();
+			foreach (var key in sourceText
+				.Split(new[]{Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+				.Select(line => Regex.Match(line))
+				.Where(m => m.Success)
+				.Select(m => m.Groups[1].Value.Trim())
+				)
 			{
-				var set = new HashSet<string>();
-				foreach (var key in sourceText
-					.Split(new[]{Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
-					.Select(line => Regex.Match(line))
-					.Where(m => m.Success)
-					.Select(m => m.Groups[1].Value.Trim())
-					)
+				if (set.Contains(key))continue;
+				set.Add(key);
+				if (!knownReferences.ContainsKey(key))continue;
+				foreach (var path in knownReferences[key])
 				{
-					if (set.Contains(key))continue;
-					set.Add(key);
-					if (!KnownReferences.ContainsKey(key))continue;
-					foreach (var path in KnownReferences[key])
-					{
-						var fileName = Path.GetFileName(path);
-						if (set.Contains(fileName)) continue;
-						set.Add(fileName);
-						parameters.ReferencedAssemblies.Add(path);
-					}
+					var fileName = Path.GetFileName(path);
+					if (string.IsNullOrEmpty(fileName) || set.Contains(fileName)) continue;
+					set.Add(fileName);
+					parameters.ReferencedAssemblies.Add(path);
 				}
 			}
+			Parallel.For(0, parameters.ReferencedAssemblies.Count,
+				i => Assembly.ReflectionOnlyLoadFrom(parameters.ReferencedAssemblies[i]));
 			return parameters;
 		}
 

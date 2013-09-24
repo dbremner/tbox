@@ -177,12 +177,7 @@ namespace ProjectMan.Code
 		{
 			if (!(context is NonUserRunContext))
 			{
-				var r = DialogsCache.GetDialog<InputComboBox>()
-						.ShowDialog("Please, specify build arguments:",
-									"Build: " + key, projectInfo.MsBuildParams,
-				x => true,
-				KnownArgs,
-				null);
+				var r = DialogsCache.ShowInputComboBox("Please, specify build arguments:", "Build: " + key, projectInfo.MsBuildParams, null, KnownArgs);
 				if (!r.Key) return;
 				projectInfo.MsBuildParams = r.Value;
 			}

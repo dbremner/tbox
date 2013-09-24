@@ -4,23 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Common.Base.Log;
 
-namespace Common.Assemblies
+namespace ScriptEngine.Core.Assemblies
 {
 	public class AssembliesCollector
 	{
-		private class AssemblyInfo
-		{
-			public Assembly Assembly { get; set; }
-			public IList<string> References { get; set; }
-		}
+		private static readonly ILog InfoLog = LogManager.GetInfoLogger<Compiler>();
 		public IDictionary<string, IList<string>> Collect()
 		{
+			var time = Environment.TickCount;
 			var result = new ConcurrentDictionary<string, IList<string>>();
 			var knownLibs = new HashSet<string>();
 			Parallel.ForEach(
 				GetAssemblies(AppDomain.CurrentDomain.GetAssemblies().Where(x => !x.IsDynamic), knownLibs), 
 				info => AddAssembly(result, info));
+			InfoLog.Write("Collect assemblies time: {0}", Environment.TickCount - time);
 			return result;
 		}
 

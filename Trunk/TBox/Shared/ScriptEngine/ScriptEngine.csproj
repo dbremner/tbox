@@ -58,6 +58,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Assemblies\AssembliesCollector.cs" />
+    <Compile Include="Core\Assemblies\AssemblyInfo.cs" />
     <Compile Include="Core\CompilerExceptions.cs" />
     <Compile Include="Core\ExecutionContext.cs" />
     <Compile Include="Core\Interfaces\IScriptCompiler.cs" />

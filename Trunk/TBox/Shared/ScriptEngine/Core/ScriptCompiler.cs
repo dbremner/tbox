@@ -12,14 +12,10 @@ namespace ScriptEngine.Core
 		private readonly Factory factory = new Factory();
 		private readonly IScriptRunner scriptRunner = new ScriptRunner();
 		public static IScriptContext Sc { get; private set; }
-		public ScriptCompiler(IScriptContext scriptContext)
+		public ScriptCompiler(IDictionary<string, IList<string>> knownReferences, IScriptContext scriptContext = null) 
+			: base(knownReferences)
 		{
 			Sc = scriptContext;
-		}
-
-		public ScriptCompiler()
-		{
-			
 		}
 
 		protected override void  Execute(object o)

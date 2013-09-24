@@ -29,7 +29,7 @@ namespace Searcher.Code.Settings
 			DecodeStrings = true;
 			DecodeComments = true;
 			(FileMasksToExclude = new ObservableCollection<Data>())
-				.FillCollection("*.min.js", "*.min.css");
+                .FillCollection("*.min.js", "*.min.css", "*\\bin\\*");
 		}
 	}
 

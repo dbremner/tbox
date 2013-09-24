@@ -1,6 +1,7 @@
 ﻿using System;
 using Common.Base.Log;
 using ScriptEngine.Core;
+using ScriptEngine.Core.Assemblies;
 
 namespace ConsoleScriptRunner
 {
@@ -20,11 +21,13 @@ namespace ConsoleScriptRunner
 			}
 			try
 			{
+				var collector = new AssembliesCollector();
+
 				var rootPath = AppDomain.CurrentDomain.BaseDirectory;
 				Console.WriteLine("Load libraries");
 				var loader = new Loader();
 				loader.Load(rootPath);
-				var worker = new Worker(Folders.Application);
+				var worker = new Worker(Folders.Application, collector.Collect());
 				foreach (var s in args)
 				{
 					Console.WriteLine("Execute: " + s);

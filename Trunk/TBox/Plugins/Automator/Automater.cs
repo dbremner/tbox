@@ -57,7 +57,6 @@ namespace Automator
 		{
 			base.Init(context);
 			context.AddTypeToWarmingUp(typeof(SyntaxHighlighter));
-			context.AddTypeToWarmingUp(typeof(ScriptCompiler));
 			Icon = Context.GetSystemIcon(12);
 		}
 
@@ -104,14 +103,14 @@ namespace Automator
 			var folder = Context.DataProvider.ReadOnlyDataPath;
 			foreach (var op in operations)
 			{
-				using (var r = new Runner(folder, op.Parameters))
+				using (var r = new Runner(Config))
 				{
 					foreach (var path in op.Pathes.CheckedItems)
 					{
 						if (u.UserPressClose) return;
 						u.Update(path.Key, i++/(float) count);
 						var result = false;
-						r.Run(Path.Combine(folder, path.Key), a => Context.DoSync(() => Execute(a, out result)));
+						r.Run(Path.Combine(folder, path.Key), folder, op.Parameters, a => Context.DoSync(() => Execute(a, out result)));
 						if(!result)return;
 					}
 				}
@@ -138,7 +137,7 @@ namespace Automator
 
 		private void ShowIde(object o)
 		{
-			editor.Do(Context.DoSync, x=>x.ShowDialog(GetPathes()), Config.States);
+			editor.Do(Context.DoSync, x=>x.ShowDialog(GetPathes(), Config), Config.States);
 		}
 
 		private void DoWork(Operation operation, object context)
@@ -150,7 +149,7 @@ namespace Automator
 			else
 			{
 				runner.LoadState(Config.States);
-				runner.Value.ShowDialog(operation);
+				runner.Value.ShowDialog(operation, Config);
 			}
 		}
 

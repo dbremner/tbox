@@ -100,17 +100,17 @@ namespace ServicesCommander.Code
 
 		private void StopService(string name)
 		{
-            DoWork("net stop " + name);
+            DoWork("net stop " + name + " /y");
 		}
 
 		private void StartService(string name)
 		{
-            DoWork("net start " + name);
+            DoWork("net start " + name + " /y");
 		}
 
         private void ReStartService(string name)
         {
-            DoWork(string.Format("net stop {0} & net start {0}", name));
+            DoWork(string.Format("net stop {0} /y & net start {0} /y", name));
         }
 
 		private void DoWork(string operation)

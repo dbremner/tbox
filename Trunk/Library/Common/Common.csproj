@@ -69,7 +69,6 @@
     <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assemblies\AssembliesCollector.cs" />
     <Compile Include="AutoUpdate\IUpdater.cs" />
     <Compile Include="AutoUpdate\Merger.cs" />
     <Compile Include="AutoUpdate\UpdateInterval.cs" />
@@ -79,7 +78,7 @@
     <Compile Include="Base\Log\ILog.cs" />
     <Compile Include="Base\Log\MemLog.cs" />
     <Compile Include="Base\Log\TypedLogger.cs" />
-    <Compile Include="Assemblies\Console\Cmd.cs" />
+    <Compile Include="Console\Cmd.cs" />
     <Compile Include="Communications\Interprocess\Client.cs" />
     <Compile Include="Communications\Interprocess\Server.cs" />
     <Compile Include="Communications\Network\Client.cs" />

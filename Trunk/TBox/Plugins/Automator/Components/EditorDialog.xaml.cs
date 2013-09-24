@@ -5,6 +5,8 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using Automator.Code;
+using Automator.Code.Settings;
 using Common.Base;
 using Common.Base.Log;
 using Interface;
@@ -21,7 +23,7 @@ namespace Automator.Components
 	/// </summary>
 	public partial class EditorDialog 
 	{
-		private readonly ICompiler compiler = new ScriptCompiler();
+		private Config config;
 		private static readonly ILog Log = LogManager.GetLogger<Settings>();
 		public IPluginContext Context { get; set; }
 		public EditorDialog()
@@ -29,10 +31,11 @@ namespace Automator.Components
 			InitializeComponent();
 		}
 
-		public void ShowDialog(IList<string> pathes)
+		public void ShowDialog(IList<string> pathes, Config config)
 		{
 			if (!IsVisible)
 			{
+				this.config = config;
 				Files.ItemsSource = pathes;
 				Files.IsEnabled = Files.Items.Count > 0;
 				if (Files.IsEnabled && Files.SelectedIndex == -1) Files.SelectedIndex = 0;
@@ -63,7 +66,10 @@ namespace Automator.Components
 			Func<string> time = ()=>Environment.NewLine + "Compilation time: " + sw.ElapsedMilliseconds + "ms.";
 			try
 			{
-				compiler.Build(text);
+				using (var r = new Runner(config))
+				{
+					r.Build(text);
+				}
 				Mt.SetText(Output, "No errors" + time());
 			}
 			catch (CompilerExceptions cex)

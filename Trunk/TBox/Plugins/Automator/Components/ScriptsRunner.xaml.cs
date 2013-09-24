@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using Automator.Code;
+using Automator.Code.Settings;
 using Common.Base.Log;
 using Common.MT;
 using Interface;
@@ -22,6 +24,7 @@ namespace Automator.Components
 	{
 		private static readonly ILog Log = LogManager.GetLogger<ScriptsRunner>();
 		private Operation config;
+		private Config mainConfig;
 		private IList<ExecutionContext> executionContexts;
 		private readonly ParametersMerger parametersMerger = new ParametersMerger(); 
 		public static Window Instance { get; set; }
@@ -32,10 +35,11 @@ namespace Automator.Components
 			InitializeComponent();
 		}
 
-		public void ShowDialog(Operation o)
+		public void ShowDialog(Operation o, Config mainConfig)
 		{
 			Owner = null;
 			DataContext = config = o;
+			this.mainConfig = mainConfig;
 			ShowAndActivate();
 			ReloadClick(null, null);
 		}
@@ -124,29 +128,31 @@ namespace Automator.Components
 
 		private void DoReload(IUpdater obj)
 		{
-			var compiler = new ScriptCompiler();
-			try
+			using (var runner = new Runner(mainConfig))
 			{
-				executionContexts = GetPathes().Select(x => compiler.GetExecutionContext(File.ReadAllText(x), Invoke)).ToArray();
-				IList<Parameter> parameters = new List<Parameter>();
-				parameters = executionContexts.Aggregate(parameters, (current, x) => parametersMerger.Merge(current, x.Parameters));
-				Mt.Do(this, () =>
-				    {
-                        config.Parameters = new ObservableCollection<Parameter>(
-					        parametersMerger.Clarify(config.Parameters, parameters));
-				        Parameters.ItemsSource = config.Parameters;
-				    });
-				return;
+				try
+				{
+					executionContexts = GetPathes().Select(x => runner.GetExecutionContext(x, Invoke)).ToArray();
+					IList<Parameter> parameters = new List<Parameter>();
+					parameters = executionContexts.Aggregate(parameters, (current, x) => parametersMerger.Merge(current, x.Parameters));
+					Mt.Do(this, () =>
+					{
+						config.Parameters = new ObservableCollection<Parameter>(
+							parametersMerger.Clarify(config.Parameters, parameters));
+						Parameters.ItemsSource = config.Parameters;
+					});
+					return;
+				}
+				catch (CompilerExceptions cex)
+				{
+					MessageBox.Show(cex.ToString(), config.Key, MessageBoxButton.OK, MessageBoxImage.Stop);
+				}
+				catch (Exception ex)
+				{
+					Log.Write(ex, "Can't initialize script: " + config.Key);
+				}
+				Mt.Do(this, Hide);
 			}
-			catch (CompilerExceptions cex)
-			{
-				MessageBox.Show(cex.ToString(), config.Key, MessageBoxButton.OK, MessageBoxImage.Stop);
-			}
-			catch (Exception ex)
-			{
-				Log.Write(ex, "Can't initialize script: " + config.Key);
-			}
-			Mt.Do(this, Hide);
 		}
 	}
 }

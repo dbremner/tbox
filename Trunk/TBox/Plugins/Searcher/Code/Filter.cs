@@ -11,7 +11,7 @@ namespace Searcher.Code
 		public Filter(IEnumerable<string> fileMasksToExclude)
 		{
 			filter = fileMasksToExclude
-				.Select(x => new Regex(x.Replace(".", "[.]").Replace("*", ".*").Replace("?", ".")))
+                .Select(x => new Regex(x.Replace(".", "[.]").Replace("*", ".*").Replace("?", ".").Replace("\\", "\\\\"), RegexOptions.Compiled))
 				.ToArray();
 		}
 
