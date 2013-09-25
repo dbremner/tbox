@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace ConsoleUnitTestsRunner.Code
+namespace PluginsShared.UnitTests
 {
 	class AgentProcessCreator
 	{

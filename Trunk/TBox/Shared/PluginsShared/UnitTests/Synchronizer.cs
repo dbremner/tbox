@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using Common.Communications;
 using Common.Communications.Interprocess;
 using Common.Data;
 using extended.nunit.Interfaces;
 
-namespace ConsoleUnitTestsRunner.Code
+namespace PluginsShared.UnitTests
 {
 	public class Synchronizer
 	{

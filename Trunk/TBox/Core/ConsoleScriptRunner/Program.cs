@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using Common.Base.Log;
 using ScriptEngine.Core;
 using ScriptEngine.Core.Assemblies;
@@ -8,6 +10,12 @@ namespace ConsoleScriptRunner
 	class Program
 	{
 		private static ILog log;
+
+		static Program()
+		{
+			AppDomain.CurrentDomain.AssemblyResolve += LoadFromSameFolder;
+		}
+
 		[STAThread]
 		static int Main(string[] args)
 		{
@@ -46,6 +54,12 @@ namespace ConsoleScriptRunner
 				log.Write(ex, "Internal error");
 				return -1;
 			}
+		}
+
+		static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)
+		{
+			var assemblyPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\Libraries\\", new AssemblyName(args.Name).Name + ".dll"));
+			return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
 		}
 	}
 }

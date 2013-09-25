@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace ConsoleUnitTestsRunner.Code
+namespace PluginsShared.UnitTests
 {
 	class Calculator
 	{

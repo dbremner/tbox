@@ -2,7 +2,7 @@
 using Common.UI.Model;
 using NUnit.Core;
 
-namespace ConsoleUnitTestsRunner.Code.Settings
+namespace PluginsShared.UnitTests.Settings
 {
 	[Serializable]
 	public class Result : CheckableData

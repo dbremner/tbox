@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
-using ConsoleUnitTestsRunner.Code;
-using ConsoleUnitTestsRunner.Code.Updater;
 using NUnitRunner.Code.Settings;
+using PluginsShared.UnitTests;
+using PluginsShared.UnitTests.Updater;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
 

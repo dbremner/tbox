@@ -6,9 +6,9 @@ using System.Threading;
 using System.Xml;
 using Common.Data;
 using Common.UI.ModelsContainers;
-using ConsoleUnitTestsRunner.Code.Interfaces;
-using ConsoleUnitTestsRunner.Code.Settings;
 using NUnit.Core;
+using PluginsShared.UnitTests.Interfaces;
+using PluginsShared.UnitTests.Settings;
 
 namespace ConsoleUnitTestsRunner.ConsoleRunner
 {

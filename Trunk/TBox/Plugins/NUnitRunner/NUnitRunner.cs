@@ -76,7 +76,7 @@ namespace NUnitRunner
 
 		private static string NUnitAgentPath
 		{
-			get { return "NUnitAgent.exe"; }
+			get { return Path.Combine(Environment.CurrentDirectory, "Tools\\NUnitAgent.exe"); }
 		}
 
 		public override void Save(bool autoSaveOnExit)

@@ -4,10 +4,10 @@ using System.Globalization;
 using System.IO;
 using Common.Base.Log;
 using Common.Tools;
-using ConsoleUnitTestsRunner.Code.Interfaces;
-using ConsoleUnitTestsRunner.Code.Settings;
+using PluginsShared.UnitTests.Interfaces;
+using PluginsShared.UnitTests.Settings;
 
-namespace ConsoleUnitTestsRunner.Code
+namespace PluginsShared.UnitTests
 {
 	class DirectoriesManipulator
 	{

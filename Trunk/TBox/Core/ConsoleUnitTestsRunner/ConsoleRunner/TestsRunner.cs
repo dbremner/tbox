@@ -2,8 +2,8 @@
 using System.IO;
 using Common.Base.Log;
 using Common.MT;
-using ConsoleUnitTestsRunner.Code;
-using ConsoleUnitTestsRunner.Code.Updater;
+using PluginsShared.UnitTests;
+using PluginsShared.UnitTests.Updater;
 
 namespace ConsoleUnitTestsRunner.ConsoleRunner
 {

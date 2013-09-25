@@ -1,4 +1,4 @@
-﻿namespace ConsoleUnitTestsRunner.Code.Interfaces
+﻿namespace PluginsShared.UnitTests.Interfaces
 {
 	public interface IProgressStatus
 	{

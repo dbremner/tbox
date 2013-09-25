@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Common.Base.Log;
-using Common.Communications;
 using Common.Communications.Interprocess;
 using Common.UI.ModelsContainers;
-using ConsoleUnitTestsRunner.Code.Communication;
-using ConsoleUnitTestsRunner.Code.Interfaces;
-using ConsoleUnitTestsRunner.Code.Settings;
-using NUnit.Core;
 using extended.nunit.Interfaces;
+using NUnit.Core;
+using PluginsShared.UnitTests.Communication;
+using PluginsShared.UnitTests.Interfaces;
+using PluginsShared.UnitTests.Settings;
 
-namespace ConsoleUnitTestsRunner.Code
+namespace PluginsShared.UnitTests
 {
 	public sealed class TestsPackage : IDisposable
 	{

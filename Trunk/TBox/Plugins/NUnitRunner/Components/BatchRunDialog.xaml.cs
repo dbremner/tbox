@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
-using ConsoleUnitTestsRunner.Code;
-using ConsoleUnitTestsRunner.Code.Interfaces;
-using ConsoleUnitTestsRunner.Code.Settings;
-using ConsoleUnitTestsRunner.Code.Updater;
 using NUnitRunner.Code.Settings;
+using PluginsShared.UnitTests;
+using PluginsShared.UnitTests.Interfaces;
+using PluginsShared.UnitTests.Settings;
+using PluginsShared.UnitTests.Updater;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
 

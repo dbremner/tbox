@@ -4,10 +4,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Common.UI.ModelsContainers;
-using ConsoleUnitTestsRunner.Code.Interfaces;
-using ConsoleUnitTestsRunner.Code.Settings;
 using NUnit.Core;
-using NUnitRunner.Code.Settings;
+using PluginsShared.UnitTests.Interfaces;
+using PluginsShared.UnitTests.Settings;
 
 namespace NUnitRunner.Components
 {

@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Common.Base.Log;
-using Common.Communications;
 using Common.Communications.Interprocess;
 using Common.Console;
-using ConsoleUnitTestsRunner.Code.Communication;
-using ConsoleUnitTestsRunner.Code.Interfaces;
-using ConsoleUnitTestsRunner.Code.Settings;
 using extended.nunit.Interfaces;
+using PluginsShared.UnitTests.Communication;
+using PluginsShared.UnitTests.Interfaces;
+using PluginsShared.UnitTests.Settings;
 
-namespace ConsoleUnitTestsRunner.Code
+namespace PluginsShared.UnitTests
 {
 	class Runner
 	{

@@ -7,7 +7,7 @@
              xmlns:settings="clr-namespace:NUnitRunner.Code.Settings"
              xmlns:components="clr-namespace:NUnitRunner.Components"
              xmlns:components2="clr-namespace:WPFControls.Components;assembly=WPFControls"
-             xmlns:settings2="clr-namespace:ConsoleUnitTestsRunner.Code.Settings;assembly=ConsoleUnitTestsRunner"
+             xmlns:settings1="clr-namespace:PluginsShared.UnitTests.Settings;assembly=PluginsShared"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -29,7 +29,7 @@
             <components2:PanelToICheckable Name="Panel" DockPanel.Dock="Bottom" />
             <components2:CheckableListBox Name="Results" SelectionChanged="SelectedTestChanged" SelectionMode="Extended">
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="settings2:Result">
+                    <DataTemplate DataType="settings1:Result">
                         <DockPanel Margin="5">
                             <controls:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="OnTestChecked"/>
                             <Image Source="{Binding State, Converter={StaticResource IconConverter}}" DockPanel.Dock="Left" Margin="5,0" Width="16" Height="16"/>

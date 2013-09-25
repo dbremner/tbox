@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using Common.Base.Log;
 using ConsoleUnitTestsRunner.ConsoleRunner;
 
@@ -48,5 +50,16 @@ namespace ConsoleUnitTestsRunner
 	        Console.WriteLine("-dirToCloneTests=path - folder to clone tests, by default %temp%");
 	        Console.WriteLine("-commandBeforeTestsRun=exePath - command to run before execute tests, but after it clone , by default empty");
 	    }
+
+		static Program()
+		{
+			AppDomain.CurrentDomain.AssemblyResolve += LoadFromSameFolder;
+		}
+
+		static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)
+		{
+			var assemblyPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\Libraries\\", new AssemblyName(args.Name).Name + ".dll"));
+			return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
+		}
 	}
 }

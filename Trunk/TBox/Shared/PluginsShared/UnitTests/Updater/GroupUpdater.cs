@@ -1,7 +1,7 @@
 ﻿using Common.MT;
-using ConsoleUnitTestsRunner.Code.Interfaces;
+using PluginsShared.UnitTests.Interfaces;
 
-namespace ConsoleUnitTestsRunner.Code.Updater
+namespace PluginsShared.UnitTests.Updater
 {
 	public class GroupUpdater : IProgressStatus
 	{

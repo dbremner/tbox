@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\Debug\Tools\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\Release\Tools\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,39 +39,16 @@
       <HintPath>..\..\..\Libs\nunit\nunit.core.interfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\..\Libs\ServiceStack\ServiceStack.Text.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\AgentProcessCreator.cs" />
-    <Compile Include="Code\Calculator.cs" />
-    <Compile Include="Code\DirectoriesManipulator.cs" />
-    <Compile Include="Code\Interfaces\IUnitTestsView.cs" />
     <Compile Include="ConsoleRunner\ConsoleView.cs" />
-    <Compile Include="Code\Runner.cs" />
-    <Compile Include="Code\Synchronizer.cs" />
-    <Compile Include="Code\Communication\NunitRunnerClient.cs" />
     <Compile Include="ConsoleRunner\CommandLineArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Code\TestsPackage.cs" />
-    <Compile Include="Code\Settings\Result.cs" />
     <Compile Include="ConsoleRunner\TestsRunner.cs" />
-    <Compile Include="Code\Updater\GroupUpdater.cs" />
-    <Compile Include="Code\Interfaces\IProgressStatus.cs" />
-    <Compile Include="Code\Updater\SimpleUpdater.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
@@ -79,9 +56,9 @@
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\extended.nunit\extended.nunit.csproj">
-      <Project>{EDFB8B45-08B4-4EA4-906A-2EC50B3CF582}</Project>
-      <Name>extended.nunit</Name>
+    <ProjectReference Include="..\..\Shared\PluginsShared\PluginsShared.csproj">
+      <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
+      <Name>PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

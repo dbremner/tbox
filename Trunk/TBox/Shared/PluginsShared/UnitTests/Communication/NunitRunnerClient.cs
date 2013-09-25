@@ -4,13 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using Common.Base.Log;
-using ConsoleUnitTestsRunner.Code.Interfaces;
-using ConsoleUnitTestsRunner.Code.Settings;
-using NUnit.Core;
-using ServiceStack.Text;
 using extended.nunit.Interfaces;
+using NUnit.Core;
+using PluginsShared.UnitTests.Interfaces;
+using PluginsShared.UnitTests.Settings;
+using ServiceStack.Text;
 
-namespace ConsoleUnitTestsRunner.Code.Communication
+namespace PluginsShared.UnitTests.Communication
 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] 
 	class NunitRunnerClient : INunitRunnerClient

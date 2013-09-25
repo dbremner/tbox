@@ -96,23 +96,20 @@
           <File Name='Default.xaml'/>
         </Component>
       </Directory>
-      <Directory Id="Tools" Name="Tools" FileSource="..\Tools\">
+      <Directory Id="Tools" Name="Tools">
         <Component Id="Tools" Guid="f692d112-c019-491e-8f0d-d9953fdc85fd">
           <File Name='build_build.cmd'/>
           <File Name='build_project.cmd'/>
           <File Name='RunAsx86.exe'/>
           <File Name='sudo.exe'/>
+          <File Name='ConsoleScriptRunner.exe'/>
+          <File Name='ConsoleUnitTestsRunner.exe'/>
+          <File Name='NUnitAgent.exe'/>
         </Component>
       </Directory>
       <Component Id="Binaries" Guid="0439B8A8-E960-4D96-808A-052940992E18">
         <File Name='changelog.txt'/>
         <File Name='License.rtf'/>
-        <File Name='ConsoleScriptRunner.exe'/>
-        <File Name='ConsoleScriptRunner.exe.config'/>
-        <File Name='ConsoleUnitTestsRunner.exe'/>
-        <File Name='ConsoleUnitTestsRunner.exe.config'/>
-        <File Name='NUnitAgent.exe'/>
-        <File Name='NUnitAgent.exe.config'/>
         <File Name='SciLexer.dll'/>
         <File Name='SciLexer64.dll'/>
         <File Name='TBox.exe' Id='Application.exe' KeyPath='yes'/>

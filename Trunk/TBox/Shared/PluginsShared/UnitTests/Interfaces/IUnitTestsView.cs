@@ -1,7 +1,7 @@
 ﻿using Common.UI.ModelsContainers;
-using ConsoleUnitTestsRunner.Code.Settings;
+using PluginsShared.UnitTests.Settings;
 
-namespace ConsoleUnitTestsRunner.Code.Interfaces
+namespace PluginsShared.UnitTests.Interfaces
 {
 	public interface IUnitTestsView
 	{
