@@ -11,7 +11,6 @@ using Common.Base;
 using Common.Base.Log;
 using Interface;
 using ScriptEngine.Core;
-using ScriptEngine.Core.Interfaces;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
 using WPFControls.Tools;
@@ -47,7 +46,7 @@ namespace Automator.Components
 		{
 			var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, e.GetNewSelection());
 			ExceptionsHelper.HandleException(
-				() => Source.Value = File.ReadAllText(path),
+				() => Source.Read(path),
 				() => "Can't open file:" + path,
 				Log);
 			Output.Text = string.Empty;

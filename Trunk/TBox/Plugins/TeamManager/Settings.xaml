@@ -15,7 +15,7 @@
             <StackPanel>
                 <captioned:CaptionedTextBox Value="{Binding UserEmail}" Caption="User email:" Margin="5"/>
                 <captioned:CaptionedTextBox Value="{Binding UserPassword}" Caption="User pasword:" Margin="5"/>
-                <captioned:CaptionedTextBox Value="{Binding TargetProcessUrl}" Caption="Target process url:" Margin="5"/>
+                <captioned:CaptionedTextBox Value="{Binding ProjectManagerUrl}" Caption="Project manager url:" Margin="5"/>
             </StackPanel>
         </TabItem>
     </TabControl>

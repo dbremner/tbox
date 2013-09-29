@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Common.Base;
 using Common.Base.Log;
@@ -29,6 +30,13 @@ namespace Searcher.Code
 
 		public bool MakeIndex(string folderPath, IUpdater updater)
 		{
+			var notExists = indexSettings.FileNames.Where(x => x.IsChecked && !Directory.Exists(x.Key)).Select(x=>x.Key).ToArray();
+			if (notExists.Any())
+			{
+				Log.Write("Can't find folders: " + Environment.NewLine + string.Join(Environment.NewLine, notExists));
+				return false;
+			}
+
 			var time = Environment.TickCount;
 			Unload();
 			var wordsGenerator = new WordsGenerator();

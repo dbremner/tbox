@@ -142,10 +142,7 @@ namespace Searcher.Components
 				Title = string.Format("Searcher - [ {0} ]", path);
 				edText.Clear();
 				edText.Format = GetSelectedFileExt();
-			    using (var s = new StreamReader(File.OpenRead(path), Encoding.UTF8) )
-			    {
-			        edText.Read(s);
-			    }
+			    edText.Read(path);
 				sbiWords.Content = edText.MarkAll(SearchText.Text, 
 					config.Search.MatchCase);
 				sbiLoadFileTime.Content = sw.ElapsedMilliseconds / 1000.0;
@@ -274,21 +271,7 @@ namespace Searcher.Components
 			try
 			{
 				var path = searchEngine.FileInformer.GetFilePath(i);
-				if (!File.Exists(path)) return false;
-			    using (var s = new StreamReader(File.OpenRead(path), Encoding.UTF8))
-			    {
-			        while (!s.EndOfStream)
-			        {
-			            var line = s.ReadLine();
-			            if (!string.IsNullOrEmpty(line) &&  line.IndexOf(searchText, config.Search.MatchCase
-			                                             ? StringComparison.Ordinal
-			                                             : StringComparison.OrdinalIgnoreCase) > -1)
-			            {
-			                return true;
-			            }
-			        }
-                    return false;
-			    }
+				return File.Exists(path) && NativeBoost.FileSystem.FileContains(path, searchText, config.Search.MatchCase);
 			}
 			catch (Exception)
 			{

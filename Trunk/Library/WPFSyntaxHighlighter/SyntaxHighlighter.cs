@@ -156,20 +156,21 @@ namespace WPFSyntaxHighlighter
 
 		}
 
-        public void Read(StreamReader s)
+        public void Read(string path)
         {
             ApplyValue(()=>
             {
                 editor.ResetText();
-                var i = 0;
-                var buf = new char[32000];
-                while (!s.EndOfStream)
-                {
-                    if (i != 0) editor.AppendText(Environment.NewLine);
-                    var size = s.ReadBlock(buf, 0, buf.Length);
-                    i += size;
-                    editor.AppendText(new string(buf,0,size));
-                }
+	            if (!File.Exists(path)) throw new FileNotFoundException(path);
+				var content = NativeBoost.FileSystem.ReadFileContent(path);
+	            try
+	            {
+		            editor.NativeInterface.SendMessageDirect((int) Constants.SCI_SETTEXT, (IntPtr) 0, (IntPtr)content);
+	            }
+	            finally
+	            {
+					NativeBoost.Tools.ClearArray(content);
+	            }
             });
         }
 

@@ -33,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +50,9 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -74,6 +78,11 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
       <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\NativeBoost\NativeBoost.vcxproj">
+      <Project>{5200c41a-8e06-4b51-a504-c81d4aa775ea}</Project>
+      <Name>NativeBoost</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\WPFControls\WPFControls.csproj">

@@ -47,9 +47,15 @@ namespace WPFControls.Components.Updater
 			var u = CreateUpdater();
 			ThreadPool.QueueUserWorkItem(o=>
 				{
-					func(u);
-					if(endAction!=null)endAction();
-					Mt.SetEnabled(Button, true);
+					try
+					{
+						func(u);
+					}
+					finally
+					{
+						if (endAction != null) endAction();
+						Mt.SetEnabled(Button, true);
+					}
 				});
 		}
 

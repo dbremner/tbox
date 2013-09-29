@@ -39,6 +39,8 @@
       <ComponentRef Id="Templates" />
       <ComponentRef Id="TemplatesSample" />
       <ComponentRef Id="Libraries" />
+      <ComponentRef Id="Libx86" />
+      <ComponentRef Id="Libx64" />
       <ComponentRef Id="Plugins" />
       <ComponentRef Id="Binaries" />
       <ComponentRef Id="Themes" />

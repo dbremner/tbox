@@ -56,6 +56,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -115,6 +118,11 @@
     <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
       <Name>Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Library\NativeBoost\NativeBoost.vcxproj">
+      <Project>{5200c41a-8e06-4b51-a504-c81d4aa775ea}</Project>
+      <Name>NativeBoost</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">

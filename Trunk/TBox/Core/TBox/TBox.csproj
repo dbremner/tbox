@@ -218,12 +218,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\Libs\NativeBoost\x64\NativeBoost.dll">
+      <Link>Libraries\x64\NativeBoost.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\Libs\NativeBoost\x86\NativeBoost.dll">
+      <Link>Libraries\x86\NativeBoost.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\..\..\Libs\ScintillaNet\SciLexer.dll">
-      <Link>SciLexer.dll</Link>
+      <Link>Libraries\x86\SciLexer.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\..\Libs\ScintillaNet\SciLexer64.dll">
-      <Link>SciLexer64.dll</Link>
+      <Link>Libraries\x64\SciLexer64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="changelog.txt">
