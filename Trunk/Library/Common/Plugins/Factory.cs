@@ -24,6 +24,8 @@ namespace Common.Plugins
 		public Factory(string pluginsDir, string sharedLibraries)
 		{
 			var time = Environment.TickCount;
+			CreateDirectoryIfNotExist(sharedLibraries);
+			CreateDirectoryIfNotExist(pluginsDir);
 			var targetName = typeof (TInterface).FullName;
 			var tasks = GetFiles(sharedLibraries)
 				.Select(x => new PluginLoadInfo {Path = x, Op = () => LoadAssembly(x)})
@@ -38,9 +40,14 @@ namespace Common.Plugins
 			infoLog.Write("Load dlls time: {0}", Environment.TickCount - time);
 		}
 
+		private static void CreateDirectoryIfNotExist(string sharedLibraries)
+		{
+			if (!Directory.Exists(sharedLibraries)) Directory.CreateDirectory(sharedLibraries);
+		}
+
 		private static IEnumerable<string> GetFiles(string sharedLibraries)
 		{
-			return Directory.GetFiles(sharedLibraries, DllFIlter, SearchOption.TopDirectoryOnly);
+			return Directory.GetFiles(sharedLibraries, DllFIlter, SearchOption.AllDirectories);
 		}
 
 		private void LoadTypes(string filePath, string targetName)
