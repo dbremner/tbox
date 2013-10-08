@@ -1,4 +1,6 @@
-﻿namespace WPFControls.Code.Dialogs
+﻿using LibsLocalization.WPFControls;
+
+namespace WPFControls.Code.Dialogs
 {
 	public class PathTemplates : Templates
 	{
@@ -14,12 +16,12 @@
 		static PathTemplates()
 		{
 			Default = new PathTemplates(
-			add: Properties.Resources.AddPath,
-			clone: Properties.Resources.ClonePath,
-			edit: Properties.Resources.EditPath,
-			del: Properties.Resources.DelPath,
-			clear: Properties.Resources.ClearAllPathes,
-			invalidPath: Properties.Resources.InvalidPath
+			add: WPFControlsLang.AddPath,
+			clone: WPFControlsLang.ClonePath,
+			edit: WPFControlsLang.EditPath,
+			del: WPFControlsLang.DelPath,
+			clear: WPFControlsLang.ClearAllPathes,
+			invalidPath: WPFControlsLang.InvalidPath
 			);
 		}
 

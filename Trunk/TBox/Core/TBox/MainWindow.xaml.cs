@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Documents;
 using System.Windows.Interop;
+using System.Windows.Markup;
 using System.Windows.Media;
 using Common.Base;
 using Common.Base.Log;
-using Common.Data;
 using Common.Tools;
 using Interface;
+using Localization.TBox;
 using TBox.Code;
 using TBox.Code.ErrorsSender;
 using TBox.Code.FastStart;
@@ -34,13 +36,13 @@ namespace TBox
 		private static readonly ILog InfoLog = LogManager.GetInfoLogger<MainWindow>();
 		private static readonly string LogsFolder = Path.Combine(Folders.UserFolder, "Logs");
 		private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder,  "errors.log");
-		private const string Caption = "TBox - Settings";
 		private readonly LogsSender logsSender;
 		private readonly PluginsSettings settings;
 		private readonly FastStartDialog fastStartDialog;
 		private readonly MenuItemsProvider menuItemsProvider;
 		private readonly UiConfigurator uiConfigurator;
 		private readonly MenuCallsVisitor menuCallsVisitor;
+		private readonly ConfigManager configManager;
 		private Engine engine;
 		private ChangesLogDialog changesLogDialog;
 		private readonly int startTime = Environment.TickCount;
@@ -56,42 +58,58 @@ namespace TBox
 				}),
 				new FileLog(Path.Combine(LogsFolder, "info.log")));
 			logsSender = new LogsSender(ErrorsLogsPath);
+			configManager = new ConfigManager();
 			InitializeComponent();
 			menuItemsProvider = new MenuItemsProvider();
 			menuCallsVisitor = new MenuCallsVisitor();
 			settings = new PluginsSettings(menuItemsProvider);
-			fastStartDialog = new FastStartDialog{Icon = Icon};
+			fastStartDialog = new FastStartDialog();
 			InfoLog.Write("Init main form time: {0}", Environment.TickCount - startTime);
 			uiConfigurator = new UiConfigurator(
-				PluginsNames, PluginsBack, settings, menuItemsProvider, menuCallsVisitor, fastStartDialog,
+				View, PluginsBack, BtnBack, settings, menuItemsProvider, menuCallsVisitor,
 				new[]
 					{
 						new USeparator(),
-						new UMenuItem{Header = "Settings...", OnClick = o=>MenuShowSettings(), Icon = Properties.Resources.Icon},
-						new UMenuItem{Header = "Fast Start...", OnClick = o=>MenuShowFastStart(), Icon = Properties.Resources.Icon},
-						new UMenuItem{Header = "Check updates", OnClick = CheckUpdates},
-						new UMenuItem{Header = "Exit", OnClick = o=>MenuClose()}
+						new UMenuItem{Header = TBoxLang.MenuSettings, OnClick = o=>MenuShowSettings(), Icon = Properties.Resources.Icon},
+						new UMenuItem{Header = TBoxLang.MenuFastStart, OnClick = o=>MenuShowFastStart(), Icon = Properties.Resources.Icon},
+						new UMenuItem{Header = TBoxLang.MenuCheckUpdates, OnClick = CheckUpdates},
+						new UMenuItem{Header = TBoxLang.MenuExit, OnClick = o=>MenuClose()}
 					},
-				new[] { new Pair<PluginName, Control>(new PluginName("Settings", "Here you can configure global settings of this tool"), settings) },
+				new[]
+				{
+					new EngineSettingsInfo(TBoxLang.SettingsCaption, TBoxLang.SettingsDescription, Properties.Resources.Icon, () => settings),
+					new EngineSettingsInfo(TBoxLang.FastStart, TBoxLang.FastStartDescription, Properties.Resources.Icon,
+						() =>
+						{
+							configManager.Config.FastStartConfig.IsFastStart = true;
+							return fastStartDialog;
+						})
+				},
 				OnPluginChanged
 				);
-			ShowProgress( "Initialize...", CreateEngine, false );
+			ShowProgress( TBoxLang.ProgressInitialize, CreateEngine, false );
 			InitFastMenu();
-			ExceptionsHelper.HandleException(ShowChangeLog, () => "Error processing changelog", Log);
-			this.SetState(engine.Config.DialogState);
+
+			ExceptionsHelper.HandleException(ShowChangeLog, () => TBoxLang.ErrorProcessingChangelog, Log);
+			this.SetState(configManager.Config.DialogState);
 		    Show();
 			Hide();
-			if (engine.Config.StartHidden) return;
+			if (configManager.Config.StartHidden) return;
 			uiConfigurator.FastStartShower.Show();
 		}
 
 		private void InitFastMenu()
 		{
-			var recentItemsCollector = new RecentItemsCollector(engine.Config.FastStartConfig.MenuItems, menuItemsProvider);
+			var recentItemsCollector = new RecentItemsCollector(configManager.Config.FastStartConfig.MenuItems, menuItemsProvider);
 			menuCallsVisitor.ClearHandlers();
 			menuCallsVisitor.AddHandler(recentItemsCollector);
-			uiConfigurator.FastStartShower.Load(engine.Config.FastStartConfig);
-			fastStartDialog.Init(recentItemsCollector, engine.Config.FastStartConfig, uiConfigurator.FastStartShower, menuItemsProvider);
+			uiConfigurator.FastStartShower.Load(configManager.Config.FastStartConfig);
+			fastStartDialog.Init(recentItemsCollector, configManager.Config.FastStartConfig, menuItemsProvider,
+				() =>
+				{
+					BackClick(null, null);
+					Close();
+				});
 		}
 
 		private void CheckUpdates(object o)
@@ -101,7 +119,7 @@ namespace TBox
 
 		private void ShowChangeLog()
 		{
-			var cfg = engine.Config.Update;
+			var cfg = configManager.Config.Update;
 			if (!cfg.ShowChanglog ) return;
 			var file = new FileInfo("changelog.txt");
 			if (!file.Exists) return;
@@ -111,17 +129,17 @@ namespace TBox
 			cfg.LastChanglogPosition = file.Length;
 		}
 
-		private void OnPluginChanged(PluginName name)
+		private void OnPluginChanged(EnginePluginInfo info)
 		{
-			if (string.Equals(name.Name, Caption))
+			if (string.Equals(info.Name, TBoxLang.Caption))
 			{
-				Title = Caption;
+				Title = TBoxLang.Caption;
 			}
 			else
 			{
-				Title = Caption + " - [" + name.Name + "]";
+				Title = TBoxLang.Caption + " - [" + info.Name + "]";
 			}
-			Description.Content = name.Description.Replace('\n', ' ');
+			Description.Text = info.Description;
 		}
 
 		private void ShowProgress( string caption, Action<IUpdater> action, bool withOwner = true)
@@ -141,13 +159,12 @@ namespace TBox
 			{
 				Mt.Do(this, () =>
 					{
-						engine.Config.DialogState = this.GetState();
-						fastStartDialog.Dispose();
+						configManager.Config.DialogState = this.GetState();
 					});
-				ShowProgress("Exit...", u => engine.Close(u, criticalError), false);
-				if (engine.Config.ErrorReports.AllowSend)
+				ShowProgress(TBoxLang.ProgressExit, u => engine.Close(u, criticalError), false);
+				if (configManager.Config.ErrorReports.AllowSend)
 				{
-					logsSender.SendIfNeed(engine.Config.ErrorReports.Directory);
+					logsSender.SendIfNeed(configManager.Config.ErrorReports.Directory);
 				}
 				Mt.Do(this, () => {
 						engine.Dispose();
@@ -159,9 +176,9 @@ namespace TBox
 
 		private void CreateEngine(IUpdater updater)
 		{
-			updater.Update( "Loading plugins...", 0 );
-			engine = new Engine(this, updater, uiConfigurator);
-			updater.Update( "Finish...", 1 );
+			updater.Update( TBoxLang.ProgressLoadingPlugins, 0 );
+			engine = new Engine(this, updater, uiConfigurator, configManager);
+			updater.Update( TBoxLang.ProgressFinish, 1 );
 			InfoLog.Write("Create engine time: {0}", Environment.TickCount - startTime);
 		}
 
@@ -177,43 +194,56 @@ namespace TBox
 
 		private void BtnSaveClick( object sender, RoutedEventArgs e )
 		{
-			ShowProgress( "Apply changes...", u => engine.Save(u, false));
-			if (engine.Config.HideOnSave) Close();
+			ShowProgress( TBoxLang.ProgressApplyChanges, u => engine.Save(u, false));
+			if (configManager.Config.HideOnSave) Close();
 		}
 
 		private void BtnReloadClick( object sender, RoutedEventArgs e )
 		{
-			ShowProgress("Reload plugins settins...", u =>
+			ShowProgress(TBoxLang.ProgressReloadPluginsSettings, u =>
 				{
 					engine.Load(u);
 					InitFastMenu();
 				});
-			if (engine.Config.HideOnCancel) Close();
-		}
-
-		private void BtnCloseClick( object sender, RoutedEventArgs e )
-		{
-			Close();
-		}
-
-		private void BtnFastStartClick(object sender, RoutedEventArgs e)
-		{
-			uiConfigurator.FastStartShower.ShowFastStart();
-			Close();
+			if (configManager.Config.HideOnCancel) Close();
 		}
 
 		private void SendFeedback(object sender, RoutedEventArgs e)
 		{
-			var r = DialogsCache.ShowMemoBox("Write some words or ideas about how to improve TBox.", "TBox - feedback", engine.Config.FeedBackMessage, x => !string.IsNullOrEmpty(x), this);
+			var r = DialogsCache.ShowMemoBox(TBoxLang.FeedbackMessage, TBoxLang.FeedbackCaption, engine.ConfigManager.Config.FeedBackMessage, x => !string.IsNullOrEmpty(x), this);
 			if (!r.Key) return;
-			engine.Config.FeedBackMessage = r.Value;
+			configManager.Config.FeedBackMessage = r.Value;
 			DialogsCache.ShowProgress(u =>
 			{
-				if (!feedbackSender.Send("feedback", engine.Config.FeedBackMessage))
+				if (!feedbackSender.Send("feedback", configManager.Config.FeedBackMessage))
 				{
 					Dispatcher.BeginInvoke(new Action(()=>Feedback.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent))));
 				}
-			}, "Sending feedback", this, false);
+			}, TBoxLang.FeedbackProgress, this, false);
+		}
+
+		public void GoBack()
+		{
+			PluginsBack.Content = View;
+			Description.Text = TBoxLang.DefaultMainViewDescription;
+			Title = TBoxLang.Caption;
+			BtnBack.IsEnabled = false;
+		}
+
+		private void BackClick(object sender, RoutedEventArgs e)
+		{
+			GoBack();
+            configManager.Config.FastStartConfig.IsFastStart = false;
+		}
+
+		private void BtnHelpClick(object sender, RoutedEventArgs e)
+		{
+			using (Process.Start("https://tbox.codeplex.com")) { }
+		}
+
+		private void BtnCloseClick(object sender, RoutedEventArgs e)
+		{
+			Close();
 		}
 	}
 }

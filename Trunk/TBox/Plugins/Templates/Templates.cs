@@ -8,19 +8,18 @@ using Common.Tools;
 using Common.UI.Model;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.Templates;
 using Templates.Code.Settings;
 using Templates.Components;
 using WPFControls.Code;
 using WPFControls.Dialogs.StateSaver;
-using WPFControls.Tools;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
 
 [assembly: InternalsVisibleTo("UnitTests")]
 namespace Templates
 {
-	[PluginName("Templates")]
-	[PluginDescription("Ability to create group of files and folders by template.\nFor example you can create localization.")]
+	[PluginInfo(typeof(TemplatesLang), typeof(Properties.Resources), PluginGroup.Desktop)]
 	public sealed class Templates : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly LazyDialog<FileDialog> fileDialog;
@@ -30,15 +29,12 @@ namespace Templates
 		{
 			fileDialog = new LazyDialog<FileDialog>(CreateDialog<FileDialog>, "templates");
 			stringDialog = new LazyDialog<StringDialog>(CreateDialog<StringDialog>, "strings");
-			Icon = Properties.Resources.Icon;
 		}
 
 		private T CreateDialog<T>()
 			where T : Window, new()
 		{
-			var d = new T();
-			d.SetIcon(Icon);
-			return d;
+			return new T{Icon = ImageSource};
 		}
 
 		public override void Init(IPluginContext context)
@@ -51,9 +47,9 @@ namespace Templates
 		{
  			base.OnConfigUpdated();
 			Menu = 
-				new []{new UMenuItem{Header = "Files and Folders", IsEnabled = false}}
+				new []{new UMenuItem{Header = TemplatesLang.FilesAndFolders, IsEnabled = false}}
 				.Concat(EnumerateDirectories())
-				.Concat(new[] { new USeparator(), new UMenuItem { Header = "Strings", IsEnabled = false } })
+                .Concat(new[] { new USeparator(), new UMenuItem { Header = TemplatesLang.Strings, IsEnabled = false } })
 				.Concat(EnumerateStrings())
 				.ToArray();
 		}

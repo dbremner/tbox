@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Common.MT;
 using Interface;
+using Localization.Plugins.ProjectMan;
 using WPFControls.Dialogs;
 using WPFWinForms;
 
@@ -18,28 +19,28 @@ namespace ProjectMan.Code
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
-				Header = "Update all",
+                Header = ProjectManLang.UpdateAll,
 				Icon = pluginContext.GetIcon(context.SvnProvider.Path, 3),
 				OnClick = o=>Run(u => Update(context, pathes, u))
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
-				Header = "Rebuild all in release",
+                Header = ProjectManLang.RebuildAllInRelease,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
 				OnClick = o => Run(u => Rebuild(context, "Release", pathes,u))
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
-				Header = "Rebuild all in debug",
+                Header = ProjectManLang.RebuildAllInDebug,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
 				OnClick = o => Run(u => Rebuild(context, "Debug", pathes,u))
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
-				Header = "Update and rebuild all in debug",
+                Header = ProjectManLang.UpdateAndRebuildAllInDebug,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
 				OnClick = o => Run(u => UpdateAndBuid(context, pathes,u))
 			});
@@ -87,7 +88,7 @@ namespace ProjectMan.Code
 
 		private static void Run(Action<IUpdater> task)
 		{
-			DialogsCache.ShowProgress(task, "Project manager process projects");
+            DialogsCache.ShowProgress(task, ProjectManLang.ProjectManagerProcessProjects);
 		}
 	}
 }

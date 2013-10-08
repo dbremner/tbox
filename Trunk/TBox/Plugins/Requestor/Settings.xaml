@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="Requestor.Settings"
+             xmlns:loc="clr-namespace:Requestor.Code.Localization"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,12 +9,12 @@
              mc:Ignorable="d" d:DesignHeight="360" d:DesignWidth="600" 
              >
     <DockPanel>
-        <GroupBox Header="Profile:" DockPanel.Dock="Top">
-            <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="Configure profile"/>
+        <GroupBox Header="{loc:Tr Profile}" DockPanel.Dock="Top">
+            <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="{loc:Tr ConfigureProfile}"/>
         </GroupBox>
         <TabControl>
-            <TabItem Header="Configure requests settings">
-                <Units:ListBoxUnit IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Ops}" UnitType="Text" Title="Configure operation">
+            <TabItem Header="{loc:Tr ConfigureRequestsSettings}">
+                <Units:ListBoxUnit IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Ops}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
                     <Units:ListBoxUnit.ItemTemplate>
                         <DataTemplate DataType="{x:Type Settings:Op}">
                             <DockPanel>

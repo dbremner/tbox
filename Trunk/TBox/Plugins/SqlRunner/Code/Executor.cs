@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Localization.Plugins.SqlRunner;
 using SqlRunner.Code.Settings;
 using WPFControls.Code;
 using WPFControls.Code.OS;
@@ -26,7 +27,7 @@ namespace SqlRunner.Code
 				      {
 					      message.LoadState(config.States);
 					      message.Value.ShowDialog(
-						      string.Format("Request '{0}' results, time: {1}", name, response.Time/1000.0),
+                              string.Format(SqlRunnerLang.RequestResultsTemplate, name, response.Time / 1000.0),
 						      BuildMessage(response), string.Empty, owner);
 				      }
 					);

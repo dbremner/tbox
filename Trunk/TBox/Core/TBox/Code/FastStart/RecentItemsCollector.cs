@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
 using TBox.Code.FastStart.Settings;
 using TBox.Code.Menu;
+using WPFControls.Components.ButtonsView;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace TBox.Code.FastStart
 {
@@ -46,7 +49,7 @@ namespace TBox.Code.FastStart
 			}
 		}
 
-		public IEnumerable<MenuItemStatistic> GetStatistic(int count)
+		public IButtonInfo[] GetStatistic(int count, Action action)
 		{
 			lock (menuItems)
 			{
@@ -54,7 +57,16 @@ namespace TBox.Code.FastStart
 					.Where(x=>x.IsValid)
 					.OrderBy(x => -x.Count)
 					.Take(count)
-					.Select(x=>x.Clone())
+					.Select(x=>(IButtonInfo)new ButtonInfo
+					{
+						Name = x.Path,
+						Icon = x.Icon.ToImageSource(),
+						Handler = (o, e) =>
+						{
+							action();
+							x.OnClick(e);
+						}
+					})
 					.ToArray();
 			}
 		}

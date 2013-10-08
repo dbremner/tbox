@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Common.Network;
+using Localization.Plugins.Requestor;
 using Requestor.Code.Settings;
 using Requestor.Components;
 using WPFControls.Code;
@@ -27,7 +28,7 @@ namespace Requestor.Code
 				() =>
 					{
 						message.LoadState(config.States);
-						message.Value.ShowDialog(string.Format("Request '{0}' results, time: {1}", name, response.Time/1000.0), response, owner);
+                        message.Value.ShowDialog(string.Format(RequestorLang.RequestTemplate, name, response.Time / 1000.0), response, owner);
 					});
 		}
 

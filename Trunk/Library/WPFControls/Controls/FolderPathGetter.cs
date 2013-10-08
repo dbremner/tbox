@@ -1,4 +1,5 @@
-﻿using WPFControls.Dialogs;
+﻿using LibsLocalization.WPFControls;
+using WPFControls.Dialogs;
 
 namespace WPFControls.Controls
 {
@@ -6,20 +7,17 @@ namespace WPFControls.Controls
 	{
 		private readonly string caption;
 
-        public FolderPathGetter(string caption = "Select folder")
+        public FolderPathGetter(string caption = null)
 		{
-			this.caption = caption;
+			this.caption = caption??WPFControlsLang.SelectFolder;
 		}
 
 		public bool Get(ref string path)
 		{
 			var result = DialogsCache.ShowInputFolderPath(caption, path);
-			if( result.Key )
-			{
-				path = result.Value;
-				return true;
-			}
-			return false;
+			if (!result.Key) return false;
+			path = result.Value;
+			return true;
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using LibsLocalization.WPFControls;
 using WPFControls.Dialogs;
 
 namespace WPFControls.Code
@@ -21,7 +22,7 @@ namespace WPFControls.Code
 		{
 			if (!IsValueCreated)
 			{
-				DialogsCache.ShowProgress(u => syncronizer(()=>action(Value)), "Create dialog..");
+				DialogsCache.ShowProgress(u => syncronizer(()=>action(Value)), WPFControlsLang.CreateDialog);
 			}
 			else action(Value);
 		}

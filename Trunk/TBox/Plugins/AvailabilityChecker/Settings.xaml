@@ -1,5 +1,6 @@
 ﻿<UserControl x:Class="AvailabilityChecker.Settings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:AvailabilityChecker.Code.Localization"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,12 +9,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
-        <TabItem Header="Web sites urls and local shares to test">
-            <units:CheckableListBoxUnit UnitType="Text" Title="Specify resource url" ItemsSource="{Binding Items}"/>
+        <TabItem Header="{loc:Tr WebSitesUrls}">
+            <units:CheckableListBoxUnit UnitType="Text" Title="{loc:Tr 	SpecifyResourceUrl}" ItemsSource="{Binding Items}"/>
         </TabItem>
-        <TabItem Header="Advanced">
+        <TabItem Header="{loc:Tr Advanced}">
             <StackPanel>
-                <captioned:CaptionedNumericUpDown Caption="Check interval:" Value="{Binding CheckInterval}" Minimum="1" Maximum="86400" Margin="1" />
+                <captioned:CaptionedNumericUpDown Caption="{loc:Tr CheckInterval}" Value="{Binding CheckInterval}" Minimum="1" Maximum="86400" Margin="1" />
             </StackPanel>
         </TabItem>
     </TabControl>

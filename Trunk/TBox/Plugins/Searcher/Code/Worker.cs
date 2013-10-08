@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using Common.MT;
+using Localization.Plugins.Searcher;
 using Searcher.Code.Settings;
 using Searcher.Components;
 using WPFControls.Code;
@@ -62,7 +63,7 @@ namespace Searcher.Code
 			else
 			{
 				BeginOperation();
-				DialogsCache.ShowProgress(Init, "Load indexes..");
+                DialogsCache.ShowProgress(Init, SearcherLang.LoadIndexes);
 			}
 		}
 
@@ -85,7 +86,7 @@ namespace Searcher.Code
 		public void RebuildIndexes()
 		{
 			BeginOperation();
-			DialogsCache.ShowProgress(u => DoMakeIndexes(u), "Create indexes..");
+			DialogsCache.ShowProgress(u => DoMakeIndexes(u), SearcherLang.CreateIndexes);
 		}
 
 		private void ShowDialog(bool success)

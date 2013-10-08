@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Common.Base.Log;
-using Common.Data;
 using Common.Tools;
 using Interface;
+using Localization.TBox;
 using TBox.Code.AutoUpdate;
 using TBox.Code.FastStart;
 using TBox.Code.Managers;
@@ -15,14 +16,15 @@ using TBox.Code.Menu;
 using TBox.Code.Objects;
 using TBox.Forms;
 using WPFControls.Code.OS;
+using WPFControls.Components.ButtonsView;
 using WPFWinForms;
+using Button = System.Windows.Controls.Button;
 
 namespace TBox.Code
 {
 	class UiConfigurator : IDisposable
 	{
 		private static readonly ILog InfoLog = LogManager.GetInfoLogger<UiConfigurator>();
-		private readonly ListBox pluginsList;
 		private readonly PluginsSettings pluginsSettings;
 		private readonly IMenuItemsProvider menuItemsProvider;
 		private readonly ControlsMan controlsMan;
@@ -34,29 +36,38 @@ namespace TBox.Code
 
 
 		public UiConfigurator(
-			ListBox pluginsList, 
+			GroupedList view, 
 			ContentControl pluginsBack,
+			Button btnBack,
 			PluginsSettings pluginsSettings,
 			IMenuItemsProvider menuItemsProvider,
 			MenuCallsVisitor menuCallsVisitor,
-			FastStartDialog fastStartDialog,
 			IEnumerable<UMenuItem> menuItems,
-			IEnumerable<Pair<PluginName, Control>> existWindows,
-			Action<PluginName> onPluginSettingsChanged
+			IEnumerable<EnginePluginInfo> existWindows,
+			Action<EnginePluginInfo> onPluginSettingsChanged
 			)
 		{
-			this.pluginsList = pluginsList;
 			this.pluginsSettings = pluginsSettings;
 			this.menuItemsProvider = menuItemsProvider;
-			FastStartShower = new FastStartShower(() => ((MainWindow)Application.Current.MainWindow).ShowAndActivate(), fastStartDialog.ShowAndActivate);
+			controlsMan = new ControlsMan(view, pluginsBack, btnBack, onPluginSettingsChanged);
+			var main = ((MainWindow) Application.Current.MainWindow);
+			FastStartShower = new FastStartShower(
+				() =>
+				{
+					main.ShowAndActivate();
+					main.GoBack();
+				},
+				() =>
+				{
+					main.ShowAndActivate();
+					controlsMan.GoTo(TBoxLang.FastStart);
+				});
 
-			controlsMan = new ControlsMan(pluginsList, pluginsBack, onPluginSettingsChanged);
 			if (existWindows != null)
 			{
 				foreach (var w in existWindows)
 				{
-					var ctrl = w;
-					controlsMan.Add(w.Key, ()=>ctrl.Value);
+					controlsMan.Add(w);
 				}
 			}
 			menuMan = new MenuMan(menuItems.ToArray(), menuCallsVisitor);
@@ -70,14 +81,19 @@ namespace TBox.Code
 				cfg = config;
 				pluginsSettings.Init(appUpdater);
 				pluginsSettings.Collection.Clear();
-				foreach (var info in toAdd)
-				{
-					pluginsSettings.Collection.Add(info);
-				}
+				pluginsSettings.Collection.AddRange(toAdd.OrderBy(x=>x.Name));
 				pluginsSettings.Load(config);
+			});
+		}
+
+		public void ShowTrayIcon(Window owner)
+		{
+			Mt.Do(Sync, () =>
+			{
 				notifyIconMan = new NotifyIconMan(owner, Properties.Resources.Icon, o => FastStartShower.Show());
 				notifyIconMan.NotifyIcon.MouseClick += NotifyIconOnMouseClick;
 			});
+			DoHoldOperation(() =>{});
 		}
 
 		private void NotifyIconOnMouseClick(MouseButton mouseButton)
@@ -96,9 +112,8 @@ namespace TBox.Code
 				{
 				menuItemsProvider.Refresh(menuMan.MenuItems.ToArray());
 				notifyIconMan.SetMenuItems(menuMan.MenuItems, cfg.UseMenuWithIcons);
-				notifyIconMan.NotifyIcon.HoverText = "TBox. Load " + menuMan.Count + " plugin(s).";
-				pluginsList.Items.Refresh();
-				controlsMan.UpdateSelection();
+				notifyIconMan.NotifyIcon.HoverText = string.Format(TBoxLang.ToolTipTemplate, menuMan.Count);
+				controlsMan.Refresh();
 			});
 			InfoLog.Write("Refresh menu and plugins settings time: {0}", Environment.TickCount - time);
 		}
@@ -121,7 +136,7 @@ namespace TBox.Code
 				}
 				menuItemsProvider.Refresh(name, pluginMenu);
 				notifyIconMan.UpdateSubMenuItems(name, pluginMenu);
-				notifyIconMan.NotifyIcon.HoverText = "ToolBox. Load " + menuMan.Count + " plugin(s).";
+				notifyIconMan.NotifyIcon.HoverText = string.Format(TBoxLang.ToolTipTemplate, menuMan.Count);
 			});
 		}
 
@@ -157,32 +172,20 @@ namespace TBox.Code
 			pluginsSettings.Save(config);
 		}
 
-		public PluginUi InitPlugin(IPlugin plugin, string key)
+		public EnginePluginInfo InitPlugin(IPlugin plugin, string key)
 		{
-			Func<Control> settingsGetter = null;
-			var cfgPlg = plugin as IConfigurablePlugin;
-			if (cfgPlg != null)
-			{
-				settingsGetter = cfgPlg.SettingsGetter;
-			}
 			var info = pluginsSettings.Collection.First(x => key.EqualsIgnoreCase(x.Key));
-			var menu = plugin.Menu;
 			info.Plugin = plugin;
-			return new PluginUi
-				       {
-						   Key = key,
-					       Name = new PluginName(info.Name, info.Description), 
-						   Icon = plugin.Icon, 
-						   Menu = menu, 
-						   Settings = settingsGetter
-				       };
+			plugin.Icon = info.Icon;
+			plugin.ImageSource = info.ImageSource;
+			return info;
 		}
 
 		public void Remove(string key)
 		{
 			var info = pluginsSettings.Collection.First(x => key.EqualsIgnoreCase(x.Key));
 			menuMan.Remove(info.Name);
-			controlsMan.Remove(info.Name);
+			controlsMan.Remove(key);
 		}
 
 		public IEnumerable<string> GetPluginsStates(IList<string> toAdd, IList<string> toRemove, IList<string> disabledBefore, PluginsMan plugMan )
@@ -198,7 +201,7 @@ namespace TBox.Code
 				else if (enabled)
 				{
 					var plugin = plugMan.Get(name);
-					menuMan.Change(t.Name, plugin.Icon, plugin.Menu);
+					menuMan.Change(t.Name, t.Icon, plugin.Menu);
 				}
 				if (!enabled)
 				{
@@ -215,12 +218,12 @@ namespace TBox.Code
 
 		public Control Sync { get { return pluginsSettings; } }
 
-		public void InitUi(List<PluginUi> ret)
+		public void InitUi(List<EnginePluginInfo> ret)
 		{
-			foreach (var p in ret.OrderBy(x=>x.Name.ToString()))
+			foreach (var p in ret.OrderBy(x=>x.Name.ToString(CultureInfo.InvariantCulture)))
 			{
-				if (p.Menu != null) menuMan.Add(p.Name.Name, p.Icon, p.Menu);
-				if (p.Settings != null) controlsMan.Add(p.Name, p.Settings);
+				if (p.Settings != null) controlsMan.Add(p);
+				if (p.Menu != null) menuMan.Add(p.Name, p.Icon, p.Menu);
 			}
 		}
 	}

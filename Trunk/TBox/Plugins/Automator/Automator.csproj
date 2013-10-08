@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Automater.cs" />
     <Compile Include="Code\IRunner.cs" />
+    <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\Runner.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Settings\Profile.cs" />
@@ -107,6 +108,11 @@
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Library\ScriptEngine\ScriptEngine.csproj">
+      <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>
+      <Name>ScriptEngine</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
       <Name>WPFControls</Name>
@@ -127,13 +133,12 @@
       <Name>Interface</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\ScriptEngine\ScriptEngine.csproj">
-      <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>
-      <Name>ScriptEngine</Name>
+    <ProjectReference Include="..\..\Localization\Localization.csproj">
+      <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
+      <Name>Localization</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,29 +1,27 @@
 ﻿using System;
-using System.Text;
 using System.Windows;
 using FileWatcher.Code;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.FileWatcher;
 using PluginsShared.Watcher;
 using WPFWinForms;
 
 namespace FileWatcher
 {
-	[PluginName("File watcher")]
-	[PluginDescription("Ability to watch for the set of logs at real time.\nAnd see all the information in one stream with tray indicator.")]
+	[PluginInfo(typeof(FileWatcherLang), 55, PluginGroup.Desktop)]
 	public sealed class FileWatcher : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private LogDialog dialog;
-		private const string Title = "File Watcher";
 		private Lazy<Worker<LogDialog>> worker; 
-		private static readonly string[] StartStop = new[] {"Start", "Stop"}; 
+		private static readonly string[] StartStop = {FileWatcherLang.Start, FileWatcherLang.Stop}; 
 		public FileWatcher()
 		{
 			Menu = new []{
 				new UMenuItem{Header = StartStop[0], OnClick = o=>OnStartStop()},
-				new UMenuItem{Header = "Show Logs...", OnClick = o=>OnShowLogs()}, 
-				new UMenuItem{Header = "Fill From Clipboard...", OnClick = o=>OnFillFromClipboard()}, 
-				new UMenuItem{Header = "Clear", OnClick = o=>OnClear()}
+				new UMenuItem{Header = FileWatcherLang.ShowLogs, OnClick = o=>OnShowLogs()}, 
+				new UMenuItem{Header = FileWatcherLang.FillFromClipboard, OnClick = o=>OnFillFromClipboard()}, 
+				new UMenuItem{Header = FileWatcherLang.Clear, OnClick = o=>OnClear()}
 			};
 		}
 
@@ -31,16 +29,15 @@ namespace FileWatcher
 		{
 			worker.Value.ClearLogs();
 			InitLogDialog();
-			worker.Value.Write("clipboard", Clipboard.GetText());
+			worker.Value.Write(FileWatcherLang.Clipboard, Clipboard.GetText());
 			worker.Value.ShowLogsList();
 		}
 
 		public override void Init(IPluginContext context)
 		{
 			base.Init(context);
-			Icon = Context.GetSystemIcon(55);
 			worker = new Lazy<Worker<LogDialog>>(
-				() => new Worker<LogDialog>(dialog = new LogDialog(Icon), new DataParser(), Title, Config)); 
+				() => new Worker<LogDialog>(dialog = new LogDialog(ImageSource), new DataParser(), FileWatcherLang.PluginName, Config)); 
 		}
 
 		private void OnClear()
@@ -81,7 +78,7 @@ namespace FileWatcher
 
 		private void InitLogDialog()
 		{
-			worker.Value.Log.Dialog.Title = Title;
+			worker.Value.Log.Dialog.Title = FileWatcherLang.PluginName;
 			worker.Value.Log.Dialog.MaxEntries = Config.MaxEntriesInLog;
 			dialog.Init(Config.EntryRegularExpression);
 		}

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Interface;
+using Localization.Plugins.ProjectMan;
 using WPFWinForms;
 
 namespace ProjectMan.Code
@@ -18,7 +19,7 @@ namespace ProjectMan.Code
 			{
 				menu.Add(new UMenuItem
 				{
-					Header = "Show my changes: " + Path.GetFileName(dir),
+					Header = ProjectManLang.ShowMyChanges + ": " + Path.GetFileName(dir),
 					Icon = pluginContext.GetIcon(context.SvnProvider.Path, 0),
 					OnClick = o => context.SvnProvider.Do("log", dir, "/findtype:260 /findstring:" + userName)
 				});

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms.Integration;
 using Common.Tools;
+using LibsLocalization.WPFSyntaxHighlighter;
 using ScintillaNET;
 using WPFControls.Controls;
 using WPFControls.Tools;
@@ -32,8 +34,8 @@ namespace WPFSyntaxHighlighter
 			ItemsSource = new[] { "asm", "cpp", "html", "js", "css", "mssql", "python", "text", "vbscript", "xml" },
 			SelectedIndex = 7,
 		};
-		private readonly ExtCheckBox sbWordWrap = new ExtCheckBox { Content = "Word wrap" };
-		private readonly ExtCheckBox sbWhitespaces = new ExtCheckBox { Content = "Whitespaces" };
+		private readonly ExtCheckBox sbWordWrap = new ExtCheckBox { Content = WPFSyntaxHighlighterLang.WordWrap };
+		private readonly ExtCheckBox sbWhitespaces = new ExtCheckBox { Content = WPFSyntaxHighlighterLang.Whitespaces };
 		private readonly StatusBarItem sbSize = new StatusBarItem();
 		private readonly WindowsFormsHost wfh;
 		private readonly Scintilla editor = new Scintilla
@@ -49,14 +51,14 @@ namespace WPFSyntaxHighlighter
 			var panel = new DockPanel();
 			panel.Children.Add(statusBar);
 			DockPanel.SetDock(statusBar, Dock.Bottom);
-			statusBar.Items.Add(new StatusBarItem {Content = "Hightlight:"});
+			statusBar.Items.Add(new StatusBarItem {Content = WPFSyntaxHighlighterLang.Hightlight});
 			cbFormats.SelectionChanged += CbFormatsSelectionChanged;
 			statusBar.Items.Add(new StatusBarItem { Content = cbFormats });
 			sbWordWrap.ValueChanged += sbWordWrap_Checked;
 			statusBar.Items.Add(new StatusBarItem { Content = sbWordWrap });
 			sbWhitespaces.ValueChanged += sbWhitespaces_Checked;
 			statusBar.Items.Add(new StatusBarItem { Content = sbWhitespaces });
-			statusBar.Items.Add(new StatusBarItem { Content = "Size:", Margin = new Thickness(10, 0, 0, 0) });
+			statusBar.Items.Add(new StatusBarItem { Content = WPFSyntaxHighlighterLang.Size, Margin = new Thickness(10, 0, 0, 0) });
 			statusBar.Items.Add(sbSize);
 
 			editor.Margins.Margin0.Width = 32;
@@ -156,22 +158,25 @@ namespace WPFSyntaxHighlighter
 
 		}
 
-        public void Read(StreamReader s)
-        {
-            ApplyValue(()=>
-            {
-                editor.ResetText();
-                var i = 0;
-                var buf = new char[32000];
-                while (!s.EndOfStream)
-                {
-                    if (i != 0) editor.AppendText(Environment.NewLine);
-                    var size = s.ReadBlock(buf, 0, buf.Length);
-                    i += size;
-                    editor.AppendText(new string(buf,0,size));
-                }
-            });
-        }
+		public void Read(string path)
+		{
+			ApplyValue(() =>
+			{
+				using (var s = new StreamReader(path, Encoding.UTF8))
+				{
+					editor.ResetText();
+					var i = 0;
+					var buf = new char[32000];
+					while (!s.EndOfStream)
+					{
+						if (i != 0) editor.AppendText(Environment.NewLine);
+						var size = s.ReadBlock(buf, 0, buf.Length);
+						i += size;
+						editor.AppendText(new string(buf, 0, size));
+					}
+				}
+			});
+		}
 
 	    private void ApplyValue(Action setter)
 	    {

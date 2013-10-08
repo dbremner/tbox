@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Media;
 using WPFWinForms;
 
 namespace Interface
@@ -7,7 +8,9 @@ namespace Interface
 	{
 		public IPluginContext Context { get; private set; } 
 		public UMenuItem[] Menu { get; protected set; }
-		public Icon Icon { get; protected set; }
+		public ImageSource ImageSource { get; set; }
+		public Icon Icon { get; set; }
+		public PluginGroup PluginGroup { get; set; }
 
 		public virtual void Init(IPluginContext context)
 		{

@@ -13,6 +13,7 @@ using Common.Base;
 using Common.Base.Log;
 using Common.Console;
 using Common.Tools;
+using Localization.Plugins.Searcher;
 using Searcher.Code.Finders.Parsers;
 using Searcher.Code.Finders.Search;
 using WPFControls.Tools;
@@ -30,7 +31,6 @@ namespace Searcher.Components
 		private static readonly ILog Log = LogManager.GetLogger<SearchDialog>();
 		private Config config;
 		private readonly DataTable filesTable = new DataTable();
-		private readonly SearchAdder searchAdder = new SearchAdder();
 		private SearchEngine searchEngine;
 		private bool disableSearch = false;
 		private readonly Stopwatch sw = new Stopwatch();
@@ -139,7 +139,7 @@ namespace Searcher.Components
 			{
 				sw.Restart();
 				var path = GetSelectedFilePath();
-				Title = string.Format("Searcher - [ {0} ]", path);
+                Title = string.Format("{1} - [ {0} ]", path, SearcherLang.PluginName);
 				edText.Clear();
 				edText.Format = GetSelectedFileExt();
 			    edText.Read(path);
@@ -150,7 +150,7 @@ namespace Searcher.Components
 			catch (Exception ex)
 			{
 				Log.Write(ex, "Internal error.");
-				edText.Value = Properties.Resources.ErrorLoadingFile;
+                edText.Value = SearcherLang.ErrorLoadingFile;
 				edText.Format = string.Empty;
 				sbiLoadFileTime.Content = string.Empty;
 			}
@@ -218,7 +218,7 @@ namespace Searcher.Components
 			var files = new HashSet<int>();
 			if (!string.IsNullOrWhiteSpace(searchText))
 			{
-				searchAdder.Words.Clear();
+				var searchAdder = new SearchAdder();
 				if (config.Search.SearchMode == SearchMode.FileNames)
 				{
 					searchAdder.Words.Add(searchText);
@@ -271,7 +271,22 @@ namespace Searcher.Components
 			try
 			{
 				var path = searchEngine.FileInformer.GetFilePath(i);
-				return File.Exists(path) && NativeBoost.FileSystem.FileContains(path, searchText, config.Search.MatchCase);
+				if (!File.Exists(path)) return false;
+				var comparationType = config.Search.MatchCase ? 
+					StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
+				using (var s = new StreamReader(path, Encoding.UTF8))
+				{
+					while (!s.EndOfStream)
+					{
+						var line = s.ReadLine();
+						if (!string.IsNullOrEmpty(line) && line.IndexOf(searchText, comparationType) > -1)
+						{
+							return true;
+						}
+					}
+					return false;
+				}
+
 			}
 			catch (Exception)
 			{

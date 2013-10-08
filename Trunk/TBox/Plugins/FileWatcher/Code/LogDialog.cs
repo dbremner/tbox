@@ -3,9 +3,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
 using Common.Base.Log;
 using Common.Tools;
 using FileWatcher.Components;
+using Localization.Plugins.FileWatcher;
 using PluginsShared.Watcher;
 using WPFControls.Dialogs;
 using WPFControls.Tools;
@@ -25,10 +27,9 @@ namespace FileWatcher.Code
 			remove { Dialog.OnClear -= value; }
 		}
 
-		public LogDialog(Icon icon)
+		public LogDialog(ImageSource icon)
 		{
-			Dialog = new MemoBoxLog{Title = "FileWatcher"};
-			Dialog.SetIcon(icon);
+			Dialog = new MemoBoxLog{Title = FileWatcherLang.PluginName, Icon = icon};
 		}
 
 		public void ShowLogs()

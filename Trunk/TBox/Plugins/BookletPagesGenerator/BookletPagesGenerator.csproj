@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="BookletPagesGenerator.cs" />
     <Compile Include="Code\Config.cs" />
+    <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\PageGenerator.cs" />
     <Compile Include="Code\PagePrinter.cs" />
     <Compile Include="Code\Pages.cs" />
@@ -93,6 +94,11 @@
     <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
       <Name>Interface</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Localization\Localization.csproj">
+      <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
+      <Name>Localization</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

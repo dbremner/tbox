@@ -2,12 +2,12 @@
 using AvailabilityChecker.Code;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.AvailabilityChecker;
 using WPFWinForms;
 
 namespace AvailabilityChecker
 {
-	[PluginName("Availability checker")]
-	[PluginDescription("Check by timer, availability of the shared folders and web sites.")]
+	[PluginInfo(typeof(AvailabilityCheckerLang), 10, PluginGroup.Web)]
 	public sealed class AvailabilityChecker : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly Lazy<Worker> worker;
@@ -22,12 +22,6 @@ namespace AvailabilityChecker
 				});
 		}
 
-		public override void Init(IPluginContext context)
-		{
-			base.Init(context);
-			Icon = context.GetSystemIcon(10);
-		}
-
 		public override void OnRebuildMenu()
 		{
 			base.OnRebuildMenu();
@@ -35,7 +29,7 @@ namespace AvailabilityChecker
 			Menu = new[] {
 					new UMenuItem {
 							IsEnabled = enabled,
-							Header = Config.Started ? "Stop" : "Start",
+							Header = Config.Started ? AvailabilityCheckerLang.Stop : AvailabilityCheckerLang.Start,
 							OnClick = o =>
 								{
 									worker.Value.OnStartStop();

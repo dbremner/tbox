@@ -117,45 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnRebuild" xml:space="preserve">
-    <value>Rebuild</value>
-  </data>
-  <data name="btnStop" xml:space="preserve">
-    <value>Stop</value>
-  </data>
-  <data name="CalcDirsCount" xml:space="preserve">
-    <value>Calculating directories count...</value>
-  </data>
-  <data name="ErrorCaption" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="ErrorLoadingFile" xml:space="preserve">
-    <value>Sorry, can't load file!</value>
-  </data>
-  <data name="ProgressString" xml:space="preserve">
-    <value>Directories: {0}  time: {1}s  speed: {2} kb/s</value>
-  </data>
-  <data name="Starting_CollectMemory" xml:space="preserve">
-    <value>Collect memory</value>
-  </data>
-  <data name="Starting_CreatingEngine" xml:space="preserve">
-    <value>Creating engine</value>
-  </data>
-  <data name="Starting_LoadingFileData" xml:space="preserve">
-    <value>Loading file data</value>
-  </data>
-  <data name="Starting_LoadingFileNames" xml:space="preserve">
-    <value>Loading file names</value>
-  </data>
-  <data name="TextToSearch" xml:space="preserve">
-    <value>Text to search:</value>
-  </data>
-  <data name="ToBigFile" xml:space="preserve">
-    <value>To big file: {0}!</value>
-  </data>
-  <data name="IndexSettings" xml:space="preserve">
-    <value>Index settings</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

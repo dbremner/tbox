@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="TeamManager.Settings"
+             xmlns:loc="clr-namespace:TeamManager.Code.Localization"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,14 +9,14 @@
              xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls">
     <TabControl>
-        <TabItem Header="Persons">
-            <Units:CheckableListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="Configure persons" />
+        <TabItem Header="{loc:Tr Persons}">
+            <Units:CheckableListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" />
         </TabItem>
-        <TabItem Header="Advanced">
+        <TabItem Header="{loc:Tr Advanced}">
             <StackPanel>
-                <captioned:CaptionedTextBox Value="{Binding UserEmail}" Caption="User email:" Margin="5"/>
-                <captioned:CaptionedTextBox Value="{Binding UserPassword}" Caption="User pasword:" Margin="5"/>
-                <captioned:CaptionedTextBox Value="{Binding ProjectManagerUrl}" Caption="Project manager url:" Margin="5"/>
+                <captioned:CaptionedTextBox Value="{Binding UserEmail}" Caption="{loc:Tr UserEmail}" Margin="5"/>
+                <captioned:CaptionedTextBox Value="{Binding UserPassword}" Caption="{loc:Tr UserPasword}" Margin="5"/>
+                <captioned:CaptionedTextBox Value="{Binding ProjectManagerUrl}" Caption="{loc:Tr ProjectManagerUrl}" Margin="5"/>
             </StackPanel>
         </TabItem>
     </TabControl>

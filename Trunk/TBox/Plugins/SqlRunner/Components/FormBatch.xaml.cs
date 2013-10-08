@@ -2,6 +2,7 @@
 using System.Text;
 using System.Windows;
 using Common.MT;
+using Localization.Plugins.SqlRunner;
 using SqlRunner.Code;
 using SqlRunner.Code.Settings;
 using WPFControls.Code;
@@ -36,7 +37,7 @@ namespace SqlRunner.Components
 			}
 			this.profile = profile;
 			this.config = config;
-			Title = "Batch run: [" + profile.Key + "]";
+			Title = SqlRunnerLang.BatchRun + ": [" + profile.Key + "]";
 			Ops.ItemsSource = profile.Ops;
 			ConnectionStrings.ItemsSource = config.ConnectionStrings;
 			OnCheckChanged(null, null);
@@ -45,7 +46,7 @@ namespace SqlRunner.Components
 
 		private void StartClick(object sender, RoutedEventArgs e)
 		{
-			DialogsCache.ShowProgress(Work, "Run scripts", this);
+            DialogsCache.ShowProgress(Work, SqlRunnerLang.RunScripts, this);
 		}
 
 		private void Work(IUpdater u)
@@ -61,9 +62,9 @@ namespace SqlRunner.Components
 					var r = BaseExecutor.GetResult(str.Key, op);
 					sb.AppendFormat("[{0}] {1}", str.Key, op.Key)
 						.AppendLine()
-						.AppendFormat("Time:{0}, status: {1}", r.Time, r.Status)
+                        .AppendFormat(SqlRunnerLang.ResultsTemplate1, r.Time, r.Status)
 						.AppendLine()
-						.AppendFormat("Body: {0}", r.Body)
+                        .AppendFormat(SqlRunnerLang.ResultsTemplate2, r.Body)
 						.AppendLine()
 						.AppendLine();
 				}

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
+using Localization.Plugins.NUnitRunner;
 using NUnitRunner.Code.Settings;
 using PluginsShared.UnitTests;
 using PluginsShared.UnitTests.Interfaces;
@@ -92,7 +93,7 @@ namespace NUnitRunner.Components
 			Mt.Do(this,
 				  () =>
 				  {
-					  Title = string.Format("{0} - tests: [ {1} ], failed = [ {2} ], time: {3:0.0}",
+                      Title = string.Format(NUnitRunnerLang.TestsStateTemplate,
 											originalCaption,
 											packages.Sum(x => x.Count), packages.Sum(x => x.FailedCount),
 											(Environment.TickCount - time) / 1000.0);

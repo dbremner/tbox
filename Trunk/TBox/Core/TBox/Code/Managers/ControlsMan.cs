@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 using Common.Base.Log;
-using Common.Tools;
+using Localization.TBox;
 using TBox.Code.Objects;
+using WPFControls.Components.ButtonsView;
 
 namespace TBox.Code.Managers
 {
@@ -12,77 +14,96 @@ namespace TBox.Code.Managers
 	{
 		private static readonly ILog Log = LogManager.GetLogger<ControlsMan>();
 		private static readonly ILog InfoLog = LogManager.GetInfoLogger<ControlsMan>();
+		private readonly Action<EnginePluginInfo> onPluginChanged;
+		private readonly GroupedList view;
 		private readonly ContentControl owner;
-		private readonly Action<PluginName> onPluginChanged;
-		private readonly ListBox itemsList;
- 		private readonly List<ItemContainer> items = new List<ItemContainer>();
+		private readonly Button btnBack;
+		private readonly object locker = new object();
+		public List<IButtonInfo> Items { get; set; }
 
-		public ControlsMan(ListBox itemsList, ContentControl owner, Action<PluginName> onPluginChanged)
+		public ControlsMan(GroupedList view, ContentControl owner, Button btnBack, Action<EnginePluginInfo> onPluginChanged)
 		{
-			this.itemsList = itemsList;
+			this.view = view;
 			this.owner = owner;
+			this.btnBack = btnBack;
 			this.onPluginChanged = onPluginChanged;
-			this.itemsList.ItemsSource = items;
-			this.itemsList.SelectionChanged += SelectPlugin;
+			Items = new List<IButtonInfo>();
 		}
 
-		public int Count
+		private IButtonInfo FindItemByName(string key)
 		{
-			get { return itemsList.Items.Count; }
+			return Items.FirstOrDefault(x => string.Equals(x.Name, key));
 		}
 
-		private void SelectPlugin(object sender, SelectionChangedEventArgs e)
+		private IButtonInfo FindItemByKey(string key)
 		{
-			var id = itemsList.SelectedIndex;
-			if (id < 0) return;
+			return Items.Cast<ExtButtonInfo>().FirstOrDefault(x => string.Equals(x.Key, key));
+		}
+
+		public void Add(EnginePluginInfo info)
+		{
+			lock (locker)
+			{
+
+				var groupName = GetName(info);
+				var button = FindItemByName(info.Key);
+				if (button != null)
+				{
+					Log.Write("Duplicate item: {0}!", info.Key);
+					return;
+				}
+				Items.Add(new ExtButtonInfo
+				{
+					Key = info.Key,
+					Name = info.Name,
+					Icon = info.ImageSource,
+					Handler = (o, e) => OnSelectPlugin(info),
+					GroupName = groupName
+				});
+			}
+		}
+
+		private static string GetName(EnginePluginInfo info)
+		{
+			var groupName = info is EngineSettingsInfo ? "AppName" : info.PluginGroup.ToString();
+			groupName = TBoxLang.ResourceManager.GetString(groupName);
+			return groupName;
+		}
+
+		private void OnSelectPlugin(EnginePluginInfo info)
+		{
+			owner.Content = null;
 			var time = Environment.TickCount;
-			var item = items[id];
-			owner.Content = item.Getter();
-			InfoLog.Write("Open settings for '{0}', time: {1}", item.Key.Name, Environment.TickCount - time);
-			onPluginChanged(item.Key);
+			owner.Content = info.Settings();
+			InfoLog.Write("Open settings for '{0}', time: {1}", info.Key, Environment.TickCount - time);
+			btnBack.IsEnabled = true;
+			onPluginChanged(info);
 		}
 
-		private ItemContainer FindContainer(string name)
+		public void Remove(string key)
 		{
-			return items.FirstOrDefault(x => x.ToString() == name);
-		}
-
-		public void Add(PluginName name, Func<Control> ctrlGetter)
-		{
-			var item = FindContainer(name.Name);
-			if( item!=null )
+			lock (locker)
 			{
-				Log.Write("Duplicate item: {0}!", name.Name);
-				return;
-			}
-			items.Insert(new ItemContainer(name , ctrlGetter), x=>x.Key.Name, 1, items.Count);
-		}
-
-		public void Remove(string name)
-		{
-			var find = FindContainer(name);
-			if(find!=null)
-			{
-				items.Remove(find);
-			}
-		}
-
-		public void UpdateSelection()
-		{
-			if (itemsList.Items.Count == 0)
-			{
-				Log.Write("Can't select first item!");
-				return;
-			}
-			if(itemsList.SelectedIndex == -1)
-			{
-				itemsList.SelectedIndex = 0;
+				var x = FindItemByKey(key);
+				Items.Remove(x);
 			}
 		}
 
 		public void Refresh()
 		{
-			itemsList.Items.Refresh();
+			if (view.DataContext == null)
+			{
+				view.DataContext = this;
+				var dview = (CollectionView)CollectionViewSource.GetDefaultView(view.ItemsSource);
+				dview.GroupDescriptions.Add(new PropertyGroupDescription("GroupName"));
+			}
+			view.Items.Refresh();
+		}
+
+		public void GoTo(string name)
+		{
+			var item = FindItemByName(name);
+			if (item != null) item.Handler(null, null);
 		}
 	}
 }

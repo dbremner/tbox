@@ -10,6 +10,7 @@ using Automator.Code.Settings;
 using Common.Base;
 using Common.Base.Log;
 using Interface;
+using Localization.Plugins.Automator;
 using ScriptEngine.Core;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
@@ -55,21 +56,21 @@ namespace Automator.Components
 		private void BuildClick(object sender, RoutedEventArgs e)
 		{
 			var text = Source.Value;
-			DialogsCache.ShowProgress(u=>Build(text), "Building...", this);
+			DialogsCache.ShowProgress(u=>Build(text), AutomatorLang.Building, this);
 		}
 
 		private void Build(string text)
 		{
 			var sw = new Stopwatch();
 			sw.Start();
-			Func<string> time = ()=>Environment.NewLine + "Compilation time: " + sw.ElapsedMilliseconds + "ms.";
+			Func<string> time = () => Environment.NewLine + string.Format(AutomatorLang.CompilationTimeTemplate, sw.ElapsedMilliseconds);
 			try
 			{
 				using (var r = new Runner(config))
 				{
 					r.Build(text);
 				}
-				Mt.SetText(Output, "No errors" + time());
+				Mt.SetText(Output, AutomatorLang.NoErrors + time());
 			}
 			catch (CompilerExceptions cex)
 			{

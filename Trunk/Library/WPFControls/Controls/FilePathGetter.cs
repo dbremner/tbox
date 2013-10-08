@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using LibsLocalization.WPFControls;
 using WPFControls.Dialogs;
 
 namespace WPFControls.Controls
@@ -8,10 +9,10 @@ namespace WPFControls.Controls
 		private readonly string caption;
 		private readonly string filter;
 
-		public FilePathGetter(string caption = "Select file", string filter = "All files (*.*)|*.*")
+		public FilePathGetter(string caption = null, string filter = null)
 		{
-			this.filter = filter;
-			this.caption = caption;
+			this.filter = filter ?? WPFControlsLang.AllFiles;
+			this.caption = caption??WPFControlsLang.SelectFile;
 		}
 
 		public bool Get(ref string path)

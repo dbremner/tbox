@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows;
+using Localization.Plugins.NUnitRunner;
 using NUnitRunner.Code.Settings;
 using PluginsShared.UnitTests;
 using PluginsShared.UnitTests.Updater;
@@ -98,7 +99,7 @@ namespace NUnitRunner.Components
 			Mt.Do(this,
 				  () =>
 				  {
-					  Title = string.Format("{0} - tests: [ {1} ], failed = [ {2} ] time: {3:0.0}",
+                      Title = string.Format(NUnitRunnerLang.TestsStateTemplate,
 											Path.GetFileName(package.Path),
 											package.Count, package.FailedCount,
 											(Environment.TickCount - time) / 1000.0);

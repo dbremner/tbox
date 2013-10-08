@@ -4,6 +4,7 @@ using System.Windows;
 using Common.Tools;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.Requestor;
 using PluginsShared.Ddos.Components;
 using Requestor.Code;
 using Requestor.Code.Settings;
@@ -15,8 +16,7 @@ using WPFWinForms;
 
 namespace Requestor
 {
-	[PluginName("Request maker")]
-	[PluginDescription("Ability to build and send any requests. Also you can do DDos\nto find perfomance issues or memory leaks.")]
+	[PluginInfo(typeof(RequestorLang), 13, PluginGroup.Web)]
 	public sealed class Requestor : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly LazyDialog<FormDdos> formDdos;
@@ -31,7 +31,7 @@ namespace Requestor
 		private FormDdos CreateForm()
 		{
 			var dialog = new FormDdos();
-			dialog.Init(Icon, new Ddoser());
+			dialog.Init(ImageSource, Icon, new Ddoser());
 			return dialog;
 		}
 
@@ -54,7 +54,7 @@ namespace Requestor
 								new USeparator(), 
 								new UMenuItem{
 									IsEnabled = p.Ops.Count>0,
-									Header = "Ddos...", 
+									Header = RequestorLang.Ddos, 
 									OnClick = o=>RunDdos(p)
 								}, 
 							}
@@ -76,7 +76,6 @@ namespace Requestor
 		public override void Init(IPluginContext context)
 		{
 			base.Init(context);
-			Icon = context.GetSystemIcon(13);
 			context.AddTypeToWarmingUp(typeof(SyntaxHighlighter));
 		}
 

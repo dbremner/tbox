@@ -3,6 +3,7 @@ using System.Windows;
 using Common.Base;
 using Common.Base.Log;
 using Common.UI.Model;
+using Localization.Plugins.Templates;
 using PluginsShared.Templates;
 using Templates.Code.Settings;
 using Path = System.IO.Path;
@@ -35,7 +36,7 @@ namespace Templates.Components
 		private void Prepare(Template t, string itemTemplate)
 		{
 			template = t;
-			Title = "Templates - [" + Path.GetFileName(t.Key) + "]";
+			Title = TemplatesLang.PluginName + " - [" + Path.GetFileName(t.Key) + "]";
 			worker = new TemplatesWorker(itemTemplate);
 			Options.ItemsSource =
 				template.KnownValues = 

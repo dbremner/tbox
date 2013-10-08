@@ -5,21 +5,16 @@ using Common.Tools;
 using DevServerRunner.Code.Settings;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.DevServerRunner;
 using PluginsShared.Tools;
 using WPFWinForms;
 
 namespace DevServerRunner
 {
-	[PluginName("DevServer runner")]
-	[PluginDescription("Small tool to run standard developer server without visual studio.")]
+	[PluginInfo(typeof(DevServerRunnerLang), typeof(Properties.Resources), PluginGroup.Web)]
 	public sealed class DevServerRunner : ConfigurablePlugin<Settings, Config>
 	{
 		private CassiniRunner runner = null;
-
-		public DevServerRunner()
-		{
-			Icon = Properties.Resources.Icon;
-		}
 
 		public override void OnRebuildMenu()
 		{
@@ -39,17 +34,17 @@ namespace DevServerRunner
 						new USeparator(), 
 						new UMenuItem{
 							IsEnabled = selected.Length>0,
-							Header = "Run All", 
+							Header = DevServerRunnerLang.RunAll, 
 							OnClick = o=>StartAll()
 						},
 						new UMenuItem{
 							IsEnabled = selected.Length>0,
-							Header = "Stop All", 
+							Header = DevServerRunnerLang.StopAll, 
 							OnClick = o=>StopAll()
 						},
 						new UMenuItem{
 							IsEnabled = selected.Length>0,
-							Header = "Restart All", 
+							Header = DevServerRunnerLang.RestartAll, 
 							OnClick = o=>RestartAll()
 						}
 					}

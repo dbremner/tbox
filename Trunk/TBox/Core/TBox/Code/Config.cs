@@ -19,6 +19,7 @@ namespace TBox.Code
 		public bool UseMenuWithIcons { get; set; }
 		public bool ShowSettingsByTraySingleClick { get; set; }
 		public string Theme { get; set; }
+		public string Language { get; set; }
 
 		public Update Update { get; set; }
 		public HotKeyTasks HotKeys { get; set; }
@@ -44,10 +45,11 @@ namespace TBox.Code
 			ErrorReports = new ErrorReports();
 			FastStartConfig = new FastStartConfig();
 			Theme = "Default.xaml";
+			Language = "en";
 			UseMenuWithIcons = true;
 			ShowSettingsByTraySingleClick = true;
 			UpdateFromSharedlFolder = false;
-			EnableGPUAccelerationForUi = true;
+			EnableGPUAccelerationForUi = false;
 			FeedBackMessage = string.Empty;
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using System;
+using Localization.TBox;
 using TBox.Code.FastStart.Settings;
 using TBox.Code.Menu;
 using TBox.Forms;
@@ -23,7 +24,7 @@ namespace TBox.Code.FastStart
 
 		public void Refresh(object sender, EventArgs e)
 		{
-			view.ConfigureInputText("User Actions", 
+			view.ConfigureInputText(TBoxLang.UserActions, 
 				originalConfig.MenuItemsSequence, 
 				validator: x => true);
 		}

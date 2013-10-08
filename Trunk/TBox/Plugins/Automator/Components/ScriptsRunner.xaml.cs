@@ -9,6 +9,7 @@ using Automator.Code.Settings;
 using Common.Base.Log;
 using Common.MT;
 using Interface;
+using Localization.Plugins.Automator;
 using ScriptEngine;
 using ScriptEngine.Core;
 using ScriptEngine.Core.Params;
@@ -54,13 +55,13 @@ namespace Automator.Components
 			var invalidKeys = string.Join(Environment.NewLine, ParametersValidator.Validate(config.Parameters));
 			if (!string.IsNullOrEmpty(invalidKeys))
 			{
-				MessageBox.Show("Can't run, because next parameters are invalid:" + Environment.NewLine + invalidKeys, 
+				MessageBox.Show(AutomatorLang.CantRunInvalidParams + Environment.NewLine + invalidKeys, 
 					Title, MessageBoxButton.OK, MessageBoxImage.Hand);
 				return;
 			}
 			Hide();
 			DialogsCache.ShowProgress(u => Work(u, GetParameters() ), 
-					"Execute: " + Title, topmost:false, showInTaskBar:true);
+					AutomatorLang.Execute + ":" + Title, topmost:false, showInTaskBar:true);
 		}
 
 		private IList<Parameter> GetParameters()
@@ -123,7 +124,7 @@ namespace Automator.Components
 		private void ReloadClick(object sender, RoutedEventArgs e)
 		{
 			Parameters.ItemsSource = null;
-			DialogsCache.ShowProgress(DoReload, "Reloading...", this);
+			DialogsCache.ShowProgress(DoReload, AutomatorLang.Reloading, this);
 		}
 
 		private void DoReload(IUpdater obj)

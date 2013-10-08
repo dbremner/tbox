@@ -62,17 +62,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Atrributes\PluginDescriptionAttribute.cs" />
-    <Compile Include="Atrributes\ValueAttribute.cs" />
+    <Compile Include="Atrributes\PluginInfoAttribute.cs" />
     <Compile Include="IConfigWithDialogStates.cs" />
     <Compile Include="NonUserRunContext.cs" />
+    <Compile Include="PluginGroup.cs" />
     <Compile Include="SingleDialogConfigurablePlugin.cs" />
     <Compile Include="SingleDialogPlugin.cs" />
     <Compile Include="SimpleConfigurablePlugin.cs" />
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IPluginContext.cs" />
     <Compile Include="ISettings.cs" />
-    <Compile Include="Atrributes\PluginNameAttribute.cs" />
     <Compile Include="ConfigurablePlugin.cs" />
     <Compile Include="IConfigurablePlugin.cs" />
     <Compile Include="IPlugin.cs" />

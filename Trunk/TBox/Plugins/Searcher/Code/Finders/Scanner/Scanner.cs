@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
-using Common.Base;
 using Common.Base.Log;
 using Common.MT;
 using Common.Tools;
+using Localization.Plugins.Searcher;
 using Searcher.Code.Finders.Parsers;
 using Searcher.Code.Finders.Search;
 using Searcher.Code.Settings;
@@ -37,7 +37,7 @@ namespace Searcher.Code.Finders.Scanner
 		{
 			calcDirsTime = Environment.TickCount;
 			updater = upd;
-			updater.Update(Properties.Resources.CalcDirsCount, -1);
+			updater.Update(SearcherLang.CalcDirsCount, -1);
 			filter = new Filter(index.FileMasksToExclude.Select(x => x.Key));
 			settings = index;
 			dirsCount = settings.FileNames.CheckedItems
@@ -89,7 +89,7 @@ namespace Searcher.Code.Finders.Scanner
 				yield break;
 			++currDirNo;
 			updater.Update(
-					time=>string.Format(Properties.Resources.ProgressString,
+                    time => string.Format(SearcherLang.ProgressString,
 						currDirNo, time, (time - calcDirsTime <= 0) ? 0 : (readedSize / (time - calcDirsTime) / 1024)),
 					currDirNo, dirsCount);
 

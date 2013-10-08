@@ -1,14 +1,14 @@
 ﻿using Common.Base.Log;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.TeamManager;
 using TeamManager.Code.ProjectManagers;
 using TeamManager.Code.Settings;
 using WPFWinForms;
 
 namespace TeamManager
 {
-	[PluginName("Team manager")]
-	[PluginDescription("Plugin to simplify team managment.")]
+	[PluginInfo(typeof(TeamManagerLang), 43, PluginGroup.Development)]
 	public class TeamManager : ConfigurablePlugin<Settings, Config>
 	{
 		private static readonly ILog Log = LogManager.GetLogger<TeamManager>();
@@ -31,12 +31,6 @@ namespace TeamManager
 		{
 			var facade = new TargetProcessFacade(Config.UserEmail, Config.UserPassword, Config.ProjectManagerUrl);
 			facade.GetAllUserStories();
-		}
-
-		public override void Init(IPluginContext context)
-		{
-			base.Init(context);
-			Icon = context.GetSystemIcon(43);
 		}
 	}
 }

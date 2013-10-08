@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
 using Common.Tools;
+using LibsLocalization.WPFControls;
 using WPFControls.Code.OS;
 using WPFControls.Controls;
 using WPFControls.Tools;
@@ -81,7 +82,7 @@ namespace WPFControls.Dialogs.PerfomanceCounters
 			Counters.ItemsSource = null;
 			knownCounters = new ObservableCollection<Entity>();
 			DialogsCache.ShowProgress(
-				FillCounters, "Scanning for counters...", ControlsExtensions.GetParentWindow(this));
+				FillCounters, WPFControlsLang.ScanningForCounters, ControlsExtensions.GetParentWindow(this));
 		}
 
 		private void FillCounters(IUpdater u)

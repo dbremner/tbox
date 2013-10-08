@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Media;
 using Common.Tools;
 using WPFWinForms;
 
 namespace TBox.Code.Menu
 {
-	sealed class MenuMan
+	sealed class MenuMan 
 	{
 		private readonly MenuCallsVisitor visitor;
 		private readonly int delta;

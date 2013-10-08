@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
+using WPFWinForms.Icons;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
 namespace WPFWinForms
@@ -142,7 +144,6 @@ namespace WPFWinForms
 				notifyIcon.ContextMenu.Dispose();
 				notifyIcon.ContextMenu = null;
 			}
-
 		}
 	}
 }

@@ -20,9 +20,11 @@ namespace Interface
 
 		protected virtual TDialog CreateDialog()
 		{
-			var dialog = new TDialog { DataContext = Config };
-			if (Icon != null) dialog.SetIcon(Icon);
-			return dialog;
+			return new TDialog
+			{
+				DataContext = Config, 
+				Icon = ImageSource
+			};
 		}
 
 		protected virtual void ShowDialog()

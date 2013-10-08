@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using LibsLocalization.WPFControls;
 using WPFControls.Code.EditPanel;
 using WPFControls.Tools;
 
@@ -19,12 +20,12 @@ namespace WPFControls.Components.EditButtons
 		public EditButtonsPanel()
 		{
 			SpPanel = new StackPanel();
-			SpPanel.Children.Add(btnAdd = CreatButton("Add", btnAdd_Click));
-			SpPanel.Children.Add(btnClone = CreatButton("Clone", btnClone_Click));
-			SpPanel.Children.Add(btnEdit = CreatButton("Edit", btnEdit_Click));
-			SpPanel.Children.Add(btnDel = CreatButton("Del", btnDel_Click));
-			SpPanel.Children.Add(btnClear = CreatButton("Clear", btnClear_Click));
-			SpPanel.Children.Add(btnSort = CreatButton("Sort", btnSort_Click));
+			SpPanel.Children.Add(btnAdd = CreatButton(WPFControlsLang.Add, btnAdd_Click));
+			SpPanel.Children.Add(btnClone = CreatButton(WPFControlsLang.Clone, btnClone_Click));
+			SpPanel.Children.Add(btnEdit = CreatButton(WPFControlsLang.Edit, btnEdit_Click));
+			SpPanel.Children.Add(btnDel = CreatButton(WPFControlsLang.Del, btnDel_Click));
+			SpPanel.Children.Add(btnClear = CreatButton(WPFControlsLang.Clear, btnClear_Click));
+			SpPanel.Children.Add(btnSort = CreatButton(WPFControlsLang.Sort, btnSort_Click));
 			Content = SpPanel;
 
 			EnableButtons(false);

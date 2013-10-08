@@ -1,11 +1,11 @@
 ﻿using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.Market;
 using MarketClient.Code;
 
 namespace MarketClient
 {
-	[PluginName("Market client")]
-	[PluginDescription("Simple plugins market. Allows you to download and upload plugins\nand send feedback for its creators.")]
+	[PluginInfo(typeof(MarketLang), 96, PluginGroup.Other)]
 	public class Market : ConfigurablePlugin<Settings, Config>
 	{
 		protected override void OnConfigUpdated()

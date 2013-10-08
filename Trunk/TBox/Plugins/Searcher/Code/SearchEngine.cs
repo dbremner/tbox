@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Common.Base;
 using Common.Base.Log;
 using Common.MT;
+using Localization.Plugins.Searcher;
 using Searcher.Code.Finders;
 using Searcher.Code.Finders.Parsers;
 using Searcher.Code.Finders.Scanner;
@@ -85,8 +86,8 @@ namespace Searcher.Code
 			float curr = 0;
 			const float count = 4;
 			if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-			updater.Update(Properties.Resources.Starting_CreatingEngine, ++curr / count);
-			updater.Update(Properties.Resources.Starting_LoadingFileNames, ++curr / count);
+            updater.Update(SearcherLang.Starting_CreatingEngine, ++curr / count);
+            updater.Update(SearcherLang.Starting_LoadingFileNames, ++curr / count);
 			Exception ex = null;
 			Parallel.Invoke(
 				() => SafeRun(() => FileInformer.Load(folderPath, indexSettings.FileTypes), ref ex),
@@ -99,7 +100,7 @@ namespace Searcher.Code
 				Log.Write(ex, "Can't load indexes. Maybe you need to rebuild it.");
 				return false;
 			}
-			updater.Update(Properties.Resources.Starting_LoadingFileData, ++curr / count);
+            updater.Update(SearcherLang.Starting_LoadingFileData, ++curr / count);
 			return true;
 		}
 

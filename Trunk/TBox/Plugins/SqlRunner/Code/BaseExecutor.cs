@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
+using Localization.Plugins.SqlRunner;
 using SqlRunner.Code.Settings;
 using Common.Tools;
 using WPFControls.Dialogs;
@@ -14,9 +15,9 @@ namespace SqlRunner.Code
 	{
 		public void Execute(Window owner, Op operation, string connectionString, Action<DatabaseInfo> onEnd)
 		{
-			DialogsCache.ShowProgress(
-				u => onEnd(GetResult(connectionString, operation)), 
-				"Make request to: " + operation.Key, owner);
+		    DialogsCache.ShowProgress(
+		        u => onEnd(GetResult(connectionString, operation)),
+		        SqlRunnerLang.MakeRequestTo + ": " + operation.Key, owner);
 		}
 
 		public static DatabaseInfo GetResult(string connectionString, Op operation)
@@ -47,7 +48,7 @@ namespace SqlRunner.Code
                 cmd.CommandTimeout = operation.Timeout;
                 var sb = new StringBuilder();
                 var count = cmd.ExecuteNonQuery();
-                sb.AppendLine("Records affected: " + count);
+                sb.AppendLine(SqlRunnerLang.RecordsAffected + ": " + count);
 
                 return new DatabaseInfo
                 {
@@ -70,7 +71,7 @@ namespace SqlRunner.Code
 	                var sb = new StringBuilder();
 	                using (var r = cmd.ExecuteReader())
 	                {
-	                    sb.AppendLine("Records affected: " + r.RecordsAffected);
+	                    sb.AppendLine(SqlRunnerLang.RecordsAffected + ": " + r.RecordsAffected);
 	                    if (r.VisibleFieldCount > 0)
 	                    {
 	                        table.Add(new List<string>());

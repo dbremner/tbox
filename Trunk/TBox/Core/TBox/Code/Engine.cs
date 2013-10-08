@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Media;
 using Common.Base.Log;
 using Common.Plugins;
-using Common.SaveLoad;
-using Common.Tools;
 using Interface;
 using Interface.Atrributes;
+using Localization.TBox;
 using TBox.Code.AutoUpdate;
 using TBox.Code.Managers;
 using TBox.Code.Objects;
@@ -29,9 +25,6 @@ namespace TBox.Code
 		private static readonly ILog Log = LogManager.GetLogger<Engine>();
 		private readonly UiConfigurator uiConfigurator;
 		private readonly PluginsMan plugMan;
-		public Config Config { get; private set; }
-		private readonly ParamSerializer<Config> paramSer;
-		private readonly string configFile = Path.Combine(Folders.UserFolder, "Config.config");
 		private readonly string pluginsReadOnlyDataFolder = Path.Combine(Environment.CurrentDirectory, "Data");
 		private readonly string pluginsStoreDataFolder = Path.Combine(Folders.UserFolder, "Data");
 		private readonly string toolsDataFolder = Path.Combine(Environment.CurrentDirectory, "Tools");
@@ -40,22 +33,18 @@ namespace TBox.Code
 		private readonly IconsExtractor iconsExtractor = new IconsExtractor();
 		private readonly WarmingUpManager warmingUpManager = new WarmingUpManager();
 		private readonly PluginsContextShared pluginsContextShared;
+		public ConfigManager ConfigManager { get; private set; }
 
-		public Engine(Window owner, IUpdater updater, UiConfigurator uiConfigurator)
+		public Engine(Window owner, IUpdater updater, UiConfigurator uiConfigurator, ConfigManager configManager)
 		{
-			var localUpdater = new LocalFolderUpdater();
 			var time = Environment.TickCount;
+			ConfigManager = configManager;
 			this.uiConfigurator = uiConfigurator;
-			updater.Update("Load configuration...", 0.01f);
-			localUpdater.PrepareConfigs(configFile);
-			paramSer = new ParamSerializer<Config>(configFile);
-			Config = paramSer.Load(Config=new Config());
 			InfoLog.Write("Load first config time: {0}", Environment.TickCount - time);
-			updater.Update("Check for updates...", 0.06f);
-			appUpdater = new ApplicationUpdater(owner, Config, new CodePlexUpdater() /*new DirectoryApplicationUpdater(config.Update.Directory)*/);
+			updater.Update(TBoxLang.CheckForUpdates, 0.06f);
+			appUpdater = new ApplicationUpdater(owner, ConfigManager.Config, new CodePlexUpdater() /*new DirectoryApplicationUpdater(config.Update.Directory)*/);
 			ThreadPool.QueueUserWorkItem(o=>appUpdater.TryUpdate());
-			localUpdater.Update(Config);
-			updater.Update("Prepare...", 0.07f);
+			updater.Update(TBoxLang.Prepare, 0.07f);
 			plugMan = new PluginsMan(
 				new Factory<IPlugin>(
 					Path.Combine(Environment.CurrentDirectory, "Plugins"),
@@ -65,10 +54,10 @@ namespace TBox.Code
 				a=>Mt.Do(owner, a)
 				);
 			var toAdd = new List<string>();
-			uiConfigurator.Init(owner, Config, appUpdater, SetupPlugins(toAdd));
 			pluginsContextShared = new PluginsContextShared(iconsCache, iconsExtractor, uiConfigurator.Sync, warmingUpManager);
+			uiConfigurator.Init(owner, ConfigManager.Config, appUpdater, SetupPlugins(toAdd));
 			AddPlugins(toAdd, updater);
-			uiConfigurator.DoHoldOperation(()=> { });
+			uiConfigurator.ShowTrayIcon(owner);
 		}
 
 		private IEnumerable<EnginePluginInfo> SetupPlugins(ICollection<string> toAdd )
@@ -76,10 +65,10 @@ namespace TBox.Code
 			foreach (var name in plugMan.Factory.Names.OrderBy(x => x))
 			{
 				var t = plugMan.Factory.Get(name);
-				var pluginName = GetAttributeValue<PluginNameAttribute>(t, name);
-				var pluginDescription = GetAttributeValue<PluginDescriptionAttribute>(t, string.Empty);
-				var enabled = !Config.DisabledItems.Contains(name);
-				yield return new EnginePluginInfo(name, pluginName, pluginDescription, enabled);
+				var a = GetAttribute<PluginInfoAttribute>(t);
+				var icon = a.IsIconSystem?pluginsContextShared.GetSystemIcon(a.SystemIconId):a.Icon;
+				var enabled = !ConfigManager.Config.DisabledItems.Contains(name);
+				yield return new EnginePluginInfo(name, a.Name, a.Description, icon, enabled, a.PluginGroup);
 				if (enabled)
 				{
 					toAdd.Add(name);
@@ -87,23 +76,18 @@ namespace TBox.Code
 			}
 		}
 
-		private static string GetAttributeValue<T>(Type t, string defValue) where T : ValueAttribute
+		private static T GetAttribute<T>(Type t) where T : Attribute
 		{
-			var attributes = t.GetCustomAttributes(typeof (T), false);
-			if(attributes.Any())
-			{
-				var a = attributes[0] as T;
-				if(a!=null)
-				{
-					return a.Value;
-				}
-			}
-			return defValue;
+			var attributes = t.GetCustomAttributes(typeof(T), false);
+			if (!attributes.Any()) return null;
+			var a = attributes[0] as T;
+			if(a == null) throw new ArgumentException("Plugin should have valid attribute");
+			return a;
 		}
 
 		private void AddPlugins(IEnumerable<string> names, IUpdater updater)
 		{
-			updater.Update("Create plugins..", 0.33f);
+			updater.Update(TBoxLang.CreatePlugins, 0.33f);
 			CreatePlugins(names.ToArray(), updater);
 			warmingUpManager.CreateAll();
 		}
@@ -111,13 +95,13 @@ namespace TBox.Code
 		private void CreatePlugins(string[] names, IUpdater updater)
 		{
 			var time = Environment.TickCount;
-			var ret = new List<PluginUi>(names.Length);
+			var ret = new List<EnginePluginInfo>(names.Length);
 			Parallel.ForEach(names, name => CreatePlugin(names, updater, name, ret));
 			uiConfigurator.InitUi(ret);
 			InfoLog.Write("Create all plugin time: {0}", Environment.TickCount - time);
 		}
 
-		private void CreatePlugin(IEnumerable<string> names, IUpdater updater, string name, List<PluginUi> ret)
+		private void CreatePlugin(IEnumerable<string> names, IUpdater updater, string name, List<EnginePluginInfo> ret)
 		{
 			var time = Environment.TickCount;
 			var plg = Add(name);
@@ -131,20 +115,20 @@ namespace TBox.Code
 			var ui = InitPlugin(name, plg);
 			if (ui != null)
 			{
-				pmu.Init(ui.Name.Name);
+				pmu.Init(ui.Name);
 				lock (ret)
 				{
 					ret.Add(ui);
 				}
 			}
 			InfoLog.Write("Create plugin time: {1}, log : '{0}'", name, Environment.TickCount - time);
-			updater.Update("Create: " + name, 0.3f + (0.7f*ret.Count)/names.Count());
+			updater.Update(TBoxLang.Create + ": " + (ui!=null? ui.Name:name), 0.3f + (0.7f*ret.Count)/names.Count());
 		}
 
 		private void HideCheck(string key)
 		{
 			uiConfigurator.SetPluginCheck(key, false);
-			Config.DisabledItems.Add(key);
+			ConfigManager.Config.DisabledItems.Add(key);
 		}
 
 		private void RemovePlugins(IEnumerable<string> names)
@@ -165,13 +149,13 @@ namespace TBox.Code
 
 		private void DoLoad(IUpdater updater)
 		{
-			Config = paramSer.Load(Config = new Config());
+			ConfigManager.Load();
 			foreach (var name in plugMan.Factory.Names)
 			{
-				uiConfigurator.SetPluginCheck(name, !Config.DisabledItems.Contains(name));
+				uiConfigurator.SetPluginCheck(name, !ConfigManager.Config.DisabledItems.Contains(name));
 			}
 			plugMan.Load(updater);
-			uiConfigurator.Load(Config);
+			uiConfigurator.Load(ConfigManager.Config);
 		}
 
 		public void Save(IUpdater updater, bool autoSaveOnExit)
@@ -181,24 +165,24 @@ namespace TBox.Code
 
 		private void DoSave(IUpdater updater, bool autoSaveOnExit)
 		{
-			updater.Update("Update disabled items...", 0);
-			var disabledBefore = new List<string>(Config.DisabledItems);
-			Config.DisabledItems.Clear();
+			updater.Update(TBoxLang.UpdateDisabledItems, 0);
+			var disabledBefore = new List<string>(ConfigManager.Config.DisabledItems);
+			ConfigManager.Config.DisabledItems.Clear();
 			var toAdd = new List<string>();
 			var toRemove = new List<string>();
 			plugMan.Save(updater, autoSaveOnExit);
 			foreach (var item in uiConfigurator.GetPluginsStates(toAdd, toRemove, disabledBefore, plugMan))
 			{
-				Config.DisabledItems.Add(item);
+				ConfigManager.Config.DisabledItems.Add(item);
 			}
 			AddPlugins(toAdd, updater);
 			RemovePlugins(toRemove);
-			updater.Update("Save...", 1.0f);
-			uiConfigurator.Save(Config);
-			paramSer.Save(Config);
+			updater.Update(TBoxLang.Save, 1.0f);
+			uiConfigurator.Save(ConfigManager.Config);
+			ConfigManager.Save();
 		}
 
-		public PluginUi InitPlugin(string key, IPlugin plugin)
+		public EnginePluginInfo InitPlugin(string key, IPlugin plugin)
 		{
 			try
 			{
@@ -243,7 +227,7 @@ namespace TBox.Code
 			if (!criticalError)
 			{
 				plugMan.Save(updater, true);
-				paramSer.Save(Config);
+				ConfigManager.Save();
 			}
 			RemovePlugins(plugMan.Factory.Names);
 			return true;
@@ -257,7 +241,7 @@ namespace TBox.Code
 		public void CheckUpdates(bool silent)
 		{
 			if (appUpdater.TryUpdate(true)) return;
-			if (!silent) MessageBox.Show("No updates found", "TBox", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+			if (!silent) MessageBox.Show(TBoxLang.MessageNoUpdatesFound, TBoxLang.AppName, MessageBoxButton.OK, MessageBoxImage.Asterisk);
 		}
 	}
 }

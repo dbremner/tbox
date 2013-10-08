@@ -1,5 +1,6 @@
 ﻿<UserControl x:Class="ProjectMan.Settings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:ProjectMan.Code.Localization"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -8,14 +9,14 @@
              xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls">
     <TabControl>
-        <TabItem Header="Configure solutions folders">
-            <Units:CheckableFileListBoxUnit ItemsSource="{Binding Dirs}" UnitType="FolderPath" Title="Configure projects directories" PathGetterType="Folder"/>
+        <TabItem Header="{loc:Tr ConfigureSolutionsFolders}">
+            <Units:CheckableFileListBoxUnit ItemsSource="{Binding Dirs}" UnitType="FolderPath" Title="{loc:Tr ConfigureProjectsDirectories}" PathGetterType="Folder"/>
         </TabItem>
-        <TabItem Header="Build tools pathes">
+        <TabItem Header="{loc:Tr BuildToolsPathes}">
             <StackPanel>
-                <captioned:CaptionedEditPath Value="{Binding PathToSvn}" Caption="Path to svn:" PathGetterType="File" Margin="5"/>
-                <captioned:CaptionedEditPath Value="{Binding PathToMsBuild}" Caption="Path to MSBuild:" PathGetterType="File" Margin="5"/>
-                <captioned:CaptionedTextBox Value="{Binding SvnUserName}" Caption="UserName:" Margin="5"/>
+                <captioned:CaptionedEditPath Value="{Binding PathToSvn}" Caption="{loc:Tr PathToSvn}" PathGetterType="File" Margin="5"/>
+                <captioned:CaptionedEditPath Value="{Binding PathToMsBuild}" Caption="{loc:Tr PathToMSBuild}" PathGetterType="File" Margin="5"/>
+                <captioned:CaptionedTextBox Value="{Binding SvnUserName}" Caption="{loc:Tr UserName}" Margin="5"/>
             </StackPanel>
         </TabItem>
     </TabControl>

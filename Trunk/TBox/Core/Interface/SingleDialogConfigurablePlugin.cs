@@ -22,7 +22,7 @@ namespace Interface
 		protected virtual TDialog CreateDialog()
 		{
 			var dialog = new TDialog { DataContext = Config };
-			if (Icon != null) dialog.SetIcon(Icon);
+			dialog.Icon = ImageSource;
 			return dialog;
 		}
 

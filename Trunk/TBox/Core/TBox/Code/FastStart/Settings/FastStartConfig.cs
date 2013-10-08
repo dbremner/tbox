@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Common.Tools;
 using Common.UI.ModelsContainers;
-using WPFControls.Dialogs.StateSaver;
 
 namespace TBox.Code.FastStart.Settings
 {
@@ -14,8 +13,6 @@ namespace TBox.Code.FastStart.Settings
 		public ObservableCollection<MenuItemStatistic> MenuItems { get; set; }
 		public CheckableDataCollection<MenuItemsSequence> MenuItemsSequence { get; set; }
 		
-		public DialogState DialogState { get; set; }
-
 		public FastStartConfig()
 		{
 			MaxCount = 20;
@@ -28,7 +25,6 @@ namespace TBox.Code.FastStart.Settings
 		{
 			return new FastStartConfig
 				{
-					DialogState = DialogState,
 					IsFastStart = IsFastStart,
 					MaxCount = MaxCount,
 					//MenuItems = MenuItems.Clone(),

@@ -45,7 +45,7 @@ namespace TBox.Code.Menu
 
 		public UMenuItem GetRoot(string path)
 		{
-			return root[path];
+			return root.ContainsKey(path)?root[path]:null;
 		}
 
 		public IEnumerable<UMenuItem> GetItems()

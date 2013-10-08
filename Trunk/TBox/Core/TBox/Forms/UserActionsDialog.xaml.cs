@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Localization.TBox;
 using TBox.Code.FastStart.Settings;
 using TBox.Code.Menu;
 using WPFControls.Tools;
@@ -19,7 +20,7 @@ namespace TBox.Forms
 		{
 			Owner = Application.Current.MainWindow;
 			DataContext = operation;
-			Pathes.ConfigureInputMenuItem("Select menu actions", 
+			Pathes.ConfigureInputMenuItem(TBoxLang.SelectMenuActions, 
 				operation.MenuItems, 
 				menuItemsProvider.GetDialogItems());
 			SafeShowDialog();

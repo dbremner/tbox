@@ -6,6 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using Common.Tools;
 using Common.UI.Model;
+using Localization.Plugins.Automator;
 using ScriptEngine.Core.Params;
 using WPFControls.Code.DataManagers;
 using WPFControls.Code.Dialogs;
@@ -82,7 +83,7 @@ namespace Automator.Components
 		{
 			var el = new CheckableListBoxUnit { CustomDataManager = new StringValueDataManager<CheckableData<string>>()};
 			PrepareListBoxItemTemplate(el, p);
-			el.ConfigureInputText("Configure string", p.Values, Templates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), ScriptsRunner.Instance);
+			el.ConfigureInputText(AutomatorLang.ConfigureString, p.Values, Templates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), ScriptsRunner.Instance);
 			return el;
 		}
 
@@ -91,7 +92,7 @@ namespace Automator.Components
 			var el = new CheckableListBoxUnit {CustomDataManager = new GuidValueDataManager<CheckableData<Guid>>() };
 			PrepareListBoxItemTemplate(el, p);
 			Guid tmp;
-			el.ConfigureInputText("Configure guid", p.Values, Templates.Default, x => Guid.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), ScriptsRunner.Instance);
+			el.ConfigureInputText(AutomatorLang.ConfigureGuid, p.Values, Templates.Default, x => Guid.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), ScriptsRunner.Instance);
 			return el;
 		}
 
@@ -100,7 +101,7 @@ namespace Automator.Components
 			var el = new CheckableListBoxUnit { CustomDataManager = new IntValueDataManager<CheckableData<int>>() };
 			PrepareListBoxItemTemplate(el, p);
 			int tmp;
-			el.ConfigureInputText("Configure int", p.Values, Templates.Default, x => int.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), ScriptsRunner.Instance);
+			el.ConfigureInputText(AutomatorLang.ConfigureInt, p.Values, Templates.Default, x => int.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), ScriptsRunner.Instance);
 			return el;
 		}
 
@@ -109,7 +110,7 @@ namespace Automator.Components
 			var el = new CheckableListBoxUnit { CustomDataManager = new DoubleValueDataManager<CheckableData<double>>() };
 			PrepareListBoxItemTemplate(el, p);
 			double tmp;
-			el.ConfigureInputText("Configure double", p.Values, Templates.Default, x => double.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), ScriptsRunner.Instance);
+			el.ConfigureInputText(AutomatorLang.ConfigureDouble, p.Values, Templates.Default, x => double.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), ScriptsRunner.Instance);
 			return el;
 		}
 
@@ -117,7 +118,7 @@ namespace Automator.Components
 		{
 			var el = new CheckableListBoxUnit { CustomDataManager = new StringValueDataManager<CheckableData<string>>()};
             PrepareFileListBoxItemTemplate(el, p, PathGetterType.File);
-			el.ConfigureInputFilePath("Configure file path", p.Values, PathTemplates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), ScriptsRunner.Instance);
+			el.ConfigureInputFilePath(AutomatorLang.ConfigureFilePath, p.Values, PathTemplates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), ScriptsRunner.Instance);
 			return el;
 		}
 
@@ -125,7 +126,7 @@ namespace Automator.Components
 		{
 			var el = new CheckableListBoxUnit { CustomDataManager = new StringValueDataManager<CheckableData<string>>()};
             PrepareFileListBoxItemTemplate(el, p, PathGetterType.Folder);
-			el.ConfigureInputFolderPath("Configure directory path", p.Values, PathTemplates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), ScriptsRunner.Instance);
+			el.ConfigureInputFolderPath(AutomatorLang.ConfigureDirectoryPath, p.Values, PathTemplates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), ScriptsRunner.Instance);
 			return el;
 		}
 
@@ -173,7 +174,7 @@ namespace Automator.Components
 		{
 			var el = new CheckableListBoxUnit();
 			PrepareDictionaryBoxItemTemplate(el, p);
-			el.ConfigureInputText("Configure item", p.Values, owner: ScriptsRunner.Instance);
+			el.ConfigureInputText(AutomatorLang.ConfigureItem, p.Values, owner: ScriptsRunner.Instance);
 			return el;
 		}
 

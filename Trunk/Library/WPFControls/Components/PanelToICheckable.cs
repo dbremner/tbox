@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 using Common.UI.ModelsContainers;
+using LibsLocalization.WPFControls;
 
 namespace WPFControls.Components
 {
@@ -15,8 +17,8 @@ namespace WPFControls.Components
 		public PanelToICheckable()
 		{
 			spPanel = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right };
-			spPanel.Children.Add(btnAll = CreatButton("All", btnAll_Click));
-			spPanel.Children.Add(btnNone = CreatButton("None", btnNone_Click));
+			spPanel.Children.Add(btnAll = CreatButton(WPFControlsLang.All, btnAll_Click));
+			spPanel.Children.Add(btnNone = CreatButton(WPFControlsLang.None, btnNone_Click));
 			Content = spPanel;
 		}
 

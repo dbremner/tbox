@@ -9,19 +9,18 @@ using Common.Base.Log;
 using Common.MT;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.Automator;
 using ScriptEngine;
 using ScriptEngine.Core;
 using WPFControls.Code;
 using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
-using WPFControls.Tools;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
 
 namespace Automator
 {
-	[PluginName("Automater")]
-	[PluginDescription("Simple tool to automate everything what is possible. :)")]
+	[PluginInfo(typeof(AutomatorLang), 12, PluginGroup.Development)]
 	public sealed class Automater : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly LazyDialog<EditorDialog> editor;
@@ -41,23 +40,18 @@ namespace Automator
 
 		private EditorDialog CreateEditor()
 		{
-			var d = new EditorDialog { Context = Context };
-			d.SetIcon(Icon);
-			return d;
+			return new EditorDialog { Context = Context, Icon = ImageSource };
 		}
 
 		private ScriptsRunner CreateRunner()
 		{
-			var d = new ScriptsRunner { Context = Context };
-			d.SetIcon(Icon);
-			return d;
+			return new ScriptsRunner { Context = Context , Icon = ImageSource};
 		}
 
 		public override void Init(IPluginContext context)
 		{
 			base.Init(context);
 			context.AddTypeToWarmingUp(typeof(SyntaxHighlighter));
-			Icon = Context.GetSystemIcon(12);
 		}
 
 		public override void OnRebuildMenu()
@@ -77,7 +71,7 @@ namespace Automator
 									new USeparator(), 
 									new UMenuItem
 										{
-											Header = "Run all",
+											Header = AutomatorLang.RunAll,
 											OnClick = x=>RunAll(p)
 										}
 								})
@@ -86,14 +80,14 @@ namespace Automator
 					.Concat(new[]
 						{
 							new USeparator(), 
-							new UMenuItem{Header = "Editor", OnClick = ShowIde}
+							new UMenuItem{Header = AutomatorLang.Editor, OnClick = ShowIde}
 						})
 					.ToArray();
 		}
 
 		private void RunAll(Profile profile)
 		{
-			DialogsCache.ShowProgress(u=>RunAll(u, profile.Operations), "Run script: " + profile.Key, topmost:false, showInTaskBar:true);
+			DialogsCache.ShowProgress(u=>RunAll(u, profile.Operations), AutomatorLang.RunScript + ": " + profile.Key, topmost:false, showInTaskBar:true);
 		}
 		 
 		private void RunAll(IUpdater u, IList<Operation> operations)

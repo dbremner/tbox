@@ -20,9 +20,13 @@ del %target%\Plugins\marketclient.dll
 md %target%\Themes
 copy %source%\Themes\*.xaml  %target%\Themes
 
+
 md %toolsFolder%
-copy Tools\*.exe  %toolsFolder%
-copy Tools\*.cmd  %toolsFolder%
+xcopy %source%\Tools\*.exe  %target%\Tools\ /s /i /y
+xcopy %source%\Tools\*.cmd  %target%\Tools\ /s /i /y
+
+md %langFolder%
+xcopy %source%\Localization\*.*  %target%\Localization\ /s /i
 
 md %dataFolder%
 md %dataFolder%\Automater

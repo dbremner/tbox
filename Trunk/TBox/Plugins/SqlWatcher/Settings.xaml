@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="SqlWatcher.Settings"
+             xmlns:loc="clr-namespace:SqlWatcher.Code.Localization"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,8 +11,8 @@
              d:DesignHeight="300" d:DesignWidth="300"
             >
     <TabControl>
-        <TabItem Header="Configure folders with sql logs">
-            <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Watches.Files}" UnitType="Text" Title="Configure watches" SmoothScrolling="True" >
+        <TabItem Header="{loc:Tr ConfigureFoldersWithSqlLogs}">
+            <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Watches.Files}" UnitType="Text" Title="{loc:Tr ConfigureWatches}" SmoothScrolling="True" >
                 <Units:CheckableListBoxUnit.ItemTemplate>
                     <DataTemplate DataType="watcher:DirInfo">
                         <StackPanel Margin="0,10">
@@ -20,26 +21,26 @@
                                 <TextBlock Text="{Binding Key}" Padding="1" TextTrimming="CharacterEllipsis" FontWeight="Bold" IsEnabled="{Binding IsChecked}"/>
                             </StackPanel>
                             <DockPanel>
-                                <captioned:CaptionedEditPath Value="{Binding Path}" Caption="Path:" Margin="1" Padding="0" DockPanel.Dock="Top" PathGetterType="Folder" IsEnabled="{Binding IsChecked}"/>
-                                <captioned:CaptionedTextBox Value="{Binding Mask}" Caption="Mask:" Margin="1" Padding="0" IsEnabled="{Binding IsChecked}"/>
+                                <captioned:CaptionedEditPath Value="{Binding Path}" Caption="{loc:Tr Path}" Margin="1" Padding="0" DockPanel.Dock="Top" PathGetterType="Folder" IsEnabled="{Binding IsChecked}"/>
+                                <captioned:CaptionedTextBox Value="{Binding Mask}" Caption="{loc:Tr Mask}" Margin="1" Padding="0" IsEnabled="{Binding IsChecked}"/>
                             </DockPanel>
                         </StackPanel>
                     </DataTemplate>
                 </Units:CheckableListBoxUnit.ItemTemplate>
             </Units:CheckableListBoxUnit>
         </TabItem>
-        <TabItem Header="Advanced">
+        <TabItem Header="{loc:Tr Advanced}">
             <StackPanel>
-                <GroupBox Header="ToolTips">
+                <GroupBox Header="{loc:Tr ToolTips}">
                     <WrapPanel>
-                        <CheckBox IsChecked="{Binding ToolTipsEnabled}" Name="ToolTipsEnabled" Content="Enabled" Margin="5"/>
-                        <captioned:CaptionedNumericUpDown Value="{Binding ToolTipsTimeOut}" Caption="Timeout:" Margin="5" Increment="1" Maximum="60000" Minimum="1" IsEnabled="{Binding ElementName=ToolTipsEnabled, Path=IsChecked}"/>
+                        <CheckBox IsChecked="{Binding ToolTipsEnabled}" Name="ToolTipsEnabled" Content="{loc:Tr Enabled}" Margin="5"/>
+                        <captioned:CaptionedNumericUpDown Value="{Binding ToolTipsTimeOut}" Caption="{loc:Tr Timeout}" Margin="5" Increment="1" Maximum="60000" Minimum="1" IsEnabled="{Binding ElementName=ToolTipsEnabled, Path=IsChecked}"/>
                     </WrapPanel>
                 </GroupBox>
-                <GroupBox Header="Other">
+                <GroupBox Header="{loc:Tr Other}">
                     <WrapPanel>
-                        <CheckBox IsChecked="{Binding RemoveTypeInfo}" Content="Remove type info" Margin="5"/>
-                        <captioned:CaptionedNumericUpDown Value="{Binding RescanLogsInterval}" Caption="Rescan logs interval:" Margin="5" Increment="1" Maximum="60000" Minimum="100" />
+                        <CheckBox IsChecked="{Binding RemoveTypeInfo}" Content="{loc:Tr RemoveTypeInfo}" Margin="5"/>
+                        <captioned:CaptionedNumericUpDown Value="{Binding RescanLogsInterval}" Caption="{loc:Tr RescanLogsInterval}" Margin="5" Increment="1" Maximum="60000" Minimum="100" />
                     </WrapPanel>
                 </GroupBox>
             </StackPanel>

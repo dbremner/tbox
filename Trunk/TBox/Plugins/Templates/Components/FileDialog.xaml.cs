@@ -3,6 +3,7 @@ using System.Windows;
 using Common.Base;
 using Common.Base.Log;
 using Common.UI.Model;
+using Localization.Plugins.Templates;
 using PluginsShared.Templates;
 using Templates.Code.Settings;
 using WPFControls.Controls;
@@ -38,7 +39,7 @@ namespace Templates.Components
 		private void Prepare(Template t, string itemTemplate)
 		{
 			template = t;
-			Title = "Templates - [" + t.Key + "]";
+			Title = TemplatesLang.PluginName + " - [" + t.Key + "]";
 			worker = new TemplatesWorker(itemTemplate);
 			Options.ItemsSource = 
 				template.KnownValues = 

@@ -1,6 +1,7 @@
 ﻿using System;
 using Common.Base;
 using Common.Base.Log;
+using Localization.Plugins.HtmlPad;
 using WPFControls.Tools;
 
 namespace HtmlPad
@@ -14,6 +15,7 @@ namespace HtmlPad
 		public Dialog()
 		{
 			InitializeComponent();
+			Title = HtmlPadLang.PluginName;
 			Editor.Format = "html";
 			Editor.TextChanged += EditorOnTextChanged;
 		}

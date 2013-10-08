@@ -2,22 +2,16 @@
 using BookletPagesGenerator.Code;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.BookletPagesGenerator;
 
 [assembly: InternalsVisibleTo("UnitTests")]
 namespace BookletPagesGenerator
 {
-	[PluginName("BookletPagesGenerator")]
-	[PluginDescription("Page numbers generator, to print books on your printer.")]
+	[PluginInfo(typeof(BookletPagesGeneratorLang), 16, PluginGroup.Other)]
 	public sealed class BookletPagesGenerator : SingleDialogPlugin<Config, Dialog>
 	{
-		public BookletPagesGenerator() : base("Print...")
+		public BookletPagesGenerator() : base(BookletPagesGeneratorLang.Print)
 		{
-		}
-
-		public override void Init(IPluginContext context)
-		{
-			base.Init(context);
-			Icon = context.GetSystemIcon(16);
 		}
 	}
 }

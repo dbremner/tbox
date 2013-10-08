@@ -3,20 +3,19 @@ using System.Linq;
 using System.Windows;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.SqlRunner;
 using PluginsShared.Ddos.Components;
 using SqlRunner.Code;
 using SqlRunner.Code.Settings;
 using SqlRunner.Components;
 using WPFControls.Code;
 using WPFControls.Dialogs.StateSaver;
-using WPFControls.Tools;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
 
 namespace SqlRunner
 {
-	[PluginName("Sql Runner")]
-	[PluginDescription("Ability to build and run any sql commands. Also you can do DDos\nto find perfomance issues.")]
+	[PluginInfo(typeof(SqlRunnerLang), 8, PluginGroup.Database)]
 	public sealed class SqlRunner : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private Ddoser ddoser;
@@ -34,16 +33,14 @@ namespace SqlRunner
 		private FormDdos CreateDdosForm()
 		{
 			var dialog = new FormDdos();
-			dialog.Init(Icon, ddoser = new Ddoser());
+			dialog.Init(ImageSource, Icon, ddoser = new Ddoser());
 			ddoser.OnConfigUpdated(Config);
 			return dialog;
 		}
 
 		private FormBatch CreateBatchForm()
 		{
-			var dialog = new FormBatch();
-			dialog.SetIcon(Icon);
-			return dialog;
+			return new FormBatch{Icon=ImageSource};
 		}
 
 		public override void OnRebuildMenu()
@@ -69,12 +66,12 @@ namespace SqlRunner
 								new USeparator(), 
 								new UMenuItem{
 									IsEnabled = p.Ops.Count>0,
-									Header = "Ddos...", 
+									Header = SqlRunnerLang.Ddos, 
 									OnClick = x=>RunDdos(p)
 								}, 
 								new UMenuItem{
 									IsEnabled = p.Ops.Count>0,
-									Header = "Batch...", 
+									Header = SqlRunnerLang.Batch, 
 									OnClick = x=>RunBatch(p)
 								}, 
 							}
@@ -102,7 +99,6 @@ namespace SqlRunner
 		public override void Init(IPluginContext context)
 		{
 			base.Init(context);
-			Icon = context.GetSystemIcon(8);
 			context.AddTypeToWarmingUp(typeof(SyntaxHighlighter));
 		}
 

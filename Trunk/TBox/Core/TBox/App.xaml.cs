@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -7,7 +8,9 @@ using System.Windows;
 using System.Windows.Threading;
 using Common.Base;
 using Common.Base.Log;
+using Localization.TBox;
 using WPFControls.Code.OS;
+using WPFControls.Localization;
 using WPFWinForms;
 
 namespace TBox
@@ -25,6 +28,7 @@ namespace TBox
 
 		public App()
 		{
+			Translator.Culture = new CultureInfo("en");
 			var unmanagedLibsFolder = 
 				Path.Combine(
 					AppDomain.CurrentDomain.BaseDirectory,
@@ -32,7 +36,7 @@ namespace TBox
 					(IntPtr.Size == 8 ? "x64" : "x86")
 				);
 			SetDllDirectory(unmanagedLibsFolder);
-			AppDomain.CurrentDomain.AssemblyResolve += (o, e) => LoadFromLibFolder(o, e, unmanagedLibsFolder);
+			AppDomain.CurrentDomain.AssemblyResolve += LoadFromLibFolder;
 
 			ShutdownMode = ShutdownMode.OnMainWindowClose;
 			FormsStyles.Enable();
@@ -44,10 +48,21 @@ namespace TBox
 			OneInstance.App.Init(this);
 		}
 
-		static Assembly LoadFromLibFolder(object sender, ResolveEventArgs args, string unmanagedLibsFolder)
+		static Assembly LoadFromLibFolder(object sender, ResolveEventArgs args)
 		{
-			var assemblyPath = Path.GetFullPath(Path.Combine(unmanagedLibsFolder, new AssemblyName(args.Name).Name + ".dll"));
-			return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
+			//var assemblyPath = Path.GetFullPath(Path.Combine(unmanagedLibsFolder, new AssemblyName(args.Name).Name + ".dll"));
+			//return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
+			var name = new AssemblyName(args.Name);
+			if (!name.Name.Contains("Localization.resources"))
+			{
+				if (!name.Name.Contains("Localization")) return null;
+				var libPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Localization", name.Name + ".dll");
+				return File.Exists(libPath) ? Assembly.LoadFrom(libPath) : null;
+			}
+			var reg = name.CultureInfo.Name;
+
+			var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Localization", reg, name.Name + ".dll");
+			return File.Exists(path) ? Assembly.LoadFrom(path) : null;
 		}
 
 		private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
@@ -82,6 +97,7 @@ namespace TBox
 			}
 			else Log.Write(message);
 			ExceptionsHelper.HandleException(DoExit, x=>{});
+			;
 			Shutdown(-1);
 		}
 

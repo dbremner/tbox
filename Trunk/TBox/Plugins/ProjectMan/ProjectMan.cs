@@ -4,6 +4,7 @@ using System.Linq;
 using Common.Base.Log;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.ProjectMan;
 using PluginsShared.Tools;
 using ProjectMan.Code;
 using ProjectMan.Code.Settings;
@@ -11,8 +12,7 @@ using WPFWinForms;
 
 namespace ProjectMan
 {
-	[PluginName("Project manager")]
-	[PluginDescription("Easy way to manage your projects. You can rebuild, work with svn\n and run it's scripts from tray.")]
+	[PluginInfo(typeof(ProjectManLang), 43, PluginGroup.Development)]
 	public class ProjectMan : ConfigurablePlugin<Settings, Config>
 	{
 		private static readonly ILog Log = LogManager.GetLogger<ProjectMan>();
@@ -33,12 +33,6 @@ namespace ProjectMan
 			groupOperations.Append(menu, projectContext, Context, pathes);
 			svnStatisticOperations.Append(menu, projectContext, Context, Config.SvnUserName);
 			Menu = menu.ToArray();
-		}
-
-		public override void Init(IPluginContext context)
-		{
-			base.Init(context);
-			Icon = context.GetSystemIcon(43);
 		}
 
 		private ProjectContext CreateContext()

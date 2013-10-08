@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Localization.TBox;
 
 namespace TBox.Forms
 {
@@ -10,6 +11,7 @@ namespace TBox.Forms
 		public ChangesLogDialog()
 		{
 			InitializeComponent();
+			Title = TBoxLang.ChangeLogTitle;
 		}
 
 		public void ShowDialog(string message)

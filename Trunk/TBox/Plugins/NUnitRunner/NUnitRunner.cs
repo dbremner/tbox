@@ -3,19 +3,17 @@ using System.IO;
 using System.Linq;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.NUnitRunner;
 using NUnitRunner.Code.Settings;
 using NUnitRunner.Components;
-using NUnitRunner.Properties;
 using WPFControls.Code;
 using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
-using WPFControls.Tools;
 using WPFWinForms;
 
 namespace NUnitRunner
 {
-	[PluginName("NUnit tests runner")]
-	[PluginDescription("Small tool to run nunit tests in parallel.")]
+	[PluginInfo(typeof(NUnitRunnerLang), typeof(Properties.Resources), PluginGroup.Development)]
 	public sealed class NUnitRunner : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly LazyDialog<Dialog> runner;
@@ -30,9 +28,7 @@ namespace NUnitRunner
 		private T CreateDialog<T>()
 			where T : DialogWindow, new() 
 		{
-			var d = new T();
-			d.SetIcon(Icon);
-			return d;
+			return new T{Icon = ImageSource};
 		}
 
 		public override void OnRebuildMenu()
@@ -50,7 +46,7 @@ namespace NUnitRunner
 								 new UMenuItem
 									 {
 										 IsEnabled = Config.DllPathes.Any(),
-										 Header = "Batch run...",
+										 Header = NUnitRunnerLang.BatchRun,
 										 OnClick = o => BatchRun(Config)
 									 }
 							 })
@@ -60,12 +56,6 @@ namespace NUnitRunner
 		private void BatchRun(Config config)
 		{
             batchRunner.Do(Context.DoSync, d => d.ShowDialog(config, NUnitAgentPath), Config.States);
-		}
-
-		public override void Init(IPluginContext context)
-		{
-			base.Init(context);
-			Icon = Resources.Icon;
 		}
 
 		private void Run(TestConfig config)

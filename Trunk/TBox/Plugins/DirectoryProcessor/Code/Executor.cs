@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Base;
 using Common.Base.Log;
 using Common.Console;
 using WPFWinForms;

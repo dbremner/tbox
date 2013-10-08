@@ -7,6 +7,7 @@ using Encoder.Code;
 using Encoder.Components;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.Encoder;
 using PluginsShared.Encoders;
 using WPFControls.Dialogs.StateSaver;
 using WPFSyntaxHighlighter;
@@ -14,12 +15,11 @@ using WPFWinForms;
 
 namespace Encoder
 {
-	[PluginName("Encoder")]
-	[PluginDescription("You can easy encode/decode strings and change the formatting\nfor easier reading.")]
+	[PluginInfo(typeof(EncoderLang), 144, PluginGroup.Development)]
 	public sealed class Encoder : SingleDialogPlugin<Config, Dialog>
 	{
 		private readonly Operation[] operations;
-		public Encoder() : base("Show")
+		public Encoder() : base(EncoderLang.Show)
 		{
 			operations = GetOperations().ToArray();
 			Menu = CreateMenu(operations).ToArray();
@@ -34,29 +34,29 @@ namespace Encoder
 
 		private static IEnumerable<Operation> GetOperations()
 		{
-			yield return new Operation { Header = "Encode c string", Work = x => CommonOps.EncodeString(x) };
-			yield return new Operation { Header = "Decode c string", Work = x => CommonOps.DecodeString(x) };
-			yield return new Operation { Header = "Encode Uri", Work = x => HttpUtility.UrlEncode(x) };
-			yield return new Operation { Header = "Decode Uri", Work = x => HttpUtility.UrlDecode(x) };
-			yield return new Operation { Header = "Encode Html", Work = x => HttpUtility.HtmlEncode(x)};
-			yield return new Operation { Header = "Decode Html", Work = x => HttpUtility.HtmlDecode(x) };
-			yield return new Operation { Header = "Encode to base64", Work = x => Base64Encode.EncodeTo64(x) };
-			yield return new Operation { Header = "Decode from base64", Work = x => Base64Encode.DecodeFrom64(x) };
-			yield return new Operation { Header = "Format Xml", Work = x => XmlHelper.Format(x), Format = "xml" };
-			yield return new Operation { Header = "Format Fql Simple", Work = x => FqlParser.ParseSimple(x), Format = "mssql" };
-			yield return new Operation { Header = "Format Fql Advanced", Work = x => FqlParser.ParseWithSubItems(x), Format = "mssql" };
-			yield return new Operation { Header = "Format SQL", Work = x => new SqlParser().Parse(x), Format = "mssql" };
-			yield return new Operation { Header = "Format Html", Work = x => new HtmlParser().Parse(x), Format = "html" };
-			yield return new Operation { Header = "Format JSON", Work = x => new JsonParser().Format(x), Format = "js" };
-			yield return new Operation { Header = "Format c-like code (JS,CSS)", Work = x => new CCodeFormatter().Format(x), Format = "js" };
-			yield return new Operation { Header = "Minimize to line", Work = x => CommonOps.Minimize(x) };
+			yield return new Operation { Header = EncoderLang.EncodeCstring, Work = x => CommonOps.EncodeString(x) };
+			yield return new Operation { Header = EncoderLang.DecodeCstring, Work = x => CommonOps.DecodeString(x) };
+			yield return new Operation { Header = EncoderLang.EncodeUri, Work = x => HttpUtility.UrlEncode(x) };
+			yield return new Operation { Header = EncoderLang.DecodeUri, Work = x => HttpUtility.UrlDecode(x) };
+			yield return new Operation { Header = EncoderLang.EncodeHtml, Work = x => HttpUtility.HtmlEncode(x)};
+			yield return new Operation { Header = EncoderLang.DecodeHtml, Work = x => HttpUtility.HtmlDecode(x) };
+			yield return new Operation { Header = EncoderLang.EncodeToBase64, Work = x => Base64Encode.EncodeTo64(x) };
+			yield return new Operation { Header = EncoderLang.DecodeToBase64, Work = x => Base64Encode.DecodeFrom64(x) };
+			yield return new Operation { Header = EncoderLang.FormatXml, Work = x => XmlHelper.Format(x), Format = "xml" };
+			yield return new Operation { Header = EncoderLang.FormatFqlSimple, Work = x => FqlParser.ParseSimple(x), Format = "mssql" };
+			yield return new Operation { Header = EncoderLang.FormatFqlAdvanced, Work = x => FqlParser.ParseWithSubItems(x), Format = "mssql" };
+			yield return new Operation { Header = EncoderLang.FormatSQL, Work = x => new SqlParser().Parse(x), Format = "mssql" };
+			yield return new Operation { Header = EncoderLang.FormatHtml, Work = x => new HtmlParser().Parse(x), Format = "html" };
+			yield return new Operation { Header = EncoderLang.FormatJSON, Work = x => new JsonParser().Format(x), Format = "js" };
+			yield return new Operation { Header = EncoderLang.FormatClikeCode, Work = x => new CCodeFormatter().Format(x), Format = "js" };
+			yield return new Operation { Header = EncoderLang.MinimizeToLine, Work = x => CommonOps.Minimize(x) };
 		}
 
 		private IEnumerable<UMenuItem> CreateMenu(IEnumerable<Operation> ops)
 		{
 			yield return new UMenuItem 
 			{ 
-				Header = "Show...", 
+				Header = EncoderLang.Show + "...", 
 				OnClick = o => Dialog.Do(Context.DoSync, d=>d.ShowAndActivate(), Config.States)
 			};
 			foreach (var o in ops)
@@ -70,7 +70,7 @@ namespace Encoder
 		private void Work(Operation o, string title)
 		{
 			Dialog.Do(Context.DoSync, 
-				d => d.ShowDialog("Encoder", 
+				d => d.ShowDialog(EncoderLang.PluginName, 
 					Clipboard.ContainsText() ? Clipboard.GetText() : string.Empty, 
 					title, o.Format),
 					Config.States
@@ -80,7 +80,6 @@ namespace Encoder
 		public override void Init(IPluginContext context)
 		{
 			base.Init(context);
-			Icon = Context.GetSystemIcon(144);
 			context.AddTypeToWarmingUp(typeof(SyntaxHighlighter));
 		}
 	}

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="clr-namespace:WPFControls.Localization"
              xmlns:perfomanceCounters="clr-namespace:WPFControls.Dialogs.PerfomanceCounters"
              mc:Ignorable="d"  >
     <Grid>
@@ -19,9 +20,9 @@
                     <ColumnDefinition Width="5"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <GroupBox Header="Available counters">
+                <GroupBox Header="{loc:Tr AvailableCounters}">
                     <DockPanel Margin="5">
-                        <Button Name="btnAdd" Content="Add" Width="64" Margin="20,5" DockPanel.Dock="Bottom" Click="AddClick" IsEnabled="False" HorizontalAlignment="Right"/>
+                        <Button Name="btnAdd" Content="{loc:Tr Add}" Width="64" Margin="20,5" DockPanel.Dock="Bottom" Click="AddClick" IsEnabled="False" HorizontalAlignment="Right"/>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2*"/>
@@ -37,22 +38,22 @@
                             </TreeView>
                             <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1"/>
                             <DockPanel Grid.Row="2">
-                                <Label Padding="5,0" Content="Instances of the selected object:" DockPanel.Dock="Top"/>
+                                <Label Padding="5,0" Content="{loc:Tr InstancesOfTheSelected}" DockPanel.Dock="Top"/>
                                 <ListBox Name="Instances" SelectionMode="Extended" AlternationCount="2"/>
                             </DockPanel>
                         </Grid>
                     </DockPanel>
                 </GroupBox>
                 <GridSplitter VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ResizeDirection="Columns" Grid.Column="1"/>
-                <GroupBox Header="Added counters" Grid.Column="2" >
+                <GroupBox Header="{loc:Tr AddedCounters}" Grid.Column="2" >
                     <DockPanel Margin="5">
-                        <Button Name="btnRemove" Content="Remove" Width="64" Margin="20,5" DockPanel.Dock="Bottom" Click="RemoveClick" IsEnabled="False" HorizontalAlignment="Left"/>
+                        <Button Name="btnRemove" Content="{loc:Tr Remove}" Width="64" Margin="20,5" DockPanel.Dock="Bottom" Click="RemoveClick" IsEnabled="False" HorizontalAlignment="Left"/>
                         <ListView Name="AddedCounters" SelectionChanged="AddedCounters_OnSelectedItemChanged" SelectionMode="Extended" AlternationCount="2">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Category" Width="140" DisplayMemberBinding="{Binding Category}"/>
-                                    <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}" />
-                                    <GridViewColumn Header="Instance" Width="120" DisplayMemberBinding="{Binding Instance}" />
+                                    <GridViewColumn Header="{loc:Tr Category}" Width="140" DisplayMemberBinding="{Binding Category}"/>
+                                    <GridViewColumn Header="{loc:Tr Name}" Width="200" DisplayMemberBinding="{Binding Name}" />
+                                    <GridViewColumn Header="{loc:Tr Instance}" Width="120" DisplayMemberBinding="{Binding Instance}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -62,6 +63,6 @@
         </DockPanel>
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
         <TextBox Grid.Row="2"  Name="Info" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="5,0"/>
-        <Button Content="Refresh" Padding="10,0" Margin="5" Click="RefreshClick" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Button Content="{loc:Tr Refresh}" Padding="10,0" Margin="5" Click="RefreshClick" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

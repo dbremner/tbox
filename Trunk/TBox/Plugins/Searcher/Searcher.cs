@@ -2,6 +2,7 @@
 using System.Windows;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.Searcher;
 using Searcher.Code;
 using Searcher.Code.Settings;
 using WPFSyntaxHighlighter;
@@ -9,8 +10,7 @@ using WPFWinForms;
 
 namespace Searcher
 {
-	[PluginName("Searcher")]
-	[PluginDescription("Ability to search in the big set of files for words and file names.")]
+	[PluginInfo(typeof(SearcherLang), typeof(Properties.Resources), PluginGroup.Desktop)]
 	public sealed class Searcher : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private AvailabilityChecker availabilityChecker;
@@ -25,7 +25,6 @@ namespace Searcher
 				w.InitFolders(Context.DataProvider.WritebleDataPath);
 				return w;
 			});
-			Icon = Properties.Resources.Icon;
 		}
 
 		public override void OnRebuildMenu()
@@ -36,20 +35,20 @@ namespace Searcher
 					       new UMenuItem
 						       {
 								   IsEnabled = availabilityChecker.CanSearch,
-							       Header = "Search...", 
+							       Header = SearcherLang.Search, 
 								   OnClick = DoSearch
 						       },
  						   new USeparator(), 
 						   new UMenuItem
 							   {
 								   IsEnabled = availabilityChecker.CanUnload,
-								   Header = "Unload indexes..", 
+								   Header = SearcherLang.UnloadIndexes, 
 								   OnClick = DoUnload
 							   },
 						   new UMenuItem
 							   {
 								   IsEnabled = availabilityChecker.CanRebuild,
-								   Header = "Rebuild indexes...", 
+								   Header = SearcherLang.RebuildIndexes, 
 								   OnClick = DoRebuild
 							   }, 
 				       };
@@ -81,8 +80,8 @@ namespace Searcher
 
 		private void DoRebuild(object o)
 		{
-			if (o is NonUserRunContext || 
-				MessageBox.Show("Are you realy want rebuild all indexes?", "Searcher", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
+			if (o is NonUserRunContext ||
+                MessageBox.Show(SearcherLang.AreYouWantRebuild, SearcherLang.PluginName, MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.OK)
 			{
 				worker.Value.RebuildIndexes();
 			}

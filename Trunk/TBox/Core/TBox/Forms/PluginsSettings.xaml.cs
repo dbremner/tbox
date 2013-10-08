@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,17 +10,16 @@ using System.Windows.Navigation;
 using Common.OS;
 using Common.Tools;
 using Common.UI.ModelsContainers;
+using Localization.TBox;
 using TBox.Code;
 using TBox.Code.AutoUpdate;
 using TBox.Code.FastStart;
-using TBox.Code.FastStart.Settings;
 using TBox.Code.HotKeys;
 using TBox.Code.Menu;
 using TBox.Code.Objects;
 using TBox.Code.Shelduler;
 using TBox.Code.Themes;
 using WPFControls.Components;
-using WPFControls.Controls;
 
 namespace TBox.Forms
 {
@@ -42,13 +40,15 @@ namespace TBox.Forms
 		public PluginsSettings(IMenuItemsProvider menuItemsProvider)
 		{
 			InitializeComponent();
-			Version.Content = "Version: " + Assembly.GetExecutingAssembly().GetName().Version;
+			var ver = Assembly.GetExecutingAssembly().GetName().Version;
+			Version.Content = string.Format(TBoxLang.VersionTemplate, ver.Major, ver.Minor, ver.MajorRevision, ver.MinorRevision);
 			Panel.ItemsSource = Collection = new CheckableDataCollection<EnginePluginInfo>();
 			PanelButtons.View = Panel;
 			hotKeysManager = new HotKeysManager(HotKeysView, menuItemsProvider);
 			schedulerManager = new SchedulerManager(ScheldulerView, menuItemsProvider);
 			userActionsManager = new UserActionsManager(UserActionsView, menuItemsProvider);
 			Themes.ItemsSource = themesManager.AvailableThemes;
+			cbLanguage.ItemsSource = new[] {"en", "ru"};
 		}
 
 		public void Init(IAutoUpdater updater)
@@ -95,7 +95,7 @@ namespace TBox.Forms
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			if (!appUpdater.TryUpdate(true))
-				MessageBox.Show("No updates found", "TBox", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+				MessageBox.Show(TBoxLang.MessageNoUpdatesFound, TBoxLang.Caption, MessageBoxButton.OK, MessageBoxImage.Asterisk);
 		}
 
 		private void HotKeysEnabledChecked(object sender, RoutedEventArgs e)
@@ -154,6 +154,10 @@ namespace TBox.Forms
 		private void ButtonClearHistoryClick(object sender, RoutedEventArgs e)
 		{
 			Config.FastStartConfig.MenuItems.Clear();
+		}
+
+		private void LanguageChanged(object sender, RoutedEventArgs e)
+		{
 		}
 	}
 }

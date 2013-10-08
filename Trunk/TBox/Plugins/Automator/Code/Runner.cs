@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using Automator.Code.Settings;
 using ScriptEngine.Core;
@@ -53,14 +52,21 @@ namespace Automator.Code
 				{
 					op();
 				}
-				catch (CompilerExceptions)
+				catch (Exception ex)
 				{
-					if (collector != null) throw;
-					collector = new AssembliesCollector();
-					config.KnownReferences = collector.Collect();
-					op();
+					if (collector != null || 
+						(!(ex is CompilerExceptions) && !(ex is FileNotFoundException)))
+						throw;
+					RecollectLibs(op);
 				}
 			}
+		}
+
+		private void RecollectLibs(Action op)
+		{
+			collector = new AssembliesCollector();
+			config.KnownReferences = collector.Collect();
+			op();
 		}
 	}
 }

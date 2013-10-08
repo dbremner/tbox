@@ -21,7 +21,7 @@ namespace WPFControls.Code.Dialogs
 		public override bool Add(out string[] newNames)
 		{
 			var isOk = false;
-			var result = DialogsCache.ShowInputFilePath(Caption, string.Empty, "", true, Owner);
+			var result = DialogsCache.ShowInputFilePath(Caption, string.Empty, string.Empty, true, Owner);
 			if (result.Key)
 			{
 				isOk = true;
@@ -39,7 +39,7 @@ namespace WPFControls.Code.Dialogs
 
 		public override bool Edit(string name, out string newName)
 		{
-			var result = DialogsCache.ShowInputFilePath(Caption, name, "", false, Owner);
+			var result = DialogsCache.ShowInputFilePath(Caption, name, string.Empty, false, Owner);
 			if (result.Key)
 			{
 				var selected = result.Value.FirstOrDefault();

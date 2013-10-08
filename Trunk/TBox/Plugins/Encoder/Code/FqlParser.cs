@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using Common.Encoders;
-using PluginsShared.Encoders;
 
 namespace Encoder.Code
 {
@@ -9,7 +8,7 @@ namespace Encoder.Code
 	{
 		private const char Begin = '(';
 		private const char End = ')';
-		private static readonly char[] Dividers = new[] { Begin, End };
+		private static readonly char[] Dividers = { Begin, End };
 
 		public static string ParseSimple(string text)
 		{

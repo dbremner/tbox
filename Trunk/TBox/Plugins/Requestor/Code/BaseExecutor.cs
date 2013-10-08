@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Common.Network;
+using Localization.Plugins.Requestor;
 using Requestor.Code.Settings;
 using WPFControls.Dialogs;
 
@@ -16,7 +17,7 @@ namespace Requestor.Code
 				u => Work(
 					(Op)operation.Clone(),
 					onEnd
-					), "Make request to: " + operation.Key, owner);
+                    ), RequestorLang.MakeRequestTo + operation.Key, owner);
 		}
 
 		private void Work(Op op, Action<ResponseInfo> onEnd)

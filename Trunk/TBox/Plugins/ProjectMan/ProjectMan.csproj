@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\GroupOperations.cs" />
+    <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\Project.cs" />
     <Compile Include="Code\ProjectContext.cs" />
     <Compile Include="Code\Settings\ProjectInfo.cs" />
@@ -100,9 +101,14 @@
       <Name>Interface</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\PluginsShared\PluginsShared.csproj">
+    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
       <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
       <Name>PluginsShared</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Localization\Localization.csproj">
+      <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
+      <Name>Localization</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

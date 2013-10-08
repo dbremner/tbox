@@ -1,16 +1,15 @@
 ﻿using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.RegExpTester;
 using WPFSyntaxHighlighter;
 
 namespace RegExpTester
 {
-	[PluginName("RegExp tester")]
-	[PluginDescription("Simple plugin to build regular expressions and test it.")]
+	[PluginInfo(typeof(RegExpTesterLang), typeof(Properties.Resources), PluginGroup.Development)]
 	public sealed class RegExpTester : SingleDialogPlugin<Config, Dialog>
 	{
-		public RegExpTester():base("Test...")
+		public RegExpTester():base( RegExpTesterLang.Test)
 		{
-			Icon = Properties.Resources.Icon;
 		}
 
 		public override void Init(IPluginContext context)

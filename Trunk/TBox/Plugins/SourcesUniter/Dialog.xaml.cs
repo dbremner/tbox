@@ -4,6 +4,8 @@ using System.Windows;
 using Common.Base;
 using Common.Base.Log;
 using Common.MT;
+using Localization.Plugins.SourcesUniter;
+using SourcesUniter.Code;
 using WPFControls.Dialogs;
 
 namespace SourcesUniter
@@ -24,8 +26,8 @@ namespace SourcesUniter
 		{
 			var config = (Config) DataContext;
 			DialogsCache.ShowProgress(
-				u => Work(u, config), 
-				"Process files..", 
+				u => Work(u, config),
+                SourcesUniterLang.ProcessFiles, 
 				this);
 		}
 

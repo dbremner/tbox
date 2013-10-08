@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Localization.TBox;
 using TBox.Code.HotKeys.Settings;
 using TBox.Code.Menu;
 using WPFControls.Components.Units;
@@ -29,7 +30,7 @@ namespace TBox.Code.HotKeys
 		{
 			Dispose();
 			ClearHotKeys(menuItemsProvider.GetItems());
-			view.ConfigureInputMenuItem("HotKeys", 
+			view.ConfigureInputMenuItem(TBoxLang.HotKeys, 
 				originalConfig.Tasks, 
 				menuItemsProvider.GetDialogItems(), 
 				validator: x => true);

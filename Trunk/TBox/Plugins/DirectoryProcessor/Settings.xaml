@@ -1,5 +1,6 @@
 ﻿<UserControl x:Class="DirectoryProcessor.Settings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:DirectoryProcessor.Code.Localization"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -10,8 +11,8 @@
              xmlns:Code="clr-namespace:DirectoryProcessor.Code"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls">
     <TabControl>
-        <TabItem Header="Configure directories to process">
-            <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Directories}" UnitType="FolderPath" Title="Configure directory" SmoothScrolling="True" >
+        <TabItem Header="{loc:Tr ConfigureDirectories}">
+            <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Directories}" UnitType="FolderPath" Title="{loc:Tr ConfigureDirectory}" SmoothScrolling="True" >
                 <Units:CheckableListBoxUnit.ItemTemplate>
                     <DataTemplate DataType="Code:DirInfo">
                         <DockPanel Margin="0,10">
@@ -20,9 +21,9 @@
                                 <my:EditPath Value="{Binding Key}" Padding="0" FontWeight="Bold" IsEnabled="{Binding IsChecked}" PathGetterType="Folder" HorizontalAlignment="Stretch"/>
                             </DockPanel>
                             <DockPanel Dock="Bottom">
-                                <captioned:CaptionedNumericUpDown Caption="Deep:" Margin="1" Width="80" Minimum="0" Maximum="8" Value="{Binding Deep}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
-                                <captioned:CaptionedTextBox Caption="Extended arguments:" Margin="1" HorizontalAlignment="Stretch" Value="{Binding ExtendedArguments}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
-                                <captioned:CaptionedEditPath Caption="Executable:" Margin="1" DockPanel.Dock="Top" PathGetterType="File" Value="{Binding Executable}" IsEnabled="{Binding IsChecked}"/>
+                                <captioned:CaptionedNumericUpDown Caption="{loc:Tr Deep}" Margin="1" Width="90" Minimum="0" Maximum="8" Value="{Binding Deep}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
+                                <captioned:CaptionedTextBox Caption="{loc:Tr ExtendedArguments}" Margin="1" HorizontalAlignment="Stretch" Value="{Binding ExtendedArguments}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
+                                <captioned:CaptionedEditPath Caption="{loc:Tr Executable}" Margin="1" DockPanel.Dock="Top" PathGetterType="File" Value="{Binding Executable}" IsEnabled="{Binding IsChecked}"/>
                             </DockPanel>
                         </DockPanel>
                     </DataTemplate>

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Drawing;
+using System.Windows.Media;
+using Localization.Plugins.SqlWatcher;
 using PluginsShared.Watcher;
 using WPFControls.Dialogs;
-using WPFControls.Tools;
 using WPFSyntaxHighlighter;
 
 namespace SqlWatcher.Code
@@ -17,10 +17,14 @@ namespace SqlWatcher.Code
 			get { return Dialog.EntriesCount; }
 		}
 
-		public LogDialog(Icon icon)
+		public LogDialog(ImageSource icon)
 		{
-			Dialog = new MemoBox{Title = "SqlWatcher", IsReadOnly = true};
-			Dialog.SetIcon(icon);
+			Dialog = new MemoBox
+			{
+				Title = SqlWatcherLang.PluginName, 
+				IsReadOnly = true, 
+				Icon = icon
+			};
 		}
 
 		public event EventHandler OnClear

@@ -83,13 +83,14 @@
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
       <Name>Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\PluginsShared\PluginsShared.csproj">
+      <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
+      <Name>PluginsShared</Name>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Plugins\BookletPagesGenerator\BookletPagesGenerator.csproj">
       <Project>{2509B48D-3963-4450-AF65-4F8B5D11DB08}</Project>
       <Name>BookletPagesGenerator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shared\PluginsShared\PluginsShared.csproj">
-      <Project>{BCDBE777-304F-40AC-8C5F-31B3A6BE4341}</Project>
-      <Name>PluginsShared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

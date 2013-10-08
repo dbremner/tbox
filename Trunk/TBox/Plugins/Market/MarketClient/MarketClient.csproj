@@ -123,6 +123,11 @@
       <Name>Interface</Name>
       <Private>False</Private>
     </ProjectReference>
+	<ProjectReference Include="..\..\..\Localization\Localization.csproj">
+      <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
+      <Name>Localization</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

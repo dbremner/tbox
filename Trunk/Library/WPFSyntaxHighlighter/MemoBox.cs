@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using LibsLocalization.WPFSyntaxHighlighter;
 using WPFControls.Code.Log;
 using WPFControls.Dialogs;
 
@@ -14,9 +15,9 @@ namespace WPFSyntaxHighlighter
 		public int EntriesCount { get; set; }
 		public event EventHandler OnClear;
 		private readonly SyntaxHighlighter shText = new SyntaxHighlighter();
-		private readonly Button btnClear = new Button { Content = "Clear" };
-		private readonly Button btnToClipboard = new Button { Content = "To clipboard", IsDefault = true };
-		private readonly Button btnClose = new Button { Content = "Close", IsCancel = true };
+		private readonly Button btnClear = new Button { Content = WPFSyntaxHighlighterLang.Clear };
+		private readonly Button btnToClipboard = new Button { Content = WPFSyntaxHighlighterLang.ToClipboard, IsDefault = true };
+		private readonly Button btnClose = new Button { Content = WPFSyntaxHighlighterLang.Close, IsCancel = true };
 		public MemoBox()
 		{
 			ShowInTaskbar = true;

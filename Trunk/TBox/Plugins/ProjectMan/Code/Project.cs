@@ -7,6 +7,7 @@ using Common.Base.Log;
 using Common.Console;
 using Common.Data;
 using Interface;
+using Localization.Plugins.ProjectMan;
 using ProjectMan.Code.Settings;
 using WPFControls.Dialogs;
 using WPFWinForms;
@@ -101,25 +102,26 @@ namespace ProjectMan.Code
 
 		private void AppendSvnSubMenu()
 		{
-			AppendSvnItem("Update...", "update", 3);
-			AppendSvnItem("Commit...", "commit", 4);
-			AppendSvnItem("Show log...", "log", 17);
+		    var end = "...";
+			AppendSvnItem(ProjectManLang.Update + end, "update", 3);
+            AppendSvnItem(ProjectManLang.Commit + end, "commit", 4);
+            AppendSvnItem(ProjectManLang.ShowLog + end, "log", 17);
             AppendSeparator();
-			AppendSvnItem("Repo Browser...", "repobrowser", 106);
-			AppendSvnItem("Resolve...", "resolve", 8);
-			AppendSvnItem("Update to revision...", "update /rev", 3);
-			AppendSvnItem("Revert...", "revert", 6);
-			AppendSvnItem("CleanUp...", "cleanup", 7);
+            AppendSvnItem(ProjectManLang.RepoBrowser + end, "repobrowser", 106);
+            AppendSvnItem(ProjectManLang.Resolve + end, "resolve", 8);
+            AppendSvnItem(ProjectManLang.UpdateToRevision + end, "update /rev", 3);
+            AppendSvnItem(ProjectManLang.Revert + end, "revert", 6);
+            AppendSvnItem(ProjectManLang.CleanUp + end, "cleanup", 7);
             AppendSeparator();
-            AppendSvnItem("Branch/tag...", "copy", 13);
-            AppendSvnItem("Switch...", "switch", 9);
-            AppendSvnItem("Merge...", "merge", 10);
-            AppendSvnItem("Export...", "export", 12);
-            AppendSvnItem("Relocate...", "relocate", 22);
+            AppendSvnItem(ProjectManLang.BranchTag + end, "copy", 13);
+            AppendSvnItem(ProjectManLang.Switch + end, "switch", 9);
+            AppendSvnItem(ProjectManLang.Merge + end, "merge", 10);
+            AppendSvnItem(ProjectManLang.Export + end, "export", 12);
+            AppendSvnItem(ProjectManLang.Relocate + end, "relocate", 22);
             AppendSeparator();
-			AppendSvnItem("Create patch...", "createpatch", 109);
-			AppendMergeItem("Apply patch...", "patchpath", 108);
-			AppendSvnItem("Properties...", "properties", 117);
+            AppendSvnItem(ProjectManLang.CreatePatch + end, "createpatch", 109);
+            AppendMergeItem(ProjectManLang.ApplyPatch + end, "patchpath", 108);
+            AppendSvnItem(ProjectManLang.Properties + end, "properties", 117);
 		}
 
 		private IEnumerable<Pair<string, string>> GetFiles(string ext)
@@ -144,7 +146,7 @@ namespace ProjectMan.Code
 				Union(GetFiles("*.cmd")).
 				OrderBy(x => x.Key);
 			if (!files.Any()) return;
-			var item = AddNewMenuItem("Batch - *.cmd and *.bat", pluginContext.GetIcon("c:\\windows\\system32\\cmd.exe", 0));
+			var item = AddNewMenuItem(ProjectManLang.Batch, pluginContext.GetIcon("c:\\windows\\system32\\cmd.exe", 0));
 			foreach (var m in files)
 			{
 				var path = m.Value;
@@ -160,7 +162,7 @@ namespace ProjectMan.Code
 		{
 			var files = GetFiles("*.build").OrderBy(x => x.Key);
 			if (!files.Any()) return;
-			var item = AddNewMenuItem("MsBuild - *.build", pluginContext.GetIcon(projectContext.MsBuildProvider.PathToMsBuild, 0));
+            var item = AddNewMenuItem(ProjectManLang.MsBuild, pluginContext.GetIcon(projectContext.MsBuildProvider.PathToMsBuild, 0));
 			foreach (var m in files)
 			{
 				var key = m.Key;
@@ -177,7 +179,7 @@ namespace ProjectMan.Code
 		{
 			if (!(context is NonUserRunContext))
 			{
-				var r = DialogsCache.ShowInputComboBox("Please, specify build arguments:", "Build: " + key, projectInfo.MsBuildParams, null, KnownArgs);
+                var r = DialogsCache.ShowInputComboBox(ProjectManLang.PleaseSpecifyBuildArguments, ProjectManLang.Build + " " + key, projectInfo.MsBuildParams, null, KnownArgs);
 				if (!r.Key) return;
 				projectInfo.MsBuildParams = r.Value;
 			}

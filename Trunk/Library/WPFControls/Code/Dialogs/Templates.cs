@@ -1,4 +1,6 @@
-﻿namespace WPFControls.Code.Dialogs
+﻿using LibsLocalization.WPFControls;
+
+namespace WPFControls.Code.Dialogs
 {
 	public class Templates
 	{
@@ -21,11 +23,11 @@
 		static Templates()
 		{
 			Default = new Templates(
-			add: Properties.Resources.AddItem,
-			clone: Properties.Resources.CloneItem,
-			edit: Properties.Resources.EditItem,
-			del: Properties.Resources.DelItem,
-			clear: Properties.Resources.ClearAllItems
+			add: WPFControlsLang.AddItem,
+			clone: WPFControlsLang.CloneItem,
+			edit: WPFControlsLang.EditItem,
+			del: WPFControlsLang.DelItem,
+			clear: WPFControlsLang.ClearAllItems
 			);
 		}
 	}

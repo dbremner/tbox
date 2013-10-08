@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using Common.MT;
+using Localization.Plugins.AvailabilityChecker;
 using WPFWinForms;
 
 namespace AvailabilityChecker.Code
@@ -54,7 +54,7 @@ namespace AvailabilityChecker.Code
 			{
 				iconWithText.Create(string.Empty);
 				icon.Icon = iconWithText.Icon;
-				icon.HoverText = "Wait for refresh...";
+				icon.HoverText = AvailabilityCheckerLang.WaitForRefresh;
 				timer.Start(config.CheckInterval * 1000);
 			}
 			icon.IsVisible = config.Started = !config.Started;
@@ -73,7 +73,7 @@ namespace AvailabilityChecker.Code
 				.ToArray();
 			if (lastCount != items.Length)
 			{
-				iconWithText.Create(items.Any() ? items.Length.ToString() : "");
+				iconWithText.Create(items.Any() ? items.Length.ToString() : string.Empty);
 				icon.Icon = iconWithText.Icon;
 				icon.HoverText = items.Any() ? 
 					string.Join(Environment.NewLine, items) : 

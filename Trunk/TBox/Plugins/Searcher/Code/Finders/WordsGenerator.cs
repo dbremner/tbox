@@ -13,7 +13,7 @@ namespace Searcher.Code.Finders
 			FileWords = new Dictionary<string, HashSet<int>>();
 		}
 
-		private void Add(string word, int fileId)
+		public void AddWord(string word, int fileId)
 		{
 			lock (FileWords)
 			{
@@ -24,14 +24,9 @@ namespace Searcher.Code.Finders
 				}
 				else
 				{
-					FileWords.Add(word, new HashSet<int>{fileId});
+					FileWords.Add(word, new HashSet<int> { fileId });
 				}
 			}
-		}
-
-		public void AddWord(string word, int fileId)
-		{
-			Add(word, fileId);
 		}
 
 		public void Save(string fileDir)

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows;
 using Common.AutoUpdate;
 using Common.Base.Log;
+using Localization.TBox;
 
 namespace TBox.Code.AutoUpdate
 {
@@ -25,8 +26,8 @@ namespace TBox.Code.AutoUpdate
 				if ( newVersion > currentVersion)
 				{
 					return MessageBox.Show(
-						string.Format("Found new version: {0}, current version is: {1}\nDo you want to update TBox?", newVersion, currentVersion),
-						"TBox - new version is available!",
+						string.Format(TBoxLang.FoundNewVersionTemplate, newVersion, currentVersion),
+						TBoxLang.NewVersionAvailable,
 						MessageBoxButton.YesNo,
 						MessageBoxImage.Question,
 						MessageBoxResult.Yes,

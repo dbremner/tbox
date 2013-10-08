@@ -1,20 +1,20 @@
 ﻿<dialogs:DialogWindow x:Class="BookletPagesGenerator.Dialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:BookletPagesGenerator.Code.Localization"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                      xmlns:dialogs="clr-namespace:WPFControls.Dialogs;assembly=WPFControls"
-                      xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
                       xmlns:components="clr-namespace:WPFControls.Components;assembly=WPFControls"
                       xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
                       mc:Ignorable="d" 
              ShowInTaskbar="True"
-             Title="Booklet pages generator"
+             Title="{loc:Tr PluginName}"
              Height="300" Width="480" MinHeight="300" MinWidth="480"
              FocusManager.FocusedElement="{Binding ElementName=nudTotalPages}">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <GroupBox Header="Info" DockPanel.Dock="Right" Width="110">
+            <GroupBox Header="{loc:Tr Info}" DockPanel.Dock="Right" Width="130">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -26,28 +26,28 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Label Content="Pages:" Grid.Row="0" Padding="0"/>
+                    <Label Content="{loc:Tr Pages}" Grid.Row="0" Padding="0"/>
                     <Label Name="lPagesCount" Grid.Row="0" Grid.Column="1" Padding="0"/>
-                    <Label Content="Range:" Grid.Row="1" Padding="0"/>
+                    <Label Content="{loc:Tr Range}" Grid.Row="1" Padding="0"/>
                     <Label Name="lRange" Grid.Row="1" Grid.Column="1" Padding="0"/>
-                    <Label Content="Steps:" Grid.Row="2" Padding="0"/>
+                    <Label Content="{loc:Tr Steps}" Grid.Row="2" Padding="0"/>
                     <Label Name="lSteps" Grid.Row="2" Grid.Column="1" Padding="0"/>
-                    <Label Content="Position:" Grid.Row="3" Padding="0"/>
+                    <Label Content="{loc:Tr Position}" Grid.Row="3" Padding="0"/>
                     <Label Name="lUpOrDown" Grid.Row="3" Grid.Column="1" Padding="0"/>
                 </Grid>
             </GroupBox>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <captioned:CaptionedNumericUpDown Caption="Pages offset:" Margin="5" Width="100" Value="{Binding PagesOffset}" ValueChanged="nudPagesOffset_ValueChanged" Name="nudPagesOffset"/>
-                <captioned:CaptionedNumericUpDown Caption="Total pages:"  Margin="5" Width="100" Value="{Binding TotalPages}" ValueChanged="nudTotalPages_ValueChanged" Name="nudTotalPages"/>
-                <captioned:CaptionedNumericUpDown Caption="Pages to print:" Margin="5" Width="100" Value="{Binding PagesToPrint}" ValueChanged="nudPagesToPrintCount_ValueChanged" Name="nudPagesToPrintCount"/>
+                <captioned:CaptionedNumericUpDown Caption="{loc:Tr PagesOffset}" Margin="5" Width="100" Value="{Binding PagesOffset}" ValueChanged="nudPagesOffset_ValueChanged" Name="nudPagesOffset"/>
+                <captioned:CaptionedNumericUpDown Caption="{loc:Tr TotalPages}"  Margin="5" Width="100" Value="{Binding TotalPages}" ValueChanged="nudTotalPages_ValueChanged" Name="nudTotalPages"/>
+                <captioned:CaptionedNumericUpDown Caption="{loc:Tr PagesToPrint}" Margin="5" Width="100" Value="{Binding PagesToPrint}" ValueChanged="nudPagesToPrintCount_ValueChanged" Name="nudPagesToPrintCount"/>
             </StackPanel>
-            <captioned:CaptionedTextBox Caption="Current line (auto copied to clipboard):" DockPanel.Dock="Top" Margin="5" Name="tbPages"/>
+            <captioned:CaptionedTextBox Caption="{loc:Tr CurrentLine}" DockPanel.Dock="Top" Margin="5" Name="tbPages"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Bottom">
-            <Button Name="btnPrev" Content="Prev" Width="64" Margin="5" Click="OnPrevClick"/>
-            <Button Name="btnNext" Content="Next" Width="64" Margin="5" Click="OnNextClick"/>
-            <Button Content="Cancel" DockPanel.Dock="Right" Width="64" Margin="5" IsCancel="True" Click="CancelClick"/>
-            <Button Name="btnGenerate" Content="Generate" DockPanel.Dock="Right" Width="64" Margin="5" Click="OnGenerateClick" IsDefault="True"/>
+            <Button Name="btnPrev" Content="{loc:Tr Prev}" Padding="5,0" Margin="5" Click="OnPrevClick"/>
+            <Button Name="btnNext" Content="{loc:Tr Next}" Padding="5,0" Margin="5" Click="OnNextClick"/>
+            <Button Content="{loc:Tr Cancel}" DockPanel.Dock="Right" Padding="5,0" Margin="5" IsCancel="True" Click="CancelClick"/>
+            <Button Name="btnGenerate" Content="{loc:Tr Generate}" DockPanel.Dock="Right" Padding="5,0" Margin="5" Click="OnGenerateClick" IsDefault="True"/>
             <Label/>
         </DockPanel>
         <components:ExtListBox Name="lbResult"/>

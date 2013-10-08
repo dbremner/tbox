@@ -45,11 +45,20 @@ namespace WPFControls.Components.Updater
 		{
 			UserPressClose = false;
 			var u = CreateUpdater();
+			var culture = Thread.CurrentThread.CurrentUICulture;
 			ThreadPool.QueueUserWorkItem(o=>
 				{
-					func(u);
-					if(endAction!=null)endAction();
-					Mt.SetEnabled(Button, true);
+					Thread.CurrentThread.CurrentUICulture = culture;
+					Thread.CurrentThread.CurrentCulture = culture;
+					try
+					{
+						func(u);
+					}
+					finally
+					{
+						if (endAction != null) endAction();
+						Mt.SetEnabled(Button, true);
+					}
 				});
 		}
 

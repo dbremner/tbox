@@ -1,5 +1,6 @@
 ﻿<UserControl x:Class="TBox.Forms.PluginsSettings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:TBox.Code.Localization"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -9,71 +10,89 @@
              xmlns:autoUpdate="clr-namespace:Common.AutoUpdate;assembly=Common"
              xmlns:units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
-             xmlns:objects="clr-namespace:TBox.Code.Objects" xmlns:shelduler="clr-namespace:TBox.Code.Shelduler"
+             xmlns:objects="clr-namespace:TBox.Code.Objects" 
              xmlns:settings2="clr-namespace:TBox.Code.Shelduler.Settings"
              xmlns:settings="clr-namespace:TBox.Code.FastStart.Settings"
              d:DesignHeight="400" d:DesignWidth="500">
     <TabControl >
-        <TabItem Header="Enabled plugins">
+        <TabItem Header="{loc:Translate TabsEnabledPlugins}">
             <DockPanel>
                 <my:PanelToICheckable Name="PanelButtons" PanelHorizontalAlignment="Left" DockPanel.Dock="Bottom"/>
-                <my:CheckableListBox Name="Panel" Margin="5,0,5,5" >
+                <my:CheckableListBox Name="Panel" Margin="5,0,5,5" HorizontalContentAlignment="Left" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <my:CheckableListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type objects:EnginePluginInfo}">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" DockPanel.Dock="Left" Padding="5,0" ValueChanged="OnCheckChangedEvent" />
-                                    <TextBlock Text="{Binding Name}" Padding="0" FontWeight="Bold" />
-                                </StackPanel>
-                                <TextBlock Text="{Binding Description}" Padding="0" />
-                            </StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="32"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <controls:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center"  ValueChanged="OnCheckChangedEvent" Grid.RowSpan="2"/>
+                                <Image Source="{Binding Path=ImageSource, Mode=OneTime}" Width="32" Height="32" Grid.Column="1" Grid.RowSpan="2"/>
+                                <TextBlock Text="{Binding Name}" Padding="0" FontWeight="Bold" Grid.Column="2"/>
+                                <TextBlock   Text="{Binding Description}" Padding="0" FontWeight="Light" TextWrapping="Wrap" Grid.Column="2" Grid.Row="1"/>
+                            </Grid>
                         </DataTemplate>
                     </my:CheckableListBox.ItemTemplate>
                 </my:CheckableListBox>
             </DockPanel>
         </TabItem>
-        <TabItem Header="Settings">
-            <WrapPanel Orientation="Vertical">
-                <GroupBox Header="Auto update" Margin="5" >
+        <TabItem Header="{loc:Translate GlobalSettings}">
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                <GroupBox Header="{loc:Translate AutoUpdate}" Margin="5" >
                     <StackPanel Orientation="Vertical">
-                        <captioned:CaptionedEnumDropDownList Caption="Update interval:" Margin="5" Value="{Binding Update.Interval}" SourceEnumType="autoUpdate:UpdateInterval" />
-                        <CheckBox IsChecked="{Binding Update.ShowChanglog}" Content="Show changelog on update" Margin="5"/>
-                        <Button Content="Check for updates" Margin="5" Width="128" Click="Button_Click" />
+                        <captioned:CaptionedEnumDropDownList Caption="{loc:Translate UpdateInterval}" Margin="5" Value="{Binding Update.Interval}" SourceEnumType="autoUpdate:UpdateInterval" />
+                        <CheckBox IsChecked="{Binding Update.ShowChanglog}" Content="{loc:Translate ShowChangelogOnUpdate}" Margin="5"/>
+                        <Button Content="{loc:Translate CheckForUpdates}" Margin="5" Width="140" Click="Button_Click" />
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Team work settings" Margin="5" >
+                <GroupBox Header="{loc:Translate TeamWorkSettings}" Margin="5" >
                     <StackPanel>
-                        <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="Update from shared folder" Name="UpdateFromSharedlFolder" Margin="5,5,5,0" />
-                        <captioned:CaptionedEditPath Caption="Path to the mirror directory:" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
-                        <CheckBox Name="AllowErrorReports" Content="Send error reports" IsChecked="{Binding ErrorReports.AllowSend}" Margin="5"/>
-                        <captioned:CaptionedEditPath Caption="Path to the errors directory:" Margin="5" Value="{Binding ErrorReports.Directory}" PathGetterType="Folder" IsEnabled="{Binding IsChecked, ElementName=AllowErrorReports}"/>
+                        <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="{loc:Translate UpdateFromSharedFolder}" Name="UpdateFromSharedlFolder" Margin="5,5,5,0" />
+                        <captioned:CaptionedEditPath Caption="{loc:Translate PathToTheMirrorDirectory}" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
+                        <CheckBox Name="AllowErrorReports" Content="{loc:Translate SendErrorReports}" IsChecked="{Binding ErrorReports.AllowSend}" Margin="5"/>
+                        <captioned:CaptionedEditPath Caption="{loc:Translate PathToTheErrorsDirectory}" Margin="5" Value="{Binding ErrorReports.Directory}" PathGetterType="Folder" IsEnabled="{Binding IsChecked, ElementName=AllowErrorReports}"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Fast start" Margin="5" >
+                <GroupBox Header="{loc:Translate FastStart}" Margin="5" >
                     <StackPanel>
-                        <captioned:CaptionedNumericUpDown Caption="Max items in history" Minimum="0" Maximum="100" Value="{Binding FastStartConfig.MaxCount}" />
-                        <Button Content="Clear History" Margin="5" Width="100" HorizontalAlignment="Right" Click="ButtonClearHistoryClick"/>
+                        <captioned:CaptionedNumericUpDown Caption="{loc:Translate MaxItemsInHistory}" Minimum="0" Maximum="100" Value="{Binding FastStartConfig.MaxCount}" />
+                        <Button Content="{loc:Translate ClearHistory}" Margin="5" Padding="5,0" HorizontalAlignment="Right" Click="ButtonClearHistoryClick"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Usability" Margin="5" >
+                <GroupBox Header="{loc:Translate Usability}" Margin="5" >
                     <StackPanel>
-                        <captioned:CaptionedComboBox Name="Themes" Caption="Theme:" IsEditable="False" Value="{Binding Theme}" SelectedIndexChanged="ThemeChanged"/>
-                        <CheckBox IsChecked="{Binding UseMenuWithIcons}" Content="Use tray menu with icons" Margin="5"/>
-                        <CheckBox IsChecked="{Binding HideOnSave}" Content="Hide on save" Margin="5"/>
-                        <CheckBox IsChecked="{Binding HideOnCancel}" Content="Hide on cancel" Margin="5"/>
-                        <CheckBox IsChecked="{Binding StartHidden}" Content="Start hidden" Margin="5"/>
-                        <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="Show settings by single click on tray icon" Margin="5"/>
-                        <controls:ExtCheckBox IsChecked="{Binding EnableGPUAccelerationForUi}" Content="Use GPU for UI render" Margin="5" />
-                        <Button Content="Shortcut to desktop" Click="ShortcutToDesktopClick" Margin="5" Width="128" />
-                        <Button Content="Shortcut to autorun" Click="ShortcutToAutorunClick" Margin="5" Width="128"/>
+                        <captioned:CaptionedComboBox Name="Themes" Caption="{loc:Translate Theme}" IsEditable="False" Value="{Binding Theme}" SelectedIndexChanged="ThemeChanged"/>
+                        <CheckBox IsChecked="{Binding UseMenuWithIcons}" Content="{loc:Translate UseTrayMenuWithIcons}" Margin="5"/>
+                        <CheckBox IsChecked="{Binding HideOnSave}" Content="{loc:Translate HideOnSave}" Margin="5"/>
+                        <CheckBox IsChecked="{Binding HideOnCancel}" Content="{loc:Translate HideOnCancel}" Margin="5"/>
+                        <CheckBox IsChecked="{Binding StartHidden}" Content="{loc:Translate StartHidden}" Margin="5"/>
+                        <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="{loc:Translate ShowSettingsBySingleClickOnTrayIcon}" Margin="5"/>
+                        <controls:ExtCheckBox IsChecked="{Binding EnableGPUAccelerationForUi}" Content="{loc:Translate UseGPUForUIRender}" Margin="5" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="{loc:Translate Shortcuts}" Margin="5" >
+                    <StackPanel>
+                        <Button Content="{loc:Translate ShortcutToDesktop}" Click="ShortcutToDesktopClick" Margin="5" Width="140"/>
+                        <Button Content="{loc:Translate ShortcutToAutorun}" Click="ShortcutToAutorunClick" Margin="5" Width="140"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="{loc:Translate Localization}" Margin="5" >
+                    <StackPanel>
+                        <captioned:CaptionedComboBox Name="cbLanguage" IsEditable="false" Caption="{loc:Translate Language}" Value="{Binding Language}" ValueChanged="LanguageChanged"/>
+                        <TextBlock Text="{loc:Translate RestartAfterChangingLanguage}" FontWeight="Light" HorizontalAlignment="Right"/>
                     </StackPanel>
                 </GroupBox>
             </WrapPanel>
         </TabItem>
-        <TabItem Header="Global HotKeys">
+        <TabItem Header="{loc:Translate HotKeys}">
             <DockPanel>
-                <controls:ExtCheckBox Content="Global HotKeys are enabled" Name="HotKeysEnabled" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="HotKeysEnabledChecked" IsChecked="{Binding HotKeys.IsEnabled}" DockPanel.Dock="Top"/>
-                <units:CheckableListBoxUnit Name="HotKeysView" IsEnabled="{Binding ElementName=HotKeysEnabled, Path=IsChecked}">
+                <controls:ExtCheckBox Content="{loc:Translate GlobalHotKeysAreEnabled}" Name="HotKeysEnabled" Checked="HotKeysEnabledChecked" IsChecked="{Binding HotKeys.IsEnabled}" DockPanel.Dock="Top" Margin="5"/>
+                <units:CheckableListBoxUnit Name="HotKeysView" IsEnabled="{Binding ElementName=HotKeysEnabled, Path=IsChecked}" Margin="10,2,2,2">
                     <units:CheckableListBoxUnit.ItemTemplate>
                         <DataTemplate DataType="settings:HotKeyInfo">
                             <StackPanel Margin="2">
@@ -89,10 +108,10 @@
                 </units:CheckableListBoxUnit>
             </DockPanel>
         </TabItem>
-        <TabItem Header="Scheduler">
+        <TabItem Header="{loc:Translate Scheduler}">
             <DockPanel>
-                <controls:ExtCheckBox Content="Schelduler is enabled" Name="SchedulerEnabled" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="SheldulerEnabledChecked" IsChecked="{Binding SchedulerTasks.IsEnabled}" DockPanel.Dock="Top"/>
-                <units:CheckableListBoxUnit Name="ScheldulerView" IsEnabled="{Binding ElementName=SchedulerEnabled, Path=IsChecked}" SmoothScrolling="True">
+                <controls:ExtCheckBox Content="{loc:Translate ScheldulerIsEnabled}" Name="SchedulerEnabled" Checked="SheldulerEnabledChecked" IsChecked="{Binding SchedulerTasks.IsEnabled}" DockPanel.Dock="Top" Margin="5"/>
+                <units:CheckableListBoxUnit Name="ScheldulerView" IsEnabled="{Binding ElementName=SchedulerEnabled, Path=IsChecked}" SmoothScrolling="True" Margin="10,2,2,2">
                     <units:CheckableListBoxUnit.ItemTemplate>
                         <DataTemplate DataType="settings2:SchedulerTask">
                             <StackPanel Margin="2">
@@ -101,8 +120,8 @@
                                     <TextBlock Text="{Binding}" FontWeight="Bold" Padding="0" Margin="2" VerticalAlignment="Center"/>
                                 </DockPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <controls:FlagsCheckBoxes BaseType="{x:Type settings2:ShortDayOfWeek}" Caption="Day of the week:" Orientation="Horizontal" Value="{Binding DaysOfWeek}" IsEnabled="{Binding IsChecked}"/>
-                                    <captioned:CaptionedTimeBox Caption="Day time:" Value="{Binding TimeOfTheDay, Mode=TwoWay}" IsEnabled="{Binding IsChecked}"/>
+                                    <controls:FlagsCheckBoxes BaseType="{x:Type settings2:ShortDayOfWeek}" Caption="{loc:Translate DayOfTheWeek}" Orientation="Horizontal" Value="{Binding DaysOfWeek}" IsEnabled="{Binding IsChecked}"/>
+                                    <captioned:CaptionedTimeBox Caption="{loc:Translate DayTime}" Value="{Binding TimeOfTheDay, Mode=TwoWay}" IsEnabled="{Binding IsChecked}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -110,9 +129,9 @@
                 </units:CheckableListBoxUnit>
             </DockPanel>
         </TabItem>
-        <TabItem Header="User Actions">
+        <TabItem Header="{loc:Translate UserActions}">
             <DockPanel>
-                <units:CheckableListBoxUnit Name="UserActionsView" UnitType="Text" Title="Configure user action">
+                <units:CheckableListBoxUnit Name="UserActionsView" UnitType="Text" Title="{loc:Translate ConfigureUserAction}">
                     <units:CheckableListBoxUnit.ItemTemplate>
                         <DataTemplate DataType="{x:Type settings:MenuItemsSequence}">
                             <DockPanel>
@@ -125,13 +144,13 @@
                 </units:CheckableListBoxUnit>
             </DockPanel>
         </TabItem>
-        <TabItem Header="Information" >
+        <TabItem Header="{loc:Translate Information}" >
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Top">
                 <Label Name="Version" HorizontalAlignment="Center" />
-                <Label Content="Licensed under GPLv2 license." HorizontalAlignment="Center" Padding="20"/>
-                <Label Content="Created by Alex H (Mnk) from Brest." HorizontalAlignment="Center" Padding="0"/>
-                <Label Content="In development since 2010." HorizontalAlignment="Center" Padding="0"/>
-                <Label Content="Web site:" HorizontalAlignment="Center" Padding="0 20 0 0"/>
+                <Label Content="{loc:Translate LicenseInfo}" HorizontalAlignment="Center" Padding="20"/>
+                <Label Content="{loc:Translate AuthorsInfo}" HorizontalAlignment="Center" Padding="0"/>
+                <Label Content="{loc:Translate LifeTimeInfo}" HorizontalAlignment="Center" Padding="0"/>
+                <Label Content="{loc:Translate WebSite}" HorizontalAlignment="Center" Padding="0 20 0 0"/>
                 <TextBlock HorizontalAlignment="Center" Margin="0"> 
                     <Hyperlink FontWeight="Black" Foreground="#0066B3" RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="https://tbox.codeplex.com">https://tbox.codeplex.com</Hyperlink>
                 </TextBlock>

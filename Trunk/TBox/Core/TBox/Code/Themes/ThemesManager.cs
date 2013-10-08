@@ -6,6 +6,7 @@ using System.Windows.Markup;
 using Common.Base;
 using Common.Base.Log;
 using Common.Tools;
+using Localization.TBox;
 
 namespace TBox.Code.Themes
 {
@@ -24,7 +25,7 @@ namespace TBox.Code.Themes
 
 		private void FillThemesList()
 		{
-			AvailableThemes.Add("None");
+			AvailableThemes.Add(TBoxLang.None);
 			foreach (var file in new DirectoryInfo(ThemesPath).SafeEnumerateFiles(Log, "*.xaml"))
 			{
 				AvailableThemes.Add(file.Name);

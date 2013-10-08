@@ -1,5 +1,6 @@
 ﻿<Dialogs:DialogWindow 
              x:Class="Requestor.Components.FormRequest"
+             xmlns:loc="clr-namespace:Requestor.Code.Localization"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,11 +19,11 @@
             >
     <DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
-            <Button Name="btnTest" Content="Test" Margin="10" Width="48" Click="BtnTestClick" IsDefault="True"/>
-            <Button Content="Cancel" Margin="10" Width="48" Click="CancelClick" IsCancel="True"/>
+            <Button Name="btnTest" Content="{loc:Tr Test}" Margin="10" Width="48" Click="BtnTestClick" IsDefault="True"/>
+            <Button Content="{loc:Tr Cancel}" Margin="10" Width="48" Click="CancelClick" IsCancel="True"/>
         </StackPanel>
         <TabControl Name="Tabs">
-            <TabItem Header="Request">
+            <TabItem Header="{loc:Tr Request}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="48"/>
@@ -31,11 +32,11 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <DockPanel>
-                        <captioned:CaptionedEnumDropDownList Caption="Method:" SourceEnumType="network:Methods" Value="{Binding Request.Method}" Margin="5" Width="108" DockPanel.Dock="Left" />
-                        <captioned:CaptionedComboBox Name="cbUrl" Value="{Binding Request.Url}" ItemsSource="{Binding KnownUrls, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Components:FormRequest}}}" IsEditable="True" Caption="Url:" Margin="5" DockPanel.Dock="Top"/>
+                        <captioned:CaptionedEnumDropDownList Caption="{loc:Tr Method}" SourceEnumType="network:Methods" Value="{Binding Request.Method}" Margin="5" Width="108" DockPanel.Dock="Left" />
+                        <captioned:CaptionedComboBox Name="cbUrl" Value="{Binding Request.Url}" ItemsSource="{Binding KnownUrls, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Components:FormRequest}}}" IsEditable="True" Caption="{loc:Tr Url}" Margin="5" DockPanel.Dock="Top"/>
                     </DockPanel>
                     <DockPanel Grid.Row="1">
-                        <Label Content="Headers:" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        <Label Content="{loc:Tr Headers}" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                         <Units:ListBoxUnit Name="Headers" >
                             <Units:ListBoxUnit.ItemTemplate>
                                 <DataTemplate DataType="{x:Type Settings:Header}">
@@ -50,12 +51,12 @@
                     </DockPanel>
                     <GridSplitter Grid.Row="2" ResizeDirection="Rows" HorizontalAlignment="Stretch"/>
                     <DockPanel Grid.Row="3">
-                        <Label Content="Body:" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
+                        <Label Content="{loc:Tr Body}" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
                         <sh:SyntaxHighlighter Value="{Binding Request.Body}"/>
                     </DockPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Response">
+            <TabItem Header="{loc:Tr Response}">
                 <controls:ResponseBox Name="Response"/>
             </TabItem>
         </TabControl>

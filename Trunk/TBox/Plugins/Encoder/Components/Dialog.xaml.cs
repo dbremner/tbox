@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Encoder.Code;
-using WPFControls.Tools;
+using Localization.Plugins.Encoder;
 
 namespace Encoder.Components
 {
@@ -91,7 +91,7 @@ namespace Encoder.Components
 			try
 			{
 				last = (Operation)Encoders.SelectedValue;
-				Title = "Encoder - [" + last.Header + "]";
+				Title = EncoderLang.PluginName + " - [" + last.Header + "]";
 				if (!string.IsNullOrWhiteSpace(last.Format))
 				{
 					Result.Format = last.Format;
@@ -101,7 +101,7 @@ namespace Encoder.Components
 			catch (Exception ex)
 			{
 				if (e != null) e.Handled = true;
-				Result.Value = "Encoder. Unexpected exception!" +
+				Result.Value = EncoderLang.PluginName + ". " + EncoderLang.UnexpectedException +
 					Environment.NewLine + ex.Message;
 			}
 		}

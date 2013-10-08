@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="clr-namespace:WPFControls.Localization"
                       xmlns:forms="clr-namespace:WPFControls.Dialogs.Menu"
               xmlns:dialogs="clr-namespace:WPFControls.Dialogs"
               mc:Ignorable="d" 
@@ -11,8 +12,8 @@
              FocusManager.FocusedElement="{Binding ElementName=edData}" >
 <DockPanel>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
-        <Button Name="btnOk" Content="OK" Width="64" Margin="10" Click="BtnOk_OnClick" IsDefault="True"/>
-        <Button Content="Cancel" Width="64" Margin="10" IsCancel="True" Click="BtnCancelClick"/>
+            <Button Name="btnOk" Content="{loc:Tr OK}" Width="64" Margin="10" Click="BtnOk_OnClick" IsDefault="True"/>
+            <Button Content="{loc:Tr Cancel}" Width="64" Margin="10" IsCancel="True" Click="BtnCancelClick"/>
     </StackPanel>
         <TextBlock Name="Question" Padding="5,0" DockPanel.Dock="Top"/>
         <TreeView Name="Items" SelectedItemChanged="Selector_OnSelectionChanged">

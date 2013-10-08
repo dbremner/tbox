@@ -29,7 +29,22 @@
             <param name="assemblyName"></param>
             <returns>The type if it exists</returns>
         </member>
-        <member name="M:ServiceStack.Text.Common.DateTimeSerializer.Prepare(System.DateTime)">
+        <member name="M:ServiceStack.AutoMappingUtils.PopulateWith(System.Object)">
+            <summary>
+            Populate an object with Example data.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ServiceStack.AutoMappingUtils.PopulateObjectInternal(System.Object,System.Collections.Generic.Dictionary{System.Type,System.Int32})">
+            <summary>
+            Populates the object with example data.
+            </summary>
+            <param name="obj"></param>
+            <param name="recursionInfo">Tracks how deeply nested we are</param>
+            <returns></returns>
+        </member>
+        <member name="M:ServiceStack.Text.Common.DateTimeSerializer.Prepare(System.DateTime,System.Boolean)">
             <summary>
             If AlwaysUseUtc is set to true then convert all DateTime to UTC.
             </summary>
@@ -153,6 +168,17 @@
             Gets or sets a value indicating if the framework should always convert <see cref="T:System.DateTime"/> to UTC format instead of local time. 
             </summary>
         </member>
+        <member name="F:ServiceStack.Text.JsConfig.sAssumeUtc">
+            <summary>
+            Gets or sets a value indicating if the framework should always assume <see cref="T:System.DateTime"/> is in UTC format if Kind is Unspecified. 
+            </summary>
+        </member>
+        <member name="F:ServiceStack.Text.JsConfig.sAppendUtcOffset">
+            <summary>
+            Gets or sets whether we should append the Utc offset when we serialize Utc dates. Defaults to no.
+            Only supported for when the JsConfig.DateHandler == JsonDateHandler.TimestampOffset
+            </summary>
+        </member>
         <member name="F:ServiceStack.Text.JsConfig.sEscapeUnicode">
             <summary>
             Gets or sets a value indicating if unicode symbols should be serialized as "\uXXXX".
@@ -161,6 +187,11 @@
         <member name="F:ServiceStack.Text.JsConfig.sIncludePublicFields">
             <summary>
             If set to true, Interface types will be prefered over concrete types when serializing.
+            </summary>
+        </member>
+        <member name="F:ServiceStack.Text.JsConfig.sMaxDepth">
+            <summary>
+            Sets the maximum depth to avoid circular dependencies
             </summary>
         </member>
         <member name="F:ServiceStack.Text.JsConfig.sModelFactory">
@@ -400,11 +431,53 @@
             Get or set the value of a named member on the target instance
             </summary>
         </member>
+        <member name="M:ServiceStack.PathUtils.MapProjectPath(System.String)">
+            <summary>
+            Maps the path of a file in the context of a VS project
+            </summary>
+            <param name="relativePath">the relative path</param>
+            <returns>the absolute path</returns>
+            <remarks>Assumes static content is two directories above the /bin/ directory,
+            eg. in a unit test scenario  the assembly would be in /bin/Debug/.</remarks>
+        </member>
+        <member name="M:ServiceStack.PathUtils.MapAbsolutePath(System.String)">
+            <summary>
+            Maps the path of a file in a self-hosted scenario
+            </summary>
+            <param name="relativePath">the relative path</param>
+            <returns>the absolute path</returns>
+            <remarks>Assumes static content is copied to /bin/ folder with the assemblies</remarks>
+        </member>
+        <member name="M:ServiceStack.PathUtils.MapHostAbsolutePath(System.String)">
+            <summary>
+            Maps the path of a file in an Asp.Net hosted scenario
+            </summary>
+            <param name="relativePath">the relative path</param>
+            <returns>the absolute path</returns>
+            <remarks>Assumes static content is in the parent folder of the /bin/ directory</remarks>
+        </member>
         <member name="T:ServiceStack.Text.QueryStringWriter`1">
             <summary>
             Implement the serializer using a more static approach
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ServiceStack.Text.ReflectionExtensions.New``1(System.Type)">
+            <summary>
+            Creates a new instance of type. 
+            First looks at JsConfig.ModelFactory before falling back to CreateInstance
+            </summary>
+        </member>
+        <member name="M:ServiceStack.Text.ReflectionExtensions.New(System.Type)">
+            <summary>
+            Creates a new instance of type. 
+            First looks at JsConfig.ModelFactory before falling back to CreateInstance
+            </summary>
+        </member>
+        <member name="M:ServiceStack.Text.ReflectionExtensions.CreateInstance(System.Type)">
+            <summary>
+            Creates a new instance from the default constructor of type
+            </summary>
         </member>
         <member name="F:ServiceStack.Text.StreamExtensions.DefaultBufferSize">
             <summary>

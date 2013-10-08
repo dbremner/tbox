@@ -89,6 +89,7 @@
           <File Name='FileWatcher.dll'/>
           <File Name='HtmlPad.dll'/>
           <File Name='LeaksInterceptor.dll'/>
+          <File Name='LocalizationTool.dll'/>
           <File Name='NUnitRunner.dll'/>
           <File Name='ProjectMan.dll'/>
           <File Name='RegExpTester.dll'/>

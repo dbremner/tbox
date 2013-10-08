@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.AppConfigManager;
 using PluginsShared.Tools;
 using WPFWinForms;
 
 namespace AppConfigManager
 {
-	[PluginName("AppSettings manager")]
-	[PluginDescription("Ability to change appsettings in the set of app or web configs.\nFor example you can enable/disable features.")]
+	[PluginInfo(typeof(AppConfigManagerLang), typeof(Properties.Resources), PluginGroup.Desktop)]
 	public class AppConfigManager : ConfigurablePlugin<Settings, Config>
 	{
 		private readonly Lazy<FeatureToggler> executor = new Lazy<FeatureToggler>(() => new FeatureToggler());
-
-		public AppConfigManager()
-		{
-			Icon = Properties.Resources.Icon;
-		}
 
 		public override void OnRebuildMenu()
 		{

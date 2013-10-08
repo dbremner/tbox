@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.SqlWatcher;
 using PluginsShared.Watcher;
 using SqlWatcher.Code;
 using WPFSyntaxHighlighter;
@@ -10,23 +11,20 @@ using WPFWinForms;
 
 namespace SqlWatcher
 {
-	[PluginName("Sql watcher")]
-	[PluginDescription("Ability to wath for the set of SQL logs at realtime.\nAnd see all the information in one stream with tray indicator.")]
+	[PluginInfo(typeof(SqlWatcherLang), typeof(Properties.Resources), PluginGroup.Database)]
 	public sealed class SqlWatcher : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
-		private const string Title = "Sql Watcher";
 		private Lazy<Worker<LogDialog>> worker;
         private readonly DataParser parser = new DataParser();
-		private static readonly string[] StartStop = new[] {"Start", "Stop"}; 
+		private static readonly string[] StartStop = new[] {SqlWatcherLang.Start, SqlWatcherLang.Stop}; 
 		public SqlWatcher()
 		{
 			Menu = new []{
 				new UMenuItem{Header = StartStop[0], OnClick = o=>OnStartStop()},
-				new UMenuItem{Header = "Show Logs...", OnClick = o=>OnShowLogs()}, 
-				new UMenuItem{Header = "Fill From Clipboard...", OnClick = o=>OnFillFromClipboard()}, 
-				new UMenuItem{Header = "Clear", OnClick = o=>OnClear()}
+				new UMenuItem{Header = SqlWatcherLang.ShowLogs, OnClick = o=>OnShowLogs()}, 
+				new UMenuItem{Header = SqlWatcherLang.FillFromClipboard, OnClick = o=>OnFillFromClipboard()}, 
+				new UMenuItem{Header = SqlWatcherLang.Clear, OnClick = o=>OnClear()}
 			};
-			Icon = Properties.Resources.Icon;
 		}
 
 		public override void Init(IPluginContext context)
@@ -34,7 +32,7 @@ namespace SqlWatcher
 			base.Init(context);
 			context.AddTypeToWarmingUp(typeof(SyntaxHighlighter));
 			worker = new Lazy<Worker<LogDialog>>(
-				() => new Worker<LogDialog>(new LogDialog(Icon), parser, Title, Config, Color.Blue)); 
+				() => new Worker<LogDialog>(new LogDialog(ImageSource), parser, SqlWatcherLang.PluginName, Config, Color.Blue)); 
 		}
 
 		private void OnFillFromClipboard()
@@ -44,7 +42,7 @@ namespace SqlWatcher
 		    foreach (var line in Clipboard.GetText()
                 .Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries))
 		    {
-                worker.Value.Write("clipboard", parser.Parse(line));
+                worker.Value.Write(SqlWatcherLang.Clipboard, parser.Parse(line));
 		    }
             worker.Value.ShowLogsList();
 			
@@ -88,7 +86,7 @@ namespace SqlWatcher
 	    private void InitWorker()
         {
             parser.RemoveTypeInfo = Config.RemoveTypeInfo;
-            worker.Value.Log.Dialog.Title = Title;
+            worker.Value.Log.Dialog.Title = SqlWatcherLang.PluginName;
 	        worker.Value.Log.Dialog.Format = "mssql";
 	    }
 

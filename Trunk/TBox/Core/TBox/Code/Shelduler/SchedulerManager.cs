@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Threading;
 using Interface;
+using Localization.TBox;
 using TBox.Code.Menu;
 using TBox.Code.Shelduler.Settings;
 using WPFControls.Components.Units;
@@ -33,7 +34,7 @@ namespace TBox.Code.Shelduler
 		public void Refresh()
 		{
 			Dispose();
-			view.ConfigureInputMenuItem("Schelduler", 
+			view.ConfigureInputMenuItem(TBoxLang.Schelduler, 
 				originalConfig.Tasks, 
 				menuItemsProvider.GetDialogItems(), 
 				validator: x => true);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Threading;
 using Common.Network;
 using PluginsShared.Watcher;
@@ -31,7 +32,7 @@ namespace RequestsWatcher.Components
 			set { table.MaxCount = value; }
 		}
 
-		public LogDialog(Icon icon)
+		public LogDialog(ImageSource icon)
 		{
 			InitializeComponent();
 			scrollView.Content = table;
@@ -39,7 +40,7 @@ namespace RequestsWatcher.Components
 			timer.Interval =new TimeSpan(0,0,1);
 			timer.Tick += TimerOnTick;
 			
-			this.SetIcon(icon);
+			Icon = icon;
 		}
 
 		private void TimerOnTick(object sender, EventArgs eventArgs)

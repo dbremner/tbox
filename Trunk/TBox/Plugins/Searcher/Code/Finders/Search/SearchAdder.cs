@@ -5,7 +5,7 @@ namespace Searcher.Code.Finders.Search
 {
 	class SearchAdder : IAdder
 	{
-		public ISet<string> Words { get; private set;}
+		public ISet<string> Words { get; private set; }
 
 		public SearchAdder()
 		{

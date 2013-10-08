@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                         xmlns:Dialogs="clr-namespace:WPFControls.Dialogs;assembly=WPFControls" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             ShowInTaskbar="True" Title="HtmlPad"
+             ShowInTaskbar="True" 
              FocusManager.FocusedElement="{Binding ElementName=Editor}"
              MinWidth="640" MinHeight="480">
     <Grid>

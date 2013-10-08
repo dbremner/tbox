@@ -5,6 +5,7 @@ using System.Windows;
 using BookletPagesGenerator.Code;
 using Common.Base;
 using Common.Base.Log;
+using Localization.Plugins.BookletPagesGenerator;
 using WPFControls.Tools;
 
 namespace BookletPagesGenerator
@@ -68,7 +69,7 @@ namespace BookletPagesGenerator
 				lRange.Content = string.Format("{0}-{1}",
 				                               Math.Min(arrFirst.Min(), arrBack.Min()),
 				                               Math.Max(arrFirst.Max(), arrBack.Max()));
-				lUpOrDown.Content = ((lbResult.SelectedIndex%2) == 0) ? "Up" : "Down";
+				lUpOrDown.Content = ((lbResult.SelectedIndex%2) == 0) ?  BookletPagesGeneratorLang.Up : BookletPagesGeneratorLang.Down;
 			}
 			else
 			{

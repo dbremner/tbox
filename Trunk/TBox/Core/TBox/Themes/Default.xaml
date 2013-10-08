@@ -4,25 +4,25 @@
     <Style TargetType="{x:Type ListBoxItem}">
         <Style.Triggers>
             <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                <Setter Property="Background" Value="#E6EDF4"></Setter>
+                <Setter Property="Background" Value="#00000000"></Setter>
             </Trigger>
             <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                <Setter Property="Background" Value="#00000000"></Setter>
+                <Setter Property="Background" Value="#E6EDF4"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
     <Style TargetType="{x:Type ListViewItem}">
         <Style.Triggers>
             <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                <Setter Property="Background" Value="#E6EDF4"></Setter>
+                <Setter Property="Background" Value="#00000000"></Setter>
             </Trigger>
             <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                <Setter Property="Background" Value="#00000000"></Setter>
+                <Setter Property="Background" Value="#E6EDF4"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
-	<Style TargetType="{x:Type TextBlock}">     
-		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>     
+	<Style TargetType="{x:Type TextBlock}">
+		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 		<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>     
 	</Style>
     <SolidColorBrush x:Key="GlyphBrush" Color="#444" />

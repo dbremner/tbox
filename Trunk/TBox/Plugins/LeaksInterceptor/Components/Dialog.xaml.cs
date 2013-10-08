@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 using Common.Base.Log;
 using Common.UI.Model;
@@ -13,6 +14,7 @@ using LeaksInterceptor.Code;
 using LeaksInterceptor.Code.Getters;
 using LeaksInterceptor.Code.Perfomance;
 using LeaksInterceptor.Code.Standart;
+using Localization.Plugins.LeaksInterceptor;
 using WPFControls.Code.OS;
 using WPFWinForms;
 
@@ -212,7 +214,7 @@ namespace LeaksInterceptor.Components
 				}
 				Config.LastProcessName = GetSelectedName();
 				EnableControls(false);
-				btnStartStop.Content = "Stop";
+				btnStartStop.Content = LeaksInterceptorLang.Stop;
 				cbGraphics.IsEnabled = true;
 				btnCopy.IsEnabled = false;
 				trayIcon.HoverText = Title;
@@ -251,7 +253,7 @@ namespace LeaksInterceptor.Components
 		private void Stop()
 		{
 			EnableControls(true);
-			btnStartStop.Content = "Start";
+			btnStartStop.Content = LeaksInterceptorLang.Start;
 			systemAnalizer.Stop();
 			trayIcon.IsVisible = false;
 			btnCopy.IsEnabled = true;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Base;
 using Common.Base.Log;
 using PluginsShared.Watcher;
 using ServiceStack.Text;

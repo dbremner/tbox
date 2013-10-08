@@ -1,20 +1,15 @@
 ﻿using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.SourcesUniter;
+using SourcesUniter.Code;
 
 namespace SourcesUniter
 {
-	[PluginName("SourcesUniter")]
-	[PluginDescription("Simple plugin to unite big set of sources in to the one document.\r\nDesigned mostly for studients.")]
+	[PluginInfo(typeof(SourcesUniterLang), 68, PluginGroup.Other)]
 	public sealed class SourcesUniter : SingleDialogPlugin<Config, Dialog>
 	{
-		public SourcesUniter() : base("Unite...")
+		public SourcesUniter() : base(SourcesUniterLang.Unite)
 		{
-		}
-
-		public override void Init(IPluginContext context)
-		{
-			base.Init(context);
-			Icon = Context.GetSystemIcon(68);
 		}
 	}
 }

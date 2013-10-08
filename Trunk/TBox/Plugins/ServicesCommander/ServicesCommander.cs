@@ -2,14 +2,14 @@
 using System.Linq;
 using Interface;
 using Interface.Atrributes;
+using Localization.Plugins.ServicesCommander;
 using ServicesCommander.Code;
 using WPFControls.Dialogs;
 using WPFWinForms;
 
 namespace ServicesCommander
 {
-	[PluginName("Services commander")]
-	[PluginDescription("Tool to start and stop any of the selected services.")]
+	[PluginInfo(typeof(ServicesCommanderLang), 71, PluginGroup.Desktop)]
 	public class ServicesCommander : ConfigurablePlugin<Settings, Config>
 	{
 		private Runner runner;
@@ -25,13 +25,13 @@ namespace ServicesCommander
 								.SelectMany(s=>new[]{
 										new UMenuItem
 											{
-												Header = s.Key + " - " + (runner.IsRunning(s) ? "Stop" : "Start"),
-												OnClick = o =>DoWithProgress(s.Key + " - " + (runner.IsRunning(s) ? "Stop" : "Start"), ()=>runner.ToggleService(s)) 
+												Header = s.Key + " - " + (runner.IsRunning(s) ? ServicesCommanderLang.Stop : ServicesCommanderLang.Start),
+												OnClick = o =>DoWithProgress(s.Key + " - " + (runner.IsRunning(s) ? ServicesCommanderLang.Stop : ServicesCommanderLang.Start), ()=>runner.ToggleService(s)) 
 											},
 										new UMenuItem
 											{
-												Header = s.Key + " - Restart",
-												OnClick = o =>DoWithProgress(s.Key + " - Restart", ()=>runner.RestartService(s))
+												Header = s.Key + " - " + ServicesCommanderLang.Restart,
+												OnClick = o =>DoWithProgress(s.Key + " - " + ServicesCommanderLang.Restart, ()=>runner.RestartService(s))
 											}
 									})
 									.Concat(new[]
@@ -39,12 +39,12 @@ namespace ServicesCommander
 											new USeparator(), 
 											new UMenuItem
 												{
-													Header = "Start All",
+													Header = ServicesCommanderLang.StartAll,
 													OnClick = o=>runner.StartAll(p)
 												},
 											new UMenuItem
 											{
-												Header = "Stop All",
+												Header = ServicesCommanderLang.StopAll,
 												OnClick = o=>runner.StopAll(p)
 											}
 										})
@@ -52,7 +52,7 @@ namespace ServicesCommander
 					} )
 				.Concat(new[]{new UMenuItem
 					{
-						Header = "Refresh",
+						Header = ServicesCommanderLang.Refresh,
 						OnClick = o=>Context.RebuildMenu()
 					} })
 				.ToArray();
@@ -66,7 +66,6 @@ namespace ServicesCommander
 		public override void Init(IPluginContext context)
 		{
 			base.Init(context);
-			Icon = Context.GetSystemIcon(71);
 			runner = new Runner(context);
 		}
 	}
