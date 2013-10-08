@@ -52,18 +52,7 @@
   <PropertyGroup>
     <PreBuildEvent>copy /Y "$(SolutionDir)bin\Release\TBox.exe" "$(SolutionDir)bin\Release\TBox32.exe" 
 copy /Y "$(SolutionDir)bin\Release\TBox.exe.config" "$(SolutionDir)bin\Release\TBox32.exe.config"
-"c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\corflags.exe" /32bit+ "$(SolutionDir)bin\Release\TBox32.exe"
-
-copy /Y "$(SolutionDir)Tools\build_build.cmd" "$(SolutionDir)bin\Release\Tools\build_build.cmd"
-copy /Y "$(SolutionDir)Tools\build_project.cmd" "$(SolutionDir)bin\Release\Tools\build_project.cmd"
-copy /Y "$(SolutionDir)Tools\RunAsx86.exe" "$(SolutionDir)bin\Release\Tools\RunAsx86.exe"
-copy /Y "$(SolutionDir)Tools\sudo.exe" "$(SolutionDir)bin\Release\Tools\sudo.exe"
-
-%25WINDIR%25\Microsoft.NET\Framework\v4.0.30319\msbuild $(SolutionDir)\..\Library\NativeBoost\NativeBoost.vcxproj /p:Configuration="Release" /p:Platform="Win32" /MP
-copy /Y "$(SolutionDir)\..\Library\NativeBoost\bin\Win32\NativeBoost.dll" "$(SolutionDir)bin\Release\Libraries\x86\NativeBoost.dll"
-
-%25WINDIR%25\Microsoft.NET\Framework\v4.0.30319\msbuild $(SolutionDir)\..\Library\NativeBoost\NativeBoost.vcxproj /p:Configuration="Release" /p:Platform="x64" /MP
-copy /Y "$(SolutionDir)\..\Library\NativeBoost\bin\x64\NativeBoost.dll" "$(SolutionDir)bin\Release\Libraries\x64\NativeBoost.dll"</PreBuildEvent>
+"c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\corflags.exe" /32bit+ "$(SolutionDir)bin\Release\TBox32.exe"</PreBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

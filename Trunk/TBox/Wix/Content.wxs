@@ -4,7 +4,7 @@
 	<Fragment>
     <DirectoryRef Id="INSTALLLOCATION" FileSource="..\bin\Release\" >
       <Directory Id="Data" Name="Data">
-        <Directory Id="Automater" Name="Automater" FileSource="..\Shared\Automater\">
+        <Directory Id="Automater" Name="Automater">
           <Directory Id="Msc" Name="Msc">
             <Component Id="AutomaterMsc" Guid="4928F203-E455-475C-B093-F53B734530BF">
               <File Name='AddTracing.cs'/>
@@ -35,7 +35,7 @@
             <CreateFolder/>
           </Component>
         </Directory>
-        <Directory Id="Templates" Name="Templates" FileSource="..\Shared\Templates\">
+        <Directory Id="Templates" Name="Templates">
           <Directory Id="TemplatesSample" Name="Sample">
             <Component Id="TemplatesSample" Guid="B31CFEB1-760F-4CB8-A608-BB57B724B6AE">
               <File Name='{#test#}.cs'/>
@@ -46,16 +46,26 @@
           </Component>
         </Directory>
       </Directory>
+      <Directory Id="Localization" Name="Localization">
+        <Directory Id="ru" Name="ru">
+          <Component Id="ru" Guid="13803B2E-40A3-486A-A9B9-B6FE14292EFD">
+            <File Name='LibsLocalization.resources.dll'/>
+            <File Name='Localization.resources.dll'/>
+          </Component>
+        </Directory>
+        <Component Id="Localization" Guid="46893047-9ADB-4704-BA5C-90B8A196D30A">
+          <File Name='LibsLocalization.dll'/>
+          <File Name='Localization.dll'/>
+        </Component>
+      </Directory>
       <Directory Id="Libraries" Name="Libraries">
         <Directory Id="Libx86" Name="x86">
           <Component Id="Libx86" Guid="18AF302D-0A39-4047-884E-3E7762A15E71">
-            <File Name='NativeBoost.dll' Id='NativeBoost86.dll'/>
             <File Name='SciLexer.dll'/>
           </Component>
         </Directory>
         <Directory Id="Libx64" Name="x64">
           <Component Id="Libx64" Guid="8F1074D8-23F1-4C53-B40F-704461AE62D8">
-            <File Name='NativeBoost.dll' Id='NativeBoost64.dll'/>
             <File Name='SciLexer64.dll'/>
           </Component>
         </Directory>
@@ -89,7 +99,6 @@
           <File Name='FileWatcher.dll'/>
           <File Name='HtmlPad.dll'/>
           <File Name='LeaksInterceptor.dll'/>
-          <File Name='LocalizationTool.dll'/>
           <File Name='NUnitRunner.dll'/>
           <File Name='ProjectMan.dll'/>
           <File Name='RegExpTester.dll'/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
   <?define ProductName="TBox" ?>
-  <?define ProductVersion="1.1.0.0" ?>
+  <?define ProductVersion="1.2.0.0" ?>
   <?define UpgradeCode="84F0440E-CEF4-4F65-9FE9-2075995C19E5"?>
   <?define Manufacturer="Mnk"?>
   <?define WebSite="https://tbox.codeplex.com"?>
