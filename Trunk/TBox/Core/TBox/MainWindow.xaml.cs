@@ -38,7 +38,7 @@ namespace TBox
 		private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder,  "errors.log");
 		private readonly LogsSender logsSender;
 		private readonly PluginsSettings settings;
-		private readonly FastStartDialog fastStartDialog;
+		private readonly Lazy<FastStartDialog> fastStartDialog;
 		private readonly MenuItemsProvider menuItemsProvider;
 		private readonly UiConfigurator uiConfigurator;
 		private readonly MenuCallsVisitor menuCallsVisitor;
@@ -46,6 +46,7 @@ namespace TBox
 		private Engine engine;
 		private ChangesLogDialog changesLogDialog;
 		private readonly int startTime = Environment.TickCount;
+		internal RecentItemsCollector RecentItemsCollector;
 		private readonly FeedbackSender feedbackSender = new FeedbackSender();
 
 		public MainWindow()
@@ -62,13 +63,16 @@ namespace TBox
 			InitializeComponent();
 			menuItemsProvider = new MenuItemsProvider();
 			menuCallsVisitor = new MenuCallsVisitor();
+			RecentItemsCollector = new RecentItemsCollector(configManager, menuItemsProvider);
 			settings = new PluginsSettings(menuItemsProvider);
-			fastStartDialog = new FastStartDialog();
+			fastStartDialog = new Lazy<FastStartDialog>(CreateFastStartDialog);
 			InfoLog.Write("Init main form time: {0}", Environment.TickCount - startTime);
 			uiConfigurator = new UiConfigurator(
 				View, PluginsBack, BtnBack, settings, menuItemsProvider, menuCallsVisitor,
 				new[]
 					{
+						new USeparator(),
+						new UMenuItem{Header = TBoxLang.UserActions}, 
 						new USeparator(),
 						new UMenuItem{Header = TBoxLang.MenuSettings, OnClick = o=>MenuShowSettings(), Icon = Properties.Resources.Icon},
 						new UMenuItem{Header = TBoxLang.MenuFastStart, OnClick = o=>MenuShowFastStart(), Icon = Properties.Resources.Icon},
@@ -82,13 +86,13 @@ namespace TBox
 						() =>
 						{
 							configManager.Config.FastStartConfig.IsFastStart = true;
-							return fastStartDialog;
+							return fastStartDialog.Value;
 						})
 				},
 				OnPluginChanged
 				);
 			ShowProgress( TBoxLang.ProgressInitialize, CreateEngine, false );
-			InitFastMenu();
+			InitFastStartMenu();
 
 			ExceptionsHelper.HandleException(ShowChangeLog, () => TBoxLang.ErrorProcessingChangelog, Log);
 			this.SetState(configManager.Config.DialogState);
@@ -98,18 +102,27 @@ namespace TBox
 			uiConfigurator.FastStartShower.Show();
 		}
 
-		private void InitFastMenu()
+		private void InitFastStartMenu()
 		{
-			var recentItemsCollector = new RecentItemsCollector(configManager.Config.FastStartConfig.MenuItems, menuItemsProvider);
-			menuCallsVisitor.ClearHandlers();
-			menuCallsVisitor.AddHandler(recentItemsCollector);
 			uiConfigurator.FastStartShower.Load(configManager.Config.FastStartConfig);
-			fastStartDialog.Init(recentItemsCollector, configManager.Config.FastStartConfig, menuItemsProvider,
+			menuCallsVisitor.ClearHandlers();
+			menuCallsVisitor.AddHandler(RecentItemsCollector);
+			if (fastStartDialog.IsValueCreated)
+			{
+				fastStartDialog.Value.Init(configManager, RecentItemsCollector);
+			}
+		}
+
+		private FastStartDialog CreateFastStartDialog()
+		{
+			var dialog = new FastStartDialog(
 				() =>
 				{
 					BackClick(null, null);
 					Close();
 				});
+			dialog.Init(configManager, RecentItemsCollector);
+			return dialog;
 		}
 
 		private void CheckUpdates(object o)
@@ -203,7 +216,7 @@ namespace TBox
 			ShowProgress(TBoxLang.ProgressReloadPluginsSettings, u =>
 				{
 					engine.Load(u);
-					InitFastMenu();
+					InitFastStartMenu();
 				});
 			if (configManager.Config.HideOnCancel) Close();
 		}

@@ -320,7 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Library\LibsLocalization\LibsLocalization.csproj">
-      <Project>{e9990049-b8db-4cc4-b22d-823d400633c0}</Project>
+      <Project>{E9990049-B8DB-4CC4-B22D-823D400633C0}</Project>
       <Name>LibsLocalization</Name>
     </ProjectReference>
   </ItemGroup>

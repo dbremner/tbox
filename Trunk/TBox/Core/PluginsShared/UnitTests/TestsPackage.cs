@@ -30,7 +30,7 @@ namespace PluginsShared.UnitTests
 		public int Count { get { return items.Count; } }
 		public int FailedCount{get{return items.Count(x => x.State == ResultState.Failure || x.State == ResultState.Error);}}
 
-        public TestsPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view)
+        public TestsPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, string runAsx86Path)
 		{
 		    this.runAsx86 = runAsx86;
 			this.runAsAdmin = runAsAdmin;
@@ -38,8 +38,8 @@ namespace PluginsShared.UnitTests
             this.commandToExecuteBeforeTests = commandToExecuteBeforeTests;
 			Path = path;
 			server = new Server<INunitRunnerClient>(new NunitRunnerClient());
-            calculator = new Calculator(nunitAgentPath);
-			runner = new Runner(nunitAgentPath);
+            calculator = new Calculator(nunitAgentPath, runAsx86Path);
+			runner = new Runner(nunitAgentPath, runAsx86Path);
 			items = new CheckableDataCollection<Result>();
 			Results = view;
 		}

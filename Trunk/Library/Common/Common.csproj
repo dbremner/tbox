@@ -58,7 +58,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\Libs\ServiceStack\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\Libs\ServiceStack.Text.3.9.66\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -88,6 +88,7 @@
     <Compile Include="Communications\EmailSender.cs" />
     <Compile Include="Network\Header.cs" />
     <Compile Include="Encoders\CommonOps.cs" />
+    <Compile Include="ServiceContainer.cs" />
     <Compile Include="Tools\EqualityDataComparer.cs" />
     <Compile Include="MT\IProgressModel.cs" />
     <Compile Include="MT\IUpdater.cs" />
@@ -139,7 +140,9 @@
     <Compile Include="UI\Model\IData.cs" />
     <Compile Include="UI\Model\PairData.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

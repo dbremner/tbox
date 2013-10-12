@@ -15,7 +15,7 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 		{
 			var time = Environment.TickCount;
 			var view = new ConsoleView();
-			using (var p = new TestsPackage(path, "NUnitAgent.exe", x86, false, dirToCloneTests, commandToExecuteBeforeTests, view))
+            using (var p = new TestsPackage(path, "NUnitAgent.exe", x86, false, dirToCloneTests, commandToExecuteBeforeTests, view, "RunAsx86.exe"))
 			{
 				Console.WriteLine("Calculating tests..");
 				if (!p.EnsurePathIsValid())

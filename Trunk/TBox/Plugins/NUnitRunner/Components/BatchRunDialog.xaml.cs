@@ -26,14 +26,16 @@ namespace NUnitRunner.Components
 		private string nunitAgentPath;
 		private readonly List<TestsPackage> packages = new List<TestsPackage>();
 		private readonly string originalCaption;
-		public BatchRunDialog()
+	    private string runAsx86Path;
+
+	    public BatchRunDialog()
 		{
 			InitializeComponent();
 			originalCaption = Title;
 			DllsPanel.View = Dlls;
 		}
 
-		public void ShowDialog(Config cfg, string nunitPath)
+		public void ShowDialog(Config cfg, string nunitPath, string runAsx86Path)
 		{
 			if (IsVisible)
 			{
@@ -41,6 +43,7 @@ namespace NUnitRunner.Components
 			    return;
 			}
 			nunitAgentPath = nunitPath;
+		    this.runAsx86Path = runAsx86Path;
 			DisposePackages();
 			config = cfg;
 			DataContext = config;
@@ -118,7 +121,7 @@ namespace NUnitRunner.Components
 			DisposePackages();
 			foreach (var item in config.DllPathes.CheckedItems)
 			{
-                var p = new TestsPackage(item.Key, nunitAgentPath, item.RunAsx86, item.RunAsAdmin, item.DirToCloneTests, item.CommandBeforeTestsRun, new UnitTestsView());
+                var p = new TestsPackage(item.Key, nunitAgentPath, item.RunAsx86, item.RunAsAdmin, item.DirToCloneTests, item.CommandBeforeTestsRun, new UnitTestsView(), runAsx86Path);
 				if (!p.EnsurePathIsValid())
 				{
 					return;

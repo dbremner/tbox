@@ -55,6 +55,10 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.66\lib\net35\ServiceStack.Text.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -63,12 +67,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Localization\TrExtension.cs" />
+    <Compile Include="Code\ProjectManagers\LoggedTime.cs" />
+    <Compile Include="Code\ProjectManagers\TargetProcess\TimeItem.cs" />
+    <Compile Include="Code\Reports\ReportsBuilder.cs" />
+    <Compile Include="Code\Runner.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Settings\Project.cs" />
     <Compile Include="Code\Settings\Person.cs" />
+    <Compile Include="Code\Settings\Report.cs" />
     <Compile Include="Code\Settings\Task.cs" />
     <Compile Include="Code\ProjectManagers\IProjectManager.cs" />
-    <Compile Include="Code\ProjectManagers\TargetProcessFacade.cs" />
+    <Compile Include="Code\ProjectManagers\TargetProcess\TargetProcessFacade.cs" />
+    <Compile Include="Forms\TimeReportDialog.xaml.cs">
+      <DependentUpon>TimeReportDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeamManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.xaml.cs">
@@ -84,6 +96,11 @@
     <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
       <Name>WPFControls</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\WPFSyntaxHighlighter.csproj">
+      <Project>{8A2CF1DC-BCD6-4A63-8CF7-B9EA4F297ACD}</Project>
+      <Name>WPFSyntaxHighlighter</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Library\WPFWinForms\WPFWinForms.csproj">
@@ -108,12 +125,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Forms\TimeReportDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

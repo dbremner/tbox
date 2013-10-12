@@ -1,7 +1,9 @@
-﻿namespace TeamManager.Code.ProjectManagers
+﻿using System.Collections.Generic;
+
+namespace TeamManager.Code.ProjectManagers
 {
 	interface IProjectManager
 	{
-		string[] GetAllUserStories();
+        LoggedTime[] GetTimeReport(string dateFrom, string dateTo, IEnumerable<string> emails);
 	}
 }

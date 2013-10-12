@@ -6,9 +6,9 @@ namespace PluginsShared.UnitTests
 	{
 		private readonly AgentProcessCreator processCreator;
 
-	    public Calculator(string nunitAgentPath)
+	    public Calculator(string nunitAgentPath, string runAsx86Path)
 		{
-			processCreator = new AgentProcessCreator(nunitAgentPath);
+			processCreator = new AgentProcessCreator(nunitAgentPath, runAsx86Path);
 		}
 
 		public void CollectTests(string path, bool runAsx86, bool runAsAdmin, string handle)

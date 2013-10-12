@@ -32,7 +32,7 @@ namespace ScriptEngine.Core.Assemblies
 					if (knownLibs.Contains(asm.Location)) continue;
 					knownLibs.Add(asm.Location);
 				}
-				var references = asm.GetReferencedAssemblies().Select(a => Assembly.ReflectionOnlyLoad(a.FullName)).ToArray();
+				var references = asm.GetReferencedAssemblies().Select(a => Assembly.Load(a.FullName)).ToArray();
 				yield return new AssemblyInfo
 					{
 						Assembly = asm,

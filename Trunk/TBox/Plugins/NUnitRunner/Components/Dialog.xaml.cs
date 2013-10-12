@@ -22,7 +22,7 @@ namespace NUnitRunner.Components
 			InitializeComponent();
 		}
 
-		public void ShowDialog(TestConfig cfg, string nunitAgentPath)
+		public void ShowDialog(TestConfig cfg, string nunitAgentPath, string runAsx86Path)
 		{
 			if (IsVisible)
 			{
@@ -32,7 +32,7 @@ namespace NUnitRunner.Components
 			config = cfg;
 			DisposePackage();
 			var view = new UnitTestsView();
-            package = new TestsPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin, config.DirToCloneTests, config.CommandBeforeTestsRun, view);
+            package = new TestsPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin, config.DirToCloneTests, config.CommandBeforeTestsRun, view, runAsx86Path);
 			Panel.Children.Add(view);
 			DataContext = config;
 			Title = Path.GetFileName(package.Path);

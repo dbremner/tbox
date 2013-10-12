@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace WPFControls.Components.ButtonsView
@@ -11,6 +13,17 @@ namespace WPFControls.Components.ButtonsView
 		public GroupedList()
 		{
 			InitializeComponent();
+		}
+
+		public void Refresh()
+		{
+			if(DataContext == null)return;
+			var dview = (CollectionView)CollectionViewSource.GetDefaultView(ItemsSource);
+		    if (dview.GroupDescriptions == null || dview.GroupDescriptions.Count != 0) return;
+		    dview.GroupDescriptions.Add(new PropertyGroupDescription("GroupName"));
+		    dview.SortDescriptions.Add(new SortDescription{ PropertyName = "GroupName" });
+		    dview.SortDescriptions.Add(new SortDescription { PropertyName = "Order" });
+		    dview.SortDescriptions.Add(new SortDescription { PropertyName = "Name" });
 		}
 
 		private void ClickItem(object sender, RoutedEventArgs e)

@@ -11,6 +11,7 @@ namespace TBox.Code.Menu
 		event Action<string> OnRefreshItem;
 
 		void Refresh(IList<UMenuItem> items);
+		void Create(IList<UMenuItem> items);
 		void Refresh(string name, IList<UMenuItem> items);
 
 		UMenuItem Get(string path);

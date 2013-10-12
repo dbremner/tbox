@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300" ScrollViewer.CanContentScroll="False" ItemsSource="{Binding Items}" AlternationCount="1">
     <ItemsControl.ItemTemplate>
         <DataTemplate DataType="buttonsView:IButtonInfo">
-            <Button Width="64" Height="64" Click="ClickItem" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" KeyUp="KeyUpItem">
+            <Button Width="64" Height="64" Click="ClickItem" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" KeyUp="KeyUpItem" Margin="0" Padding="0">
                 <StackPanel >
                     <Image Source="{Binding Icon}" HorizontalAlignment="Center" Width="24" Height="24" />
                     <TextBlock Text="{Binding Name}" TextWrapping="WrapWithOverflow" TextTrimming="CharacterEllipsis" TextAlignment="Center"/>

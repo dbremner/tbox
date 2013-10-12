@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
+using Common.Data;
+using Common.Tools;
+using Interface;
+using Localization.TBox;
 using TBox.Code.FastStart.Settings;
 using TBox.Code.Menu;
 using WPFControls.Components.ButtonsView;
@@ -12,31 +16,36 @@ namespace TBox.Code.FastStart
 {
 	class RecentItemsCollector : IMenuRunHandler
 	{
-		private readonly IList<MenuItemStatistic> menuItems = new List<MenuItemStatistic>();
+		private readonly ConfigManager cm;
 		private readonly IMenuItemsProvider menuItemsProvider;
 
-		public RecentItemsCollector(IList<MenuItemStatistic> menuItems, IMenuItemsProvider menuItemsProvider)
+		public RecentItemsCollector(ConfigManager cm, IMenuItemsProvider menuItemsProvider)
 		{
-			this.menuItems = menuItems;
+			this.cm = cm;
 			this.menuItemsProvider = menuItemsProvider;
 			menuItemsProvider.OnRefresh += (o,e)=>RefreshMenuItems();
 			menuItemsProvider.OnRefreshItem += name => RefreshMenuItems();
 			RefreshMenuItems();
 		}
 
+		private IList<MenuItemStatistic> MenuItems
+		{
+			get { return cm.Config.FastStartConfig.MenuItems; }
+		}  
+
 		public void Handle(UMenuItem item, string[] path)
 		{
 			//skip system menu items
 			if(path.Length < 2 )return;
-			lock (menuItems)
+			lock (MenuItems)
 			{
 				var realPath = string.Join(Environment.NewLine, path);
-				foreach (var menuItem in menuItems.Where(x => string.Equals(x.Path, realPath)))
+				foreach (var menuItem in MenuItems.Where(x => string.Equals(x.Path, realPath)))
 				{
 					menuItem.Count++;
 					return;
 				}
-				menuItems.Add(
+				MenuItems.Add(
 					new MenuItemStatistic
 						{
 							IsValid = true,
@@ -44,36 +53,80 @@ namespace TBox.Code.FastStart
 							OnClick = item.OnClick,
 							Path = realPath, 
 							Count = 1
-						}
+					}
 					);
 			}
 		}
 
-		public IButtonInfo[] GetStatistic(int count, Action action)
+		public void GetStatistic(int count, IList<IButtonInfo> items , Action action)
 		{
-			lock (menuItems)
+			lock (MenuItems)
 			{
-				return menuItems
-					.Where(x=>x.IsValid)
-					.OrderBy(x => -x.Count)
-					.Take(count)
-					.Select(x=>(IButtonInfo)new ButtonInfo
+			    var id = 0;
+				foreach (var i in MenuItems.Where(x=>x.IsValid).OrderBy(x => -x.Count).Take(count))
+				{
+					var item = i;
+					items.Add(new ButtonInfo
 					{
-						Name = x.Path,
-						Icon = x.Icon.ToImageSource(),
+						Name = i.Path.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).LastOrDefault(),
+						Icon = i.Icon.ToImageSource(),
+						GroupName = TBoxLang.RecentActions,
 						Handler = (o, e) =>
 						{
 							action();
-							x.OnClick(e);
-						}
-					})
-					.ToArray();
+							item.OnClick(e);
+						},
+                        Order = ++id
+					});
+				}
+			}
+		}
+
+		public void CollectUserActions(IEnumerable<MenuItemsSequence> checkedItems, IList<IButtonInfo> items, Action action)
+		{
+			foreach (var i in CollectUserActions(checkedItems))
+			{
+				var item = i;
+				items.Add(new ButtonInfo
+				{
+					Name = item.Header,
+					GroupName = TBoxLang.UserActions,
+					Icon = item.Icon.ToImageSource(),
+					Handler = (o, e) =>
+					{
+						action();
+						item.OnClick(new NonUserRunContext());
+					}
+				});
+			}
+		}
+
+		public IEnumerable<UMenuItem> CollectUserActions(IEnumerable<MenuItemsSequence> checkedItems)
+		{
+			foreach (var item in checkedItems)
+			{
+				var selected = item.MenuItems.CheckedItems.ToArray();
+				if (!selected.Any()) continue;
+				var founded = selected.Select(o =>
+					new Pair<UMenuItem, UMenuItem>(
+						menuItemsProvider.Get(o.Key),
+						menuItemsProvider.GetRoot(o.Key.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault())
+						)).ToArray();
+				if (founded.Any(x => x.Key == null || x.Value == null)) continue;
+				var last = founded.LastOrDefault(x => x.Key.Icon != null || x.Value.Icon != null);
+				if (last == null) continue;
+				yield return new UMenuItem
+				{
+					Header = item.Key,
+					Icon = (last.Key.Icon ?? last.Value.Icon),
+					OnClick = o => founded.ForEach(x => x.Key.OnClick(o))
+				};
 			}
 		}
 
 		private void RefreshMenuItems()
 		{
-			foreach (var item in menuItems)
+			foreach (var item in MenuItems)
 			{
 				var menu = menuItemsProvider.Get(item.Path);
 				if (menu == null)

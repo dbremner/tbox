@@ -22,7 +22,10 @@ namespace TBox.Code.Menu
 			items.Clear();
 			root.Clear();
 			AddItems(string.Empty, menuItems);
+		}
 
+		public void Create(IList<UMenuItem> menuItems)
+		{
 			menuDialogItems = CreateMenuDialogItems(menuItems, null);
 
 			OnRefresh(this, null);

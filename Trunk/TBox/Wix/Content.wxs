@@ -4,7 +4,7 @@
 	<Fragment>
     <DirectoryRef Id="INSTALLLOCATION" FileSource="..\bin\Release\" >
       <Directory Id="Data" Name="Data">
-        <Directory Id="Automater" Name="Automater">
+        <Directory Id="Automater" Name="Automater" >
           <Directory Id="Msc" Name="Msc">
             <Component Id="AutomaterMsc" Guid="4928F203-E455-475C-B093-F53B734530BF">
               <File Name='AddTracing.cs'/>
@@ -35,7 +35,7 @@
             <CreateFolder/>
           </Component>
         </Directory>
-        <Directory Id="Templates" Name="Templates">
+        <Directory Id="Templates" Name="Templates" >
           <Directory Id="TemplatesSample" Name="Sample">
             <Component Id="TemplatesSample" Guid="B31CFEB1-760F-4CB8-A608-BB57B724B6AE">
               <File Name='{#test#}.cs'/>
@@ -45,18 +45,6 @@
             <CreateFolder/>
           </Component>
         </Directory>
-      </Directory>
-      <Directory Id="Localization" Name="Localization">
-        <Directory Id="ru" Name="ru">
-          <Component Id="ru" Guid="13803B2E-40A3-486A-A9B9-B6FE14292EFD">
-            <File Name='LibsLocalization.resources.dll'/>
-            <File Name='Localization.resources.dll'/>
-          </Component>
-        </Directory>
-        <Component Id="Localization" Guid="46893047-9ADB-4704-BA5C-90B8A196D30A">
-          <File Name='LibsLocalization.dll'/>
-          <File Name='Localization.dll'/>
-        </Component>
       </Directory>
       <Directory Id="Libraries" Name="Libraries">
         <Directory Id="Libx86" Name="x86">
@@ -87,6 +75,18 @@
           <File Name='WPFWinForms.dll'/>
         </Component>
       </Directory>
+      <Directory Id='Localization' Name='Localization'>
+          <Directory Id='LocalizationRu' Name='ru'>
+          <Component Id="LocalizationRu" Guid="55FD1A00-8C2B-4A2F-BFC8-36DAD7DEBB23">
+            <File Name='LibsLocalization.resources.dll'/>
+            <File Name='Localization.resources.dll'/>
+          </Component>
+        </Directory>
+        <Component Id="Localization" Guid="31159BD2-D560-4D0C-8DF5-D29479F09785">
+          <File Name='LibsLocalization.dll'/>
+          <File Name='Localization.dll'/>
+        </Component>
+      </Directory>
       <Directory Id='Plugins' Name='Plugins'>
         <Component Id="Plugins" Guid="B194EA31-6D91-4383-AC4E-CF8173784F35">
           <File Name='AppConfigManager.dll'/>
@@ -109,6 +109,7 @@
           <File Name='SourcesUniter.dll'/>
           <File Name='SqlRunner.dll'/>
           <File Name='SqlWatcher.dll'/>
+          <File Name='TeamManager.dll'/>
           <File Name='Templates.dll'/>
           <File Name='TextGenerator.dll'/>
         </Component>

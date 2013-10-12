@@ -4,18 +4,5 @@
              xmlns:loc="clr-namespace:TBox.Code.Localization"
              xmlns:buttonsView="clr-namespace:WPFControls.Components.ButtonsView;assembly=WPFControls"
              >
-    <DockPanel>
-        <TabControl>
-            <TabItem Header="{loc:Translate RecentActions}" >
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <buttonsView:GroupedList x:Name="RecentActions"/>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="{loc:Translate UserActions}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <buttonsView:GroupedList x:Name="UserActions"/>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
-    </DockPanel>
+    <buttonsView:GroupedList ItemsSource="{Binding Items}" Name="ItemsList"/>
 </UserControl>

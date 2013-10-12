@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,6 +15,7 @@ using TBox.Code.AutoUpdate;
 using TBox.Code.Managers;
 using TBox.Code.Objects;
 using WPFControls.Code.OS;
+using WPFControls.Localization;
 using WPFWinForms.Icons;
 using IUpdater = Common.MT.IUpdater;
 
@@ -96,13 +98,15 @@ namespace TBox.Code
 		{
 			var time = Environment.TickCount;
 			var ret = new List<EnginePluginInfo>(names.Length);
-			Parallel.ForEach(names, name => CreatePlugin(names, updater, name, ret));
+			var culture = Translator.Culture;
+			Parallel.ForEach(names, name => CreatePlugin(names, updater, name, ret, culture));
 			uiConfigurator.InitUi(ret);
 			InfoLog.Write("Create all plugin time: {0}", Environment.TickCount - time);
 		}
 
-		private void CreatePlugin(IEnumerable<string> names, IUpdater updater, string name, List<EnginePluginInfo> ret)
+		private void CreatePlugin(IEnumerable<string> names, IUpdater updater, string name, List<EnginePluginInfo> ret, CultureInfo culture)
 		{
+			Translator.Culture = culture;
 			var time = Environment.TickCount;
 			var plg = Add(name);
 			if (plg == null) return;

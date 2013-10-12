@@ -16,11 +16,11 @@ namespace ConsoleScriptRunner
 		private readonly string rootPath;
 		private readonly IDictionary<string, IList<string>> knownReferences;
 
-		public Worker(string rootPath, IDictionary<string, IList<string>> knownReferences)
+		public Worker(string cfgPath, string rootPath, IDictionary<string, IList<string>> knownReferences)
 		{
 			this.rootPath = rootPath;
 			this.knownReferences = knownReferences;
-			serializer = new ParamSerializer<Config>(Path.Combine(rootPath, "Config/Automater.config"));
+			serializer = new ParamSerializer<Config>(Path.Combine(cfgPath, "Config/Automater.config"));
 		}
 
 		public void Run(string profileToRun)

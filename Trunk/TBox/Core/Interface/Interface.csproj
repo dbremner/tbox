@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Atrributes\PluginInfoAttribute.cs" />
+    <Compile Include="ConfigManager.cs" />
     <Compile Include="IConfigWithDialogStates.cs" />
     <Compile Include="NonUserRunContext.cs" />
     <Compile Include="PluginGroup.cs" />

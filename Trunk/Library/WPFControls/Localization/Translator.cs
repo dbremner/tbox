@@ -6,8 +6,7 @@ namespace WPFControls.Localization
 {
 	public static class Translator
 	{
-		internal static event EventHandler CultureChanged;
-
+		//internal static event EventHandler CultureChanged;
 		public static CultureInfo Culture
 		{
 			get
@@ -18,10 +17,7 @@ namespace WPFControls.Localization
 			{
 				Thread.CurrentThread.CurrentUICulture = value;
 				Thread.CurrentThread.CurrentCulture = value;
-				if (CultureChanged != null)
-				{
-					CultureChanged(null, EventArgs.Empty);
-				}
+				//if (CultureChanged != null)CultureChanged(null, EventArgs.Empty);
 			}
 		}
 	}

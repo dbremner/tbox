@@ -38,7 +38,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\Libs\ServiceStack\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\Libs\ServiceStack.Text.3.9.66\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,6 +61,9 @@
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

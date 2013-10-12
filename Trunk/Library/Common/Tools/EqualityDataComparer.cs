@@ -18,6 +18,19 @@ namespace Common.Tools
 		}
 	}
 
+    public sealed class EqualityNoCaseComparer : IEqualityComparer<string>
+    {
+        public bool Equals(string x, string y)
+        {
+            return string.Equals(x, y, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public int GetHashCode(string obj)
+        {
+            return obj.ToLower().GetHashCode();
+        }
+    }
+
 	public sealed class EqualityDataValueStringComparer : IEqualityComparer<CheckableData<string>>
 	{
 		public bool Equals(CheckableData<string> x, CheckableData<string> y)

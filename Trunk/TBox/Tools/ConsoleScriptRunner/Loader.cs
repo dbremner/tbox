@@ -12,10 +12,11 @@ namespace ConsoleScriptRunner
 
 		public void Load(string rootPath)
 		{
-			if (Directory.Exists(LibraryPath))
+		    var dir = Path.Combine(rootPath, LibraryPath);
+			if (Directory.Exists(dir))
 			{
 				System.Threading.Tasks.Parallel.ForEach(
-					Directory.GetFiles(Path.Combine(rootPath, LibraryPath), "*.dll", SearchOption.AllDirectories),
+					Directory.GetFiles(dir, "*.dll", SearchOption.TopDirectoryOnly),
 					file => LoadAssembly(file)
 					);
 			}

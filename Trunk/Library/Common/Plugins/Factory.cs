@@ -25,12 +25,12 @@ namespace Common.Plugins
 		{
 			var time = Environment.TickCount;
 			var targetName = typeof (TInterface).FullName;
-			var tasks = //GetFiles(sharedLibraries)
-				//.Select(x => new PluginLoadInfo {Path = x, Op = () => LoadAssembly(x)})
-				//.Concat(
+            var tasks = GetFiles(sharedLibraries)
+				.Select(x => new PluginLoadInfo {Path = x, Op = () => LoadAssembly(x)})
+				.Concat(
 				GetFiles(pluginsDir)
 					.Select(x => new PluginLoadInfo {Path = x, Op = () => LoadTypes(x, targetName)})
-				//);
+				);
 				;
 			Parallel.ForEach(
 					tasks,

@@ -120,8 +120,38 @@
   <data name="Advanced" xml:space="preserve">
     <value>Дополнительно</value>
   </data>
+  <data name="Assignable" xml:space="preserve">
+    <value>Задача</value>
+  </data>
+  <data name="CalculatingTimeReport" xml:space="preserve">
+    <value>Рассчёт отчёта по времени...</value>
+  </data>
   <data name="ConfigurePersons" xml:space="preserve">
     <value>Настройка людей</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>Дата от</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>Дата до</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Дней</value>
+  </data>
+  <data name="FilterByTime" xml:space="preserve">
+    <value>Фильтровать по времени</value>
+  </data>
+  <data name="FilterResults" xml:space="preserve">
+    <value>Фильтровать результаты</value>
+  </data>
+  <data name="Generate" xml:space="preserve">
+    <value>Сгенерировать</value>
+  </data>
+  <data name="GetTimeReport" xml:space="preserve">
+    <value>Получить отчёт по времени</value>
   </data>
   <data name="Persons" xml:space="preserve">
     <value>Люди</value>
@@ -134,6 +164,15 @@
   </data>
   <data name="ProjectManagerUrl" xml:space="preserve">
     <value>Адрес системы управления проектами:</value>
+  </data>
+  <data name="Spent" xml:space="preserve">
+    <value>Потрачено</value>
+  </data>
+  <data name="TargetTime" xml:space="preserve">
+    <value>Правильное время</value>
+  </data>
+  <data name="TimeReport" xml:space="preserve">
+    <value>Отчет по времени</value>
   </data>
   <data name="UserEmail" xml:space="preserve">
     <value>Емэйл:</value>

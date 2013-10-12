@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Common.Base.Log;
 using ConsoleUnitTestsRunner.ConsoleRunner;
@@ -58,8 +59,7 @@ namespace ConsoleUnitTestsRunner
 
 		static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)
 		{
-			var assemblyPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\Libraries\\", new AssemblyName(args.Name).Name + ".dll"));
-			return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
+            return (from dir in new[] { "Libraries", "Localization" } select Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\" + dir + "\\", new AssemblyName(args.Name).Name + ".dll")) into assemblyPath where File.Exists(assemblyPath) select Assembly.LoadFrom(assemblyPath)).FirstOrDefault();
 		}
 	}
 }

@@ -6,7 +6,6 @@ namespace TeamManager.Code.Settings
 {
 	public class Person : CheckableData
 	{
-		public string Email { get; set; }
 		public string Image { get; set; }
 		public string Type { get; set; }
 		public ObservableCollection<string> Tags { get; set; }
@@ -22,7 +21,6 @@ namespace TeamManager.Code.Settings
 			{
 				Key = Key,
 				IsChecked = IsChecked,
-				Email = Email,
 				Image = Image,
 				Tags = Tags.Clone()
 			};

@@ -17,14 +17,14 @@ namespace Interface
 		protected virtual TSettings CreateSettings()
 		{
 			var s = new TSettings();
-			s.Control.DataContext = Config;
+            s.Control.DataContext = ConfigManager.Config;
 			return s;
 		}
 
 		public override void Load()
 		{
-			if (Settings.IsValueCreated) 
-				Settings.Value.Control.DataContext = Config;
+			if (Settings.IsValueCreated)
+                Settings.Value.Control.DataContext = ConfigManager.Config;
 			base.Load();
 		}
 

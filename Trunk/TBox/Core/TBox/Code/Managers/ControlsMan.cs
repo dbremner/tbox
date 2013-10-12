@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Common.Base.Log;
 using Localization.TBox;
 using TBox.Code.Objects;
+using WPFControls.Code.OS;
 using WPFControls.Components.ButtonsView;
 
 namespace TBox.Code.Managers
@@ -19,7 +21,7 @@ namespace TBox.Code.Managers
 		private readonly ContentControl owner;
 		private readonly Button btnBack;
 		private readonly object locker = new object();
-		public List<IButtonInfo> Items { get; set; }
+		public ObservableCollection<IButtonInfo> Items { get; set; }
 
 		public ControlsMan(GroupedList view, ContentControl owner, Button btnBack, Action<EnginePluginInfo> onPluginChanged)
 		{
@@ -27,7 +29,7 @@ namespace TBox.Code.Managers
 			this.owner = owner;
 			this.btnBack = btnBack;
 			this.onPluginChanged = onPluginChanged;
-			Items = new List<IButtonInfo>();
+			Items = new ObservableCollection<IButtonInfo>();
 		}
 
 		private IButtonInfo FindItemByName(string key)
@@ -42,9 +44,13 @@ namespace TBox.Code.Managers
 
 		public void Add(EnginePluginInfo info)
 		{
+			Mt.Do(view, () => DoAdd(info));
+		}
+
+		private void DoAdd(EnginePluginInfo info)
+		{
 			lock (locker)
 			{
-
 				var groupName = GetName(info);
 				var button = FindItemByName(info.Key);
 				if (button != null)
@@ -91,13 +97,8 @@ namespace TBox.Code.Managers
 
 		public void Refresh()
 		{
-			if (view.DataContext == null)
-			{
-				view.DataContext = this;
-				var dview = (CollectionView)CollectionViewSource.GetDefaultView(view.ItemsSource);
-				dview.GroupDescriptions.Add(new PropertyGroupDescription("GroupName"));
-			}
-			view.Items.Refresh();
+			view.DataContext = this;
+			view.Refresh();
 		}
 
 		public void GoTo(string name)

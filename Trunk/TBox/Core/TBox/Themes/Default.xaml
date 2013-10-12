@@ -21,7 +21,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-	<Style TargetType="{x:Type TextBlock}">
+    <Style TargetType="{x:Type TextBlock}">
 		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 		<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>     
 	</Style>

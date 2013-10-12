@@ -16,9 +16,9 @@ namespace PluginsShared.UnitTests
 	    private readonly AgentProcessCreator processCreator;
 		private readonly DirectoriesManipulator dirMan = new DirectoriesManipulator();
 
-        public Runner(string nunitAgentPath)
+        public Runner(string nunitAgentPath, string runAsx86Path)
         {
-            processCreator = new AgentProcessCreator(nunitAgentPath);
+            processCreator = new AgentProcessCreator(nunitAgentPath, runAsx86Path);
         }
 
 	    public IEnumerable<IList<Result>> DivideTestsToRun(IList<Result> files, int threadCount)

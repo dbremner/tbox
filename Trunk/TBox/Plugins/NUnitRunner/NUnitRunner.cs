@@ -55,19 +55,25 @@ namespace NUnitRunner
 
 		private void BatchRun(Config config)
 		{
-            batchRunner.Do(Context.DoSync, d => d.ShowDialog(config, NUnitAgentPath), Config.States);
+            batchRunner.Do(Context.DoSync, d => d.ShowDialog(config, NUnitAgentPath, RunAsx86Path), Config.States);
 		}
 
 		private void Run(TestConfig config)
 		{
 			runner.LoadState(Config.States);
-			runner.Value.ShowDialog(config, NUnitAgentPath);
+            runner.Value.ShowDialog(config, NUnitAgentPath, RunAsx86Path);
 		}
 
-		private static string NUnitAgentPath
+		private string NUnitAgentPath
 		{
-			get { return Path.Combine(Environment.CurrentDirectory, "Tools\\NUnitAgent.exe"); }
+			get { return Path.Combine(Context.DataProvider.ToolsPath, "NUnitAgent.exe"); }
 		}
+
+        private string RunAsx86Path
+		{
+            get { return Path.Combine(Context.DataProvider.ToolsPath, "RunAsx86.exe"); }
+		}
+        
 
 		public override void Save(bool autoSaveOnExit)
 		{

@@ -4,13 +4,14 @@ using System.Windows.Controls;
 namespace Interface
 {
 	public class SimpleConfigurablePlugin<TConfig> : SimplePlugin, IConfigurablePlugin
-		where TConfig: new()
+        where TConfig: new()
 	{
-		protected TConfig Config { get; set; }
+        protected TConfig Config { get { return ConfigManager.Config; } }
+        protected ConfigManager<TConfig> ConfigManager { get; set; }
 
 		protected SimpleConfigurablePlugin()
 		{
-			Config = new TConfig();
+            ConfigManager = new ConfigManager<TConfig> {Config = new TConfig()};
 		}
 
 		public Type ConfigType
@@ -20,8 +21,8 @@ namespace Interface
 
 		public object ConfigObject
 		{
-			get { return Config; }
-			set { Config = (TConfig)value; }
+            get { return ConfigManager.Config; }
+			set { ConfigManager.Config = (TConfig)value; }
 		}
 
 		protected virtual void OnConfigUpdated()

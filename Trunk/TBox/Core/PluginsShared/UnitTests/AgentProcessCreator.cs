@@ -7,17 +7,19 @@ namespace PluginsShared.UnitTests
 	class AgentProcessCreator
 	{
 		private readonly string nunitAgentPath;
+	    private readonly string runAsx86Path;
 
-		public AgentProcessCreator(string nunitAgentPath)
-		{
-			this.nunitAgentPath = nunitAgentPath;
-		}
+	    public AgentProcessCreator(string nunitAgentPath, string runAsx86Path)
+        {
+            this.nunitAgentPath = nunitAgentPath;
+            this.runAsx86Path = runAsx86Path;
+        }
 
-		public Process Create(string path, string handle, string command, bool runAsx86, bool runAsAdmin)
+	    public Process Create(string path, string handle, string command, bool runAsx86, bool runAsAdmin)
 		{
 			var fileName = nunitAgentPath;
 			var args = string.Format("{0} \"{1}\" {2}", handle, path, command);
-            if (runAsx86) ApplyCommand(Path.Combine(Environment.CurrentDirectory, "Tools/RunAsx86.exe"), ref args, ref fileName);
+            if (runAsx86) ApplyCommand(Path.Combine(Environment.CurrentDirectory, runAsx86Path), ref args, ref fileName);
 			var pi = new ProcessStartInfo
 			{
 				FileName = fileName,

@@ -110,10 +110,14 @@ namespace TBox.Code
 			var time = Environment.TickCount;
 			Mt.Do(Sync, () =>
 				{
-				menuItemsProvider.Refresh(menuMan.MenuItems.ToArray());
-				notifyIconMan.SetMenuItems(menuMan.MenuItems, cfg.UseMenuWithIcons);
-				notifyIconMan.NotifyIcon.HoverText = string.Format(TBoxLang.ToolTipTemplate, menuMan.Count);
-				controlsMan.Refresh();
+					var main = ((MainWindow)Application.Current.MainWindow);
+					menuItemsProvider.Refresh(menuMan.MenuItems.ToArray());
+					menuMan.SetMenuItems(TBoxLang.UserActions,
+						main.RecentItemsCollector.CollectUserActions(cfg.FastStartConfig.MenuItemsSequence.CheckedItems));
+					menuItemsProvider.Create(menuMan.MenuItems.ToArray());
+					notifyIconMan.SetMenuItems(menuMan.MenuItems, cfg.UseMenuWithIcons);
+					notifyIconMan.NotifyIcon.HoverText = string.Format(TBoxLang.ToolTipTemplate, menuMan.Count);
+					controlsMan.Refresh();
 			});
 			InfoLog.Write("Refresh menu and plugins settings time: {0}", Environment.TickCount - time);
 		}

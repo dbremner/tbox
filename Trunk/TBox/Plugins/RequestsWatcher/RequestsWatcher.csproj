@@ -35,7 +35,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\..\Libs\ServiceStack\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.66\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -72,7 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
       <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>

@@ -22,28 +22,28 @@ namespace Interface
 		{
 			return new TDialog
 			{
-				DataContext = Config, 
+                DataContext = ConfigManager.Config, 
 				Icon = ImageSource
 			};
 		}
 
 		protected virtual void ShowDialog()
 		{
-			Dialog.Show(Context.DoSync, Config.States);
+            Dialog.Show(Context.DoSync, ConfigManager.Config.States);
 		}
 
 		protected override void OnConfigUpdated()
 		{
 			base.OnConfigUpdated();
 			if (!Dialog.IsValueCreated)return;
-			Dialog.Value.DataContext = Config;
+            Dialog.Value.DataContext = ConfigManager.Config;
 			Dialog.Hide();
 		}
 
 		public override void Save(bool autoSaveOnExit)
 		{
 			base.Save(autoSaveOnExit);
-			if (autoSaveOnExit)Dialog.SaveState(Config.States);
+            if (autoSaveOnExit) Dialog.SaveState(ConfigManager.Config.States);
 		}
 
 		public virtual void Dispose()

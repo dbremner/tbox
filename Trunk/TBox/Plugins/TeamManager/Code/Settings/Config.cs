@@ -11,6 +11,7 @@ namespace TeamManager.Code.Settings
 		public string UserEmail { get; set; }
 		public string UserPassword { get; set; }
 		public string ProjectManagerUrl { get; set; }
+        public Report Report { get; set; }
 
 		public Config()
 		{
@@ -18,6 +19,7 @@ namespace TeamManager.Code.Settings
 			KnownTags = new ObservableCollection<string>{"UI", "Service", "DB"};
 			KnownTypes = new ObservableCollection<string> {"Dev", "QA", "BA"};
 			ProjectManagerUrl = "http://targetprocess.com";
+            Report = new Report();
 		}
 	}
 }

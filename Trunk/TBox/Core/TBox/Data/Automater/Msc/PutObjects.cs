@@ -50,9 +50,10 @@ namespace Solution.Msc
 			if (packages.Length > 0)
 			{
 				var result = DialogsCache.ShowInputSelect("Select file to extract", "Script", packages.First().Name, x => true,
-				                                          packages.Select(x => x.Name).ToArray(), showInTaskBar:true);
+                                                          packages.Select(x => x.Name + "\t" + x.CreationTime).ToArray(), showInTaskBar: true);
 				exist = result.Key;
-				package = packages.FirstOrDefault(x => string.Equals(x.Name, result.Value));
+                var value = result.Value.Split('\t').First();
+				package = packages.FirstOrDefault(x => string.Equals(x.Name, value));
 			}
 			return package;
 		}
