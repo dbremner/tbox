@@ -27,8 +27,8 @@
     </Window.InputBindings>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" >
-            <Button Padding="5" Margin="5" Name="BtnBack" Content="{loc:Translate Back}" Click="BackClick" IsEnabled="False" DockPanel.Dock="Left" Command="{StaticResource Back}"/>
-            <Button Content="{loc:Translate BtnHelp}" Padding="5"  Margin="5" Click="BtnHelpClick" DockPanel.Dock="Right"  Command="{StaticResource Help}"/>
+            <Button Padding="5" Margin="5" Name="BtnBack" Content="{loc:Translate Back}" IsEnabled="False" DockPanel.Dock="Left" Command="{StaticResource Back}"/>
+            <Button Content="{loc:Translate BtnHelp}" Padding="5"  Margin="5" DockPanel.Dock="Right"  Command="{StaticResource Help}"/>
             <TextBlock Name="Description" Text="{loc:Translate DefaultMainViewDescription}" Margin="5" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Bottom" Margin="10">

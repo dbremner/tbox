@@ -145,16 +145,16 @@
     <value>Connection string to use by default to run scripts:</value>
   </data>
   <data name="Ddos" xml:space="preserve">
-    <value>Ddos...</value>
+    <value>DDOS...</value>
   </data>
   <data name="MakeRequestTo" xml:space="preserve">
     <value>Make request to</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Ability to build and run any sql commands. Also you can do DDos to find perfomance issues.</value>
+    <value>Ability to build and run any SQL commands. Also you can do DDOS to find performance issues.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>Sql Runner</value>
+    <value>SQL Runner</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile:</value>
@@ -181,10 +181,10 @@
     <value>Run scripts</value>
   </data>
   <data name="SqlScripts" xml:space="preserve">
-    <value>Sql scripts</value>
+    <value>SQL scripts</value>
   </data>
   <data name="SqlScriptsToExecute" xml:space="preserve">
-    <value>Sql scripts to execute</value>
+    <value>SQL scripts to execute</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

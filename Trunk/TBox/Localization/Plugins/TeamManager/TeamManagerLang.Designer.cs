@@ -169,6 +169,24 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login:.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Persons.
         /// </summary>
         public static string Persons {
@@ -178,7 +196,7 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Plugin to simplify team managment..
+        ///   Looks up a localized string similar to Plugin to simplify team management..
         /// </summary>
         public static string PluginDescription {
             get {
@@ -214,6 +232,15 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Target process.
+        /// </summary>
+        public static string TargetProcess {
+            get {
+                return ResourceManager.GetString("TargetProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Target time.
         /// </summary>
         public static string TargetTime {
@@ -228,24 +255,6 @@ namespace Localization.Plugins.TeamManager {
         public static string TimeReport {
             get {
                 return ResourceManager.GetString("TimeReport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User email:.
-        /// </summary>
-        public static string UserEmail {
-            get {
-                return ResourceManager.GetString("UserEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User pasword:.
-        /// </summary>
-        public static string UserPasword {
-            get {
-                return ResourceManager.GetString("UserPasword", resourceCulture);
             }
         }
     }

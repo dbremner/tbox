@@ -232,7 +232,7 @@ namespace LibsLocalization.WPFControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you want to delete: &quot;{0}&quot;?.
+        ///   Looks up a localized string similar to Are you want delete: &quot;{0}&quot;?.
         /// </summary>
         public static string DelItem {
             get {
@@ -241,7 +241,7 @@ namespace LibsLocalization.WPFControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you want to delete: &quot;{0}&quot;?.
+        ///   Looks up a localized string similar to Are you want delete: &quot;{0}&quot;?.
         /// </summary>
         public static string DelPath {
             get {

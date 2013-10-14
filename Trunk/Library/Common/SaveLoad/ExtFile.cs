@@ -101,12 +101,12 @@ namespace Common.SaveLoad
 		}
 
 
-		public static int LoadDirectoryFiles(IEnumerable<string> pathes, out Pair<string, int>[] descriptions, out Stream stream)
+		public static int LoadDirectoryFiles(IEnumerable<string> paths, out Pair<string, int>[] descriptions, out Stream stream)
 		{
 			stream = new MemoryStream();
 			var length = 0;
 			var descriptionsList = new List<Pair<string, int>>();
-			foreach (var path in pathes )
+			foreach (var path in paths )
 			{
 				var info = new FileInfo(path);
 				if (info.Attributes == FileAttributes.Hidden) continue;

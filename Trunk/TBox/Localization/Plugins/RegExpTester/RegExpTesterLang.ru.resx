@@ -133,13 +133,13 @@
     <value>Простой плагин для построения регулярных выражений и их проверки.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>Помошник по регуляркам</value>
+    <value>Помощник по регулярным выражениям</value>
   </data>
   <data name="RegularExpression" xml:space="preserve">
     <value>Регулярное выражение:</value>
   </data>
   <data name="Results" xml:space="preserve">
-    <value>Ресультаты:</value>
+    <value>Результаты:</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Проверить...</value>

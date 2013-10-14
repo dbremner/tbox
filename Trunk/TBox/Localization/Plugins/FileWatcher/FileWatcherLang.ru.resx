@@ -133,7 +133,7 @@
     <value>Закрыть</value>
   </data>
   <data name="ConfigureLogFolders" xml:space="preserve">
-    <value>Найстройка лог файлов</value>
+    <value>Настройка лог файлов</value>
   </data>
   <data name="ConfigureWatches" xml:space="preserve">
     <value>Настройка анализаторов</value>

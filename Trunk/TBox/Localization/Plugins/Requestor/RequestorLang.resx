@@ -148,7 +148,7 @@
     <value>Method:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Ability to build and send any requests. Also you can do DDos to find perfomance issues or memory leaks.</value>
+    <value>Ability to build and send any requests. Also you can do DDos to find performance issues or memory leaks.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Request maker</value>

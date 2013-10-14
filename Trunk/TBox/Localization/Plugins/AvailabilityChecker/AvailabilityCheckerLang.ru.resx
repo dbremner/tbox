@@ -124,13 +124,13 @@
     <value>Интервал проверки:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Проверяет по таймеру доступность сайтов и расшареных папок</value>
+    <value>Проверяет по таймеру доступность сайтов и сетевых папок</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Сонар</value>
   </data>
   <data name="SpecifyResourceUrl" xml:space="preserve">
-    <value>Укажите адресс ресурса</value>
+    <value>Укажите адрес ресурса</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Старт</value>
@@ -142,6 +142,6 @@
     <value>Ждите обновления...</value>
   </data>
   <data name="WebSitesUrls" xml:space="preserve">
-    <value>Вэб сайты и расшаренные папки для проверки</value>
+    <value>Вэб сайты и сетевые папки для проверки</value>
   </data>
 </root>

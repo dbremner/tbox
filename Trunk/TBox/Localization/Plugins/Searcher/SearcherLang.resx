@@ -121,7 +121,7 @@
     <value>Advanced</value>
   </data>
   <data name="AreYouWantRebuild" xml:space="preserve">
-    <value>Are you realy want rebuild all indexes?</value>
+    <value>Are you really want rebuild all indexes?</value>
   </data>
   <data name="CalcDirsCount" xml:space="preserve">
     <value>Calculating directories count...</value>

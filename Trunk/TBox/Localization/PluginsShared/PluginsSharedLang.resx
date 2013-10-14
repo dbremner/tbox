@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AverageTime" xml:space="preserve">
-    <value>AverageTime</value>
+    <value>Average time</value>
   </data>
   <data name="Body" xml:space="preserve">
     <value>Body:</value>
@@ -139,7 +139,7 @@
     <value>{0}. Entries count: {1}.</value>
   </data>
   <data name="FinishClonningUnitTestsFolder" xml:space="preserve">
-    <value>Finish Clonning unit tests folder</value>
+    <value>Finish Cloning unit tests folder</value>
   </data>
   <data name="Format" xml:space="preserve">
     <value>Format:</value>
@@ -151,10 +151,10 @@
     <value>Headers:</value>
   </data>
   <data name="MaxTime" xml:space="preserve">
-    <value>MaxTime</value>
+    <value>Max time</value>
   </data>
   <data name="MinTime" xml:space="preserve">
-    <value>MinTime</value>
+    <value>Min time</value>
   </data>
   <data name="RequestsDelay" xml:space="preserve">
     <value>Requests delay:</value>
@@ -169,7 +169,7 @@
     <value>Start</value>
   </data>
   <data name="StartClonningUnitTestsFolder" xml:space="preserve">
-    <value>Start Clonning unit tests folder</value>
+    <value>Start Cloning unit tests folder</value>
   </data>
   <data name="Statistic" xml:space="preserve">
     <value>Statistic</value>

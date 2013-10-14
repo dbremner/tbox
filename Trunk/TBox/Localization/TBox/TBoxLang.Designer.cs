@@ -331,7 +331,7 @@ namespace Localization.TBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Found new version: {0}, current version is: {1}\nDo you want to update TBox?.
+        ///   Looks up a localized string similar to Found new version: {0}, current version is: {1}. Do you want to update TBox?.
         /// </summary>
         public static string FoundNewVersionTemplate {
             get {
@@ -628,7 +628,7 @@ namespace Localization.TBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schelduler.
+        ///   Looks up a localized string similar to Scheduler.
         /// </summary>
         public static string Schelduler {
             get {
@@ -637,7 +637,7 @@ namespace Localization.TBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schelduler is enabled.
+        ///   Looks up a localized string similar to Scheduler is enabled.
         /// </summary>
         public static string ScheldulerIsEnabled {
             get {
@@ -646,7 +646,7 @@ namespace Localization.TBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scripts pathes.
+        ///   Looks up a localized string similar to Scripts paths.
         /// </summary>
         public static string ScriptsPathes {
             get {
@@ -781,7 +781,7 @@ namespace Localization.TBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help author to improove this tool.
+        ///   Looks up a localized string similar to Help author to improve this tool.
         /// </summary>
         public static string ToolTipFeedback {
             get {

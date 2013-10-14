@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CalcClipboardTextLength" xml:space="preserve">
-    <value>Calc Clipboard text length</value>
+    <value>Calculate clipboard text length</value>
   </data>
   <data name="CharToFillWhenYouCreateTable" xml:space="preserve">
     <value>Char to fill when you create table to export data to Excel or etc:</value>
   </data>
   <data name="GenerateGuid" xml:space="preserve">
-    <value>Generate Guid</value>
+    <value>Generate GUID</value>
   </data>
   <data name="GenerateText" xml:space="preserve">
     <value>Generate Text</value>
@@ -139,13 +139,13 @@
     <value>Please specify text length</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Small tool to generate text. Also it help when you export tables to excel or onenote.</value>
+    <value>Small tool to generate text. Also it helps when you export tables to Excel or OneNote.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Text generator</value>
   </data>
   <data name="ReplaceCharsSequensesByTabs" xml:space="preserve">
-    <value>Replace chars sequenses by tabs</value>
+    <value>Replace chars sequences by tabs</value>
   </data>
   <data name="SampleDefaultText" xml:space="preserve">
     <value>Sample default text</value>

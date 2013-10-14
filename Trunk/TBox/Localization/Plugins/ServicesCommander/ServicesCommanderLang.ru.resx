@@ -133,7 +133,7 @@
     <value>Перезапуск</value>
   </data>
   <data name="SelectWindowsServices" xml:space="preserve">
-    <value>Выберете виндовс сервисы</value>
+    <value>Выберете Windows сервисы</value>
   </data>
   <data name="Services" xml:space="preserve">
     <value>Сервисы</value>

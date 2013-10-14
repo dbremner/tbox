@@ -124,7 +124,7 @@
     <value>Задача</value>
   </data>
   <data name="CalculatingTimeReport" xml:space="preserve">
-    <value>Рассчёт отчёта по времени...</value>
+    <value>Расчёт отчёта по времени...</value>
   </data>
   <data name="ConfigurePersons" xml:space="preserve">
     <value>Настройка людей</value>
@@ -153,11 +153,17 @@
   <data name="GetTimeReport" xml:space="preserve">
     <value>Получить отчёт по времени</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Логин:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль:</value>
+  </data>
   <data name="Persons" xml:space="preserve">
     <value>Люди</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Плагин для упрощения коммандной работы</value>
+    <value>Плагин для упрощения командной работы</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Управление командой</value>
@@ -168,16 +174,13 @@
   <data name="Spent" xml:space="preserve">
     <value>Потрачено</value>
   </data>
+  <data name="TargetProcess" xml:space="preserve">
+    <value>Target process</value>
+  </data>
   <data name="TargetTime" xml:space="preserve">
     <value>Правильное время</value>
   </data>
   <data name="TimeReport" xml:space="preserve">
     <value>Отчет по времени</value>
-  </data>
-  <data name="UserEmail" xml:space="preserve">
-    <value>Емэйл:</value>
-  </data>
-  <data name="UserPasword" xml:space="preserve">
-    <value>Пароль:</value>
   </data>
 </root>

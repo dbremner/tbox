@@ -18,7 +18,7 @@ namespace TeamManager.Code.Settings
 			Persons = new CheckableDataCollection<Person>();
 			KnownTags = new ObservableCollection<string>{"UI", "Service", "DB"};
 			KnownTypes = new ObservableCollection<string> {"Dev", "QA", "BA"};
-			ProjectManagerUrl = "http://targetprocess.com";
+            ProjectManagerUrl = "https://targetprocess.com/TargetProcess2/";
             Report = new Report();
 		}
 	}

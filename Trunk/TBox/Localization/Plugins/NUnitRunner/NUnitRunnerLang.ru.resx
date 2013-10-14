@@ -130,7 +130,7 @@
     <value>Клонирование</value>
   </data>
   <data name="CommandToRunBeforeTests" xml:space="preserve">
-    <value>Комманда для запуска до тестов</value>
+    <value>Команда для запуска до тестов</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Конфигурация</value>

@@ -127,7 +127,7 @@
     <value>Cancel</value>
   </data>
   <data name="Clonning" xml:space="preserve">
-    <value>Clonning</value>
+    <value>Cloning</value>
   </data>
   <data name="CommandToRunBeforeTests" xml:space="preserve">
     <value>Command to run before tests</value>

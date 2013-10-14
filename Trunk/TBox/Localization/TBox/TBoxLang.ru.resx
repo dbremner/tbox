@@ -124,7 +124,7 @@
     <value>Автор: Саня (Mnk) из г. Бреста.</value>
   </data>
   <data name="AutoUpdate" xml:space="preserve">
-    <value>Автообновление</value>
+    <value>Автоматическое обновление</value>
   </data>
   <data name="BtnClose" xml:space="preserve">
     <value>Закрыть</value>
@@ -181,13 +181,13 @@
     <value>TBox - отзыв</value>
   </data>
   <data name="FeedbackMessage" xml:space="preserve">
-    <value>Напишите несколько слов о том как можно улучшить TBox.</value>
+    <value>Напишите несколько слов о том, как можно улучшить TBox.</value>
   </data>
   <data name="FeedbackProgress" xml:space="preserve">
     <value>Отправка отзыва</value>
   </data>
   <data name="FoundNewVersionTemplate" xml:space="preserve">
-    <value>Найдена новая версия: {0}, текущая версия: {1}\nВы хотите обновить TBox?</value>
+    <value>Найдена новая версия: {0}, текущая версия: {1}. Вы хотите обновить TBox?</value>
   </data>
   <data name="GlobalHotKeysAreEnabled" xml:space="preserve">
     <value>Глобальные горячие клавиши включены</value>
@@ -211,7 +211,7 @@
     <value>Язык</value>
   </data>
   <data name="LicenseInfo" xml:space="preserve">
-    <value>Лицензированно под GPLv2 лицензией.</value>
+    <value>Лицензировано  под GPLv2 лицензией.</value>
   </data>
   <data name="LifeTimeInfo" xml:space="preserve">
     <value>В разработке с 2010.</value>
@@ -322,7 +322,7 @@
     <value>Управление плагинами</value>
   </data>
   <data name="TeamWorkSettings" xml:space="preserve">
-    <value>Настройки коммандной работы</value>
+    <value>Настройки командной работы</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Тема:</value>
@@ -337,7 +337,7 @@
     <value>Обновление отключённых элементов...</value>
   </data>
   <data name="UpdateFromSharedFolder" xml:space="preserve">
-    <value>Обновляться из расшаренной папки</value>
+    <value>Обновляться из сетевой папки</value>
   </data>
   <data name="UpdateInterval" xml:space="preserve">
     <value>Интервал обновления:</value>
@@ -346,13 +346,13 @@
     <value>Удобство использования</value>
   </data>
   <data name="UseGPUForUIRender" xml:space="preserve">
-    <value>Использовать видеокарту для отрисовки</value>
+    <value>Использовать видеокарту для интерфейса</value>
   </data>
   <data name="UserActions" xml:space="preserve">
     <value>Пользовательские действия</value>
   </data>
   <data name="UseTrayMenuWithIcons" xml:space="preserve">
-    <value>Меню в трее с икноками</value>
+    <value>Меню в трее с картинками</value>
   </data>
   <data name="VersionTemplate" xml:space="preserve">
     <value>Версия: {0}.{1}</value>
@@ -370,7 +370,7 @@
     <value>Плагины: базы данных</value>
   </data>
   <data name="DefaultMainViewDescription" xml:space="preserve">
-    <value>Пожалуйста, выберете айтем для настройки и кликните на него</value>
+    <value>Выберете пункт для настройки и кликните на него</value>
   </data>
   <data name="Desktop" xml:space="preserve">
     <value>Плагины: компьютер</value>
@@ -391,6 +391,6 @@
     <value>Помощь</value>
   </data>
   <data name="FastStartDescription" xml:space="preserve">
-    <value>Отсюда вы можете запускать наиболее часто выполняемые комманды или сконфигурированные пользовательские действия</value>
+    <value>Отсюда вы можете запускать наиболее часто выполняемые команды или сконфигурированные пользовательские действия</value>
   </data>
 </root>

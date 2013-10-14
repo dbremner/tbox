@@ -127,7 +127,7 @@
     <value>Clipboard</value>
   </data>
   <data name="ConfigureFoldersWithSqlLogs" xml:space="preserve">
-    <value>Configure folders with sql logs</value>
+    <value>Configure folders with SQL logs</value>
   </data>
   <data name="ConfigureWatches" xml:space="preserve">
     <value>Configure watches</value>
@@ -148,10 +148,10 @@
     <value>Path:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Ability to wath for the set of SQL logs at realtime. And see all the information in one stream with tray indicator.</value>
+    <value>Ability to watch for the set of SQL logs at real-time. And see all the information in one stream with tray indicator.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>Sql watcher</value>
+    <value>SQL watcher</value>
   </data>
   <data name="RemoveTypeInfo" xml:space="preserve">
     <value>Remove type info</value>

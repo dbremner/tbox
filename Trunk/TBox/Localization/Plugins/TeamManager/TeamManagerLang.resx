@@ -153,11 +153,17 @@
   <data name="GetTimeReport" xml:space="preserve">
     <value>Get time report</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login:</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
   <data name="Persons" xml:space="preserve">
     <value>Persons</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Plugin to simplify team managment.</value>
+    <value>Plugin to simplify team management.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Team manager</value>
@@ -168,16 +174,13 @@
   <data name="Spent" xml:space="preserve">
     <value>Spent</value>
   </data>
+  <data name="TargetProcess" xml:space="preserve">
+    <value>Target process</value>
+  </data>
   <data name="TargetTime" xml:space="preserve">
     <value>Target time</value>
   </data>
   <data name="TimeReport" xml:space="preserve">
     <value>Time report</value>
-  </data>
-  <data name="UserEmail" xml:space="preserve">
-    <value>User email:</value>
-  </data>
-  <data name="UserPasword" xml:space="preserve">
-    <value>User pasword:</value>
   </data>
 </root>

@@ -12,7 +12,7 @@ namespace ProjectMan.Code
 {
 	class GroupOperations
 	{
-		public void Append(IList<UMenuItem> menu, ProjectContext context, IPluginContext pluginContext, string[] pathes)
+		public void Append(IList<UMenuItem> menu, ProjectContext context, IPluginContext pluginContext, string[] paths)
 		{
 			var enabled = menu.Count > 0;
 			menu.Add(new USeparator());
@@ -21,57 +21,57 @@ namespace ProjectMan.Code
 				IsEnabled = enabled,
                 Header = ProjectManLang.UpdateAll,
 				Icon = pluginContext.GetIcon(context.SvnProvider.Path, 3),
-				OnClick = o=>Run(u => Update(context, pathes, u))
+				OnClick = o=>Run(u => Update(context, paths, u))
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
                 Header = ProjectManLang.RebuildAllInRelease,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-				OnClick = o => Run(u => Rebuild(context, "Release", pathes,u))
+				OnClick = o => Run(u => Rebuild(context, "Release", paths,u))
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
                 Header = ProjectManLang.RebuildAllInDebug,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-				OnClick = o => Run(u => Rebuild(context, "Debug", pathes,u))
+				OnClick = o => Run(u => Rebuild(context, "Debug", paths,u))
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
                 Header = ProjectManLang.UpdateAndRebuildAllInDebug,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-				OnClick = o => Run(u => UpdateAndBuid(context, pathes,u))
+				OnClick = o => Run(u => UpdateAndBuid(context, paths,u))
 			});
 		}
 
-		private void UpdateAndBuid(ProjectContext context, IList<string> pathes, IUpdater u)
+		private void UpdateAndBuid(ProjectContext context, IList<string> paths, IUpdater u)
 		{
 			Do(x => {
 					context.SvnProvider.Do("update", x, true);
 					if(u.UserPressClose)return;
 					ReBuild(context, "Debug", x);
-				}, pathes, u);
+				}, paths, u);
 		}
 
-		private static void Rebuild(ProjectContext context, string mode, IList<string> pathes, IUpdater u)
+		private static void Rebuild(ProjectContext context, string mode, IList<string> paths, IUpdater u)
 		{
-			Do(x => ReBuild(context, mode, x), pathes, u);
+			Do(x => ReBuild(context, mode, x), paths, u);
 		}
 
-		private static void Update(ProjectContext context, IList<string> pathes, IUpdater u)
+		private static void Update(ProjectContext context, IList<string> paths, IUpdater u)
 		{
-			Do(x => context.SvnProvider.Do("update", x, true), pathes, u);
+			Do(x => context.SvnProvider.Do("update", x, true), paths, u);
 		}
 
-		private static void Do(Action<string> action, IList<string> pathes, IUpdater u)
+		private static void Do(Action<string> action, IList<string> paths, IUpdater u)
 		{
-			for (var i = 0; i < pathes.Count; i++)
+			for (var i = 0; i < paths.Count; i++)
 			{
 				if (u.UserPressClose) break;
-				var path = pathes[i];
-				u.Update(path, i / (float)pathes.Count);
+				var path = paths[i];
+				u.Update(path, i / (float)paths.Count);
 				action(path);
 			}
 		}

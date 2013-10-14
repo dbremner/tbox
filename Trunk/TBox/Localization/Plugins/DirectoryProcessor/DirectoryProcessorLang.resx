@@ -133,7 +133,7 @@
     <value>Extended arguments:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Ability to run any software for any subdirectory of the direcory. For example you can run localization tool by one click.</value>
+    <value>Ability to run any software for any subdirectory of the directory. For example you can run localization tool by one click.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Directory processor</value>

@@ -142,7 +142,7 @@
     <value>Name</value>
   </data>
   <data name="PerfomanceCounters" xml:space="preserve">
-    <value>Perfomance counters</value>
+    <value>Performance counters</value>
   </data>
   <data name="PID" xml:space="preserve">
     <value>PID</value>
@@ -160,7 +160,7 @@
     <value>Refresh intervals</value>
   </data>
   <data name="StandartCounters" xml:space="preserve">
-    <value>Standart counters</value>
+    <value>Standard counters</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

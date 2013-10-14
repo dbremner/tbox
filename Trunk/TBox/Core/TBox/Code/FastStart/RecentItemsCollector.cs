@@ -119,7 +119,7 @@ namespace TBox.Code.FastStart
 				{
 					Header = item.Key,
 					Icon = (last.Key.Icon ?? last.Value.Icon),
-					OnClick = o => founded.ForEach(x => x.Key.OnClick(o))
+					OnClick = o => founded.ForEach(x => x.Key.OnClick(new NonUserRunContext()))
 				};
 			}
 		}

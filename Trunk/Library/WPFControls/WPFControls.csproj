@@ -90,6 +90,7 @@
     <Compile Include="Components\ButtonsView\GroupedList.xaml.cs">
       <DependentUpon>GroupedList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ButtonsView\RowColorConverter.cs" />
     <Compile Include="Components\CheckableFileListBox.cs" />
     <Compile Include="Components\CheckableListBox.cs" />
     <Compile Include="Components\EditButtons\EditButtonsPanel.cs" />

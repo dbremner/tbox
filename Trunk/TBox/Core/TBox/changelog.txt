@@ -1,4 +1,6 @@
-﻿10/01/2013 Fix tools issues, fix authomater issue, fix localization issues, add new TeamManager plugin.
+﻿14/04/2013 Fix gramma mistakes. Fix issues in authomater and script runner. Update UI
+
+10/01/2013 Fix tools issues, fix authomater issue, fix localization issues, add new TeamManager plugin.
 
 08/10/2013 Update UI. Try to make it more userfrendly
 

@@ -139,7 +139,7 @@
     <value>Вкомитать</value>
   </data>
   <data name="ConfigureProjectsDirectories" xml:space="preserve">
-    <value>Конигурация папок проектов</value>
+    <value>Конфигурация папок проектов</value>
   </data>
   <data name="ConfigureSolutionsFolders" xml:space="preserve">
     <value>Конфигурация папок решений</value>

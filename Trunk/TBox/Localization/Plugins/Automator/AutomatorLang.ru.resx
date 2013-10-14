@@ -133,7 +133,7 @@
     <value>Закрыть</value>
   </data>
   <data name="CompilationTimeTemplate" xml:space="preserve">
-    <value>Скомпилировано за : {0}мс.</value>
+    <value>Скомпилировано за: {0}мс.</value>
   </data>
   <data name="ConfigureDirectoryPath" xml:space="preserve">
     <value>Настройка пути к директории</value>
@@ -145,7 +145,8 @@
     <value>Настройка пути к файлу</value>
   </data>
   <data name="ConfigureGuid" xml:space="preserve">
-    <value>Настройка Гуида</value>
+    <value>Настройка GUID
+</value>
   </data>
   <data name="ConfigureInt" xml:space="preserve">
     <value>Настройка целого числа</value>

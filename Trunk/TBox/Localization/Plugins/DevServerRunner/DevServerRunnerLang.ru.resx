@@ -130,7 +130,7 @@
     <value>Путь к серверу разработчиков:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Небольшое приложение для запуска серверов разработчиков без вижуал студии</value>
+    <value>Небольшое приложение для запуска серверов разработчиков без visual studio</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Сервера разработчиков</value>

@@ -79,7 +79,7 @@ namespace LibsLocalization.WPFSyntaxHighlighter {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hightlight:.
+        ///   Looks up a localized string similar to Highlight:.
         /// </summary>
         public static string Hightlight {
             get {

@@ -9,7 +9,7 @@ namespace WPFControls.Controls
 {
 	public class EditPath : UserControl
 	{
-		private static readonly IList<string> KnownPathes = new ObservableCollection<string>();
+		private static readonly IList<string> KnownPaths = new ObservableCollection<string>();
 		private readonly DockPanel panel = new DockPanel();
         private readonly AutoComboBox child = new AutoComboBox
             {
@@ -21,7 +21,7 @@ namespace WPFControls.Controls
 
 		public EditPath()
 		{
-			child.ItemsSource = KnownPathes;
+			child.ItemsSource = KnownPaths;
 			child.AddHandler(LostKeyboardFocusEvent, new RoutedEventHandler((o, e) =>
 				{
                     if (string.Equals(child.Text, GetValue(ValueProperty)))return;
@@ -43,9 +43,9 @@ namespace WPFControls.Controls
 			set
 			{
 				SetValue(ValueProperty, value);
-				lock (KnownPathes)
+				lock (KnownPaths)
 				{
-					child.AddKnownValueIfNeed(KnownPathes, value);
+					child.AddKnownValueIfNeed(KnownPaths, value);
 				}
 				child.Text = value;
 			}

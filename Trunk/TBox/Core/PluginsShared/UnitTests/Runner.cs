@@ -40,7 +40,7 @@ namespace PluginsShared.UnitTests
 
         public void Run(string path, IList<IList<Result>> packages, Server<INunitRunnerClient> server, bool copyToLocalFolders, int copyDeep, bool needSynchronizationForTests, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, Synchronizer synchronizer, IProgressStatus u)
 		{
-			var dllPathes = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyDeep, dirToCloneTests, u);
+			var dllPaths = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyDeep, dirToCloneTests, u);
 			var s = (NunitRunnerClient)server.Owner;
 			try
 			{
@@ -60,7 +60,7 @@ namespace PluginsShared.UnitTests
                     Cmd.Start(commandToExecuteBeforeTests, Log, waitEnd: true, nowindow: true);
                 }
 				s.Processes.AddRange(packages.Select(
-					(items, i) => processCreator.Create(dllPathes[i], handle, needSynchronizationForTests ? "test" : "fasttest", runAsx86, runAsAdmin)));
+					(items, i) => processCreator.Create(dllPaths[i], handle, needSynchronizationForTests ? "test" : "fasttest", runAsx86, runAsAdmin)));
 			}
 			finally
 			{
@@ -69,7 +69,7 @@ namespace PluginsShared.UnitTests
 					p.WaitForExit();
 					p.Dispose();
 				}
-				dirMan.ClearFolders(dllPathes, copyToLocalFolders, copyDeep);
+				dirMan.ClearFolders(dllPaths, copyToLocalFolders, copyDeep);
 			}
 		}
 

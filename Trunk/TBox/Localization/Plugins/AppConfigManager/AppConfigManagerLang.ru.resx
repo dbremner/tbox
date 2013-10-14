@@ -139,7 +139,7 @@
     <value>Заполнить настройки из шаблона</value>
   </data>
   <data name="ItemResultTemplate" xml:space="preserve">
-    <value>Шаблон результируещего элемента: ({item})</value>
+    <value>Шаблон результирующего  элемента: ({item})</value>
   </data>
   <data name="ItemSourceTemplate" xml:space="preserve">
     <value>Шаблон исходного элемента: ({item})</value>
@@ -154,7 +154,7 @@
     <value>Вставить из буфера обмена</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Добавляет возможность управления настройками в Web.config или app.config. Например вы можете включать\выключать фичи.</value>
+    <value>Добавляет возможность управления настройками в Web.config или app.config. Например, вы можете включать\выключать модули.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Конфигуратор</value>

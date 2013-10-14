@@ -106,7 +106,7 @@ namespace Localization.Plugins.DirectoryProcessor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ability to run any software for any subdirectory of the direcory. For example you can run localization tool by one click..
+        ///   Looks up a localized string similar to Ability to run any software for any subdirectory of the directory. For example you can run localization tool by one click..
         /// </summary>
         public static string PluginDescription {
             get {

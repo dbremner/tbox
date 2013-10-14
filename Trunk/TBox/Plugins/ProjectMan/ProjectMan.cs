@@ -28,9 +28,9 @@ namespace ProjectMan
 			{
 				CreateNewProject(list, dir, projectContext);
 			}
-			var pathes = items.Select(x => x.Key).ToArray();
+			var paths = items.Select(x => x.Key).ToArray();
 			var menu = list.OrderBy(x => x.Key).Select(x => x.Value).ToList();
-			groupOperations.Append(menu, projectContext, Context, pathes);
+			groupOperations.Append(menu, projectContext, Context, paths);
 			svnStatisticOperations.Append(menu, projectContext, Context, Config.SvnUserName);
 			Menu = menu.ToArray();
 		}

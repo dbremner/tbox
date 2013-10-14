@@ -9,7 +9,7 @@ namespace Solution.Msc
 {
 	public class SelectDatabases: IScript
 	{
-		[StringDictionary(false, 
+		[StringDictionary( 
 			"DB1", "Data Source=(local);Initial Catalog=DB1;",
 			"DB2", "Data Source=(local);Initial Catalog=DB2;"
 			)]

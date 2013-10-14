@@ -3,8 +3,6 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using TBox.Code;
 using TBox.Code.FastStart;
-using TBox.Code.FastStart.Settings;
-using TBox.Code.Menu;
 using WPFControls.Components.ButtonsView;
 
 namespace TBox.Forms

@@ -175,10 +175,10 @@
     <value>Del</value>
   </data>
   <data name="DelItem" xml:space="preserve">
-    <value>Are you want to delete: "{0}"?</value>
+    <value>Are you want delete: "{0}"?</value>
   </data>
   <data name="DelPath" xml:space="preserve">
-    <value>Are you want to delete: "{0}"?</value>
+    <value>Are you want delete: "{0}"?</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>

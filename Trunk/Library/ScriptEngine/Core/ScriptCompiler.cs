@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Base.Log;
 using ScriptEngine.Core.Interfaces;
 using ScriptEngine.Core.Params;
 
@@ -9,6 +10,7 @@ namespace ScriptEngine.Core
 {
 	public class ScriptCompiler : Compiler, IScriptCompiler
 	{
+	    private readonly ILog log = LogManager.GetLogger<ScriptCompiler>();
 		private readonly Factory factory = new Factory();
 		private readonly IScriptRunner scriptRunner = new ScriptRunner();
 		public static IScriptContext Sc { get; private set; }
@@ -65,8 +67,16 @@ namespace ScriptEngine.Core
 			var o = Build(results);
 			foreach (var p in o.GetType().GetProperties())
 			{
-				var attribute = p.GetCustomAttributes(true).OfType<ParameterAttribute>().SingleOrDefault();
-				var el = factory.Create(attribute, p.Name, p.PropertyType);
+			    Parameter el = null;
+                try
+                {
+                    var attribute = p.GetCustomAttributes(true).OfType<ParameterAttribute>().SingleOrDefault();
+                    el = factory.Create(attribute, p.Name, p.PropertyType);
+                }
+                catch (Exception ex)
+                {
+                    log.Write(ex, "Can't init parameter: " + p.Name);
+                }
 				if(el!=null)parameters.Add(el);
 			}
 			return parameters;

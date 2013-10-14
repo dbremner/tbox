@@ -133,7 +133,7 @@
     <value>Количество</value>
   </data>
   <data name="Ddos" xml:space="preserve">
-    <value>Ддос</value>
+    <value>DDOS</value>
   </data>
   <data name="EntriesCountTemplate" xml:space="preserve">
     <value>{0}. Количество записей: {1}.</value>

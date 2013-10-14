@@ -133,7 +133,7 @@ namespace Localization.Plugins.LeaksInterceptor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Perfomance counters.
+        ///   Looks up a localized string similar to Performance counters.
         /// </summary>
         public static string PerfomanceCounters {
             get {
@@ -187,7 +187,7 @@ namespace Localization.Plugins.LeaksInterceptor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standart counters.
+        ///   Looks up a localized string similar to Standard counters.
         /// </summary>
         public static string StandartCounters {
             get {

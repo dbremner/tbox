@@ -331,7 +331,7 @@ namespace Localization.Plugins.Automator {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select sctipt.
+        ///   Looks up a localized string similar to Select script.
         /// </summary>
         public static string SelectSctipt {
             get {

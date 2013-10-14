@@ -130,7 +130,7 @@
     <value>Build:</value>
   </data>
   <data name="BuildToolsPathes" xml:space="preserve">
-    <value>Build tools pathes</value>
+    <value>Build tools paths</value>
   </data>
   <data name="CleanUp" xml:space="preserve">
     <value>Clean up</value>
@@ -166,7 +166,7 @@
     <value>Please, specify build arguments:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Easy way to manage your projects. You can rebuild, work with svn and run it's scripts from tray.</value>
+    <value>Easy way to manage your projects. You can rebuild, work with svn and run its scripts from tray.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Project manager</value>

@@ -130,7 +130,7 @@
     <value>Настроить строку подключения</value>
   </data>
   <data name="ConfigureConnectionToDatabase" xml:space="preserve">
-    <value>Настройка строк подключения к бд</value>
+    <value>Настройка строк подключения к БД</value>
   </data>
   <data name="ConfigureOperation" xml:space="preserve">
     <value>Настройка операции</value>
@@ -145,13 +145,13 @@
     <value>Строка подключения по умолчанию</value>
   </data>
   <data name="Ddos" xml:space="preserve">
-    <value>Ддос...</value>
+    <value>ДДОС...</value>
   </data>
   <data name="MakeRequestTo" xml:space="preserve">
     <value>Сделать запрос к</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Возможность строить и запускать ля любые SQL комманды. Также есть возможность делать ДДОС для поиска проблем с производительностью.</value>
+    <value>Возможность строить и запускать ля любые SQL команды. Также есть возможность делать ДДОС для поиска проблем с производительностью.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>SQL скрипты</value>
@@ -181,10 +181,10 @@
     <value>Запустить скрипты</value>
   </data>
   <data name="SqlScripts" xml:space="preserve">
-    <value>Sql скрипты</value>
+    <value>SQL скрипты</value>
   </data>
   <data name="SqlScriptsToExecute" xml:space="preserve">
-    <value>Sql скрипты для запуска</value>
+    <value>SQL скрипты для запуска</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Старт</value>

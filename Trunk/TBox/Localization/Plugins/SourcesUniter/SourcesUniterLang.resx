@@ -124,7 +124,7 @@
     <value>Extensions:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Simple plugin to unite big set of sources in to the one document. Designed mostly for studients.</value>
+    <value>Simple plugin to unite big set of sources in to the one document. Designed mostly for students</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>SourcesUniter</value>

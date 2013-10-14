@@ -187,7 +187,7 @@
     <value>Sending feedback</value>
   </data>
   <data name="FoundNewVersionTemplate" xml:space="preserve">
-    <value>Found new version: {0}, current version is: {1}\nDo you want to update TBox?</value>
+    <value>Found new version: {0}, current version is: {1}. Do you want to update TBox?</value>
   </data>
   <data name="GlobalHotKeysAreEnabled" xml:space="preserve">
     <value>Global HotKeys are enabled</value>
@@ -283,13 +283,13 @@
     <value>Scheduler</value>
   </data>
   <data name="Schelduler" xml:space="preserve">
-    <value>Schelduler</value>
+    <value>Scheduler</value>
   </data>
   <data name="ScheldulerIsEnabled" xml:space="preserve">
-    <value>Schelduler is enabled</value>
+    <value>Scheduler is enabled</value>
   </data>
   <data name="ScriptsPathes" xml:space="preserve">
-    <value>Scripts pathes</value>
+    <value>Scripts paths</value>
   </data>
   <data name="SelectMenuActions" xml:space="preserve">
     <value>Select menu actions</value>
@@ -328,7 +328,7 @@
     <value>Theme:</value>
   </data>
   <data name="ToolTipFeedback" xml:space="preserve">
-    <value>Help author to improove this tool</value>
+    <value>Help author to improve this tool</value>
   </data>
   <data name="ToolTipTemplate" xml:space="preserve">
     <value>TBox. Load {0} plugin(s).</value>

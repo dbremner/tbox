@@ -121,10 +121,10 @@
     <value>Подсчитать длину текста в буфере обмена</value>
   </data>
   <data name="CharToFillWhenYouCreateTable" xml:space="preserve">
-    <value>Символ для замены,когда вы делаете таблицу или вставляете текст в эксель или т.п.</value>
+    <value>Символ для замены, когда вы делаете таблицу или вставляете текст в эксель или т.п.</value>
   </data>
   <data name="GenerateGuid" xml:space="preserve">
-    <value>Сгенерерировать гуид</value>
+    <value>Сгенерерировать GUID</value>
   </data>
   <data name="GenerateText" xml:space="preserve">
     <value>Сгенерировать текст</value>
@@ -139,7 +139,7 @@
     <value>Укажите длину текста</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Утилита для генерации текста. Также она поможет вам при заполнении таблиц в экселе или onenote.</value>
+    <value>Утилита для генерации текста. Также она поможет вам при заполнении таблиц в Excel или OneNote.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Генератор текста</value>

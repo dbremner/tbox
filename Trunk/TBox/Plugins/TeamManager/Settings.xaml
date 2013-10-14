@@ -12,10 +12,10 @@
         <TabItem Header="{loc:Tr Persons}">
             <Units:CheckableListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" />
         </TabItem>
-        <TabItem Header="{loc:Tr Advanced}">
+        <TabItem Header="{loc:Tr TargetProcess}">
             <StackPanel>
-                <captioned:CaptionedTextBox Value="{Binding UserEmail}" Caption="{loc:Tr UserEmail}" Margin="5"/>
-                <captioned:CaptionedTextBox Value="{Binding UserPassword}" Caption="{loc:Tr UserPasword}" Margin="5"/>
+                <captioned:CaptionedTextBox Value="{Binding UserEmail}" Caption="{loc:Tr Login}" Margin="5"/>
+                <captioned:CaptionedTextBox Value="{Binding UserPasword}" Caption="{loc:Tr Password}" Margin="5"/>
                 <captioned:CaptionedTextBox Value="{Binding ProjectManagerUrl}" Caption="{loc:Tr ProjectManagerUrl}" Margin="5"/>
             </StackPanel>
         </TabItem>
