@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Common.Tools;
@@ -23,7 +24,7 @@ namespace TeamManager.Code
             facade = new TargetProcessFacade(cm);
         }
 
-        public string GetTimeTable(string from, string to, IList<string> emails)
+        public string GetTimeTable(DateTime from, DateTime to, ref List<string> emails)
         {
             var items = facade.GetTimeReport(from, to, emails).ToList();
             if (cm.Config.Report.FilterResultsByTime)
@@ -32,19 +33,17 @@ namespace TeamManager.Code
                     .Where(x=>(int)x.Sum(y=>y.Spent) == cm.Config.Report.TargetTime)
                     .Select(x=>x.Key)
                     .ToArray();
-                emails = emails.Where(x => !passed.Contains(x.ToLower(), new EqualityNoCaseComparer())).ToArray();
+                emails = emails.Where(x => !passed.Contains(x.ToLower(), new EqualityNoCaseComparer())).ToList();
                 items = items.Where(x => !passed.Contains(x.Email)).ToList();
             }
-            foreach (var email in emails)
+            foreach (var email in emails
+                .Where(email => !items.Any(x => x.Email.EqualsIgnoreCase(email))))
             {
-                if (!items.Any(x => x.Email.EqualsIgnoreCase(email)))
-                {
-                    items.Add(new LoggedTime
-                        {
-                            Fake = true,
-                            Email = email
-                        });
-                }
+                items.Add(new LoggedTime
+                    {
+                        Fake = true,
+                        Email = email
+                    });
             }
 
             return reportBuilder.BuildLoggedTimeReport(items);

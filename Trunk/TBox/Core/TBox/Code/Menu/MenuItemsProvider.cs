@@ -26,6 +26,7 @@ namespace TBox.Code.Menu
 
 		public void Create(IList<UMenuItem> menuItems)
 		{
+            Refresh(menuItems);
 			menuDialogItems = CreateMenuDialogItems(menuItems, null);
 
 			OnRefresh(this, null);

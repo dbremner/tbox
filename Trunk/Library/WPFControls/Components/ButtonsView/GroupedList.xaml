@@ -13,9 +13,9 @@
     <ItemsControl.ItemTemplate>
         <DataTemplate DataType="buttonsView:IButtonInfo">
             <Button Width="64" Height="64" Click="ClickItem" VerticalAlignment="Top" VerticalContentAlignment="Top" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" KeyUp="KeyUpItem" Margin="0" Padding="0">
-                <StackPanel Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Margin="3">
                     <Image Source="{Binding Icon}" HorizontalAlignment="Center" Width="24" Height="24" />
-                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" Height="38"/>
                 </StackPanel>
             </Button>
         </DataTemplate>

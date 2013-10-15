@@ -187,6 +187,15 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to People included in the report.
+        /// </summary>
+        public static string PeopleIncludedInTheReport {
+            get {
+                return ResourceManager.GetString("PeopleIncludedInTheReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Persons.
         /// </summary>
         public static string Persons {

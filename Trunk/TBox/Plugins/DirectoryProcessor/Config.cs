@@ -15,7 +15,7 @@ namespace DirectoryProcessor
 				{
 					new DirInfo
 						{
-							IsChecked = false,
+							IsChecked=false,
 							Key = "c:\\data",
 							Executable = "explorer.exe"
 						}

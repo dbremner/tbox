@@ -23,18 +23,18 @@
         <wpfSyntaxHighlighter:SyntaxHighlighter x:Name="Results" Grid.Column="0"/>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
         <DockPanel DockPanel.Dock="Right" Grid.Column="2" >
-            <Button Content="{loc:Tr Generate}" Click="Generate_OnClick" DockPanel.Dock="Bottom" Margin="10" HorizontalAlignment="Right"/>
+            <Button Content="{loc:Tr Generate}" Click="Generate_OnClick" DockPanel.Dock="Bottom" Margin="10" HorizontalAlignment="Right" IsEnabled="False" Name="btnGenerate"/>
             <GroupBox Header="{loc:Tr FilterResults}" DockPanel.Dock="Bottom" >
                 <StackPanel>
                     <controls:ExtCheckBox Content="{loc:Tr FilterByTime}" IsChecked="{Binding FilterResultsByTime}" Name="FilterByTime" Margin="5"/>
                     <captioned:CaptionedNumericUpDown Caption="{loc:Tr TargetTime}" Value="{Binding TargetTime}" Margin="5" Minimum="0" Maximum="10000" IsEnabled="{Binding ElementName=FilterByTime, Path=IsChecked}"/>
                 </StackPanel>
             </GroupBox>
-            <captioned:CaptionedTextBox Caption="{loc:Tr DateTo}" Value="{Binding DateTo}" DockPanel.Dock="Bottom" Margin="5" />
-            <captioned:CaptionedTextBox Caption="{loc:Tr DateFrom}" Value="{Binding DateFrom}" DockPanel.Dock="Bottom" Margin="5"/>
+            <captioned:CaptionedDatePicker Caption="{loc:Tr DateTo}" Value="{Binding DateTo}" DockPanel.Dock="Bottom" Margin="5" ValueChanged="ValueChanged" Name="DateTo"/>
+            <captioned:CaptionedDatePicker Caption="{loc:Tr DateFrom}" Value="{Binding DateFrom}" DockPanel.Dock="Bottom" Margin="5" ValueChanged="ValueChanged" Name="DateFrom"/>
             <Label Content="{loc:Tr Persons}" DockPanel.Dock="Top" Margin="0" Padding="0"/>
             <components:PanelToICheckable Name="Panel" DockPanel.Dock="Bottom"/>
-            <components:CheckableListBox Name="Persons" Margin="5" />
+            <components:CheckableListBox Name="Persons" Margin="5" SelectionChanged="ValueChanged"/>
         </DockPanel>
     </Grid>
 </dialogs:DialogWindow>

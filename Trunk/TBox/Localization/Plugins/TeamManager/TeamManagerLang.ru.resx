@@ -159,6 +159,9 @@
   <data name="Password" xml:space="preserve">
     <value>Пароль:</value>
   </data>
+  <data name="PeopleIncludedInTheReport" xml:space="preserve">
+    <value>Люди, включённые в отчёт</value>
+  </data>
   <data name="Persons" xml:space="preserve">
     <value>Люди</value>
   </data>

@@ -33,11 +33,13 @@ namespace TeamManager.Forms
         {
             DataContext = cm.Config.Report;
             Persons.ItemsSource = cm.Config.Persons;
-            base.SafeShowDialog();
+            ValueChanged(null, null);
+            ShowAndActivate();
         }
 
         private void Generate_OnClick(object sender, RoutedEventArgs e)
         {
+            Results.Clear();
             DialogsCache.ShowProgress(u=>DoGenerate(), TeamManagerLang.CalculatingTimeReport, this, false);
         }
 
@@ -46,13 +48,24 @@ namespace TeamManager.Forms
             try
             {
                 var cfg = cm.Config.Report;
-                var report = runner.GetTimeTable(cfg.DateFrom, cfg.DateTo, cm.Config.Persons.CheckedItems.Select(x => x.Key).ToArray());
+                if(!cfg.DateFrom.HasValue || !cfg.DateTo.HasValue)
+                    throw new ArgumentException("Please specify dates");
+                var emails = cm.Config.Persons.CheckedItems.Select(x => x.Key).ToList();
+                var report = runner.GetTimeTable(cfg.DateFrom.Value, cfg.DateTo.Value, ref emails);
+                report += Environment.NewLine + Environment.NewLine + TeamManagerLang.PeopleIncludedInTheReport +Environment.NewLine + string.Join(";", emails);
                 Mt.Do(this, ()=>Results.Value=report); 
             }
             catch (Exception ex)
             {
                 log.Write(ex, "Can't receive timer report");
             }
+        }
+
+        private void ValueChanged(object sender, RoutedEventArgs e)
+        {
+            btnGenerate.IsEnabled =
+                DateFrom.Value.HasValue && DateTo.Value.HasValue &&
+                Persons.Items.Count > 0;
         }
     }
 }
