@@ -1,12 +1,13 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
-using WPFControls.Code.OS;
 
 namespace WPFControls.Components.Updater
 {
 	public class Progress : SimpleProgress
 	{
+	    private string message;
 		private readonly Label lMessage = new Label{Padding = new Thickness(5,5,5,0), Height = 20};
 		public Progress()
 		{
@@ -15,15 +16,24 @@ namespace WPFControls.Components.Updater
 			DockPanel.SetDock(lMessage, Dock.Top);
 		}
 
-		public override void Reset()
+        protected override void TryHide(object sender, EventArgs e)
+        {
+            base.TryHide(sender, e);
+            if (!string.Equals(lMessage.Content, message))
+            {
+                lMessage.Content = message;
+            }
+        }
+
+		protected override void Reset()
 		{
 			base.Reset();
-			lMessage.Content = string.Empty;
+            lMessage.Content = message = string.Empty;
 		}
 
 		public void SetMessage(string value)
 		{
-			Mt.SetText(lMessage, value);
+			message = value;
 		}
 
 		protected override IUpdater CreateUpdater()

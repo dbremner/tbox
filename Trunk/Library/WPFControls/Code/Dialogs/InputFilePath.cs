@@ -12,8 +12,8 @@ namespace WPFControls.Code.Dialogs
 		private readonly string invalidPathTemplate;
 
 		public InputFilePath(string caption, PathTemplates templates,
-			Func<string, bool> validator, Window owner=null) :
-			base(caption, templates, validator, owner)
+            Func<string, bool> validator, Func<Window> ownerGetter) :
+			base(caption, templates, validator, ownerGetter)
 		{
 			this.invalidPathTemplate = templates.InvalidPath;
 		}
@@ -21,7 +21,7 @@ namespace WPFControls.Code.Dialogs
 		public override bool Add(out string[] newNames)
 		{
 			var isOk = false;
-			var result = DialogsCache.ShowInputFilePath(Caption, string.Empty, string.Empty, true, Owner);
+            var result = DialogsCache.ShowInputFilePath(Caption, string.Empty, Owner, string.Empty, true);
 			if (result.Key)
 			{
 				isOk = true;
@@ -39,7 +39,7 @@ namespace WPFControls.Code.Dialogs
 
 		public override bool Edit(string name, out string newName)
 		{
-			var result = DialogsCache.ShowInputFilePath(Caption, name, string.Empty, false, Owner);
+            var result = DialogsCache.ShowInputFilePath(Caption, name, Owner, string.Empty, false);
 			if (result.Key)
 			{
 				var selected = result.Value.FirstOrDefault();

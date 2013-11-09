@@ -47,6 +47,15 @@ namespace ScriptEngine.Core.Params
 		}
 	}
 
+    public sealed class PasswordParameter : Parameter<string>, IStringParameter
+	{
+		public bool CanBeEmpty { get; set; }
+		public override object Clone()
+		{
+            return new PasswordParameter { Key = Key, Value = Value, CanBeEmpty = CanBeEmpty };
+		}
+	}
+
 	public sealed class GuidParameter : Parameter<Guid>, IGuidParameter
 	{
 		public bool Autogenerate { get; set; }

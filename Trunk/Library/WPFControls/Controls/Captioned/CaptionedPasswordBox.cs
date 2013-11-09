@@ -6,7 +6,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public sealed class CaptionedPasswordBox : CaptionedControl
 	{
-        private readonly PasswordBox child = new PasswordBox { Margin = new Thickness(5, 0, 5, 0) };
+        private readonly PasswordBox child = new PasswordBox{Margin = new Thickness(0)};
 
         public CaptionedPasswordBox()
 		{

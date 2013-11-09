@@ -5,17 +5,18 @@ namespace WPFControls.Code.Dialogs
 {
 	public abstract class BaseDialog
 	{
+	    private readonly Func<Window> ownerGetter; 
 		protected Func<string, bool> Validator { get; set; }
 		protected string Caption { get; private set; }
 		protected Templates Buttons { get; private set; }
-		protected Window Owner { get; private set; }
+        protected Window Owner { get { return ownerGetter() ?? Application.Current.MainWindow; } }
 
-		protected BaseDialog(string caption, Templates templates, Func<string, bool> validator, Window owner)
+        protected BaseDialog(string caption, Templates templates, Func<string, bool> validator, Func<Window> ownerGetter)
 		{
 			Caption = caption;
 			Buttons = templates;
 			Validator = validator;
-			Owner = owner??Application.Current.MainWindow;
+            this.ownerGetter = ownerGetter;
 		}
 		public bool IsAddVisible { get { return !string.IsNullOrEmpty(Buttons.Add); } }
 		public bool IsClearVisible { get { return !string.IsNullOrEmpty(Buttons.Clear); } }
@@ -29,9 +30,7 @@ namespace WPFControls.Code.Dialogs
 
 		public virtual bool Clone(string name, out string newName)
 		{
-			var id = 0;
-			while (!Validator(name + ++id)){}
-			return Edit(name + id, out newName);
+			return Edit(name, out newName);
 		}
 
 		public virtual bool Del(string[] names)

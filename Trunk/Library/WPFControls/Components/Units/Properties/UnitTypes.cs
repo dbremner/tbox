@@ -7,6 +7,7 @@
 		ComboBox,
 		DropDownList,
 		FilePath,
-		FolderPath
+		FolderPath,
+        Date
 	}
 }

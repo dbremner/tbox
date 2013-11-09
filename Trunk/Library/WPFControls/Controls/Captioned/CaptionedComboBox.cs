@@ -6,7 +6,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public sealed class CaptionedComboBox : CaptionedControl
 	{
-		private readonly ComboBox child = new AutoComboBox{Margin = new Thickness(5,0,5,0)};
+        private readonly ComboBox child = new AutoComboBox { Margin = new Thickness(0) };
 
 		public CaptionedComboBox()
 		{

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="300" >
     <DockPanel>
-        <Button Name="Button" Content="{loc:Tr Stop}" Margin="5" Width="64" Height="24" Click="Button_Click" DockPanel.Dock="Right"/>
+        <Button Name="Button" Content="{loc:Tr Stop}" Margin="5" Width="64" Height="24" Click="ButtonClick" DockPanel.Dock="Right"/>
         <ProgressBar Name="pbValue" Maximum="1" Margin="5" Height="24" HorizontalAlignment="Stretch" IsIndeterminate="True" />
     </DockPanel>
 </UserControl>

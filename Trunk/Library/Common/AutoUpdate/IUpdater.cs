@@ -1,6 +1,6 @@
 ﻿namespace Common.AutoUpdate
 {
-	public interface IUpdater
+	public interface IApplicationUpdater
 	{
 		bool NeedUpdate();
 		void Copy(string newPath);

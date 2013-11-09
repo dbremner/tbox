@@ -1,6 +1,5 @@
 ﻿using System;
 using Common.MT;
-using WPFControls.Code.OS;
 
 namespace WPFControls.Components.Updater
 {
@@ -18,13 +17,7 @@ namespace WPFControls.Components.Updater
 		{
 			if (value > 1) value = 1;
 			if (value < 0) return;
-			Mt.Do(Owner.pbValue,
-				() =>
-					{
-						Owner.pbValue.IsIndeterminate = false;
-						Owner.pbValue.Value = value;
-					}
-				);
+		    Owner.Value = value;
 		}
 
 		public virtual void Update(string caption, float value)

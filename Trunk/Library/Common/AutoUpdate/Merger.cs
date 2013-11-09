@@ -34,12 +34,12 @@ namespace Common.AutoUpdate
 			return true;
 		}
 
-		public static void Merge(IUpdater updater)
+		public static void Merge(IApplicationUpdater applicationUpdater)
 		{
 			DeleteBackup();
 			try
 			{
-				DoUpdate(updater);
+				DoUpdate(applicationUpdater);
 			}
 			catch (Exception)
 			{
@@ -64,10 +64,10 @@ namespace Common.AutoUpdate
 			new DirectoryInfo(source).MoveFilesTo(destination, mask);
 		}
 
-		private static void DoUpdate(IUpdater updater)
+		private static void DoUpdate(IApplicationUpdater applicationUpdater)
 		{
 			MoveFiles(CurrentPath, BackupPath, "*.dll;*.exe;*.pdb");
-			updater.Copy(CurrentPath);
+			applicationUpdater.Copy(CurrentPath);
 		}
 	}
 }

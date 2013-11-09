@@ -40,6 +40,21 @@ namespace ScriptEngine
 		public override Type GetTypeForAttribute() { return typeof(string); }
 	}
 
+    public sealed class PasswordAttribute : ParameterAttribute
+    {
+        public string Value { get; set; }
+        public bool CanBeEmpty { get; set; }
+
+        public PasswordAttribute(string value = "")
+        {
+            CanBeEmpty = false;
+            Value = value;
+        }
+        public override Parameter CreateParameter() { return new PasswordParameter { CanBeEmpty = CanBeEmpty, Value = Value }; }
+        public override Type GetTypeForAttribute() { return typeof(string); }
+    }
+
+
 	public sealed class GuidAttribute : ParameterAttribute
 	{
 		public Guid Value { get; set; }

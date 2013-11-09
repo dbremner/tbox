@@ -10,22 +10,33 @@ namespace WPFControls.Dialogs
 	/// <summary>
 	/// Interaction logic for InputTextBox.xaml
 	/// </summary>
-	sealed partial class InputTextBox 
+	sealed partial class InputDateBox 
 	{
 		private bool isSuccess;
 		private string initValue;
 		private Func<string, bool> validator;
 
-		public InputTextBox()
+        public InputDateBox()
 		{
 			InitializeComponent();
-			edData.TextChanged += TextChanged;
+			edData.ValueChanged += TextChanged;
 		}
 
 		public string Value
 		{
-			get { return edData.Text; }
-			set { edData.Text = value.Trim(); }
+			get { return edData.Value.HasValue?edData.Value.Value.ToShortDateString():string.Empty; }
+			set
+			{
+			    DateTime date;
+			    if (DateTime.TryParse(value, out date))
+			    {
+			        edData.Value = date;
+			    }
+			    else
+			    {
+			        edData.Value = null;
+			    }
+			}
 		}
 
 		public KeyValuePair<bool, string> ShowDialog( string question, string caption, string value, Func<string, bool> validator, Window owner )
@@ -37,12 +48,11 @@ namespace WPFControls.Dialogs
 			Icon = owner == null ? null : owner.Icon;
 			this.validator = validator;
 			Title = caption;
-			lbCaption.Content = question;
+			edData.Caption = question;
 			TextChanged(null, null);
 			isSuccess = false;
 			edData.SetFocus();
 			ShowDialog();
-			Value = edData.Text.Trim();
 			return new KeyValuePair<bool, string>(isSuccess, Value);
 		}
 

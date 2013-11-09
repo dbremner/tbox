@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Windows;
 using LibsLocalization.WPFControls;
 using WPFControls.Dialogs;
 
 namespace WPFControls.Code
 {
 	public sealed class LazyDialog<TDialog> : Lazy<TDialog>, IDisposable
-		where TDialog : DialogWindow
+		where TDialog : Window, IDisposable
 	{
 		public string Id { get; private set; }
 		public LazyDialog(Func<TDialog> creator, string id) : base(creator)
@@ -22,7 +23,7 @@ namespace WPFControls.Code
 		{
 			if (!IsValueCreated)
 			{
-				DialogsCache.ShowProgress(u => syncronizer(()=>action(Value)), WPFControlsLang.CreateDialog);
+				DialogsCache.ShowProgress(u => syncronizer(()=>action(Value)), WPFControlsLang.CreateDialog, null);
 			}
 			else action(Value);
 		}

@@ -58,7 +58,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\Libs\ServiceStack.Text.3.9.66\lib\net35\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -78,6 +78,7 @@
     <Compile Include="Base\Log\ILog.cs" />
     <Compile Include="Base\Log\MemLog.cs" />
     <Compile Include="Base\Log\TypedLogger.cs" />
+    <Compile Include="Communications\IEmailSender.cs" />
     <Compile Include="Console\Cmd.cs" />
     <Compile Include="Communications\Interprocess\Client.cs" />
     <Compile Include="Communications\Interprocess\Server.cs" />
@@ -85,10 +86,9 @@
     <Compile Include="Communications\Network\Server.cs" />
     <Compile Include="MT\ConsoleUpdater.cs" />
     <Compile Include="MT\NullUpdater.cs" />
-    <Compile Include="Communications\EmailSender.cs" />
+    <Compile Include="Communications\SmtpEmailSender.cs" />
     <Compile Include="Network\Header.cs" />
     <Compile Include="Encoders\CommonOps.cs" />
-    <Compile Include="ServiceContainer.cs" />
     <Compile Include="Tools\EqualityDataComparer.cs" />
     <Compile Include="MT\IProgressModel.cs" />
     <Compile Include="MT\IUpdater.cs" />

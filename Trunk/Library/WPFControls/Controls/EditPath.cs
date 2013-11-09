@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using WPFControls.Tools;
 
 namespace WPFControls.Controls
 {
@@ -63,10 +64,10 @@ namespace WPFControls.Controls
 				switch (value)
 				{
 					case PathGetterType.File:
-						PathGetter = new FilePathGetter();
+						PathGetter = new FilePathGetter(this.GetParentWindow());
 						break;
 					case PathGetterType.Folder:
-						PathGetter = new FolderPathGetter();
+                        PathGetter = new FolderPathGetter(this.GetParentWindow());
 						break;
 				}
 			}

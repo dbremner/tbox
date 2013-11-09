@@ -10,7 +10,7 @@ namespace ScriptEngine.Core.Assemblies
 {
 	public class AssembliesCollector
 	{
-		private static readonly ILog InfoLog = LogManager.GetInfoLogger<Compiler>();
+		private static readonly ILog InfoLog = LogManager.GetInfoLogger<AssembliesCollector>();
 		public IDictionary<string, IList<string>> Collect()
 		{
 			var time = Environment.TickCount;
@@ -47,7 +47,10 @@ namespace ScriptEngine.Core.Assemblies
 
 		private static void AddAssembly(IDictionary<string, IList<string>> result, AssemblyInfo info)
 		{
-			foreach (var nsp in info.Assembly.GetExportedTypes().Select(x => x.Namespace).Distinct())
+            foreach (var nsp in info.Assembly.GetExportedTypes()
+                .Where(x => x.Namespace!=null)
+                .Select(x => x.Namespace)
+                .Distinct())
 			{
 				result[nsp] = (new[] { info.Assembly.Location }.Concat(info.References)).ToArray();
 			}

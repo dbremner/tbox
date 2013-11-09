@@ -61,8 +61,9 @@
     <Compile Include="Core\Assemblies\AssembliesCollector.cs" />
     <Compile Include="Core\Assemblies\AssemblyInfo.cs" />
     <Compile Include="Core\CompilerExceptions.cs" />
-    <Compile Include="Core\ExecutionContext.cs" />
+    <Compile Include="Core\CompilerCore.cs" />
     <Compile Include="Core\Interfaces\IScriptCompiler.cs" />
+    <Compile Include="Core\ScriptPackage.cs" />
     <Compile Include="Core\Params\EqualityParameterComparer.cs" />
     <Compile Include="Core\Params\Factory.cs" />
     <Compile Include="Core\Params\ParametersMerger.cs" />
@@ -72,18 +73,9 @@
     <Compile Include="Core\Attributes\OperationsFixtureAttribute.cs" />
     <Compile Include="Core\Compiler.cs" />
     <Compile Include="Core\Interfaces\ICompiler.cs" />
-    <Compile Include="Core\Interfaces\IScriptContext.cs" />
-    <Compile Include="Core\Interfaces\IScriptRunner.cs" />
-    <Compile Include="Core\Interfaces\ISectionContext.cs" />
     <Compile Include="Core\Params\Parameters.cs" />
     <Compile Include="Core\Params\ParametersValidator.cs" />
     <Compile Include="Core\ScriptCompiler.cs" />
-    <Compile Include="Core\ScriptContext.cs" />
-    <Compile Include="Core\ScriptRunner.cs" />
-    <Compile Include="Core\SectionContext.cs" />
-    <Compile Include="IScript.cs" />
-    <Compile Include="Operations\Files.cs" />
-    <Compile Include="Operations\Folders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -93,9 +85,7 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sections\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
+using LibsLocalization.WPFControls;
 
 namespace WPFControls.Dialogs.Menu
 {
 	/// <summary>
 	/// Interaction logic for MenuDialog.xaml
 	/// </summary>
-	public sealed partial class InputMenuItem : IDialog
+	public sealed partial class InputMenuItem 
 	{
 		private bool isSuccess = false;
 		private Func<string, bool> validator;
@@ -19,6 +20,7 @@ namespace WPFControls.Dialogs.Menu
 
 		public KeyValuePair<bool, string> ShowDialog(string question, string caption, string value, Func<string, bool> validator, IEnumerable<MenuDialogItem> values, Window owner, bool showInTaskBar = false)
 		{
+		    btnOk.ToolTip = string.Empty;
 			ShowInTaskbar = showInTaskBar;
 			this.validator = validator;
 			Owner = owner;
@@ -47,6 +49,7 @@ namespace WPFControls.Dialogs.Menu
 		private void Selector_OnSelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> routedPropertyChangedEventArgs)
 		{
 			btnOk.IsEnabled = CanChoose();
+            btnOk.ToolTip = btnOk.IsEnabled ? "" : WPFControlsLang.ValueAlreadyExistOrIncorrect;
 		}
 
 		private bool CanChoose()

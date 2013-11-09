@@ -4,7 +4,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public sealed class CaptionedEditPath : CaptionedControl
 	{
-		private readonly EditPath child = new EditPath();
+		private readonly EditPath child = new EditPath{Margin = new Thickness(0)};
 
 
 		public CaptionedEditPath()

@@ -6,7 +6,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public sealed class CaptionedDatePicker : CaptionedControl
 	{
-		private readonly DatePicker child = new DatePicker{Margin = new Thickness(5,0,5,0)};
+        private readonly DatePicker child = new DatePicker { Margin = new Thickness(0) };
 
         public CaptionedDatePicker()
 		{

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Common.Tools;
+using LibsLocalization.WPFControls;
 using WPFControls.Tools;
 
 namespace WPFControls.Dialogs
@@ -9,7 +10,7 @@ namespace WPFControls.Dialogs
 	/// <summary>
 	/// Interaction logic for InputTextBox.xaml
 	/// </summary>
-	sealed partial class InputMemoBox : IDialog
+	sealed partial class InputMemoBox 
 	{
 		private bool isSuccess;
 		private string initValue;
@@ -29,6 +30,7 @@ namespace WPFControls.Dialogs
 
 		public KeyValuePair<bool, string> ShowDialog( string question, string caption, string value, Func<string, bool> validator, Window owner )
 		{
+            btnOk.ToolTip = string.Empty;
 			initValue = value;
 			Value = value;
 			Owner = owner;
@@ -55,6 +57,7 @@ namespace WPFControls.Dialogs
 			var value = Value;
 			btnOk.IsEnabled = ( value.Length > 0 ) && 
 				( validator != null && (validator( value ) || value.EqualsIgnoreCase(initValue) ));
+            btnOk.ToolTip = btnOk.IsEnabled ? "" : WPFControlsLang.ValueAlreadyExistOrIncorrect;
 		}
 	}
 }

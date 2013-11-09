@@ -8,7 +8,7 @@ using ScriptEngine.Core.Params;
 namespace ScriptEngine
 {
 	[Serializable]
-	public sealed class Operation : Data
+	public sealed class Operation : CheckableData
 	{
 		public CheckableDataCollection<CheckableData> Pathes { get; set; }
 		public ObservableCollection<Parameter> Parameters { get; set; }
@@ -26,6 +26,7 @@ namespace ScriptEngine
 				Pathes = Pathes.Clone(),
 				Parameters = Parameters.Clone(),
 				Key = Key,
+                IsChecked = IsChecked
 			};
 		}
 	}

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
 namespace WPFControls.Components.Units
@@ -7,7 +8,12 @@ namespace WPFControls.Components.Units
 	{
 		protected override Selector CreateItems()
 		{
-			return new CheckableListBox { Margin = new Thickness(5), TabIndex = 0 };
+			var cb = new CheckableListBox { Margin = new Thickness(5), TabIndex = 0 };
+            cb.SetValue(ScrollViewer.CanContentScrollProperty, CanContentScroll);
+		    return cb;
+
 		}
+
+        public bool CanContentScroll { get; set; }
 	}
 }

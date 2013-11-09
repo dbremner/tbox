@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace WPFControls.Dialogs
+﻿namespace WPFControls.Dialogs
 {
-	public interface IDialog : IDisposable
+	public interface IDialog 
 	{
 		bool IsVisible { get; }
 	}

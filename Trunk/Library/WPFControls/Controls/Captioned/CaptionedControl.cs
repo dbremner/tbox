@@ -5,7 +5,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public class CaptionedControl : UserControl
 	{
-		private readonly TextBlock lCaption = new TextBlock { Padding = new Thickness(5, 0, 5, 0) };
+		private readonly TextBlock lCaption = new TextBlock { Padding = new Thickness(0), Visibility = Visibility.Collapsed};
 		protected DockPanel Panel { get; private set; }
 		public CaptionedControl()
 		{
@@ -21,6 +21,7 @@ namespace WPFControls.Controls.Captioned
 			set
 			{
 				lCaption.Text = value;
+			    lCaption.Visibility = string.IsNullOrEmpty(value) ? Visibility.Collapsed : Visibility.Visible;
 			}
 		}
 

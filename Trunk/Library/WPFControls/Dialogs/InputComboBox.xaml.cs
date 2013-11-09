@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Common.Tools;
+using LibsLocalization.WPFControls;
 using WPFControls.Tools;
 
 namespace WPFControls.Dialogs
@@ -11,7 +12,7 @@ namespace WPFControls.Dialogs
 	/// <summary>
 	/// Interaction logic for InputComboBox.xaml
 	/// </summary>
-	sealed partial  class InputComboBox : IDialog
+	sealed partial  class InputComboBox 
 	{
 		private bool isSuccess = false;
 		private Func<string, bool> validator;
@@ -33,6 +34,7 @@ namespace WPFControls.Dialogs
 
 		public KeyValuePair<bool, string> ShowDialog(string question, string caption, string value, Func<string, bool> validator, IList<string> source, Window owner)
 		{
+            btnOk.ToolTip = string.Empty;
 			initValue = value;
 			edData.IsEditable = true;
 			edData.ItemsSource = itemsSource = source;
@@ -86,6 +88,7 @@ namespace WPFControls.Dialogs
 		{
 			btnOk.IsEnabled = (validator == null ) || 
 				(validator != null && value.Length > 0 && (validator(value) || value.EqualsIgnoreCase(initValue)));
+		    btnOk.ToolTip = btnOk.IsEnabled ? "" : WPFControlsLang.ValueAlreadyExistOrIncorrect;
 		}
 
 		private void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

@@ -1,71 +1,17 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace WPFControls.Dialogs
 {
-	public class DialogWindow : Window, IDisposable
+	public class ClosableDialogWindow : Window
 	{
-		protected bool CanClose { get; set; }
-
-		public DialogWindow()
+        public ClosableDialogWindow()
 		{
-			CanClose = false;
 			ShowActivated = true;
 			ShowInTaskbar = false;
-			SetValue(RenderOptions.BitmapScalingModeProperty, BitmapScalingMode.NearestNeighbor);
 			SnapsToDevicePixels = true;
 			SetResourceReference(BackgroundProperty, SystemColors.ControlBrushKey);
 			WindowStartupLocation = WindowStartupLocation.CenterOwner;
-		}
-
-		protected override void OnClosing(CancelEventArgs e)
-		{
-			if (!CanClose)
-			{
-				e.Cancel = true;
-				Hide();
-			}
-			base.OnClosing(e);
-		}
-
-		protected virtual void OnShow()
-		{
-			
-		}
-
-		public void SafeShowDialog()
-		{
-			if (!IsVisible)
-			{
-				OnShow();
-				ShowDialog();
-			}
-			SafeActivate();
-		}
-
-		public void ShowAndActivate()
-		{
-			if (!IsVisible)
-			{
-				OnShow();
-				Show();
-			}
-			SafeActivate();
-		}
-
-		private void SafeActivate()
-		{
-			if (WindowState == WindowState.Minimized)
-				WindowState = WindowState.Normal;
-			Activate();
-		}
-
-		public virtual void Dispose()
-		{
-			CanClose = true;
-			Close();
 		}
 	}
 }

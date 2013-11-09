@@ -8,14 +8,14 @@ namespace WPFControls.Dialogs.Menu
 	public class InputMenuDialog: BaseDialog
 	{
 		public IList<MenuDialogItem> ItemsSource { get; set; }
-		public InputMenuDialog(string caption, Templates templates, Func<string, bool> validator, Window owner = null) :
-			base(caption, templates, validator, owner)
+        public InputMenuDialog(string caption, Templates templates, Func<string, bool> validator, Func<Window> ownerGetter) :
+			base(caption, templates, validator, ownerGetter)
 		{
 		}
 
 		private bool BaseOp(string name, out string newName, string template)
 		{
-			var result = DialogsCache.GetDialog<InputMenuItem>().ShowDialog(template, Caption, name, Validator, ItemsSource, Owner);
+			var result = DialogsCache.ShowInputMenuItem(template, Caption, name, Validator, ItemsSource, Owner);
 			if (result.Key)
 			{
 				newName = result.Value;

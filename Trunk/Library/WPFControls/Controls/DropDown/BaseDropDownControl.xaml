@@ -14,10 +14,10 @@
             <ColumnDefinition Width="14"/>
         </Grid.ColumnDefinitions>
         <RepeatButton Name="UpButton" Click="UpButtonClick" Grid.Row="0" Grid.Column="1" Padding="0" Margin="0">
-            <Image Source="/WPFControls;component/Resources/Up.ico" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+            <Image Source="/WPFControls;component/Resources/Up.ico" Width="5" Height="3" Stretch="None"/>
         </RepeatButton>
         <RepeatButton Name="DownButton" Click="DownButtonClick" Grid.Row="1" Grid.Column="1" Padding="0" Margin="0">
-            <Image Source="/WPFControls;component/Resources/Down.ico" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+            <Image Source="/WPFControls;component/Resources/Down.ico" Width="5" Height="3" Stretch="None"/>
         </RepeatButton>
         <TextBox Name="ValueText" Text="0" TextAlignment="Right" MouseWheel="OnMouseWheel" LostFocus="OnLostFocus" Grid.RowSpan="2" Margin="1" VerticalAlignment="Center"/>
     </Grid>

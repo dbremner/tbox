@@ -243,4 +243,7 @@
   <data name="Stop" xml:space="preserve">
     <value>Стоп</value>
   </data>
+  <data name="ValueAlreadyExistOrIncorrect" xml:space="preserve">
+    <value>Значение уже есть или некорректно</value>
+  </data>
 </root>

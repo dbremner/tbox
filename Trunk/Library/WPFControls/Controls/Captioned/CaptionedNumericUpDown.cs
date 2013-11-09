@@ -6,7 +6,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public sealed class CaptionedNumericUpDown : CaptionedControl
 	{
-		private readonly NumericUpDown child = new NumericUpDown { Margin = new Thickness(5, 0, 5, 0) };
+		private readonly NumericUpDown child = new NumericUpDown {Margin = new Thickness(0)};
 
 		public CaptionedNumericUpDown()
 		{

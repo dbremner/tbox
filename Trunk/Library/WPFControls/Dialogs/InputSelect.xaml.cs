@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LibsLocalization.WPFControls;
 using WPFControls.Tools;
 
 namespace WPFControls.Dialogs
@@ -11,7 +12,7 @@ namespace WPFControls.Dialogs
 	/// <summary>
 	/// Interaction logic for InputSelect.xaml
 	/// </summary>
-	 sealed partial class InputSelect : IDialog
+	 sealed partial class InputSelect 
 	{
 		private bool isSuccess = false;
 		private Func<string, bool> validator;
@@ -22,6 +23,7 @@ namespace WPFControls.Dialogs
 
 		public KeyValuePair<bool, string> ShowDialog(string question, string caption, string value, Func<string, bool> validator, IEnumerable<string> values, Window owner, bool showInTaskBar = false)
 		{
+            btnOk.ToolTip = string.Empty;
 			ShowInTaskbar = showInTaskBar;
 			this.validator = validator;
 			Owner = owner;
@@ -40,6 +42,7 @@ namespace WPFControls.Dialogs
 		private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			btnOk.IsEnabled = CanChoose();
+            btnOk.ToolTip = btnOk.IsEnabled ? "" : WPFControlsLang.ValueAlreadyExistOrIncorrect;
 		}
 
 		private bool CanChoose()

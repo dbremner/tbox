@@ -5,7 +5,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public sealed class CaptionedTextBox : CaptionedControl
 	{
-		private readonly TextBox child = new TextBox{Margin = new Thickness(5,0,5,0)};
+		private readonly TextBox child = new TextBox{Margin = new Thickness(0)};
 
 		public CaptionedTextBox()
 		{

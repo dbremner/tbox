@@ -56,6 +56,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Ookii.Dialogs.Wpf">
+      <HintPath>..\..\Libs\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -72,6 +76,7 @@
     <Compile Include="Code\ControlsDataLoader\Data\IData.cs" />
     <Compile Include="Code\ControlsDataLoader\Data\TextBoxData.cs" />
     <Compile Include="Code\DataManagers\CustomDataManager.cs" />
+    <Compile Include="Code\Dialogs\InputDate.cs" />
     <Compile Include="Code\Dialogs\InputSelect.cs" />
     <Compile Include="Code\Dialogs\PathTemplates.cs" />
     <Compile Include="Code\Dialogs\Templates.cs" />
@@ -150,6 +155,10 @@
     <Compile Include="Controls\DropDown\NumericUpDown.cs" />
     <Compile Include="Controls\PathGetterType.cs" />
     <Compile Include="Controls\DropDown\TimeBox.cs" />
+    <Compile Include="Dialogs\ClosableDialogWindow.cs" />
+    <Compile Include="Dialogs\InputDateBox.xaml.cs">
+      <DependentUpon>InputDateBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\InputMemoBox.xaml.cs">
       <DependentUpon>InputMemoBox.xaml</DependentUpon>
     </Compile>
@@ -242,6 +251,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\InputDateBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialogs\InputMemoBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -272,6 +285,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Up.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

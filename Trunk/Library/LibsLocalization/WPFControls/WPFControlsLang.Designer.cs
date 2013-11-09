@@ -437,5 +437,14 @@ namespace LibsLocalization.WPFControls {
                 return ResourceManager.GetString("Stop", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value already exist or incorrect.
+        /// </summary>
+        public static string ValueAlreadyExistOrIncorrect {
+            get {
+                return ResourceManager.GetString("ValueAlreadyExistOrIncorrect", resourceCulture);
+            }
+        }
     }
 }

@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Communication\Client.cs" />
     <Compile Include="Communication\Server.cs" />
+    <Compile Include="CustomIconsConverter.cs" />
     <Compile Include="FormsStyles.cs" />
     <Compile Include="GlobalHotKeys\GlobalHotkeys.cs" />
     <Compile Include="GlobalHotKeys\HotKey.cs" />
@@ -79,7 +80,6 @@
     <Compile Include="NativeMethods.cs" />
     <Compile Include="TipIcon.cs" />
     <Compile Include="TrayIcon.cs" />
-    <Compile Include="OpenFolderDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UMenuItem.cs" />
     <Compile Include="USeparator.cs" />

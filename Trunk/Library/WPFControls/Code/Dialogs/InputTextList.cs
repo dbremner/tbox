@@ -9,8 +9,8 @@ namespace WPFControls.Code.Dialogs
 	{
 		public IList<string> ItemsSource { get; set; }
 
-		public InputTextList(string caption, Templates templates, Func<string, bool> validator, Window owner=null) :
-			base(caption, templates, validator, owner)
+        public InputTextList(string caption, Templates templates, Func<string, bool> validator, Func<Window> ownerGetter) :
+			base(caption, templates, validator, ownerGetter)
 		{
 			ItemsSource = new List<string>();
 		}

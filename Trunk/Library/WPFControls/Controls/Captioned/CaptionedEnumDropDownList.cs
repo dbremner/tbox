@@ -9,7 +9,7 @@ namespace WPFControls.Controls.Captioned
 	{
 		private readonly ComboBox child = new ComboBox
 			                                  {
-				                                  Margin = new Thickness(5,0,5,0),
+				                                  Margin = new Thickness(0),
 												  IsEditable = false,
 			                                  };
 

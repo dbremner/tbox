@@ -8,24 +8,24 @@ namespace WPFControls.Tools
 {
     public static class SecureStringExtensions
     {
-        private static readonly byte[] entropy = Encoding.Unicode.GetBytes("{1A93489D-99EA-4186-A2C0-5545B0B44E9A}");
+        private static readonly byte[] Entropy = Encoding.Unicode.GetBytes("{1A93489D-99EA-4186-A2C0-5545B0B44E9A}");
 
-        public static string EncryptString(this SecureString input)
+        internal static string EncryptString(this SecureString input)
         {
             var encryptedData = ProtectedData.Protect(
                 Encoding.Unicode.GetBytes(ToInsecureString(input)),
-                entropy,
+                Entropy,
                 DataProtectionScope.CurrentUser);
             return Convert.ToBase64String(encryptedData);
         }
 
-        public static SecureString DecryptString(this string encryptedData)
+        internal static SecureString DecryptString(this string encryptedData)
         {
             try
             {
                 byte[] decryptedData = ProtectedData.Unprotect(
                     Convert.FromBase64String(encryptedData),
-                    entropy,
+                    Entropy,
                     DataProtectionScope.CurrentUser);
                 return ToSecureString(Encoding.Unicode.GetString(decryptedData));
             }
@@ -35,7 +35,7 @@ namespace WPFControls.Tools
             }
         }
 
-        public static SecureString ToSecureString(this string input)
+        internal static SecureString ToSecureString(this string input)
         {
             var secure = new SecureString();
             foreach (var c in input)
@@ -46,7 +46,7 @@ namespace WPFControls.Tools
             return secure;
         }
 
-        public static string ToInsecureString(this SecureString input)
+        internal static string ToInsecureString(this SecureString input)
         {
             var ptr = Marshal.SecureStringToBSTR(input);
             try
@@ -56,6 +56,14 @@ namespace WPFControls.Tools
             finally
             {
                 Marshal.ZeroFreeBSTR(ptr);
+            }
+        }
+
+        public static string DecryptPassword(this string value)
+        {
+            using (var ss = value.DecryptString())
+            {
+                return ss.ToInsecureString();
             }
         }
     }

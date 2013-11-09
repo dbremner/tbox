@@ -35,14 +35,14 @@ namespace WPFControls.Dialogs.StateSaver
 		}
 
 		public static void SaveState<T>(this LazyDialog<T> dialog, IDictionary<string, DialogState> items)
-			where T : DialogWindow
+			where T : Window, IDisposable
 		{
 			if(!dialog.IsValueCreated)return;
 			items[dialog.Id] = dialog.Value.GetState();
 		}
 
 		public static void LoadState<T>(this LazyDialog<T> dialog, IDictionary<string, DialogState> items)
-			where T : DialogWindow
+            where T : Window, IDisposable
 		{
 			if (dialog.IsValueCreated) return;
 			dialog.Value.SetState(items.Get(dialog.Id));

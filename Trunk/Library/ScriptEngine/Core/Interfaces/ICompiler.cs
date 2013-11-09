@@ -1,8 +1,7 @@
 ﻿namespace ScriptEngine.Core.Interfaces
 {
-	public interface ICompiler
+	public interface ICompiler<out T>
 	{
-		void Execute(string sourceText);
-		void Build(string sourceText);
+		T Compile(string sourceText);
 	}
 }

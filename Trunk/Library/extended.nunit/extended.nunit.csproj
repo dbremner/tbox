@@ -38,7 +38,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\Libs\ServiceStack.Text.3.9.66\lib\net35\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

@@ -66,6 +66,9 @@ namespace WPFControls.Components.Units.Properties
 				case UnitTypes.FolderPath:
 					SelectorExtensions.ConfigureInputFolderPath(owner, title, c);
 					break;
+                case UnitTypes.Date:
+                    SelectorExtensions.ConfigureInputDate(owner, title, c);
+                    break;
 				default:
 					throw new ArgumentException("Unknown type: " + unitType);
 			}

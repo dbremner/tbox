@@ -11,8 +11,8 @@ namespace WPFControls.Code.Dialogs
 		private readonly string invalidPathTemplate;
 
 		public InputFolderPath(string caption, PathTemplates templates,
-			Func<string, bool> validator, Window owner=null) :
-			base(caption, templates, validator, owner)
+            Func<string, bool> validator, Func<Window> ownerGetter) :
+			base(caption, templates, validator, ownerGetter)
 		{
 			invalidPathTemplate = templates.InvalidPath;
 		}
@@ -36,7 +36,7 @@ namespace WPFControls.Code.Dialogs
 
 		public override bool Edit(string name, out string newName)
 		{
-			var result = DialogsCache.ShowInputFolderPath(Caption, name, Owner);
+            var result = DialogsCache.ShowInputFolderPath(Caption, name, Owner);
 			if (result.Key)
 			{
 				if (Validator(result.Value) || name.EqualsIgnoreCase(result.Value))
@@ -53,7 +53,7 @@ namespace WPFControls.Code.Dialogs
 
 		public override bool Clone(string name, out string newName)
 		{
-			var result = DialogsCache.ShowInputFolderPath(Caption, name, Owner);
+            var result = DialogsCache.ShowInputFolderPath(Caption, name, Owner);
 			if (result.Key)
 			{
 				if (Validator(result.Value))

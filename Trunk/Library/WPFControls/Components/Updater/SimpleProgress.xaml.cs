@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Common.MT;
-using WPFControls.Code.OS;
 
 namespace WPFControls.Components.Updater
 {
@@ -12,20 +12,47 @@ namespace WPFControls.Components.Updater
 	/// </summary>
 	public partial class SimpleProgress : UserControl
 	{
+        private readonly DispatcherTimer timer = new DispatcherTimer();
+        private bool isEnd = false;
+	    private Action endAction = null;
+
 		protected object Locker { get; private set; }
 		protected bool UserPressClose { get; set; }
-		public double Value { get { return pbValue.Value; } }
+        public double Value { get; set; }
 
 		public SimpleProgress()
 		{
 			Locker = new object();
 			InitializeComponent();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timer.Tick += TryHide;
 		}
 
-		public virtual void Reset()
+        protected virtual void TryHide(object sender, EventArgs e)
+        {
+            if (isEnd)
+            {
+                timer.Stop();
+                endAction();
+            }
+            else
+            {
+                if (pbValue.Value < Value)
+                {
+                    pbValue.IsIndeterminate = false;
+                    pbValue.Value = Value;
+                }
+            }
+        }
+
+		protected virtual void Reset()
 		{
-			pbValue.Value = 0;
+            UserPressClose = false;
+		    Button.IsEnabled = true;
+			pbValue.Value = Value = 0;
 			pbValue.IsIndeterminate = true;
+            isEnd = false;
+            timer.Start();
 		}
 
 		internal bool IsUserPressClose()
@@ -41,9 +68,10 @@ namespace WPFControls.Components.Updater
 			return new SimpleUpdater<SimpleProgress>(this);
 		}
 
-		public void Start(Action<IUpdater> func, Action endAction=null)
+		public void Start(Action<IUpdater> func, Action end=null)
 		{
-			UserPressClose = false;
+		    endAction = end;
+		    Reset();
 			var u = CreateUpdater();
 			var culture = Thread.CurrentThread.CurrentUICulture;
 			ThreadPool.QueueUserWorkItem(o=>
@@ -56,13 +84,12 @@ namespace WPFControls.Components.Updater
 					}
 					finally
 					{
-						if (endAction != null) endAction();
-						Mt.SetEnabled(Button, true);
+					    isEnd = true;
 					}
 				});
 		}
 
-		internal void Button_Click( object sender, RoutedEventArgs e )
+		internal void ButtonClick( object sender, RoutedEventArgs e )
 		{
 			lock ( Locker )
 			{

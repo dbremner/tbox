@@ -104,5 +104,10 @@ namespace Common.Plugins
 		{
 			return dictionary.Get(name);
 		}
+
+        public void Remove(string name)
+        {
+            dictionary.Remove(name);
+        }
 	}
 }

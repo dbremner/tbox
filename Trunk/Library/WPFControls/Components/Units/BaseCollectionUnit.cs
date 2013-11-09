@@ -55,7 +55,9 @@ namespace WPFControls.Components.Units
 			Items.ItemsSource = null;
 		}
 
-		[Bindable(true)]
+        public Control Control { get { return this; } }
+
+	    [Bindable(true)]
 		public DataTemplate ItemTemplate
 		{
 			get { return Items.ItemTemplate; }

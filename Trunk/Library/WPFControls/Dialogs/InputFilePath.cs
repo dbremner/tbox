@@ -14,7 +14,7 @@ namespace WPFControls.Dialogs
 
 		public bool IsVisible { get; private set; }
 
-		public KeyValuePair<bool, string[]> ShowDialog(string caption, string path, string filter, bool allowSelectMany = false, Window owner = null)
+        public KeyValuePair<bool, string[]> ShowDialog(string caption, string path, string filter, Window owner, bool allowSelectMany = false)
 		{
 			try
 			{

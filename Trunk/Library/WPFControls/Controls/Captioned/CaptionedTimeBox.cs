@@ -5,7 +5,7 @@ namespace WPFControls.Controls.Captioned
 {
 	public class CaptionedTimeBox : CaptionedControl
 	{
-		private readonly TimeBox child = new TimeBox{Margin = new Thickness(5,0,5,0)};
+        private readonly TimeBox child = new TimeBox { Margin = new Thickness(0) };
 
 		public CaptionedTimeBox()
 		{

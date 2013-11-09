@@ -6,8 +6,8 @@ namespace WPFControls.Code.Dialogs
 {
 	public sealed class InputText : BaseDialog
 	{
-		public InputText(string caption, Templates templates, Func<string, bool> validator, Window owner=null) :
-			base(caption, templates, validator, owner)
+		public InputText(string caption, Templates templates, Func<string, bool> validator, Func<Window> ownerGetter) :
+            base(caption, templates, validator, ownerGetter)
 		{
 		}
 

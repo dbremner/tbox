@@ -45,7 +45,7 @@ namespace Common.Tools
 			return sb.Append(text);
 		}
 
-		public static StringBuilder FormatTable(this StringBuilder sb, IList<IList<string>> table)
+		public static StringBuilder PrintTable(this StringBuilder sb, IList<IList<string>> table)
 		{
 			if (table.Count == 0 || table[0].Count == 0) return sb;
 			var widthes = table[0].Select(x => x.Length).ToArray();
@@ -69,6 +69,28 @@ namespace Common.Tools
 			}
 			return sb;
 		}
+
+        public static StringBuilder PrintHtmlTable(this StringBuilder sb, IList<IList<string>> table, IList<string> styles )
+        {
+            if (table.Count == 0 || table[0].Count == 0) return sb;
+            var cols = table[0].Max(x => x.Length);
+            sb.Append("<table>");
+            var id = 0;
+            foreach (var row in table)
+            {
+                sb.Append("<tr");
+                var style = styles[id++];
+                if (!string.IsNullOrEmpty(style)) sb.AppendFormat(" class='{0}' ", style);
+                sb.Append(">");
+                for (var i = 0; i < cols && i < row.Count; ++i)
+                {
+                    sb.Append("<td>").Append(row[i]??"-").Append("</td>");
+                }
+                sb.Append("</tr>");
+            }
+            sb.Append("</table>");
+            return sb;
+        }
 
 		private static string NormalizeLength(string s, int length)
 		{

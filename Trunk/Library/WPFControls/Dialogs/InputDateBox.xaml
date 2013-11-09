@@ -1,8 +1,9 @@
-﻿<dialogs:ClosableDialogWindow x:Class="WPFControls.Dialogs.InputTextBox"
+﻿<dialogs:ClosableDialogWindow x:Class="WPFControls.Dialogs.InputDateBox"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:loc="clr-namespace:WPFControls.Localization" xmlns:dialogs="clr-namespace:WPFControls.Dialogs"
-                                             WindowStyle="SingleBorderWindow" 
+                              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned"
+                              WindowStyle="SingleBorderWindow" 
              ResizeMode="NoResize"
              Height="130" Width="350"
              MinHeight="130" MinWidth="350" MaxHeight="130" 
@@ -13,8 +14,7 @@
             <Button Content="{loc:Tr Cancel}" Width="64" Margin="10" IsCancel="True"/>
         </StackPanel>
         <StackPanel Margin="5" VerticalAlignment="Center">
-            <Label Name="lbCaption" Padding="0" Content="label"/>
-            <TextBox Name="edData" Margin="0" HorizontalAlignment="Stretch"/>
+            <captioned:CaptionedDatePicker x:Name="edData" Margin="0" HorizontalAlignment="Stretch"/>
         </StackPanel>
     </DockPanel>
 </dialogs:ClosableDialogWindow>
