@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="WPFControls.Controls.DropDown.BaseDropDownControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            mc:Ignorable="d" Height="22" MinWidth="64" d:DesignedWidth="64" Margin="0" >
+    <Grid Margin="0" >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="14"/>
+        </Grid.ColumnDefinitions>
+        <RepeatButton Name="UpButton" Click="UpButtonClick" Grid.Row="0" Grid.Column="1" Padding="0" Margin="0">
+            <Image Source="/WPFControls;component/Resources/Up.ico" Width="5" Height="3" Stretch="None"/>
+        </RepeatButton>
+        <RepeatButton Name="DownButton" Click="DownButtonClick" Grid.Row="1" Grid.Column="1" Padding="0" Margin="0">
+            <Image Source="/WPFControls;component/Resources/Down.ico" Width="5" Height="3" Stretch="None"/>
+        </RepeatButton>
+        <TextBox Name="ValueText" Text="0" TextAlignment="Right" MouseWheel="OnMouseWheel" LostFocus="OnLostFocus" Grid.RowSpan="2" Margin="1" VerticalAlignment="Center"/>
+    </Grid>
+</UserControl>

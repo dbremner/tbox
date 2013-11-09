@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Automator.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:Automator.Code.Localization"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
+             xmlns:scriptEngine="clr-namespace:ScriptEngine;assembly=ScriptEngine"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel>
+        <GroupBox Header="{loc:Tr Profile}" DockPanel.Dock="Top">
+            <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="{loc:Tr ConfigureProfile}"/>
+        </GroupBox>
+        <TabControl>
+            <TabItem Header="{loc:Tr ConfigureScriptPackages}">
+                <Units:ListBoxUnit IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Operations}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
+                    <Units:ListBoxUnit.ItemTemplate>
+                        <DataTemplate DataType="{x:Type scriptEngine:Operation}">
+                            <DockPanel>
+                                <Button Content="..." VerticalAlignment="Center" Width="32" Margin="1" Click="BtnEditClick" DockPanel.Dock="Right"/>
+                                <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </Units:ListBoxUnit.ItemTemplate>
+                </Units:ListBoxUnit>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</UserControl>

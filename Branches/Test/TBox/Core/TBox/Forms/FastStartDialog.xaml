@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="TBox.Forms.FastStartDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:TBox.Code.Localization"
+             xmlns:buttonsView="clr-namespace:WPFControls.Components.ButtonsView;assembly=WPFControls"
+             >
+    <buttonsView:GroupedList ItemsSource="{Binding Items}" Name="ItemsList"/>
+</UserControl>

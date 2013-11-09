@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MarketModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MarketModelStoreContainer">
+          <EntitySet Name="Authors" EntityType="MarketModel.Store.Authors" store:Type="Tables" />
+          <EntitySet Name="Bugs" EntityType="MarketModel.Store.Bugs" store:Type="Tables" />
+          <EntitySet Name="Dependenses" EntityType="MarketModel.Store.Dependenses" store:Type="Tables" />
+          <EntitySet Name="Plugins" EntityType="MarketModel.Store.Plugins" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="MarketModel.Store.Types" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bugs">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="PluginUID" Type="bigint" Nullable="false" />
+          <Property Name="UID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dependenses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PluginID" Type="bigint" Nullable="false" />
+          <Property Name="DependencyID" Type="bigint" Nullable="false" />
+          <Property Name="ID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plugins">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Author" Type="bigint" Nullable="false" />
+          <Property Name="Type" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Downloads" Type="bigint" Nullable="false" />
+          <Property Name="Uploads" Type="bigint" Nullable="false" />
+          <Property Name="Size" Type="bigint" Nullable="false" />
+          <Property Name="UID" Type="bigint" Nullable="false" />
+          <Property Name="IsPlugin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="UID" Type="bigint" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarketModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MarketEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="MarketModel.Author" />
+          <EntitySet Name="Bugs" EntityType="MarketModel.Bug" />
+          <EntitySet Name="Plugins" EntityType="MarketModel.Plugin" />
+          <EntitySet Name="Types" EntityType="MarketModel.Type" />
+          <EntitySet Name="Dependenses" EntityType="MarketModel.Dependens" />
+        </EntityContainer>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="UID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bug">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int64" Name="PluginUID" Nullable="false" />
+          <Property Type="Int64" Name="UID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plugin">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int64" Name="Author" Nullable="false" />
+          <Property Type="Int64" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="Downloads" Nullable="false" />
+          <Property Type="Int64" Name="Uploads" Nullable="false" />
+          <Property Type="Int64" Name="Size" Nullable="false" />
+          <Property Type="Int64" Name="UID" Nullable="false" />
+          <Property Type="Boolean" Name="IsPlugin" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="UID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dependens">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="PluginID" Nullable="false" />
+          <Property Type="Int64" Name="DependencyID" Nullable="false" />
+          <Property Type="Int64" Name="ID" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarketModelStoreContainer" CdmEntityContainer="MarketEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="MarketModel.Author">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bugs">
+            <EntityTypeMapping TypeName="MarketModel.Bug">
+              <MappingFragment StoreEntitySet="Bugs">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="PluginUID" ColumnName="PluginUID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plugins">
+            <EntityTypeMapping TypeName="MarketModel.Plugin">
+              <MappingFragment StoreEntitySet="Plugins">
+                <ScalarProperty Name="IsPlugin" ColumnName="IsPlugin" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Uploads" ColumnName="Uploads" />
+                <ScalarProperty Name="Downloads" ColumnName="Downloads" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="MarketModel.Type">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dependenses">
+            <EntityTypeMapping TypeName="MarketModel.Dependens">
+              <MappingFragment StoreEntitySet="Dependenses">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DependencyID" ColumnName="DependencyID" />
+                <ScalarProperty Name="PluginID" ColumnName="PluginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="MarketModel.Author" Width="1.5" PointX="5" PointY="4.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="MarketModel.Bug" Width="1.5" PointX="4.875" PointY="0.75" Height="1.9802864583333326" />
+        <EntityTypeShape EntityType="MarketModel.Plugin" Width="1.5" PointX="0.875" PointY="0.75" Height="2.9417936197916665" />
+        <EntityTypeShape EntityType="MarketModel.Type" Width="1.5" PointX="4.875" PointY="3" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="MarketModel.Dependens" Width="1.5" PointX="0.75" PointY="4.75" Height="1.5956835937499996" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

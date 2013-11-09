@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="DevServerRunner.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:DevServerRunner.Code.Localization"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
+             xmlns:Settings="clr-namespace:DevServerRunner.Code.Settings"
+             xmlns:Controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
+             xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <TabControl>
+        <TabItem Header="{loc:Tr ConfigureProjectsDirectories}">
+            <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding ServerInfos}" UnitType="FolderPath" Title="{loc:Tr SelectProjectFolder}" SmoothScrolling="True" >
+                <Units:CheckableListBoxUnit.ItemTemplate>
+                    <DataTemplate DataType="Settings:ServerInfo">
+                        <StackPanel Margin="0,10">
+                            <DockPanel>
+                                <Controls:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" DockPanel.Dock="Left" Padding="5,0" ValueChanged="CheckBoxChecked" />
+                                <Controls:EditPath Value="{Binding Key}" Padding="0" FontWeight="Bold" IsEnabled="{Binding IsChecked}" PathGetterType="Folder"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <StackPanel DockPanel.Dock="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="5">
+                                    <CheckBox IsChecked="{Binding AdminPrivilegies}" IsEnabled="{Binding IsChecked}"/>
+                                    <TextBlock Text="{loc:Tr RunAsAdmin}" />
+                                </StackPanel>
+                                <captioned:CaptionedNumericUpDown Caption="{loc:Tr Port}" Value="{Binding Port}" DockPanel.Dock="Left" IsEnabled="{Binding IsChecked}"/>
+                                <captioned:CaptionedTextBox Caption="{loc:Tr VirtualPath}" Value="{Binding VPath}" IsEnabled="{Binding IsChecked}"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </Units:CheckableListBoxUnit.ItemTemplate>
+            </Units:CheckableListBoxUnit>
+        </TabItem>
+        <TabItem Header="{loc:Tr Advanced}">
+            <StackPanel>
+                <captioned:CaptionedEditPath Caption="{loc:Tr PathToDevServer}" Value="{Binding PathToDevServer}" PathGetterType="File" Margin="5"/>
+                <StackPanel>
+                    <CheckBox Content="{loc:Tr RunBrowser}" IsChecked="{Binding RunBrowser}" Name="RunBrowser" Margin="5,5,0,0" />
+                    <captioned:CaptionedEditPath Caption="{loc:Tr PathToBrowser}" Value="{Binding PathToBrowser}" PathGetterType="File" Margin="5" IsEnabled="{Binding ElementName=RunBrowser, Path=IsChecked}"/>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

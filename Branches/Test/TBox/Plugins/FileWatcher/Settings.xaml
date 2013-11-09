@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="FileWatcher.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:loc="clr-namespace:FileWatcher.Code.Localization"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
+             xmlns:my="clr-namespace:WPFControls.Controls;assembly=WPFControls"
+             xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
+             xmlns:watcher="clr-namespace:PluginsShared.Watcher;assembly=PluginsShared" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+            >
+    <TabControl>
+        <TabItem Header="{loc:Tr ConfigureLogFolders}">
+            <Units:CheckableListBoxUnit Name="Dirs" ItemsSource="{Binding Watches.Files}" UnitType="Text" Title="{loc:Tr ConfigureWatches}" SmoothScrolling="True" >
+                <Units:CheckableListBoxUnit.ItemTemplate>
+                    <DataTemplate DataType="watcher:DirInfo">
+                        <StackPanel Margin="0,10">
+                            <StackPanel Orientation="Horizontal">
+                                <my:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center" Padding="5,0" ValueChanged="CheckBoxChecked" />
+                                <TextBlock Text="{Binding Key}" Padding="0" TextTrimming="CharacterEllipsis" FontWeight="Bold" IsEnabled="{Binding IsChecked}"/>
+                            </StackPanel>
+                            <DockPanel>
+                                <captioned:CaptionedEditPath Value="{Binding Path}" Caption="{loc:Tr Path}" Margin="1" Padding="0" DockPanel.Dock="Top" PathGetterType="Folder" IsEnabled="{Binding IsChecked}"/>
+                                <captioned:CaptionedTextBox Value="{Binding Mask}" Caption="{loc:Tr Mask}" Margin="1" Padding="0" IsEnabled="{Binding IsChecked}"/>
+                            </DockPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </Units:CheckableListBoxUnit.ItemTemplate>
+            </Units:CheckableListBoxUnit>
+        </TabItem>
+        <TabItem Header="{loc:Tr Advanced}">
+            <StackPanel>
+                <GroupBox Header="{loc:Tr ToolTips}">
+                    <WrapPanel>
+                        <CheckBox IsChecked="{Binding ToolTipsEnabled}" Name="ToolTipsEnabled" Content="{loc:Tr Enabled}" Margin="5"/>
+                        <captioned:CaptionedNumericUpDown Value="{Binding ToolTipsTimeOut}" Caption="{loc:Tr Timeout}" Margin="5" Increment="1" Maximum="60000" Minimum="1" IsEnabled="{Binding ElementName=ToolTipsEnabled, Path=IsChecked}"/>
+                    </WrapPanel>
+                </GroupBox>
+                <GroupBox Header="{loc:Tr Other}">
+                    <StackPanel>
+                        <WrapPanel>
+                            <captioned:CaptionedNumericUpDown Value="{Binding RescanLogsInterval}" Caption="{loc:Tr RescanLogsInterval}" Margin="5" Increment="1" Maximum="60000" Minimum="100" />
+                            <captioned:CaptionedNumericUpDown Value="{Binding MaxEntriesInLog}" Caption="{loc:Tr MaxEntriesInLog}" Margin="5" Increment="1" Minimum="1" />
+                        </WrapPanel>
+                        <captioned:CaptionedTextBox Caption="{loc:Tr EntryRegExp}" Value="{Binding EntryRegularExpression}"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>
