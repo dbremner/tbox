@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
+using PluginsShared.Automator;
 using ScriptEngine;
-using Common.Tools;
 using PluginsShared.Tools;
 
 namespace Solution.Msc
@@ -11,10 +11,12 @@ namespace Solution.Msc
         [FileDictionary("d:/project/Web.config", "d:/sample.log")]
         public IDictionary<string, string> Files { get; set; }
 
-        public void Run()
+        public void Run(IScriptContext s)
         {
+            var i = 0;
             foreach (var file in Files)
             {
+                s.Updater.Update(file.Key, i++/(float)Files.Count);
                 var doc = XDocument.Load(file.Key, LoadOptions.PreserveWhitespace);
                 AddTracingToConfig(doc.Root, file.Value);
                 doc.Save(file.Key);

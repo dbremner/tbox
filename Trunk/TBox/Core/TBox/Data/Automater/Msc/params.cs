@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using PluginsShared.Automator;
 using ScriptEngine;
 
 namespace Solution.Msc
@@ -64,7 +65,7 @@ namespace Solution.Msc
 		[DoubleDictionary(Min=-100, Max=100)]
 		public IDictionary<string, double> RealDictionaryParam { get; set; }
 
-		public void Run()
+		public void Run(IScriptContext context)
 		{
 			MessageBox.Show(StringParam, "Hello world", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			MessageBox.Show(FileParam, "Hello world", MessageBoxButtons.OK, MessageBoxIcon.Information);

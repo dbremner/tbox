@@ -50,7 +50,7 @@ namespace MarketClient.Components.Installers
 
 		private void DoOnAction(object sender, EventArgs e)
 		{
-			Synchronizer.Do(service => DialogsCache.ShowProgress((updater) => DoUploading(service, updater), "Download plugins"));
+			Synchronizer.Do(service => DialogsCache.ShowProgress((updater) => DoUploading(service, updater), "Download plugins", null));
 		}
 
 		private void DoUploading(IMarketService service, IUpdater uploader)

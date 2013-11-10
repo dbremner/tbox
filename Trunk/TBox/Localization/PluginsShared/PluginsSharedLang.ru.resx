@@ -123,8 +123,50 @@
   <data name="Body" xml:space="preserve">
     <value>Тело:</value>
   </data>
+  <data name="Build" xml:space="preserve">
+    <value>Построить</value>
+  </data>
+  <data name="Building" xml:space="preserve">
+    <value>Построение...</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="CompilationTimeTemplate" xml:space="preserve">
+    <value>Скомпилировано за: {0}мс.</value>
+  </data>
+  <data name="CompilationTimeTemplate1" xml:space="preserve">
+    <value>Скомпилировано за: {0}мс.</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>Настроить</value>
+  </data>
+  <data name="ConfigureDirectoryPath" xml:space="preserve">
+    <value>Настройка пути к директории</value>
+  </data>
+  <data name="ConfigureDouble" xml:space="preserve">
+    <value>Настройка вещественного числа</value>
+  </data>
+  <data name="ConfigureFilePath" xml:space="preserve">
+    <value>Настройка пути к файлу</value>
+  </data>
+  <data name="ConfigureGuid" xml:space="preserve">
+    <value>Настройка GUID</value>
+  </data>
+  <data name="ConfigureInt" xml:space="preserve">
+    <value>Настройка целого числа</value>
+  </data>
+  <data name="ConfigureItem" xml:space="preserve">
+    <value>Настройка элемента</value>
+  </data>
+  <data name="ConfigureScriptPackages" xml:space="preserve">
+    <value>Настройка сборки скриптов</value>
+  </data>
+  <data name="ConfigureString" xml:space="preserve">
+    <value>Настройка строки</value>
   </data>
   <data name="CopyResultsToClipboard" xml:space="preserve">
     <value>Копировать результаты в буфер обмена</value>
@@ -156,14 +198,38 @@
   <data name="MinTime" xml:space="preserve">
     <value>Мин.Время</value>
   </data>
+  <data name="NoErrors" xml:space="preserve">
+    <value>Без ошибок</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="Reloading" xml:space="preserve">
+    <value>Перезагрузка...</value>
+  </data>
   <data name="RequestsDelay" xml:space="preserve">
     <value>Задержка:</value>
   </data>
   <data name="ResponseTime" xml:space="preserve">
     <value>Время ответа ( Мин - Средн. - Макс )</value>
   </data>
+  <data name="Run" xml:space="preserve">
+    <value>Запустить</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ScriptsPackageParameters" xml:space="preserve">
+    <value>Введите значения параметров скриптов:</value>
+  </data>
+  <data name="SelectSctipt" xml:space="preserve">
+    <value>Выбрать скрипт</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="SourcesEditor" xml:space="preserve">
+    <value>Редактор исходного кода</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Старт</value>

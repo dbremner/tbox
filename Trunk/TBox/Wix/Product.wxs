@@ -38,6 +38,10 @@
       <ComponentRef Id="ProjectMan" />
       <ComponentRef Id="Templates" />
       <ComponentRef Id="TemplatesSample" />
+	  <ComponentRef Id="TeamManager" />
+	  <ComponentRef Id="TeamManagerDataProviders" />
+	  <ComponentRef Id="TeamManagerStyles" />
+	  <ComponentRef Id="TeamManagerValidators" />
       <ComponentRef Id="Libraries" />
       <ComponentRef Id="Libx86" />
       <ComponentRef Id="Libx64" />

@@ -273,9 +273,6 @@
   <data name="RecentActions" xml:space="preserve">
     <value>Последние действия</value>
   </data>
-  <data name="RestartAfterChangingLanguage" xml:space="preserve">
-    <value>Нужен перезапуск после смены языка</value>
-  </data>
   <data name="Save" xml:space="preserve">
     <value>Сохранение...</value>
   </data>
@@ -392,5 +389,20 @@
   </data>
   <data name="FastStartDescription" xml:space="preserve">
     <value>Отсюда вы можете запускать наиболее часто выполняемые команды или сконфигурированные пользовательские действия</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>Блог:</value>
+  </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>Список изменений</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Конфигурация</value>
+  </data>
+  <data name="PortableMode" xml:space="preserve">
+    <value>Сохранять конфигурационные файлы в папке, где расположен TBox</value>
+  </data>
+  <data name="RestartNeeded" xml:space="preserve">
+    <value>Для применения изменений необходим перезапуск TBox</value>
   </data>
 </root>

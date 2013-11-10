@@ -4,10 +4,10 @@
         xmlns:loc="clr-namespace:TBox.Code.Localization"
         xmlns:Dialogs="clr-namespace:WPFControls.Dialogs;assembly=WPFControls"
                       xmlns:buttonsView="clr-namespace:WPFControls.Components.ButtonsView;assembly=WPFControls"
-                      Title="{loc:Translate Caption}" 
+                      Title="{loc:Tr Caption}" 
         Icon="/TBox;component/Resources/Icon.ico" 
-        Width="600" Height="600" 
-        MinWidth="600" MinHeight="600" 
+        Width="600" Height="640" 
+        MinWidth="600" MinHeight="640" 
         WindowState="Normal" ShowInTaskbar="True">
     <Window.Resources>
         <RoutedUICommand x:Key="Help"/>
@@ -27,17 +27,47 @@
     </Window.InputBindings>
     <DockPanel>
         <DockPanel DockPanel.Dock="Top" >
-            <Button Padding="5" Margin="5" Name="BtnBack" Content="{loc:Translate Back}" IsEnabled="False" DockPanel.Dock="Left" Command="{StaticResource Back}"/>
-            <Button Content="{loc:Translate BtnHelp}" Padding="5"  Margin="5" DockPanel.Dock="Right"  Command="{StaticResource Help}"/>
-            <TextBlock Name="Description" Text="{loc:Translate DefaultMainViewDescription}" Margin="5" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center"/>
+            <Button Margin="5" Name="BtnBack" IsEnabled="False" DockPanel.Dock="Left" Command="{StaticResource Back}">
+                <StackPanel Orientation="Horizontal">
+                    <Image  Width="24" Height="24" Source="/TBox;component/Resources/Back.ico" Stretch="None"/>
+                    <TextBlock Text="{loc:Tr Back}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Margin="5" DockPanel.Dock="Right"  Command="{StaticResource Help}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image  Width="24" Height="24" Source="/TBox;component/Resources/Help.ico" Stretch="None"/>
+                    <TextBlock Text="{loc:Tr BtnHelp}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Name="Description" Text="{loc:Tr DefaultMainViewDescription}" Margin="5" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Bottom" Margin="10">
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" >
-                <Button Content="{loc:Translate BtnSave}"  Name="btnSave" Padding="5" Margin="5" Click="BtnSaveClick" />
-                <Button Content="{loc:Translate BtnReload}" Name="btnReload" Padding="5" Margin="5" IsCancel="True" Click="BtnReloadClick" />
-                <Button Content="{loc:Translate BtnClose}" Name="btnClose" Padding="5" Margin="5" Click="BtnCloseClick" />
+                <Button Name="btnSave"  Margin="5" Click="BtnSaveClick" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Width="24" Height="24" Source="/TBox;component/Resources/Save.ico" Stretch="None"/>
+                        <TextBlock Text="{loc:Tr BtnSave}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Name="btnReload" Margin="5" IsCancel="True" Click="BtnReloadClick"  >
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Width="24" Height="24" Source="/TBox;component/Resources/Refresh.ico" Stretch="None"/>
+                        <TextBlock Text="{loc:Tr BtnReload}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Name="btnClose" Margin="5" Click="BtnCloseClick" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image  Width="24" Height="24" Source="/TBox;component/Resources/Minimize.ico" Stretch="None"/>
+                        <TextBlock Text="{loc:Tr BtnClose}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
             </StackPanel>
-            <Button Content="{loc:Translate BtnFeedback}" Name="Feedback" Click="SendFeedback" Margin="5" Padding="5" ToolTip="{loc:Translate ToolTipFeedback}" DockPanel.Dock="Left"/>
+            <Button Name="Feedback" Click="SendFeedback" Margin="5" ToolTip="{loc:Tr ToolTipFeedback}" DockPanel.Dock="Left" >
+                <StackPanel Orientation="Horizontal">
+                    <Image  Width="24" Height="24" Source="/TBox;component/Resources/Feedback.ico" Stretch="None"/>
+                    <TextBlock Text="{loc:Tr BtnFeedback}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
             <Label/>
         </DockPanel>
         <ContentControl Name="PluginsBack" Margin="5,2,5,5">

@@ -2,6 +2,7 @@
 using System.Windows;
 using Common.AutoUpdate;
 using Common.Base.Log;
+using Interface;
 using WPFControls.Code.OS;
 
 namespace TBox.Code.AutoUpdate
@@ -9,27 +10,25 @@ namespace TBox.Code.AutoUpdate
 	public class ApplicationUpdater : IAutoUpdater
 	{
 		private static readonly ILog Log = LogManager.GetLogger<ApplicationUpdater>();
-		private readonly Window owner;
-		private readonly Config config;
-		private readonly IUpdater updater;
+        private readonly IConfigManager<Config> cm;
+		private readonly IApplicationUpdater applicationUpdater;
 
-		public ApplicationUpdater(Window owner, Config config, IUpdater updater)
+		public ApplicationUpdater(IConfigManager<Config> cm, IApplicationUpdater applicationUpdater)
 		{
-			this.owner = owner;
-			this.config = config;
-			this.updater = updater;
+			this.cm = cm;
+			this.applicationUpdater = applicationUpdater;
 		}
 
 		public bool TryUpdate(bool manual = false)
 		{
-			if (!manual && config.Update.Interval == UpdateInterval.Never) return false;
-			if (string.IsNullOrWhiteSpace(config.Update.Directory)) return false;
+			if (!manual && cm.Config.Update.Interval == UpdateInterval.Never) return false;
+			if (string.IsNullOrWhiteSpace(cm.Config.Update.Directory)) return false;
 			try
 			{
-				if (updater.NeedUpdate() && 
-					(manual || Merger.CheckDate(config.Update.Last, config.Update.Interval)))
+				if (applicationUpdater.NeedUpdate() &&
+                    (manual || Merger.CheckDate(cm.Config.Update.Last, cm.Config.Update.Interval)))
 				{
-					updater.Update();
+					applicationUpdater.Update();
 				}
 				else return false;
 			}
@@ -38,8 +37,8 @@ namespace TBox.Code.AutoUpdate
 				Log.Write(ex, "Can't update application.");
 				return false;
 			}
-			config.Update.Last = DateTime.Now;
-			Mt.Do(owner, DoExit);
+            cm.Config.Update.Last = DateTime.Now;
+            Mt.Do(Application.Current.MainWindow, DoExit);
 			return true;
 		}
 

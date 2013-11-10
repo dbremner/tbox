@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Interop;
 using TBox.Code.AutoUpdate;
+using TBox.Code.Configs;
 using TBox.Code.ErrorsSender;
 using TBox.Code.FastStart.Settings;
 using TBox.Code.HotKeys.Settings;
@@ -32,8 +32,9 @@ namespace TBox.Code
 		public string LastKnownVersion { get; set; }
 		public bool EnableGPUAccelerationForUi { get; set; }
 		public string FeedBackMessage { get; set; }
+        public Configuration Configuration { get; set; }
 
-		public Config()
+	    public Config()
 		{
 			HideOnSave = false;
 			HideOnCancel = false;
@@ -51,6 +52,7 @@ namespace TBox.Code
 			UpdateFromSharedlFolder = false;
 			EnableGPUAccelerationForUi = false;
 			FeedBackMessage = string.Empty;
+            Configuration = new Configuration();
 		}
 	}
 }

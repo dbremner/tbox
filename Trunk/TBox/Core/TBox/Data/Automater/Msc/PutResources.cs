@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using ICSharpCode.SharpZipLib.Zip;
+using PluginsShared.Automator;
 using ScriptEngine;
 using WPFControls.Dialogs;
 
@@ -25,10 +26,10 @@ namespace Solution.Msc
         [StringDictionary("js", "Scripts", "css", "Content")]
         public IDictionary<string, string> Aliases { get; set; }
 
-        public void Run()
+        public void Run(IScriptContext context)
         {
             bool exist;
-            var package = GetPackage(out exist);
+            var package = GetPackage(context, out exist);
             if (!exist) return;
             if (package == null)
             {
@@ -45,7 +46,7 @@ namespace Solution.Msc
             }
         }
 
-        private FileInfo GetPackage(out bool exist)
+        private FileInfo GetPackage(IScriptContext context, out bool exist)
         {
             exist = false;
             var packages = new DirectoryInfo(PathToDirectoryWithPackage)
@@ -56,8 +57,11 @@ namespace Solution.Msc
             FileInfo package = null;
             if (packages.Length > 0)
             {
-                var result = DialogsCache.ShowInputSelect("Select file to extract", "Script", packages.First().Name, x => true,
-                                                          packages.Select(x => x.Name + "\t" + x.CreationTime).ToArray(), showInTaskBar: true);
+                var result = new KeyValuePair<bool, string>();
+                context.Sync(() =>
+                    result = DialogsCache.ShowInputSelect("Select file to extract", "Script", packages.First().Name, x => true,
+                                                          packages.Select(x => x.Name + "\t" + x.CreationTime).ToArray(), null, true)
+                    );
                 exist = result.Key;
                 var value = result.Value.Split('\t').First();
                 package = packages.FirstOrDefault(x => string.Equals(x.Name, value));

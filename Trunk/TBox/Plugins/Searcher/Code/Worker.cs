@@ -1,12 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Windows;
+using System.Windows.Media;
 using Common.MT;
 using Localization.Plugins.Searcher;
 using Searcher.Code.Settings;
 using Searcher.Components;
 using WPFControls.Code;
-using WPFControls.Code.OS;
 using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
 
@@ -16,16 +15,18 @@ namespace Searcher.Code
 	{
 		private readonly AvailabilityChecker availabilityChecker;
 		private readonly Action<Action> synchronizer;
-		private string folderPath;
+	    private readonly ImageSource icon;
+	    private string folderPath;
 		private readonly LazyDialog<SearchDialog> searchDialog;
 		private Config mainConfig;
 		private SearchEngine engine;
 
-		public Worker(AvailabilityChecker availabilityChecker, Action<Action> synchronizer)
+		public Worker(AvailabilityChecker availabilityChecker, Action<Action> synchronizer, ImageSource icon)
 		{
 			this.availabilityChecker = availabilityChecker;
 			this.synchronizer = synchronizer;
-			searchDialog = new LazyDialog<SearchDialog>(() =>
+		    this.icon = icon;
+		    searchDialog = new LazyDialog<SearchDialog>(() =>
 			{
 				var dialog = new SearchDialog();
 				dialog.Load(mainConfig);
@@ -63,7 +64,7 @@ namespace Searcher.Code
 			else
 			{
 				BeginOperation();
-                DialogsCache.ShowProgress(Init, SearcherLang.LoadIndexes);
+                DialogsCache.ShowProgress(Init, SearcherLang.LoadIndexes, null, icon: icon);
 			}
 		}
 
@@ -86,7 +87,7 @@ namespace Searcher.Code
 		public void RebuildIndexes()
 		{
 			BeginOperation();
-			DialogsCache.ShowProgress(u => DoMakeIndexes(u), SearcherLang.CreateIndexes);
+            DialogsCache.ShowProgress(u => DoMakeIndexes(u), SearcherLang.CreateIndexes, null, icon: icon);
 		}
 
 		private void ShowDialog(bool success)

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Reflection;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Navigation;
 using Common.OS;
 using Common.Tools;
 using Common.UI.ModelsContainers;
@@ -19,6 +18,7 @@ using TBox.Code.Menu;
 using TBox.Code.Objects;
 using TBox.Code.Shelduler;
 using TBox.Code.Themes;
+using WPFControls.Code.OS;
 using WPFControls.Components;
 
 namespace TBox.Forms
@@ -40,15 +40,13 @@ namespace TBox.Forms
 		public PluginsSettings(IMenuItemsProvider menuItemsProvider)
 		{
 			InitializeComponent();
-			var ver = Assembly.GetExecutingAssembly().GetName().Version;
-			Version.Content = string.Format(TBoxLang.VersionTemplate, ver.Major, ver.Minor, ver.MajorRevision, ver.MinorRevision);
 			Panel.ItemsSource = Collection = new CheckableDataCollection<EnginePluginInfo>();
 			PanelButtons.View = Panel;
 			hotKeysManager = new HotKeysManager(HotKeysView, menuItemsProvider);
 			schedulerManager = new SchedulerManager(ScheldulerView, menuItemsProvider);
 			userActionsManager = new UserActionsManager(UserActionsView, menuItemsProvider);
 			Themes.ItemsSource = themesManager.AvailableThemes;
-			cbLanguage.ItemsSource = new[] {"en", "ru"};
+			cbLanguage.ItemsSource = new[] {"en"}.Concat(new DirectoryInfo("Localization").GetDirectories().Select(x=>x.Name)).ToArray();
 		}
 
 		public void Init(IAutoUpdater updater)
@@ -69,6 +67,7 @@ namespace TBox.Forms
 
 		private void OnConfigUpdated(Config cfg)
 		{
+            Mt.Do(this, Panel.Refresh);
 			hotKeysManager.OnConfigUpdated(cfg.HotKeys);
 			schedulerManager.OnConfigUpdated(cfg.SchedulerTasks);
 			userActionsManager.OnConfigUpdated(cfg.FastStartConfig);
@@ -127,11 +126,6 @@ namespace TBox.Forms
 		private void ScheldulerCheckChanged(object sender, RoutedEventArgs e)
 		{
 			ScheldulerView.OnCheckChangedEvent(sender, e);
-		}
-
-		private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-		{
-            using (Process.Start(((Hyperlink)sender).NavigateUri.ToString())) { }
 		}
 
 		private void UserActionsCheckChanged(object sender, RoutedEventArgs e)

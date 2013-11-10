@@ -11,22 +11,21 @@ namespace TBox.Code.Objects
 	class PluginsContextShared
 	{
 		private static readonly ILog Log = LogManager.GetLogger<PluginsContextShared>();
-		private readonly Control sync;
+        internal Control Sync { get; set; }
 		private readonly IconsCache iconsCache;
 		private readonly IconsExtractor iconsExtractor;
 		private readonly WarmingUpManager warmingUpManager;
 
-		public PluginsContextShared(IconsCache iconsCache, IconsExtractor iconsExtractor, Control sync, WarmingUpManager warmingUpManager)
+		public PluginsContextShared(IconsCache iconsCache, IconsExtractor iconsExtractor, WarmingUpManager warmingUpManager)
 		{
 			this.iconsCache = iconsCache;
-			this.sync = sync;
 			this.warmingUpManager = warmingUpManager;
 			this.iconsExtractor = iconsExtractor;
 		}
 
 		public void DoSync(Action action)
 		{
-			Mt.Do(sync, action);
+			Mt.Do(Sync, action);
 		}
 
 		public void AddTypeToWarmingUp(Type t)

@@ -58,6 +58,11 @@
       <Name>ScriptEngine</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
+      <Project>{BCDBE777-304F-40AC-8C5F-31B3A6BE4341}</Project>
+      <Name>PluginsShared</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

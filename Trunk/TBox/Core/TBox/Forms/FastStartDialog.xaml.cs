@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Interface;
 using TBox.Code;
 using TBox.Code.FastStart;
 using WPFControls.Components.ButtonsView;
@@ -13,7 +14,7 @@ namespace TBox.Forms
 	public sealed partial class FastStartDialog
 	{
 		private RecentItemsCollector recentItemsCollector;
-        private ConfigManager cm;
+        private IConfigManager<Config> cm;
 		private readonly Action closeAction;
 		public ObservableCollection<IButtonInfo> Items { get; private set; }
 		public FastStartDialog(Action closeAction)
@@ -25,7 +26,7 @@ namespace TBox.Forms
 			Loaded += ParentChanged;
 		}
 
-		internal void Init(ConfigManager cm, RecentItemsCollector recentItemsCollector)
+        internal void Init(IConfigManager<Config> cm, RecentItemsCollector recentItemsCollector)
 		{
 		    this.cm = cm;
 			this.recentItemsCollector = recentItemsCollector;

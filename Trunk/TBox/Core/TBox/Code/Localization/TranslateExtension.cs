@@ -1,11 +1,13 @@
 ﻿using System.Resources;
 using Localization.TBox;
+using WPFControls.Localization;
 
 namespace TBox.Code.Localization
 {
-	public class TranslateExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : TranslateExtension
 	{
-		public TranslateExtension(string key) : base(key)
+        public TrExtension(string key)
+            : base(key)
 		{
 		}
 

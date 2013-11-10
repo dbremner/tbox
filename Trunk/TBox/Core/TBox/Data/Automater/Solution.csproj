@@ -74,6 +74,7 @@
     <Compile Include="Msc\EnableFeatures.cs" />
     <Compile Include="Msc\params.cs" />
     <Compile Include="Msc\PutObjects.cs" />
+    <Compile Include="Msc\ReplaceStrings.cs" />
     <Compile Include="Msc\RunDevServers.cs" />
     <Compile Include="Msc\SelectDatabases.cs" />
     <Compile Include="Msc\StopDevServers.cs" />

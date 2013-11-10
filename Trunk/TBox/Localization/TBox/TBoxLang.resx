@@ -273,8 +273,8 @@
   <data name="RecentActions" xml:space="preserve">
     <value>Recent actions</value>
   </data>
-  <data name="RestartAfterChangingLanguage" xml:space="preserve">
-    <value>Restart TBox after changing language</value>
+  <data name="RestartNeeded" xml:space="preserve">
+    <value>Restart TBox will be requered to apply changes</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save...</value>
@@ -392,5 +392,17 @@
   </data>
   <data name="FastStartDescription" xml:space="preserve">
     <value>Here you can run fast called commands or you own user actions</value>
+  </data>
+  <data name="Blog" xml:space="preserve">
+    <value>Blog:</value>
+  </data>
+  <data name="ChangeLog" xml:space="preserve">
+    <value>Change log</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="PortableMode" xml:space="preserve">
+    <value>Store configuration files in the TBox folder</value>
   </data>
 </root>

@@ -13,7 +13,7 @@
              WindowStyle="ToolWindow" 
              Title="{Binding Key}">
     <DockPanel>
-        <Button Content="{loc:Translate BtnClose}" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Padding="5,0" Margin="10" IsCancel="True" IsDefault="True"/>
+        <Button Content="{loc:Tr BtnClose}" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Padding="5,0" Margin="10" IsCancel="True" IsDefault="True"/>
         <Units:CheckableListBoxUnit Name="Pathes" />
     </DockPanel>
 </dialogs:DialogWindow>

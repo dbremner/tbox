@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using PluginsShared.Automator;
 using PluginsShared.Tools;
 using ScriptEngine;
 
@@ -7,7 +8,7 @@ namespace Solution.Msc
 {
 	public class EnableFeatures : IScript
 	{
-		[FileList()]
+		[FileList]
 		public string[] ConfigFiles { get; set; }
 
 		[StringDictionary( "Feature.Sample", "true")]
@@ -25,7 +26,7 @@ namespace Solution.Msc
 		[String("add")]
 		public string SectionName { get; set; }
 
-		public void Run()
+		public void Run(IScriptContext s)
 		{
 			new FeatureToggler(XmlSelector,KeyKey, ValueKey, SectionName)
 				.Execute(ConfigFiles, Features.Select(x=>new KeyValuePair<string,string>(x.Key, x.Value)).ToArray());

@@ -123,8 +123,47 @@
   <data name="Body" xml:space="preserve">
     <value>Body:</value>
   </data>
+  <data name="Build" xml:space="preserve">
+    <value>Build</value>
+  </data>
+  <data name="Building" xml:space="preserve">
+    <value>Building...</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="CantRunInvalidParams" xml:space="preserve">
+    <value>Can't run, because next parameters are invalid:</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CompilationTimeTemplate" xml:space="preserve">
+    <value>Compilation time: {0} ms.</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>Configure</value>
+  </data>
+  <data name="ConfigureDirectoryPath" xml:space="preserve">
+    <value>Configure directory path</value>
+  </data>
+  <data name="ConfigureDouble" xml:space="preserve">
+    <value>Configure double</value>
+  </data>
+  <data name="ConfigureFilePath" xml:space="preserve">
+    <value>Configure file path</value>
+  </data>
+  <data name="ConfigureGuid" xml:space="preserve">
+    <value>Configure guid</value>
+  </data>
+  <data name="ConfigureInt" xml:space="preserve">
+    <value>Configure int</value>
+  </data>
+  <data name="ConfigureItem" xml:space="preserve">
+    <value>Configure item</value>
+  </data>
+  <data name="ConfigureString" xml:space="preserve">
+    <value>Configure string</value>
   </data>
   <data name="CopyResultsToClipboard" xml:space="preserve">
     <value>Copy results to clipboard</value>
@@ -137,6 +176,12 @@
   </data>
   <data name="EntriesCountTemplate" xml:space="preserve">
     <value>{0}. Entries count: {1}.</value>
+  </data>
+  <data name="Execute" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File:</value>
   </data>
   <data name="FinishClonningUnitTestsFolder" xml:space="preserve">
     <value>Finish Cloning unit tests folder</value>
@@ -156,14 +201,38 @@
   <data name="MinTime" xml:space="preserve">
     <value>Min time</value>
   </data>
+  <data name="NoErrors" xml:space="preserve">
+    <value>No errors</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="Reloading" xml:space="preserve">
+    <value>Reloading...</value>
+  </data>
   <data name="RequestsDelay" xml:space="preserve">
     <value>Requests delay:</value>
   </data>
   <data name="ResponseTime" xml:space="preserve">
     <value>Response Time ( Min - Average - Max )</value>
   </data>
+  <data name="Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ScriptsPackageParameters" xml:space="preserve">
+    <value>Scripts package parameters:</value>
+  </data>
+  <data name="SelectSctipt" xml:space="preserve">
+    <value>Select script</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="SourcesEditor" xml:space="preserve">
+    <value>Sources editor</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>

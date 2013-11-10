@@ -179,7 +179,7 @@ namespace ProjectMan.Code
 		{
 			if (!(context is NonUserRunContext))
 			{
-                var r = DialogsCache.ShowInputComboBox(ProjectManLang.PleaseSpecifyBuildArguments, ProjectManLang.Build + " " + key, projectInfo.MsBuildParams, null, KnownArgs);
+                var r = DialogsCache.ShowInputComboBox(ProjectManLang.PleaseSpecifyBuildArguments, ProjectManLang.Build + " " + key, projectInfo.MsBuildParams, null, KnownArgs, null);
 				if (!r.Key) return;
 				projectInfo.MsBuildParams = r.Value;
 			}

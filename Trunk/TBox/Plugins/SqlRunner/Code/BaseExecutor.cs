@@ -88,7 +88,7 @@ namespace SqlRunner.Code
 	                                list.Add(r[i].ToString());
 	                            }
 	                        }
-	                        sb.FormatTable(table);
+	                        sb.PrintTable(table);
 	                    }
 	                }
 	                tr.Commit();

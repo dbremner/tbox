@@ -40,7 +40,6 @@ namespace FeedbackService
 					int.Parse(ConfigurationManager.AppSettings["smtpServerPort"]),
 					ConfigurationManager.AppSettings["Login"],
 					ConfigurationManager.AppSettings["Password"],
-					ConfigurationManager.AppSettings["FromAddress"],
 					ConfigurationManager.AppSettings["ToAddress"]
 					), int.Parse(ConfigurationManager.AppSettings["FeedbackPort"]));
 		}

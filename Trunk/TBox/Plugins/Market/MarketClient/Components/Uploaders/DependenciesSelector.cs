@@ -11,8 +11,8 @@ namespace MarketClient.Components.Uploaders
 		public const string Divider = ">";
 		private readonly DependencyChooserDialog dialog = new DependencyChooserDialog();
 
-		public DependenciesSelector(string caption, Templates templates, Func<string, bool> validator, Window owner=null) :
-			base(caption, templates, validator, owner)
+        public DependenciesSelector(string caption, Templates templates, Func<string, bool> validator, Func<Window> ownerGetter) :
+			base(caption, templates, validator, ownerGetter)
 		{
 			dialog.Chooser.OnAction += OnAction;
 		}

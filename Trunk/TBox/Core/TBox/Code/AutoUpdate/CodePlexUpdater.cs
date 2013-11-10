@@ -9,11 +9,11 @@ using Localization.TBox;
 
 namespace TBox.Code.AutoUpdate
 {
-	class CodePlexUpdater : IUpdater
+	class CodePlexApplicationUpdater : IApplicationUpdater
 	{
 		private const string CheckUrl = "https://tbox.svn.codeplex.com/svn/lastversion.txt";
 		private const string DownloadUrlTemplate = "https://tbox.codeplex.com/downloads/get/{0}";
-		private static readonly ILog Log = LogManager.GetLogger<CodePlexUpdater>();
+		private static readonly ILog Log = LogManager.GetLogger<CodePlexApplicationUpdater>();
 		private string[] updateInfo;
 
 		public bool NeedUpdate()

@@ -20,7 +20,7 @@ namespace Searcher
 		{
 			worker = new Lazy<Worker>(() =>
 			{
-				var w = new Worker(availabilityChecker, Context.DoSync);
+				var w = new Worker(availabilityChecker, Context.DoSync, ImageSource);
 				w.Fill(Config);
 				w.InitFolders(Context.DataProvider.WritebleDataPath);
 				return w;

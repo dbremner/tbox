@@ -58,9 +58,9 @@ namespace ServicesCommander
 				.ToArray();
 		}
 
-		private static void DoWithProgress(string title, Action op)
+		private void DoWithProgress(string title, Action op)
 		{
-			DialogsCache.ShowProgress(u=>op(), title);
+			DialogsCache.ShowProgress(u=>op(), title, null, icon: ImageSource);
 		}
 
 		public override void Init(IPluginContext context)

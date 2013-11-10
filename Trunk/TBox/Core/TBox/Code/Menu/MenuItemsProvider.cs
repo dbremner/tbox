@@ -16,7 +16,8 @@ namespace TBox.Code.Menu
 
 		private readonly IDictionary<string, UMenuItem> items = new Dictionary<string, UMenuItem>();
 		private readonly IDictionary<string, UMenuItem> root = new Dictionary<string, UMenuItem>();
-		private IList<MenuDialogItem> menuDialogItems; 
+		private IList<MenuDialogItem> menuDialogItems;
+
 		public void Refresh(IList<UMenuItem> menuItems)
 		{
 			items.Clear();

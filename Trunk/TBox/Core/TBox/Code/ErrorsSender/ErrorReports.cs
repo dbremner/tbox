@@ -11,7 +11,7 @@ namespace TBox.Code.ErrorsSender
 		public ErrorReports()
 		{
 			AllowSend = false;
-			Directory = @"\\tboxserver\Logs\";
+			Directory = @"\\tboxserver\shared\Logs\";
 		}
 	}
 }

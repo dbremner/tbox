@@ -61,11 +61,29 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add not present days.
+        /// </summary>
+        public static string AddNotPresentDays {
+            get {
+                return ResourceManager.GetString("AddNotPresentDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advanced.
         /// </summary>
         public static string Advanced {
             get {
                 return ResourceManager.GetString("Advanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you want send emails?.
+        /// </summary>
+        public static string AreYouWantSendEmails {
+            get {
+                return ResourceManager.GetString("AreYouWantSendEmails", resourceCulture);
             }
         }
         
@@ -88,11 +106,83 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose file to save report.
+        /// </summary>
+        public static string ChooseFileToSaveReport {
+            get {
+                return ResourceManager.GetString("ChooseFileToSaveReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure calendar.
+        /// </summary>
+        public static string ConfigureCalendar {
+            get {
+                return ResourceManager.GetString("ConfigureCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure operation.
+        /// </summary>
+        public static string ConfigureOperation {
+            get {
+                return ResourceManager.GetString("ConfigureOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configure persons.
         /// </summary>
         public static string ConfigurePersons {
             get {
                 return ResourceManager.GetString("ConfigurePersons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure profile.
+        /// </summary>
+        public static string ConfigureProfile {
+            get {
+                return ResourceManager.GetString("ConfigureProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure profiles.
+        /// </summary>
+        public static string ConfigureProfiles {
+            get {
+                return ResourceManager.GetString("ConfigureProfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure script packages.
+        /// </summary>
+        public static string ConfigureScriptPackages {
+            get {
+                return ResourceManager.GetString("ConfigureScriptPackages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure special days.
+        /// </summary>
+        public static string ConfigureSpecialDays {
+            get {
+                return ResourceManager.GetString("ConfigureSpecialDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy to clipboard.
+        /// </summary>
+        public static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
             }
         }
         
@@ -115,6 +205,15 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dates.
+        /// </summary>
+        public static string Dates {
+            get {
+                return ResourceManager.GetString("Dates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date to.
         /// </summary>
         public static string DateTo {
@@ -129,6 +228,33 @@ namespace Localization.Plugins.TeamManager {
         public static string Days {
             get {
                 return ResourceManager.GetString("Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emails.
+        /// </summary>
+        public static string Emails {
+            get {
+                return ResourceManager.GetString("Emails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time report: {0} - {1}.
+        /// </summary>
+        public static string EmailSubjectTemplate {
+            get {
+                return ResourceManager.GetString("EmailSubjectTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
             }
         }
         
@@ -151,6 +277,15 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full time report: {0} - {1}.
+        /// </summary>
+        public static string FullEmailSubjectTemplate {
+            get {
+                return ResourceManager.GetString("FullEmailSubjectTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate.
         /// </summary>
         public static string Generate {
@@ -169,11 +304,56 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hide persons without errors.
+        /// </summary>
+        public static string HidePersonsWithoutErrors {
+            get {
+                return ResourceManager.GetString("HidePersonsWithoutErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Html.
+        /// </summary>
+        public static string HtmlReport {
+            get {
+                return ResourceManager.GetString("HtmlReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is holyday.
+        /// </summary>
+        public static string IsHolyday {
+            get {
+                return ResourceManager.GetString("IsHolyday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is smtp server.
+        /// </summary>
+        public static string IsSmtp {
+            get {
+                return ResourceManager.GetString("IsSmtp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login:.
         /// </summary>
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operations.
+        /// </summary>
+        public static string Operations {
+            get {
+                return ResourceManager.GetString("Operations", resourceCulture);
             }
         }
         
@@ -223,6 +403,33 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        public static string Port {
+            get {
+                return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prepare reports....
+        /// </summary>
+        public static string PrepareReports {
+            get {
+                return ResourceManager.GetString("PrepareReports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project manager url:.
         /// </summary>
         public static string ProjectManagerUrl {
@@ -232,11 +439,137 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This report was automatically generated with &lt;a href=&quot;http://tbox.codeplex.com/&quot;&gt;TBox&lt;/a&gt;. Time:.
+        /// </summary>
+        public static string ReportFooter {
+            get {
+                return ResourceManager.GetString("ReportFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report type for user.
+        /// </summary>
+        public static string ReportType {
+            get {
+                return ResourceManager.GetString("ReportType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repository.
+        /// </summary>
+        public static string Repository {
+            get {
+                return ResourceManager.GetString("Repository", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Results.
+        /// </summary>
+        public static string Results {
+            get {
+                return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Script editor.
+        /// </summary>
+        public static string ScriptEditor {
+            get {
+                return ResourceManager.GetString("ScriptEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send email....
+        /// </summary>
+        public static string SendEmail {
+            get {
+                return ResourceManager.GetString("SendEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sending full report.
+        /// </summary>
+        public static string SendingFullReport {
+            get {
+                return ResourceManager.GetString("SendingFullReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send to.
+        /// </summary>
+        public static string SendTo {
+            get {
+                return ResourceManager.GetString("SendTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server url.
+        /// </summary>
+        public static string ServerUrl {
+            get {
+                return ResourceManager.GetString("ServerUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Params....
+        /// </summary>
+        public static string SetParameters {
+            get {
+                return ResourceManager.GetString("SetParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scripts....
+        /// </summary>
+        public static string SetScripts {
+            get {
+                return ResourceManager.GetString("SetScripts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spent.
         /// </summary>
         public static string Spent {
             get {
                 return ResourceManager.GetString("Spent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style.
+        /// </summary>
+        public static string Style {
+            get {
+                return ResourceManager.GetString("Style", resourceCulture);
             }
         }
         
@@ -259,11 +592,74 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plain text.
+        /// </summary>
+        public static string TextReport {
+            get {
+                return ResourceManager.GetString("TextReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time report.
         /// </summary>
         public static string TimeReport {
             get {
                 return ResourceManager.GetString("TimeReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send emails.
+        /// </summary>
+        public static string ToEmail {
+            get {
+                return ResourceManager.GetString("ToEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export to Excel.
+        /// </summary>
+        public static string ToExcel {
+            get {
+                return ResourceManager.GetString("ToExcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected exception.
+        /// </summary>
+        public static string UnexpectedException {
+            get {
+                return ResourceManager.GetString("UnexpectedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Url.
+        /// </summary>
+        public static string Url {
+            get {
+                return ResourceManager.GetString("Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validator.
+        /// </summary>
+        public static string Validator {
+            get {
+                return ResourceManager.GetString("Validator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working hours per day.
+        /// </summary>
+        public static string WorkingHoursPerDay {
+            get {
+                return ResourceManager.GetString("WorkingHoursPerDay", resourceCulture);
             }
         }
     }

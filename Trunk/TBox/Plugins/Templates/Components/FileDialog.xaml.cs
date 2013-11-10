@@ -22,7 +22,7 @@ namespace Templates.Components
 		public FileDialog()
 		{
 			InitializeComponent();
-			TargetPath.PathGetter = new FolderPathGetter();
+			TargetPath.PathGetter = new FolderPathGetter(this);
 		}
 
 		public void ShowDialog(Template t, string source, string itemTemplate)

@@ -67,7 +67,8 @@ namespace MarketClient.Components.Uploaders
 				new InputFilePath(
 					"Plugins",
 					pluginsTemplates,
-					text => currPlugins.IsUniqIgnoreCase(s => s.ToString(), Path.GetFileName(text))
+					text => currPlugins.IsUniqIgnoreCase(s => s.ToString(), Path.GetFileName(text)),
+                    ()=>null
 					)
 				);
 			currPlugins.CollectionChanged += PluginsChanged;
@@ -78,7 +79,7 @@ namespace MarketClient.Components.Uploaders
 				new DependenciesSelector("Dependencies",
 					dependenciesTemplates,
 					x => currDependencies.IsUniqIgnoreCase(a => a.ToString(),x),
-					Application.Current.MainWindow
+                    () => null
 					)
 				);
 			currDependencies.CollectionChanged += DependenciesChanged;

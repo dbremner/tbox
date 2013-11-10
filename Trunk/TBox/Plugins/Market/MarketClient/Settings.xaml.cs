@@ -28,7 +28,7 @@ namespace MarketClient
 				new Action(() =>
 				{
 					var ret = false;
-					DialogsCache.ShowProgress(u => { ret = Synchronizer.RefreshTables(u); }, "Refreshing..");
+					DialogsCache.ShowProgress(u => { ret = Synchronizer.RefreshTables(u); }, "Refreshing..", null);
 					IsEnabled = ret;
 				}));
 		}

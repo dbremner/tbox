@@ -41,7 +41,7 @@ namespace MarketClient.Components.Installers
 
 		private void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
-			DialogsCache.ShowProgress(u => Do((o,arg) => Synchronizer.RefreshTables(u)));
+			DialogsCache.ShowProgress(u => Do((o,arg) => Synchronizer.RefreshTables(u)), "", null);
 		}
 
 		public Plugin[] Items

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Common.Network;
+using PluginsShared.Automator;
 using PluginsShared.Tools;
 using ScriptEngine;
 
@@ -23,7 +24,7 @@ namespace Solution.Msc
 		public int TimeOut { get; set; }
 
 
-		public void Run()
+		public void Run(IScriptContext context)
 		{
 			Parallel.ForEach(DevProjects, Work);
 		}

@@ -53,9 +53,22 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\..\Libs\EPPlus.3.1.3.3\lib\net35\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libs\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject">
+      <HintPath>..\..\..\Libs\LightInject.3.0.1.0\lib\net40\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Exchange.WebServices">
+      <HintPath>..\..\..\Libs\Microsoft.Exchange.WebServices.1.2\lib\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\..\..\Libs\Ribbon\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\..\..\Libs\nunit\nunit.core.dll</HintPath>
@@ -66,14 +79,20 @@
     <Reference Include="nunit.util">
       <HintPath>..\..\..\Libs\nunit\nunit.util.dll</HintPath>
     </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf">
+      <HintPath>..\..\..\Libs\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="RibbonControlsLibrary">
+      <HintPath>..\..\..\Libs\Ribbon\RibbonControlsLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="ScintillaNet">
       <HintPath>..\..\..\Libs\ScintillaNet\ScintillaNet.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.66.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.66\lib\net35\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -89,6 +108,7 @@
     <Compile Include="Controls\ResponseBox.xaml.cs">
       <DependentUpon>ResponseBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RibbonDialogWindow.cs" />
     <Compile Include="Ddos\Components\FormDdos.xaml.cs">
       <DependentUpon>FormDdos.xaml</DependentUpon>
     </Compile>
@@ -111,6 +131,28 @@
     <Compile Include="Encoders\SQLParser.cs" />
     <Compile Include="Encoders\XmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportsGenerator\DayTypes.cs" />
+    <Compile Include="ReportsGenerator\ExchangeEmailSender.cs" />
+    <Compile Include="ReportsGenerator\IDayStatusStrategy.cs" />
+    <Compile Include="ReportsGenerator\IDayTypeProvider.cs" />
+    <Compile Include="ReportsGenerator\IReportScript.cs" />
+    <Compile Include="ReportsGenerator\IReportScriptContext.cs" />
+    <Compile Include="ReportsGenerator\LoggedInfo.cs" />
+    <Compile Include="Automator\ScriptContext.cs" />
+    <Compile Include="ScriptEngine\EditorDialog.xaml.cs">
+      <DependentUpon>EditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Automator\IScript.cs" />
+    <Compile Include="Automator\IScriptContext.cs" />
+    <Compile Include="ScriptEngine\IScriptRunner.cs" />
+    <Compile Include="ScriptEngine\OperationDialog.xaml.cs">
+      <DependentUpon>OperationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptEngine\ParameterTemplate.cs" />
+    <Compile Include="ScriptEngine\ScriptsConfigurator.xaml.cs">
+      <DependentUpon>ScriptsConfigurator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Automator\ScriptsRunner.cs" />
     <Compile Include="Templates\FileSystemProcessor.cs" />
     <Compile Include="Templates\IFileSystemProcessor.cs" />
     <Compile Include="Templates\IKnownValues.cs" />
@@ -196,6 +238,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ddos\Components\FormDdos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScriptEngine\EditorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScriptEngine\OperationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScriptEngine\ScriptsConfigurator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

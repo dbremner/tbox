@@ -1,6 +1,14 @@
-﻿15/04/2013 Fix hot keys for user actions. Update team manager. Update main window style.
+﻿07/11/2013 Finish TeamManager
 
-14/04/2013 Fix gramma mistakes. Fix issues in authomater and script runner. Update UI
+03/11/2013 Add portable mode
+
+31/10/2013 Start working on SkyNet
+
+25/10/2013 Bugfixing
+
+15/10/2013 Fix hot keys for user actions. Update team manager. Update main window style.
+
+14/10/2013 Fix gramma mistakes. Fix issues in authomater and script runner. Update UI
 
 10/01/2013 Fix tools issues, fix authomater issue, fix localization issues, add new TeamManager plugin.
 

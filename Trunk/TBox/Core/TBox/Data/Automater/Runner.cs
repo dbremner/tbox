@@ -1,4 +1,5 @@
-﻿using Solution.Msc;
+﻿using PluginsShared.Automator;
+using Solution.Msc;
 
 namespace Solution
 {
@@ -16,7 +17,7 @@ namespace Solution
                     SectionToPreserveNewestNames = new[] { "Content", "None" },
                     TasksToRemove = new[]{"AjaxMin"},
                     DisableBuildEvents = true,
-                }.Run();
+                }.Run(new ScriptContext());
         }
     }
 }

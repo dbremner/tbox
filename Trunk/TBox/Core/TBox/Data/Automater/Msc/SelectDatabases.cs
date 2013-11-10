@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Common.Tools;
+using PluginsShared.Automator;
 using ScriptEngine;
 
 namespace Solution.Msc
@@ -30,14 +31,23 @@ namespace Solution.Msc
 		[FileList()]
 		public string[] WebConfigsPathes { get; set; }
 
-		public void Run()
+		public void Run(IScriptContext context)
 		{
 			var xmlPathEls = XmlPath.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
+		    var id = 0;
 			foreach (var path in WebConfigsPathes)
 			{
-				var doc = XDocument.Load(path, LoadOptions.PreserveWhitespace);
-				ProcessFile(doc, xmlPathEls);
-				doc.Save(path);
+                context.Updater.Update(path, id / (float)WebConfigsPathes.Length);
+                try
+                {
+                    var doc = XDocument.Load(path, LoadOptions.PreserveWhitespace);
+                    ProcessFile(doc, xmlPathEls);
+                    doc.Save(path);
+                }
+                catch (Exception ex)
+                {
+                    throw new ArgumentException("Can't process fileL" + path,ex);
+                }
 			}
 		}
 

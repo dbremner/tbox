@@ -16,10 +16,10 @@ namespace TBox.Code.FastStart
 {
 	class RecentItemsCollector : IMenuRunHandler
 	{
-		private readonly ConfigManager cm;
+		private readonly IConfigManager<Config> cm;
 		private readonly IMenuItemsProvider menuItemsProvider;
 
-		public RecentItemsCollector(ConfigManager cm, IMenuItemsProvider menuItemsProvider)
+        public RecentItemsCollector(IConfigManager<Config> cm, IMenuItemsProvider menuItemsProvider)
 		{
 			this.cm = cm;
 			this.menuItemsProvider = menuItemsProvider;

@@ -10,8 +10,10 @@ using Common.Base.Log;
 using Common.Plugins;
 using Interface;
 using Interface.Atrributes;
+using LightInject;
 using Localization.TBox;
 using TBox.Code.AutoUpdate;
+using TBox.Code.Configs;
 using TBox.Code.Managers;
 using TBox.Code.Objects;
 using WPFControls.Code.OS;
@@ -28,23 +30,24 @@ namespace TBox.Code
 		private readonly UiConfigurator uiConfigurator;
 		private readonly PluginsMan plugMan;
 		private readonly string pluginsReadOnlyDataFolder = Path.Combine(Environment.CurrentDirectory, "Data");
-		private readonly string pluginsStoreDataFolder = Path.Combine(Folders.UserFolder, "Data");
+		private readonly string pluginsStoreDataFolder;
 		private readonly string toolsDataFolder = Path.Combine(Environment.CurrentDirectory, "Tools");
 		private readonly IAutoUpdater appUpdater;
-		private readonly IconsCache iconsCache = new IconsCache();
-		private readonly IconsExtractor iconsExtractor = new IconsExtractor();
-		private readonly WarmingUpManager warmingUpManager = new WarmingUpManager();
 		private readonly PluginsContextShared pluginsContextShared;
-		public ConfigManager ConfigManager { get; private set; }
+	    private readonly IServiceFactory container;
+	    private readonly ConfigManager configManager;
 
-		public Engine(Window owner, IUpdater updater, UiConfigurator uiConfigurator, ConfigManager configManager)
+		public Engine(Window owner, IUpdater updater, UiConfigurator uiConfigurator, IServiceFactory container)
 		{
 			var time = Environment.TickCount;
-			ConfigManager = configManager;
+		    this.container = container;
+		    var rootFolder = container.GetInstance<IConfigsManager>().Root;
+		    pluginsStoreDataFolder = Path.Combine(rootFolder, "Data");
+			configManager = (ConfigManager)container.GetInstance<IConfigManager<Config>>();
 			this.uiConfigurator = uiConfigurator;
 			InfoLog.Write("Load first config time: {0}", Environment.TickCount - time);
 			updater.Update(TBoxLang.CheckForUpdates, 0.06f);
-			appUpdater = new ApplicationUpdater(owner, ConfigManager.Config, new CodePlexUpdater() /*new DirectoryApplicationUpdater(config.Update.Directory)*/);
+			appUpdater = container.GetInstance<IAutoUpdater>();
 			ThreadPool.QueueUserWorkItem(o=>appUpdater.TryUpdate());
 			updater.Update(TBoxLang.Prepare, 0.07f);
 			plugMan = new PluginsMan(
@@ -52,25 +55,37 @@ namespace TBox.Code
 					Path.Combine(Environment.CurrentDirectory, "Plugins"),
 					Path.Combine(Environment.CurrentDirectory, "Libraries")
 					),
-				Path.Combine(Folders.UserFolder, "Config"),
+                Path.Combine(rootFolder, "Config"),
 				a=>Mt.Do(owner, a)
 				);
 			var toAdd = new List<string>();
-			pluginsContextShared = new PluginsContextShared(iconsCache, iconsExtractor, uiConfigurator.Sync, warmingUpManager);
-			uiConfigurator.Init(owner, ConfigManager.Config, appUpdater, SetupPlugins(toAdd));
+			pluginsContextShared = container.GetInstance<PluginsContextShared>();
+		    pluginsContextShared.Sync = uiConfigurator.Sync;
+			uiConfigurator.Init(owner, configManager.Config, appUpdater, SetupPlugins(toAdd));
 			AddPlugins(toAdd, updater);
 			uiConfigurator.ShowTrayIcon(owner);
 		}
 
 		private IEnumerable<EnginePluginInfo> SetupPlugins(ICollection<string> toAdd )
 		{
-			foreach (var name in plugMan.Factory.Names.OrderBy(x => x))
+		    var names = plugMan.Factory.Names.OrderBy(x => x).ToArray();
+			foreach (var name in names)
 			{
-				var t = plugMan.Factory.Get(name);
-				var a = GetAttribute<PluginInfoAttribute>(t);
-				var icon = a.IsIconSystem?pluginsContextShared.GetSystemIcon(a.SystemIconId):a.Icon;
-				var enabled = !ConfigManager.Config.DisabledItems.Contains(name);
-				yield return new EnginePluginInfo(name, a.Name, a.Description, icon, enabled, a.PluginGroup);
+			    PluginInfoAttribute a = null;
+                try
+                {
+                    var t = plugMan.Factory.Get(name);
+                    a = GetAttribute<PluginInfoAttribute>(t);
+                }
+                catch (Exception ex)
+                {
+                    Log.Write(ex, "Plugin initialization error. Can't get valid plugin info attribute from plugin: " + name);
+                    plugMan.Factory.Remove(name);
+                }
+                if(a == null)continue;
+                var icon = a.IsIconSystem ? pluginsContextShared.GetSystemIcon(a.SystemIconId) : a.Icon;
+                var enabled = !configManager.Config.DisabledItems.Contains(name);
+                yield return new EnginePluginInfo(name, a.Name, a.Description, icon, enabled, a.PluginGroup);
 				if (enabled)
 				{
 					toAdd.Add(name);
@@ -91,7 +106,7 @@ namespace TBox.Code
 		{
 			updater.Update(TBoxLang.CreatePlugins, 0.33f);
 			CreatePlugins(names.ToArray(), updater);
-			warmingUpManager.CreateAll();
+            container.GetInstance<WarmingUpManager>().CreateAll();
 		}
 
 		private void CreatePlugins(string[] names, IUpdater updater)
@@ -132,7 +147,7 @@ namespace TBox.Code
 		private void HideCheck(string key)
 		{
 			uiConfigurator.SetPluginCheck(key, false);
-			ConfigManager.Config.DisabledItems.Add(key);
+			configManager.Config.DisabledItems.Add(key);
 		}
 
 		private void RemovePlugins(IEnumerable<string> names)
@@ -153,13 +168,13 @@ namespace TBox.Code
 
 		private void DoLoad(IUpdater updater)
 		{
-			ConfigManager.Load();
+			configManager.Load();
 			foreach (var name in plugMan.Factory.Names)
 			{
-				uiConfigurator.SetPluginCheck(name, !ConfigManager.Config.DisabledItems.Contains(name));
+				uiConfigurator.SetPluginCheck(name, !configManager.Config.DisabledItems.Contains(name));
 			}
 			plugMan.Load(updater);
-			uiConfigurator.Load(ConfigManager.Config);
+			uiConfigurator.Load(configManager.Config);
 		}
 
 		public void Save(IUpdater updater, bool autoSaveOnExit)
@@ -170,20 +185,20 @@ namespace TBox.Code
 		private void DoSave(IUpdater updater, bool autoSaveOnExit)
 		{
 			updater.Update(TBoxLang.UpdateDisabledItems, 0);
-			var disabledBefore = new List<string>(ConfigManager.Config.DisabledItems);
-			ConfigManager.Config.DisabledItems.Clear();
+			var disabledBefore = new List<string>(configManager.Config.DisabledItems);
+			configManager.Config.DisabledItems.Clear();
 			var toAdd = new List<string>();
 			var toRemove = new List<string>();
 			plugMan.Save(updater, autoSaveOnExit);
 			foreach (var item in uiConfigurator.GetPluginsStates(toAdd, toRemove, disabledBefore, plugMan))
 			{
-				ConfigManager.Config.DisabledItems.Add(item);
+				configManager.Config.DisabledItems.Add(item);
 			}
 			AddPlugins(toAdd, updater);
 			RemovePlugins(toRemove);
 			updater.Update(TBoxLang.Save, 1.0f);
-			uiConfigurator.Save(ConfigManager.Config);
-			ConfigManager.Save();
+			uiConfigurator.Save(configManager.Config);
+			configManager.Save();
 		}
 
 		public EnginePluginInfo InitPlugin(string key, IPlugin plugin)
@@ -231,7 +246,7 @@ namespace TBox.Code
 			if (!criticalError)
 			{
 				plugMan.Save(updater, true);
-				ConfigManager.Save();
+				configManager.Save();
 			}
 			RemovePlugins(plugMan.Factory.Names);
 			return true;
@@ -239,7 +254,7 @@ namespace TBox.Code
 
 		public void Dispose()
 		{
-			iconsCache.Dispose();
+			container.GetInstance<IconsCache>().Dispose();
 		}
 
 		public void CheckUpdates(bool silent)

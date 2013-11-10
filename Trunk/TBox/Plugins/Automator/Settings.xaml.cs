@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Automator.Code.Settings;
-using Automator.Components;
 using Common.Tools;
 using Interface;
+using PluginsShared.ScriptEngine;
 using WPFControls.Code;
 
 namespace Automator

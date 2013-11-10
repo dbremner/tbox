@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Common.Base.Log;
 using Common.Tools;
 using Interface;
+using LightInject;
 using Localization.TBox;
 using TBox.Code.AutoUpdate;
 using TBox.Code.FastStart;
@@ -39,16 +40,14 @@ namespace TBox.Code
 			GroupedList view, 
 			ContentControl pluginsBack,
 			Button btnBack,
-			PluginsSettings pluginsSettings,
-			IMenuItemsProvider menuItemsProvider,
-			MenuCallsVisitor menuCallsVisitor,
+			IServiceFactory container,
 			IEnumerable<UMenuItem> menuItems,
 			IEnumerable<EnginePluginInfo> existWindows,
 			Action<EnginePluginInfo> onPluginSettingsChanged
 			)
 		{
-			this.pluginsSettings = pluginsSettings;
-			this.menuItemsProvider = menuItemsProvider;
+			pluginsSettings = container.GetInstance<PluginsSettings>();
+			menuItemsProvider = container.GetInstance<IMenuItemsProvider>();
 			controlsMan = new ControlsMan(view, pluginsBack, btnBack, onPluginSettingsChanged);
 			var main = ((MainWindow) Application.Current.MainWindow);
 			FastStartShower = new FastStartShower(
@@ -70,7 +69,7 @@ namespace TBox.Code
 					controlsMan.Add(w);
 				}
 			}
-			menuMan = new MenuMan(menuItems.ToArray(), menuCallsVisitor);
+			menuMan = new MenuMan(menuItems.ToArray(), container.GetInstance<MenuCallsVisitor>());
 			pluginsSettings.EnableHotKeys += (o,e)=>Configure();
 		}
 

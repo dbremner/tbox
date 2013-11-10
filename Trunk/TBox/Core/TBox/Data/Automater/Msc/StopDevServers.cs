@@ -1,4 +1,5 @@
-﻿using PluginsShared.Tools;
+﻿using PluginsShared.Automator;
+using PluginsShared.Tools;
 using ScriptEngine;
 
 namespace Solution.Msc
@@ -8,7 +9,7 @@ namespace Solution.Msc
 		[File("c:/")]
 		public string PathToDevServer { get; set; }
 
-		public void Run()
+		public void Run(IScriptContext context)
 		{
 			new CassiniRunner("").StopAll(PathToDevServer);
 		}

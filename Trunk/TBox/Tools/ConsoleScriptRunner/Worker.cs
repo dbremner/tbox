@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Common.Base.Log;
+using Common.MT;
 using Common.SaveLoad;
 using Common.Tools;
 using ConsoleScriptRunner.Settings;
+using PluginsShared.Automator;
+using ScriptEngine;
 using ScriptEngine.Core;
 
 namespace ConsoleScriptRunner
@@ -14,12 +16,10 @@ namespace ConsoleScriptRunner
 		private static readonly ILog Log = LogManager.GetLogger<Worker>();
 		private readonly ParamSerializer<Config> serializer;
 		private readonly string rootPath;
-		private readonly IDictionary<string, IList<string>> knownReferences;
 
-		public Worker(string cfgPath, string rootPath, IDictionary<string, IList<string>> knownReferences)
+		public Worker(string cfgPath, string rootPath)
 		{
 			this.rootPath = rootPath;
-			this.knownReferences = knownReferences;
 			serializer = new ParamSerializer<Config>(Path.Combine(cfgPath, "Config/Automater.config"));
 		}
 
@@ -28,7 +28,7 @@ namespace ConsoleScriptRunner
 			var config = serializer.Load();
 			if (config == null)
 			{
-				Log.Write("Can't load config");
+				Log.Write("Can't load configuration");
 				return;
 			}
 			var profile = config.Profiles.FirstOrDefault(x => x.Key.EqualsIgnoreCase(profileToRun));
@@ -37,16 +37,17 @@ namespace ConsoleScriptRunner
 				Log.Write("Can't load profile: " + profileToRun);
 				return;
 			}
-			var compiler = new ScriptCompiler(knownReferences);
+			var compiler = new ScriptCompiler<IScript>();
+		    var context = new ScriptContext {Updater = new ConsoleUpdater()};
 
 			foreach (var op in profile.Operations)
 			{
 				foreach (var path in op.Pathes.CheckedItems)
 				{
-					compiler.Execute(
+					var s = compiler.Compile(
 						File.ReadAllText(Path.Combine(rootPath, "Data/Automater/", path.Key)), 
-						op.Parameters,
-						a=>a());
+						op.Parameters);
+                    s.Run(context);
 				}
 			}
 		}

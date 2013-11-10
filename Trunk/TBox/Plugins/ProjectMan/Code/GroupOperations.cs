@@ -88,7 +88,7 @@ namespace ProjectMan.Code
 
 		private static void Run(Action<IUpdater> task)
 		{
-            DialogsCache.ShowProgress(task, ProjectManLang.ProjectManagerProcessProjects);
+            DialogsCache.ShowProgress(task, ProjectManLang.ProjectManagerProcessProjects, null);
 		}
 	}
 }

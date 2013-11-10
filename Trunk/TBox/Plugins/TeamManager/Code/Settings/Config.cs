@@ -1,25 +1,25 @@
-﻿using System.Collections.ObjectModel;
-using Common.UI.ModelsContainers;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Common.UI.Model;
+using Interface;
+using ScriptEngine;
+using WPFControls.Dialogs.StateSaver;
 
 namespace TeamManager.Code.Settings
 {
-	public class Config
+	public class Config : IConfigWithDialogStates
 	{
-		public CheckableDataCollection<Person> Persons { get; set; }
-		public ObservableCollection<string> KnownTags { get; set; }
-		public ObservableCollection<string> KnownTypes { get; set; }
-		public string UserEmail { get; set; }
-		public string UserPassword { get; set; }
-		public string ProjectManagerUrl { get; set; }
-        public Report Report { get; set; }
+        public IDictionary<string, DialogState> States { get; set; }
+        public string SelectedProfile { get; set; }
+        public ObservableCollection<Profile> Profiles { get; set; }
+        public ObservableCollection<SpecialDay> SpecialDays { get; set; }
 
 		public Config()
 		{
-			Persons = new CheckableDataCollection<Person>();
-			KnownTags = new ObservableCollection<string>{"UI", "Service", "DB"};
-			KnownTypes = new ObservableCollection<string> {"Dev", "QA", "BA"};
-            ProjectManagerUrl = "https://targetprocess.com/TargetProcess2/";
-            Report = new Report();
+		    SelectedProfile = string.Empty;
+			Profiles = new ObservableCollection<Profile>();
+            States = new Dictionary<string, DialogState>();
+            SpecialDays = new ObservableCollection<SpecialDay>();
 		}
 	}
 }

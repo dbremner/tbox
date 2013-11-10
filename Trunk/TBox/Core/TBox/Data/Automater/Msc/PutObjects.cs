@@ -1,8 +1,10 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using ICSharpCode.SharpZipLib.Zip;
+using PluginsShared.Automator;
 using ScriptEngine;
 using WPFControls.Dialogs;
 
@@ -10,10 +12,10 @@ namespace Solution.Msc
 {
 	public class PutObjects : IScript
 	{
-		[DirectoryList()]
+		[DirectoryList]
 		public string[] TargetPathes { get; set; }
 
-		[Directory()]
+		[Directory]
 		public string PathToDirectoryWithPackage { get; set; }
 
 		public bool RemoveAfterUnpack { get; set; }
@@ -24,10 +26,10 @@ namespace Solution.Msc
 		[StringList("Sample.*.dll", "Sample.*.pdb")]
 		public string[] FilesMasks { get; set; }
 
-		public void Run()
+		public void Run(IScriptContext context)
 		{
 			bool exist;
-			var package = GetPackage( out exist);
+			var package = GetPackage(context, out exist);
 			if (!exist) return;
 			if (package == null)
 			{
@@ -38,7 +40,7 @@ namespace Solution.Msc
 			if(RemoveAfterUnpack)package.Delete();
 		}
 
-		private FileInfo GetPackage(out bool exist)
+		private FileInfo GetPackage(IScriptContext context, out bool exist)
 		{
 			exist = false;
 			var packages = new DirectoryInfo(PathToDirectoryWithPackage)
@@ -49,8 +51,11 @@ namespace Solution.Msc
 			FileInfo package = null;
 			if (packages.Length > 0)
 			{
-				var result = DialogsCache.ShowInputSelect("Select file to extract", "Script", packages.First().Name, x => true,
-                                                          packages.Select(x => x.Name + "\t" + x.CreationTime).ToArray(), showInTaskBar: true);
+			    var result = new KeyValuePair<bool, string>();
+			    context.Sync(() =>
+                    result = DialogsCache.ShowInputSelect("Select file to extract", "Script", packages.First().Name, x => true,
+                                                          packages.Select(x => x.Name + "\t" + x.CreationTime).ToArray(), null, true)
+                    );
 				exist = result.Key;
                 var value = result.Value.Split('\t').First();
 				package = packages.FirstOrDefault(x => string.Equals(x.Name, value));

@@ -126,14 +126,29 @@
   <data name="CalculatingTimeReport" xml:space="preserve">
     <value>Calculating time report...</value>
   </data>
+  <data name="ConfigureOperation" xml:space="preserve">
+    <value>Configure operation</value>
+  </data>
   <data name="ConfigurePersons" xml:space="preserve">
     <value>Configure persons</value>
+  </data>
+  <data name="ConfigureProfile" xml:space="preserve">
+    <value>Configure profile</value>
+  </data>
+  <data name="ConfigureScriptPackages" xml:space="preserve">
+    <value>Configure script packages</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy to clipboard</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
   <data name="DateFrom" xml:space="preserve">
     <value>Date from</value>
+  </data>
+  <data name="Dates" xml:space="preserve">
+    <value>Dates</value>
   </data>
   <data name="DateTo" xml:space="preserve">
     <value>Date to</value>
@@ -153,8 +168,14 @@
   <data name="GetTimeReport" xml:space="preserve">
     <value>Get time report</value>
   </data>
+  <data name="HtmlReport" xml:space="preserve">
+    <value>Html</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login:</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Operations</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password:</value>
@@ -171,8 +192,29 @@
   <data name="PluginName" xml:space="preserve">
     <value>Team manager</value>
   </data>
+  <data name="PrepareReports" xml:space="preserve">
+    <value>Prepare reports...</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="ProjectManagerUrl" xml:space="preserve">
     <value>Project manager url:</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>Repository</value>
+  </data>
+  <data name="ScriptEditor" xml:space="preserve">
+    <value>Script editor</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>Send email...</value>
+  </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>Params...</value>
+  </data>
+  <data name="SetScripts" xml:space="preserve">
+    <value>Scripts...</value>
   </data>
   <data name="Spent" xml:space="preserve">
     <value>Spent</value>
@@ -183,7 +225,97 @@
   <data name="TargetTime" xml:space="preserve">
     <value>Target time</value>
   </data>
+  <data name="TextReport" xml:space="preserve">
+    <value>Plain text</value>
+  </data>
   <data name="TimeReport" xml:space="preserve">
     <value>Time report</value>
+  </data>
+  <data name="UnexpectedException" xml:space="preserve">
+    <value>Unexpected exception</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="AddNotPresentDays" xml:space="preserve">
+    <value>Add not present days</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="ReportFooter" xml:space="preserve">
+    <value>This report was automatically generated with &lt;a href="http://tbox.codeplex.com/"&gt;TBox&lt;/a&gt;. Time:</value>
+  </data>
+  <data name="ChooseFileToSaveReport" xml:space="preserve">
+    <value>Choose file to save report</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="HidePersonsWithoutErrors" xml:space="preserve">
+    <value>Hide persons without errors</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="Style" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="ToExcel" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="WorkingHoursPerDay" xml:space="preserve">
+    <value>Working hours per day</value>
+  </data>
+  <data name="AreYouWantSendEmails" xml:space="preserve">
+    <value>Are you want send emails?</value>
+  </data>
+  <data name="Emails" xml:space="preserve">
+    <value>Emails</value>
+  </data>
+  <data name="EmailSubjectTemplate" xml:space="preserve">
+    <value>Time report: {0} - {1}</value>
+  </data>
+  <data name="FullEmailSubjectTemplate" xml:space="preserve">
+    <value>Full time report: {0} - {1}</value>
+  </data>
+  <data name="IsSmtp" xml:space="preserve">
+    <value>Is smtp server</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Report type for user</value>
+  </data>
+  <data name="SendingFullReport" xml:space="preserve">
+    <value>Sending full report</value>
+  </data>
+  <data name="SendTo" xml:space="preserve">
+    <value>Send to</value>
+  </data>
+  <data name="ServerUrl" xml:space="preserve">
+    <value>Server url</value>
+  </data>
+  <data name="ConfigureCalendar" xml:space="preserve">
+    <value>Configure calendar</value>
+  </data>
+  <data name="ConfigureProfiles" xml:space="preserve">
+    <value>Configure profiles</value>
+  </data>
+  <data name="ConfigureSpecialDays" xml:space="preserve">
+    <value>Configure special days</value>
+  </data>
+  <data name="IsHolyday" xml:space="preserve">
+    <value>Is holyday</value>
+  </data>
+  <data name="ToEmail" xml:space="preserve">
+    <value>Send emails</value>
+  </data>
+  <data name="Validator" xml:space="preserve">
+    <value>Validator</value>
   </data>
 </root>

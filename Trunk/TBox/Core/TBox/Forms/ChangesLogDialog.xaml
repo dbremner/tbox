@@ -9,7 +9,7 @@
         ResizeMode="NoResize" >
     <DockPanel>
         <StackPanel DockPanel.Dock="Bottom">
-            <Button Content="{loc:Translate BtnClose}" HorizontalAlignment="Right" Margin="10" Padding="4" IsCancel="True" Click="CloseClick"/>
+            <Button Content="{loc:Tr BtnClose}" HorizontalAlignment="Right" Margin="10" Padding="4" IsCancel="True" Click="CloseClick"/>
         </StackPanel>
         <TextBox Name="Message" Margin="5" IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
     </DockPanel>

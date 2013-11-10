@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Xml.Linq;
-using Common.Base;
 using Common.Base.Log;
 using Common.Tools;
+using PluginsShared.Automator;
 using ScriptEngine;
 
 namespace Solution.Msc
@@ -33,7 +33,7 @@ namespace Solution.Msc
 		[Bool(false)]
 		public bool DisableTests { get; set; }
 
-		public void Run()
+		public void Run(IScriptContext context)
 		{
             if (!Solutions.Aggregate(false, (current, path) => ProcessSolution(path) || current))
             {

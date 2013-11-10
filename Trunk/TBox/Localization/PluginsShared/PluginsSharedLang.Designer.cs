@@ -79,11 +79,128 @@ namespace Localization.PluginsShared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Build.
+        /// </summary>
+        public static string Build {
+            get {
+                return ResourceManager.GetString("Build", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building....
+        /// </summary>
+        public static string Building {
+            get {
+                return ResourceManager.GetString("Building", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t run, because next parameters are invalid:.
+        /// </summary>
+        public static string CantRunInvalidParams {
+            get {
+                return ResourceManager.GetString("CantRunInvalidParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compilation time: {0} ms..
+        /// </summary>
+        public static string CompilationTimeTemplate {
+            get {
+                return ResourceManager.GetString("CompilationTimeTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure.
+        /// </summary>
+        public static string Configure {
+            get {
+                return ResourceManager.GetString("Configure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure directory path.
+        /// </summary>
+        public static string ConfigureDirectoryPath {
+            get {
+                return ResourceManager.GetString("ConfigureDirectoryPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure double.
+        /// </summary>
+        public static string ConfigureDouble {
+            get {
+                return ResourceManager.GetString("ConfigureDouble", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure file path.
+        /// </summary>
+        public static string ConfigureFilePath {
+            get {
+                return ResourceManager.GetString("ConfigureFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure guid.
+        /// </summary>
+        public static string ConfigureGuid {
+            get {
+                return ResourceManager.GetString("ConfigureGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure int.
+        /// </summary>
+        public static string ConfigureInt {
+            get {
+                return ResourceManager.GetString("ConfigureInt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure item.
+        /// </summary>
+        public static string ConfigureItem {
+            get {
+                return ResourceManager.GetString("ConfigureItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure string.
+        /// </summary>
+        public static string ConfigureString {
+            get {
+                return ResourceManager.GetString("ConfigureString", resourceCulture);
             }
         }
         
@@ -120,6 +237,24 @@ namespace Localization.PluginsShared {
         public static string EntriesCountTemplate {
             get {
                 return ResourceManager.GetString("EntriesCountTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Execute.
+        /// </summary>
+        public static string Execute {
+            get {
+                return ResourceManager.GetString("Execute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File:.
+        /// </summary>
+        public static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
             }
         }
         
@@ -178,6 +313,33 @@ namespace Localization.PluginsShared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No errors.
+        /// </summary>
+        public static string NoErrors {
+            get {
+                return ResourceManager.GetString("NoErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reload.
+        /// </summary>
+        public static string Reload {
+            get {
+                return ResourceManager.GetString("Reload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reloading....
+        /// </summary>
+        public static string Reloading {
+            get {
+                return ResourceManager.GetString("Reloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Requests delay:.
         /// </summary>
         public static string RequestsDelay {
@@ -196,11 +358,56 @@ namespace Localization.PluginsShared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run.
+        /// </summary>
+        public static string Run {
+            get {
+                return ResourceManager.GetString("Run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scripts package parameters:.
+        /// </summary>
+        public static string ScriptsPackageParameters {
+            get {
+                return ResourceManager.GetString("ScriptsPackageParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select script.
+        /// </summary>
+        public static string SelectSctipt {
+            get {
+                return ResourceManager.GetString("SelectSctipt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sources editor.
+        /// </summary>
+        public static string SourcesEditor {
+            get {
+                return ResourceManager.GetString("SourcesEditor", resourceCulture);
             }
         }
         

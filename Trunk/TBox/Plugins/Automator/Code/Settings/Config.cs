@@ -15,7 +15,6 @@ namespace Automator.Code.Settings
 		public string SelectedProfile { get; set; }
 		public ObservableCollection<Profile> Profiles { get; set; }
 		public IDictionary<string, DialogState> States { get; set; }
-		public IDictionary<string, IList<string>> KnownReferences { get; set; }
 
 		public Config()
 		{
@@ -36,7 +35,6 @@ namespace Automator.Code.Settings
 						}
 				};
 			States = new Dictionary<string, DialogState>();
-			KnownReferences = new Dictionary<string, IList<string>>();
 		}
 
 	}

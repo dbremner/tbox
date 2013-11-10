@@ -12,7 +12,7 @@
         <GroupBox Header="{loc:Tr Profile}" DockPanel.Dock="Top">
             <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="{loc:Tr ConfigureProfile}"/>
         </GroupBox>
-    <TabControl>
+        <TabControl>
             <TabItem Header="{loc:Tr ConfigureScriptPackages}">
                 <Units:ListBoxUnit IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Operations}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
                     <Units:ListBoxUnit.ItemTemplate>

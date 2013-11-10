@@ -1,8 +1,8 @@
 ﻿namespace Interface
 {
-    public interface IConfigManager<TConfig>
+    public interface IConfigManager<out TConfig>
     {
-        TConfig Config { get; set; }
+        TConfig Config { get; }
     }
 
     public class ConfigManager<TConfig> : IConfigManager<TConfig>

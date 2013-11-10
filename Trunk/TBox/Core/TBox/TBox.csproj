@@ -52,6 +52,10 @@
     <RootNamespace>TBox</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LightInject">
+      <HintPath>..\..\..\Libs\LightInject.3.0.1.0\lib\net40\LightInject.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
@@ -71,6 +75,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Resource Include="Resources\Back.ico" />
+    <Resource Include="Resources\Help.ico" />
+    <None Include="packages.config" />
+    <None Include="Resources\Settings.ico" />
+    <None Include="Resources\Tip.ico" />
+    <Resource Include="Resources\Feedback.ico" />
+    <Resource Include="Resources\Update.ico" />
+    <None Include="Resources\Exit.ico" />
+    <Resource Include="Resources\Save.ico" />
+    <Resource Include="Resources\Minimize.ico" />
+    <Resource Include="Resources\Refresh.ico" />
+    <Content Include="..\..\..\Libs\EPPlus.3.1.3.3\readme.txt">
+      <Link>readme.txt</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Data\TeamManager\Styles\dark.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TeamManager\Styles\default.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Tools\RunAsx86.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -88,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\FastStartDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\InfoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,7 +139,10 @@
     <Compile Include="Code\AutoUpdate\CodePlexUpdater.cs" />
     <Compile Include="Code\AutoUpdate\IAutoUpdater.cs" />
     <Compile Include="Code\AutoUpdate\LocalFolderUpdater.cs" />
-    <Compile Include="Code\ConfigManager.cs" />
+    <Compile Include="Code\Configs\ConfigManager.cs" />
+    <Compile Include="Code\Configs\Configuration.cs" />
+    <Compile Include="Code\Configs\IConfigsManager.cs" />
+    <Compile Include="Code\Configs\Profile.cs" />
     <Compile Include="Code\ErrorsSender\ErrorReports.cs" />
     <Compile Include="Code\AutoUpdate\ApplicationUpdater.cs" />
     <Compile Include="Code\ErrorsSender\LogsSender.cs" />
@@ -135,7 +167,9 @@
     <Compile Include="Code\HotKeys\HotKeysManager.cs" />
     <Compile Include="Code\Objects\EngineSettingsInfo.cs" />
     <Compile Include="Code\Objects\ExtButtonInfo.cs" />
+    <Compile Include="Code\ServicesRegistrator.cs" />
     <Compile Include="Code\Shelduler\SchedulerManager.cs" />
+    <Compile Include="Code\SingletonLifetime.cs" />
     <Compile Include="Code\Themes\ThemesManager.cs" />
     <Compile Include="Code\Shelduler\SchedulerRunContext.cs" />
     <Compile Include="Code\Objects\PluginContext.cs" />
@@ -153,9 +187,9 @@
     <Compile Include="Code\Shelduler\Settings\ShortDayOfWeek.cs" />
     <Compile Include="Code\AutoUpdate\Update.cs" />
     <Compile Include="Code\UiConfigurator.cs" />
-    <Content Include="Data\Automater\Msc\AddTracing.cs">
+    <None Include="Data\Automater\Msc\AddTracing.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="Data\Automater\Msc\ClearFolders.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -189,11 +223,26 @@
     <Content Include="Data\Templates\Sample\{#test#}.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Automater\Msc\ReplaceStrings.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Data\TeamManager\DataProviders\SubversionScript.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TeamManager\DataProviders\TargetProcessScript.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TeamManager\Validators\Default.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="Forms\ChangesLogDialog.xaml.cs">
       <DependentUpon>ChangesLogDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\FastStartDialog.xaml.cs">
       <DependentUpon>FastStartDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InfoDialog.xaml.cs">
+      <DependentUpon>InfoDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserActionsDialog.xaml.cs">
       <DependentUpon>UserActionsDialog.xaml</DependentUpon>
@@ -235,7 +284,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

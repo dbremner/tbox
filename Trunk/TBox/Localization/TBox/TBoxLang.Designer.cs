@@ -97,6 +97,15 @@ namespace Localization.TBox {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blog:.
+        /// </summary>
+        public static string Blog {
+            get {
+                return ResourceManager.GetString("Blog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string BtnClose {
@@ -169,6 +178,15 @@ namespace Localization.TBox {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change log.
+        /// </summary>
+        public static string ChangeLog {
+            get {
+                return ResourceManager.GetString("ChangeLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TBox was updated, the latest changes:.
         /// </summary>
         public static string ChangeLogTitle {
@@ -192,6 +210,15 @@ namespace Localization.TBox {
         public static string ClearHistory {
             get {
                 return ResourceManager.GetString("ClearHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration.
+        /// </summary>
+        public static string Configuration {
+            get {
+                return ResourceManager.GetString("Configuration", resourceCulture);
             }
         }
         
@@ -529,6 +556,15 @@ namespace Localization.TBox {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Store configuration files in the TBox folder.
+        /// </summary>
+        public static string PortableMode {
+            get {
+                return ResourceManager.GetString("PortableMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Prepare....
         /// </summary>
         public static string Prepare {
@@ -601,11 +637,11 @@ namespace Localization.TBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restart TBox after changing language.
+        ///   Looks up a localized string similar to Restart TBox will be requered to apply changes.
         /// </summary>
-        public static string RestartAfterChangingLanguage {
+        public static string RestartNeeded {
             get {
-                return ResourceManager.GetString("RestartAfterChangingLanguage", resourceCulture);
+                return ResourceManager.GetString("RestartNeeded", resourceCulture);
             }
         }
         

@@ -9,12 +9,12 @@ using WPFControls.Code.OS;
 
 namespace TBox.Code.AutoUpdate
 {
-	public class SharedFolderUpdater : IUpdater
+	public class SharedFolderApplicationUpdater : IApplicationUpdater
 	{
-		private static readonly ILog Log = LogManager.GetLogger<SharedFolderUpdater>();
+		private static readonly ILog Log = LogManager.GetLogger<SharedFolderApplicationUpdater>();
 		private readonly string sourcePath;
 		private readonly Version version;
-		public SharedFolderUpdater(string sourcePath)
+		public SharedFolderApplicationUpdater(string sourcePath)
 		{
 			this.sourcePath = sourcePath;
 			var filePath = Process.GetCurrentProcess().MainModule.FileName;

@@ -1,19 +1,15 @@
-﻿using System.Collections.ObjectModel;
-using Common.Tools;
-using Common.UI.Model;
+﻿using Common.UI.Model;
 
 namespace TeamManager.Code.Settings
 {
 	public class Person : CheckableData
 	{
-		public string Image { get; set; }
-		public string Type { get; set; }
-		public ObservableCollection<string> Tags { get; set; }
+        public int ReportType { get; set; }
 
-		public Person()
-		{
-			Tags = new ObservableCollection<string>();
-		}
+	    public Person()
+	    {
+	        ReportType = (int)TimeReportType.Personal;
+	    }
 
 		public override object Clone()
 		{
@@ -21,8 +17,7 @@ namespace TeamManager.Code.Settings
 			{
 				Key = Key,
 				IsChecked = IsChecked,
-				Image = Image,
-				Tags = Tags.Clone()
+                ReportType = ReportType
 			};
 		}
 	}

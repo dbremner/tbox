@@ -11,14 +11,12 @@ namespace FeedbackService
 	class FeedbackServer : IFeedbackServer
 	{
 		private readonly ILog log = LogManager.GetLogger<FeedbackService>();
-		private readonly string fromAddress;
 		private readonly string toAddress;
-		private readonly EmailSender sender;
-		public FeedbackServer(string smtpServer, int port, string login, string password, string fromAddress, string toAddress)
+		private readonly SmptEmailSender sender;
+		public FeedbackServer(string smtpServer, int port, string login, string password, string toAddress)
 		{
-			this.fromAddress = fromAddress;
 			this.toAddress = toAddress;
-			sender = new EmailSender(smtpServer, port, login, password);
+			sender = new SmptEmailSender(smtpServer, port, login, password);
 		}
 
 		public void Send(string subject, string body)
@@ -26,7 +24,7 @@ namespace FeedbackService
 			log.Write("Send: '{0}' # '{1}'", subject, body );
 			try
 			{
-				sender.Send(fromAddress, toAddress, subject, body);
+                sender.Send(subject, body, false, new [] { toAddress });
 			}
 			catch (Exception ex)
 			{

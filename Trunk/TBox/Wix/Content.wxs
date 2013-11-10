@@ -35,6 +35,27 @@
             <CreateFolder/>
           </Component>
         </Directory>
+		<Directory Id="TeamManager" Name="TeamManager">
+          <Component Id="TeamManager" Guid="F37C5BE3-20C2-4E05-A43B-1F0810957BB9">
+			  <Directory Id="TeamManagerDataProviders" Name="DataProviders">
+				<Component Id="TeamManagerDataProviders" Guid="04262763-3CF3-4640-90C4-6EC97CFFC14E">
+				  <File Name='SubversionScript.cs'/>
+				  <File Name='TargetProcessScript.cs'/>
+				</Component>
+			  </Directory>
+			  <Directory Id="TeamManagerStyles" Name="Styles">
+				<Component Id="TeamManagerStyles" Guid="0E16837C-1DCC-496A-9057-85F0D0D5ADE9">
+				  <File Name='dark.css'/>
+				  <File Name='default.css'/>
+				</Component>
+			  </Directory>
+			  <Directory Id="TeamManagerValidators" Name="Validators">
+				<Component Id="TeamManagerValidators" Guid="613125DD-6C2A-4B87-9019-232FE70FBFCB">
+				  <File Name='Default.cs'/>
+				</Component>
+			  </Directory>
+          </Component>
+        </Directory>
         <Directory Id="Templates" Name="Templates" >
           <Directory Id="TemplatesSample" Name="Sample">
             <Component Id="TemplatesSample" Guid="B31CFEB1-760F-4CB8-A608-BB57B724B6AE">
@@ -59,15 +80,20 @@
         </Directory>
         <Component Id="Libraries" Guid="A7042115-AEAB-4632-A691-38B8AF4D7CC7">
           <File Name='Common.dll'/>
+		  <File Name='EPPlus.dl'/>		  
           <File Name='extended.nunit.dll'/>
           <File Name='ICSharpCode.SharpZipLib.dll'/>
           <File Name='Interface.dll'/>
+		  <File Name='LightInject.dll'/>
+		  <File Name='Microsoft.Exchange.WebServices.dll'/>
+		  <File Name='Microsoft.Windows.Shell.dll'/>
           <File Name='nunit.core.dll'/>
           <File Name='nunit.core.interfaces.dll'/>
           <File Name='nunit.util.dll'/>
+		  <File Name='Ookii.Dialogs.Wpf.dll'/>
           <File Name='PluginsShared.dll'/>
+		  <File Name='RibbonControlsLibrary.dll'/>
           <File Name='ScintillaNET.dll'/>
-          <File Name='ScintillaNET.xml'/>
           <File Name='ScriptEngine.dll'/>
           <File Name='ServiceStack.Text.dll'/>
           <File Name='WPFControls.dll'/>

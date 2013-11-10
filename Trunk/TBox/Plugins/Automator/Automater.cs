@@ -4,15 +4,17 @@ using System.IO;
 using System.Linq;
 using Automator.Code;
 using Automator.Code.Settings;
-using Automator.Components;
 using Common.Base.Log;
 using Common.MT;
 using Interface;
 using Interface.Atrributes;
 using Localization.Plugins.Automator;
+using PluginsShared.Automator;
+using PluginsShared.ScriptEngine;
 using ScriptEngine;
 using ScriptEngine.Core;
 using WPFControls.Code;
+using WPFControls.Code.OS;
 using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
 using WPFSyntaxHighlighter;
@@ -23,19 +25,20 @@ namespace Automator
 	[PluginInfo(typeof(AutomatorLang), 12, PluginGroup.Development)]
 	public sealed class Automater : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
-		private readonly LazyDialog<EditorDialog> editor;
-		private readonly LazyDialog<ScriptsRunner> runner;
+	    private readonly ScriptRunner scriptRunner = new ScriptRunner();
+		private readonly LazyDialog<EditorDialog> editorDialog;
+		private readonly LazyDialog<ScriptsRunner> runnerDialog;
 		private static readonly ILog Log = LogManager.GetLogger<Automater>();
 		public Automater()
 		{
-			editor = new LazyDialog<EditorDialog>(CreateEditor, "editor");
-			runner = new LazyDialog<ScriptsRunner>(CreateRunner, "runner");
+			editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
+            runnerDialog = new LazyDialog<ScriptsRunner>(CreateRunner, "runnerDialog");
 		}
 
 		public void Dispose()
 		{
-			runner.Dispose();
-			editor.Dispose();
+			runnerDialog.Dispose();
+			editorDialog.Dispose();
 		}
 
 		private EditorDialog CreateEditor()
@@ -43,9 +46,9 @@ namespace Automator
 			return new EditorDialog { Context = Context, Icon = ImageSource };
 		}
 
-		private ScriptsRunner CreateRunner()
+        private ScriptsRunner CreateRunner()
 		{
-			return new ScriptsRunner { Context = Context , Icon = ImageSource};
+            return new ScriptsRunner { Context = Context, Icon = ImageSource };
 		}
 
 		public override void Init(IPluginContext context)
@@ -87,7 +90,7 @@ namespace Automator
 
 		private void RunAll(Profile profile)
 		{
-			DialogsCache.ShowProgress(u=>RunAll(u, profile.Operations), AutomatorLang.RunScript + ": " + profile.Key, topmost:false, showInTaskBar:true);
+			DialogsCache.ShowProgress(u=>RunAll(u, profile.Operations), AutomatorLang.RunScript + ": " + profile.Key, null, false, true, ImageSource);
 		}
 		 
 		private void RunAll(IUpdater u, IList<Operation> operations)
@@ -97,16 +100,16 @@ namespace Automator
 			var folder = Context.DataProvider.ReadOnlyDataPath;
 			foreach (var op in operations)
 			{
-				using (var r = new Runner(Config))
+			    var r = new ScriptRunner();
+				foreach (var path in op.Pathes.CheckedItems)
 				{
-					foreach (var path in op.Pathes.CheckedItems)
-					{
-						if (u.UserPressClose) return;
-						u.Update(path.Key, i++/(float) count);
-						var result = false;
-						r.Run(Path.Combine(folder, path.Key), folder, op.Parameters, a => Context.DoSync(() => Execute(a, out result)));
-						if(!result)return;
-					}
+					if (u.UserPressClose) return;
+					u.Update(path.Key, i++/(float) count);
+					var result = false;
+				    var key = path.Key;
+				    var p = op.Parameters;
+                    Execute(() => r.Run(Path.Combine(folder, key), p, a=>Context.DoSync(a), new NullUpdater()), out result);
+					if(!result)return;
 				}
 			}
 		}
@@ -131,7 +134,7 @@ namespace Automator
 
 		private void ShowIde(object o)
 		{
-			editor.Do(Context.DoSync, x=>x.ShowDialog(GetPathes(), Config), Config.States);
+            editorDialog.Do(Context.DoSync, x => x.ShowDialog(GetPathes(), scriptRunner), Config.States);
 		}
 
 		private void DoWork(Operation operation, object context)
@@ -142,8 +145,8 @@ namespace Automator
 			}
 			else
 			{
-				runner.LoadState(Config.States);
-				runner.Value.ShowDialog(operation, Config);
+				runnerDialog.LoadState(Config.States);
+                runnerDialog.Value.ShowDialog(operation, scriptRunner, null);
 			}
 		}
 
@@ -151,8 +154,8 @@ namespace Automator
 		{
 			base.Save(autoSaveOnExit);
 			if (!autoSaveOnExit) return;
-			runner.SaveState(Config.States);
-			editor.SaveState(Config.States);
+			runnerDialog.SaveState(Config.States);
+			editorDialog.SaveState(Config.States);
 		}
 
 		protected override Settings CreateSettings()
