@@ -18,4 +18,13 @@ bin
 </Value></Property><Property><Name>svn:global-ignores</Name><Value>ipch
 TBox.opensdf
 TBox.sdf
+</Value></Property><Property><Name>svn:global-ignores</Name><Value>ipch
+TBox.opensdf
+TBox.sdf
+Debug
+</Value></Property><Property><Name>svn:ignore</Name><Value>*.suo
+*.sdf
+*.user
+*.opensdf
+bin
 </Value></Property></Properties></ItemProperties>
