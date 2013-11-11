@@ -26,17 +26,20 @@ xcopy %source%\Tools\*.exe  %target%\Tools\ /s /i /y
 xcopy %source%\Tools\*.cmd  %target%\Tools\ /s /i /y
 
 md %langFolder%
-xcopy %source%\Localization\*.*  %target%\Localization\ /s /i
+xcopy %source%\Localization\*.dll  %target%\Localization\ /s /i
 
 md %dataFolder%
 md %dataFolder%\Automater
-xcopy Shared\Automater\*.* %dataFolder%\Automater\ /s /i
+xcopy %donor%\Automater\* %dataFolder%\Automater /s /i
 
 md %dataFolder%\LocalizationTool
-xcopy %donor%\LocalizationTool\*.* %dataFolder%\LocalizationTool /s /i
+xcopy %donor%\LocalizationTool\* %dataFolder%\LocalizationTool /s /i
+
+md %dataFolder%\TeamManager
+xcopy %donor%\TeamManager\* %dataFolder%\TeamManager /s /i
 
 md %dataFolder%\Templates
-xcopy %donor%\Templates\*.* %dataFolder%\Templates /s /i
+xcopy %donor%\Templates\* %dataFolder%\Templates /s /i
 
 md %dataFolder%\ProjectMan\
 xcopy %donor%\ProjectMan\* %dataFolder%\ProjectMan /s /i

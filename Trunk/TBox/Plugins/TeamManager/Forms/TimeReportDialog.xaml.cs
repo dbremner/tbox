@@ -43,7 +43,7 @@ namespace TeamManager.Forms
             OpPanel.View = Operations;
         }
 
-        public void ShowReportDialog(Profile p, IPluginContext context, IList<SpecialDay> sDays )
+        public void ShowReportDialog(Profile p, IPluginContext context, IList<SpecialDay> sDays, bool autoRun )
         {
             if (!IsVisible)
             {
@@ -53,14 +53,20 @@ namespace TeamManager.Forms
                 StylesList.ItemsSource = GetFiles(stylesFolder, "*.css");
                 validatorsFolder = Path.Combine(context.DataProvider.ReadOnlyDataPath, "Validators");
                 Validators.ItemsSource = GetFiles(validatorsFolder, "*.cs");
+                DataContext = null;
                 DataContext = profile = p;
                 PrintReport(fullReport);
+                ValueChanged(null, null);
+                if (autoRun)
+                {
+                    ShowAndActivate();
+                    DialogsCache.ShowProgress(DoAutorun, TeamManagerLang.CalculatingTimeReport, this, false);
+                }
             }
             ShowAndActivate();
-            ValueChanged(null, null);
         }
 
-        private static string[] GetFiles(string folder, string mask)
+        private static IEnumerable<string> GetFiles(string folder, string mask)
         {
             return new DirectoryInfo(folder)
                 .GetFiles(mask)
@@ -71,11 +77,12 @@ namespace TeamManager.Forms
         private void Generate_OnClick(object sender, RoutedEventArgs e)
         {
             SetHtml(string.Empty);
-            DialogsCache.ShowProgress(DoGenerate, TeamManagerLang.CalculatingTimeReport, this, false);
+            DialogsCache.ShowProgress(u=>DoGenerate(u), TeamManagerLang.CalculatingTimeReport, this, false);
         }
 
-        private void DoGenerate(IUpdater u)
+        private bool DoGenerate(IUpdater u)
         {
+            var success = false;
             try
             {
                 var cfg = profile.Report;
@@ -86,6 +93,7 @@ namespace TeamManager.Forms
                 {
                     fullReport = reportReceiver.GetTimeReport(cfg.DateFrom.Value, cfg.DateTo.Value, emails, profile.Operations.CheckedItems.ToArray(), u);
                     u.Update(TeamManagerLang.PrepareReports, 1);
+                    success = true;
                 }
                 catch (Exception ex)
                 {
@@ -98,6 +106,7 @@ namespace TeamManager.Forms
             {
                 log.Write(ex, "Can't receive timer report");
             }
+            return success;
         }
 
         private void PrintReport(FullReport report)
@@ -220,6 +229,14 @@ namespace TeamManager.Forms
             catch (Exception ex)
             {
                 log.Write(ex, "Can't send emails");
+            }
+        }
+
+        private void DoAutorun(IUpdater u)
+        {
+            if (DoGenerate(u))
+            {
+                DoSendEmails(u);
             }
         }
     }

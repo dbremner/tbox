@@ -19,6 +19,8 @@ namespace TBox.Data.TeamManager
         public string Password { get; set; }
         [String]
         public string RepositoryUrl { get; set; }
+        [File("svn.exe")]
+        public string Executable { get; set; }
 
 
 	    public void Run(IReportScriptContext context)
@@ -98,8 +100,8 @@ namespace TBox.Data.TeamManager
 				credentials = string.Format("--username {0} --password {1}",
 					Login, Password.DecryptPassword());
 			}
-			var args = string.Format("/c svn log -r{{{0}}}:{{{1}}} {2} {3}",
-                FormatDate(dateFrom), FormatDate(dateTo), credentials, RepositoryUrl);
+            var args = string.Format("/c \"{4}\" log -r{{{0}}}:{{{1}}} {2} {3}",
+                FormatDate(dateFrom), FormatDate(dateTo), credentials, RepositoryUrl, Executable);
 			return args;
 		}
 

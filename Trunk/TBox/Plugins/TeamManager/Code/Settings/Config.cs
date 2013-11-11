@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Common.UI.Model;
 using Interface;
-using ScriptEngine;
 using WPFControls.Dialogs.StateSaver;
 
 namespace TeamManager.Code.Settings
@@ -17,7 +15,7 @@ namespace TeamManager.Code.Settings
 		public Config()
 		{
 		    SelectedProfile = string.Empty;
-			Profiles = new ObservableCollection<Profile>();
+            Profiles = new ObservableCollection<Profile>();
             States = new Dictionary<string, DialogState>();
             SpecialDays = new ObservableCollection<SpecialDay>();
 		}

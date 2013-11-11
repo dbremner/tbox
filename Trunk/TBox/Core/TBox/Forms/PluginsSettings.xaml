@@ -145,7 +145,7 @@
                 </units:CheckableListBoxUnit>
             </DockPanel>
         </TabItem>
-        <TabItem Header="{loc:Tr Configuration}" IsEnabled="False" >
+        <TabItem Header="{loc:Tr Configuration}" IsEnabled="False">
             <DockPanel>
                 <GroupBox Header="{loc:Tr Profile}" DockPanel.Dock="Top">
                     <units:ComboBoxUnit Name="Profile" ValueCaption="{Binding Configuration.SelectedProfile}" ItemsSource="{Binding Configuration.Profiles}" UnitType="Text" Title="{loc:Tr Profile}" />

@@ -54,10 +54,5 @@ namespace TeamManager
             OperationsDialog.Dispose();
 	        ScriptsConfigurator.Dispose();
 	    }
-
-	    private void OnCheckChangedEvent(object sender, RoutedEventArgs e)
-	    {
-	        PersonsNames.OnCheckChangedEvent(sender, e);
-	    }
 	}
 }

@@ -322,6 +322,15 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is exchange server.
+        /// </summary>
+        public static string IsExchange {
+            get {
+                return ResourceManager.GetString("IsExchange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is holyday.
         /// </summary>
         public static string IsHolyday {
@@ -340,11 +349,29 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is working day.
+        /// </summary>
+        public static string IsWorkingDay {
+            get {
+                return ResourceManager.GetString("IsWorkingDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login:.
         /// </summary>
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emails of the team members.
+        /// </summary>
+        public static string MembersEmails {
+            get {
+                return ResourceManager.GetString("MembersEmails", resourceCulture);
             }
         }
         

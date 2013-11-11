@@ -22,8 +22,8 @@
                             </DockPanel>
                             <DockPanel Dock="Bottom">
                                 <captioned:CaptionedNumericUpDown Caption="{loc:Tr Deep}" Margin="1" Width="90" Minimum="0" Maximum="8" Value="{Binding Deep}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
-                                <captioned:CaptionedTextBox Caption="{loc:Tr ExtendedArguments}" Margin="1" HorizontalAlignment="Stretch" Value="{Binding ExtendedArguments}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right"/>
-                                <captioned:CaptionedEditPath Caption="{loc:Tr Executable}" Margin="1" DockPanel.Dock="Top" PathGetterType="File" Value="{Binding Executable}" IsEnabled="{Binding IsChecked}"/>
+                                <captioned:CaptionedTextBox Caption="{loc:Tr ExtendedArguments}" Margin="1" HorizontalAlignment="Stretch" Value="{Binding ExtendedArguments}" IsEnabled="{Binding IsChecked}" DockPanel.Dock="Right" Width="128"/>
+                                <captioned:CaptionedEditPath Caption="{loc:Tr Executable}" Margin="1" DockPanel.Dock="Top" PathGetterType="File" Value="{Binding Executable}" IsEnabled="{Binding IsChecked}" />
                             </DockPanel>
                         </DockPanel>
                     </DataTemplate>

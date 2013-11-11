@@ -42,6 +42,8 @@ namespace TeamManager
             if (!autoSaveOnExit) return;
             timeReportDialog.SaveState(Config.States);
             editorDialog.SaveState(Config.States);
+            timeReportDialog.Hide();
+            editorDialog.Hide();
         }
 
 
@@ -77,13 +79,13 @@ namespace TeamManager
                 .ToArray();
 		}
         
-	    private void GetTimeTable(object obj, Profile p)
+	    private void GetTimeTable(object o, Profile p)
 		{
             timeReportDialog.LoadState(Config.States);
-            timeReportDialog.Value.ShowReportDialog(p, Context, Config.SpecialDays);
+            timeReportDialog.Value.ShowReportDialog(p, Context, Config.SpecialDays, o is NonUserRunContext);
 		}
 
-        private void OpenEditor(object obj)
+        private void OpenEditor(object o)
         {
             editorDialog.LoadState(Config.States);
             editorDialog.Value.ShowDialog(GetPathes(), reportScriptRunner);

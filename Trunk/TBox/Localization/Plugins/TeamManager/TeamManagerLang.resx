@@ -318,4 +318,13 @@
   <data name="Validator" xml:space="preserve">
     <value>Validator</value>
   </data>
+  <data name="IsExchange" xml:space="preserve">
+    <value>Is exchange server</value>
+  </data>
+  <data name="IsWorkingDay" xml:space="preserve">
+    <value>Is working day</value>
+  </data>
+  <data name="MembersEmails" xml:space="preserve">
+    <value>Emails of the team members</value>
+  </data>
 </root>

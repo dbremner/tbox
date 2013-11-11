@@ -10,7 +10,11 @@
              xmlns:scriptEngine="clr-namespace:ScriptEngine;assembly=ScriptEngine"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
              xmlns:settings="clr-namespace:TeamManager.Code.Settings"
+             xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
              xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls">
+    <UserControl.Resources>
+        <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
+    </UserControl.Resources>
     <TabControl>
         <TabItem Header="{loc:Tr ConfigureProfiles}">
             <DockPanel>
@@ -18,22 +22,17 @@
                     <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="{loc:Tr ConfigureProfile}"/>
                 </GroupBox>
                 <TabControl IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}">
-                    <TabItem Header="{loc:Tr Persons}">
-                        <Units:CheckableListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" Name="PersonsNames" CanContentScroll="False" >
+                    <TabItem Header="{loc:Tr MembersEmails}">
+                        <Units:ListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" Name="PersonsNames" >
                             <Units:BaseCollectionUnit.ItemTemplate>
                                 <DataTemplate DataType="{x:Type settings:Person }">
-                                    <Grid>
-                                        <DockPanel>
-                                            <controls:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Top" DockPanel.Dock="Left"  ValueChanged="OnCheckChangedEvent"/>
-                                            <StackPanel IsEnabled="{Binding IsChecked}">
-                                                <TextBlock Text="{Binding Key}" Padding="0" FontWeight="Bold" />
-                                                <controls:FlagsCheckBoxes Value="{Binding ReportType}" BaseType="{x:Type settings:TimeReportType}" Caption="{loc:Tr ReportType}" Orientation="Horizontal" Margin="5"/>
-                                            </StackPanel>
-                                        </DockPanel>
-                                    </Grid>
+                                    <DockPanel >
+                                        <controls:FlagsCheckBoxes Value="{Binding ReportType}" BaseType="{x:Type settings:TimeReportType}" Caption="{loc:Tr ReportType}" Orientation="Horizontal" Margin="2" DockPanel.Dock="Right"/>
+                                        <TextBlock Text="{Binding Key}" Padding="0" FontWeight="Bold" Margin="5" VerticalAlignment="Center"/>
+                                    </DockPanel>
                                 </DataTemplate>
                             </Units:BaseCollectionUnit.ItemTemplate>
-                        </Units:CheckableListBoxUnit>
+                        </Units:ListBoxUnit>
                     </TabItem>
                     <TabItem Header="{loc:Tr ConfigureScriptPackages}">
                         <Units:ListBoxUnit  ItemsSource="{Binding Operations}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
@@ -53,7 +52,10 @@
                             <captioned:CaptionedTextBox Value="{Binding Email.Login}" Caption="{loc:Tr Login}"/>
                             <captioned:CaptionedPasswordBox Value="{Binding Email.Password}" Caption="{loc:Tr Password}"/>
                             <captioned:CaptionedTextBox Value="{Binding Email.ServerUrl}" Caption="{loc:Tr ServerUrl}"/>
-                            <CheckBox IsChecked="{Binding Email.IsSmtp}" Content="{loc:Tr IsSmtp}" Name="IsSmtp"/>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton IsChecked="{Binding Email.IsSmtp}" Content="{loc:Tr IsSmtp}" Name="IsSmtp" GroupName="Email" Margin="5"/>
+                                <RadioButton IsChecked="{Binding Email.IsSmtp, Converter={StaticResource BoolInverterConverter}}" Content="{loc:Tr IsExchange}" GroupName="Email" Margin="5"/>
+                            </StackPanel>
                             <captioned:CaptionedNumericUpDown Value="{Binding Email.Port}" Caption="{loc:Tr Port}" IsEnabled="{Binding ElementName=IsSmtp, Path=IsChecked}" Minimum="0" Maximum="65536"/>
                         </StackPanel>
                     </TabItem>
@@ -67,8 +69,12 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Key}" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
                             <StackPanel Orientation="Horizontal"  Margin="10 5" >
-                                <CheckBox IsChecked="{Binding IsHolyday}" />
-                                <TextBlock Text="{loc:Tr IsHolyday}"  />
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton IsChecked="{Binding IsHolyday}" GroupName="Day" Margin="5"/>
+                                    <TextBlock Text="{loc:Tr IsHolyday}" Margin="0 5"/>
+                                    <RadioButton IsChecked="{Binding IsHolyday, Converter={StaticResource BoolInverterConverter}}" GroupName="Day" Margin="5"/>
+                                    <TextBlock Text="{loc:Tr IsWorkingDay}" Margin="0 5"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
