@@ -77,7 +77,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
                 p.DoRefresh(x => { count = x.Count; }, x => { });
 
                 //Assert
-                Assert.Greater(count, 218);
+                Assert.Greater(count, 210);
             }
         }
 
@@ -99,7 +99,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
 
                 //Act
                 p.DoRun(x => x.ApplyResults(), packages, copy, 1, sync, synchronizer, new SimpleUpdater(updater, synchronizer));
-                Assert.Greater(p.Count, 218);
+                Assert.Greater(p.Count, 210);
                 Assert.AreEqual(p.FailedCount, 0);
             }
         }
