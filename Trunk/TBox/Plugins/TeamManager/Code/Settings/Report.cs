@@ -13,6 +13,7 @@ namespace TeamManager.Code.Settings
         public string Style { get; set; }
         public string DayStatusStrategy { get; set; }
         public string ExcelFilePath { get; set; }
+        public bool GenerateForCurrentWeek { get; set; }
 
         public Report()
         {
@@ -24,6 +25,7 @@ namespace TeamManager.Code.Settings
             Style = "default.css";
             DayStatusStrategy = "Default.cs";
             ExcelFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "default.xlsx");
+            GenerateForCurrentWeek = false;
         }
 
         public Report Clone()
@@ -36,7 +38,9 @@ namespace TeamManager.Code.Settings
                     AddNotPresentDays = AddNotPresentDays,
                     WorkingHoursPerDay = WorkingHoursPerDay,
                     Style = Style,
-                    ExcelFilePath = ExcelFilePath
+                    DayStatusStrategy = DayStatusStrategy,
+                    ExcelFilePath = ExcelFilePath,
+                    GenerateForCurrentWeek = GenerateForCurrentWeek
                 };
         }
     }

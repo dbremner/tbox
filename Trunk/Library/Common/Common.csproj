@@ -89,6 +89,7 @@
     <Compile Include="Communications\SmtpEmailSender.cs" />
     <Compile Include="Network\Header.cs" />
     <Compile Include="Encoders\CommonOps.cs" />
+    <Compile Include="Tools\DateTimeExtensions.cs" />
     <Compile Include="Tools\EqualityDataComparer.cs" />
     <Compile Include="MT\IProgressModel.cs" />
     <Compile Include="MT\IUpdater.cs" />

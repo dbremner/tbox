@@ -295,6 +295,15 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report for current week.
+        /// </summary>
+        public static string GenerateForCurrentWeek {
+            get {
+                return ResourceManager.GetString("GenerateForCurrentWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get time report.
         /// </summary>
         public static string GetTimeReport {

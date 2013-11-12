@@ -327,4 +327,7 @@
   <data name="MembersEmails" xml:space="preserve">
     <value>Emails of the team members</value>
   </data>
+  <data name="GenerateForCurrentWeek" xml:space="preserve">
+    <value>Report for current week</value>
+  </data>
 </root>

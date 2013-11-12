@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using Common.Base.Log;
 using Common.MT;
+using Common.Tools;
 using Interface;
 using Localization.Plugins.TeamManager;
 using Microsoft.Win32;
@@ -167,6 +168,11 @@ namespace TeamManager.Forms
 
         private void ValueChanged(object sender, RoutedEventArgs e)
         {
+            if (profile.Report.GenerateForCurrentWeek)
+            {
+                DateFrom.Value = DateTime.Now.GetFirstDayOfWeek().Normalize();
+                DateTo.Value = DateTime.Now.GetLastDayOfWeek().Normalize();
+            }
             btnGenerate.IsEnabled =
                 DateFrom.Value.HasValue && DateTo.Value.HasValue &&
                 Operations.Items.Count > 0 &&

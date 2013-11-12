@@ -327,4 +327,7 @@
   <data name="MembersEmails" xml:space="preserve">
     <value>Емэйлы работников</value>
   </data>
+  <data name="GenerateForCurrentWeek" xml:space="preserve">
+    <value>Отчёт за текущую неделю</value>
+  </data>
 </root>

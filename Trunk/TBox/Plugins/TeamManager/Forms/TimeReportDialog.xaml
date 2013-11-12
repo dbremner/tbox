@@ -10,11 +10,15 @@
                       xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
                       xmlns:r="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                             xmlns:controls2="clr-namespace:PluginsShared.Controls;assembly=PluginsShared"
-                            mc:Ignorable="d"
+                              xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
+                              mc:Ignorable="d"
              Width="640" Height="480"
              MinWidth="640" MinHeight="480"
              Title="{loc:Tr TimeReport}"
              d:DesignHeight="300" d:DesignWidth="300" ShowInTaskbar="True">
+    <controls2:RibbonDialogWindow.Resources>
+        <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
+    </controls2:RibbonDialogWindow.Resources>
     <DockPanel Grid.Column="0">
         <r:Ribbon  DockPanel.Dock="Top" >
             <r:Ribbon.ApplicationMenu >
@@ -25,8 +29,11 @@
                     <r:RibbonButton Label="{loc:Tr Generate}" Click="Generate_OnClick"  IsEnabled="False" Name="btnGenerate" LargeImageSource="/TeamManager;component/Resources/Start.ico"/>
                 </r:RibbonGroup>
                 <r:RibbonGroup Header="{loc:Tr Dates}">
-                    <captioned:CaptionedDatePicker Caption="{loc:Tr DateFrom}" Value="{Binding Report.DateFrom}" DockPanel.Dock="Bottom" Margin="5" ValueChanged="ValueChanged" Name="DateFrom"/>
-                    <captioned:CaptionedDatePicker Caption="{loc:Tr DateTo}" Value="{Binding Report.DateTo}" DockPanel.Dock="Bottom" Margin="5" ValueChanged="ValueChanged" Name="DateTo"/>
+                    <StackPanel Orientation="Horizontal">
+                        <captioned:CaptionedDatePicker Caption="{loc:Tr DateFrom}" Value="{Binding Report.DateFrom}" DockPanel.Dock="Bottom" Margin="5 0" ValueChanged="ValueChanged" Name="DateFrom" IsEnabled="{Binding ElementName=GenerateForCurrentWeek,Path=IsChecked, Converter={StaticResource BoolInverterConverter}}" />
+                        <captioned:CaptionedDatePicker Caption="{loc:Tr DateTo}" Value="{Binding Report.DateTo}" DockPanel.Dock="Bottom" Margin="5 0" ValueChanged="ValueChanged" Name="DateTo" IsEnabled="{Binding ElementName=GenerateForCurrentWeek,Path=IsChecked, Converter={StaticResource BoolInverterConverter}}" />
+                    </StackPanel>
+                    <r:RibbonCheckBox IsChecked="{Binding Report.GenerateForCurrentWeek}" Name="GenerateForCurrentWeek" Label="{loc:Tr GenerateForCurrentWeek}" Checked="ValueChanged"/>
                 </r:RibbonGroup>
                 <r:RibbonGroup Header="{loc:Tr Operations}">
                     <DockPanel>
