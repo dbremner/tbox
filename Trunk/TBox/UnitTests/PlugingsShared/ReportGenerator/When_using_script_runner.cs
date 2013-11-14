@@ -8,6 +8,7 @@ using ScriptEngine.Core.Params;
 namespace UnitTests.PlugingsShared.ReportGenerator
 {
     [TestFixture]
+    [Category("Integration")]
     class When_using_report_script_runner
     {
         public static string[] Files

@@ -46,7 +46,7 @@ namespace Requestor
 						.Select(x => new UMenuItem
 						{
 							Header = x.Key,
-							OnClick = o => executor.Value.Execute(Application.Current.MainWindow, x, Config)
+							OnClick = o => executor.Value.Execute(Application.Current.MainWindow, x, Config, null, ImageSource)
 						})
 						.Concat(
 						new[]
@@ -82,7 +82,7 @@ namespace Requestor
 		protected override Settings CreateSettings()
 		{
 			var s = base.CreateSettings();
-			s.Requestor = new Lazy<FormRequest>(()=>FillHelpInfo(new FormRequest()));
+			s.Requestor = new Lazy<FormRequest>(()=>FillHelpInfo(new FormRequest(ImageSource)));
 			return s;
 		}
 

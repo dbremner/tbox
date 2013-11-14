@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 using Localization.Plugins.SqlRunner;
 using SqlRunner.Code.Settings;
 using Common.Tools;
@@ -13,11 +14,11 @@ namespace SqlRunner.Code
 {
 	public class BaseExecutor
 	{
-		public void Execute(Window owner, Op operation, string connectionString, Action<DatabaseInfo> onEnd)
+		public void Execute(Window owner, Op operation, string connectionString, Action<DatabaseInfo> onEnd, ImageSource icon)
 		{
 		    DialogsCache.ShowProgress(
 		        u => onEnd(GetResult(connectionString, operation)),
-		        SqlRunnerLang.MakeRequestTo + ": " + operation.Key, owner);
+		        SqlRunnerLang.MakeRequestTo + ": " + operation.Key, owner, icon: icon);
 		}
 
 		public static DatabaseInfo GetResult(string connectionString, Op operation)

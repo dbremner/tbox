@@ -11,5 +11,6 @@ namespace extended.nunit
 		public string Message { get; set; }
 		public string StackTrace { get; set; }
 		public ResultState State { get; set; }
+        public string[] Categories { get; set; }
 	}
 }

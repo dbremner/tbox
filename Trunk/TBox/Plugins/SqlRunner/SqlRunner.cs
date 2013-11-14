@@ -58,7 +58,7 @@ namespace SqlRunner
 						.Select(o => new UMenuItem
 						{
 							Header = o.Key,
-							OnClick = x => executor.Value.Execute(Application.Current.MainWindow, o, Config.ConnectionString, Config)
+							OnClick = x => executor.Value.Execute(Application.Current.MainWindow, o, Config.ConnectionString, Config, null, ImageSource)
 						})
 						.Concat(
 						new[]

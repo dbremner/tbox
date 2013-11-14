@@ -44,8 +44,9 @@ namespace NUnitAgent.Code
 
 		private static int RunTests(string handle, string path, bool fast)
 		{
-			var ids = new Client<INunitRunnerClient>(handle).Instance.GiveMeTestIds()
-				.Split(',').Select(int.Parse).ToArray();
+		    var results = new Client<INunitRunnerClient>(handle).Instance.GiveMeTestIds();
+            var ids = string.IsNullOrWhiteSpace(results) ? 
+                new int[0] : results.Split(',').Select(int.Parse).ToArray();
 			return ProcessMessage(handle, r => r.Run(path, ids, fast));
 		}
 

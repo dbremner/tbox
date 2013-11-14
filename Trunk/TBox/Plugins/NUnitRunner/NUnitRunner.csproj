@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Localization\TrExtension.cs" />
+    <Compile Include="Code\Settings\BatchConfig.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Settings\TestConfig.cs" />
     <Compile Include="Components\BatchRunDialog.xaml.cs">

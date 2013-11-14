@@ -39,7 +39,7 @@ namespace SqlRunner.Components
 							LastResponse = r;
 							Response.Value = r.Status + Environment.NewLine + r.Body;
 							Tabs.SelectedIndex = 1;
-					}));
+					}), Icon);
 		}
 
 		private void CancelClick(object sender, RoutedEventArgs e)

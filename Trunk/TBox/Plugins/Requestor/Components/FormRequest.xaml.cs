@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using Requestor.Code;
 using Requestor.Code.Settings;
 using WPFControls.Code.OS;
@@ -19,13 +20,14 @@ namespace Requestor.Components
 		public IList<string> KnownUrls { get; set; }
 		private readonly BaseExecutor executor = new BaseExecutor();
 
-		public FormRequest()
+		public FormRequest(ImageSource icon)
 		{
 			KnownHeaderNames = new ObservableCollection<string>();
 			KnownHeaderValues = new ObservableCollection<string>();
 			KnownUrls = new ObservableCollection<string>();
 			InitializeComponent();
 			cbUrl.KeyDown += CbUrlKeyDown;
+		    Icon = icon;
 		}
 
 		public void ShowDialog(Op config)
@@ -66,7 +68,7 @@ namespace Requestor.Components
 					() =>{
 							Tabs.SelectedIndex = 1;
 							Response.Value = r;
-					}));
+					}), Icon);
 		}
 
 		private void CancelClick(object sender, RoutedEventArgs e)

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Common.Communications;
 using Common.Communications.Interprocess;
@@ -64,7 +66,7 @@ namespace NUnitAgent.Code
 				var list = new List<Result>();
 				try
 				{
-					CollectResults(runner.Test, list);
+					CollectResults(runner.Test, list, new string[0]);
                     return list.Count;
 				}
 				finally
@@ -84,24 +86,34 @@ namespace NUnitAgent.Code
 			return p;
 		}
 
-		private static void CollectResults(ITest result, ICollection<Result> items)
+		private static void CollectResults(ITest result, ICollection<Result> items, string[] ownerCategories)
 		{
+            var categories = ownerCategories.Concat(GetCategories(result)).Distinct().ToArray();
 			if (string.Equals(result.TestType, "TestMethod"))
 			{
 				items.Add(new Result
 				{
 					Id = int.Parse(result.TestName.TestID.ToString()),
-					Key = result.TestName.FullName
+					Key = result.TestName.FullName,
+                    Categories = categories
 				});
 			}
 			if (result.Tests == null) return;
 			foreach (ITest r in result.Tests)
 			{
-				CollectResults(r, items);
+                CollectResults(r, items, categories);
 			}
 		}
 
-		public void Dispose()
+	    private static IList<string> GetCategories(ITest result)
+	    {
+	        return (result.Categories == null ? 
+                new object[0] : result.Categories.Cast<object>())
+                .Select(x=>x.ToString())
+                .ToArray();
+	    }
+
+	    public void Dispose()
 		{
 			CoreExtensions.Host.UnloadService();
 		}

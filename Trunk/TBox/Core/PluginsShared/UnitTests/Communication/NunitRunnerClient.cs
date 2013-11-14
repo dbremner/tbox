@@ -15,7 +15,7 @@ namespace PluginsShared.UnitTests.Communication
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] 
 	class NunitRunnerClient : INunitRunnerClient
 	{
-		private ILog Log = LogManager.GetLogger<NunitRunnerClient>();
+		private readonly ILog log = LogManager.GetLogger<NunitRunnerClient>();
 		public Result[] Collection { get; private set; }
 		public List<IEnumerable<int>> TestsToRun { get; private set; }
 		public IDictionary<int, Result> AllTestsResults { get; private set; }
@@ -94,7 +94,7 @@ namespace PluginsShared.UnitTests.Communication
 			}
 			catch (Exception ex)
 			{
-				Log.Write(ex, "Error stopping tests");
+				log.Write(ex, "Error stopping tests");
 			}
 
 		}

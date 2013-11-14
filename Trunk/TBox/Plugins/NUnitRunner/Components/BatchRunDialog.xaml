@@ -8,12 +8,14 @@
                       xmlns:components1="clr-namespace:NUnitRunner.Components"
                       xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
                       xmlns:components="clr-namespace:WPFControls.Components;assembly=WPFControls"
+                      xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
                       mc:Ignorable="d" 
                           ShowInTaskbar="True" WindowStartupLocation="CenterOwner"
              Width="580" Height="480"
              MinWidth="580" MinHeight="480"
              Title="{loc:Tr BatchRunForUnitTests}" >
     <Window.Resources>
+        <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
         <components1:ResultStateToIconConverter x:Key="IconConverter"/>
     </Window.Resources>
     <DockPanel>
@@ -21,8 +23,8 @@
             <StackPanel VerticalAlignment="Center" Margin="10">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="5,0">
-                        <controls:ExtCheckBox Name="Filter" Content="{loc:Tr ShowOnlyFailed}" ValueChanged="FilterChanged" Margin="2" IsChecked="{Binding ShowOnlyFailed}" />
-                        <controls:ExtCheckBox Name="Sync" Content="{loc:Tr SynchronizeTestsAgents}" ValueChanged="FilterChanged" Margin="2" IsChecked="{Binding NeedSyncForBatch}" />
+                        <controls:ExtCheckBox Name="Filter" Content="{loc:Tr ShowOnlyFailed}" ValueChanged="FilterChanged" Margin="2" IsChecked="{Binding Batch.ShowOnlyFailed}" />
+                        <controls:ExtCheckBox Name="Sync" Content="{loc:Tr SynchronizeTestsAgents}" ValueChanged="FilterChanged" Margin="2" IsChecked="{Binding Batch.NeedSync}" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -41,6 +43,18 @@
             </TabItem>
             <TabItem Header="{loc:Tr TestsResults}">
                 <TabControl Name="Results" TabStripPlacement="Bottom"/>
+            </TabItem>
+            <TabItem Header="{loc:Tr Categories}">
+                <DockPanel>
+                    <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding Batch.UseCategories}" DockPanel.Dock="Top" Margin="5"/>
+                    <DockPanel Margin="10 2 2 2" IsEnabled="{Binding Batch.UseCategories}">
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                            <RadioButton Content="{loc:Tr Include}" IsChecked="{Binding Batch.IncludeCategories}" GroupName="Category" Margin="2"/>
+                            <RadioButton Content="{loc:Tr Exclude}" IsChecked="{Binding Batch.IncludeCategories, Converter={StaticResource BoolInverterConverter}}" GroupName="Category" Margin="2"/>
+                        </StackPanel>
+                        <components:CheckableListBox Name="Categories" Margin="2"/>
+                    </DockPanel>
+                </DockPanel>
             </TabItem>
         </TabControl>
     </DockPanel>

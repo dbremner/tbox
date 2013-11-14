@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Common.Base.Log;
 using Common.Communications.Interprocess;
+using Common.Tools;
+using Common.UI.Model;
 using Common.UI.ModelsContainers;
 using extended.nunit.Interfaces;
 using NUnit.Core;
@@ -30,7 +33,21 @@ namespace PluginsShared.UnitTests
 		public int Count { get { return items.Count; } }
 		public int FailedCount{get{return items.Count(x => x.State == ResultState.Failure || x.State == ResultState.Error);}}
 
-        public TestsPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, string runAsx86Path)
+	    public CheckableDataCollection<CheckableData> Categories
+	    {
+	        get
+	        {
+	            return new CheckableDataCollection<CheckableData>(
+                    items
+                    .SelectMany(x => x.Categories)
+                    .Distinct()
+                    .OrderBy(x=>x)
+                    .Select(x => new CheckableData {Key = x})
+                    );
+	        }
+	    }
+
+	    public TestsPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, string runAsx86Path)
 		{
 		    this.runAsx86 = runAsx86;
 			this.runAsAdmin = runAsAdmin;
@@ -51,18 +68,42 @@ namespace PluginsShared.UnitTests
 			return false;
 		}
 
-		public IList<IList<Result>> PrepareToRun(int processCount)
+        private static bool IncludeFilter(Result r, IEnumerable<string> values)
+        {
+            return r.Categories.Any(o => values.Any(x => x.EqualsIgnoreCase(o)));
+        }
+
+        private static bool ExcludeFilter(Result r, IEnumerable<string> values)
+        {
+            return r.Categories.All(o => !values.Any(x => x.EqualsIgnoreCase(o)));
+        }
+
+		public IList<IList<Result>> PrepareToRun(int processCount, string[] categories, bool?include)
 		{
 			foreach (var i in items)
 			{
 				i.State = ResultState.Inconclusive;
 			}
-			return (processCount > 1)
-								? runner.DivideTestsToRun(items.CheckedItems.ToArray(), processCount).ToArray()
-								: new[] { items.CheckedItems.ToArray() };
+            var filter = GetFilter(categories, include);
+		    return (processCount > 1)
+                                ? runner.DivideTestsToRun(items.CheckedItems.Where(filter).ToArray(), processCount).ToArray()
+								: new[] { items.CheckedItems.Where(filter).ToArray() };
 		}
 
-		public void DoRefresh(Action<TestsPackage> onReceive, Action<TestsPackage> onError)
+	    private static Func<Result, bool> GetFilter(string[] categories, bool? include)
+	    {
+	        if (include.HasValue && categories.Length > 0)
+	        {
+	            if (include.Value)
+	            {
+	                return r => IncludeFilter(r, categories);
+	            }
+	            return r => ExcludeFilter(r, categories);
+	        }
+	        return r=>true;
+	    }
+
+	    public void DoRefresh(Action<TestsPackage> onReceive, Action<TestsPackage> onError)
 		{
 			try
 			{

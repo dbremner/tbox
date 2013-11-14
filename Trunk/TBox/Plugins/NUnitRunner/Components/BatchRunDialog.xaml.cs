@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
+using Common.UI.Model;
+using Common.UI.ModelsContainers;
 using Localization.Plugins.NUnitRunner;
 using NUnitRunner.Code.Settings;
 using PluginsShared.UnitTests;
@@ -71,7 +73,12 @@ namespace NUnitRunner.Components
 			{
 				return;
 			}
-			var testPackages = packages.ToDictionary(x => x, x => x.PrepareToRun(1));
+            var categories =
+                ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
+                    .CheckedItems.Select(x => x.Key)
+                    .ToArray();
+
+			var testPackages = packages.ToDictionary(x => x, x => x.PrepareToRun(1, categories, config.Batch.UseCategories ? (bool?)config.Batch.IncludeCategories : null));
 			var time = Environment.TickCount;
 			DialogsCache.ShowProgress(
 				u => DoRun(new GroupUpdater(u, testPackages.Sum(x=>x.Value.Sum(y=>y.Count))), time, testPackages), 
@@ -85,7 +92,7 @@ namespace NUnitRunner.Components
 			Parallel.ForEach(packages,
 				p => p.DoRun(
 					o => DoRun(o, time, ref count),
-					tests[p], false, 1, config.NeedSyncForBatch && tests.Count > 1,
+					tests[p], false, 1, config.Batch.NeedSync && tests.Count > 1,
 					synchronizer,
 					u));
 		}
@@ -142,6 +149,11 @@ namespace NUnitRunner.Components
 					o => OnRefreshFinish(o, ref count, ref addedPackages),
 					o => Mt.Do(this, Close)
 				));
+            Mt.Do(this, () =>
+                {
+                    Categories.ItemsSource = new CheckableDataCollection<CheckableData>(packages.SelectMany(x => x.Categories).Distinct().OrderBy(x=>x.Key));
+                    Results.SelectedIndex = 0;
+                });
 		}
 
 		private void OnRefreshFinish(TestsPackage package, ref int count, ref int addedPackages)

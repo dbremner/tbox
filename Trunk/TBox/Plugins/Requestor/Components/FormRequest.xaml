@@ -15,7 +15,7 @@
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
              xmlns:controls="clr-namespace:PluginsShared.Controls;assembly=PluginsShared" mc:Ignorable="d" 
              Width="500" Height="600" MinWidth="500" MinHeight="500"
-             WindowStyle="ToolWindow" Title="{Binding Key}"
+             Title="{Binding Key}"
             >
     <DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">

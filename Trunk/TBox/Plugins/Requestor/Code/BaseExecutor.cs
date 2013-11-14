@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using Common.Network;
 using Localization.Plugins.Requestor;
 using Requestor.Code.Settings;
@@ -11,13 +12,13 @@ namespace Requestor.Code
 	{
 		private readonly Request r = new Request();
 
-		public void Execute(Window owner, Op operation, Action<ResponseInfo> onEnd)
+		public void Execute(Window owner, Op operation, Action<ResponseInfo> onEnd, ImageSource icon)
 		{
 			DialogsCache.ShowProgress(
 				u => Work(
 					(Op)operation.Clone(),
 					onEnd
-                    ), RequestorLang.MakeRequestTo + operation.Key, owner);
+                    ), RequestorLang.MakeRequestTo + operation.Key, owner, icon:icon);
 		}
 
 		private void Work(Op op, Action<ResponseInfo> onEnd)

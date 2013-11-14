@@ -17,6 +17,8 @@ namespace NUnitRunner.Code.Settings
 		public bool NeedSynchronizationForTests { get; set; }
         public string DirToCloneTests { get; set; }
         public string CommandBeforeTestsRun { get; set; }
+        public bool UseCategories { get; set; }
+        public bool IncludeCategories { get; set; }
 
 		public TestConfig()
 		{
@@ -29,6 +31,8 @@ namespace NUnitRunner.Code.Settings
 			NeedSynchronizationForTests = false;
 		    DirToCloneTests = Path.GetTempPath();
 		    CommandBeforeTestsRun = string.Empty;
+		    UseCategories = false;
+		    IncludeCategories = true;
 		}
 
 		public override object Clone()
@@ -46,7 +50,9 @@ namespace NUnitRunner.Code.Settings
 					NeedSynchronizationForTests = NeedSynchronizationForTests,
                     Multithreaded = Multithreaded,
                     DirToCloneTests = DirToCloneTests,
-                    CommandBeforeTestsRun = CommandBeforeTestsRun
+                    CommandBeforeTestsRun = CommandBeforeTestsRun,
+                    UseCategories = UseCategories,
+                    IncludeCategories = IncludeCategories,
 				};
 		}
 	}

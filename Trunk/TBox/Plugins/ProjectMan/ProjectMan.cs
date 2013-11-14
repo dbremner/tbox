@@ -30,7 +30,7 @@ namespace ProjectMan
 			}
 			var paths = items.Select(x => x.Key).ToArray();
 			var menu = list.OrderBy(x => x.Key).Select(x => x.Value).ToList();
-			groupOperations.Append(menu, projectContext, Context, paths);
+			groupOperations.Append(menu, projectContext, Context, paths, ImageSource);
 			svnStatisticOperations.Append(menu, projectContext, Context, Config.SvnUserName);
 			Menu = menu.ToArray();
 		}

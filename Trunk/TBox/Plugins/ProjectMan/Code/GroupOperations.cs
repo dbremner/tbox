@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Media;
 using Common.MT;
 using Interface;
 using Localization.Plugins.ProjectMan;
@@ -12,7 +13,7 @@ namespace ProjectMan.Code
 {
 	class GroupOperations
 	{
-		public void Append(IList<UMenuItem> menu, ProjectContext context, IPluginContext pluginContext, string[] paths)
+		public void Append(IList<UMenuItem> menu, ProjectContext context, IPluginContext pluginContext, string[] paths, ImageSource icon)
 		{
 			var enabled = menu.Count > 0;
 			menu.Add(new USeparator());
@@ -21,28 +22,28 @@ namespace ProjectMan.Code
 				IsEnabled = enabled,
                 Header = ProjectManLang.UpdateAll,
 				Icon = pluginContext.GetIcon(context.SvnProvider.Path, 3),
-				OnClick = o=>Run(u => Update(context, paths, u))
+                OnClick = o => Run(u => Update(context, paths, u), icon)
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
                 Header = ProjectManLang.RebuildAllInRelease,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-				OnClick = o => Run(u => Rebuild(context, "Release", paths,u))
+				OnClick = o => Run(u => Rebuild(context, "Release", paths,u), icon)
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
                 Header = ProjectManLang.RebuildAllInDebug,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-				OnClick = o => Run(u => Rebuild(context, "Debug", paths,u))
+                OnClick = o => Run(u => Rebuild(context, "Debug", paths, u), icon)
 			});
 			menu.Add(new UMenuItem
 			{
 				IsEnabled = enabled,
                 Header = ProjectManLang.UpdateAndRebuildAllInDebug,
 				Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-				OnClick = o => Run(u => UpdateAndBuid(context, paths,u))
+                OnClick = o => Run(u => UpdateAndBuid(context, paths, u), icon)
 			});
 		}
 
@@ -86,9 +87,9 @@ namespace ProjectMan.Code
 			}
 		}
 
-		private static void Run(Action<IUpdater> task)
+		private static void Run(Action<IUpdater> task, ImageSource icon)
 		{
-            DialogsCache.ShowProgress(task, ProjectManLang.ProjectManagerProcessProjects, null);
+            DialogsCache.ShowProgress(task, ProjectManLang.ProjectManagerProcessProjects, null, icon:icon);
 		}
 	}
 }

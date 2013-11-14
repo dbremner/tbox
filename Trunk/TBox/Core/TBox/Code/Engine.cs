@@ -205,8 +205,9 @@ namespace TBox.Code
 		{
 			try
 			{
+			    var p = uiConfigurator.InitPlugin(plugin, key);
 				plugMan.LoadItem(key);
-				return uiConfigurator.InitPlugin(plugin, key);
+				return p;
 			}
 			catch (Exception ex)
 			{

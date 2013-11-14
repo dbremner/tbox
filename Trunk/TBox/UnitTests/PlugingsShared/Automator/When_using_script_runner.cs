@@ -8,6 +8,7 @@ using ScriptEngine.Core.Params;
 namespace UnitTests.PlugingsShared.Automator
 {
     [TestFixture]
+    [Category("Integration")]
     class When_using_script_runner
     {
         public static string[] Files

@@ -12,6 +12,8 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 		public int CloneDeep { get; set; }
 		public bool Sync { get; set; }
 		public bool Report { get; set; }
+        public string[] Include { get; set; }
+        public string[] Exclude { get; set; }
         public string DirToCloneTests { get; set; }
         public string CommandBeforeTestsRun { get; set; }
 
@@ -34,11 +36,17 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 			{
 				ParseArgument(s);
 			}
-            Console.WriteLine("Start with arguments: -p={0}, -x86={1}, -clone={2}, -cloneDeep={3}, -sync={4}, -report={5}, path='{6}', -dirToCloneTests='{7}', -commandBeforeTestsRun='{8}' ",
-				ProcessCount, X86, Clone, CloneDeep, Sync, Report, Path, DirToCloneTests, CommandBeforeTestsRun);
+            Console.WriteLine("Start with arguments: -p={0}, -x86={1}, -clone={2}, -cloneDeep={3}, -sync={4}, -report={5}, path='{6}', -dirToCloneTests='{7}', -commandBeforeTestsRun='{8}'{9}{10}",
+                ProcessCount, X86, Clone, CloneDeep, Sync, Report, Path, DirToCloneTests, CommandBeforeTestsRun, Format(", -include=", Include), Format(", -exclude=", Exclude));
 		}
 
-		private void ParseArgument(string arg)
+	    private string Format(string prefix, string[] items)
+	    {
+	        if (items == null) return string.Empty;
+	        return prefix + string.Join(";" , items);
+	    }
+
+	    private void ParseArgument(string arg)
 		{
 			if (Starts(arg, "-p="))
 			{
@@ -63,6 +71,16 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
             else if (Starts(arg, "-commandBeforeTestsRun="))
             {
                 CommandBeforeTestsRun = arg.Substring(23);
+            }
+            else if (Starts(arg, "-include="))
+            {
+                if(Exclude!=null)throw new ArgumentException("You can't specify include and exclude at the same time.");
+                Include = arg.Substring(9).Split(';');
+            }
+            else if (Starts(arg, "-exclude="))
+            {
+                if (Include != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
+                Exclude = arg.Substring(9).Split(';');
             }
 			else if (Equals(arg, "-sync"))
 			{

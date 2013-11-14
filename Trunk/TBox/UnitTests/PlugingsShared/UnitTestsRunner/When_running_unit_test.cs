@@ -11,6 +11,7 @@ using Rhino.Mocks;
 namespace UnitTests.PlugingsShared.UnitTestsRunner
 {
     [TestFixture]
+    [Category("Integration")]
     class When_running_unit_test
     {
         private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "UnitTests.dll");
@@ -93,7 +94,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
 
                 p.DoRefresh(x => { }, x => {});
 
-                var packages = p.PrepareToRun(ncores).Select(o => o.Where(x => x.Key.Contains("BookletPagesGenerator")).ToArray()).ToArray();
+                var packages = p.PrepareToRun(ncores, new[]{"Integration"}, false);
                 var updater = new ConsoleUpdater();
                 var synchronizer = new Synchronizer(ncores);
 

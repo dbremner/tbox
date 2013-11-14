@@ -170,8 +170,9 @@ namespace TeamManager.Forms
         {
             if (profile.Report.GenerateForCurrentWeek)
             {
-                DateFrom.Value = DateTime.Now.GetFirstDayOfWeek().Normalize();
-                DateTo.Value = DateTime.Now.GetLastDayOfWeek().Normalize();
+                var date = DateTime.Now;
+                DateFrom.Value = date.GetFirstDayOfWeek().Normalize();
+                DateTo.Value = date.GetLastDayOfWeek().Normalize();
             }
             btnGenerate.IsEnabled =
                 DateFrom.Value.HasValue && DateTo.Value.HasValue &&

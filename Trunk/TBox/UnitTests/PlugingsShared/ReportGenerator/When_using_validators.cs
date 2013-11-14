@@ -6,6 +6,7 @@ using ScriptEngine.Core;
 namespace UnitTests.PlugingsShared.ReportGenerator
 {
     [TestFixture]
+    [Category("Integration")]
     class When_using_validators
     {
         public static string[] Files

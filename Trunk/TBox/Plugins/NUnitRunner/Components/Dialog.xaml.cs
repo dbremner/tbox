@@ -1,9 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
+using Common.UI.Model;
+using Common.UI.ModelsContainers;
 using Localization.Plugins.NUnitRunner;
 using NUnitRunner.Code.Settings;
 using PluginsShared.UnitTests;
+using PluginsShared.UnitTests.Settings;
 using PluginsShared.UnitTests.Updater;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
@@ -74,6 +78,7 @@ namespace NUnitRunner.Components
 			{
 				Title = Path.GetFileName(o.Path) + " - [ " + package.Count + " ]";
 				package.ApplyResults();
+			    Categories.ItemsSource = package.Categories;
 				FilterChanged(null, null);
 			});
 		}
@@ -86,7 +91,11 @@ namespace NUnitRunner.Components
 			}
 			var caption = Path.GetFileName(config.Key);
 			package.Reset(config.RunAsx86, config.RunAsAdmin, config.DirToCloneTests, config.CommandBeforeTestsRun);
-			var packages = package.PrepareToRun(config.ProcessCount);
+            var categories =
+                ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
+                    .CheckedItems.Select(x => x.Key)
+                    .ToArray();
+            var packages = package.PrepareToRun(config.ProcessCount, categories, config.UseCategories ? (bool?)config.IncludeCategories : null);
 			var time = Environment.TickCount;
 			var synchronizer = new Synchronizer(config.ProcessCount);
 			DialogsCache.ShowProgress(
@@ -94,7 +103,7 @@ namespace NUnitRunner.Components
 				caption, this);
 		}
 
-		private void DoRun(int time)
+	    private void DoRun(int time)
 		{
 			Mt.Do(this,
 				  () =>

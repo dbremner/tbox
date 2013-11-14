@@ -27,7 +27,7 @@ namespace ConsoleUnitTestsRunner
 				var cmdArgs = new CommandLineArgs();
 				cmdArgs.Parse(args);
 				var testsRunner = new TestsRunner();
-				return testsRunner.Run(cmdArgs.Path, cmdArgs.ProcessCount, cmdArgs.X86, cmdArgs.Clone, cmdArgs.CloneDeep, cmdArgs.Sync, cmdArgs.Report, cmdArgs.DirToCloneTests, cmdArgs.CommandBeforeTestsRun);
+                return testsRunner.Run(cmdArgs.Path, cmdArgs.ProcessCount, cmdArgs.X86, cmdArgs.Clone, cmdArgs.CloneDeep, cmdArgs.Sync, cmdArgs.Report, cmdArgs.DirToCloneTests, cmdArgs.CommandBeforeTestsRun, cmdArgs.Include, cmdArgs.Exclude);
 			}
 			catch (Exception ex)
 			{
@@ -47,7 +47,8 @@ namespace ConsoleUnitTestsRunner
 	        Console.WriteLine("-cloneDeep=N - clone deep for unit tests folder, by default deep = 1");
 	        Console.WriteLine("-sync        - enable sync for unit tests, by default false");
 	        Console.WriteLine("-report      - save xml report, by default false");
-	        Console.WriteLine("-report      - save xml report, by default false");
+            Console.WriteLine("-include=a1[;a2] - include only tests with specified categories");
+            Console.WriteLine("-exclude=a1[;a2] - exclude all tests with specified categories");
 	        Console.WriteLine("-dirToCloneTests=path - folder to clone tests, by default %temp%");
 	        Console.WriteLine("-commandBeforeTestsRun=exePath - command to run before execute tests, but after it clone , by default empty");
 	    }

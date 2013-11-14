@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows;
+using System.Windows.Media;
 using Common.Network;
 using Localization.Plugins.Requestor;
 using Requestor.Code.Settings;
@@ -7,6 +9,7 @@ using Requestor.Components;
 using WPFControls.Code;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs.StateSaver;
+using WPFWinForms.Icons;
 
 namespace Requestor.Code
 {
@@ -15,10 +18,11 @@ namespace Requestor.Code
 		private readonly LazyDialog<RequestDialog> message = new LazyDialog<RequestDialog>(
 			() => new RequestDialog(), "message");
 
-		public void Execute(Window owner, Op operation, Config config, Action onEnd = null)
+		public void Execute(Window owner, Op operation, Config config, Action onEnd, ImageSource icon)
 		{
 			if (message.IsVisible) message.Hide();
-			base.Execute(owner, operation, i => Finish(i, owner, operation.Key, config, onEnd));
+		    message.Value.Icon = icon;
+			base.Execute(owner, operation, i => Finish(i, owner, operation.Key, config, onEnd), icon);
 		}
 
 		private void Finish(ResponseInfo response, Window owner, string name, Config config, Action onEnd)

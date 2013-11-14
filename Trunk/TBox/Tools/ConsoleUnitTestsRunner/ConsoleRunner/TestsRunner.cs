@@ -1,8 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Common.Base.Log;
 using Common.MT;
+using Common.Tools;
 using PluginsShared.UnitTests;
+using PluginsShared.UnitTests.Settings;
 using PluginsShared.UnitTests.Updater;
 
 namespace ConsoleUnitTestsRunner.ConsoleRunner
@@ -11,7 +14,7 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 	{
 		private static readonly ILog Log = LogManager.GetLogger<TestsRunner>();
 
-        public int Run(string path, int nCores, bool x86, bool cloneTests, int cloneDeep, bool needSynchronization, bool needReport, string dirToCloneTests, string commandToExecuteBeforeTests)
+        public int Run(string path, int nCores, bool x86, bool cloneTests, int cloneDeep, bool needSynchronization, bool needReport, string dirToCloneTests, string commandToExecuteBeforeTests, string[] include, string[] exclude)
 		{
 			var time = Environment.TickCount;
 			var view = new ConsoleView();
@@ -32,7 +35,7 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 					return -3;
 				}
 				Console.WriteLine("Running tests..");
-				var packages = p.PrepareToRun(nCores);
+				var packages = p.PrepareToRun(nCores, include??exclude, include!=null && exclude!=null);
 				var updater = new ConsoleUpdater();
 				var synchronizer = new Synchronizer(nCores);
 				p.DoRun(x=>PrintInfo(x, time, view, needReport, path), 

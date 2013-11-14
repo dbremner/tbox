@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using Localization.Plugins.SqlRunner;
 using SqlRunner.Code.Settings;
 using WPFControls.Code;
@@ -13,10 +14,11 @@ namespace SqlRunner.Code
 	{
 		private readonly LazyDialog<MemoBox> message = new LazyDialog<MemoBox>(()=>new MemoBox(), "message");
 
-		public void Execute(Window owner, Op operation, string connectionString, Config config, Action onEnd = null)
+		public void Execute(Window owner, Op operation, string connectionString, Config config, Action onEnd, ImageSource icon)
 		{
 			if(message.IsVisible)message.Hide();
-			base.Execute(owner, operation, connectionString, i => Finish(i, owner, operation.Key, config, onEnd));
+		    message.Value.Icon = icon;
+            base.Execute(owner, operation, connectionString, i => Finish(i, owner, operation.Key, config, onEnd), icon);
 		}
 
 		private void Finish(DatabaseInfo response, Window owner, string name, Config config, Action onEnd)
