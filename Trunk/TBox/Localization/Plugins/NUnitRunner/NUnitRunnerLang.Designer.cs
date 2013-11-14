@@ -88,6 +88,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string Categories {
+            get {
+                return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cloning.
         /// </summary>
         public static string Clonning {
@@ -160,6 +169,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exclude.
+        /// </summary>
+        public static string Exclude {
+            get {
+                return ResourceManager.GetString("Exclude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter:.
         /// </summary>
         public static string Filter {
@@ -174,6 +192,15 @@ namespace Localization.Plugins.NUnitRunner {
         public static string FolderToCloneTests {
             get {
                 return ResourceManager.GetString("FolderToCloneTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include.
+        /// </summary>
+        public static string Include {
+            get {
+                return ResourceManager.GetString("Include", resourceCulture);
             }
         }
         
@@ -300,6 +327,15 @@ namespace Localization.Plugins.NUnitRunner {
         public static string TestsStateTemplate {
             get {
                 return ResourceManager.GetString("TestsStateTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use categories.
+        /// </summary>
+        public static string UseCategories {
+            get {
+                return ResourceManager.GetString("UseCategories", resourceCulture);
             }
         }
         
