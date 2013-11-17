@@ -1,4 +1,6 @@
-﻿07/11/2013 Finish TeamManager
+﻿17/11/2013 Add categories support for NUnit tests runner. Fix Auto updater, to update with new git repository.
+
+07/11/2013 Finish TeamManager
 
 03/11/2013 Add portable mode
 
