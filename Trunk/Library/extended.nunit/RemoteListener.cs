@@ -16,13 +16,13 @@ namespace extended.nunit
 		public string Handle { get; set; }
 		public bool Fast { get; set; }
 		private int time = Environment.TickCount;
-		private Client<INunitRunnerClient> client;
+		private InterprocessClient<INunitRunnerClient> client;
 		private readonly IList<Result> items = new List<Result>();
 		private int expectedTestCount;
 
-		private Client<INunitRunnerClient> GetClient()
+		private InterprocessClient<INunitRunnerClient> GetClient()
 		{
-			return client ?? (client = new Client<INunitRunnerClient>(Handle));
+			return client ?? (client = new InterprocessClient<INunitRunnerClient>(Handle));
 		}
 
 		public void RunStarted(string name, int testCount)
@@ -85,7 +85,7 @@ namespace extended.nunit
 		private void WaitUntillAllOtherTestsFinished()
 		{
 			var s = new NunitRunnerServer();
-			using (var server = new Server<INunitRunnerServer>(s))
+			using (var server = new InterprocessServer<INunitRunnerServer>(s))
 			{
 				GetClient().Instance.CanFinish(server.Handle);
 				while (s.ShouldWait)

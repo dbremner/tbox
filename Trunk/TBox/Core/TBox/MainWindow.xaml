@@ -6,8 +6,8 @@
                       xmlns:buttonsView="clr-namespace:WPFControls.Components.ButtonsView;assembly=WPFControls"
                       Title="{loc:Tr Caption}" 
         Icon="/TBox;component/Resources/Icon.ico" 
-        Width="600" Height="640" 
-        MinWidth="600" MinHeight="640" 
+        Width="600" Height="600" 
+        MinWidth="600" MinHeight="600" 
         WindowState="Normal" ShowInTaskbar="True">
     <Window.Resources>
         <RoutedUICommand x:Key="Help"/>
@@ -71,7 +71,7 @@
             <Label/>
         </DockPanel>
         <ContentControl Name="PluginsBack" Margin="5,2,5,5">
-            <buttonsView:GroupedList Name="View" Margin="0" Padding="0" />
+            <buttonsView:GroupedList Name="View" Margin="0" Padding="0"/>
         </ContentControl>
     </DockPanel>
 </Dialogs:DialogWindow>

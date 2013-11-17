@@ -10,6 +10,7 @@ using WPFControls.Code;
 using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace NUnitRunner
 {
@@ -28,7 +29,7 @@ namespace NUnitRunner
 		private T CreateDialog<T>()
 			where T : DialogWindow, new() 
 		{
-			return new T{Icon = ImageSource};
+            return new T { Icon = Icon.ToImageSource() };
 		}
 
 		public override void OnRebuildMenu()

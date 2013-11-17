@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Resources;
-using System.Windows;
 using System.Windows.Markup;
 using LibsLocalization.WPFControls;
 
@@ -13,13 +12,14 @@ namespace WPFControls.Localization
 		//private DependencyObject targetObject;
 		//private DependencyProperty targetProperty;
 
-		protected TranslateExtension(string key)
+		protected TranslateExtension(string key, ResourceManager resm)
 		{
 			this.key = key;
-			//Translator.CultureChanged += Translator_CultureChanged;
+		    Manager = resm;
+		    //Translator.CultureChanged += Translator_CultureChanged;
 		}
 
-		protected abstract ResourceManager Manager { get; }
+		protected ResourceManager Manager { get; private set; }
 		/*
 		void Translator_CultureChanged(object sender, EventArgs e)
 		{
@@ -42,12 +42,7 @@ namespace WPFControls.Localization
 
 	public class TrExtension : TranslateExtension
 	{
-		public TrExtension(string key): base(key){}
-
-		protected override ResourceManager Manager
-		{
-			get { return WPFControlsLang.ResourceManager; }
-		}
+        public TrExtension(string key) : base(key, WPFControlsLang.ResourceManager) { }
 	}
 
 }

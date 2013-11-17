@@ -64,9 +64,10 @@
   <ItemGroup>
     <Compile Include="Atrributes\PluginInfoAttribute.cs" />
     <Compile Include="ConfigManager.cs" />
+    <Compile Include="Folders.cs" />
     <Compile Include="IConfigWithDialogStates.cs" />
     <Compile Include="NonUserRunContext.cs" />
-    <Compile Include="PluginGroup.cs" />
+    <Compile Include="Atrributes\PluginGroup.cs" />
     <Compile Include="SingleDialogConfigurablePlugin.cs" />
     <Compile Include="SingleDialogPlugin.cs" />
     <Compile Include="SimpleConfigurablePlugin.cs" />

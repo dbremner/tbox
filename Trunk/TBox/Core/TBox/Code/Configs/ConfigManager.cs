@@ -13,8 +13,8 @@ namespace TBox.Code.Configs
 		public Config Config { get; private set; }
 		private ParamSerializer<Config> paramSer;
 		private const string ConfigFileName = "Config.config";
-	    private readonly string localFolder = AppDomain.CurrentDomain.BaseDirectory;
-        private readonly string userFolder = Folders.UserFolder;
+        private readonly string localFolder = Folders.LocalFolder;
+        private readonly string userFolder = Folders.UserRootFolder;
 
 		public ConfigManager()
 		{

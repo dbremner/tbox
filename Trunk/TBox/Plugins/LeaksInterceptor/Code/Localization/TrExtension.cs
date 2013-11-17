@@ -1,15 +1,9 @@
-﻿using System.Resources;
-using Localization.Plugins.LeaksInterceptor;
+﻿using Localization.Plugins.LeaksInterceptor;
 
 namespace LeaksInterceptor.Code.Localization
 {
 	public class TrExtension : WPFControls.Localization.TranslateExtension
 	{
-		public TrExtension(string key) : base(key){}
-
-		protected override ResourceManager Manager
-		{
-			get { return LeaksInterceptorLang.ResourceManager; }
-		}
+        public TrExtension(string key) : base(key, LeaksInterceptorLang.ResourceManager) { }
 	}
 }

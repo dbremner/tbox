@@ -8,7 +8,7 @@ namespace WPFControls.Controls
 	{
 		public static DependencyProperty Create<TOwner, TValue>(string name, 
 			Action<TOwner, TValue> setter)
-			where TOwner : Control
+            where TOwner : FrameworkElement
 		{
 			return DependencyProperty.Register(
 					name,
@@ -23,7 +23,7 @@ namespace WPFControls.Controls
 
 		public static DependencyProperty Create<TOwner, TValue>(string name, TValue defaultValue,
 			Action<TOwner, TValue> setter)
-			where TOwner : Control
+            where TOwner : FrameworkElement
 		{
 			return DependencyProperty.Register(
 					name,

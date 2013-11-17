@@ -25,7 +25,7 @@ namespace Common.SaveLoad
 				{
                     using (var s = File.Open(configPath, FileMode.Open))
                     {
-                        return JsonSerializer.DeserializeFromStream(type, s);
+                        return JsonSerializer.DeserializeFromStream(type, s)??defValue;
                     }
 				}
 				catch (Exception ex)

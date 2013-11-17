@@ -180,7 +180,6 @@ namespace TBox.Code
 			var info = pluginsSettings.Collection.First(x => key.EqualsIgnoreCase(x.Key));
 			info.Plugin = plugin;
 			plugin.Icon = info.Icon;
-			plugin.ImageSource = info.ImageSource;
 			return info;
 		}
 

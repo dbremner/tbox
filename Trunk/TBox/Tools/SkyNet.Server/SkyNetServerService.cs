@@ -6,15 +6,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
-using SkyNet.Common.Server;
+using SkyNet.Common.Configurations;
+using SkyNet.Common.Contracts.Server;
 using Common.Communications.Network;
 
 namespace SkyNet.Server
 {
     public partial class SkyNetServerService : ServiceBase
     {
-        public SkyNetServerService()
+        private readonly ServerConfig config;
+
+        public SkyNetServerService(ServerConfig config)
         {
+            this.config = config;
             InitializeComponent();
         }
 
@@ -22,7 +26,7 @@ namespace SkyNet.Server
 
         protected override void OnStart(string[] args)
         {
-            server = new Server<ISkyNetServer>(new SkyNetServer(), 11111);
+            server = new NetworkServer<ISkyNetServer>(new SkyNetServer(config), config.Port);
         }
 
         protected override void OnStop()

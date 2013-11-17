@@ -141,6 +141,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesCommanderLang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\SkyNet\SkyNetLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SkyNetLang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\SourcesUniter\SourcesUniterLang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -282,6 +287,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ServicesCommanderLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\SkyNet\SkyNetLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SkyNetLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\SkyNet\SkyNetLang.ru.resx" />
     <EmbeddedResource Include="Plugins\SourcesUniter\SourcesUniterLang.ru.resx" />
     <EmbeddedResource Include="Plugins\SourcesUniter\SourcesUniterLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

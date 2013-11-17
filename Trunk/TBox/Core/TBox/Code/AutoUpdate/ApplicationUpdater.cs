@@ -38,7 +38,7 @@ namespace TBox.Code.AutoUpdate
 				return false;
 			}
             cm.Config.Update.Last = DateTime.Now;
-            Mt.Do(Application.Current.MainWindow, DoExit);
+            Application.Current.Dispatcher.Invoke(new Action(DoExit));
 			return true;
 		}
 

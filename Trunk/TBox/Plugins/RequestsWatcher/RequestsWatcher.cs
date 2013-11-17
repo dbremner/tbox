@@ -9,6 +9,7 @@ using RequestsWatcher.Code;
 using RequestsWatcher.Code.Parser;
 using RequestsWatcher.Components;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace RequestsWatcher
 {
@@ -32,7 +33,7 @@ namespace RequestsWatcher
 		{
 			base.Init(context);
 			worker = new Lazy<Worker<LogDialog>>(
-				() => new Worker<LogDialog>(new LogDialog(ImageSource), parser, RequestsWatcherLang.PluginName, Config, Color.Green)); 
+				() => new Worker<LogDialog>(new LogDialog(Icon.ToImageSource()), parser, RequestsWatcherLang.PluginName, Config, Color.Green)); 
 		}
 
 		private void OnFillFromClipboard()

@@ -12,6 +12,7 @@ using WPFControls.Code;
 using WPFControls.Dialogs.StateSaver;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace SqlRunner
 {
@@ -33,14 +34,14 @@ namespace SqlRunner
 		private FormDdos CreateDdosForm()
 		{
 			var dialog = new FormDdos();
-			dialog.Init(ImageSource, Icon, ddoser = new Ddoser());
+            dialog.Init(Icon.ToImageSource(), Icon, ddoser = new Ddoser());
 			ddoser.OnConfigUpdated(Config);
 			return dialog;
 		}
 
 		private FormBatch CreateBatchForm()
 		{
-			return new FormBatch{Icon=ImageSource};
+            return new FormBatch { Icon = Icon.ToImageSource() };
 		}
 
 		public override void OnRebuildMenu()
@@ -58,7 +59,7 @@ namespace SqlRunner
 						.Select(o => new UMenuItem
 						{
 							Header = o.Key,
-							OnClick = x => executor.Value.Execute(Application.Current.MainWindow, o, Config.ConnectionString, Config, null, ImageSource)
+                            OnClick = x => executor.Value.Execute(Application.Current.MainWindow, o, Config.ConnectionString, Config, null, Icon.ToImageSource())
 						})
 						.Concat(
 						new[]

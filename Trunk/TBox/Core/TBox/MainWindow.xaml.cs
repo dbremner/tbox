@@ -81,9 +81,12 @@ namespace TBox
 
 			ExceptionsHelper.HandleException(ShowChangeLog, () => TBoxLang.ErrorProcessingChangelog, Log);
 			this.SetState(configManager.Config.DialogState);
-		    Show();
-			Hide();
-			if (configManager.Config.StartHidden) return;
+		    if (configManager.Config.StartHidden)
+		    {
+                Show();
+                Hide();
+		        return;
+		    }
 			uiConfigurator.FastStartShower.Show();
 		}
 

@@ -6,6 +6,7 @@ using Localization.Plugins.ServicesCommander;
 using ServicesCommander.Code;
 using WPFControls.Dialogs;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace ServicesCommander
 {
@@ -60,7 +61,7 @@ namespace ServicesCommander
 
 		private void DoWithProgress(string title, Action op)
 		{
-			DialogsCache.ShowProgress(u=>op(), title, null, icon: ImageSource);
+			DialogsCache.ShowProgress(u=>op(), title, null, icon: Icon.ToImageSource());
 		}
 
 		public override void Init(IPluginContext context)

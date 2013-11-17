@@ -71,7 +71,7 @@ namespace NUnitAgent.Code
 				}
 				finally
 				{
-					new Client<INunitRunnerClient>(handle).Instance.SetCollectedTests(JsonSerializer.SerializeToString(list.ToArray()));
+					new InterprocessClient<INunitRunnerClient>(handle).Instance.SetCollectedTests(JsonSerializer.SerializeToString(list.ToArray()));
 					runner.Unload();
 				}
 			}

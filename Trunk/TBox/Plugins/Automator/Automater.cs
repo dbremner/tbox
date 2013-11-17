@@ -19,6 +19,7 @@ using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace Automator
 {
@@ -43,12 +44,12 @@ namespace Automator
 
 		private EditorDialog CreateEditor()
 		{
-			return new EditorDialog { Context = Context, Icon = ImageSource };
+			return new EditorDialog { Context = Context, Icon = Icon.ToImageSource() };
 		}
 
         private ScriptsRunner CreateRunner()
 		{
-            return new ScriptsRunner { Context = Context, Icon = ImageSource };
+            return new ScriptsRunner { Context = Context, Icon = Icon.ToImageSource() };
 		}
 
 		public override void Init(IPluginContext context)
@@ -90,7 +91,7 @@ namespace Automator
 
 		private void RunAll(Profile profile)
 		{
-			DialogsCache.ShowProgress(u=>RunAll(u, profile.Operations), AutomatorLang.RunScript + ": " + profile.Key, null, false, true, ImageSource);
+            DialogsCache.ShowProgress(u => RunAll(u, profile.Operations), AutomatorLang.RunScript + ": " + profile.Key, null, false, true, Icon.ToImageSource());
 		}
 		 
 		private void RunAll(IUpdater u, IList<Operation> operations)

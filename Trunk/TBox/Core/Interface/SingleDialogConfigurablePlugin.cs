@@ -2,8 +2,8 @@
 using WPFControls.Code;
 using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
-using WPFControls.Tools;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace Interface
 {
@@ -21,9 +21,12 @@ namespace Interface
 
 		protected virtual TDialog CreateDialog()
 		{
-            var dialog = new TDialog { DataContext = ConfigManager.Config };
-			dialog.Icon = ImageSource;
-			return dialog;
+            var dialog = new TDialog
+            {
+                DataContext = ConfigManager.Config, 
+                Icon = Icon.ToImageSource()
+            };
+		    return dialog;
 		}
 
 		protected virtual void ShowDialog()

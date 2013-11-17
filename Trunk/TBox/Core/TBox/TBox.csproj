@@ -152,7 +152,6 @@
     <Compile Include="Code\FastStart\Settings\MenuItemStatistic.cs" />
     <Compile Include="Code\FastStart\UserActionsManager.cs" />
     <Compile Include="Code\FeedbackSender.cs" />
-    <Compile Include="Code\Folders.cs" />
     <Compile Include="Code\Localization\TranslateExtension.cs" />
     <Compile Include="Code\Menu\IMenuItemsProvider.cs" />
     <Compile Include="Code\Menu\IMenuRunHandler.cs" />
@@ -227,13 +226,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Data\TeamManager\DataProviders\SubversionScript.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TeamManager\DataProviders\TargetProcessScript.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TeamManager\Validators\Default.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Compile Include="Forms\ChangesLogDialog.xaml.cs">
       <DependentUpon>ChangesLogDialog.xaml</DependentUpon>

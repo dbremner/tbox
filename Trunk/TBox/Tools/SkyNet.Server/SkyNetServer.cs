@@ -1,50 +1,200 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.ServiceModel;
-using SkyNet.Common.Server;
+using System.ServiceModel.Web;
+using Common.Base.Log;
+using Common.Tools;
+using SkyNet.Common.Configurations;
+using SkyNet.Common.Contracts.Server;
+using SkyNet.Server.Code;
 
 namespace SkyNet.Server
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = false)]
     public class SkyNetServer : ISkyNetServer
     {
-        public SkyWork[] GetWorks()
+        private readonly ServerConfig config;
+        private readonly ILog log = LogManager.GetLogger<SkyNetServer>();
+        private readonly Storage storage = new Storage();
+
+        public SkyNetServer(ServerConfig config)
         {
-            throw new NotImplementedException();
+            this.config = config;
         }
 
-        public SkyAgent[] GetAgents()
+        public IList<ServerAgent> GetAgents()
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (storage)
+                {
+                    return storage.Config.Agents;
+                }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+                return new List<ServerAgent>();
+            }
         }
 
-        public string AddTask(SkyTask task)
+        public void ConnectAgent(ServerAgent agent)
         {
-            throw new NotImplementedException();
+            try 
+            { 
+                lock (storage)
+                {
+                    if (string.IsNullOrEmpty(agent.Endpoint) || agent.TotalCores <= 0 )
+                    {
+                        SetStatusCode(HttpStatusCode.ExpectationFailed);
+                        return;
+                    }
+                    var exist = storage.Config.Agents.FirstOrDefault(x => x.Endpoint.EqualsIgnoreCase(agent.Endpoint));
+                    if (exist != null)
+                    {
+                        exist.TotalCores = agent.TotalCores;
+                    }
+                    else
+                    {
+                        storage.Config.Agents.Add(new ServerAgent
+                        {
+                            Endpoint = agent.Endpoint,
+                            TotalCores = agent.TotalCores,
+                            State = ServerAgentState.Idle
+                        });
+                    }
+                    storage.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+            }
         }
 
-        public SkyState GetState(string id)
+        public void DisconnectAgent(string endpoint)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (storage)
+                {
+                    var agent = storage.Config.Agents.FirstOrDefault(x => x.Endpoint.EqualsIgnoreCase(endpoint));
+                    if (agent == null)
+                    {
+                        SetStatusCode(HttpStatusCode.NotFound);
+                        return;
+                    }
+                    storage.Config.Agents.Remove(agent);
+                    storage.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+            }
         }
 
-        public SkyReport GetReport(string id)
+        public string AddTask(ServerTask task)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (storage)
+                {
+                    task.Id = Guid.NewGuid().ToString();
+                    if (string.IsNullOrEmpty(task.Config) || string.IsNullOrEmpty(task.Script))
+                    {
+                        SetStatusCode(HttpStatusCode.ExpectationFailed);
+                        return string.Empty;
+                    }
+                    storage.Config.Tasks.Add(new ServerTask
+                    {
+                        Id = task.Id,
+                        Config = task.Config,
+                        Script = task.Script,
+                        Owner = task.Owner,
+                        CreatedTime = DateTime.UtcNow,
+                        IsDone = false,
+                        Progress = 0,
+                        Report = string.Empty
+                    });
+                    storage.Save();
+                    return task.Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+                return string.Empty;
+            }
         }
 
-        public void DeleteTask(string id)
+        public string DeleteTask(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (storage)
+                {
+                    var task = storage.Config.Tasks.FirstOrDefault(x => x.Id.EqualsIgnoreCase(id));
+                    if (task == null)
+                    {
+                        SetStatusCode(HttpStatusCode.NotFound);
+                        return string.Empty;
+                    }
+                    storage.Config.Tasks.Remove(task);
+                    storage.Save();
+                    return task.Report;
+                }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+                return string.Empty;
+            }
         }
 
-        public void AddAgent(string endpoint)
+        public void PingIsAlive()
         {
-            throw new NotImplementedException();
         }
 
-        public void DeleteAgent(string endpoint)
+        public IList<ServerTask> GetTasks()
         {
-            throw new NotImplementedException();
+            try
+            {
+                lock (storage)
+                {
+                    return storage.Config.Tasks
+                        .Select(x=>new ServerTask
+                            {
+                                Progress = x.Progress,
+                                IsDone = x.IsDone,
+                                Owner = x.Owner,
+                                CreatedTime = x.CreatedTime
+                            })
+                        .ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex);
+                return new List<ServerTask>();
+            }
+        }
+
+
+        private static void SetStatusCode(HttpStatusCode status)
+        {
+            if (WebOperationContext.Current != null)
+            {
+                WebOperationContext.Current.OutgoingResponse.StatusCode = status;
+            }
+        }
+
+        private void ProcessError(Exception ex)
+        {
+            log.Write(ex, "Unexpected exception");
+            SetStatusCode(HttpStatusCode.InternalServerError);
         }
     }
 }

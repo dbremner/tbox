@@ -29,7 +29,7 @@ namespace PluginsShared.UnitTests
 				var id = agent.Key;
 				agent.Value = true;
 				ThreadPool.QueueUserWorkItem(
-					o => new Client<INunitRunnerServer>(id).Instance.CanClose())
+					o => new InterprocessClient<INunitRunnerServer>(id).Instance.CanClose())
 					;
 			}
 		}

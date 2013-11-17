@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="SkyNet.Settings"
+             xmlns:loc="clr-namespace:SkyNet.Code.Localization"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:PluginsShared.Controls;assembly=PluginsShared"
+             xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
+             xmlns:units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
+             xmlns:scriptEngine="clr-namespace:ScriptEngine;assembly=ScriptEngine"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <TabControl >
+        <TabItem Header="{loc:Tr Operations}">
+            <units:CheckableListBoxUnit ItemsSource="{Binding Operations}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
+                <units:CheckableListBoxUnit.ItemTemplate>
+                    <DataTemplate DataType="{x:Type scriptEngine:Operation}">
+                        <DockPanel>
+                            <Button Content="{loc:Tr SetParameters}" VerticalAlignment="Center" Margin="1" Click="BtnSetOperationParametersClick" DockPanel.Dock="Right"/>
+                            <Button Content="{loc:Tr SetScripts}" VerticalAlignment="Center" Margin="1" Click="BtnOperationSetScriptsClick" DockPanel.Dock="Right"/>
+                            <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                        </DockPanel>
+                    </DataTemplate>
+                </units:CheckableListBoxUnit.ItemTemplate>
+            </units:CheckableListBoxUnit>
+        </TabItem>
+        <TabItem Header="{loc:Tr Agent}">
+            <StackPanel HorizontalAlignment="Center">
+                <GroupBox Header="{loc:Tr Service}" Margin="5">
+                    <controls:ServiceControl Name="AgentService" ServiceName="TBox.SkyNet.Agent"/>
+                </GroupBox>
+                <GroupBox Header="{loc:Tr Configuration}" Margin="5" Name="AgentConfiguration" IsEnabled="{Binding Path=IsRunning, ElementName=AgentService}" IsEnabledChanged="AgentSettingsNeedRefresh">
+                    <StackPanel>
+                        <captioned:CaptionedNumericUpDown Caption="{loc:Tr Port}" Minimum="1" Maximum="65536" Value="{Binding Port}" Margin="5"/>
+                        <captioned:CaptionedTextBox Caption="{loc:Tr ServerEndpoint}" Value="{Binding ServerEndpoint}" Margin="5"/>
+                        <captioned:CaptionedNumericUpDown Caption="{loc:Tr AvailableCpuCores}" Minimum="1" Maximum="32" Value="{Binding TotalCores}" Margin="5"/>
+                        <Button Content="{loc:Tr Change}" HorizontalAlignment="Right" Margin="5" Click="ChangeAgentSettingsClick"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="{loc:Tr Server}">
+            <StackPanel HorizontalAlignment="Center">
+                <GroupBox Header="{loc:Tr Service}" Margin="5">
+                    <controls:ServiceControl Name="ServerService" ServiceName="TBox.SkyNet.Server"/>
+                </GroupBox>
+                <GroupBox Header="{loc:Tr Configuration}" Margin="5" Name="ServerConfiguration" IsEnabled="{Binding Path=IsRunning, ElementName=ServerService}" IsEnabledChanged="ServerSettingsNeedRefresh">
+                    <StackPanel>
+                        <captioned:CaptionedNumericUpDown Caption="{loc:Tr Port}" Minimum="1" Maximum="65536" Value="{Binding Port}" Margin="5"/>
+                        <captioned:CaptionedNumericUpDown Caption="{loc:Tr MaximumTaskExecutionTime}" Minimum="1" Maximum="3600" Value="{Binding MaximumTaskExecutionTime}" Margin="5"/>
+                        <Button Content="{loc:Tr Change}" HorizontalAlignment="Right" Margin="5" Click="ChangeServerSettingsClick"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="{loc:Tr Information}">
+            <DockPanel IsEnabled="{Binding Path=IsRunning, ElementName=AgentService}">
+                <GroupBox Header="{loc:Tr CurrentAgentTask}" DockPanel.Dock="Top" Name="AgentInfo" >
+                    <Grid HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Content="{loc:Tr Name}" Grid.Row="0" Grid.Column="0" />
+                        <Label Content="{loc:Tr Progress}" Grid.Row="1" Grid.Column="0" />
+                        <Label Content="{loc:Tr IsDone}" Grid.Row="2" Grid.Column="0" />
+
+                        <Label Content="{Binding Name}" Grid.Row="0" Grid.Column="1" />
+                        <Label Content="{Binding Progress}" Grid.Row="1" Grid.Column="1" />
+                        <Label Content="{Binding IsDone}" Grid.Row="2" Grid.Column="1" />
+                    </Grid>
+                </GroupBox>
+                <Button Content="{loc:Tr Refresh}" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="5" Click="RefreshInfoClick"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="{loc:Tr Agents}" Grid.Row="0">
+                        <ListBox Name="ConnectedAgents" Margin="5"/>
+                    </GroupBox>
+                    <GroupBox Header="{loc:Tr Tasks}" Grid.Row="1">
+                        <ListBox Name="ExistTasks" Margin="5"/>
+                    </GroupBox>
+                </Grid>
+            </DockPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

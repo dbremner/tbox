@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
-using System.Text;
 using Common.Base.Log;
+using Interface;
+using SkyNet.Common.Configurations;
+using Common.Communications.Interprocess;
 
 namespace SkyNet.Server
 {
@@ -16,18 +17,22 @@ namespace SkyNet.Server
         /// </summary>
         static void Main()
         {
-            LogManager.Init(new MultiLog(new IBaseLog[] { new ConsoleLog(), new FileLog("service.log") }));
-            var service = new SkyNetServerService();
-            if (Environment.UserInteractive)
+            LogManager.Init(new MultiLog(new IBaseLog[] { new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "SkyNet.Server.log")) }));
+            var provider = new ConfigProvider<ServerConfig>(Path.Combine(Folders.UserToolsFolder, "SkyNet.Sever.config"));
+            using (new InterprocessServer<IConfigProvider<ServerConfig>>(provider, "TBox.SkyNet.Server"))
             {
-                service.StartService();
-                Console.WriteLine("Press any key to stop program");
-                Console.ReadKey();
-                service.StopService();
-            }
-            else
-            {
-                ServiceBase.Run(new ServiceBase[] { service });
+                var service = new SkyNetServerService(provider.Config);
+                if (Environment.UserInteractive)
+                {
+                    service.StartService();
+                    Console.WriteLine("Press any key to stop program");
+                    Console.ReadKey();
+                    service.StopService();
+                }
+                else
+                {
+                    ServiceBase.Run(new ServiceBase[] { service });
+                }
             }
         }
 

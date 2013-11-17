@@ -78,12 +78,6 @@
     <Compile Include="FeedbackService.Designer.cs">
       <DependentUpon>FeedbackService.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,13 +94,15 @@
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+      <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
+      <Name>Interface</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FeedbackService.resx">
       <DependentUpon>FeedbackService.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -42,53 +42,57 @@
             </DockPanel>
         </TabItem>
         <TabItem Header="{loc:Tr GlobalSettings}">
-            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" >
-                <GroupBox Header="{loc:Tr AutoUpdate}" Margin="5" >
-                    <StackPanel Orientation="Vertical">
-                        <captioned:CaptionedEnumDropDownList Caption="{loc:Tr UpdateInterval}" Margin="5" Value="{Binding Update.Interval}" SourceEnumType="autoUpdate:UpdateInterval" />
-                        <CheckBox IsChecked="{Binding Update.ShowChanglog}" Content="{loc:Tr ShowChangelogOnUpdate}" Margin="5"/>
-                        <Button Content="{loc:Tr CheckForUpdates}" Margin="5" Width="140" Click="Button_Click" />
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="{loc:Tr TeamWorkSettings}" Margin="5" >
-                    <StackPanel>
-                        <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="{loc:Tr UpdateFromSharedFolder}" Name="UpdateFromSharedlFolder" Margin="5,5,5,0" />
-                        <captioned:CaptionedEditPath Caption="{loc:Tr PathToTheMirrorDirectory}" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
-                        <CheckBox Name="AllowErrorReports" Content="{loc:Tr SendErrorReports}" IsChecked="{Binding ErrorReports.AllowSend}" Margin="5"/>
-                        <captioned:CaptionedEditPath Caption="{loc:Tr PathToTheErrorsDirectory}" Margin="5" Value="{Binding ErrorReports.Directory}" PathGetterType="Folder" IsEnabled="{Binding IsChecked, ElementName=AllowErrorReports}"/>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="{loc:Tr FastStart}" Margin="5" >
-                    <StackPanel>
-                        <captioned:CaptionedNumericUpDown Caption="{loc:Tr MaxItemsInHistory}" Minimum="0" Maximum="100" Value="{Binding FastStartConfig.MaxCount}" />
-                        <Button Content="{loc:Tr ClearHistory}" Margin="5" Padding="5,0" HorizontalAlignment="Right" Click="ButtonClearHistoryClick"/>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="{loc:Tr Usability}" Margin="5" >
-                    <StackPanel>
-                        <captioned:CaptionedComboBox Name="Themes" Caption="{loc:Tr Theme}" IsEditable="False" Value="{Binding Theme}" SelectedIndexChanged="ThemeChanged"/>
-                        <CheckBox IsChecked="{Binding UseMenuWithIcons}" Content="{loc:Tr UseTrayMenuWithIcons}" Margin="5"/>
-                        <CheckBox IsChecked="{Binding HideOnSave}" Content="{loc:Tr HideOnSave}" Margin="5"/>
-                        <CheckBox IsChecked="{Binding HideOnCancel}" Content="{loc:Tr HideOnCancel}" Margin="5"/>
-                        <CheckBox IsChecked="{Binding StartHidden}" Content="{loc:Tr StartHidden}" Margin="5"/>
-                        <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="{loc:Tr ShowSettingsBySingleClickOnTrayIcon}" Margin="5"/>
-                        <controls:ExtCheckBox IsChecked="{Binding EnableGPUAccelerationForUi}" Content="{loc:Tr UseGPUForUIRender}" Margin="5" />
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Header="{loc:Tr Shortcuts}" Margin="5" >
-                    <StackPanel>
-                        <Button Content="{loc:Tr ShortcutToDesktop}" Click="ShortcutToDesktopClick" Margin="5" Width="140"/>
-                        <Button Content="{loc:Tr ShortcutToAutorun}" Click="ShortcutToAutorunClick" Margin="5" Width="140"/>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox  Header="{loc:Tr Configuration}" Margin="5" >
-                    <StackPanel>
-                        <captioned:CaptionedComboBox Name="cbLanguage" IsEditable="false" Caption="{loc:Tr Language}" Value="{Binding Language}" ValueChanged="LanguageChanged" Margin="5"/>
-                        <CheckBox IsChecked="{Binding Configuration.PortableMode}" Content="{loc:Tr PortableMode}" Margin="5"/>
-                        <TextBlock Text="{loc:Tr RestartNeeded}" FontWeight="Light" HorizontalAlignment="Right"/>
-                    </StackPanel>
-                </GroupBox>
-            </WrapPanel>
+            <ScrollViewer >
+                <StackPanel HorizontalAlignment="Center" >
+                    <GroupBox Header="{loc:Tr AutoUpdate}" Margin="5" Padding="5">
+                        <StackPanel HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <captioned:CaptionedEnumDropDownList Caption="{loc:Tr UpdateInterval}" Margin="5" Value="{Binding Update.Interval}" SourceEnumType="autoUpdate:UpdateInterval" />
+                                <Button Content="{loc:Tr CheckForUpdates}" Margin="5" Width="140" Click="Button_Click" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <CheckBox IsChecked="{Binding Update.ShowChanglog}" Content="{loc:Tr ShowChangelogOnUpdate}" Margin="5"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{loc:Tr TeamWorkSettings}" Margin="5" Padding="5">
+                        <StackPanel>
+                            <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="{loc:Tr UpdateFromSharedFolder}" Name="UpdateFromSharedlFolder" Margin="5,5,5,0" />
+                            <captioned:CaptionedEditPath Caption="{loc:Tr PathToTheMirrorDirectory}" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
+                            <CheckBox Name="AllowErrorReports" Content="{loc:Tr SendErrorReports}" IsChecked="{Binding ErrorReports.AllowSend}" Margin="5"/>
+                            <captioned:CaptionedEditPath Caption="{loc:Tr PathToTheErrorsDirectory}" Margin="5" Value="{Binding ErrorReports.Directory}" PathGetterType="Folder" IsEnabled="{Binding IsChecked, ElementName=AllowErrorReports}"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{loc:Tr FastStart}" Margin="5" Padding="5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <captioned:CaptionedNumericUpDown Caption="{loc:Tr MaxItemsInHistory}" Minimum="0" Maximum="100" Value="{Binding FastStartConfig.MaxCount}" />
+                            <Button Content="{loc:Tr ClearHistory}" Margin="20 5"  HorizontalAlignment="Right" Click="ButtonClearHistoryClick" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{loc:Tr Usability}" Margin="5" Padding="5">
+                        <StackPanel>
+                            <captioned:CaptionedComboBox Name="Themes" Caption="{loc:Tr Theme}" IsEditable="False" Value="{Binding Theme}" SelectedIndexChanged="ThemeChanged"/>
+                            <CheckBox IsChecked="{Binding UseMenuWithIcons}" Content="{loc:Tr UseTrayMenuWithIcons}" Margin="5"/>
+                            <CheckBox IsChecked="{Binding HideOnSave}" Content="{loc:Tr HideOnSave}" Margin="5"/>
+                            <CheckBox IsChecked="{Binding HideOnCancel}" Content="{loc:Tr HideOnCancel}" Margin="5"/>
+                            <CheckBox IsChecked="{Binding StartHidden}" Content="{loc:Tr StartHidden}" Margin="5"/>
+                            <CheckBox IsChecked="{Binding ShowSettingsByTraySingleClick}" Content="{loc:Tr ShowSettingsBySingleClickOnTrayIcon}" Margin="5"/>
+                            <controls:ExtCheckBox IsChecked="{Binding EnableGPUAccelerationForUi}" Content="{loc:Tr UseGPUForUIRender}" Margin="5" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="{loc:Tr Shortcuts}" Margin="5" Padding="5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="{loc:Tr ShortcutToDesktop}" Click="ShortcutToDesktopClick" Margin="5"/>
+                            <Button Content="{loc:Tr ShortcutToAutorun}" Click="ShortcutToAutorunClick" Margin="5"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox  Header="{loc:Tr Configuration}" Margin="5" Padding="5">
+                        <StackPanel>
+                            <captioned:CaptionedComboBox Name="cbLanguage" IsEditable="false" Caption="{loc:Tr Language}" Value="{Binding Language}" ValueChanged="LanguageChanged" Margin="5"/>
+                            <CheckBox IsChecked="{Binding Configuration.PortableMode}" Content="{loc:Tr PortableMode}" Margin="5"/>
+                            <TextBlock Text="{loc:Tr RestartNeeded}" FontWeight="Light" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
         </TabItem>
         <TabItem Header="{loc:Tr HotKeys}">
             <DockPanel>

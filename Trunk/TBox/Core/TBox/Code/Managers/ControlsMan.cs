@@ -9,6 +9,7 @@ using Localization.TBox;
 using TBox.Code.Objects;
 using WPFControls.Code.OS;
 using WPFControls.Components.ButtonsView;
+using WPFWinForms.Icons;
 
 namespace TBox.Code.Managers
 {

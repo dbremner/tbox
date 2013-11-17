@@ -8,7 +8,6 @@ namespace Interface
 	{
 		public IPluginContext Context { get; private set; } 
 		public UMenuItem[] Menu { get; protected set; }
-		public ImageSource ImageSource { get; set; }
 		public Icon Icon { get; set; }
 		public PluginGroup PluginGroup { get; set; }
 

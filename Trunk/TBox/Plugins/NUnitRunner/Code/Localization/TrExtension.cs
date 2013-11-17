@@ -5,11 +5,6 @@ namespace NUnitRunner.Code.Localization
 {
 	public class TrExtension : WPFControls.Localization.TranslateExtension
 	{
-		public TrExtension(string key) : base(key){}
-
-		protected override ResourceManager Manager
-		{
-            get { return NUnitRunnerLang.ResourceManager; }
-		}
+        public TrExtension(string key) : base(key, NUnitRunnerLang.ResourceManager) { }
 	}
 }

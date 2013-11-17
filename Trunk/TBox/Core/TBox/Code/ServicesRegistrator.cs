@@ -18,7 +18,7 @@ namespace TBox.Code
 {
     class ServicesRegistrator
     {
-        private static readonly string LogsFolder = Path.Combine(Folders.UserFolder, "Logs");
+        private static readonly string LogsFolder = Path.Combine(Folders.UserRootFolder, "Logs");
         private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder, "errors.log");
 
         public ServicesRegistrator()

@@ -7,6 +7,7 @@ using Searcher.Code;
 using Searcher.Code.Settings;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace Searcher
 {
@@ -20,7 +21,7 @@ namespace Searcher
 		{
 			worker = new Lazy<Worker>(() =>
 			{
-				var w = new Worker(availabilityChecker, Context.DoSync, ImageSource);
+				var w = new Worker(availabilityChecker, Context.DoSync, Icon.ToImageSource());
 				w.Fill(Config);
 				w.InitFolders(Context.DataProvider.WritebleDataPath);
 				return w;

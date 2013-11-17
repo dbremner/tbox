@@ -38,7 +38,7 @@ namespace PluginsShared.UnitTests
 			return result;
 		}
 
-        public void Run(string path, IList<IList<Result>> packages, Server<INunitRunnerClient> server, bool copyToLocalFolders, int copyDeep, bool needSynchronizationForTests, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, Synchronizer synchronizer, IProgressStatus u)
+        public void Run(string path, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, bool copyToLocalFolders, int copyDeep, bool needSynchronizationForTests, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, Synchronizer synchronizer, IProgressStatus u)
 		{
 			var dllPaths = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyDeep, dirToCloneTests, u);
 			var s = (NunitRunnerClient)server.Owner;

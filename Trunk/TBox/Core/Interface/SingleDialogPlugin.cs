@@ -2,8 +2,8 @@
 using WPFControls.Code;
 using WPFControls.Dialogs;
 using WPFControls.Dialogs.StateSaver;
-using WPFControls.Tools;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace Interface
 {
@@ -23,7 +23,7 @@ namespace Interface
 			return new TDialog
 			{
                 DataContext = ConfigManager.Config, 
-				Icon = ImageSource
+				Icon = Icon.ToImageSource()
 			};
 		}
 

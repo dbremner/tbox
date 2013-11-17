@@ -98,6 +98,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -109,6 +110,9 @@
       <DependentUpon>ResponseBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RibbonDialogWindow.cs" />
+    <Compile Include="Controls\ServiceControl.xaml.cs">
+      <DependentUpon>ServiceControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ddos\Components\FormDdos.xaml.cs">
       <DependentUpon>FormDdos.xaml</DependentUpon>
     </Compile>
@@ -236,6 +240,10 @@
     <Page Include="Controls\ResponseBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ServiceControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Ddos\Components\FormDdos.xaml">
       <Generator>MSBuild:Compile</Generator>

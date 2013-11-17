@@ -15,6 +15,7 @@ using WPFControls.Code;
 using WPFControls.Dialogs.StateSaver;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 [assembly: InternalsVisibleTo("UnitTests")]
 namespace Templates
@@ -34,7 +35,7 @@ namespace Templates
 		private T CreateDialog<T>()
 			where T : Window, new()
 		{
-			return new T{Icon = ImageSource};
+			return new T{Icon = Icon.ToImageSource()};
 		}
 
 		public override void Init(IPluginContext context)

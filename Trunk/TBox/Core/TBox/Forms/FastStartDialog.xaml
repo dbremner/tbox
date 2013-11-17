@@ -4,5 +4,5 @@
              xmlns:loc="clr-namespace:TBox.Code.Localization"
              xmlns:buttonsView="clr-namespace:WPFControls.Components.ButtonsView;assembly=WPFControls"
              >
-    <buttonsView:GroupedList ItemsSource="{Binding Items}" Name="ItemsList"/>
+    <buttonsView:GroupedList ItemsSource="{Binding Items}" Name="ItemsList" CellSize="80" IconSize="32"/>
 </UserControl>

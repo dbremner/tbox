@@ -179,7 +179,7 @@
     <value>Без ошибок</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Плагин для автоматизации часто повторяемых действий.</value>
+    <value>Возможность создавать или использовать существующие скрипты на c# для автоматизации обычных ежедневных действий</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Автоматизатор</value>

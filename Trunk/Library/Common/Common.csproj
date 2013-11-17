@@ -80,10 +80,10 @@
     <Compile Include="Base\Log\TypedLogger.cs" />
     <Compile Include="Communications\IEmailSender.cs" />
     <Compile Include="Console\Cmd.cs" />
-    <Compile Include="Communications\Interprocess\Client.cs" />
-    <Compile Include="Communications\Interprocess\Server.cs" />
-    <Compile Include="Communications\Network\Client.cs" />
-    <Compile Include="Communications\Network\Server.cs" />
+    <Compile Include="Communications\Interprocess\InterprocessClient.cs" />
+    <Compile Include="Communications\Interprocess\InterprocessServer.cs" />
+    <Compile Include="Communications\Network\NetworkClient.cs" />
+    <Compile Include="Communications\Network\NetworkServer.cs" />
     <Compile Include="MT\ConsoleUpdater.cs" />
     <Compile Include="MT\NullUpdater.cs" />
     <Compile Include="Communications\SmtpEmailSender.cs" />

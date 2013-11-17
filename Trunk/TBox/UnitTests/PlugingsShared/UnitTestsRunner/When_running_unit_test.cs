@@ -101,7 +101,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
                 //Act
                 p.DoRun(x => x.ApplyResults(), packages, copy, 1, sync, synchronizer, new SimpleUpdater(updater, synchronizer));
                 Assert.Greater(p.Count, 210);
-                Assert.AreEqual(p.FailedCount, 0);
+                Assert.AreEqual(0, p.FailedCount);
             }
         }
     }

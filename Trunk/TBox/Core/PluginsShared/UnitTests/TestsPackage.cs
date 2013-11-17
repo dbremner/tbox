@@ -27,7 +27,7 @@ namespace PluginsShared.UnitTests
 		public IUnitTestsView Results { get; private set; }
 		public string Path { get; private set; }
 		private CheckableDataCollection<Result> items;
-		private readonly Server<INunitRunnerClient> server;
+		private readonly InterprocessServer<INunitRunnerClient> server;
 		private readonly Runner runner;
 		private readonly Calculator calculator;
 		public int Count { get { return items.Count; } }
@@ -54,7 +54,7 @@ namespace PluginsShared.UnitTests
             this.dirToCloneTests = dirToCloneTests;
             this.commandToExecuteBeforeTests = commandToExecuteBeforeTests;
 			Path = path;
-			server = new Server<INunitRunnerClient>(new NunitRunnerClient());
+			server = new InterprocessServer<INunitRunnerClient>(new NunitRunnerClient());
             calculator = new Calculator(nunitAgentPath, runAsx86Path);
 			runner = new Runner(nunitAgentPath, runAsx86Path);
 			items = new CheckableDataCollection<Result>();

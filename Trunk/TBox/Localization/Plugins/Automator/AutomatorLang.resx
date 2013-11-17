@@ -178,7 +178,7 @@
     <value>No errors</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
-    <value>Simple tool to automate everything what is possible. :)</value>
+    <value>Ability to create your own script ic c# or use existing to automate routine dayly actions</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Automater</value>

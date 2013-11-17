@@ -9,6 +9,7 @@ using PluginsShared.Tools;
 using ProjectMan.Code;
 using ProjectMan.Code.Settings;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace ProjectMan
 {
@@ -30,7 +31,7 @@ namespace ProjectMan
 			}
 			var paths = items.Select(x => x.Key).ToArray();
 			var menu = list.OrderBy(x => x.Key).Select(x => x.Value).ToList();
-			groupOperations.Append(menu, projectContext, Context, paths, ImageSource);
+			groupOperations.Append(menu, projectContext, Context, paths, Icon.ToImageSource());
 			svnStatisticOperations.Append(menu, projectContext, Context, Config.SvnUserName);
 			Menu = menu.ToArray();
 		}

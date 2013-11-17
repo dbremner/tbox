@@ -13,6 +13,7 @@ using TeamManager.Forms;
 using WPFControls.Code;
 using WPFControls.Dialogs.StateSaver;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace TeamManager
 {
@@ -26,7 +27,7 @@ namespace TeamManager
 
 	    public TeamManager()
 	    {
-            timeReportDialog = new LazyDialog<TimeReportDialog>(()=> new TimeReportDialog(receiver) { Icon = ImageSource }, "timeReportDialog");
+            timeReportDialog = new LazyDialog<TimeReportDialog>(()=> new TimeReportDialog(receiver) { Icon = Icon.ToImageSource() }, "timeReportDialog");
             editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
 	    }
 
@@ -49,7 +50,7 @@ namespace TeamManager
 
 	    private EditorDialog CreateEditor()
 	    {
-            return new EditorDialog { Context = Context, Icon = ImageSource };
+            return new EditorDialog { Context = Context, Icon = Icon.ToImageSource() };
 	    }
 
 	    public override void Init(IPluginContext context)
@@ -93,13 +94,14 @@ namespace TeamManager
 
         protected override Settings CreateSettings()
         {
+            var imageSource = Icon.ToImageSource();
             var s = base.CreateSettings();
             s.FilePathesGetter = GetPathes;
             s.ReportScriptRunner = reportScriptRunner;
             s.OperationsDialog = new LazyDialog<OperationDialog>(
-                () => new OperationDialog{Icon = ImageSource}, "report operation");
+                () => new OperationDialog{Icon = imageSource}, "report operation");
             s.ScriptsConfigurator = new LazyDialog<ScriptsConfigurator>(
-                () => new ScriptsConfigurator{Context = Context, Icon = ImageSource}, "scripts configurator");
+                () => new ScriptsConfigurator{Context = Context, Icon = imageSource}, "scripts configurator");
             return s;
         }
 

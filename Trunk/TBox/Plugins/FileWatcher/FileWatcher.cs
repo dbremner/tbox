@@ -6,6 +6,7 @@ using Interface.Atrributes;
 using Localization.Plugins.FileWatcher;
 using PluginsShared.Watcher;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace FileWatcher
 {
@@ -37,7 +38,7 @@ namespace FileWatcher
 		{
 			base.Init(context);
 			worker = new Lazy<Worker<LogDialog>>(
-				() => new Worker<LogDialog>(dialog = new LogDialog(ImageSource), new DataParser(), FileWatcherLang.PluginName, Config)); 
+				() => new Worker<LogDialog>(dialog = new LogDialog(Icon.ToImageSource()), new DataParser(), FileWatcherLang.PluginName, Config)); 
 		}
 
 		private void OnClear()

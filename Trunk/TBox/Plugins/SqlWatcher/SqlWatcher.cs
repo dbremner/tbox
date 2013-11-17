@@ -8,6 +8,7 @@ using PluginsShared.Watcher;
 using SqlWatcher.Code;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace SqlWatcher
 {
@@ -16,7 +17,7 @@ namespace SqlWatcher
 	{
 		private Lazy<Worker<LogDialog>> worker;
         private readonly DataParser parser = new DataParser();
-		private static readonly string[] StartStop = new[] {SqlWatcherLang.Start, SqlWatcherLang.Stop}; 
+		private static readonly string[] StartStop = {SqlWatcherLang.Start, SqlWatcherLang.Stop}; 
 		public SqlWatcher()
 		{
 			Menu = new []{
@@ -32,7 +33,7 @@ namespace SqlWatcher
 			base.Init(context);
 			context.AddTypeToWarmingUp(typeof(SyntaxHighlighter));
 			worker = new Lazy<Worker<LogDialog>>(
-				() => new Worker<LogDialog>(new LogDialog(ImageSource), parser, SqlWatcherLang.PluginName, Config, Color.Blue)); 
+				() => new Worker<LogDialog>(new LogDialog(Icon.ToImageSource()), parser, SqlWatcherLang.PluginName, Config, Color.Blue)); 
 		}
 
 		private void OnFillFromClipboard()

@@ -67,6 +67,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,12 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
     <Compile Include="SkyNetAgentService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -100,16 +95,16 @@
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+      <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
+      <Name>Interface</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\SkyNet.Common\SkyNet.Common.csproj">
       <Project>{82C7F60B-51CB-4E8D-8657-2B3C91CE48BD}</Project>
       <Name>SkyNet.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

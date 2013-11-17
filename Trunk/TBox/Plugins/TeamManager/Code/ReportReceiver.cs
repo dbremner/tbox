@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Common.MT;
 using Common.Tools;
@@ -32,8 +33,11 @@ namespace TeamManager.Code
             var runner = new ReportScriptRunner();
             var columns = new Dictionary<string, ColumnInfo>();
             var folder = readOnlyDataPath;
+            var culture = Thread.CurrentThread.CurrentCulture;
             Parallel.ForEach(operations, o =>
             {
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = culture;
                 var context = new ReportScriptContext(dateFrom, dateTo, persons, columns)
                 {
                     Name = o.Key

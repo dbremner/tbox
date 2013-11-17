@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Common.Base.Log;
+using Interface;
 using ScriptEngine.Core;
 
 namespace ConsoleScriptRunner
@@ -56,9 +57,8 @@ namespace ConsoleScriptRunner
 
 	    private static string GetConfigsPath()
 	    {
-	        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox");
-            return !File.Exists(Path.Combine(path, "Config.config")) ? 
-                AppDomain.CurrentDomain.BaseDirectory : path;
+            return !File.Exists(Path.Combine(Folders.UserRootFolder, "Config.config")) ?
+                AppDomain.CurrentDomain.BaseDirectory : Folders.UserRootFolder;
 	    }
 
 	    static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)

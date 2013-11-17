@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows;
 using Common.AutoUpdate;
 using Common.Base.Log;
@@ -11,17 +12,17 @@ namespace TBox.Code.AutoUpdate
 {
 	class CodePlexApplicationUpdater : IApplicationUpdater
 	{
-		private const string CheckUrl = "https://tbox.svn.codeplex.com/svn/lastversion.txt";
-		private const string DownloadUrlTemplate = "https://tbox.codeplex.com/downloads/get/{0}";
+        private const string CheckUrl = "https://tbox.codeplex.com/releases/";
 		private static readonly ILog Log = LogManager.GetLogger<CodePlexApplicationUpdater>();
-		private string[] updateInfo;
+        private string downloadLink;
+        private string version;
 
 		public bool NeedUpdate()
 		{
 			try
 			{
-				updateInfo = GetLastInfo();
-				var newVersion = new Version(updateInfo[0]);
+				GetLastInfo();
+				var newVersion = new Version(version);
 				var currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 				if ( newVersion > currentVersion)
 				{
@@ -48,14 +49,16 @@ namespace TBox.Code.AutoUpdate
 
 		public void Update()
 		{
-			using (Process.Start(string.Format(DownloadUrlTemplate, updateInfo[1]))) { }
+			using (Process.Start(downloadLink)) { }
 		}
 
-		private static string[] GetLastInfo()
+		private void GetLastInfo()
 		{
 			using (var cl = new WebClient())
 			{
-				return cl.DownloadString(CheckUrl).Split(new[] {"#"}, StringSplitOptions.RemoveEmptyEntries);
+			    var str = cl.DownloadString(CheckUrl);
+                version = new Regex(@"TBox (?<version>\d{1,}.\d{1,})").Match(str).Groups["version"].Value;
+                downloadLink = new Regex(@"href=""(?<url>https://tbox.codeplex.com/downloads/get/\d{1,})""").Match(str).Groups["url"].Value;
 			}
 		}
 	}

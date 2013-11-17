@@ -13,6 +13,7 @@ using WPFControls.Code;
 using WPFControls.Dialogs.StateSaver;
 using WPFSyntaxHighlighter;
 using WPFWinForms;
+using WPFWinForms.Icons;
 
 namespace Requestor
 {
@@ -31,7 +32,7 @@ namespace Requestor
 		private FormDdos CreateForm()
 		{
 			var dialog = new FormDdos();
-			dialog.Init(ImageSource, Icon, new Ddoser());
+			dialog.Init(Icon.ToImageSource(), Icon, new Ddoser());
 			return dialog;
 		}
 
@@ -46,7 +47,7 @@ namespace Requestor
 						.Select(x => new UMenuItem
 						{
 							Header = x.Key,
-							OnClick = o => executor.Value.Execute(Application.Current.MainWindow, x, Config, null, ImageSource)
+							OnClick = o => executor.Value.Execute(Application.Current.MainWindow, x, Config, null, Icon.ToImageSource())
 						})
 						.Concat(
 						new[]
@@ -82,7 +83,7 @@ namespace Requestor
 		protected override Settings CreateSettings()
 		{
 			var s = base.CreateSettings();
-			s.Requestor = new Lazy<FormRequest>(()=>FillHelpInfo(new FormRequest(ImageSource)));
+			s.Requestor = new Lazy<FormRequest>(()=>FillHelpInfo(new FormRequest(Icon.ToImageSource())));
 			return s;
 		}
 

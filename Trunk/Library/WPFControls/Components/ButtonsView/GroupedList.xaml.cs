@@ -12,6 +12,8 @@ namespace WPFControls.Components.ButtonsView
 	{
 		public GroupedList()
 		{
+		    IconSize = 24;
+		    CellSize = 68;
 			InitializeComponent();
 		}
 
@@ -37,5 +39,8 @@ namespace WPFControls.Components.ButtonsView
 			if(e.Key == Key.Space || e.Key == Key.Return)
 				ClickItem(sender, e);
 		}
+
+        public int IconSize { get; set; }
+        public int CellSize { get; set; }
 	}
 }
