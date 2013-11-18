@@ -162,6 +162,11 @@
         <File Name='TBox32.exe'/>
         <File Name='TBox32.exe.config'/>
       </Component>
+      <Component Id="RegistryEntries" Guid="39C14E49-9D20-4E98-B590-0E498D38D17D">
+        <RegistryKey Root="HKCU" Key="$(var.RegistryPath)">
+          <RegistryValue Type="string" Name="InstallDir" Value="[INSTALLLOCATION]" />
+        </RegistryKey>
+      </Component>
     </DirectoryRef>
 	</Fragment>
 </Wix>

@@ -40,7 +40,7 @@
                   WorkingDirectory="INSTALLLOCATION"
                     />
         <RemoveFolder Id="DesktopFolder" On="uninstall"/>
-        <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        <RegistryValue Root="HKCU" Key="$(var.RegistryPath)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
   </Fragment>
@@ -54,7 +54,7 @@
                   WorkingDirectory="INSTALLLOCATION"
                     />
         <RemoveFolder Id="StartupFolder" On="uninstall"/>
-        <RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        <RegistryValue Root="HKCU" Key="$(var.RegistryPath)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
   </Fragment>

@@ -31,7 +31,6 @@
   <ItemGroup>
     <Content Include="Resources\bannrbmp.bmp" />
     <Content Include="Resources\dlgbmp.bmp" />
-    <Content Include="Resources\Icon.bmp" />
     <Content Include="Variables.wxi" />
   </ItemGroup>
   <ItemGroup>
