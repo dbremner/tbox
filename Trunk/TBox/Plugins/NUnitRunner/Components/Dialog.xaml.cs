@@ -69,7 +69,7 @@ namespace NUnitRunner.Components
 			var caption = Path.GetFileName(config.Key);
 			DialogsCache.ShowProgress(
 				u => package.DoRefresh(DoRefresh, o => Mt.Do(this, Close)), 
-				caption, this);
+				caption, this, false);
 		}
 
 		private void DoRefresh(TestsPackage o)
@@ -100,7 +100,7 @@ namespace NUnitRunner.Components
 			var synchronizer = new Synchronizer(config.ProcessCount);
 			DialogsCache.ShowProgress(
 				u => package.DoRun(o => DoRun(time), packages, config.CopyToSeparateFolders, config.CopyDeep, config.NeedSynchronizationForTests && config.ProcessCount > 1, synchronizer, new SimpleUpdater(u, synchronizer)),
-				caption, this);
+				caption, this, false);
 		}
 
 	    private void DoRun(int time)

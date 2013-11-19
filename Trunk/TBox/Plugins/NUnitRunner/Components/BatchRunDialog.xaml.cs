@@ -82,7 +82,7 @@ namespace NUnitRunner.Components
 			var time = Environment.TickCount;
 			DialogsCache.ShowProgress(
 				u => DoRun(new GroupUpdater(u, testPackages.Sum(x=>x.Value.Sum(y=>y.Count))), time, testPackages), 
-				originalCaption, this);
+				originalCaption, this, false);
 		}
 
 		private void DoRun(IProgressStatus u, int time, IDictionary<TestsPackage, IList<IList<Result>>> tests)
@@ -137,7 +137,7 @@ namespace NUnitRunner.Components
 				Results.Items.Add(
 					new TabItem {Header = Path.GetFileName(item.Key), Content = p.Results});
 			}
-			DialogsCache.ShowProgress(DoRefresh, originalCaption, this);
+			DialogsCache.ShowProgress(DoRefresh, originalCaption, this, false);
 		}
 
 		private void DoRefresh(IUpdater u)
