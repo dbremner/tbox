@@ -94,7 +94,7 @@ namespace Automator
             DialogsCache.ShowProgress(u => RunAll(u, profile.Operations), AutomatorLang.RunScript + ": " + profile.Key, null, false, true, Icon.ToImageSource());
 		}
 		 
-		private void RunAll(IUpdater u, IList<Operation> operations)
+		private void RunAll(IUpdater u, IList<MultiFileOperation> operations)
 		{
 			var i = 0;
 			var count = operations.Sum(x => x.Pathes.CheckedItems.Count());
@@ -138,7 +138,7 @@ namespace Automator
             editorDialog.Do(Context.DoSync, x => x.ShowDialog(GetPathes(), scriptRunner), Config.States);
 		}
 
-		private void DoWork(Operation operation, object context)
+		private void DoWork(MultiFileOperation operation, object context)
 		{
 			if (context is NonUserRunContext)
 			{

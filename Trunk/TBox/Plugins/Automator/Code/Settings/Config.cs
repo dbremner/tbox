@@ -24,12 +24,12 @@ namespace Automator.Code.Settings
 					new Profile
 						{
 							Key = "Sample",
-							Operations = new ObservableCollection<Operation>
+							Operations = new ObservableCollection<MultiFileOperation>
 								{
-									new Operation
+									new MultiFileOperation
 									{
 										Key = "simple script package",
-										Pathes = new CheckableDataCollection<CheckableData>{new CheckableData{Key = "Msc\\params.cs"}} 
+										Pathes = new CheckableDataCollection<CheckableData>{new CheckableData{Key = "Scripts\\params.cs"}} 
 									}
 								}
 						}

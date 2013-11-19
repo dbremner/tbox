@@ -23,17 +23,17 @@ namespace PluginsShared.ScriptEngine
 	{
 		private static readonly ILog Log = LogManager.GetLogger<EditorDialog>();
 		public IPluginContext Context { get; set; }
-        private IScriptRunner runner;
+        private IScriptConfigurator configurator;
 		public EditorDialog()
 		{
 			InitializeComponent();
 		}
 
-		public void ShowDialog(IList<string> pathes, IScriptRunner r)
+		public void ShowDialog(IList<string> pathes, IScriptConfigurator c)
 		{
 			if (!IsVisible)
 			{
-			    runner = r;
+			    configurator = c;
 				Files.ItemsSource = pathes;
 				Files.IsEnabled = Files.Items.Count > 0;
 				if (Files.IsEnabled && Files.SelectedIndex == -1) Files.SelectedIndex = 0;
@@ -64,7 +64,7 @@ namespace PluginsShared.ScriptEngine
 			Func<string> time = () => Environment.NewLine + string.Format(PluginsSharedLang.CompilationTimeTemplate, sw.ElapsedMilliseconds);
 			try
 			{
-			    runner.GetParameters(text);
+			    configurator.GetParameters(text);
 				Mt.SetText(Output, PluginsSharedLang.NoErrors + time());
 			}
 			catch (CompilerExceptions cex)

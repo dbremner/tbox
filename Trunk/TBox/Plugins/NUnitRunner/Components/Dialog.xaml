@@ -12,44 +12,12 @@
                       xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
                       mc:Ignorable="d" 
              ShowInTaskbar="True" WindowStartupLocation="CenterOwner"
-             Width="900" Height="480"
-             MinWidth="900" MinHeight="480">
+             Width="640" Height="480"
+             MinWidth="640" MinHeight="480">
     <Window.Resources>
         <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
     </Window.Resources>
     <DockPanel>
-        <DockPanel DockPanel.Dock="Left" >
-            <GroupBox Margin="5" Header="{loc:Tr Configuration}" DockPanel.Dock="Top">
-                <StackPanel >
-                    <controls:ExtCheckBox Content="{loc:Tr SynchronizeTestsAgents}" IsChecked="{Binding NeedSynchronizationForTests}" Margin="2"/>
-                    <controls:ExtCheckBox Content="{loc:Tr RunAsx86}" IsChecked="{Binding RunAsx86}" Margin="2"/>
-                    <controls:ExtCheckBox Content="{loc:Tr RunAsAdmin}" IsChecked="{Binding RunAsAdmin}" Margin="2"/>
-                    <captioned:CaptionedEditPath Caption="{loc:Tr CommandToRunBeforeTests}" Value="{Binding CommandBeforeTestsRun}" PathGetterType="File" />
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Margin="5" Header="{loc:Tr Clonning}" DockPanel.Dock="Top">
-                    <StackPanel >
-                    <controls:ExtCheckBox Name="CopyToSeparateFolders" IsChecked="{Binding CopyToSeparateFolders}" Content="{loc:Tr CopyToSeparateFolders}"  Margin="2" />
-                    <captioned:CaptionedEditPath Caption="{loc:Tr FolderToCloneTests}" Value="{Binding DirToCloneTests}" PathGetterType="Folder" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}"/>
-                    <captioned:CaptionedNumericUpDown Name="CopyDeep" Caption="{loc:Tr CopyDeep}" Value="{Binding CopyDeep}" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Minimum="1" Maximum="64"/>
-                </StackPanel>
-            </GroupBox>
-            <GroupBox Margin="5" Header="{loc:Tr Multithreading}" DockPanel.Dock="Top">
-                <captioned:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16"/>
-            </GroupBox>
-            <GroupBox Margin="5" Header="{loc:Tr Categories}" VerticalAlignment="Stretch" DockPanel.Dock="Top">
-                <DockPanel VerticalAlignment="Stretch">
-                    <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding UseCategories}" DockPanel.Dock="Top" Margin="5"/>
-                    <DockPanel Margin="10 2 2 2" IsEnabled="{Binding UseCategories}">
-                        <StackPanel DockPanel.Dock="Top" >
-                            <RadioButton Content="{loc:Tr Include}" IsChecked="{Binding IncludeCategories}" GroupName="Category" Margin="2"/>
-                            <RadioButton Content="{loc:Tr Exclude}" IsChecked="{Binding IncludeCategories, Converter={StaticResource BoolInverterConverter}}" GroupName="Category" Margin="2"/>
-                        </StackPanel>
-                        <components:CheckableListBox Name="Categories" Margin="2"/>
-                    </DockPanel>
-                </DockPanel>
-            </GroupBox>
-        </DockPanel>
         <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Margin="15" >
             <controls:ExtCheckBox Name="Filter" IsChecked="{Binding OnlyFailed}" Content="{loc:Tr ShowOnlyFailedTests}" ValueChanged="FilterChanged" Margin="2" DockPanel.Dock="Left"/>
             <Button Content="{loc:Tr Cancel}" Margin="5" Padding="5,2" Width="70" IsCancel="True" Click="CancelClick" DockPanel.Dock="Right"/>
@@ -57,6 +25,54 @@
             <Button Content="{loc:Tr Refresh}" Margin="5" Padding="5,2" Width="70" Click="RefreshClick" DockPanel.Dock="Right"/>
             <Label/>
         </DockPanel>
-        <DockPanel Name="Panel" />
+        <TabControl DockPanel.Dock="Top">
+            <TabItem Header="{loc:Tr Tests}">
+                <DockPanel Name="Panel" />
+            </TabItem>
+            <TabItem Header="{loc:Tr Settings}">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Margin="5" Header="{loc:Tr Categories}" VerticalAlignment="Stretch" Grid.Column="0">
+                        <DockPanel VerticalAlignment="Stretch">
+                            <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding UseCategories}" DockPanel.Dock="Top" Margin="5"/>
+                            <DockPanel Margin="10 2 2 2" IsEnabled="{Binding UseCategories}">
+                                <StackPanel DockPanel.Dock="Top" >
+                                    <RadioButton Content="{loc:Tr Include}" IsChecked="{Binding IncludeCategories}" GroupName="Category" Margin="2"/>
+                                    <RadioButton Content="{loc:Tr Exclude}" IsChecked="{Binding IncludeCategories, Converter={StaticResource BoolInverterConverter}}" GroupName="Category" Margin="2"/>
+                                </StackPanel>
+                                <components:CheckableListBox Name="Categories" Margin="2"/>
+                            </DockPanel>
+                        </DockPanel>
+                    </GroupBox>
+                    <StackPanel Grid.Column="1">
+                        <GroupBox Margin="5" Header="{loc:Tr Configuration}">
+                            <StackPanel >
+                                <DockPanel>
+                                    <StackPanel DockPanel.Dock="Left" >
+                                        <controls:ExtCheckBox Content="{loc:Tr SynchronizeTestsAgents}" IsChecked="{Binding NeedSynchronizationForTests}" Margin="5"/>
+                                        <controls:ExtCheckBox Content="{loc:Tr RunAsx86}" IsChecked="{Binding RunAsx86}" Margin="5"/>
+                                        <controls:ExtCheckBox Content="{loc:Tr RunAsAdmin}" IsChecked="{Binding RunAsAdmin}" Margin="5"/>
+                                    </StackPanel>
+                                    <GroupBox Margin="5" Header="{loc:Tr Multithreading}">
+                                        <captioned:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16" Margin="5"/>
+                                    </GroupBox>
+                                </DockPanel>
+                                <captioned:CaptionedEditPath Caption="{loc:Tr CommandToRunBeforeTests}" Value="{Binding CommandBeforeTestsRun}" PathGetterType="File" Margin="5"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Margin="5" Header="{loc:Tr Clonning}">
+                            <StackPanel >
+                                <controls:ExtCheckBox Name="CopyToSeparateFolders" IsChecked="{Binding CopyToSeparateFolders}" Content="{loc:Tr CopyToSeparateFolders}"  Margin="5" />
+                                <captioned:CaptionedEditPath Caption="{loc:Tr FolderToCloneTests}" Value="{Binding DirToCloneTests}" PathGetterType="Folder" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Margin="5"/>
+                                <captioned:CaptionedNumericUpDown Name="CopyDeep" Caption="{loc:Tr CopyDeep}" Value="{Binding CopyDeep}" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Minimum="1" Maximum="64" Margin="5"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </DockPanel>
 </dialogs:DialogWindow>

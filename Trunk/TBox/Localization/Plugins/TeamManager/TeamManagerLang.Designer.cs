@@ -421,6 +421,15 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, specify script path, before set paramters.
+        /// </summary>
+        public static string PleaseSpecifyScriptPath {
+            get {
+                return ResourceManager.GetString("PleaseSpecifyScriptPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plugin to simplify team management..
         /// </summary>
         public static string PluginDescription {
@@ -471,6 +480,15 @@ namespace Localization.Plugins.TeamManager {
         public static string ProjectManagerUrl {
             get {
                 return ResourceManager.GetString("ProjectManagerUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Script editor for providers.
+        /// </summary>
+        public static string ProvidersScriptEditor {
+            get {
+                return ResourceManager.GetString("ProvidersScriptEditor", resourceCulture);
             }
         }
         
@@ -529,15 +547,6 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Script editor.
-        /// </summary>
-        public static string ScriptEditor {
-            get {
-                return ResourceManager.GetString("ScriptEditor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Send email....
         /// </summary>
         public static string SendEmail {
@@ -583,7 +592,7 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scripts....
+        ///   Looks up a localized string similar to Script:.
         /// </summary>
         public static string SetScripts {
             get {
@@ -687,6 +696,15 @@ namespace Localization.Plugins.TeamManager {
         public static string Validator {
             get {
                 return ResourceManager.GetString("Validator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Script editor for validators.
+        /// </summary>
+        public static string ValidatorsScriptEditor {
+            get {
+                return ResourceManager.GetString("ValidatorsScriptEditor", resourceCulture);
             }
         }
         

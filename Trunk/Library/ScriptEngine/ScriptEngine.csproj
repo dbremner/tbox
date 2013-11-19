@@ -58,6 +58,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SingleFileOperation.cs" />
+    <Compile Include="Operation.cs" />
     <Compile Include="Core\Assemblies\AssembliesCollector.cs" />
     <Compile Include="Core\Assemblies\AssemblyInfo.cs" />
     <Compile Include="Core\CompilerExceptions.cs" />
@@ -67,7 +69,7 @@
     <Compile Include="Core\Params\EqualityParameterComparer.cs" />
     <Compile Include="Core\Params\Factory.cs" />
     <Compile Include="Core\Params\ParametersMerger.cs" />
-    <Compile Include="Operation.cs" />
+    <Compile Include="MultiFileOperation.cs" />
     <Compile Include="ParametersAttributes.cs" />
     <Compile Include="Core\Attributes\SectionAttribute.cs" />
     <Compile Include="Core\Attributes\OperationsFixtureAttribute.cs" />

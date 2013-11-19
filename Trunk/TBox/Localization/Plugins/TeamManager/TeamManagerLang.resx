@@ -204,8 +204,8 @@
   <data name="Repository" xml:space="preserve">
     <value>Repository</value>
   </data>
-  <data name="ScriptEditor" xml:space="preserve">
-    <value>Script editor</value>
+  <data name="ProvidersScriptEditor" xml:space="preserve">
+    <value>Script editor for providers</value>
   </data>
   <data name="SendEmail" xml:space="preserve">
     <value>Send email...</value>
@@ -214,7 +214,7 @@
     <value>Params...</value>
   </data>
   <data name="SetScripts" xml:space="preserve">
-    <value>Scripts...</value>
+    <value>Script:</value>
   </data>
   <data name="Spent" xml:space="preserve">
     <value>Spent</value>
@@ -329,5 +329,11 @@
   </data>
   <data name="GenerateForCurrentWeek" xml:space="preserve">
     <value>Report for current week</value>
+  </data>
+  <data name="PleaseSpecifyScriptPath" xml:space="preserve">
+    <value>Please, specify script path, before set paramters</value>
+  </data>
+  <data name="ValidatorsScriptEditor" xml:space="preserve">
+    <value>Script editor for validators</value>
   </data>
 </root>

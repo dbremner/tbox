@@ -17,7 +17,7 @@ namespace SkyNet
     [PluginInfo(typeof(SkyNetLang), 18, PluginGroup.Development)]
     public class SkyNet : ConfigurablePlugin<Settings, Config>
     {
-        private readonly SkyNetScriptRunner scriptRunner = new SkyNetScriptRunner();
+        private readonly SkyNetScriptRunner scriptConfigurator = new SkyNetScriptRunner();
         private readonly LazyDialog<EditorDialog> editorDialog;
 
         public SkyNet()
@@ -54,14 +54,14 @@ namespace SkyNet
         private void OpenEditor(object o)
         {
             editorDialog.LoadState(Config.States);
-            editorDialog.Value.ShowDialog(GetPathes(), scriptRunner);
+            editorDialog.Value.ShowDialog(GetPathes(), scriptConfigurator);
         }
 
         protected override Settings CreateSettings()
         {
             var s = base.CreateSettings();
-            s.FilePathesGetter = GetPathes;
-            s.ScriptRunner = scriptRunner;
+            s.FilePathes = GetPathes();
+            s.ScriptConfigurator = scriptConfigurator;
             s.Init(Context);
             return s;
         }

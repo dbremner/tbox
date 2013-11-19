@@ -92,7 +92,13 @@ namespace TeamManager.Forms
                 var emails = profile.Persons.CheckedItems.Select(x => x.Key).ToList();
                 try
                 {
-                    fullReport = reportReceiver.GetTimeReport(cfg.DateFrom.Value, cfg.DateTo.Value, emails, profile.Operations.CheckedItems.ToArray(), u);
+                    var operations = profile.Operations.CheckedItems.ToArray();
+                    var empty = operations.FirstOrDefault(x => string.IsNullOrEmpty(x.Path));
+                    if (empty != null)
+                    {
+                        throw new ArgumentException("Please specify script file for:" + empty.Key);
+                    }
+                    fullReport = reportReceiver.GetTimeReport(cfg.DateFrom.Value, cfg.DateTo.Value, emails, operations, u);
                     u.Update(TeamManagerLang.PrepareReports, 1);
                     success = true;
                 }

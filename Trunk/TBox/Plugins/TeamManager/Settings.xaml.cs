@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Common.Tools;
 using Interface;
+using Localization.Plugins.TeamManager;
 using PluginsShared.ScriptEngine;
 using ScriptEngine;
 using TeamManager.Code.Scripts;
@@ -18,7 +19,6 @@ namespace TeamManager
 	/// </summary>
 	public sealed partial class Settings : ISettings, IDisposable
 	{
-        public LazyDialog<OperationDialog> OperationsDialog { get; set; }
         public LazyDialog<ScriptsConfigurator> ScriptsConfigurator { get; set; }
 
 		public Settings()
@@ -27,23 +27,24 @@ namespace TeamManager
 		}
 
 		public UserControl Control { get { return this; } }
-        internal Func<IList<string>> FilePathesGetter { get; set; }
-        internal ReportScriptRunner ReportScriptRunner { get; set; }
+        public IList<string> FilePathes { get; set; }
+        internal IScriptConfigurator ScriptConfigurator { get; set; }
         internal Config Config { get { return ((Config)DataContext); } }
-
-        private void BtnSetScriptsClick(object sender, RoutedEventArgs e)
-        {
-            OperationsDialog.Value.ShowDialog(FilePathesGetter(), GetSelectedOperation(sender));
-        }
 
         private void BtnSetParamtersClick(object sender, RoutedEventArgs e)
         {
-            ScriptsConfigurator.Value.ShowDialog(GetSelectedOperation(sender), ReportScriptRunner, this.GetParentWindow());
+            var op = GetSelectedOperation(sender);
+            if (string.IsNullOrEmpty(op.Path))
+            {
+                MessageBox.Show(TeamManagerLang.PleaseSpecifyScriptPath);
+                return;
+            }
+            ScriptsConfigurator.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
         }
 
-	    private Operation GetSelectedOperation(object sender)
+	    private SingleFileOperation GetSelectedOperation(object sender)
 	    {
-	        var selectedKey = ((TextBlock) ((DockPanel) ((Button) sender).Parent).Children[2]).Text;
+	        var selectedKey = ((TextBlock) ((DockPanel) ((Button) sender).Parent).Children[3]).Text;
             var profile = (Profile)Profile.SelectedValue;
 	        var id = profile.Operations.GetExistIndexByKeyIgnoreCase(selectedKey);
             return profile.Operations[id];
@@ -51,7 +52,6 @@ namespace TeamManager
 
 	    public void Dispose()
 	    {
-            OperationsDialog.Dispose();
 	        ScriptsConfigurator.Dispose();
 	    }
 	}

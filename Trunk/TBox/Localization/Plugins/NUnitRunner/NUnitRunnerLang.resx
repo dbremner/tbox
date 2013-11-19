@@ -189,6 +189,9 @@
   <data name="RunAsx86" xml:space="preserve">
     <value>Run as x86</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="ShowOnlyFailed" xml:space="preserve">
     <value>Show only failed</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="SynchronizeTestsAgents" xml:space="preserve">
     <value>Synchronize tests agents</value>
+  </data>
+  <data name="Tests" xml:space="preserve">
+    <value>Tests</value>
   </data>
   <data name="TestsResults" xml:space="preserve">
     <value>Tests results</value>

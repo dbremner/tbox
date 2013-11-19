@@ -133,7 +133,7 @@
     <value>Decode Html</value>
   </data>
   <data name="DecodeToBase64" xml:space="preserve">
-    <value>Decode to base64</value>
+    <value>Decode base64</value>
   </data>
   <data name="DecodeUri" xml:space="preserve">
     <value>Decode Uri</value>
@@ -145,7 +145,7 @@
     <value>Encode Html</value>
   </data>
   <data name="EncodeToBase64" xml:space="preserve">
-    <value>Encode to base64</value>
+    <value>Encode base64</value>
   </data>
   <data name="EncodeUri" xml:space="preserve">
     <value>Encode Uri</value>

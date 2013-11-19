@@ -12,14 +12,14 @@ namespace TeamManager.Code.Settings
         public Email Email { get; set; }
         public Report Report { get; set; }
         public CheckableDataCollection<Person> Persons { get; set; }
-        public CheckableDataCollection<Operation> Operations { get; set; }
+        public CheckableDataCollection<SingleFileOperation> Operations { get; set; }
 
 		public Profile()
 		{
             Email = new Email();
             Report = new Report();
             Persons =new CheckableDataCollection<Person>();
-            Operations = new CheckableDataCollection<Operation>();
+            Operations = new CheckableDataCollection<SingleFileOperation>();
 		}
 
 		public override object Clone()

@@ -10,7 +10,7 @@ using WPFControls.Dialogs;
 
 namespace PluginsShared.Automator
 {
-    public class ScriptsRunner : ScriptsConfigurator
+    public class ScriptsRunner : MultiFileScriptConfigurator
     {
         public ScriptsRunner()
         {

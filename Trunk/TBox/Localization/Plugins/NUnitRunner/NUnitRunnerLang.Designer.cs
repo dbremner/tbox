@@ -277,6 +277,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show only failed.
         /// </summary>
         public static string ShowOnlyFailed {
@@ -309,6 +318,15 @@ namespace Localization.Plugins.NUnitRunner {
         public static string SynchronizeTestsAgents {
             get {
                 return ResourceManager.GetString("SynchronizeTestsAgents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tests.
+        /// </summary>
+        public static string Tests {
+            get {
+                return ResourceManager.GetString("Tests", resourceCulture);
             }
         }
         

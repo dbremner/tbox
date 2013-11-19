@@ -9,11 +9,11 @@ namespace ConsoleScriptRunner.Settings
 	[Serializable]
 	public sealed class Profile : Data
 	{
-		public ObservableCollection<Operation> Operations { get; set; }
+		public ObservableCollection<MultiFileOperation> Operations { get; set; }
 
 		public Profile()
 		{
-			Operations = new ObservableCollection<Operation>();
+			Operations = new ObservableCollection<MultiFileOperation>();
 		}
 
 		public override object Clone()

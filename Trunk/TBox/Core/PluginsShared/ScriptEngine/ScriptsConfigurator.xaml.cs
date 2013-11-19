@@ -19,25 +19,25 @@ namespace PluginsShared.ScriptEngine
 	/// <summary>
 	/// Interaction logic for ScriptsConfigurator.xaml
 	/// </summary>
-	public partial class ScriptsConfigurator
+	public abstract partial class ScriptsConfigurator
 	{
         protected static readonly ILog Log = LogManager.GetLogger<ScriptsConfigurator>();
 		protected Operation Config;
-	    private IScriptRunner runner;
+	    private IScriptConfigurator configurator;
 		protected IList<ScriptPackage> ScriptsPackages;
 		private readonly ParametersMerger parametersMerger = new ParametersMerger(); 
 		public IPluginContext Context { get; set; }
-		public ScriptsConfigurator()
+		protected ScriptsConfigurator()
 		{
 			InitializeComponent();
 		    btnAction.Content = PluginsSharedLang.Configure;
 		}
 
-        public void ShowDialog(Operation o, IScriptRunner r, Window owner)
+        public void ShowDialog(Operation o, IScriptConfigurator c, Window owner)
 		{
 			Owner = null;
 			DataContext = Config = o;
-		    runner = r;
+		    configurator = c;
 			ShowAndActivate();
 			ReloadClick(null, null);
 		}
@@ -64,13 +64,7 @@ namespace PluginsShared.ScriptEngine
             Hide();
         }
 
-		private IEnumerable<string> GetPathes()
-		{
-			return Config.Pathes
-				.CheckedItems
-				.Select(x => Path.Combine(Context.DataProvider.ReadOnlyDataPath, x.Key))
-				.ToArray();
-		}
+	    protected abstract IEnumerable<string> GetPathes();
 
 		private void ReloadClick(object sender, RoutedEventArgs e)
 		{
@@ -82,7 +76,7 @@ namespace PluginsShared.ScriptEngine
 		{
 			try
 			{
-                ScriptsPackages = GetPathes().Select(x=>runner.GetParameters(File.ReadAllText(x))).ToArray();
+                ScriptsPackages = GetPathes().Select(x=>configurator.GetParameters(File.ReadAllText(x))).ToArray();
 				IList<Parameter> parameters = new List<Parameter>();
 				parameters = ScriptsPackages.Aggregate(parameters, (current, x) => parametersMerger.Merge(current, x.Parameters));
 				Mt.Do(this, () =>

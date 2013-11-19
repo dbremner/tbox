@@ -94,6 +94,7 @@
     <Compile Include="Code\Reports\ReportsBuilder.cs" />
     <Compile Include="Code\Reports\Contracts\IReportsPrinter.cs" />
     <Compile Include="Code\Scripts\ColumnInfo.cs" />
+    <Compile Include="Code\Scripts\ValidatorScriptRunner.cs" />
     <Compile Include="Code\Settings\Email.cs" />
     <Compile Include="Code\Settings\Profile.cs" />
     <Compile Include="Code\Scripts\ReportScriptContext.cs" />

@@ -189,6 +189,9 @@
   <data name="RunAsx86" xml:space="preserve">
     <value>В режиме x86</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
   <data name="ShowOnlyFailed" xml:space="preserve">
     <value>Показывать только непрошедшие</value>
   </data>
@@ -200,6 +203,9 @@
   </data>
   <data name="SynchronizeTestsAgents" xml:space="preserve">
     <value>Синхронизация тестовых агентов</value>
+  </data>
+  <data name="Tests" xml:space="preserve">
+    <value>Тесты</value>
   </data>
   <data name="TestsResults" xml:space="preserve">
     <value>Результаты тестов</value>

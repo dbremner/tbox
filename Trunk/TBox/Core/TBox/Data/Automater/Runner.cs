@@ -1,5 +1,5 @@
 ﻿using PluginsShared.Automator;
-using Solution.Msc;
+using Solution.Scripts;
 
 namespace Solution
 {

@@ -106,7 +106,7 @@ namespace Localization.Plugins.Encoder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Decode to base64.
+        ///   Looks up a localized string similar to Decode base64.
         /// </summary>
         public static string DecodeToBase64 {
             get {
@@ -142,7 +142,7 @@ namespace Localization.Plugins.Encoder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encode to base64.
+        ///   Looks up a localized string similar to Encode base64.
         /// </summary>
         public static string EncodeToBase64 {
             get {

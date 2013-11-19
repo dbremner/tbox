@@ -6,12 +6,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" 
-             xmlns:Units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
+             xmlns:units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
              xmlns:scriptEngine="clr-namespace:ScriptEngine;assembly=ScriptEngine"
              xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
              xmlns:settings="clr-namespace:TeamManager.Code.Settings"
              xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
-             xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls">
+             xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
+             xmlns:teamManager="clr-namespace:TeamManager">
     <UserControl.Resources>
         <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
     </UserControl.Resources>
@@ -19,33 +20,34 @@
         <TabItem Header="{loc:Tr ConfigureProfiles}">
             <DockPanel>
                 <GroupBox Header="{loc:Tr Profile}" DockPanel.Dock="Top">
-                    <Units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="{loc:Tr ConfigureProfile}"/>
+                    <units:ComboBoxUnit Name="Profile" ValueCaption="{Binding SelectedProfile}" ItemsSource="{Binding Profiles}" UnitType="Text" Title="{loc:Tr ConfigureProfile}"/>
                 </GroupBox>
                 <TabControl IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}">
                     <TabItem Header="{loc:Tr MembersEmails}">
-                        <Units:ListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" Name="PersonsNames" >
-                            <Units:BaseCollectionUnit.ItemTemplate>
+                        <units:ListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" Name="PersonsNames" >
+                            <units:BaseCollectionUnit.ItemTemplate>
                                 <DataTemplate DataType="{x:Type settings:Person }">
                                     <DockPanel >
                                         <controls:FlagsCheckBoxes Value="{Binding ReportType}" BaseType="{x:Type settings:TimeReportType}" Caption="{loc:Tr ReportType}" Orientation="Horizontal" Margin="2" DockPanel.Dock="Right"/>
                                         <TextBlock Text="{Binding Key}" Padding="0" FontWeight="Bold" Margin="5" VerticalAlignment="Center"/>
                                     </DockPanel>
                                 </DataTemplate>
-                            </Units:BaseCollectionUnit.ItemTemplate>
-                        </Units:ListBoxUnit>
+                            </units:BaseCollectionUnit.ItemTemplate>
+                        </units:ListBoxUnit>
                     </TabItem>
                     <TabItem Header="{loc:Tr ConfigureScriptPackages}">
-                        <Units:ListBoxUnit  ItemsSource="{Binding Operations}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
-                            <Units:ListBoxUnit.ItemTemplate>
-                                <DataTemplate DataType="{x:Type scriptEngine:Operation}">
+                        <units:ListBoxUnit  ItemsSource="{Binding Operations}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
+                            <units:ListBoxUnit.ItemTemplate>
+                                <DataTemplate DataType="{x:Type scriptEngine:SingleFileOperation}">
                                     <DockPanel>
-                                        <Button Content="{loc:Tr SetParameters}" VerticalAlignment="Center" Margin="1" Click="BtnSetParamtersClick" DockPanel.Dock="Right"/>
-                                        <Button Content="{loc:Tr SetScripts}" VerticalAlignment="Center" Margin="1" Click="BtnSetScriptsClick" DockPanel.Dock="Right"/>
+                                        <Button Content="{loc:Tr SetParameters}" VerticalAlignment="Center" Margin="3" Click="BtnSetParamtersClick" DockPanel.Dock="Right" />
+                                        <ComboBox VerticalAlignment="Center" Margin="3" DockPanel.Dock="Right" SelectedValue="{Binding Path}"  ItemsSource ="{Binding FilePathes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type teamManager:Settings}}}" Width="168"/>
+                                        <TextBlock Text="{loc:Tr SetScripts}" VerticalAlignment="Center" Margin="3" DockPanel.Dock="Right"/>
                                         <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
                                     </DockPanel>
                                 </DataTemplate>
-                            </Units:ListBoxUnit.ItemTemplate>
-                        </Units:ListBoxUnit>
+                            </units:ListBoxUnit.ItemTemplate>
+                        </units:ListBoxUnit>
                     </TabItem>
                     <TabItem Header="{loc:Tr Emails}">
                         <StackPanel Margin="5">
@@ -63,8 +65,8 @@
             </DockPanel>
         </TabItem>
         <TabItem Header="{loc:Tr ConfigureCalendar}">
-            <Units:ListBoxUnit  ItemsSource="{Binding SpecialDays}" UnitType="Date" Title="{loc:Tr ConfigureSpecialDays}">
-                <Units:ListBoxUnit.ItemTemplate>
+            <units:ListBoxUnit  ItemsSource="{Binding SpecialDays}" UnitType="Date" Title="{loc:Tr ConfigureSpecialDays}">
+                <units:ListBoxUnit.ItemTemplate>
                     <DataTemplate DataType="{x:Type settings:SpecialDay}">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Key}" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
@@ -78,8 +80,8 @@
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>
-                </Units:ListBoxUnit.ItemTemplate>
-            </Units:ListBoxUnit>
+                </units:ListBoxUnit.ItemTemplate>
+            </units:ListBoxUnit>
         </TabItem>
     </TabControl>
 </UserControl>

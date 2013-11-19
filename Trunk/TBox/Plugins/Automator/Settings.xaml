@@ -16,7 +16,7 @@
             <TabItem Header="{loc:Tr ConfigureScriptPackages}">
                 <Units:ListBoxUnit IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}" ItemsSource="{Binding Operations}" UnitType="Text" Title="{loc:Tr ConfigureOperation}">
                     <Units:ListBoxUnit.ItemTemplate>
-                        <DataTemplate DataType="{x:Type scriptEngine:Operation}">
+                        <DataTemplate DataType="{x:Type scriptEngine:MultiFileOperation}">
                             <DockPanel>
                                 <Button Content="..." VerticalAlignment="Center" Width="32" Margin="1" Click="BtnEditClick" DockPanel.Dock="Right"/>
                                 <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />

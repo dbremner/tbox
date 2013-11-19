@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using Common.MT;
 using PluginsShared.ReportsGenerator;
 using PluginsShared.ScriptEngine;
 using ScriptEngine.Core;
@@ -10,7 +8,7 @@ using ScriptEngine.Core.Params;
 
 namespace TeamManager.Code.Scripts
 {
-	sealed class ReportScriptRunner : IScriptRunner
+	sealed class ReportScriptRunner : IScriptConfigurator
 	{
         private readonly IScriptCompiler<IReportScript> compiler = new ScriptCompiler<IReportScript>();
 
@@ -19,11 +17,6 @@ namespace TeamManager.Code.Scripts
             var s = compiler.Compile(File.ReadAllText(path), parameters);
             s.Run(context);
         }
-
-        public void Run(string path, IList<Parameter> parameters, Action<Action> dispatcher, IUpdater u)
-	    {
-            throw new NotImplementedException();
-	    }
 
 	    public ScriptPackage GetParameters(string scriptText)
 	    {

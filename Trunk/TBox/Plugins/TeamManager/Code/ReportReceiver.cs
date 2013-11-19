@@ -22,7 +22,7 @@ namespace TeamManager.Code
             this.readOnlyDataPath = readOnlyDataPath;
         }
 
-        internal FullReport GetTimeReport(DateTime dateFrom, DateTime dateTo, IList<string> persons, IList<Operation> operations, IUpdater u)
+        internal FullReport GetTimeReport(DateTime dateFrom, DateTime dateTo, IList<string> persons, IList<SingleFileOperation> operations, IUpdater u)
         {
             var sw = new Stopwatch();
             sw.Start();
@@ -42,11 +42,8 @@ namespace TeamManager.Code
                 {
                     Name = o.Key
                 };
-                foreach (var path in o.Pathes.CheckedItems)
-                {
-                    if (u.UserPressClose) break;
-                    runner.Run(Path.Combine(folder, path.Key), context, o.Parameters);
-                }
+                if (u.UserPressClose) return;
+                runner.Run(Path.Combine(folder, o.Path), context, o.Parameters);
                 lock (results)
                 {
                     results.AddRange(context.Report);

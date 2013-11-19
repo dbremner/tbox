@@ -186,34 +186,34 @@
     <Compile Include="Code\Shelduler\Settings\ShortDayOfWeek.cs" />
     <Compile Include="Code\AutoUpdate\Update.cs" />
     <Compile Include="Code\UiConfigurator.cs" />
-    <None Include="Data\Automater\Msc\AddTracing.cs">
+    <None Include="Data\Automater\Scripts\AddTracing.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Data\Automater\Msc\ClearFolders.cs">
+    <Content Include="Data\Automater\Scripts\ClearFolders.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\EnableFeatures.cs">
+    <Content Include="Data\Automater\Scripts\EnableFeatures.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\OptimizeSolution.cs">
+    <Content Include="Data\Automater\Scripts\OptimizeSolution.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\params.cs">
+    <Content Include="Data\Automater\Scripts\params.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\PutObjects.cs">
+    <Content Include="Data\Automater\Scripts\PutObjects.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\PutResources.cs">
+    <Content Include="Data\Automater\Scripts\PutResources.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\RunDevServers.cs">
+    <Content Include="Data\Automater\Scripts\RunDevServers.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\SelectDatabases.cs">
+    <Content Include="Data\Automater\Scripts\SelectDatabases.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\StopDevServers.cs">
+    <Content Include="Data\Automater\Scripts\StopDevServers.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\Automater\Runner.cs">
@@ -222,7 +222,7 @@
     <Content Include="Data\Templates\Sample\{#test#}.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Automater\Msc\ReplaceStrings.cs">
+    <Content Include="Data\Automater\Scripts\ReplaceStrings.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Data\TeamManager\DataProviders\SubversionScript.cs">

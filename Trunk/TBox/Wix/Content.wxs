@@ -5,7 +5,7 @@
     <DirectoryRef Id="INSTALLLOCATION" FileSource="..\bin\Release\" >
       <Directory Id="Data" Name="Data">
         <Directory Id="Automater" Name="Automater" >
-          <Directory Id="Msc" Name="Msc">
+          <Directory Id="Scripts" Name="Scripts">
             <Component Id="AutomaterMsc" Guid="4928F203-E455-475C-B093-F53B734530BF">
               <File Name='AddTracing.cs'/>
               <File Name='ClearFolders.cs'/>

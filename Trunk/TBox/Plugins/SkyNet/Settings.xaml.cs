@@ -9,6 +9,7 @@ using Common.Communications.Interprocess;
 using Common.Communications.Network;
 using Common.Tools;
 using Interface;
+using Localization.Plugins.TeamManager;
 using PluginsShared.ScriptEngine;
 using ScriptEngine;
 using SkyNet.Code.Settings;
@@ -26,7 +27,6 @@ namespace SkyNet
     public partial class Settings : ISettings
     {
         private readonly ILog log = LogManager.GetLogger<Settings>();
-        public LazyDialog<OperationDialog> OperationsDialog { get; set; }
         public LazyDialog<ScriptsConfigurator> ScriptsConfigurator { get; set; }
 
         public Settings()
@@ -57,8 +57,8 @@ namespace SkyNet
             ServerSettingsNeedRefresh(null, new DependencyPropertyChangedEventArgs());
         }
 
-        internal Func<IList<string>> FilePathesGetter { get; set; }
-        internal IScriptRunner ScriptRunner { get; set; }
+        public IList<string> FilePathes { get; set; }
+        internal IScriptConfigurator ScriptConfigurator { get; set; }
         public UserControl Control { get { return this; } }
 
         private void ChangeAgentSettingsClick(object sender, RoutedEventArgs e)
@@ -70,7 +70,7 @@ namespace SkyNet
         {
             if (!AgentConfiguration.IsEnabled)
             {
-                DataContext = null;
+                AgentConfiguration.DataContext = null;
                 return;
             }
             var config = GetConfig(CreateAgentConfigProvider());
@@ -86,7 +86,7 @@ namespace SkyNet
         {
             if (!ServerConfiguration.IsEnabled)
             {
-                DataContext = null;
+                ServerConfiguration.DataContext = null;
                 return;
             }
             ServerConfiguration.DataContext = GetConfig(CreateServerConfigProvider());
@@ -145,17 +145,18 @@ namespace SkyNet
 
         private void BtnSetOperationParametersClick(object sender, RoutedEventArgs e)
         {
-            ScriptsConfigurator.Value.ShowDialog(GetSelectedOperation(sender), ScriptRunner, this.GetParentWindow());
+            var op = GetSelectedOperation(sender);
+            if (string.IsNullOrEmpty(op.Path))
+            {
+                MessageBox.Show("{PleaseSpecifyScriptPath}");
+                return;
+            }
+            ScriptsConfigurator.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
         }
 
-        private void BtnOperationSetScriptsClick(object sender, RoutedEventArgs e)
+        private SingleFileOperation GetSelectedOperation(object sender)
         {
-            OperationsDialog.Value.ShowDialog(FilePathesGetter(), GetSelectedOperation(sender));
-        }
-
-        private Operation GetSelectedOperation(object sender)
-        {
-            var selectedKey = ((TextBlock)((DockPanel)((Button)sender).Parent).Children[2]).Text;
+            var selectedKey = ((TextBlock)((DockPanel)((Button)sender).Parent).Children[3]).Text;
             var cfg = (Config)DataContext;
             var id = cfg.Operations.GetExistIndexByKeyIgnoreCase(selectedKey);
             return cfg.Operations[id];
@@ -163,9 +164,12 @@ namespace SkyNet
 
         public void Dispose()
         {
-            OperationsDialog.Dispose();
             ScriptsConfigurator.Dispose();
         }
 
+        private void OnCheckChangedEvent(object sender, RoutedEventArgs e)
+        {
+            Ops.OnCheckChangedEvent(sender, e);
+        }
     }
 }

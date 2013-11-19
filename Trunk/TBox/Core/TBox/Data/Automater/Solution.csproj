@@ -67,17 +67,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Msc\AddTracing.cs" />
-    <Compile Include="Msc\ClearFolders.cs" />
-    <Compile Include="Msc\OptimizeSolution.cs" />
-    <Compile Include="Msc\PutResources.cs" />
-    <Compile Include="Msc\EnableFeatures.cs" />
-    <Compile Include="Msc\params.cs" />
-    <Compile Include="Msc\PutObjects.cs" />
-    <Compile Include="Msc\ReplaceStrings.cs" />
-    <Compile Include="Msc\RunDevServers.cs" />
-    <Compile Include="Msc\SelectDatabases.cs" />
-    <Compile Include="Msc\StopDevServers.cs" />
+    <Compile Include="Scripts\AddTracing.cs" />
+    <Compile Include="Scripts\ClearFolders.cs" />
+    <Compile Include="Scripts\OptimizeSolution.cs" />
+    <Compile Include="Scripts\PutResources.cs" />
+    <Compile Include="Scripts\EnableFeatures.cs" />
+    <Compile Include="Scripts\params.cs" />
+    <Compile Include="Scripts\PutObjects.cs" />
+    <Compile Include="Scripts\ReplaceStrings.cs" />
+    <Compile Include="Scripts\RunDevServers.cs" />
+    <Compile Include="Scripts\SelectDatabases.cs" />
+    <Compile Include="Scripts\StopDevServers.cs" />
     <Compile Include="Runner.cs" />
   </ItemGroup>
   <ItemGroup>

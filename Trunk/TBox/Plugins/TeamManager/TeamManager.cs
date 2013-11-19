@@ -20,20 +20,23 @@ namespace TeamManager
 	[PluginInfo(typeof(TeamManagerLang), 160, PluginGroup.Development)]
 	public class TeamManager : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
+        private const string DataProvidersFolder = "DataProviders";
+        private const string ValidatorsFolder = "Validators";
 	    private ReportReceiver receiver;
+        private readonly ValidatorScriptConfigurator validatorScriptConfigurator = new ValidatorScriptConfigurator();
         private readonly ReportScriptRunner reportScriptRunner = new ReportScriptRunner();
-        private readonly LazyDialog<EditorDialog> editorDialog;
+        private readonly LazyDialog<EditorDialog> dataProvidersEditorDialog;
 	    private readonly LazyDialog<TimeReportDialog> timeReportDialog;
 
 	    public TeamManager()
 	    {
             timeReportDialog = new LazyDialog<TimeReportDialog>(()=> new TimeReportDialog(receiver) { Icon = Icon.ToImageSource() }, "timeReportDialog");
-            editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
+            dataProvidersEditorDialog = new LazyDialog<EditorDialog>(CreateEditor, "dataProvidersEditorDialog");
 	    }
 
         public void Dispose()
         {
-            editorDialog.Dispose();
+            dataProvidersEditorDialog.Dispose();
             timeReportDialog.Dispose();
         }
 
@@ -42,9 +45,9 @@ namespace TeamManager
             base.Save(autoSaveOnExit);
             if (!autoSaveOnExit) return;
             timeReportDialog.SaveState(Config.States);
-            editorDialog.SaveState(Config.States);
+            dataProvidersEditorDialog.SaveState(Config.States);
             timeReportDialog.Hide();
-            editorDialog.Hide();
+            dataProvidersEditorDialog.Hide();
         }
 
 
@@ -73,8 +76,13 @@ namespace TeamManager
                         new USeparator(), 
 				        new UMenuItem
 				        {
-					        Header = TeamManagerLang.ScriptEditor,
-					        OnClick = OpenEditor
+					        Header = TeamManagerLang.ProvidersScriptEditor,
+					        OnClick = OpenProvidersEditor
+				        },
+                        new UMenuItem
+				        {
+					        Header = TeamManagerLang.ValidatorsScriptEditor,
+					        OnClick = OpenValidatorsEditor
 				        }
 			        })
                 .ToArray();
@@ -86,32 +94,37 @@ namespace TeamManager
             timeReportDialog.Value.ShowReportDialog(p, Context, Config.SpecialDays, o is NonUserRunContext);
 		}
 
-        private void OpenEditor(object o)
+        private void OpenProvidersEditor(object o)
         {
-            editorDialog.LoadState(Config.States);
-            editorDialog.Value.ShowDialog(GetPathes(), reportScriptRunner);
+            dataProvidersEditorDialog.LoadState(Config.States);
+            dataProvidersEditorDialog.Value.ShowDialog(GetPathes(DataProvidersFolder), reportScriptRunner);
+        }
+
+        private void OpenValidatorsEditor(object o)
+        {
+            dataProvidersEditorDialog.LoadState(Config.States);
+            dataProvidersEditorDialog.Value.ShowDialog(GetPathes(ValidatorsFolder), validatorScriptConfigurator);
         }
 
         protected override Settings CreateSettings()
         {
             var imageSource = Icon.ToImageSource();
             var s = base.CreateSettings();
-            s.FilePathesGetter = GetPathes;
-            s.ReportScriptRunner = reportScriptRunner;
-            s.OperationsDialog = new LazyDialog<OperationDialog>(
-                () => new OperationDialog{Icon = imageSource}, "report operation");
+            s.FilePathes = GetPathes(DataProvidersFolder);
+            s.ScriptConfigurator = reportScriptRunner;
             s.ScriptsConfigurator = new LazyDialog<ScriptsConfigurator>(
-                () => new ScriptsConfigurator{Context = Context, Icon = imageSource}, "scripts configurator");
+                () => new SingleFileScriptConfigurator{Context = Context, Icon = imageSource}, "scripts configurator");
             return s;
         }
 
-        private IList<string> GetPathes()
+        private IList<string> GetPathes(string directoryName)
         {
             var dir = new DirectoryInfo(Context.DataProvider.ReadOnlyDataPath);
             if (!dir.Exists) return new string[0];
             var length = dir.FullName.Length + 1;
             return dir
                 .EnumerateFiles("*.cs", SearchOption.AllDirectories)
+                .Where(x => !string.IsNullOrEmpty(x.DirectoryName) && x.DirectoryName.EndsWith(directoryName))
                 .Select(x => x.FullName.Substring(length))
                 .ToArray();
         }

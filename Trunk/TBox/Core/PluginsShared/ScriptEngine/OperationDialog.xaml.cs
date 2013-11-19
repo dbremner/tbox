@@ -16,7 +16,7 @@ namespace PluginsShared.ScriptEngine
 			InitializeComponent();
 		}
 
-		public void ShowDialog(IList<string> pathes, Operation operation)
+		public void ShowDialog(IList<string> pathes, MultiFileOperation operation)
 		{
 			Owner = Application.Current.MainWindow;
 			DataContext = operation;

@@ -145,7 +145,7 @@
     <value>Закодировать Html</value>
   </data>
   <data name="EncodeToBase64" xml:space="preserve">
-    <value>Закодировать в base64</value>
+    <value>Закодировать base64</value>
   </data>
   <data name="EncodeUri" xml:space="preserve">
     <value>Закодировать Uri</value>

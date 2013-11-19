@@ -143,6 +143,8 @@
     <Compile Include="ReportsGenerator\IReportScriptContext.cs" />
     <Compile Include="ReportsGenerator\LoggedInfo.cs" />
     <Compile Include="Automator\ScriptContext.cs" />
+    <Compile Include="ScriptEngine\IScriptConfigurator.cs" />
+    <Compile Include="ScriptEngine\MultiFileScriptConfigurator.cs" />
     <Compile Include="ScriptEngine\EditorDialog.xaml.cs">
       <DependentUpon>EditorDialog.xaml</DependentUpon>
     </Compile>
@@ -157,6 +159,7 @@
       <DependentUpon>ScriptsConfigurator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Automator\ScriptsRunner.cs" />
+    <Compile Include="ScriptEngine\SingleFileScriptConfigurator.cs" />
     <Compile Include="Templates\FileSystemProcessor.cs" />
     <Compile Include="Templates\IFileSystemProcessor.cs" />
     <Compile Include="Templates\IKnownValues.cs" />
