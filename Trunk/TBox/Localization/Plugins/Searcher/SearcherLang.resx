@@ -211,7 +211,7 @@
     <value>Searcher</value>
   </data>
   <data name="ProgressString" xml:space="preserve">
-    <value>Directories: {0}  time: {1}s  speed: {2} kb/s</value>
+    <value>Directories: {0}  time: {1}  speed: {2} kb/s</value>
   </data>
   <data name="RebuildIndexes" xml:space="preserve">
     <value>Rebuild indexes...</value>

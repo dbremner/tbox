@@ -211,7 +211,7 @@
     <value>Ищейка</value>
   </data>
   <data name="ProgressString" xml:space="preserve">
-    <value>Папок: {0}  время: {1}с  скорость: {2} кб/с</value>
+    <value>Папок: {0}  время: {1}  скорость: {2} кб/с</value>
   </data>
   <data name="RebuildIndexes" xml:space="preserve">
     <value>Перестроить индексы...</value>

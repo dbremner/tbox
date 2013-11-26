@@ -8,6 +8,7 @@
              xmlns:components="clr-namespace:NUnitRunner.Components"
              xmlns:components2="clr-namespace:WPFControls.Components;assembly=WPFControls"
              xmlns:settings1="clr-namespace:PluginsShared.UnitTests.Settings;assembly=PluginsShared"
+             xmlns:wpfSyntaxHighlighter="clr-namespace:WPFSyntaxHighlighter;assembly=WPFSyntaxHighlighter"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -40,6 +41,6 @@
             </components2:CheckableListBox>
         </DockPanel>
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
-        <TextBox Name="Description" Grid.Row="2" IsReadOnly="True" IsReadOnlyCaretVisible="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+        <wpfSyntaxHighlighter:SyntaxHighlighter Name="Description" Grid.Row="2" IsReadOnly="True"  />
     </Grid>
 </UserControl>

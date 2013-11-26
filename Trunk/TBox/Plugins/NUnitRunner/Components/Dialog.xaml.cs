@@ -2,12 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using Common.Tools;
 using Common.UI.Model;
 using Common.UI.ModelsContainers;
 using Localization.Plugins.NUnitRunner;
 using NUnitRunner.Code.Settings;
 using PluginsShared.UnitTests;
-using PluginsShared.UnitTests.Settings;
 using PluginsShared.UnitTests.Updater;
 using WPFControls.Code.OS;
 using WPFControls.Dialogs;
@@ -68,8 +68,8 @@ namespace NUnitRunner.Components
             package.Reset(config.RunAsx86, config.RunAsAdmin, config.DirToCloneTests, config.CommandBeforeTestsRun);
 			var caption = Path.GetFileName(config.Key);
 			DialogsCache.ShowProgress(
-				u => package.DoRefresh(DoRefresh, o => Mt.Do(this, Close)), 
-				caption, this, false);
+				u => package.DoRefresh(DoRefresh, o => Mt.Do(this, Close)),
+                caption, this, false);
 		}
 
 		private void DoRefresh(TestsPackage o)
@@ -99,11 +99,11 @@ namespace NUnitRunner.Components
 			var time = Environment.TickCount;
 			var synchronizer = new Synchronizer(config.ProcessCount);
 			DialogsCache.ShowProgress(
-				u => package.DoRun(o => DoRun(time), packages, config.CopyToSeparateFolders, config.CopyDeep, config.NeedSynchronizationForTests && config.ProcessCount > 1, synchronizer, new SimpleUpdater(u, synchronizer)),
+				u => package.DoRun(o => OnRunEnd(time), packages, config.CopyToSeparateFolders, config.CopyMasks.CheckedItems.Select(x=>x.Key).ToArray(), config.NeedSynchronizationForTests && config.ProcessCount > 1, config.StartDelay, synchronizer, new SimpleUpdater(u, synchronizer)),
 				caption, this, false);
 		}
 
-	    private void DoRun(int time)
+	    private void OnRunEnd(int time)
 		{
 			Mt.Do(this,
 				  () =>
@@ -111,7 +111,7 @@ namespace NUnitRunner.Components
                       Title = string.Format(NUnitRunnerLang.TestsStateTemplate,
 											Path.GetFileName(package.Path),
 											package.Count, package.FailedCount,
-											(Environment.TickCount - time) / 1000.0);
+                                            ((Environment.TickCount - time) / 1000).FormatTimeInSec());
 					  package.ApplyResults();
 					  ((UnitTestsView)package.Results).Refresh();
 				  }

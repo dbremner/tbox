@@ -90,7 +90,7 @@ namespace Searcher.Code.Finders.Scanner
 			++currDirNo;
 			updater.Update(
                     time => string.Format(SearcherLang.ProgressString,
-						currDirNo, time, (time - calcDirsTime <= 0) ? 0 : (readedSize / (time - calcDirsTime) / 1024)),
+                        currDirNo, time.FormatTimeInSec(), (time - calcDirsTime <= 0) ? 0 : (readedSize / (time - calcDirsTime) / 1024)),
 					currDirNo, dirsCount);
 
 			path.Add(Dirs.Add(dirName));

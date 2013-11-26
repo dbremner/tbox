@@ -83,6 +83,7 @@ namespace PluginsShared.UnitTests
 			foreach (var i in items)
 			{
 				i.State = ResultState.Inconclusive;
+			    i.Message = i.StackTrace = string.Empty;
 			}
             var filter = GetFilter(categories, include);
 		    return (processCount > 1)
@@ -92,15 +93,12 @@ namespace PluginsShared.UnitTests
 
 	    private static Func<Result, bool> GetFilter(string[] categories, bool? include)
 	    {
-	        if (include.HasValue && categories.Length > 0)
+	        if (categories == null || !include.HasValue || categories.Length <= 0) return r => true;
+	        if (include.Value)
 	        {
-	            if (include.Value)
-	            {
-	                return r => IncludeFilter(r, categories);
-	            }
-	            return r => ExcludeFilter(r, categories);
+	            return r => IncludeFilter(r, categories);
 	        }
-	        return r=>true;
+	        return r => ExcludeFilter(r, categories);
 	    }
 
 	    public void DoRefresh(Action<TestsPackage> onReceive, Action<TestsPackage> onError)
@@ -120,11 +118,11 @@ namespace PluginsShared.UnitTests
 			}
 		}
 
-		public void DoRun(Action<TestsPackage> onReceive, IList<IList<Result>> packages, bool copyToSeparateFolders, int copyDeep, bool needSynchronizationForTests, Synchronizer synchronizer, IProgressStatus u)
+		public void DoRun(Action<TestsPackage> onReceive, IList<IList<Result>> packages, bool copyToSeparateFolders, string[] copyMasks, bool needSynchronizationForTests, int startDelay, Synchronizer synchronizer, IProgressStatus u)
 		{
 			try
 			{
-                runner.Run(Path, packages, server, copyToSeparateFolders, copyDeep, needSynchronizationForTests, runAsx86, runAsAdmin, dirToCloneTests, commandToExecuteBeforeTests, synchronizer, u);
+                runner.Run(Path, packages, server, copyToSeparateFolders, copyMasks, needSynchronizationForTests, runAsx86, runAsAdmin, dirToCloneTests, commandToExecuteBeforeTests, startDelay, synchronizer, u);
 				onReceive(this);
 			}
 			catch (Exception ex)

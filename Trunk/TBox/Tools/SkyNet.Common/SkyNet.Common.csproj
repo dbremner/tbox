@@ -69,9 +69,12 @@
     <Compile Include="Contracts\Server\ServerAgentState.cs" />
     <Compile Include="Contracts\Server\ServerTask.cs" />
     <Compile Include="Contracts\Server\ISkyNetServer.cs" />
+    <Compile Include="ISkyContext.cs" />
+    <Compile Include="NUnitTestsRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Server\ServerAgent.cs" />
-    <Compile Include="Scripts\SkyNetScriptRunner.cs" />
+    <Compile Include="Scripts\SkyNetScriptConfigurator.cs" />
+    <Compile Include="ISkyScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

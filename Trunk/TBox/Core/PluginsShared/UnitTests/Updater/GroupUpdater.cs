@@ -1,4 +1,6 @@
-﻿using Common.MT;
+﻿using System;
+using Common.MT;
+using Common.Tools;
 using PluginsShared.UnitTests.Interfaces;
 
 namespace PluginsShared.UnitTests.Updater
@@ -27,7 +29,7 @@ namespace PluginsShared.UnitTests.Updater
 			passedCount += count;
 			failedCount += failed;
 			var caption = string.Format("Tested: {0}/{1}, failed: {2}", passedCount, overalCount, failedCount);
-			u.Update(i => string.Format("{0}, time: {1}", caption, i), passedCount, overalCount);
+            u.Update(i => string.Format("{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, overalCount);
 		}
-	}
+    }
 }

@@ -12,8 +12,8 @@
                       xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
                       mc:Ignorable="d" 
              ShowInTaskbar="True" WindowStartupLocation="CenterOwner"
-             Width="640" Height="480"
-             MinWidth="640" MinHeight="480">
+             Width="660" Height="550"
+             MinWidth="660" MinHeight="550">
     <Window.Resources>
         <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
     </Window.Resources>
@@ -35,26 +35,23 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Margin="5" Header="{loc:Tr Categories}" VerticalAlignment="Stretch" Grid.Column="0">
-                        <DockPanel VerticalAlignment="Stretch">
-                            <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding UseCategories}" DockPanel.Dock="Top" Margin="5"/>
-                            <DockPanel Margin="10 2 2 2" IsEnabled="{Binding UseCategories}">
-                                <StackPanel DockPanel.Dock="Top" >
-                                    <RadioButton Content="{loc:Tr Include}" IsChecked="{Binding IncludeCategories}" GroupName="Category" Margin="2"/>
-                                    <RadioButton Content="{loc:Tr Exclude}" IsChecked="{Binding IncludeCategories, Converter={StaticResource BoolInverterConverter}}" GroupName="Category" Margin="2"/>
-                                </StackPanel>
-                                <components:CheckableListBox Name="Categories" Margin="2"/>
-                            </DockPanel>
+                    <GroupBox Margin="5" Header="{loc:Tr Clonning}" VerticalAlignment="Stretch" Grid.Column="1">
+                        <DockPanel >
+                            <controls:ExtCheckBox Name="CopyToSeparateFolders" IsChecked="{Binding CopyToSeparateFolders}" Content="{loc:Tr CopyToSeparateFolders}"  Margin="5" DockPanel.Dock="Top"/>
+                            <captioned:CaptionedEditPath Caption="{loc:Tr FolderToCloneTests}" Value="{Binding DirToCloneTests}" PathGetterType="Folder" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Margin="5" DockPanel.Dock="Top" />
+                            <Label Content="{loc:Tr FileMasksToCopy}" DockPanel.Dock="Top" Margin="5 0" Padding="0"/>
+                            <units:CheckableListBoxUnit ItemsSource="{Binding CopyMasks}" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Margin="5 0 5 5" UnitType="Text" Title="{loc:Tr FileMasksToCopy}"/>
                         </DockPanel>
                     </GroupBox>
-                    <StackPanel Grid.Column="1">
-                        <GroupBox Margin="5" Header="{loc:Tr Configuration}">
+                    <DockPanel Grid.Column="0">
+                        <GroupBox Margin="5" Header="{loc:Tr Configuration}" DockPanel.Dock="Top">
                             <StackPanel >
                                 <DockPanel>
+                                    <controls:ExtCheckBox Content="{loc:Tr SynchronizeTestsAgents}" IsChecked="{Binding NeedSynchronizationForTests}" Margin="5" DockPanel.Dock="Top"/>
                                     <StackPanel DockPanel.Dock="Left" >
-                                        <controls:ExtCheckBox Content="{loc:Tr SynchronizeTestsAgents}" IsChecked="{Binding NeedSynchronizationForTests}" Margin="5"/>
                                         <controls:ExtCheckBox Content="{loc:Tr RunAsx86}" IsChecked="{Binding RunAsx86}" Margin="5"/>
                                         <controls:ExtCheckBox Content="{loc:Tr RunAsAdmin}" IsChecked="{Binding RunAsAdmin}" Margin="5"/>
+                                        <captioned:CaptionedNumericUpDown Caption="{loc:Tr StartDelay}" Value="{Binding StartDelay}" Minimum="0" Maximum="60" Margin="5"/>
                                     </StackPanel>
                                     <GroupBox Margin="5" Header="{loc:Tr Multithreading}">
                                         <captioned:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16" Margin="5"/>
@@ -63,14 +60,19 @@
                                 <captioned:CaptionedEditPath Caption="{loc:Tr CommandToRunBeforeTests}" Value="{Binding CommandBeforeTestsRun}" PathGetterType="File" Margin="5"/>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Margin="5" Header="{loc:Tr Clonning}">
-                            <StackPanel >
-                                <controls:ExtCheckBox Name="CopyToSeparateFolders" IsChecked="{Binding CopyToSeparateFolders}" Content="{loc:Tr CopyToSeparateFolders}"  Margin="5" />
-                                <captioned:CaptionedEditPath Caption="{loc:Tr FolderToCloneTests}" Value="{Binding DirToCloneTests}" PathGetterType="Folder" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Margin="5"/>
-                                <captioned:CaptionedNumericUpDown Name="CopyDeep" Caption="{loc:Tr CopyDeep}" Value="{Binding CopyDeep}" IsEnabled="{Binding ElementName=CopyToSeparateFolders, Path=IsChecked}" Minimum="1" Maximum="64" Margin="5"/>
-                            </StackPanel>
+                        <GroupBox Margin="5" Header="{loc:Tr Categories}" VerticalContentAlignment="Stretch">
+                            <DockPanel>
+                                <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding UseCategories}" DockPanel.Dock="Top" Margin="5"/>
+                                <DockPanel Margin="10 2 2 2" IsEnabled="{Binding UseCategories}">
+                                    <StackPanel DockPanel.Dock="Top" >
+                                        <RadioButton Content="{loc:Tr Include}" IsChecked="{Binding IncludeCategories}" GroupName="Category" Margin="2"/>
+                                        <RadioButton Content="{loc:Tr Exclude}" IsChecked="{Binding IncludeCategories, Converter={StaticResource BoolInverterConverter}}" GroupName="Category" Margin="2"/>
+                                    </StackPanel>
+                                    <components:CheckableListBox Name="Categories" Margin="2"/>
+                                </DockPanel>
+                            </DockPanel>
                         </GroupBox>
-                    </StackPanel>
+                    </DockPanel>
                 </Grid>
             </TabItem>
         </TabControl>

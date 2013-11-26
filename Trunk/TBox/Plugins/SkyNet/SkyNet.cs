@@ -17,7 +17,7 @@ namespace SkyNet
     [PluginInfo(typeof(SkyNetLang), 18, PluginGroup.Development)]
     public class SkyNet : ConfigurablePlugin<Settings, Config>
     {
-        private readonly SkyNetScriptRunner scriptConfigurator = new SkyNetScriptRunner();
+        private readonly SkyNetScriptConfigurator scriptConfigurator = new SkyNetScriptConfigurator();
         private readonly LazyDialog<EditorDialog> editorDialog;
 
         public SkyNet()

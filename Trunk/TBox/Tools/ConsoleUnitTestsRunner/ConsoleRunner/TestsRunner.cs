@@ -14,7 +14,7 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 	{
 		private static readonly ILog Log = LogManager.GetLogger<TestsRunner>();
 
-        public int Run(string path, int nCores, bool x86, bool cloneTests, int cloneDeep, bool needSynchronization, bool needReport, string dirToCloneTests, string commandToExecuteBeforeTests, string[] include, string[] exclude)
+        public int Run(string path, int nCores, bool x86, bool cloneTests, string[] copyMasks, bool needSynchronization, bool needReport, string dirToCloneTests, string commandToExecuteBeforeTests, string[] include, string[] exclude, int startDelay)
 		{
 			var time = Environment.TickCount;
 			var view = new ConsoleView();
@@ -38,8 +38,8 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 				var packages = p.PrepareToRun(nCores, include??exclude, include!=null && exclude!=null);
 				var updater = new ConsoleUpdater();
 				var synchronizer = new Synchronizer(nCores);
-				p.DoRun(x=>PrintInfo(x, time, view, needReport, path), 
-					packages, cloneTests, cloneDeep, needSynchronization, synchronizer, new SimpleUpdater(updater, synchronizer));
+				p.DoRun(x=>PrintInfo(x, time, view, needReport, path),
+                    packages, cloneTests, copyMasks, needSynchronization, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer));
 				Console.WriteLine("Done");
 				return (p.FailedCount > 0) ? -2 : 0;
 			}

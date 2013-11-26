@@ -84,7 +84,12 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
 
         [Test]
         [Pairwise]
-        public void When_run_tests([ValueSource("Bools")]bool x86, [Values(1, 2)]int ncores, [ValueSource("Bools")]bool sync, [ValueSource("Bools")]bool copy)
+        public void When_run_tests(
+            [ValueSource("Bools")]bool x86, 
+            [Values(1, 2)]int ncores, 
+            [ValueSource("Bools")]bool sync, 
+            [ValueSource("Bools")]bool copy,
+            [Values(0, 1)]int startDelay)
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
@@ -99,7 +104,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
                 var synchronizer = new Synchronizer(ncores);
 
                 //Act
-                p.DoRun(x => x.ApplyResults(), packages, copy, 1, sync, synchronizer, new SimpleUpdater(updater, synchronizer));
+                p.DoRun(x => x.ApplyResults(), packages, copy, new []{"*.dll"}, sync, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer));
                 Assert.Greater(p.Count, 210);
                 Assert.AreEqual(0, p.FailedCount);
             }

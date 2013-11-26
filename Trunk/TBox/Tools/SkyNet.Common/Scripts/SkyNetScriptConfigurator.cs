@@ -5,7 +5,7 @@ using ScriptEngine.Core.Interfaces;
 
 namespace SkyNet.Common.Scripts
 {
-    public class SkyNetScriptRunner : IScriptConfigurator
+    public class SkyNetScriptConfigurator : IScriptConfigurator
     {
         private readonly IScriptCompiler<IReportScript> compiler = new ScriptCompiler<IReportScript>();
 

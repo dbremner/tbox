@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using Common.Tools;
 using Common.UI.Model;
+using Common.UI.ModelsContainers;
 
 namespace NUnitRunner.Code.Settings
 {
@@ -11,7 +13,7 @@ namespace NUnitRunner.Code.Settings
 		public bool Multithreaded { get; set; }
 		public bool CopyToSeparateFolders { get; set; }
 		public int ProcessCount { get; set; }
-		public int CopyDeep { get; set; }
+        public CheckableDataCollection<CheckableData> CopyMasks { get; set; }
         public bool RunAsx86 { get; set; }
         public bool RunAsAdmin { get; set; }
 		public bool NeedSynchronizationForTests { get; set; }
@@ -19,13 +21,18 @@ namespace NUnitRunner.Code.Settings
         public string CommandBeforeTestsRun { get; set; }
         public bool UseCategories { get; set; }
         public bool IncludeCategories { get; set; }
+        public int StartDelay { get; set; }
 
 		public TestConfig()
 		{
 			OnlyFailed = false;
 			CopyToSeparateFolders = false;
 			ProcessCount = 1;
-			CopyDeep = 1;
+            CopyMasks = new CheckableDataCollection<CheckableData>
+            {
+                new CheckableData { Key = "*.dll" }, 
+                new CheckableData { Key = "*.config"}
+            };
             RunAsx86 = true;
 			RunAsAdmin = false;
 			NeedSynchronizationForTests = false;
@@ -33,6 +40,7 @@ namespace NUnitRunner.Code.Settings
 		    CommandBeforeTestsRun = string.Empty;
 		    UseCategories = false;
 		    IncludeCategories = true;
+		    StartDelay = 0;
 		}
 
 		public override object Clone()
@@ -44,7 +52,7 @@ namespace NUnitRunner.Code.Settings
 					OnlyFailed = OnlyFailed,
 					CopyToSeparateFolders = CopyToSeparateFolders,
 					ProcessCount = ProcessCount,
-					CopyDeep = CopyDeep,
+					CopyMasks = CopyMasks.Clone(),
                     RunAsx86 = RunAsx86,
                     RunAsAdmin = RunAsAdmin,
 					NeedSynchronizationForTests = NeedSynchronizationForTests,
@@ -53,6 +61,7 @@ namespace NUnitRunner.Code.Settings
                     CommandBeforeTestsRun = CommandBeforeTestsRun,
                     UseCategories = UseCategories,
                     IncludeCategories = IncludeCategories,
+                    StartDelay = StartDelay,
 				};
 		}
 	}

@@ -156,6 +156,9 @@
   <data name="Exclude" xml:space="preserve">
     <value>Exclude</value>
   </data>
+  <data name="FileMasksToCopy" xml:space="preserve">
+    <value>File path masks to copy</value>
+  </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter:</value>
   </data>
@@ -201,6 +204,9 @@
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="StartDelay" xml:space="preserve">
+    <value>Start test delay (s)</value>
+  </data>
   <data name="SynchronizeTestsAgents" xml:space="preserve">
     <value>Synchronize tests agents</value>
   </data>
@@ -211,7 +217,7 @@
     <value>Tests results</value>
   </data>
   <data name="TestsStateTemplate" xml:space="preserve">
-    <value>{0} - tests: [ {1} ], failed = [ {2} ], time: {3:0.0}</value>
+    <value>{0} - tests: [ {1} ], failed = [ {2} ], time: {3}</value>
   </data>
   <data name="UseCategories" xml:space="preserve">
     <value>Use categories</value>

@@ -122,5 +122,10 @@ namespace Common.Tools
 			}
 			return -1;
 		}
+
+	    public static string FormatTimeInSec(this int time)
+	    {
+            return string.Format("{0:00}:{1:00}:{2:00}", time / 3600, (time / 60) % 60, time % 60);
+	    }
 	}
 }

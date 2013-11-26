@@ -1,105 +1,104 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Common.Communications.Interprocess;
 using NUnit.Core;
-using Common.Communications;
 using ServiceStack.Text;
 using extended.nunit.Interfaces;
 
 namespace extended.nunit
 {
-	[Serializable]
-	public sealed class RemoteListener : EventListener
-	{
-		public string Handle { get; set; }
-		public bool Fast { get; set; }
-		private int time = Environment.TickCount;
-		private InterprocessClient<INunitRunnerClient> client;
-		private readonly IList<Result> items = new List<Result>();
-		private int expectedTestCount;
+    [Serializable]
+    public sealed class RemoteListener : EventListener
+    {
+        public string Handle { get; set; }
+        public bool Fast { get; set; }
 
-		private InterprocessClient<INunitRunnerClient> GetClient()
-		{
-			return client ?? (client = new InterprocessClient<INunitRunnerClient>(Handle));
-		}
+        private int time = Environment.TickCount;
+        private InterprocessClient<INunitRunnerClient> client;
+        private readonly IList<Result> items = new List<Result>();
+        private int expectedTestCount;
 
-		public void RunStarted(string name, int testCount)
-		{
-			expectedTestCount = testCount-1;
-		}
+        private InterprocessClient<INunitRunnerClient> GetClient()
+        {
+            return client ?? (client = new InterprocessClient<INunitRunnerClient>(Handle));
+        }
 
-		public void RunFinished(TestResult result)
-		{
-			SendAll();
-		}
+        public void RunStarted(string name, int testCount)
+        {
+            expectedTestCount = testCount - 1;
+        }
 
-		public void RunFinished(Exception exception)
-		{
-		}
+        public void RunFinished(TestResult result)
+        {
+            SendAll();
+        }
 
-		public void TestStarted(TestName testName)
-		{
-		}
+        public void RunFinished(Exception exception)
+        {
+        }
 
-		public void TestFinished(TestResult result)
-		{
-			items.Add(new Result
-				{
-					Id = int.Parse(result.Test.TestName.TestID.ToString()),
-					Message = result.Message,
-					StackTrace = result.StackTrace,
-					State = result.ResultState,
-				});
-			if (!Fast)
-			{
-				if (--expectedTestCount == 0)
-				{
-					SendAll();
-					WaitUntillAllOtherTestsFinished();
-					return;
-				}
-			}
-			if (Environment.TickCount - time <= 3000) return;
-			SendAll();
-			time = Environment.TickCount;
-		}
+        public void TestStarted(TestName testName)
+        {
+        }
 
-		public void SuiteStarted(TestName testName)
-		{
-		}
+        public void TestFinished(TestResult result)
+        {
+            items.Add(new Result
+            {
+                Id = int.Parse(result.Test.TestName.TestID.ToString()),
+                Message = string.Format("{0}\n{1}", result.Time, result.Message),
+                StackTrace = result.StackTrace,
+                State = result.ResultState,
+            });
+            if (!Fast)
+            {
+                if (--expectedTestCount == 0)
+                {
+                    SendAll();
+                    WaitUntillAllOtherTestsFinished();
+                    return;
+                }
+            }
+            if (Environment.TickCount - time <= 3000) return;
+            SendAll();
+            time = Environment.TickCount;
+        }
 
-		public void SuiteFinished(TestResult result)
-		{
-		}
+        public void SuiteStarted(TestName testName)
+        {
+        }
 
-		public void UnhandledException(Exception exception)
-		{
-		}
+        public void SuiteFinished(TestResult result)
+        {
+        }
 
-		public void TestOutput(TestOutput testOutput)
-		{
-		}
+        public void UnhandledException(Exception exception)
+        {
+        }
 
-		private void WaitUntillAllOtherTestsFinished()
-		{
-			var s = new NunitRunnerServer();
-			using (var server = new InterprocessServer<INunitRunnerServer>(s))
-			{
-				GetClient().Instance.CanFinish(server.Handle);
-				while (s.ShouldWait)
-				{
-					Thread.Sleep(20);
-				}
-			}
-		}
+        public void TestOutput(TestOutput testOutput)
+        {
+        }
 
-		private void SendAll()
-		{
-			if (items.Count == 0)return;
-			GetClient().Instance.SendTestsResults(JsonSerializer.SerializeToString(items.ToArray()));
-			items.Clear();
-		}
-	}
+        private void WaitUntillAllOtherTestsFinished()
+        {
+            var s = new NunitRunnerServer();
+            using (var server = new InterprocessServer<INunitRunnerServer>(s))
+            {
+                GetClient().Instance.CanFinish(server.Handle);
+                while (s.ShouldWait)
+                {
+                    Thread.Sleep(20);
+                }
+            }
+        }
+
+        private void SendAll()
+        {
+            if (items.Count == 0) return;
+            GetClient().Instance.SendTestsResults(JsonSerializer.SerializeToString(items.ToArray()));
+            items.Clear();
+        }
+    }
 }

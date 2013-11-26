@@ -340,7 +340,7 @@ namespace Localization.Plugins.Searcher {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directories: {0}  time: {1}s  speed: {2} kb/s.
+        ///   Looks up a localized string similar to Directories: {0}  time: {1}  speed: {2} kb/s.
         /// </summary>
         public static string ProgressString {
             get {

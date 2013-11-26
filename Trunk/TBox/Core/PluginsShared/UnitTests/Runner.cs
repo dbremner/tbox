@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using Common.Base.Log;
 using Common.Communications.Interprocess;
 using Common.Console;
@@ -38,9 +40,9 @@ namespace PluginsShared.UnitTests
 			return result;
 		}
 
-        public void Run(string path, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, bool copyToLocalFolders, int copyDeep, bool needSynchronizationForTests, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, Synchronizer synchronizer, IProgressStatus u)
+        public void Run(string path, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, bool copyToLocalFolders, string[] copyMasks, bool needSynchronizationForTests, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, int startDelay, Synchronizer synchronizer, IProgressStatus u)
 		{
-			var dllPaths = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyDeep, dirToCloneTests, u);
+			var dllPaths = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyMasks, dirToCloneTests, u);
 			var s = (NunitRunnerClient)server.Owner;
 			try
 			{
@@ -57,10 +59,22 @@ namespace PluginsShared.UnitTests
 				}
                 if (!string.IsNullOrEmpty(commandToExecuteBeforeTests))
                 {
-                    Cmd.Start(commandToExecuteBeforeTests, Log, waitEnd: true, nowindow: true);
+                    foreach (var folder in dllPaths)
+                    {
+                        Cmd.Start(commandToExecuteBeforeTests, Log, 
+                            directory: Path.GetDirectoryName(folder), 
+                            waitEnd: true, 
+                            nowindow: true);
+                    }
                 }
+                if(u.UserPressClose)return;
 				s.Processes.AddRange(packages.Select(
-					(items, i) => processCreator.Create(dllPaths[i], handle, needSynchronizationForTests ? "test" : "fasttest", runAsx86, runAsAdmin)));
+					(items, i) =>
+					    {
+                            if(i>0 && startDelay>0)Thread.Sleep(startDelay*1000);
+					        return processCreator.Create(dllPaths[i], handle, needSynchronizationForTests ? "test" : "fasttest", runAsx86,
+					                              runAsAdmin);
+					    }));
 			}
 			finally
 			{
@@ -69,7 +83,7 @@ namespace PluginsShared.UnitTests
 					p.WaitForExit();
 					p.Dispose();
 				}
-				dirMan.ClearFolders(dllPaths, copyToLocalFolders, copyDeep);
+				dirMan.ClearFolders(dllPaths, copyToLocalFolders, copyMasks);
 			}
 		}
 

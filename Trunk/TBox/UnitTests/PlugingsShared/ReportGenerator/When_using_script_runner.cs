@@ -13,7 +13,7 @@ namespace UnitTests.PlugingsShared.ReportGenerator
     {
         public static string[] Files
         {
-            get { return Directory.GetFiles(Path.GetFullPath("../../../bin/Release/Data/TeamManager/DataProviders/"), "*.cs", SearchOption.TopDirectoryOnly); }
+            get { return Directory.GetFiles("../../../bin/Release/Data/TeamManager/DataProviders/", "*.cs", SearchOption.TopDirectoryOnly); }
         }
 
         [Test]

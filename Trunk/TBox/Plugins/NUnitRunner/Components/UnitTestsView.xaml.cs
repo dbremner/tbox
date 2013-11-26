@@ -10,108 +10,108 @@ using PluginsShared.UnitTests.Settings;
 
 namespace NUnitRunner.Components
 {
-	/// <summary>
-	/// Interaction logic for UnitTestsView.xaml
-	/// </summary>
-	public partial class UnitTestsView : IUnitTestsView
-	{
-		public UnitTestsView()
-		{
-			InitializeComponent();
-			Panel.View = Results;
-		}
+    /// <summary>
+    /// Interaction logic for UnitTestsView.xaml
+    /// </summary>
+    public partial class UnitTestsView : IUnitTestsView
+    {
+        public UnitTestsView()
+        {
+            InitializeComponent();
+            Panel.View = Results;
+        }
 
-		public IEnumerable ItemsSource
-		{
-			get { return Results.ItemsSource; }
-			set
-			{
-				Results.ItemsSource = value;
-				FilterChanged(null, null);
-				SelectedTestChanged(null, null);
-			}
-		}
+        public IEnumerable ItemsSource
+        {
+            get { return Results.ItemsSource; }
+            set
+            {
+                Results.ItemsSource = value;
+                FilterChanged(null, null);
+                SelectedTestChanged(null, null);
+            }
+        }
 
-		private bool onlyFailed;
-		public bool OnlyFailed
-		{
-			get { return onlyFailed; }
-			set
-			{
-				onlyFailed = value;
-				FilterChanged(null, null);
-			}
-		}
+        private bool onlyFailed;
+        public bool OnlyFailed
+        {
+            get { return onlyFailed; }
+            set
+            {
+                onlyFailed = value;
+                FilterChanged(null, null);
+            }
+        }
 
-		public void Refresh()
-		{
-			Results.Items.Refresh();
-			FilterChanged(null, null);
-		}
+        public void Refresh()
+        {
+            Results.Items.Refresh();
+            FilterChanged(null, null);
+        }
 
-		private void OnTestChecked(object sender, RoutedEventArgs e)
-		{
-			Results.OnCheckChangedEvent(sender, e);
-		}
+        private void OnTestChecked(object sender, RoutedEventArgs e)
+        {
+            Results.OnCheckChangedEvent(sender, e);
+        }
 
-		private void SelectedTestChanged(object sender, SelectionChangedEventArgs e)
-		{
-			var selected = Results.SelectedValue as Result;
-			if (selected == null)
-			{
-				Description.Text = string.Empty;
-				return;
-			}
-			Description.Text =
-				selected.Message + Environment.NewLine +
-				selected.StackTrace;
-		}
+        private void SelectedTestChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = Results.SelectedValue as Result;
+            if (selected == null)
+            {
+                Description.Value = string.Empty;
+                return;
+            }
+            Description.Value =
+                selected.Message + Environment.NewLine +
+                selected.StackTrace;
+        }
 
-		private void FilterChanged(object sender, RoutedEventArgs e)
-		{
-			if (Results.ItemsSource == null) return;
-			var view = CollectionViewSource.GetDefaultView(Results.ItemsSource);
-			if (view == null) return;
-			Predicate<Result> failedFilter = null;
-			Predicate<Result> filter = null;
-			if (OnlyFailed) filter = failedFilter = IsFailed;
-			var text = Filter.Text.Trim();
-			if (!string.IsNullOrEmpty(text))
-			{
-				Predicate<Result> textFilter = x => x.Key.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0;
-				filter = filter!=null ?
-					x => failedFilter(x) && textFilter(x) : 
-					textFilter;
-			}
-			if (filter != null)
-			{
-				view.Filter = x => filter((Result)x);
-			}
-			else
-			{
-				view.Filter = null;
-			}
-		}
+        private void FilterChanged(object sender, RoutedEventArgs e)
+        {
+            if (Results.ItemsSource == null) return;
+            var view = CollectionViewSource.GetDefaultView(Results.ItemsSource);
+            if (view == null) return;
+            Predicate<Result> failedFilter = null;
+            Predicate<Result> filter = null;
+            if (OnlyFailed) filter = failedFilter = IsFailed;
+            var text = Filter.Text.Trim();
+            if (!string.IsNullOrEmpty(text))
+            {
+                Predicate<Result> textFilter = x => x.Key.IndexOf(text, StringComparison.InvariantCultureIgnoreCase) >= 0;
+                filter = filter != null ?
+                    x => failedFilter(x) && textFilter(x) :
+                    textFilter;
+            }
+            if (filter != null)
+            {
+                view.Filter = x => filter((Result)x);
+            }
+            else
+            {
+                view.Filter = null;
+            }
+        }
 
-		private static bool IsFailed(Result i)
-		{
-			return i.State == ResultState.Failure || i.State == ResultState.Error;
-		}
+        private static bool IsFailed(Result i)
+        {
+            return i.State == ResultState.Failure || i.State == ResultState.Error;
+        }
 
-		public void UpdateFilter(bool onlyFail)
-		{
-			if (ItemsSource == null) return;
-			OnlyFailed = onlyFail;
-		}
+        public void UpdateFilter(bool onlyFail)
+        {
+            if (ItemsSource == null) return;
+            OnlyFailed = onlyFail;
+        }
 
-		public void SetItems(CheckableDataCollection<Result> items)
-		{
-			ItemsSource = items;
-		}
+        public void SetItems(CheckableDataCollection<Result> items)
+        {
+            ItemsSource = items;
+        }
 
-		public void Clear()
-		{
-			ItemsSource = null;
-		}
-	}
+        public void Clear()
+        {
+            ItemsSource = null;
+        }
+    }
 }

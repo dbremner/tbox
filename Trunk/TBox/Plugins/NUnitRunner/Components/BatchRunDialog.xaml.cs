@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Common.MT;
+using Common.Tools;
 using Common.UI.Model;
 using Common.UI.ModelsContainers;
 using Localization.Plugins.NUnitRunner;
@@ -81,8 +82,8 @@ namespace NUnitRunner.Components
 			var testPackages = packages.ToDictionary(x => x, x => x.PrepareToRun(1, categories, config.Batch.UseCategories ? (bool?)config.Batch.IncludeCategories : null));
 			var time = Environment.TickCount;
 			DialogsCache.ShowProgress(
-				u => DoRun(new GroupUpdater(u, testPackages.Sum(x=>x.Value.Sum(y=>y.Count))), time, testPackages), 
-				originalCaption, this, false);
+				u => DoRun(new GroupUpdater(u, testPackages.Sum(x=>x.Value.Sum(y=>y.Count))), time, testPackages),
+                originalCaption, this, false);
 		}
 
 		private void DoRun(IProgressStatus u, int time, IDictionary<TestsPackage, IList<IList<Result>>> tests)
@@ -92,7 +93,8 @@ namespace NUnitRunner.Components
 			Parallel.ForEach(packages,
 				p => p.DoRun(
 					o => DoRun(o, time, ref count),
-					tests[p], false, 1, config.Batch.NeedSync && tests.Count > 1,
+					tests[p], false, new string[0], config.Batch.NeedSync && tests.Count > 1,
+                    0,
 					synchronizer,
 					u));
 		}
@@ -106,7 +108,7 @@ namespace NUnitRunner.Components
                       Title = string.Format(NUnitRunnerLang.TestsStateTemplate,
 											originalCaption,
 											packages.Sum(x => x.Count), packages.Sum(x => x.FailedCount),
-											(Environment.TickCount - time) / 1000.0);
+                                            ((Environment.TickCount - time) / 1000).FormatTimeInSec());
 					  foreach (var p in packages)
 					  {
 						  ((UnitTestsView)p.Results).Refresh();
@@ -137,7 +139,7 @@ namespace NUnitRunner.Components
 				Results.Items.Add(
 					new TabItem {Header = Path.GetFileName(item.Key), Content = p.Results});
 			}
-			DialogsCache.ShowProgress(DoRefresh, originalCaption, this, false);
+            DialogsCache.ShowProgress(DoRefresh, originalCaption, this, false);
 		}
 
 		private void DoRefresh(IUpdater u)

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Common.Base.Log;
 using Common.Tools;
 using Localization.PluginsShared;
@@ -10,81 +12,104 @@ using PluginsShared.UnitTests.Settings;
 
 namespace PluginsShared.UnitTests
 {
-	class DirectoriesManipulator
-	{
-		private static readonly ILog Log = LogManager.GetLogger<DirectoriesManipulator>();
+    class DirectoriesManipulator
+    {
+        private static readonly ILog Log = LogManager.GetLogger<DirectoriesManipulator>();
+        private readonly CopyDeepManager cdManager = new CopyDeepManager();
 
-		public List<string> GenerateFolders(string path, IList<IList<Result>> packages, bool copyToLocalFolders, int copyDeep, string dirToCloneTests, IProgressStatus u)
-		{
-			var dllPaths = new List<string>();
-			if (copyToLocalFolders)
-			{
+        public List<string> GenerateFolders(string path, IList<IList<Result>> packages, bool copyToLocalFolders, string[] copyMasks, string dirToCloneTests, IProgressStatus u)
+        {
+            var dllPaths = new List<string>();
+            if (copyToLocalFolders)
+            {
                 u.Update(PluginsSharedLang.StartClonningUnitTestsFolder);
-				CopyToLocalFolders(path, packages, copyDeep, dirToCloneTests, u, dllPaths);
+                CopyToLocalFolders(path, packages, copyMasks, dirToCloneTests, u, dllPaths);
                 u.Update(PluginsSharedLang.FinishClonningUnitTestsFolder);
-			}
-			else
-			{
-				for (var i = 0; i < packages.Count; i++)
-				{
-					dllPaths.Add(path);
-				}
-			}
-			return dllPaths;
-		}
+            }
+            else
+            {
+                for (var i = 0; i < packages.Count; i++)
+                {
+                    dllPaths.Add(path);
+                }
+            }
+            return dllPaths;
+        }
 
-        private static void CopyToLocalFolders(string path, IList<IList<Result>> packages, int copyDeep, string dirToCloneTests, IProgressStatus u, List<string> dllPaths)
-		{
-			var dir = new DirectoryInfo(Path.GetDirectoryName(path));
-			var name = Path.GetFileName(path);
-			for (var i = 1; i < copyDeep && dir.Parent != null; ++i)
-			{
-				name = Path.Combine(dir.Name, name);
-				dir = dir.Parent;
-			}
+        private void CopyToLocalFolders(string path, IList<IList<Result>> packages, string[] copyMasks, string dirToCloneTests, IProgressStatus u, List<string> dllPaths)
+        {
+            copyMasks = cdManager.NormalizePathes(copyMasks);
+            var copyDeep = cdManager.CalcCopyDeep(copyMasks);
+            var source = new DirectoryInfo(Path.GetDirectoryName(path));
+            var name = Path.GetFileName(path);
+            var maximumPathes = cdManager.BuildMaximumPathes(source.FullName, copyDeep);
+            copyMasks = copyMasks
+                .Select(x => cdManager.NormalizePath(x, copyDeep, maximumPathes))
+                .ToArray();
+            var filters = copyMasks
+                .Select(x => new Regex(x.Replace(".", "[.]").Replace("*", ".*").Replace("?", ".").Replace("\\", "\\\\"), RegexOptions.Compiled | RegexOptions.IgnoreCase))
+                .ToArray();
+            for (var i = 1; i < copyDeep && source.Parent != null; ++i)
+            {
+                name = Path.Combine(source.Name, name);
+                source = source.Parent;
+            }
             dirToCloneTests = Path.GetFullPath(dirToCloneTests);
-			var fileId = 0;
-			for (var i = 0; i < packages.Count; i++)
-			{
-				var folder = string.Empty;
-				while (true)
-				{
-                    if(u.UserPressClose)return;
+            var fileId = 0;
+            for (var i = 0; i < packages.Count; i++)
+            {
+                var folder = string.Empty;
+                while (true)
+                {
+                    if (u.UserPressClose) return;
                     folder = Path.Combine(dirToCloneTests, (++fileId).ToString(CultureInfo.InvariantCulture));
-					var info = new DirectoryInfo(folder);
-					if (info.Exists || File.Exists(folder)) continue;
-					info.Create();
-					u.Update("Copy files to: " + info.FullName);
-					dir.CopyFilesTo(info.FullName);
-					break;
-				}
-				dllPaths.Add(Path.Combine(folder, name));
-			}
-		}
+                    var destination = new DirectoryInfo(folder);
+                    if (destination.Exists || File.Exists(folder)) continue;
+                    destination.Create();
+                    u.Update("Copy files to: " + destination.FullName);
+                    CopyFiles(source, destination, filters);
+                    break;
+                }
+                dllPaths.Add(Path.Combine(folder, name));
+            }
+        }
 
-		public void ClearFolders(IList<string> dllPaths, bool copyToLocalFolders, int copyDeep)
-		{
-			if (!copyToLocalFolders) return;
-			foreach (var t in dllPaths)
-			{
-				try
-				{
-					var name = Path.GetDirectoryName(t);
-					for (var j = 1; j < copyDeep; ++j)
-					{
-						name = Path.GetDirectoryName(name);
-					}
-				    name = name ?? string.Empty;
+        private static void CopyFiles(DirectoryInfo source, DirectoryInfo destination, IEnumerable<Regex> filters)
+        {
+            foreach (var file in source.GetFiles("*", SearchOption.AllDirectories).Where(x=>filters.Any(o=>o.IsMatch(x.FullName.Substring(source.FullName.Length)))))
+            {
+                var target = file.FullName.Replace(source.FullName, destination.FullName);
+                var folderName = Path.GetDirectoryName(target);
+                if (!Directory.Exists(folderName)) Directory.CreateDirectory(folderName);
+                file.CopyTo(target);
+            }
+        }
+
+        public void ClearFolders(IList<string> dllPaths, bool copyToLocalFolders, string[] copyMasks)
+        {
+            if (!copyToLocalFolders) return;
+            var copyDeep = cdManager.CalcCopyDeep(cdManager.NormalizePathes(copyMasks));
+            foreach (var t in dllPaths)
+            {
+                try
+                {
+                    var name = Path.GetDirectoryName(t);
+                    for (var j = 1; j < copyDeep; ++j)
+                    {
+                        name = Path.GetDirectoryName(name);
+                    }
+                    name = name ?? string.Empty;
                     if (Directory.Exists(name))
                     {
                         Directory.Delete(name, true);
                     }
-				}
-				catch (Exception ex)
-				{
-					Log.Write(ex, "Can't delete folder: " + t);
-				}
-			}
-		}
-	}
+                }
+                catch (Exception ex)
+                {
+                    Log.Write(ex, "Can't delete folder: " + t);
+                }
+            }
+        }
+
+    }
 }

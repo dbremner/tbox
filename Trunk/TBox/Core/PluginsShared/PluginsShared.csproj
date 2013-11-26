@@ -178,6 +178,7 @@
     <Compile Include="UnitTests\AgentProcessCreator.cs" />
     <Compile Include="UnitTests\Calculator.cs" />
     <Compile Include="UnitTests\Communication\NunitRunnerClient.cs" />
+    <Compile Include="UnitTests\CopyDeepManager.cs" />
     <Compile Include="UnitTests\DirectoriesManipulator.cs" />
     <Compile Include="UnitTests\Interfaces\IProgressStatus.cs" />
     <Compile Include="UnitTests\Interfaces\IUnitTestsView.cs" />

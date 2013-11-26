@@ -1,5 +1,6 @@
 ﻿using System;
 using Common.MT;
+using Common.Tools;
 using PluginsShared.UnitTests.Interfaces;
 
 namespace PluginsShared.UnitTests.Updater
@@ -35,7 +36,7 @@ namespace PluginsShared.UnitTests.Updater
                 passedCount, 
                 allCount, failedCount,
                 synchronizer.Finished, synchronizer.Count);
-			u.Update(i => string.Format("{0}, time: {1}", caption, i), passedCount, allCount);
+			u.Update(i => string.Format("{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, allCount);
 		}
 	}
 }

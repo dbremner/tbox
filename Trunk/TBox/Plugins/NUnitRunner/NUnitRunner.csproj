@@ -108,6 +108,11 @@
       <Name>WPFControls</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\WPFSyntaxHighlighter.csproj">
+      <Project>{8A2CF1DC-BCD6-4A63-8CF7-B9EA4F297ACD}</Project>
+      <Name>WPFSyntaxHighlighter</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Library\WPFWinForms\WPFWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
       <Name>WPFWinForms</Name>

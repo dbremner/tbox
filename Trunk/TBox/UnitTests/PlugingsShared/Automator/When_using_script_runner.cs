@@ -13,7 +13,7 @@ namespace UnitTests.PlugingsShared.Automator
     {
         public static string[] Files
         {
-            get { return Directory.GetFiles(Path.GetFullPath("../../../bin/Release/Data/Automater/Scripts/"), "*.cs", SearchOption.TopDirectoryOnly); }
+            get { return Directory.GetFiles("../../../bin/Release/Data/Automater/Scripts/", "*.cs", SearchOption.TopDirectoryOnly); }
         }
 
         [Test]

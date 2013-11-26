@@ -178,6 +178,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File path masks to copy.
+        /// </summary>
+        public static string FileMasksToCopy {
+            get {
+                return ResourceManager.GetString("FileMasksToCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter:.
         /// </summary>
         public static string Filter {
@@ -313,6 +322,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start test delay (s).
+        /// </summary>
+        public static string StartDelay {
+            get {
+                return ResourceManager.GetString("StartDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Synchronize tests agents.
         /// </summary>
         public static string SynchronizeTestsAgents {
@@ -340,7 +358,7 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} - tests: [ {1} ], failed = [ {2} ], time: {3:0.0}.
+        ///   Looks up a localized string similar to {0} - tests: [ {1} ], failed = [ {2} ], time: {3}.
         /// </summary>
         public static string TestsStateTemplate {
             get {
