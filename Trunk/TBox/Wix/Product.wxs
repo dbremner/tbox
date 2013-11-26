@@ -15,8 +15,6 @@
     <Icon Id='Icon.ico' SourceFile='..\Core\TBox\Resources\Icon.ico' />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
     <WixVariable Id="WixUILicenseRtf" Value="..\bin\Release\License.rtf" />
-    <WixVariable Id="WixUIBannerBmp" Value="Resources\bannrbmp.bmp" />
-    <WixVariable Id="WixUIDialogBmp" Value="Resources\dlgbmp.bmp" />
     <UIRef Id="CustomInstallDir" />
 
     <Property Id="MSIFASTINSTALL" Value="7"/>
