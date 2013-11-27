@@ -12,6 +12,7 @@ namespace PluginsShared.UnitTests.Updater
 	    private int passedCount = 0;
 		private int failedCount = 0;
 		private int lastTime = Environment.TickCount;
+        private readonly object locker = new object();
 
 		public SimpleUpdater(IUpdater u, Synchronizer synchronizer)
 		{
@@ -28,10 +29,13 @@ namespace PluginsShared.UnitTests.Updater
 
 		public void Update(int allCount, int count, int failed)
 		{
+            lock (locker)
+            {
+                passedCount += count;
+                failedCount += failed;
+            }
 			if ((Environment.TickCount - lastTime) < 1000) return;
 			lastTime = Environment.TickCount;
-			passedCount += count;
-			failedCount += failed;
             var caption = string.Format("Tested: {0}/{1}, failed: {2}, finished = {3}/{4}", 
                 passedCount, 
                 allCount, failedCount,
