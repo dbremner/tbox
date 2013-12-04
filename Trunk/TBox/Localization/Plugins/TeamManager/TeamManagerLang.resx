@@ -243,8 +243,8 @@
   <data name="Report" xml:space="preserve">
     <value>Report</value>
   </data>
-  <data name="ReportFooter" xml:space="preserve">
-    <value>This report was automatically generated with &lt;a href="http://tbox.codeplex.com/"&gt;TBox&lt;/a&gt;. Time:</value>
+  <data name="ReportFooterTemplate" xml:space="preserve">
+    <value>This report was automatically generated with &lt;a href="http://tbox.codeplex.com/"&gt;TBox&lt;/a&gt;. Time: {0}s.</value>
   </data>
   <data name="ChooseFileToSaveReport" xml:space="preserve">
     <value>Choose file to save report</value>

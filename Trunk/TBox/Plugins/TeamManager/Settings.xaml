@@ -49,6 +49,9 @@
                             </units:ListBoxUnit.ItemTemplate>
                         </units:ListBoxUnit>
                     </TabItem>
+                    <TabItem Header="{loc:Tr Links}">
+                        <units:CheckableListBoxUnit ItemsSource="{Binding Report.Links}" UnitType="Text" Title="{loc:Tr ConfigureLink}"/>
+                    </TabItem>
                     <TabItem Header="{loc:Tr Emails}">
                         <StackPanel Margin="5">
                             <captioned:CaptionedTextBox Value="{Binding Email.Login}" Caption="{loc:Tr Login}"/>

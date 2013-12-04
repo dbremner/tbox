@@ -3,9 +3,10 @@ using System.IO;
 using System.Linq;
 using Common.MT;
 using NUnit.Framework;
-using PluginsShared.UnitTests;
-using PluginsShared.UnitTests.Interfaces;
-using PluginsShared.UnitTests.Updater;
+using ParallelNUnit.Infrastructure;
+using ParallelNUnit.Infrastructure.Interfaces;
+using ParallelNUnit.Infrastructure.Packages;
+using ParallelNUnit.Infrastructure.Updater;
 using Rhino.Mocks;
 
 namespace UnitTests.PlugingsShared.UnitTestsRunner
@@ -25,7 +26,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new TestsPackage("Wrong path", NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage("Wrong path", NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
             {
                 //Assert
                 Assert.IsFalse(p.EnsurePathIsValid());
@@ -37,7 +38,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new TestsPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
             {
                 //Assert
                 Assert.IsTrue(p.EnsurePathIsValid());
@@ -49,7 +50,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new TestsPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
             {
                 p.EnsurePathIsValid();
 
@@ -68,7 +69,7 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
             using (
-                var p = new TestsPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty,
+                var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty,
                                          view, RunAsx86Path))
             {
                 p.EnsurePathIsValid();
@@ -89,22 +90,24 @@ namespace UnitTests.PlugingsShared.UnitTestsRunner
             [Values(1, 2)]int ncores, 
             [ValueSource("Bools")]bool sync, 
             [ValueSource("Bools")]bool copy,
+            [ValueSource("Bools")]bool needOutput,
+            [ValueSource("Bools")]bool prefetch,
             [Values(0, 1)]int startDelay)
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new TestsPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
             {
                 p.EnsurePathIsValid();
 
                 p.DoRefresh(x => { }, x => {});
 
-                var packages = p.PrepareToRun(ncores, new[]{"Integration"}, false);
+                var packages = p.PrepareToRun(ncores, new[]{"Integration"}, false, prefetch);
                 var updater = new ConsoleUpdater();
                 var synchronizer = new Synchronizer(ncores);
 
                 //Act
-                p.DoRun(x => x.ApplyResults(), packages, copy, new []{"*.dll"}, sync, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer));
+                p.DoRun(x => x.ApplyResults(prefetch), p.Items, packages, copy, new []{"*.dll"}, sync, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer), needOutput);
                 Assert.Greater(p.Count, 210);
                 Assert.AreEqual(0, p.FailedCount);
             }

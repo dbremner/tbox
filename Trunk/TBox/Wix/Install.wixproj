@@ -29,8 +29,6 @@
     <Compile Include="UI\CustomInstallDirDlg.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\bannrbmp.bmp" />
-    <Content Include="Resources\dlgbmp.bmp" />
     <Content Include="Variables.wxi" />
   </ItemGroup>
   <ItemGroup>
@@ -44,14 +42,16 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="UI" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
     <PreBuildEvent>copy /Y "$(SolutionDir)bin\Release\TBox.exe" "$(SolutionDir)bin\Release\TBox32.exe" 
 copy /Y "$(SolutionDir)bin\Release\TBox.exe.config" "$(SolutionDir)bin\Release\TBox32.exe.config"
-"c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\corflags.exe" /32bit+ "$(SolutionDir)bin\Release\TBox32.exe"</PreBuildEvent>
+"c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\corflags.exe" /32bit+ "$(SolutionDir)bin\Release\TBox32.exe"
+
+copy /Y "$(SolutionDir)bin\Release\Tools\ConsoleUnitTestsRunner.exe" "$(SolutionDir)bin\Release\Tools\ConsoleUnitTestsRunner32.exe"
+"c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\corflags.exe" /32bit+ "$(SolutionDir)bin\Release\Tools\ConsoleUnitTestsRunner32.exe"</PreBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

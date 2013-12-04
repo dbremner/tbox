@@ -26,12 +26,14 @@ namespace SkyNet.Agent
             server = new NetworkServer<ISkyNetAgent>(new SkyNetAgent(config), config.Port);
             try
             {
-                var cl = new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint));
-                cl.Instance.ConnectAgent(new ServerAgent
+                using (var cl = new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint)))
                 {
-                    TotalCores = config.TotalCores,
-                    Endpoint = server.Endpoint
-                });
+                    cl.Instance.ConnectAgent(new ServerAgent
+                    {
+                        TotalCores = config.TotalCores,
+                        Endpoint = server.Endpoint
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -44,8 +46,10 @@ namespace SkyNet.Agent
             if (server == null) return;
             try
             {
-                var cl = new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint));
-                cl.Instance.DisconnectAgent(server.Endpoint);
+                using (var cl = new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint)))
+                {
+                    cl.Instance.DisconnectAgent(server.Endpoint);
+                }
             }
             catch (Exception ex)
             {

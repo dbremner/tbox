@@ -19,7 +19,7 @@ namespace TeamManager.Code.Reports
             this.style = style;
         }
 
-        public void Print(IList<ReportPerson> items, int time)
+        public void Print(IList<ReportPerson> items, int time, string[] links)
         {
             const string d = "<br/>";
             var sb = new StringBuilder("<html><head><meta http-equiv='content-type' content='text/html; charset=UTF-8'>");
@@ -45,7 +45,11 @@ namespace TeamManager.Code.Reports
                         .Concat(new[] { "footer" }).ToArray()
                         ).ToString());
             }
-            sb.AppendLine(d).AppendLine(TeamManagerLang.ReportFooter + time)
+            foreach (var link in links)
+            {
+                sb.AppendLine(d).AppendLine(string.Format("<a href='{0}'>{0}<a/>", link)).AppendLine(d);
+            }
+            sb.AppendLine(d).AppendLine(string.Format(TeamManagerLang.ReportFooterTemplate, time))
               .Append("</body></html>");
             setter(sb.ToString());
         }

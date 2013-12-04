@@ -4,43 +4,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
              xmlns:components="clr-namespace:NUnitRunner.Components"
-             xmlns:components2="clr-namespace:WPFControls.Components;assembly=WPFControls"
-             xmlns:settings1="clr-namespace:PluginsShared.UnitTests.Settings;assembly=PluginsShared"
              xmlns:wpfSyntaxHighlighter="clr-namespace:WPFSyntaxHighlighter;assembly=WPFSyntaxHighlighter"
+             xmlns:components1="clr-namespace:WPFControls.Components;assembly=WPFControls"
+             xmlns:core="clr-namespace:ParallelNUnit.Core;assembly=ParallelNUnit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <components:ResultStateToIconConverter x:Key="IconConverter"/>
-    </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
-        <DockPanel>
-            <DockPanel DockPanel.Dock="Top" Margin="2" >
-                <TextBlock Margin="2" Text="{loc:Tr Filter}"/>
-                <TextBlock Margin="2" Text="{Binding ElementName=Results, Path=Items.Count}" DockPanel.Dock="Right"/>
-                <TextBlock Margin="2" Text="{loc:Tr Displayed}" DockPanel.Dock="Right"/>
-                <TextBox Name="Filter" TextChanged="FilterChanged" />
-            </DockPanel>
-            <components2:PanelToICheckable Name="Panel" DockPanel.Dock="Bottom" />
-            <components2:CheckableListBox Name="Results" SelectionChanged="SelectedTestChanged" SelectionMode="Extended">
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="settings1:Result">
-                        <DockPanel Margin="5">
-                            <controls:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="OnTestChecked"/>
-                            <Image Source="{Binding State, Converter={StaticResource IconConverter}}" DockPanel.Dock="Left" Margin="5,0" Width="16" Height="16"/>
-                            <TextBlock Text="{Binding Key}" FontWeight="Bold"/>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </components2:CheckableListBox>
-        </DockPanel>
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch"/>
-        <wpfSyntaxHighlighter:SyntaxHighlighter Name="Description" Grid.Row="2" IsReadOnly="True"  />
-    </Grid>
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom" HorizontalAlignment="Right">
+            <StatusBarItem Content="{loc:Tr Total}" />
+            <StatusBarItem Name="Total" />
+            <StatusBarItem Content="{loc:Tr Passed}" />
+            <StatusBarItem Name="Passed" />
+            <StatusBarItem Content="{loc:Tr Failed}" />
+            <StatusBarItem Name="Failed" />
+            <StatusBarItem Content="{loc:Tr Errors}" />
+            <StatusBarItem Name="Errors" />
+            <StatusBarItem Content="{loc:Tr Inconclusive}" />
+            <StatusBarItem Name="Inconclusive" />
+            <StatusBarItem Content="{loc:Tr Invalid}" />
+            <StatusBarItem Name="Invalid" />
+            <StatusBarItem Content="{loc:Tr Ignored}" />
+            <StatusBarItem Name="Ignored" />
+            <StatusBarItem Content="{loc:Tr Skipped}" />
+            <StatusBarItem Name="Skipped" />
+            <StatusBarItem Content="{loc:Tr Time}" />
+            <StatusBarItem Name="Time" />
+        </StatusBar>
+        <Grid Name="Panel">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeDirection="Columns"/>
+            <TabControl Grid.Column="2" TabStripPlacement="Bottom" >
+                <TabItem Header="{loc:Tr SelectedItemInfo}">
+                    <wpfSyntaxHighlighter:SyntaxHighlighter Name="Description" IsReadOnly="True"  />
+                </TabItem>
+                <TabItem Header="{loc:Tr ErrorsAndFailures}">
+                    <components1:ExtListBox Name="ErrorsAndFailures" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
+                        <components1:ExtListBox.ItemTemplate>
+                            <DataTemplate DataType="core:Result">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding FullName}" FontWeight="Bold"/>
+                                    <TextBox Text="{Binding Message}" Padding="0" IsReadOnly="True" IsReadOnlyCaretVisible="True" TextWrapping="Wrap"/>
+                                    <Expander IsExpanded="false" Header="{loc:Tr CallStack}">
+                                        <TextBox Text="{Binding StackTrace}" Padding="0" IsReadOnly="True" IsReadOnlyCaretVisible="True" TextWrapping="Wrap"/>
+                                    </Expander>
+                                    <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="2"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </components1:ExtListBox.ItemTemplate>
+                    </components1:ExtListBox>
+                </TabItem>
+                <TabItem Header="{loc:Tr TestsNotRun}">
+                    <TreeView Name="TestsNotRun" />
+                </TabItem>
+                <TabItem Header="{loc:Tr TextOutput}">
+                    <TabControl Name="TextOutput"/>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
 </UserControl>

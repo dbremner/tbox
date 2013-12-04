@@ -4,6 +4,6 @@ namespace TeamManager.Code.Reports.Contracts
 {
     interface IReportsPrinter
     {
-        void Print(IList<ReportPerson> items, int time);
+        void Print(IList<ReportPerson> items, int time, string[] links);
     }
 }

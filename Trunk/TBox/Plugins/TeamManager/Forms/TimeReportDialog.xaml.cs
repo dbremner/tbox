@@ -144,7 +144,7 @@ namespace TeamManager.Forms
             var result = string.Empty;
             var printer = new HtmlReport(text => result = text,
                                          File.ReadAllText(Path.Combine(stylesFolder, profile.Report.Style)));
-            printer.Print(info, report.Time);
+            printer.Print(info, report.Time, profile.Report.Links.CheckedItems.Select(x=>x.Key).ToArray());
             return result;
         }
 
@@ -190,8 +190,18 @@ namespace TeamManager.Forms
 
         private void CopyClick(object sender, RoutedEventArgs e)
         {
-            dynamic doc = HtmlReport.Document;
-            Clipboard.SetText(doc.documentElement.InnerHtml);
+            try
+            {
+                var str = string.Empty;
+                var report = new PlainTextReport(x => str = x);
+                report.Print(BuildInfo(fullReport), fullReport.Time,
+                             profile.Report.Links.CheckedItems.Select(x => x.Key).ToArray());
+                Clipboard.SetText(str);
+            }
+            catch (Exception ex)
+            {
+                log.Write(ex, "Can't export data to clipboard");
+            }
         }
 
         private void ToExcelClick(object sender, RoutedEventArgs e)
@@ -201,7 +211,7 @@ namespace TeamManager.Forms
                 var dialog = new SaveFileDialog {FileName = profile.Report.ExcelFilePath, Title = TeamManagerLang.ChooseFileToSaveReport, DefaultExt = "*.xlsx"};
                 if (dialog.ShowDialog(this) != true) return;
                 var xls = new ExcelReport(dialog.FileName);
-                xls.Print(BuildInfo(fullReport), fullReport.Time);
+                xls.Print(BuildInfo(fullReport), fullReport.Time, profile.Report.Links.CheckedItems.Select(x=>x.Key).ToArray());
                 using (Process.Start(new ProcessStartInfo
                     {
                         FileName = dialog.FileName,

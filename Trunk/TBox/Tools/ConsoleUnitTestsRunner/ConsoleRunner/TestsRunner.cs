@@ -1,59 +1,67 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using Common.Base.Log;
 using Common.MT;
 using Common.Tools;
-using PluginsShared.UnitTests;
-using PluginsShared.UnitTests.Settings;
-using PluginsShared.UnitTests.Updater;
+using ParallelNUnit.Infrastructure;
+using ParallelNUnit.Infrastructure.Packages;
+using ParallelNUnit.Infrastructure.Updater;
 
 namespace ConsoleUnitTestsRunner.ConsoleRunner
 {
-	class TestsRunner
-	{
-		private static readonly ILog Log = LogManager.GetLogger<TestsRunner>();
+    class TestsRunner
+    {
+        private static readonly ILog Log = LogManager.GetLogger<TestsRunner>();
 
-        public int Run(string path, int nCores, bool x86, bool cloneTests, string[] copyMasks, bool needSynchronization, bool needReport, string dirToCloneTests, string commandToExecuteBeforeTests, string[] include, string[] exclude, int startDelay)
-		{
-			var time = Environment.TickCount;
-			var view = new ConsoleView();
-            using (var p = new TestsPackage(path, "NUnitAgent.exe", x86, false, dirToCloneTests, commandToExecuteBeforeTests, view, "RunAsx86.exe"))
-			{
-				Console.WriteLine("Calculating tests..");
-				if (!p.EnsurePathIsValid())
-				{
-					Log.Write("Incorrect path: " + path);
-					return -3;
-				}
-				var error = false;
-				p.DoRefresh(x => { }, x => error = true);
-				Console.WriteLine("{0} tests founded", p.Count);
-				if (error)
-				{
-					Log.Write("Can't calculate tests count");
-					return -3;
-				}
-				Console.WriteLine("Running tests..");
-				var packages = p.PrepareToRun(nCores, include??exclude, include!=null && exclude!=null);
-				var updater = new ConsoleUpdater();
-				var synchronizer = new Synchronizer(nCores);
-				p.DoRun(x=>PrintInfo(x, time, view, needReport, path),
-                    packages, cloneTests, copyMasks, needSynchronization, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer));
-				Console.WriteLine("Done");
-				return (p.FailedCount > 0) ? -2 : 0;
-			}
-		}
+        public int Run(CommandLineArgs a)
+        {
+            var time = Environment.TickCount;
+            var view = new ConsoleView();
+            var dir = Environment.CurrentDirectory;
+            using (var p = new ThreadPackage(a.Path, a.DirToCloneTests, a.CommandBeforeTestsRun, view, Program.LoadFromSameFolder))
+            {
+                if (a.Logo) Console.WriteLine("Calculating tests..");
+                if (!p.EnsurePathIsValid())
+                {
+                    Log.Write("Incorrect path: " + a.Path);
+                    return -3;
+                }
+                var error = false;
+                p.DoRefresh(x => { }, x => error = true);
+                if (a.Logo) Console.WriteLine("{0} tests founded", p.Count);
+                if (error)
+                {
+                    Log.Write("Can't calculate tests count");
+                    return -3;
+                }
+                if (a.Logo) Console.WriteLine("Running tests..");
+                var packages = p.PrepareToRun(a.ProcessCount, a.Include ?? a.Exclude, a.Include != null && a.Exclude != null, a.Prefetch);
+                var updater = new ConsoleUpdater();
+                var synchronizer = new Synchronizer(a.ProcessCount);
+                p.DoRun(x => PrintInfo(x, time, view, a.XmlReport, a.OutputReport, a.Path, dir, a.Prefetch),
+                    p.Items, packages, a.Clone, a.CopyMasks, a.Sync, a.StartDelay, synchronizer, BuildUpdater(a.Labels, a.Teamcity, updater, synchronizer), !string.IsNullOrEmpty(a.OutputReport));
+                return (p.FailedCount > 0) ? -2 : 0;
+            }
+        }
 
-		private static void PrintInfo(TestsPackage package, int time, ConsoleView view, bool needReport,string path)
-		{
-			package.ApplyResults();
-			if (needReport) view.GenerateReport(Environment.TickCount - time, path);
-			Console.WriteLine("{0} - tests: [ {1} ], failed = [ {2} ] time: {3}",
-											Path.GetFileName(package.Path),
-											package.Count, 
-											package.FailedCount,
-											(Environment.TickCount - time )/ 1000);
-		}
-	}
+        private static SimpleUpdater BuildUpdater(bool labels, bool teamcity, IUpdater updater, Synchronizer synchronizer)
+        {
+            if(teamcity)return new TeamcityUpdater(updater, synchronizer);
+            return labels ? 
+                new NUnitLabelsUpdater(updater, synchronizer) : 
+                new SimpleUpdater(updater, synchronizer);
+        }
+
+        private static void PrintInfo(IPackage package, int time, ConsoleView view, string xmlReport, string outputReport, string path, string dir, bool usePrefetch)
+        {
+            view.Time = (Environment.TickCount - time)/1000.0;
+            package.ApplyResults(usePrefetch);
+            Directory.SetCurrentDirectory(dir);
+            if (!string.IsNullOrEmpty(xmlReport)) view.GenerateReport(path, xmlReport);
+            if (!string.IsNullOrEmpty(outputReport))
+            {
+                File.WriteAllText(Path.Combine(Environment.CurrentDirectory, outputReport), string.Join(Environment.NewLine + Environment.NewLine + Environment.NewLine, package.Output));
+            }
+        }
+    }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using Common.Tools;
+using Common.UI.Model;
+using Common.UI.ModelsContainers;
 
 namespace TeamManager.Code.Settings
 {
@@ -14,6 +17,8 @@ namespace TeamManager.Code.Settings
         public string DayStatusStrategy { get; set; }
         public string ExcelFilePath { get; set; }
         public bool GenerateForCurrentWeek { get; set; }
+        public CheckableDataCollection<CheckableData> Links { get; set; }
+
 
         public Report()
         {
@@ -26,6 +31,7 @@ namespace TeamManager.Code.Settings
             DayStatusStrategy = "Default.cs";
             ExcelFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "default.xlsx");
             GenerateForCurrentWeek = false;
+            Links = new CheckableDataCollection<CheckableData>();
         }
 
         public Report Clone()
@@ -40,7 +46,8 @@ namespace TeamManager.Code.Settings
                     Style = Style,
                     DayStatusStrategy = DayStatusStrategy,
                     ExcelFilePath = ExcelFilePath,
-                    GenerateForCurrentWeek = GenerateForCurrentWeek
+                    GenerateForCurrentWeek = GenerateForCurrentWeek,
+                    Links = Links.Clone(),
                 };
         }
     }

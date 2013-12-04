@@ -16,9 +16,9 @@
              ShowInTaskbar="True" >
     <DockPanel>
         <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="10">
-            <Button Name="btnCopy" IsEnabled="False" Content="{loc:Tr CopyResultsToClipboard}" Padding="5,0" Margin="5" Click="BtnCopyClick" />
-            <Button Name="btnStartStop" Content="{loc:Tr Start}" Padding="5,0" Margin="5" Click="BtnStartClick" IsDefault="True"/>
-            <Button Content="{loc:Tr Cancel}" Padding="5,0" Margin="5" IsCancel="True" Click="CancelClick"/>
+            <Button Name="btnCopy" IsEnabled="False" Content="{loc:Tr CopyResultsToClipboard}" Margin="5" Click="BtnCopyClick" />
+            <Button Name="btnStartStop" Content="{loc:Tr Start}" Margin="5" Click="BtnStartClick" IsDefault="True"/>
+            <Button Content="{loc:Tr Cancel}"  Margin="5" IsCancel="True" Click="CancelClick"/>
         </WrapPanel>
         <TabControl Name="Tabs">
             <TabItem Header="{loc:Tr Settings}" >

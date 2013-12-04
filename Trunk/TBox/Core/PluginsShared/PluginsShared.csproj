@@ -53,51 +53,18 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EPPlus">
-      <HintPath>..\..\..\Libs\EPPlus.3.1.3.3\lib\net35\EPPlus.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.1.0\lib\net40\LightInject.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Exchange.WebServices">
       <HintPath>..\..\..\Libs\Microsoft.Exchange.WebServices.1.2\lib\Microsoft.Exchange.WebServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Windows.Shell">
-      <HintPath>..\..\..\Libs\Ribbon\Microsoft.Windows.Shell.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core">
-      <HintPath>..\..\..\Libs\nunit\nunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\..\Libs\nunit\nunit.core.interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\..\..\Libs\nunit\nunit.util.dll</HintPath>
-    </Reference>
-    <Reference Include="Ookii.Dialogs.Wpf">
-      <HintPath>..\..\..\Libs\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RibbonControlsLibrary">
       <HintPath>..\..\..\Libs\Ribbon\RibbonControlsLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="ScintillaNet">
-      <HintPath>..\..\..\Libs\ScintillaNet\ScintillaNet.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -175,19 +142,6 @@
     <Compile Include="Tools\MsBuildProvider.cs" />
     <Compile Include="Tools\SvnProvider.cs" />
     <Compile Include="Tools\XmlExtensions.cs" />
-    <Compile Include="UnitTests\AgentProcessCreator.cs" />
-    <Compile Include="UnitTests\Calculator.cs" />
-    <Compile Include="UnitTests\Communication\NunitRunnerClient.cs" />
-    <Compile Include="UnitTests\CopyDeepManager.cs" />
-    <Compile Include="UnitTests\DirectoriesManipulator.cs" />
-    <Compile Include="UnitTests\Interfaces\IProgressStatus.cs" />
-    <Compile Include="UnitTests\Interfaces\IUnitTestsView.cs" />
-    <Compile Include="UnitTests\Runner.cs" />
-    <Compile Include="UnitTests\Settings\Result.cs" />
-    <Compile Include="UnitTests\Synchronizer.cs" />
-    <Compile Include="UnitTests\TestsPackage.cs" />
-    <Compile Include="UnitTests\Updater\GroupUpdater.cs" />
-    <Compile Include="UnitTests\Updater\SimpleUpdater.cs" />
     <Compile Include="Watcher\DirInfo.cs" />
     <Compile Include="Watcher\FileAnalizer.cs" />
     <Compile Include="Watcher\FileDirection.cs" />
@@ -203,10 +157,6 @@
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
       <Name>Common</Name>
       <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\extended.nunit\extended.nunit.csproj">
-      <Project>{edfb8b45-08b4-4ea4-906a-2ec50b3cf582}</Project>
-      <Name>extended.nunit</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Library\ScriptEngine\ScriptEngine.csproj">
       <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>

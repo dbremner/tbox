@@ -511,11 +511,11 @@ namespace Localization.Plugins.TeamManager {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This report was automatically generated with &lt;a href=&quot;http://tbox.codeplex.com/&quot;&gt;TBox&lt;/a&gt;. Time:.
+        ///   Looks up a localized string similar to This report was automatically generated with &lt;a href=&quot;http://tbox.codeplex.com/&quot;&gt;TBox&lt;/a&gt;. Time: {0}s..
         /// </summary>
-        public static string ReportFooter {
+        public static string ReportFooterTemplate {
             get {
-                return ResourceManager.GetString("ReportFooter", resourceCulture);
+                return ResourceManager.GetString("ReportFooterTemplate", resourceCulture);
             }
         }
         

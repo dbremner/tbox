@@ -46,6 +46,9 @@
   <ItemGroup>
     <Compile Include="ConsoleRunner\ConsoleView.cs" />
     <Compile Include="ConsoleRunner\CommandLineArgs.cs" />
+    <Compile Include="ConsoleRunner\TeamcityUpdater.cs" />
+    <Compile Include="ConsoleRunner\NUnitLabelsUpdater.cs" />
+    <Compile Include="ConsoleRunner\ReportBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConsoleRunner\TestsRunner.cs" />
@@ -56,14 +59,9 @@
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\extended.nunit\extended.nunit.csproj">
+    <ProjectReference Include="..\..\..\Library\ParallelNunit\ParallelNunit.csproj">
       <Project>{edfb8b45-08b4-4ea4-906a-2ec50b3cf582}</Project>
-      <Name>extended.nunit</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
-      <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
-      <Name>PluginsShared</Name>
+      <Name>ParallelNUnit</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

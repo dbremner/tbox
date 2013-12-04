@@ -101,6 +101,10 @@
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library\ParallelNunit\ParallelNunit.csproj">
+      <Project>{EDFB8B45-08B4-4EA4-906A-2EC50B3CF582}</Project>
+      <Name>ParallelNUnit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Library\LibsLocalization\LibsLocalization.csproj">
       <Project>{E9990049-B8DB-4CC4-B22D-823D400633C0}</Project>
       <Name>LibsLocalization</Name>
@@ -116,6 +120,10 @@
     <ProjectReference Include="..\..\Library\WPFWinForms\WPFWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
       <Name>WPFWinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Empty\Empty.csproj">
+      <Project>{C7ED2917-A1DA-4A17-9748-8E7FDCFC4923}</Project>
+      <Name>Empty</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Interface\Interface.csproj">
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>

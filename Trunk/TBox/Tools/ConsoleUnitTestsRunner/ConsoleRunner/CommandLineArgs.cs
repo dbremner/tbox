@@ -7,28 +7,39 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
     {
         public string Path { get; set; }
         public int ProcessCount { get; set; }
-        public bool X86 { get; set; }
+        public bool Prefetch { get; set; }
         public bool Clone { get; set; }
         public string[] CopyMasks { get; set; }
         public bool Sync { get; set; }
-        public bool Report { get; set; }
-        public string[] Include { get; set; }
-        public string[] Exclude { get; set; }
+        public bool Teamcity { get; set; }
         public string DirToCloneTests { get; set; }
         public string CommandBeforeTestsRun { get; set; }
         public int StartDelay { get; set; }
 
+        //NUnit
+        public string[] Include { get; set; }
+        public string[] Exclude { get; set; }
+        public bool Logo { get; set; }
+        public bool Labels { get; set; }
+        public string XmlReport { get; set; }
+        public string OutputReport { get; set; }
+        public bool Wait { get; set; }
+
         public CommandLineArgs()
         {
             ProcessCount = Environment.ProcessorCount;
-            X86 = false;
+            Prefetch = false;
             Clone = false;
             CopyMasks = new[] { "*.dll", "*.config" };
             Sync = false;
-            Report = false;
+            XmlReport = string.Empty;
             DirToCloneTests = System.IO.Path.GetTempPath();
             CommandBeforeTestsRun = string.Empty;
             StartDelay = 0;
+            Logo = true;
+            Labels = false;
+            Wait = false;
+            Teamcity = false;
         }
 
         public void Parse(string[] args)
@@ -38,25 +49,6 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
             {
                 ParseArgument(s);
             }
-            Console.WriteLine("Start with arguments: {0} -p={1}{2}{3}{4}{5}{6} -dirToCloneTests='{7}' -commandBeforeTestsRun='{8}'{9}{10}, -startDelay={11}",
-                Path,
-                ProcessCount, AddIfTrue(" -x86 ", X86), 
-                AddIfTrue(" -clone ", Clone), Format(" -copyMasks=", CopyMasks), 
-                AddIfTrue(" -sync ", Sync), AddIfTrue(" -report ", Report), 
-                DirToCloneTests, CommandBeforeTestsRun, 
-                Format(" -include=", Include), Format(" -exclude=", Exclude),
-                StartDelay);
-        }
-
-        private static string AddIfTrue(string str, bool value)
-        {
-            return value ? str : string.Empty;
-        }
-
-        private static string Format(string prefix, string[] items)
-        {
-            if (items == null) return string.Empty;
-            return prefix + string.Join(";", items);
         }
 
         private void ParseArgument(string arg)
@@ -68,10 +60,6 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
             else if (Starts(arg, "-startDelay="))
             {
                 StartDelay = int.Parse(arg.Substring(12));
-            }
-            else if (Equals(arg, "-x86"))
-            {
-                X86 = true;
             }
             else if (Equals(arg, "-clone"))
             {
@@ -89,23 +77,51 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
             {
                 CommandBeforeTestsRun = arg.Substring(23);
             }
-            else if (Starts(arg, "-include="))
-            {
-                if (Exclude != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
-                Include = arg.Substring(9).Split(';');
-            }
-            else if (Starts(arg, "-exclude="))
-            {
-                if (Include != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
-                Exclude = arg.Substring(9).Split(';');
-            }
             else if (Equals(arg, "-sync"))
             {
                 Sync = true;
             }
-            else if (Equals(arg, "-report"))
+            else if (Equals(arg, "-prefetch"))
             {
-                Report = true;
+                Prefetch = true;
+            }
+            else if (Equals(arg, "-teamcity"))
+            {
+                Teamcity = true;
+            }
+            //NUnit arguments
+            else if (Starts(arg, "/include="))
+            {
+                if (Exclude != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
+                Include = arg.Substring(9).Split(';');
+            }
+            else if (Starts(arg, "/exclude="))
+            {
+                if (Include != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
+                Exclude = arg.Substring(9).Split(';');
+            }
+            else if (Starts(arg, "/output:"))
+            {
+                OutputReport = arg.Substring(8);
+            }
+            else if (Starts(arg, "/xml="))
+            {
+                XmlReport = arg.Substring(5);
+            }
+            else if (Equals(arg, "/nologo"))
+            {
+                Logo = false;
+            }
+            else if (Equals(arg, "/labels"))
+            {
+                Labels = true;
+            }
+            else if (Equals(arg, "/noshadow"))
+            {
+            }
+            else if (Equals(arg, "/wait"))
+            {
+                Wait = true;
             }
             else
             {

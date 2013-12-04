@@ -79,7 +79,7 @@
         <Component Id="Libraries" Guid="A7042115-AEAB-4632-A691-38B8AF4D7CC7">
           <File Name='Common.dll'/>
           <File Name='EPPlus.dll'/>
-          <File Name='extended.nunit.dll'/>
+          <File Name='ParallelNUnit.dll'/>
           <File Name='ICSharpCode.SharpZipLib.dll'/>
           <File Name='Interface.dll'/>
           <File Name='LightInject.dll'/>

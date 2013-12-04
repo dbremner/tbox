@@ -243,8 +243,8 @@
   <data name="Report" xml:space="preserve">
     <value>Отчёт</value>
   </data>
-  <data name="ReportFooter" xml:space="preserve">
-    <value>Отчёт был автоматически сгенерирован с помощью &lt;a href="http://tbox.codeplex.com/"&gt;TBox&lt;/a&gt;. Время работы: </value>
+  <data name="ReportFooterTemplate" xml:space="preserve">
+    <value>Отчёт был автоматически сгенерирован с помощью &lt;a href="http://tbox.codeplex.com/"&gt;TBox&lt;/a&gt;. Время работы: {0} сек.</value>
   </data>
   <data name="ChooseFileToSaveReport" xml:space="preserve">
     <value>Выберете файл для сохранения отчёта</value>

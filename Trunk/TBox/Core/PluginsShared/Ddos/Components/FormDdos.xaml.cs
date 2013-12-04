@@ -170,7 +170,7 @@ namespace PluginsShared.Ddos.Components
 		{
 			Graph.EndTime = DateTime.Now;
 			ddoser.Stop();
-			btnStartStop.Content = PluginsSharedLang.Stop;
+			btnStartStop.Content = PluginsSharedLang.Start;
 			trayIcon.IsVisible = false;
 			EnableControls(true);
 		}

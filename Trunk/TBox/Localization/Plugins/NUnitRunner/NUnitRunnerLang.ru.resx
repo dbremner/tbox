@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Agent" xml:space="preserve">
+    <value>Агент</value>
+  </data>
   <data name="BatchRun" xml:space="preserve">
     <value>Пакетный запуск...</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="Categories" xml:space="preserve">
     <value>Категории</value>
+  </data>
+  <data name="CheckAll" xml:space="preserve">
+    <value>Выбрать все</value>
   </data>
   <data name="Clonning" xml:space="preserve">
     <value>Клонирование</value>
@@ -153,8 +159,17 @@
   <data name="Displayed" xml:space="preserve">
     <value>Отображающиеся:</value>
   </data>
+  <data name="Errors" xml:space="preserve">
+    <value>Ошибок:</value>
+  </data>
+  <data name="ErrorsAndFailures" xml:space="preserve">
+    <value>Ошибки</value>
+  </data>
   <data name="Exclude" xml:space="preserve">
     <value>Все кроме указанных</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Неудалось:</value>
   </data>
   <data name="FileMasksToCopy" xml:space="preserve">
     <value>Маски на пути к файлам,которые надо скопировать</value>
@@ -165,14 +180,26 @@
   <data name="FolderToCloneTests" xml:space="preserve">
     <value>Папки для клонирования тестов</value>
   </data>
+  <data name="Ignored" xml:space="preserve">
+    <value>Проигнорировано:</value>
+  </data>
   <data name="Include" xml:space="preserve">
     <value>Только указанные</value>
+  </data>
+  <data name="Inconclusive" xml:space="preserve">
+    <value>Незавершённых:</value>
+  </data>
+  <data name="Invalid" xml:space="preserve">
+    <value>Недействительных:</value>
   </data>
   <data name="Multithreading" xml:space="preserve">
     <value>Многопоточность</value>
   </data>
   <data name="NunitDllsToRun" xml:space="preserve">
     <value>Тестовые библиотеки для запуска</value>
+  </data>
+  <data name="Passed" xml:space="preserve">
+    <value>Прошло:</value>
   </data>
   <data name="PluginDescription" xml:space="preserve">
     <value>Плагин для запуска NUnit тестов параллельно.</value>
@@ -192,6 +219,9 @@
   <data name="RunAsx86" xml:space="preserve">
     <value>В режиме x86</value>
   </data>
+  <data name="SelectedItemInfo" xml:space="preserve">
+    <value>Информация о выбранном элементе</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
@@ -200,6 +230,12 @@
   </data>
   <data name="ShowOnlyFailedTests" xml:space="preserve">
     <value>Показывать только непрошедшие</value>
+  </data>
+  <data name="Skipped" xml:space="preserve">
+    <value>Пропущено:</value>
+  </data>
+  <data name="StackTrace" xml:space="preserve">
+    <value>Стек вызовов</value>
   </data>
   <data name="Start" xml:space="preserve">
     <value>Старт</value>
@@ -213,14 +249,32 @@
   <data name="Tests" xml:space="preserve">
     <value>Тесты</value>
   </data>
+  <data name="TestsNotRun" xml:space="preserve">
+    <value>Незапустившиеся тесты</value>
+  </data>
   <data name="TestsResults" xml:space="preserve">
     <value>Результаты тестов</value>
   </data>
   <data name="TestsStateTemplate" xml:space="preserve">
     <value>{0} - тестов: [ {1} ], непрошедших = [ {2} ], время: {3}</value>
   </data>
+  <data name="TextOutput" xml:space="preserve">
+    <value>Вывод</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время:</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Всего:</value>
+  </data>
+  <data name="UncheckAll" xml:space="preserve">
+    <value>Убрать выделение</value>
+  </data>
   <data name="UseCategories" xml:space="preserve">
     <value>Использовать категории</value>
+  </data>
+  <data name="UsePrefetch" xml:space="preserve">
+    <value>Использовать статистику для оптимизации</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Вид</value>

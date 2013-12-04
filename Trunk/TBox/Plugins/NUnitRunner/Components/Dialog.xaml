@@ -10,6 +10,7 @@
                       xmlns:units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
                       xmlns:components="clr-namespace:WPFControls.Components;assembly=WPFControls"
                       xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
+                      xmlns:components1="clr-namespace:NUnitRunner.Components"
                       mc:Ignorable="d" 
              ShowInTaskbar="True" WindowStartupLocation="CenterOwner"
              Width="660" Height="550"
@@ -18,16 +19,14 @@
         <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
     </Window.Resources>
     <DockPanel>
-        <DockPanel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Margin="15" >
-            <controls:ExtCheckBox Name="Filter" IsChecked="{Binding OnlyFailed}" Content="{loc:Tr ShowOnlyFailedTests}" ValueChanged="FilterChanged" Margin="2" DockPanel.Dock="Left"/>
-            <Button Content="{loc:Tr Cancel}" Margin="5" Padding="5,2" Width="70" IsCancel="True" Click="CancelClick" DockPanel.Dock="Right"/>
-            <Button Content="{loc:Tr Start}" Margin="5" Padding="5,2" Width="70" IsDefault="True" Click="StartClick" DockPanel.Dock="Right"/>
-            <Button Content="{loc:Tr Refresh}" Margin="5" Padding="5,2" Width="70" Click="RefreshClick" DockPanel.Dock="Right"/>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="15" >
+            <Button Content="{loc:Tr Refresh}" Margin="5" Padding="5,2" Width="70" Click="RefreshClick" />
+            <Button Content="{loc:Tr Start}" Margin="5" Padding="5,2" Width="70" IsDefault="True" Click="StartClick"/>
+            <Button Content="{loc:Tr Cancel}" Margin="5" Padding="5,2" Width="70" IsCancel="True" Click="CancelClick"/>
             <Label/>
-        </DockPanel>
+        </StackPanel>
         <TabControl DockPanel.Dock="Top">
-            <TabItem Header="{loc:Tr Tests}">
-                <DockPanel Name="Panel" />
+            <TabItem Header="{loc:Tr Tests}" Name="Panel">
             </TabItem>
             <TabItem Header="{loc:Tr Settings}">
                 <Grid >
@@ -54,7 +53,10 @@
                                         <captioned:CaptionedNumericUpDown Caption="{loc:Tr StartDelay}" Value="{Binding StartDelay}" Minimum="0" Maximum="60" Margin="5"/>
                                     </StackPanel>
                                     <GroupBox Margin="5" Header="{loc:Tr Multithreading}">
-                                        <captioned:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16" Margin="5"/>
+                                        <StackPanel>
+                                            <captioned:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16" Margin="5"/>
+                                            <controls:ExtCheckBox Content="{loc:Tr UsePrefetch}" IsChecked="{Binding UsePrefetch}" Margin="5"/>
+                                        </StackPanel>
                                     </GroupBox>
                                 </DockPanel>
                                 <captioned:CaptionedEditPath Caption="{loc:Tr CommandToRunBeforeTests}" Value="{Binding CommandBeforeTestsRun}" PathGetterType="File" Margin="5"/>

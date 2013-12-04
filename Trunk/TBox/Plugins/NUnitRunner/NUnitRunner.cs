@@ -14,80 +14,63 @@ using WPFWinForms.Icons;
 
 namespace NUnitRunner
 {
-	[PluginInfo(typeof(NUnitRunnerLang), typeof(Properties.Resources), PluginGroup.Development)]
-	public sealed class NUnitRunner : ConfigurablePlugin<Settings, Config>, IDisposable
-	{
-		private readonly LazyDialog<Dialog> runner;
-		private readonly LazyDialog<BatchRunDialog> batchRunner;
+    [PluginInfo(typeof(NUnitRunnerLang), typeof(Properties.Resources), PluginGroup.Development)]
+    public sealed class NUnitRunner : ConfigurablePlugin<Settings, Config>, IDisposable
+    {
+        private readonly LazyDialog<Dialog> runner;
 
-		public NUnitRunner()
-		{
-			runner = new LazyDialog<Dialog>(CreateDialog<Dialog>, "simple");
-			batchRunner = new LazyDialog<BatchRunDialog>(CreateDialog<BatchRunDialog>, "batch");
-		}
+        public NUnitRunner()
+        {
+            runner = new LazyDialog<Dialog>(CreateDialog, "simple");
+        }
 
-		private T CreateDialog<T>()
-			where T : DialogWindow, new() 
-		{
-            return new T { Icon = Icon.ToImageSource() };
-		}
+        private Dialog CreateDialog()
+        {
+            return new Dialog(NUnitAgentPath, RunAsx86Path)
+            {
+                Icon = Icon.ToImageSource()
+            };
+        }
 
-		public override void OnRebuildMenu()
-		{
-			base.OnRebuildMenu();
-			Menu = Config.DllPathes
-						 .Select(x => new UMenuItem
-						 {
-							 Header = Path.GetFileName(x.Key),
-							 OnClick = o => Run(x)
-						 })
-						 .Concat(new[]
-							 {
-								 new USeparator(), 
-								 new UMenuItem
-									 {
-										 IsEnabled = Config.DllPathes.Any(),
-										 Header = NUnitRunnerLang.BatchRun,
-										 OnClick = o => BatchRun(Config)
-									 }
-							 })
-						 .ToArray();
-		}
+        public override void OnRebuildMenu()
+        {
+            base.OnRebuildMenu();
+            Menu = Config.DllPathes.CheckedItems
+                         .Select(x => new UMenuItem
+                         {
+                             Header = Path.GetFileName(x.Key),
+                             OnClick = o => Run(x)
+                         })
+                         .ToArray();
+        }
 
-		private void BatchRun(Config config)
-		{
-            batchRunner.Do(Context.DoSync, d => d.ShowDialog(config, NUnitAgentPath, RunAsx86Path), Config.States);
-		}
+        private void Run(TestConfig config)
+        {
+            runner.LoadState(Config.States);
+            runner.Value.ShowDialog(config);
+        }
 
-		private void Run(TestConfig config)
-		{
-			runner.LoadState(Config.States);
-            runner.Value.ShowDialog(config, NUnitAgentPath, RunAsx86Path);
-		}
-
-		private string NUnitAgentPath
-		{
-			get { return Path.Combine(Context.DataProvider.ToolsPath, "NUnitAgent.exe"); }
-		}
+        private string NUnitAgentPath
+        {
+            get { return Path.Combine(Context.DataProvider.ToolsPath, "NUnitAgent.exe"); }
+        }
 
         private string RunAsx86Path
-		{
+        {
             get { return Path.Combine(Context.DataProvider.ToolsPath, "RunAsx86.exe"); }
-		}
-        
+        }
 
-		public override void Save(bool autoSaveOnExit)
-		{
-			base.Save(autoSaveOnExit);
-			if(!autoSaveOnExit)return;
-			batchRunner.SaveState(Config.States);
-			runner.SaveState(Config.States);
-		}
 
-		public void Dispose()
-		{
-			runner.Dispose();
-			batchRunner.Dispose();
-		}
-	}
+        public override void Save(bool autoSaveOnExit)
+        {
+            base.Save(autoSaveOnExit);
+            if (!autoSaveOnExit) return;
+            runner.SaveState(Config.States);
+        }
+
+        public void Dispose()
+        {
+            runner.Dispose();
+        }
+    }
 }

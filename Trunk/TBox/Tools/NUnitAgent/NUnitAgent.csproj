@@ -38,41 +38,26 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.core">
-      <HintPath>..\..\..\Libs\nunit\nunit.core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\..\Libs\nunit\nunit.core.interfaces.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\..\..\Libs\nunit\nunit.util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="ServiceStack.Text">
       <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\Runner.cs" />
-    <Compile Include="Code\Worker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
-      <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
+      <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\extended.nunit\extended.nunit.csproj">
+    <ProjectReference Include="..\..\..\Library\ParallelNunit\ParallelNunit.csproj">
       <Project>{edfb8b45-08b4-4ea4-906a-2ec50b3cf582}</Project>
-      <Name>extended.nunit</Name>
+      <Name>ParallelNUnit</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

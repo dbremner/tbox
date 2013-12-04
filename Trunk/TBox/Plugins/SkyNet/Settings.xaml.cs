@@ -34,7 +34,7 @@ namespace SkyNet
             InitializeComponent();
         }
 
-        private NetworkClient<ISkyNetServer> CreateServerClient(AgentConfig config)
+        private static NetworkClient<ISkyNetServer> CreateServerClient(AgentConfig config)
         {
             return new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint));
         }
@@ -63,7 +63,10 @@ namespace SkyNet
 
         private void ChangeAgentSettingsClick(object sender, RoutedEventArgs e)
         {
-            SetConfig(CreateAgentConfigProvider(), AgentConfiguration.DataContext);
+            using (var cl = CreateAgentConfigProvider())
+            {
+                SetConfig(cl, AgentConfiguration.DataContext);
+            }
         }
 
         private void AgentSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -73,13 +76,19 @@ namespace SkyNet
                 AgentConfiguration.DataContext = null;
                 return;
             }
-            var config = GetConfig(CreateAgentConfigProvider());
-            AgentConfiguration.DataContext = config;
+            using (var cl = CreateAgentConfigProvider())
+            {
+                var config = GetConfig(cl);
+                AgentConfiguration.DataContext = config;
+            }
         }
 
         private void ChangeServerSettingsClick(object sender, RoutedEventArgs e)
         {
-            SetConfig(CreateServerConfigProvider(), ServerConfiguration.DataContext);
+            using (var cl = CreateServerConfigProvider())
+            {
+                SetConfig(cl, ServerConfiguration.DataContext);
+            }
         }
 
         private void ServerSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -89,7 +98,10 @@ namespace SkyNet
                 ServerConfiguration.DataContext = null;
                 return;
             }
-            ServerConfiguration.DataContext = GetConfig(CreateServerConfigProvider());
+            using (var cl = CreateServerConfigProvider())
+            {
+                ServerConfiguration.DataContext = GetConfig(cl);
+            }
         }
 
         private void SetConfig<T>(InterprocessClient<IConfigProvider<T>> cl, object config)
@@ -129,13 +141,15 @@ namespace SkyNet
                 var agentClient = new NetworkClient<ISkyNetAgent>(Environment.MachineName, config.Port);
                 AgentInfo.DataContext = agentClient.Instance.GetCurrentTask();
 
-                var serverClient = CreateServerClient(config);
-                ConnectedAgents.ItemsSource =
-                    serverClient.Instance.GetAgents()
-                        .Select(x => string.Format("{0}\t{1}\t{2}", x.Endpoint, x.State, x.TotalCores));
-                ExistTasks.ItemsSource =
-                    serverClient.Instance.GetTasks()
-                        .Select(x => string.Format("{0}\t{1}\t{2}", x.Owner, x.Progress, x.CreatedTime));
+                using (var serverClient = CreateServerClient(config))
+                {
+                    ConnectedAgents.ItemsSource =
+                        serverClient.Instance.GetAgents()
+                            .Select(x => string.Format("{0}\t{1}\t{2}", x.Endpoint, x.State, x.TotalCores));
+                    ExistTasks.ItemsSource =
+                        serverClient.Instance.GetTasks()
+                            .Select(x => string.Format("{0}\t{1}\t{2}", x.Owner, x.Progress, x.CreatedTime));
+                }
             }
             catch (Exception ex)
             {

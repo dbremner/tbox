@@ -61,6 +61,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        public static string Agent {
+            get {
+                return ResourceManager.GetString("Agent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Batch run....
         /// </summary>
         public static string BatchRun {
@@ -93,6 +102,15 @@ namespace Localization.Plugins.NUnitRunner {
         public static string Categories {
             get {
                 return ResourceManager.GetString("Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check All.
+        /// </summary>
+        public static string CheckAll {
+            get {
+                return ResourceManager.GetString("CheckAll", resourceCulture);
             }
         }
         
@@ -169,11 +187,38 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Errors:.
+        /// </summary>
+        public static string Errors {
+            get {
+                return ResourceManager.GetString("Errors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Errors and failures.
+        /// </summary>
+        public static string ErrorsAndFailures {
+            get {
+                return ResourceManager.GetString("ErrorsAndFailures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exclude.
         /// </summary>
         public static string Exclude {
             get {
                 return ResourceManager.GetString("Exclude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed:.
+        /// </summary>
+        public static string Failed {
+            get {
+                return ResourceManager.GetString("Failed", resourceCulture);
             }
         }
         
@@ -205,11 +250,38 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignored:.
+        /// </summary>
+        public static string Ignored {
+            get {
+                return ResourceManager.GetString("Ignored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Include.
         /// </summary>
         public static string Include {
             get {
                 return ResourceManager.GetString("Include", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inconclusive:.
+        /// </summary>
+        public static string Inconclusive {
+            get {
+                return ResourceManager.GetString("Inconclusive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid:.
+        /// </summary>
+        public static string Invalid {
+            get {
+                return ResourceManager.GetString("Invalid", resourceCulture);
             }
         }
         
@@ -228,6 +300,15 @@ namespace Localization.Plugins.NUnitRunner {
         public static string NunitDllsToRun {
             get {
                 return ResourceManager.GetString("NunitDllsToRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passed:.
+        /// </summary>
+        public static string Passed {
+            get {
+                return ResourceManager.GetString("Passed", resourceCulture);
             }
         }
         
@@ -286,6 +367,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected item info.
+        /// </summary>
+        public static string SelectedItemInfo {
+            get {
+                return ResourceManager.GetString("SelectedItemInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {
@@ -309,6 +399,24 @@ namespace Localization.Plugins.NUnitRunner {
         public static string ShowOnlyFailedTests {
             get {
                 return ResourceManager.GetString("ShowOnlyFailedTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skipped:.
+        /// </summary>
+        public static string Skipped {
+            get {
+                return ResourceManager.GetString("Skipped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack trace.
+        /// </summary>
+        public static string StackTrace {
+            get {
+                return ResourceManager.GetString("StackTrace", resourceCulture);
             }
         }
         
@@ -349,6 +457,15 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tests not run.
+        /// </summary>
+        public static string TestsNotRun {
+            get {
+                return ResourceManager.GetString("TestsNotRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tests results.
         /// </summary>
         public static string TestsResults {
@@ -367,11 +484,56 @@ namespace Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text output.
+        /// </summary>
+        public static string TextOutput {
+            get {
+                return ResourceManager.GetString("TextOutput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time:.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total:.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncheck All.
+        /// </summary>
+        public static string UncheckAll {
+            get {
+                return ResourceManager.GetString("UncheckAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use categories.
         /// </summary>
         public static string UseCategories {
             get {
                 return ResourceManager.GetString("UseCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use statistic for optimization.
+        /// </summary>
+        public static string UsePrefetch {
+            get {
+                return ResourceManager.GetString("UsePrefetch", resourceCulture);
             }
         }
         

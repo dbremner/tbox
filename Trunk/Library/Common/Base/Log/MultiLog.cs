@@ -6,7 +6,7 @@ namespace Common.Base.Log
 	{
 		private readonly IBaseLog[] logs;
 
-		public MultiLog(IBaseLog[] logs)
+		public MultiLog(params IBaseLog[] logs)
 		{
 			this.logs = logs;
 		}

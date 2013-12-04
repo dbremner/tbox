@@ -16,7 +16,7 @@ namespace TeamManager.Code.Reports
             this.setter = setter;
         }
 
-        public void Print(IList<ReportPerson> items, int time)
+        public void Print(IList<ReportPerson> items, int time, string[] links)
         {
             var sb = new StringBuilder();
             foreach (var p in items)
@@ -35,7 +35,11 @@ namespace TeamManager.Code.Reports
                         .ToArray()
                         ).ToString());
             }
-            sb.AppendLine(TeamManagerLang.ReportFooter + time);
+            foreach (var link in links)
+            {
+                sb.AppendLine(link);
+            }
+            sb.AppendLine(string.Format(TeamManagerLang.ReportFooterTemplate, time));
             setter(sb.ToString());
         }
     }

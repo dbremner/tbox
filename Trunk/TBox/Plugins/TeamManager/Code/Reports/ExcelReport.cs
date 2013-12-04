@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Common.Tools;
 using Localization.Plugins.TeamManager;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -20,7 +17,7 @@ namespace TeamManager.Code.Reports
             this.fileName = fileName;
         }
 
-        public void Print(IList<ReportPerson> items, int time)
+        public void Print(IList<ReportPerson> items, int time, string[] links)
         {
             var newFile = new FileInfo(fileName);
             if(newFile.Exists)newFile.Delete();

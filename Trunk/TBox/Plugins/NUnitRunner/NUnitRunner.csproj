@@ -53,12 +53,14 @@
     <Compile Include="Code\Settings\BatchConfig.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Settings\TestConfig.cs" />
-    <Compile Include="Components\BatchRunDialog.xaml.cs">
-      <DependentUpon>BatchRunDialog.xaml</DependentUpon>
+    <Compile Include="Components\BoolToVisibilityConverter.cs" />
+    <Compile Include="Components\CheckableTreeView.xaml.cs">
+      <DependentUpon>CheckableTreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\Node.cs" />
     <Compile Include="Components\ResultStateToIconConverter.cs" />
     <Compile Include="Components\UnitTestsView.xaml.cs">
       <DependentUpon>UnitTestsView.xaml</DependentUpon>
@@ -75,7 +77,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Components\BatchRunDialog.xaml">
+    <Page Include="Components\CheckableTreeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,9 +100,9 @@
       <Name>Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\extended.nunit\extended.nunit.csproj">
+    <ProjectReference Include="..\..\..\Library\ParallelNunit\ParallelNunit.csproj">
       <Project>{edfb8b45-08b4-4ea4-906a-2ec50b3cf582}</Project>
-      <Name>extended.nunit</Name>
+      <Name>ParallelNUnit</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
