@@ -1,4 +1,6 @@
-﻿26/11/2013 Add ability to specify file path masks to copy and start delay for NUnit tests runner. Fix issue and add time instead seconds for progress.
+﻿04/12/2013 Big improvements to NUNit tests runner. Now unit tests will run in domain instead of processes. Make UI more similar to standard. Fix some issues. Improve console unit tests runner(add comaptible with standart nunit params, add teamcity support). Remove batch run for NUnit tests runner.
+
+26/11/2013 Add ability to specify file path masks to copy and start delay for NUnit tests runner. Fix issue and add time instead seconds for progress.
 
 07/11/2013 Finish TeamManager
 
