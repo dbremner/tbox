@@ -78,7 +78,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
                 p.DoRefresh(x => { count = x.Count; }, x => { });
 
                 //Assert
-                Assert.Greater(count, 210);
+                Assert.Greater(count, 200);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
 
                 //Act
                 p.DoRun(x => x.ApplyResults(prefetch), p.Items, packages, copy, new []{"*.dll"}, sync, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer), needOutput);
-                Assert.Greater(p.Count, 210);
+                Assert.Greater(p.Count, 200);
                 Assert.AreEqual(0, p.FailedCount);
             }
         }
