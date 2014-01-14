@@ -64,11 +64,6 @@
       <Name>Mnk.Library.ParallelNunit</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
-      <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
-      <Name>Mnk.TBox.Core.Interface</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

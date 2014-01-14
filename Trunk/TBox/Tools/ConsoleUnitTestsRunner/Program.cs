@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using Mnk.Library.Common.Base.Log;
 using Mnk.Library.ParallelNUnit.Core;
-using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
@@ -16,7 +15,9 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
         [STAThread]
         static int Main(string[] args)
         {
-            LogManager.Init(new MultiLog(new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "ConsoleUnitTestsRunner.log"))));
+            var logsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox", "Logs");
+            if (!Directory.Exists(logsFolder)) Directory.CreateDirectory(logsFolder);
+            LogManager.Init(new MultiLog(new ConsoleLog(), new FileLog(Path.Combine(logsFolder, "ConsoleUnitTestsRunner.log"))));
             log = LogManager.GetLogger<Program>();
 
             if (args.Length <= 0 || string.Equals(args[0], "/?") || string.Equals(args[0], "/help", StringComparison.OrdinalIgnoreCase))
