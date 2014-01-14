@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Threading;
-using Interface;
-using Localization.TBox;
-using TBox.Code.Menu;
-using TBox.Code.Shelduler.Settings;
-using WPFControls.Components.Units;
-using WPFControls.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.TBox.Core.Application.Code.Shelduler.Settings;
+using Mnk.Library.WPFControls.Components.Units;
+using Mnk.Library.WPFControls.Tools;
 
-namespace TBox.Code.Shelduler
+namespace Mnk.TBox.Core.Application.Code.Shelduler
 {
 	class SchedulerManager : IDisposable
 	{

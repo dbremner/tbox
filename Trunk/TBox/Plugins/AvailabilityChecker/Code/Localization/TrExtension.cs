@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.AvailabilityChecker;
+﻿using Mnk.TBox.Locales.Localization.Plugins.AvailabilityChecker;
 
-namespace AvailabilityChecker.Code.Localization
+namespace Mnk.TBox.Plugins.AvailabilityChecker.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, AvailabilityCheckerLang.ResourceManager) { }
 	}

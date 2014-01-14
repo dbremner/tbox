@@ -1,15 +1,15 @@
 ﻿using System.IO;
 using System.Linq;
-using Common.Base.Log;
-using Common.MT;
-using Common.SaveLoad;
-using Common.Tools;
-using ConsoleScriptRunner.Settings;
-using PluginsShared.Automator;
-using ScriptEngine;
-using ScriptEngine.Core;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.SaveLoad;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.TBox.Tools.ConsoleScriptRunner.Settings;
 
-namespace ConsoleScriptRunner
+namespace Mnk.TBox.Tools.ConsoleScriptRunner
 {
 	class Worker
 	{

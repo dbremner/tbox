@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Media;
-using Localization.Plugins.SqlWatcher;
-using PluginsShared.Watcher;
-using WPFControls.Dialogs;
-using WPFSyntaxHighlighter;
+using Mnk.TBox.Locales.Localization.Plugins.SqlWatcher;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFSyntaxHighlighter;
 
-namespace SqlWatcher.Code
+namespace Mnk.TBox.Plugins.SqlWatcher.Code
 {
 	internal class LogDialog : ILogDialog
 	{

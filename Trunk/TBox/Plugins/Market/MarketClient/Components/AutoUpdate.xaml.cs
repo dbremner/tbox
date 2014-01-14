@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MarketClient.Components
+namespace Mnk.TBox.Plugins.Market.Client.Components
 {
 	/// <summary>
 	/// Interaction logic for AutoUpdate.xaml

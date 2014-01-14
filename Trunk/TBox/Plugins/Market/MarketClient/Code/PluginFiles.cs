@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Common.Base;
-using Common.Base.Log;
-using Common.SaveLoad;
-using MarketClient.ServiceReference;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.SaveLoad;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
 
-namespace MarketClient.Code
+namespace Mnk.TBox.Plugins.Market.Client.Code
 {
 	class PluginFiles
 	{

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Windows;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using MarketClient.Code;
-using MarketClient.ServiceReference;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.TBox.Plugins.Market.Client.Code;
 
-namespace MarketClient.Components.Installers
+namespace Mnk.TBox.Plugins.Market.Client.Components.Installers
 {
 	/// <summary>
 	/// Interaction logic for AllPlugins.xaml

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 
-namespace ScriptEngine.Core.Assemblies
+namespace Mnk.Library.ScriptEngine.Core.Assemblies
 {
 	public class AssembliesCollector
 	{

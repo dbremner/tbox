@@ -7,7 +7,7 @@
     <ProjectGuid>{CE3336CF-AB03-409B-8091-774EA9802862}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleScriptRunner</RootNamespace>
+    <RootNamespace>Mnk.TBox.Tools.ConsoleScriptRunner</RootNamespace>
     <AssemblyName>ConsoleScriptRunner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -48,24 +48,24 @@
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ScriptEngine\ScriptEngine.csproj">
+    <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
       <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>
-      <Name>ScriptEngine</Name>
+      <Name>Mnk.Library.ScriptEngine</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
-      <Name>Interface</Name>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
+    <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
       <Project>{BCDBE777-304F-40AC-8C5F-31B3A6BE4341}</Project>
-      <Name>PluginsShared</Name>
+      <Name>Mnk.TBox.Core.PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

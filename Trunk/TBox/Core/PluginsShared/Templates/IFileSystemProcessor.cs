@@ -1,4 +1,4 @@
-﻿namespace PluginsShared.Templates
+﻿namespace Mnk.TBox.Core.PluginsShared.Templates
 {
 	interface IFileSystemProcessor
 	{

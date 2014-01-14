@@ -1,6 +1,6 @@
-﻿using Searcher.Code.Finders.Scanner;
+﻿using Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner;
 
-namespace Searcher.Code.Finders.Parsers
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
 {
 	interface IParser
 	{

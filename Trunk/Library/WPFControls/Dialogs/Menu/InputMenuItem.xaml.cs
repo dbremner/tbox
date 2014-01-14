@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using LibsLocalization.WPFControls;
+using Mnk.Library.Localization.WPFControls;
 
-namespace WPFControls.Dialogs.Menu
+namespace Mnk.Library.WPFControls.Dialogs.Menu
 {
 	/// <summary>
 	/// Interaction logic for MenuDialog.xaml

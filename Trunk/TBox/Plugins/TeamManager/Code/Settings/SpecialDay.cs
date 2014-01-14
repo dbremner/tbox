@@ -1,6 +1,6 @@
-﻿using Common.UI.Model;
+﻿using Mnk.Library.Common.UI.Model;
 
-namespace TeamManager.Code.Settings
+namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
 {
     public class SpecialDay : Data
     {

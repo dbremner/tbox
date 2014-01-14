@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Resources;
 
-namespace Interface.Atrributes
+namespace Mnk.TBox.Core.Interface.Atrributes
 {
 	public sealed class PluginInfoAttribute : Attribute
 	{

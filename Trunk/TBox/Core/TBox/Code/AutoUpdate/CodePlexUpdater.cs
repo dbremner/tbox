@@ -4,11 +4,11 @@ using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
-using Common.AutoUpdate;
-using Common.Base.Log;
-using Localization.TBox;
+using Mnk.Library.Common.AutoUpdate;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Locales.Localization.TBox;
 
-namespace TBox.Code.AutoUpdate
+namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {
 	class CodePlexApplicationUpdater : IApplicationUpdater
 	{

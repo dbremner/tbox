@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PluginsShared.ReportsGenerator;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 
 namespace TeamManager.Code.Reports
 {

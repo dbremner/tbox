@@ -4,19 +4,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using Common.Tools;
-using Common.UI.Model;
-using Localization.PluginsShared;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Locales.Localization.PluginsShared;
+using Mnk.Library.ScriptEngine.Core.Params;
+using Mnk.Library.WPFControls.Code.DataManagers;
+using Mnk.Library.WPFControls.Code.Dialogs;
+using Mnk.Library.WPFControls.Components;
+using Mnk.Library.WPFControls.Components.Captioned;
+using Mnk.Library.WPFControls.Components.DropDown;
+using Mnk.Library.WPFControls.Components.FilesAndFolders;
+using Mnk.Library.WPFControls.Components.Units;
+using Mnk.Library.WPFControls.Tools;
 using ScriptEngine.Core.Params;
-using WPFControls.Code.DataManagers;
-using WPFControls.Code.Dialogs;
-using WPFControls.Components.Units;
-using WPFControls.Controls;
-using WPFControls.Controls.Captioned;
-using WPFControls.Controls.DropDown;
-using WPFControls.Tools;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
     public sealed class ParameterTemplate : UserControl
     {
@@ -41,35 +43,35 @@ namespace PluginsShared.ScriptEngine
 
         private static UIElement CreateChildrenByParameter(StringParameter p)
         {
-            var el = new TextBox { Focusable = false };
+            var el = new TextBox { };
             el.SetBinding(TextBox.TextProperty, new Binding("Value"));
             return el;
         }
 
         private static UIElement CreateChildrenByParameter(PasswordParameter p)
         {
-            var el = new CaptionedPasswordBox { Focusable = false };
+            var el = new CaptionedPasswordBox {};
             el.SetBinding(CaptionedPasswordBox.ValueProperty, new Binding("Value"));
             return el;
         }
 
         private static UIElement CreateChildrenByParameter(GuidParameter p)
         {
-            var el = new TextBox { Focusable = false };
+            var el = new TextBox { };
             el.SetBinding(TextBox.TextProperty, new Binding("Value"));
             return el;
         }
 
         private static UIElement CreateChildrenByParameter(IntegerParameter p)
         {
-            var el = new NumericUpDown { Minimum = p.Min, Maximum = p.Max, Focusable = false };
+            var el = new NumericUpDown { Minimum = p.Min, Maximum = p.Max };
             el.SetBinding(NumericUpDown.ValueProperty, new Binding("Value"));
             return el;
         }
 
         private static UIElement CreateChildrenByParameter(DoubleParameter p)
         {
-            var el = new DoubleUpDown { Minimum = p.Min, Maximum = p.Max, Focusable = false };
+            var el = new DoubleUpDown { Minimum = p.Min, Maximum = p.Max };
             el.SetBinding(DoubleUpDown.ValueProperty, new Binding("Value"));
             return el;
         }
@@ -92,7 +94,7 @@ namespace PluginsShared.ScriptEngine
         {
             var el = new CheckableListBoxUnit { CustomDataManager = new StringValueDataManager<CheckableData<string>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
-            el.ConfigureInputText(PluginsSharedLang.ConfigureString, p.Values, WPFControls.Code.Dialogs.Templates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureString, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), Instance);
             return el;
         }
 
@@ -101,7 +103,7 @@ namespace PluginsShared.ScriptEngine
             var el = new CheckableListBoxUnit { CustomDataManager = new GuidValueDataManager<CheckableData<Guid>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
             Guid tmp;
-            el.ConfigureInputText(PluginsSharedLang.ConfigureGuid, p.Values, WPFControls.Code.Dialogs.Templates.Default, x => Guid.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureGuid, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => Guid.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
             return el;
         }
 
@@ -110,7 +112,7 @@ namespace PluginsShared.ScriptEngine
             var el = new CheckableListBoxUnit { CustomDataManager = new IntValueDataManager<CheckableData<int>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
             int tmp;
-            el.ConfigureInputText(PluginsSharedLang.ConfigureInt, p.Values, WPFControls.Code.Dialogs.Templates.Default, x => int.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureInt, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => int.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
             return el;
         }
 
@@ -119,7 +121,7 @@ namespace PluginsShared.ScriptEngine
             var el = new CheckableListBoxUnit { CustomDataManager = new DoubleValueDataManager<CheckableData<double>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
             double tmp;
-            el.ConfigureInputText(PluginsSharedLang.ConfigureDouble, p.Values, WPFControls.Code.Dialogs.Templates.Default, x => double.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureDouble, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => double.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
             return el;
         }
 

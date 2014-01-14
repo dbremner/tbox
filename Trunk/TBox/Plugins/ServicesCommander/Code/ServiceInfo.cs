@@ -1,6 +1,6 @@
-﻿using Common.UI.Model;
+﻿using Mnk.Library.Common.UI.Model;
 
-namespace ServicesCommander.Code
+namespace Mnk.TBox.Plugins.ServicesCommander.Code
 {
 	public class ServiceInfo : CheckableData
 	{

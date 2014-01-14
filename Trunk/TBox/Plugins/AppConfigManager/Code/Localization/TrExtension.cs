@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.AppConfigManager;
+﻿using Mnk.TBox.Locales.Localization.Plugins.AppConfigManager;
 
-namespace AppConfigManager.Code.Localization
+namespace Mnk.TBox.Plugins.AppConfigManager.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, AppConfigManagerLang.ResourceManager) { }
 	}

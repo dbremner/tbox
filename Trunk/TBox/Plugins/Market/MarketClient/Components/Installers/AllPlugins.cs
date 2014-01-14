@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using Common.MT;
-using MarketClient.Code;
-using MarketClient.ServiceReference;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.TBox.Plugins.Market.Client.Code;
 
-namespace MarketClient.Components.Installers
+namespace Mnk.TBox.Plugins.Market.Client.Components.Installers
 {
 	class AllPlugins : Installer
 	{

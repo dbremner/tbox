@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using Interface;
-using WPFControls.Dialogs.PerfomanceCounters;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs.PerfomanceCounters;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace LeaksInterceptor
+namespace Mnk.TBox.Plugins.LeaksInterceptor
 {
 	[Serializable]
 	public class Config : IConfigWithDialogStates

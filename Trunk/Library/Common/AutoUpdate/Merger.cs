@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
 
-namespace Common.AutoUpdate
+namespace Mnk.Library.Common.AutoUpdate
 {
 	public static class Merger
 	{

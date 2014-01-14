@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MarketInterfaces
+namespace Mnk.TBox.Plugins.Market.Interfaces
 {
 	[DataContract]
 	public class Bug

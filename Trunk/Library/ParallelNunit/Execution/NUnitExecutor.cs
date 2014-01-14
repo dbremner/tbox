@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Base.Log;
-using Common.Communications.Interprocess;
-using ParallelNUnit.Core;
-using ParallelNUnit.Interfaces;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Interfaces;
 using ServiceStack.Text;
 
-namespace ParallelNUnit.Execution
+namespace Mnk.Library.ParallelNUnit.Execution
 {
     public class NUnitExecutor
     {
@@ -50,7 +51,7 @@ namespace ParallelNUnit.Execution
             domain.AssemblyResolve += loadFromSameFolder;
             try
             {
-                var cl = (NUnitTestStarter)domain.CreateInstanceAndUnwrap("ParallelNUnit", "ParallelNUnit.Core.NUnitTestStarter");
+                var cl = (NUnitTestStarter)domain.CreateInstanceAndUnwrap("Mnk.Library.ParallelNunit", "Mnk.Library.ParallelNUnit.Core.NUnitTestStarter");
                 action(cl);
             }
             catch (Exception ex)

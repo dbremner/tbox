@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PluginsShared.ReportsGenerator;
-using TeamManager.Code.Scripts;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.TBox.Plugins.TeamManager.Code.Scripts;
 
-namespace TeamManager.Code
+namespace Mnk.TBox.Plugins.TeamManager.Code
 {
     class FullReport
     {

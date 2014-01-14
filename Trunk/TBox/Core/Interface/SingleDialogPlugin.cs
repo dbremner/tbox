@@ -1,11 +1,11 @@
 ﻿using System;
-using WPFControls.Code;
-using WPFControls.Dialogs;
-using WPFControls.Dialogs.StateSaver;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace Interface
+namespace Mnk.TBox.Core.Interface
 {
 	public class SingleDialogPlugin<TConfig, TDialog> : SimpleConfigurablePlugin<TConfig>, IDisposable
 		where TConfig : IConfigWithDialogStates, new()

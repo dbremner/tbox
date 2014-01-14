@@ -1,7 +1,7 @@
 ﻿using System;
 using LightInject;
 
-namespace TBox.Code
+namespace Mnk.TBox.Core.Application.Code
 {
     class SingletonLifetime : ILifetime
     {

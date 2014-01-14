@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using Common.Tools;
-using LibsLocalization.WPFControls;
-using WPFControls.Tools;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Localization.WPFControls;
+using Mnk.Library.WPFControls.Tools;
 
-namespace WPFControls.Dialogs
+namespace Mnk.Library.WPFControls.Dialogs
 {
 	/// <summary>
 	/// Interaction logic for InputTextBox.xaml

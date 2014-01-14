@@ -5,23 +5,23 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Common.Base.Log;
-using Common.Tools;
-using Interface;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
 using LightInject;
-using Localization.TBox;
-using TBox.Code.AutoUpdate;
-using TBox.Code.FastStart;
-using TBox.Code.Managers;
-using TBox.Code.Menu;
-using TBox.Code.Objects;
-using TBox.Forms;
-using WPFControls.Code.OS;
-using WPFControls.Components.ButtonsView;
-using WPFWinForms;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.AutoUpdate;
+using Mnk.TBox.Core.Application.Code.FastStart;
+using Mnk.TBox.Core.Application.Code.Managers;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.TBox.Core.Application.Code.Objects;
+using Mnk.TBox.Core.Application.Forms;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Components.ButtonsView;
+using Mnk.Library.WPFWinForms;
 using Button = System.Windows.Controls.Button;
 
-namespace TBox.Code
+namespace Mnk.TBox.Core.Application.Code
 {
 	class UiConfigurator : IDisposable
 	{
@@ -49,7 +49,7 @@ namespace TBox.Code
 			pluginsSettings = container.GetInstance<PluginsSettings>();
 			menuItemsProvider = container.GetInstance<IMenuItemsProvider>();
 			controlsMan = new ControlsMan(view, pluginsBack, btnBack, onPluginSettingsChanged);
-			var main = ((MainWindow) Application.Current.MainWindow);
+			var main = ((MainWindow) System.Windows.Application.Current.MainWindow);
 			FastStartShower = new FastStartShower(
 				() =>
 				{
@@ -109,7 +109,7 @@ namespace TBox.Code
 			var time = Environment.TickCount;
 			Mt.Do(Sync, () =>
 				{
-					var main = ((MainWindow)Application.Current.MainWindow);
+					var main = ((MainWindow)System.Windows.Application.Current.MainWindow);
 					menuItemsProvider.Refresh(menuMan.MenuItems.ToArray());
 					menuMan.SetMenuItems(TBoxLang.UserActions,
 						main.RecentItemsCollector.CollectUserActions(cfg.FastStartConfig.MenuItemsSequence.CheckedItems));

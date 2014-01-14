@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace AppConfigManager.Code
+namespace Mnk.TBox.Plugins.AppConfigManager.Code
 {
 	[Serializable]
 	public class Option : CheckableData

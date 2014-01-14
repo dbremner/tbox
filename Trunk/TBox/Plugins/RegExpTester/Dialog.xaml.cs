@@ -3,10 +3,10 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Base;
-using WPFControls.Tools;
+using Mnk.Library.Common.Base;
+using Mnk.Library.WPFControls.Tools;
 
-namespace RegExpTester
+namespace Mnk.TBox.Plugins.RegExpTester
 {
 	/// <summary>
 	/// Interaction logic for Dialog.xaml

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Markup;
-using Common.Base;
-using Common.Base.Log;
-using Common.Tools;
-using Localization.TBox;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Locales.Localization.TBox;
 
-namespace TBox.Code.Themes
+namespace Mnk.TBox.Core.Application.Code.Themes
 {
 	class ThemesManager
 	{
@@ -45,11 +45,11 @@ namespace TBox.Code.Themes
 		{
 			if (string.Equals(lastLoaded, name)) return;
 			lastLoaded = name;
-			Application.Current.Resources.Clear();
+			System.Windows.Application.Current.Resources.Clear();
 			if (string.Equals(AvailableThemes[0], name)) return;
 			using (var sr = new StreamReader(Path.Combine(ThemesPath, name)))
 			{
-				Application.Current.Resources =
+				System.Windows.Application.Current.Resources =
 					XamlReader.Load(sr.BaseStream) as ResourceDictionary;
 			}
 		}

@@ -4,13 +4,13 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Common.Base.Log;
-using Common.Tools;
-using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Execution;
 
-namespace ParallelNUnit.Infrastructure
+namespace Mnk.Library.ParallelNUnit.Infrastructure
 {
     class DirectoriesManipulator
     {

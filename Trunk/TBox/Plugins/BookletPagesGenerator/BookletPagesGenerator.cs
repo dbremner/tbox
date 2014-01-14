@@ -1,11 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using BookletPagesGenerator.Code;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.BookletPagesGenerator;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.BookletPagesGenerator;
+using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
 
-[assembly: InternalsVisibleTo("UnitTests")]
-namespace BookletPagesGenerator
+namespace Mnk.TBox.Plugins.BookletPagesGenerator
 {
 	[PluginInfo(typeof(BookletPagesGeneratorLang), 16, PluginGroup.Other)]
 	public sealed class BookletPagesGenerator : SingleDialogPlugin<Config, Dialog>

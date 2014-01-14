@@ -2,18 +2,18 @@
 using System.Linq;
 using System.Web;
 using System.Windows;
-using Common.Encoders;
-using Encoder.Code;
-using Encoder.Components;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.Encoder;
-using PluginsShared.Encoders;
-using WPFControls.Dialogs.StateSaver;
-using WPFSyntaxHighlighter;
-using WPFWinForms;
+using Mnk.Library.Common.Encoders;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.Encoder;
+using Mnk.TBox.Core.PluginsShared.Encoders;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WPFWinForms;
+using Mnk.TBox.Plugins.Encoder.Code;
+using Mnk.TBox.Plugins.Encoder.Components;
 
-namespace Encoder
+namespace Mnk.TBox.Plugins.Encoder
 {
 	[PluginInfo(typeof(EncoderLang), 144, PluginGroup.Development)]
 	public sealed class Encoder : SingleDialogPlugin<Config, Dialog>

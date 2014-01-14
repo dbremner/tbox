@@ -3,14 +3,14 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.TextGenerator;
-using TextGenerator.Code;
-using WPFControls.Dialogs;
-using WPFWinForms;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.TextGenerator;
+using Mnk.TBox.Plugins.TextGenerator.Code;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFWinForms;
 
-namespace TextGenerator
+namespace Mnk.TBox.Plugins.TextGenerator
 {
 	[PluginInfo(typeof(TextGeneratorLang), 96, PluginGroup.Development)]
 	public sealed class TextGenerator : ConfigurablePlugin<Settings, Config>

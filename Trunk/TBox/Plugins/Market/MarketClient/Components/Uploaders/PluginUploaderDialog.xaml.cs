@@ -5,16 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Base.Log;
-using Common.Tools;
-using Common.UI.Model;
-using MarketClient.Code;
-using MarketClient.ServiceReference;
-using WPFControls.Code.Dialogs;
-using WPFControls.Code.EditPanel;
-using WPFControls.Code.OS;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
+using Mnk.Library.WPFControls.Code.Dialogs;
+using Mnk.Library.WPFControls.Code.EditPanel;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.TBox.Plugins.Market.Client.Code;
 
-namespace MarketClient.Components.Uploaders
+namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 {
 	/// <summary>
 	/// Interaction logic for PluginUploaderDialog.xaml

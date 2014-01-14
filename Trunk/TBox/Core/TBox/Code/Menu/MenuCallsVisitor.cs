@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Base.Log;
-using WPFWinForms;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.WPFWinForms;
 
-namespace TBox.Code.Menu
+namespace Mnk.TBox.Core.Application.Code.Menu
 {
 	class MenuCallsVisitor
 	{

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Linq;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.ServicesCommander;
-using ServicesCommander.Code;
-using WPFControls.Dialogs;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.ServicesCommander;
+using Mnk.TBox.Plugins.ServicesCommander.Code;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace ServicesCommander
+namespace Mnk.TBox.Plugins.ServicesCommander
 {
 	[PluginInfo(typeof(ServicesCommanderLang), 71, PluginGroup.Desktop)]
 	public class ServicesCommander : ConfigurablePlugin<Settings, Config>
@@ -27,12 +28,12 @@ namespace ServicesCommander
 										new UMenuItem
 											{
 												Header = s.Key + " - " + (runner.IsRunning(s) ? ServicesCommanderLang.Stop : ServicesCommanderLang.Start),
-												OnClick = o =>DoWithProgress(s.Key + " - " + (runner.IsRunning(s) ? ServicesCommanderLang.Stop : ServicesCommanderLang.Start), ()=>runner.ToggleService(s)) 
+												OnClick = o =>DoWithProgress(s.Key + " - " + (runner.IsRunning(s) ? ServicesCommanderLang.Stop : ServicesCommanderLang.Start), u=>runner.ToggleService(s)) 
 											},
 										new UMenuItem
 											{
 												Header = s.Key + " - " + ServicesCommanderLang.Restart,
-												OnClick = o =>DoWithProgress(s.Key + " - " + ServicesCommanderLang.Restart, ()=>runner.RestartService(s))
+												OnClick = o =>DoWithProgress(s.Key + " - " + ServicesCommanderLang.Restart, u=>runner.RestartService(s))
 											}
 									})
 									.Concat(new[]
@@ -41,12 +42,12 @@ namespace ServicesCommander
 											new UMenuItem
 												{
 													Header = ServicesCommanderLang.StartAll,
-													OnClick = o=>runner.StartAll(p)
+													OnClick = o=>StartAll(p)
 												},
 											new UMenuItem
 											{
 												Header = ServicesCommanderLang.StopAll,
-												OnClick = o=>runner.StopAll(p)
+												OnClick = o=>StopAll(p)
 											}
 										})
 									.ToArray()
@@ -59,9 +60,19 @@ namespace ServicesCommander
 				.ToArray();
 		}
 
-		private void DoWithProgress(string title, Action op)
+	    private void StopAll(Profile p)
+	    {
+	        DoWithProgress(ServicesCommanderLang.StopAll, u=>runner.StopAll(p,u));
+	    }
+
+	    private void StartAll(Profile p)
+	    {
+            DoWithProgress(ServicesCommanderLang.StartAll, u => runner.StartAll(p,u));
+	    }
+
+	    private void DoWithProgress(string title, Action<IUpdater> op)
 		{
-			DialogsCache.ShowProgress(u=>op(), title, null, icon: Icon.ToImageSource());
+			DialogsCache.ShowProgress(op, title, null, icon: Icon.ToImageSource(), showInTaskBar:true);
 		}
 
 		public override void Init(IPluginContext context)

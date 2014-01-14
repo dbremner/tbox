@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using Common.SaveLoad;
-using Interface;
-using SkyNet.Server.Code.Settings;
+using Mnk.Library.Common.SaveLoad;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Tools.SkyNet.Server.Code.Settings;
 
-namespace SkyNet.Server.Code
+namespace Mnk.TBox.Tools.SkyNet.Server.Code
 {
     class Storage 
     {

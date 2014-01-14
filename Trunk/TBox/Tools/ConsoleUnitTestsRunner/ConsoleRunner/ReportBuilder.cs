@@ -4,12 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Xml;
-using Common.Data;
+using Mnk.Library.Common.Data;
 using NUnit.Core;
-using ParallelNUnit.Core;
-using ParallelNUnit.Infrastructure;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure;
 
-namespace ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     class ReportBuilder
     {

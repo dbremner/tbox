@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace Templates
+namespace Mnk.TBox.Plugins.Templates
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

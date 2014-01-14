@@ -1,7 +1,7 @@
 ﻿using System;
-using TBox.Code.HotKeys.Settings;
+using Mnk.TBox.Core.Application.Code.HotKeys.Settings;
 
-namespace TBox.Code.HotKeys
+namespace Mnk.TBox.Core.Application.Code.HotKeys
 {
 	class HotKeyAction : HotKeyTask
 	{

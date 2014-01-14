@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Common.Network;
+using Mnk.Library.Common.Network;
 
-namespace Requestor.Code.Settings
+namespace Mnk.TBox.Plugins.Requestor.Code.Settings
 {
 	[Serializable]
 	public sealed class RequestConfig : ICloneable

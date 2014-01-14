@@ -1,4 +1,4 @@
-﻿namespace Common.SaveLoad
+﻿namespace Mnk.Library.Common.SaveLoad
 {
 	public sealed class ParamSerializer<T>
 	{

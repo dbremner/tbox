@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TBox.Code.ErrorsSender
+namespace Mnk.TBox.Core.Application.Code.ErrorsSender
 {
 	[Serializable]
 	public class ErrorReports

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Localization.Plugins.Automator {
+namespace Mnk.TBox.Locales.Localization.Plugins.Automator {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Localization.Plugins.Automator {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Localization.Plugins.Automator.AutomatorLang", typeof(AutomatorLang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mnk.TBox.Locales.Localization.Plugins.Automator.AutomatorLang", typeof(AutomatorLang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

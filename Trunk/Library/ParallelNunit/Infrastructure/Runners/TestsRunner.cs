@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Common.Base.Log;
-using Common.Communications.Interprocess;
-using Common.Console;
-using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Infrastructure.Communication;
-using ParallelNUnit.Infrastructure.Interfaces;
-using ParallelNUnit.Interfaces;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.Console;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Execution;
+using Mnk.Library.ParallelNUnit.Infrastructure.Communication;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Interfaces;
 
-namespace ParallelNUnit.Infrastructure.Runners
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     abstract class TestsRunner
     {
@@ -42,7 +42,7 @@ namespace ParallelNUnit.Infrastructure.Runners
                             DllPathes = dllPaths
                         },
                     packages, allTests,
-                    Run(needSynchronizationForTests, handle, needOutput)
+                    Run(path, needSynchronizationForTests, handle, needOutput)
                     );
             }
             finally
@@ -53,6 +53,6 @@ namespace ParallelNUnit.Infrastructure.Runners
             }
         }
 
-        protected abstract IContext Run(bool needSynchronizationForTests, string handle, bool needOutput);
+        protected abstract IContext Run(string path, bool needSynchronizationForTests, string handle, bool needOutput);
     }
 }

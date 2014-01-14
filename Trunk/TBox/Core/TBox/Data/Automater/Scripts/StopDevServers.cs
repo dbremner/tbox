@@ -1,6 +1,6 @@
-﻿using PluginsShared.Automator;
-using PluginsShared.Tools;
-using ScriptEngine;
+﻿using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.TBox.Core.PluginsShared.Tools;
+using Mnk.Library.ScriptEngine;
 
 namespace Solution.Scripts
 {

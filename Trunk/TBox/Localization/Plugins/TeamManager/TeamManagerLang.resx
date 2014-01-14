@@ -336,4 +336,16 @@
   <data name="ValidatorsScriptEditor" xml:space="preserve">
     <value>Script editor for validators</value>
   </data>
+  <data name="ConfigureLink" xml:space="preserve">
+    <value>Configure link</value>
+  </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="TeamEmailSubjectTemplate" xml:space="preserve">
+    <value>Team time report: {0} - {1}</value>
+  </data>
+  <data name="StackTrace" xml:space="preserve">
+    <value>Call stack</value>
+  </data>
 </root>

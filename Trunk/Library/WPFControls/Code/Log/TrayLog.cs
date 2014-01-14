@@ -1,7 +1,7 @@
 ﻿using System;
-using WPFWinForms;
+using Mnk.Library.WPFWinForms;
 
-namespace WPFControls.Code.Log
+namespace Mnk.Library.WPFControls.Code.Log
 {
 	public sealed class TrayLog : CaptionedLog, ICaptionedLog
 	{

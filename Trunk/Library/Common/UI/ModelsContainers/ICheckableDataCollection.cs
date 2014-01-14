@@ -1,6 +1,6 @@
 ﻿using System.Collections.Specialized;
 
-namespace Common.UI.ModelsContainers
+namespace Mnk.Library.Common.UI.ModelsContainers
 {
 	public interface ICheckableDataCollection : ICheckableList, INotifyCollectionChanged
 	{

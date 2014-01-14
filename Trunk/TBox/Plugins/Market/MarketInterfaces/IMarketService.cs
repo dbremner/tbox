@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
-using MarketInterfaces.Contracts;
+using Mnk.TBox.Plugins.Market.Interfaces.Contracts;
 
-namespace MarketInterfaces
+namespace Mnk.TBox.Plugins.Market.Interfaces
 {
 	[ServiceContract]
 	public interface IMarketService

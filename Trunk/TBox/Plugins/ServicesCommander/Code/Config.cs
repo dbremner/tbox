@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace ServicesCommander.Code
+namespace Mnk.TBox.Plugins.ServicesCommander.Code
 {
 	[Serializable]
 	public class Config

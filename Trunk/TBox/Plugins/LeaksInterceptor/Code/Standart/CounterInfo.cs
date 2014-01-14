@@ -1,9 +1,9 @@
 ﻿using System.Windows.Media;
-using LeaksInterceptor.Code.Getters;
-using WPFControls.Drawings.Graphics;
-using WPFControls.Drawings.Graphics.Painters;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics.Painters;
+using Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters;
 
-namespace LeaksInterceptor.Code.Standart
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart
 {
 	class CounterInfo
 	{

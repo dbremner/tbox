@@ -1,10 +1,10 @@
 ﻿using System;
-using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using ScriptEngine;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ScriptEngine;
 
-namespace TeamManager.Code.Settings
+namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
 {
     [Serializable]
     public sealed class Profile : Data

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using Common.Encoders;
+using Mnk.Library.Common.Encoders;
 
-namespace Encoder.Code
+namespace Mnk.TBox.Plugins.Encoder.Code
 {
 	static class FqlParser
 	{

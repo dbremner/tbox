@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.SqlRunner;
-using PluginsShared.Ddos.Components;
-using SqlRunner.Code;
-using SqlRunner.Code.Settings;
-using SqlRunner.Components;
-using WPFControls.Code;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs.StateSaver;
-using WPFSyntaxHighlighter;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
+using Mnk.TBox.Core.PluginsShared.Ddos.Components;
+using Mnk.TBox.Plugins.SqlRunner.Code;
+using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
+using Mnk.TBox.Plugins.SqlRunner.Components;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace SqlRunner
+namespace Mnk.TBox.Plugins.SqlRunner
 {
     [PluginInfo(typeof(SqlRunnerLang), 8, PluginGroup.Database)]
     public sealed class SqlRunner : ConfigurablePlugin<Settings, Config>, IDisposable

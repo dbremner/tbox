@@ -5,12 +5,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using WPFControls.Controls;
-using WPFControls.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.WPFControls.Tools;
 
-namespace WPFControls.Components
+namespace Mnk.Library.WPFControls.Components
 {
 	public class CheckableListBox : ExtListBox, ICheckableItemsView
 	{

@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
-namespace MarketInterfaces
+namespace Mnk.TBox.Plugins.Market.Interfaces
 {
 	[DataContract]
 	public class Plugin

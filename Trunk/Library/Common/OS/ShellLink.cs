@@ -2,13 +2,13 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Common.OS
+namespace Mnk.Library.Common.OS
 {
     public sealed class ShellLink : IDisposable
     {
-        [ComImportAttribute()]
-        [GuidAttribute("0000010B-0000-0000-C000-000000000046")]
-        [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        [ComImport()]
+        [Guid("0000010B-0000-0000-C000-000000000046")]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         private interface IPersistFile
         {
             [PreserveSig]
@@ -26,7 +26,7 @@ namespace Common.OS
                 [MarshalAs(UnmanagedType.LPWStr)] out string ppszFileName);
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential, Pack = 4, Size = 0,
+        [StructLayout(LayoutKind.Sequential, Pack = 4, Size = 0,
             CharSet = CharSet.Unicode)]
         private struct _WIN32_FIND_DATAW
         {
@@ -46,16 +46,16 @@ namespace Common.OS
             public string cAlternateFileName;
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential, Pack = 4, Size = 0)]
+        [StructLayout(LayoutKind.Sequential, Pack = 4, Size = 0)]
         private struct _FILETIME
         {
             public uint dwLowDateTime;
             public uint dwHighDateTime;
         }
 
-        [ComImportAttribute()]
-        [GuidAttribute("000214F9-0000-0000-C000-000000000046")]
-        [InterfaceTypeAttribute(ComInterfaceType.InterfaceIsIUnknown)]
+        [ComImport()]
+        [Guid("000214F9-0000-0000-C000-000000000046")]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         private interface IShellLinkW
         {
             void GetPath(
@@ -101,9 +101,9 @@ namespace Common.OS
                 [MarshalAs(UnmanagedType.LPWStr)] string pszFile);
         }
 
-        [GuidAttribute("00021401-0000-0000-C000-000000000046")]
-        [ClassInterfaceAttribute(ClassInterfaceType.None)]
-        [ComImportAttribute()]
+        [Guid("00021401-0000-0000-C000-000000000046")]
+        [ClassInterface(ClassInterfaceType.None)]
+        [ComImport()]
         private class CShellLink
         {
         }

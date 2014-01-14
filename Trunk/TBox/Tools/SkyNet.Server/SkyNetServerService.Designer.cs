@@ -1,4 +1,4 @@
-﻿namespace SkyNet.Server
+﻿namespace Mnk.TBox.Tools.SkyNet.Server
 {
     partial class SkyNetServerService
     {

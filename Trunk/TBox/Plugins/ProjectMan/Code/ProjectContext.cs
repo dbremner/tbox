@@ -1,6 +1,6 @@
-﻿using PluginsShared.Tools;
+﻿using Mnk.TBox.Core.PluginsShared.Tools;
 
-namespace ProjectMan.Code
+namespace Mnk.TBox.Plugins.ProjectMan.Code
 {
 	class ProjectContext
 	{

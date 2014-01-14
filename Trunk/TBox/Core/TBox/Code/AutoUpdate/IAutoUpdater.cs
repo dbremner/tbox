@@ -1,4 +1,4 @@
-﻿namespace TBox.Code.AutoUpdate
+﻿namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {
 	public interface IAutoUpdater
 	{

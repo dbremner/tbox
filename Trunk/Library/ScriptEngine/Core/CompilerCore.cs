@@ -6,11 +6,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Common.Data;
-using Common.SaveLoad;
-using ScriptEngine.Core.Assemblies;
+using Mnk.Library.Common.Data;
+using Mnk.Library.Common.SaveLoad;
+using Mnk.Library.ScriptEngine.Core.Assemblies;
 
-namespace ScriptEngine.Core
+namespace Mnk.Library.ScriptEngine.Core
 {
     internal class CompilerCore
     {

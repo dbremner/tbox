@@ -4,17 +4,18 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using Common.Base.Log;
-using Common.MT;
-using Interface;
-using Localization.PluginsShared;
-using ScriptEngine;
-using ScriptEngine.Core;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.PluginsShared;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.Library.ScriptEngine.Core.Params;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
 using ScriptEngine.Core.Params;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
 	/// <summary>
 	/// Interaction logic for ScriptsConfigurator.xaml

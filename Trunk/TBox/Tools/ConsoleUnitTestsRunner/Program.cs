@@ -2,11 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Common.Base.Log;
-using ConsoleUnitTestsRunner.ConsoleRunner;
-using ParallelNUnit.Core;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner;
 
-namespace ConsoleUnitTestsRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
 {
     class Program
     {
@@ -15,7 +16,7 @@ namespace ConsoleUnitTestsRunner
         [STAThread]
         static int Main(string[] args)
         {
-            LogManager.Init(new ConsoleLog());
+            LogManager.Init(new MultiLog(new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "ConsoleUnitTestsRunner.log"))));
             log = LogManager.GetLogger<Program>();
 
             if (args.Length <= 0 || string.Equals(args[0], "/?") || string.Equals(args[0], "/help", StringComparison.OrdinalIgnoreCase))

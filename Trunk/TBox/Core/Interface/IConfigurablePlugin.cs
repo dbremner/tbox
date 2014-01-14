@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Controls;
-using Common.Plugins;
+using Mnk.Library.Common.Plugins;
 
-namespace Interface
+namespace Mnk.TBox.Core.Interface
 {
 	public interface IConfigurablePlugin : IPlugin, IConfigurable
 	{

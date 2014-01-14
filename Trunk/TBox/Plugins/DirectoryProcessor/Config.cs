@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.UI.ModelsContainers;
-using DirectoryProcessor.Code;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Plugins.DirectoryProcessor.Code;
 
-namespace DirectoryProcessor
+namespace Mnk.TBox.Plugins.DirectoryProcessor
 {
 	[Serializable]
 	public class Config

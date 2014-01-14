@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
 
-namespace WPFControls.Code.EditPanel
+namespace Mnk.Library.WPFControls.Code.EditPanel
 {
 	public sealed class Controller
 	{

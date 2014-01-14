@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using System.Linq;
-using DirectoryProcessor.Code;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.DirectoryProcessor;
-using WPFWinForms;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.DirectoryProcessor;
+using Mnk.Library.WPFWinForms;
+using Mnk.TBox.Plugins.DirectoryProcessor.Code;
 
-namespace DirectoryProcessor
+namespace Mnk.TBox.Plugins.DirectoryProcessor
 {
 	[PluginInfo(typeof(DirectoryProcessorLang), 4, PluginGroup.Desktop)]
 	public sealed class DirectoryProcessor : ConfigurablePlugin<Settings, Config>

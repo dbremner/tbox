@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using PluginsShared.Automator;
-using ScriptEngine;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.Library.ScriptEngine;
 
 namespace Solution.Scripts
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Interface;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace RegExpTester
+namespace Mnk.TBox.Plugins.RegExpTester
 {
 	[Serializable]
 	public class Config : IConfigWithDialogStates

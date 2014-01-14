@@ -2,13 +2,13 @@
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-using BookletPagesGenerator.Code;
-using Common.Base;
-using Common.Base.Log;
-using Localization.Plugins.BookletPagesGenerator;
-using WPFControls.Tools;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Locales.Localization.Plugins.BookletPagesGenerator;
+using Mnk.Library.WPFControls.Tools;
+using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
 
-namespace BookletPagesGenerator
+namespace Mnk.TBox.Plugins.BookletPagesGenerator
 {
 	/// <summary>
 	/// Interaction logic for Dialog.xaml

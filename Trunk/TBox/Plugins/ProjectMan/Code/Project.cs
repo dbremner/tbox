@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using Common.Base.Log;
-using Common.Console;
-using Common.Data;
-using Interface;
-using Localization.Plugins.ProjectMan;
-using ProjectMan.Code.Settings;
-using WPFControls.Dialogs;
-using WPFWinForms;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Console;
+using Mnk.Library.Common.Data;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
+using Mnk.TBox.Plugins.ProjectMan.Code.Settings;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFWinForms;
 
-namespace ProjectMan.Code
+namespace Mnk.TBox.Plugins.ProjectMan.Code
 {
 	sealed class Project
 	{

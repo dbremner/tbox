@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace WPFControls.Components.Units
+namespace Mnk.Library.WPFControls.Components.Units
 {
 	public sealed class CheckableListBoxUnit : BaseCheckableCollectionUnit
 	{

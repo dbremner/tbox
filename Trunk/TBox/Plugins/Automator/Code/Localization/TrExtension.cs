@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.Automator;
+﻿using Mnk.TBox.Locales.Localization.Plugins.Automator;
 
-namespace Automator.Code.Localization
+namespace Mnk.TBox.Plugins.Automator.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, AutomatorLang.ResourceManager) { }
 	}

@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System;
-using ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Core;
 
-namespace NUnitRunner.Components
+namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
 
     public class Node : INotifyPropertyChanged

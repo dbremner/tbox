@@ -1,4 +1,4 @@
-﻿namespace PluginsShared.ReportsGenerator
+﻿namespace Mnk.TBox.Core.PluginsShared.ReportsGenerator
 {
     public class DayTypes
     {

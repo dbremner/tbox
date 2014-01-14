@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace PluginsShared.Templates
+namespace Mnk.TBox.Core.PluginsShared.Templates
 {
 	class KnownValues : IKnownValues
 	{

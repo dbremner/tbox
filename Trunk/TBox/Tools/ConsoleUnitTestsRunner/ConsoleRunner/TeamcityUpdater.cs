@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Common.MT;
+using Mnk.Library.Common.MT;
 using NUnit.Core;
-using ParallelNUnit.Core;
-using ParallelNUnit.Infrastructure;
-using ParallelNUnit.Infrastructure.Updater;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure;
+using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
 
-namespace ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     class TeamcityUpdater : SimpleUpdater
     {

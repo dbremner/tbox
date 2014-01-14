@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Interface;
-using MarketClient.Code;
-using MarketClient.ServiceReference;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
+using Mnk.TBox.Plugins.Market.Client.Code;
 
-namespace MarketClient.Components.Installers
+namespace Mnk.TBox.Plugins.Market.Client.Components.Installers
 {
 	class InstalledPlugins : Installer
 	{

@@ -1,4 +1,4 @@
-﻿namespace Common.Communications
+﻿namespace Mnk.Library.Common.Communications
 {
 	public interface IEmailSender
 	{

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using LibsLocalization.WPFSyntaxHighlighter;
-using WPFControls.Code.Log;
-using WPFControls.Dialogs;
+using Mnk.Library.Localization.WPFSyntaxHighlighter;
+using Mnk.Library.WPFControls.Code.Log;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace WPFSyntaxHighlighter
+namespace Mnk.Library.WPFSyntaxHighlighter
 {
 	/// <summary>
 	/// Interaction logic for MemoBox.xaml

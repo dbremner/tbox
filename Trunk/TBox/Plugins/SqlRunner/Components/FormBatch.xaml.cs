@@ -1,17 +1,17 @@
 ﻿using System.Linq;
 using System.Text;
 using System.Windows;
-using Common.MT;
-using Localization.Plugins.SqlRunner;
-using SqlRunner.Code;
-using SqlRunner.Code.Settings;
-using WPFControls.Code;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
-using WPFControls.Dialogs.StateSaver;
-using WPFSyntaxHighlighter;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
+using Mnk.TBox.Plugins.SqlRunner.Code;
+using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFSyntaxHighlighter;
 
-namespace SqlRunner.Components
+namespace Mnk.TBox.Plugins.SqlRunner.Components
 {
 	/// <summary>
 	/// Interaction logic for FormBatcg.xaml

@@ -1,9 +1,9 @@
-﻿using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.SourcesUniter;
-using SourcesUniter.Code;
+﻿using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.SourcesUniter;
+using Mnk.TBox.Plugins.SourcesUniter.Code;
 
-namespace SourcesUniter
+namespace Mnk.TBox.Plugins.SourcesUniter
 {
 	[PluginInfo(typeof(SourcesUniterLang), 68, PluginGroup.Other)]
 	public sealed class SourcesUniter : SingleDialogPlugin<Config, Dialog>

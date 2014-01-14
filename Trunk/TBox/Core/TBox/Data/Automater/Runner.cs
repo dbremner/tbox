@@ -1,5 +1,5 @@
-﻿using PluginsShared.Automator;
-using Solution.Scripts;
+﻿using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.Library.Solution.Scripts;
 
 namespace Solution
 {

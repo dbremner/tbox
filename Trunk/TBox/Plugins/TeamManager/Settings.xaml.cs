@@ -1,32 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Tools;
-using Interface;
-using Localization.Plugins.TeamManager;
-using PluginsShared.ScriptEngine;
-using ScriptEngine;
-using TeamManager.Code.Scripts;
-using TeamManager.Code.Settings;
-using WPFControls.Code;
-using WPFControls.Tools;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Plugins.TeamManager.Code.Settings;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Tools;
 
-namespace TeamManager
+namespace Mnk.TBox.Plugins.TeamManager
 {
-	/// <summary>
-	/// Interaction logic for Settings.xaml
-	/// </summary>
-	public sealed partial class Settings : ISettings, IDisposable
-	{
+    /// <summary>
+    /// Interaction logic for Settings.xaml
+    /// </summary>
+    public sealed partial class Settings : ISettings, IDisposable
+    {
         public LazyDialog<ScriptsConfigurator> ScriptsConfigurator { get; set; }
 
-		public Settings()
-		{
-			InitializeComponent();
-		}
+        public Settings()
+        {
+            InitializeComponent();
+        }
 
-		public UserControl Control { get { return this; } }
+        public UserControl Control { get { return this; } }
         public IList<string> FilePathes { get; set; }
         internal IScriptConfigurator ScriptConfigurator { get; set; }
         internal Config Config { get { return ((Config)DataContext); } }
@@ -42,17 +45,26 @@ namespace TeamManager
             ScriptsConfigurator.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
         }
 
-	    private SingleFileOperation GetSelectedOperation(object sender)
-	    {
-	        var selectedKey = ((TextBlock) ((DockPanel) ((Button) sender).Parent).Children[3]).Text;
+        private SingleFileOperation GetSelectedOperation(object sender)
+        {
+            var selectedKey = ((Button) sender).DataContext.ToString();
             var profile = (Profile)Profile.SelectedValue;
-	        var id = profile.Operations.GetExistIndexByKeyIgnoreCase(selectedKey);
+            var id = profile.Operations.GetExistIndexByKeyIgnoreCase(selectedKey);
             return profile.Operations[id];
-	    }
+        }
 
-	    public void Dispose()
-	    {
-	        ScriptsConfigurator.Dispose();
-	    }
-	}
+        public void Dispose()
+        {
+            ScriptsConfigurator.Dispose();
+        }
+
+        private void SelectTeamMembersClick(object sender, RoutedEventArgs e)
+        {
+            var items = (Collection<Data>)((Button)sender).DataContext;
+            var profile = (Profile)Profile.SelectedValue;
+            DialogsCache.ShowInputListUnit(TeamManagerLang.ConfigurePersons, TeamManagerLang.Persons, 
+                items, profile.Persons.Select(x => x.Key).ToList(), 
+                this.GetParentWindow());
+        }
+    }
 }

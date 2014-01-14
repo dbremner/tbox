@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace ParallelNUnit.Infrastructure.Runners
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     public sealed class ProcessContext : IContext
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using Common.Base;
-using Common.Base.Log;
-using WPFControls.Code.Log;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.WPFControls.Code.Log;
 
-namespace PluginsShared.Watcher
+namespace Mnk.TBox.Core.PluginsShared.Watcher
 {
 	sealed class Watch : IDisposable
 	{

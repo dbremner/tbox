@@ -2,17 +2,17 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Base;
-using Common.Base.Log;
-using Common.MT;
-using Localization.Plugins.Searcher;
-using Searcher.Code.Finders;
-using Searcher.Code.Finders.Parsers;
-using Searcher.Code.Finders.Scanner;
-using Searcher.Code.Search;
-using Searcher.Code.Settings;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Locales.Localization.Plugins.Searcher;
+using Mnk.TBox.Plugins.Searcher.Code.Finders;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner;
+using Mnk.TBox.Plugins.Searcher.Code.Search;
+using Mnk.TBox.Plugins.Searcher.Code.Settings;
 
-namespace Searcher.Code
+namespace Mnk.TBox.Plugins.Searcher.Code
 {
 	sealed class SearchEngine
 	{

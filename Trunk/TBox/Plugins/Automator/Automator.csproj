@@ -8,8 +8,8 @@
     <ProjectGuid>{A453EB6D-AE5A-410B-931D-F19F80A15FCF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Automator</RootNamespace>
-    <AssemblyName>Automator</AssemblyName>
+    <RootNamespace>Mnk.TBox.Plugins.Automator</RootNamespace>
+    <AssemblyName>Mnk.TBox.Plugins.Automator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -80,44 +80,44 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ScriptEngine\ScriptEngine.csproj">
+    <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
       <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>
-      <Name>ScriptEngine</Name>
+      <Name>Mnk.Library.ScriptEngine</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>WPFControls</Name>
+      <Name>Mnk.Library.WPFControls</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\WPFSyntaxHighlighter.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\Mnk.Library.WPFSyntaxHighlighter.csproj">
       <Project>{8A2CF1DC-BCD6-4A63-8CF7-B9EA4F297ACD}</Project>
-      <Name>WPFSyntaxHighlighter</Name>
+      <Name>Mnk.Library.WPFSyntaxHighlighter</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\WPFWinForms.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>WPFWinForms</Name>
+      <Name>Mnk.Library.WPFWinForms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
-      <Name>Interface</Name>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
+    <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
       <Project>{BCDBE777-304F-40AC-8C5F-31B3A6BE4341}</Project>
-      <Name>PluginsShared</Name>
+      <Name>Mnk.TBox.Core.PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Localization\Localization.csproj">
+    <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">
       <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
-      <Name>Localization</Name>
+      <Name>Mnk.TBox.Locales.Localization</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

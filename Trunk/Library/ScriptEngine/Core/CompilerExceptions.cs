@@ -3,7 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ScriptEngine.Core
+namespace Mnk.Library.ScriptEngine.Core
 {
 	public class CompilerExceptions : Exception
 	{

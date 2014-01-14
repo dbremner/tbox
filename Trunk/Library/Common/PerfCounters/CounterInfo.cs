@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Common.PerfCounters
+namespace Mnk.Library.Common.PerfCounters
 {
 	public class CounterInfo
 	{

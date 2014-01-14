@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Common.Tools;
-using Common.UI.Model;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
-namespace ScriptEngine
+namespace Mnk.Library.ScriptEngine
 {
 	[Serializable]
 	public class Operation : CheckableData

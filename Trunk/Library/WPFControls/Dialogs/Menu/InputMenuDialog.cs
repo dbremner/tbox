@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using WPFControls.Code.Dialogs;
+using Mnk.Library.WPFControls.Code.Dialogs;
 
-namespace WPFControls.Dialogs.Menu
+namespace Mnk.Library.WPFControls.Dialogs.Menu
 {
 	public class InputMenuDialog: BaseDialog
 	{

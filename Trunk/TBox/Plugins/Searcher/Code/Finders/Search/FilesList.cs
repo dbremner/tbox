@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Base;
-using Common.Base.Log;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
 
-namespace Searcher.Code.Finders.Search
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Search
 {
 	sealed class FilesList
 	{

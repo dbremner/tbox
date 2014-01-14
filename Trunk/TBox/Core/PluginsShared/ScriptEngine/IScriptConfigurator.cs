@@ -1,6 +1,6 @@
-﻿using ScriptEngine.Core;
+﻿using Mnk.Library.ScriptEngine.Core;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
     public interface IScriptConfigurator
 	{

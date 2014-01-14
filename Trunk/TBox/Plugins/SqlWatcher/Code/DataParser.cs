@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Common.Base;
-using PluginsShared.Encoders;
-using PluginsShared.Watcher;
-using WPFControls.Code.Log;
+using Mnk.Library.Common.Base;
+using Mnk.TBox.Core.PluginsShared.Encoders;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.Library.WPFControls.Code.Log;
 
-namespace SqlWatcher.Code
+namespace Mnk.TBox.Plugins.SqlWatcher.Code
 {
 	class DataParser : IDataParser
 	{

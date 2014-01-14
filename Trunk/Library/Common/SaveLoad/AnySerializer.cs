@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 using ServiceStack.Text;
 
-namespace Common.SaveLoad
+namespace Mnk.Library.Common.SaveLoad
 {
 	public sealed class AnySerializer
 	{

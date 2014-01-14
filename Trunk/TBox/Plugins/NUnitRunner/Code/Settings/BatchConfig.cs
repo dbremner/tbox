@@ -1,4 +1,4 @@
-﻿namespace NUnitRunner.Code.Settings
+﻿namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
 {
     public class BatchConfig
     {

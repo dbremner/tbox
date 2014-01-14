@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.UI.Model;
-using WPFWinForms.GlobalHotKeys;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WPFWinForms.GlobalHotKeys;
 
-namespace TBox.Code.HotKeys.Settings
+namespace Mnk.TBox.Core.Application.Code.HotKeys.Settings
 {
 	[Serializable]
 	public class HotKeyTask : CheckableData

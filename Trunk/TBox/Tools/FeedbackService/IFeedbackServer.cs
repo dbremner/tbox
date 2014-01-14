@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
 
-namespace FeedbackService
+namespace Mnk.TBox.Tools.FeedbackService
 {
 	[ServiceContract]
 	interface IFeedbackServer

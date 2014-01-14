@@ -1,7 +1,7 @@
 ﻿using System;
-using TBox.Code.FastStart.Settings;
+using Mnk.TBox.Core.Application.Code.FastStart.Settings;
 
-namespace TBox.Code.FastStart
+namespace Mnk.TBox.Core.Application.Code.FastStart
 {
 	class FastStartShower
 	{

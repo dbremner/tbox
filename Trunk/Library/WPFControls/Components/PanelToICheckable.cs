@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Common.UI.ModelsContainers;
-using LibsLocalization.WPFControls;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.Localization.WPFControls;
 
-namespace WPFControls.Components
+namespace Mnk.Library.WPFControls.Components
 {
 	public class PanelToICheckable : UserControl
 	{

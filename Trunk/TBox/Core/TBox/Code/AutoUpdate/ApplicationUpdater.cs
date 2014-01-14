@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
-using Common.AutoUpdate;
-using Common.Base.Log;
-using Interface;
-using WPFControls.Code.OS;
+using Mnk.Library.Common.AutoUpdate;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Code.OS;
 
-namespace TBox.Code.AutoUpdate
+namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {
 	public class ApplicationUpdater : IAutoUpdater
 	{
@@ -38,18 +38,18 @@ namespace TBox.Code.AutoUpdate
 				return false;
 			}
             cm.Config.Update.Last = DateTime.Now;
-            Application.Current.Dispatcher.Invoke(new Action(DoExit));
+            System.Windows.Application.Current.Dispatcher.Invoke(new Action(DoExit));
 			return true;
 		}
 
 		private static void DoExit()
 		{
-			var w = Application.Current.MainWindow as MainWindow;
+			var w = System.Windows.Application.Current.MainWindow as MainWindow;
 			if (w != null)
 			{
 				w.MenuClose();
 			}
-			Application.Current.Shutdown();
+			System.Windows.Application.Current.Shutdown();
 		}
 	}
 }

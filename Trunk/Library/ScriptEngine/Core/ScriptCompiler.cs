@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ScriptEngine.Core.Interfaces;
+using Mnk.Library.ScriptEngine.Core.Interfaces;
+using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
-namespace ScriptEngine.Core
+namespace Mnk.Library.ScriptEngine.Core
 {
 	public class ScriptCompiler<T> : Compiler<T>, IScriptCompiler<T>
         where T : class

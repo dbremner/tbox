@@ -4,14 +4,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Common.Base.Log;
-using Localization.TBox;
-using TBox.Code.Objects;
-using WPFControls.Code.OS;
-using WPFControls.Components.ButtonsView;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.Objects;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Components.ButtonsView;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace TBox.Code.Managers
+namespace Mnk.TBox.Core.Application.Code.Managers
 {
 	sealed class ControlsMan
 	{

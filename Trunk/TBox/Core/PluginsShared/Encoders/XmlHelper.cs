@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace PluginsShared.Encoders
+namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
 	public static class XmlHelper
 	{

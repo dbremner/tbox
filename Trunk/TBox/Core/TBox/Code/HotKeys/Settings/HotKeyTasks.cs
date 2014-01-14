@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.Tools;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace TBox.Code.HotKeys.Settings
+namespace Mnk.TBox.Core.Application.Code.HotKeys.Settings
 {
 	[Serializable]
 	public class HotKeyTasks

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TextGenerator.Code
+namespace Mnk.TBox.Plugins.TextGenerator.Code
 {
 	[Serializable]
 	public class Config

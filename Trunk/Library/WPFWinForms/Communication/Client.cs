@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace WPFWinForms.Communication
+namespace Mnk.Library.WPFWinForms.Communication
 {
 	[Serializable]
 	public sealed class Client

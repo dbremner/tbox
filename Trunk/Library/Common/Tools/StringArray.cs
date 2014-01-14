@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public class StringArray<T>
 	{

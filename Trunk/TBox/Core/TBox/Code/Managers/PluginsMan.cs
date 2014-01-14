@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Common.Plugins;
-using Interface;
+using Mnk.Library.Common.Plugins;
+using Mnk.TBox.Core.Interface;
 
-namespace TBox.Code.Managers
+namespace Mnk.TBox.Core.Application.Code.Managers
 {
 	class PluginsMan : PlugMan<IPlugin>
 	{

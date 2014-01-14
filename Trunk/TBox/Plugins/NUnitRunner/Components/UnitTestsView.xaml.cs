@@ -5,15 +5,15 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Data;
-using Common.Tools;
-using Localization.Plugins.NUnitRunner;
-using ParallelNUnit.Core;
-using ParallelNUnit.Infrastructure;
-using ParallelNUnit.Infrastructure.Interfaces;
-using WPFSyntaxHighlighter;
+using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.WPFSyntaxHighlighter;
 
-namespace NUnitRunner.Components
+namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
     /// <summary>
     /// Interaction logic for UnitTestsView.xaml
@@ -29,7 +29,7 @@ namespace NUnitRunner.Components
             Panel.Children.Add(results);
         }
 
-        public void Refresh(int time, params string[] output)
+        public void Refresh(int time)
         {
             results.Refresh();
             if (results.IsEmpty) return;
@@ -50,18 +50,7 @@ namespace NUnitRunner.Components
                 ti.Items.Add(new TreeViewItem {Header = item.Message});
                 TestsNotRun.Items.Add(ti);
             }
-            TextOutput.Items.Clear();
-            for(var i=0;i<output.Length;++i)
-            {
-                if (string.IsNullOrEmpty(output[i])) continue;
-                TextOutput.Items.Add(
-                    new TabItem
-                        {
-                            Header = String.Format("{0} {1}", NUnitRunnerLang.Agent, i+1), 
-                            Content = new SyntaxHighlighter{IsReadOnly = true, Value = output[i]}
-                        });
-            }
-            if (TextOutput.Items.Count > 0) TextOutput.SelectedIndex = 0;
+            TextOutput.Value = string.Join(string.Empty, tmc.All.Select(x => x.Output));
         }
 
         private void SelectedTestChanged(object sender, RoutedPropertyChangedEventArgs<object> routedPropertyChangedEventArgs)
@@ -76,6 +65,7 @@ namespace NUnitRunner.Components
                 selected.Time + Environment.NewLine +
                 selected.Description + Environment.NewLine +
                 selected.Message + Environment.NewLine +
+                selected.Output + Environment.NewLine +
                 selected.StackTrace;
         }
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.Tools;
-using Common.UI.ModelsContainers;
-using Interface;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace NUnitRunner.Code.Settings
+namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
 {
     [Serializable]
     public class Config : IConfigWithDialogStates

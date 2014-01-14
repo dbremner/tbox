@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Common.OS
+namespace Mnk.Library.Common.OS
 {
 	public static class Shortcuts
 	{

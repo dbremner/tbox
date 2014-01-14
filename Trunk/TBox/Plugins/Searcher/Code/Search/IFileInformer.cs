@@ -1,4 +1,4 @@
-﻿namespace Searcher.Code.Search
+﻿namespace Mnk.TBox.Plugins.Searcher.Code.Search
 {
 	interface IFileInformer
 	{

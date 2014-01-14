@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using PluginsShared.Ddos.Settings;
-using PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
+using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
 
-namespace PluginsShared.Ddos
+namespace Mnk.TBox.Core.PluginsShared.Ddos
 {
 	public abstract class Ddoser<T> : IDdoser
 		where T : IOperation

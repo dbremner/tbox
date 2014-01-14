@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using WPFControls.Dialogs.Menu;
-using WPFWinForms;
+using Mnk.Library.WPFControls.Dialogs.Menu;
+using Mnk.Library.WPFWinForms;
 
-namespace TBox.Code.Menu
+namespace Mnk.TBox.Core.Application.Code.Menu
 {
 	public interface IMenuItemsProvider
 	{

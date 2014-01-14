@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PluginsShared.Ddos.Statistic
+namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
 {
 	class AnalizeInfo
 	{

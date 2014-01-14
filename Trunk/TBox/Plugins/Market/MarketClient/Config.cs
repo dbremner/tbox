@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using MarketClient.ServiceReference;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
 
-namespace MarketClient
+namespace Mnk.TBox.Plugins.Market.Client
 {
 	[Serializable]
 	public class Config

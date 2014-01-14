@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows;
-using WPFWinForms;
+using Mnk.Library.WPFWinForms;
 
-namespace WPFControls.Code.OS
+namespace Mnk.Library.WPFControls.Code.OS
 {
 	public sealed class NotifyIconMan : IDisposable
 	{

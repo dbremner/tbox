@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
-using Common.Base.Log;
-using Common.MT;
-using Common.Tools;
-using Localization.Plugins.Searcher;
-using Searcher.Code.Finders.Parsers;
-using Searcher.Code.Finders.Search;
-using Searcher.Code.Settings;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Locales.Localization.Plugins.Searcher;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Search;
+using Mnk.TBox.Plugins.Searcher.Code.Settings;
 
-namespace Searcher.Code.Finders.Scanner
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 {
 	sealed class Scanner
 	{

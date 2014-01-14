@@ -8,13 +8,13 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Localization.PluginsShared;
-using PluginsShared.Ddos.Settings;
-using PluginsShared.Ddos.Statistic;
-using WPFControls.Tools;
-using WPFWinForms;
+using Mnk.TBox.Locales.Localization.PluginsShared;
+using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
+using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WPFWinForms;
 
-namespace PluginsShared.Ddos.Components
+namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 {
 	/// <summary>
 	/// Interaction logic for FormDdos.xaml

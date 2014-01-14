@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Drawing.Text;
 
-namespace WPFWinForms
+namespace Mnk.Library.WPFWinForms
 {
 	public sealed class IconWithText : IDisposable
 	{

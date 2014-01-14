@@ -1,4 +1,4 @@
-﻿namespace Common.Base.Log
+﻿namespace Mnk.Library.Common.Base.Log
 {
 	public sealed class NullLog : AbstractLog
 	{

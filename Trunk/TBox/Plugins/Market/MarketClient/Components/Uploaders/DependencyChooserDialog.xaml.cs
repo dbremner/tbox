@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace MarketClient.Components.Uploaders
+namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 {
 	/// <summary>
 	/// Interaction logic for DependencyChooser.xaml

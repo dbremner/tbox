@@ -1,4 +1,4 @@
-﻿namespace WPFControls.Code.DataManagers
+﻿namespace Mnk.Library.WPFControls.Code.DataManagers
 {
 	public interface IDataManager
 	{

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public static class CollectionsExtensions
 	{

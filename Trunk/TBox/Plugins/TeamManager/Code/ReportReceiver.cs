@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.MT;
-using Common.Tools;
-using PluginsShared.ReportsGenerator;
-using ScriptEngine;
-using TeamManager.Code.Scripts;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Plugins.TeamManager.Code.Scripts;
 
-namespace TeamManager.Code
+namespace Mnk.TBox.Plugins.TeamManager.Code
 {
     public class ReportReceiver
     {

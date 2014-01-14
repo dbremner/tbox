@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.Searcher;
+﻿using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 
-namespace Searcher.Code.Localization
+namespace Mnk.TBox.Plugins.Searcher.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, SearcherLang.ResourceManager) { }
 	}

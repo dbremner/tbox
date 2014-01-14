@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PluginsShared.Templates
+namespace Mnk.TBox.Core.PluginsShared.Templates
 {
 	interface IKnownValues
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Searcher.Code
+namespace Mnk.TBox.Plugins.Searcher.Code
 {
 	class AvailabilityChecker
 	{

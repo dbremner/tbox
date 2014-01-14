@@ -1,7 +1,7 @@
 ﻿using System;
-using WPFControls.Drawings.DirectionsTable;
+using Mnk.Library.WPFControls.Components.Drawings.DirectionsTable;
 
-namespace RequestsWatcher.Code
+namespace Mnk.TBox.Plugins.RequestsWatcher.Code
 {
 	[Serializable]
 	public class Request : IDirectionable

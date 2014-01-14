@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Localization.TBox;
+using Mnk.TBox.Locales.Localization.TBox;
 
-namespace TBox.Forms
+namespace Mnk.TBox.Core.Application.Forms
 {
 	/// <summary>
 	/// Interaction logic for ChangesLogDialog.xaml

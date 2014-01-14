@@ -1,10 +1,10 @@
-﻿using Common.MT;
-using Common.Tools;
-using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Infrastructure.Interfaces;
+﻿using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Execution;
 
-namespace ParallelNUnit.Infrastructure.Updater
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
 {
     public class SimpleUpdater : IProgressStatus
     {

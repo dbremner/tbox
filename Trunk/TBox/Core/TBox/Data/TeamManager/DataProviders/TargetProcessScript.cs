@@ -2,10 +2,10 @@
 using System.Globalization;
 using System.Net;
 using System.Linq;
-using ScriptEngine;
+using Mnk.Library.ScriptEngine;
 using ServiceStack.Text;
-using PluginsShared.ReportsGenerator;
-using WPFControls.Tools;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.Library.WPFControls.Tools;
 
 namespace TBox.Data.TeamManager
 {

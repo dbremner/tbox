@@ -8,8 +8,8 @@
     <ProjectGuid>{4B3649CD-3005-47E3-A90D-FCE9D9727584}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DirectoryProcessor</RootNamespace>
-    <AssemblyName>DirectoryProcessor</AssemblyName>
+    <RootNamespace>Mnk.TBox.Plugins.DirectoryProcessor</RootNamespace>
+    <AssemblyName>Mnk.TBox.Plugins.DirectoryProcessor</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -78,29 +78,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>WPFControls</Name>
+      <Name>Mnk.Library.WPFControls</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\WPFWinForms.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>WPFWinForms</Name>
+      <Name>Mnk.Library.WPFWinForms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
-      <Name>Interface</Name>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Localization\Localization.csproj">
+    <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">
       <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
-      <Name>Localization</Name>
+      <Name>Mnk.TBox.Locales.Localization</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

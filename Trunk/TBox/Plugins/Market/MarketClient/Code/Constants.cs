@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MarketClient.Code
+namespace Mnk.TBox.Plugins.Market.Client.Code
 {
 	static class Constants
 	{

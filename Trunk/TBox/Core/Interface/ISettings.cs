@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Interface
+namespace Mnk.TBox.Core.Interface
 {
 	public interface ISettings
 	{

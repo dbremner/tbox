@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using MarketClient.Code;
-using MarketClient.Components.Installers;
-using MarketClient.ServiceReference;
-using WPFControls.Code.OS;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.TBox.Plugins.Market.Client.Code;
+using Mnk.TBox.Plugins.Market.Client.Components.Installers;
 
-namespace MarketClient.Components.Uploaders
+namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 {
 	public class DependencyChooser : Installer
 	{

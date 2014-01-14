@@ -5,12 +5,12 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
-using Localization.Plugins.SqlRunner;
-using SqlRunner.Code.Settings;
-using Common.Tools;
-using WPFControls.Dialogs;
+using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
+using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace SqlRunner.Code
+namespace Mnk.TBox.Plugins.SqlRunner.Code
 {
 	public class BaseExecutor
 	{

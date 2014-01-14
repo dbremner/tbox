@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SkyNet.Common.Contracts.Agent
+namespace Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent
 {
     [DataContract]
     public class AgentTask

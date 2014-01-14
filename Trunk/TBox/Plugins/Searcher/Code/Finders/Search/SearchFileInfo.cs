@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Searcher.Code.Finders.Search
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Search
 {
 	sealed class SearchFileInfo
 	{

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using WPFWinForms.Icons;
+using Mnk.Library.WPFWinForms.Icons;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
-namespace WPFWinForms
+namespace Mnk.Library.WPFWinForms
 {
 	public sealed class TrayIcon : IDisposable
 	{

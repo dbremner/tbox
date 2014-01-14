@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Resources;
 using System.Windows.Markup;
-using LibsLocalization.WPFControls;
+using Mnk.Library.Localization.WPFControls;
 
-namespace WPFControls.Localization
+namespace Mnk.Library.WPFControls.Localization
 {
 	[MarkupExtensionReturnType(typeof(string))]
 	public abstract class TranslateExtension : MarkupExtension

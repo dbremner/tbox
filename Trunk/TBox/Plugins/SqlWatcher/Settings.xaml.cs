@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace SqlWatcher
+namespace Mnk.TBox.Plugins.SqlWatcher
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

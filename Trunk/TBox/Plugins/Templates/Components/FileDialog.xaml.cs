@@ -1,14 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
-using Common.Base;
-using Common.Base.Log;
-using Common.UI.Model;
-using Localization.Plugins.Templates;
-using PluginsShared.Templates;
-using Templates.Code.Settings;
-using WPFControls.Controls;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Locales.Localization.Plugins.Templates;
+using Mnk.TBox.Core.PluginsShared.Templates;
+using Mnk.TBox.Plugins.Templates.Code.Settings;
+using Mnk.Library.WPFControls.Components.FilesAndFolders;
 
-namespace Templates.Components
+namespace Mnk.TBox.Plugins.Templates.Components
 {
 	/// <summary>
 	/// Interaction logic for FileDialog.xaml

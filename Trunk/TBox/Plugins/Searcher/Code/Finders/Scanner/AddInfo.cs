@@ -1,4 +1,4 @@
-﻿namespace Searcher.Code.Finders.Scanner
+﻿namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 {
 	class AddInfo
 	{

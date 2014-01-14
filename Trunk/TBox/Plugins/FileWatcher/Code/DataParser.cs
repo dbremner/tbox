@@ -1,7 +1,7 @@
-﻿using PluginsShared.Watcher;
-using WPFControls.Code.Log;
+﻿using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.Library.WPFControls.Code.Log;
 
-namespace FileWatcher.Code
+namespace Mnk.TBox.Plugins.FileWatcher.Code
 {
 	class DataParser : IDataParser
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 
-namespace Common.Communications.Interprocess
+namespace Mnk.Library.Common.Communications.Interprocess
 {
     [Serializable]
     public sealed class InterprocessClient<T> : IDisposable

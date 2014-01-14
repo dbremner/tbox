@@ -1,14 +1,14 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using Common.Base;
-using Common.Base.Log;
-using Common.MT;
-using Localization.Plugins.SourcesUniter;
-using SourcesUniter.Code;
-using WPFControls.Dialogs;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Locales.Localization.Plugins.SourcesUniter;
+using Mnk.TBox.Plugins.SourcesUniter.Code;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace SourcesUniter
+namespace Mnk.TBox.Plugins.SourcesUniter
 {
 	/// <summary>
 	/// Interaction logic for Dialog.xaml

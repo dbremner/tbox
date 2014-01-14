@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public sealed class EqualityDataComparer<T> : IEqualityComparer<T>
 		where T : UI.Model.Data

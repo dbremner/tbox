@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace Searcher.Code.Settings
+namespace Mnk.TBox.Plugins.Searcher.Code.Settings
 {
 	[Serializable]
 	public sealed class SearchConfig

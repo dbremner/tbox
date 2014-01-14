@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.MT;
-using Localization.PluginsShared;
-using PluginsShared.ScriptEngine;
-using ScriptEngine.Core;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Locales.Localization.PluginsShared;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.Library.ScriptEngine.Core.Params;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
 using ScriptEngine.Core.Params;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
 
-namespace PluginsShared.Automator
+namespace Mnk.TBox.Core.PluginsShared.Automator
 {
     public class ScriptsRunner : MultiFileScriptConfigurator
     {

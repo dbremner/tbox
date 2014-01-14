@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace ProjectMan.Code.Settings
+namespace Mnk.TBox.Plugins.ProjectMan.Code.Settings
 {
 	[Serializable]
 	public class Config

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Common.UI.Model;
-using Interface;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace Templates.Code.Settings
+namespace Mnk.TBox.Plugins.Templates.Code.Settings
 {
 	[Serializable]
 	public class Config : IConfigWithDialogStates

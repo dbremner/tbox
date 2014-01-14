@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using Common.SaveLoad;
-using Interface;
-using TBox.Code.AutoUpdate;
-using WPFControls.Localization;
+using Mnk.Library.Common.SaveLoad;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Application.Code.AutoUpdate;
+using Mnk.Library.WPFControls.Localization;
 
-namespace TBox.Code.Configs
+namespace Mnk.TBox.Core.Application.Code.Configs
 {
 	class ConfigManager : IConfigManager<Config>, IConfigsManager
 	{

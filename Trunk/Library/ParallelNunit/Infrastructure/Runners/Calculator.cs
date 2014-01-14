@@ -1,4 +1,4 @@
-﻿namespace ParallelNUnit.Infrastructure.Runners
+﻿namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     class Calculator
     {

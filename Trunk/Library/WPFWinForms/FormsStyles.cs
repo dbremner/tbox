@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WPFWinForms
+namespace Mnk.Library.WPFWinForms
 {
 	public static class FormsStyles
 	{

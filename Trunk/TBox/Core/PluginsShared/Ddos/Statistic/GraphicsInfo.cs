@@ -1,8 +1,8 @@
 ﻿using System.Windows.Media;
-using WPFControls.Drawings.Graphics;
-using WPFControls.Drawings.Graphics.Painters;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics.Painters;
 
-namespace PluginsShared.Ddos.Statistic
+namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
 {
 	public class GraphicsInfo
 	{

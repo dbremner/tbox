@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.MT;
+using Mnk.Library.Common.MT;
 
-namespace PluginsShared.Automator
+namespace Mnk.TBox.Core.PluginsShared.Automator
 {
     public class ScriptContext : IScriptContext
 	{

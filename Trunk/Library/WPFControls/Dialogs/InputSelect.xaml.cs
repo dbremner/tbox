@@ -4,10 +4,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using LibsLocalization.WPFControls;
-using WPFControls.Tools;
+using Mnk.Library.Localization.WPFControls;
+using Mnk.Library.WPFControls.Tools;
 
-namespace WPFControls.Dialogs
+namespace Mnk.Library.WPFControls.Dialogs
 {
 	/// <summary>
 	/// Interaction logic for InputSelect.xaml

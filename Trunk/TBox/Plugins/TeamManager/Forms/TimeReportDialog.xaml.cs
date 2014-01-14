@@ -4,23 +4,25 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using Common.Base.Log;
-using Common.MT;
-using Common.Tools;
-using Interface;
-using Localization.Plugins.TeamManager;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Microsoft.Win32;
-using PluginsShared.ReportsGenerator;
-using ScriptEngine.Core;
-using TeamManager.Code;
-using TeamManager.Code.Modifiers;
-using TeamManager.Code.Reports;
-using TeamManager.Code.Reports.Contracts;
-using TeamManager.Code.Settings;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.TBox.Plugins.TeamManager.Code;
+using Mnk.TBox.Plugins.TeamManager.Code.Emails;
+using Mnk.TBox.Plugins.TeamManager.Code.Emails.Senders;
+using Mnk.TBox.Plugins.TeamManager.Code.Modifiers;
+using Mnk.TBox.Plugins.TeamManager.Code.Reports;
+using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
+using Mnk.TBox.Plugins.TeamManager.Code.Settings;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace TeamManager.Forms
+namespace Mnk.TBox.Plugins.TeamManager.Forms
 {
     /// <summary>
     /// Interaction logic for TimeReportDialog.xaml
@@ -243,10 +245,13 @@ namespace TeamManager.Forms
             try
             {
                 var report = fullReport.Clone();
-                var emailSender = new EmailsSender(profile,
-                                                   report,
-                                                   BuildInfo(report),
-                                                   items => PrintReportToHtml(report, items));
+                var reportContext = new ReportContext(report, BuildInfo(report), profile,
+                    items => PrintReportToHtml(report, items));
+                var emailSender = new EmailsSender(reportContext,  
+                                                   new PersonalReportSender(),
+                                                   new TeamReportSender(),
+                                                   new FullReportSender()
+                                                   );
                 emailSender.Send(u);
             }
             catch (Exception ex)

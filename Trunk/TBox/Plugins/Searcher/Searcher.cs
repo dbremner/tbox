@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.Searcher;
-using Searcher.Code;
-using Searcher.Code.Settings;
-using WPFSyntaxHighlighter;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.Searcher;
+using Mnk.TBox.Plugins.Searcher.Code;
+using Mnk.TBox.Plugins.Searcher.Code.Settings;
+using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace Searcher
+namespace Mnk.TBox.Plugins.Searcher
 {
 	[PluginInfo(typeof(SearcherLang), typeof(Properties.Resources), PluginGroup.Desktop)]
 	public sealed class Searcher : ConfigurablePlugin<Settings, Config>, IDisposable

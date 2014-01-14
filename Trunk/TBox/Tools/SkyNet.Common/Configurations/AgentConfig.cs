@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SkyNet.Common.Configurations
+namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
 {
     [DataContract]
     public class AgentConfig

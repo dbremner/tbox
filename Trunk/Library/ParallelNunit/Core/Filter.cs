@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Core;
 
-namespace ParallelNUnit.Core
+namespace Mnk.Library.ParallelNUnit.Core
 {
     [Serializable]
     public class Filter : ITestFilter

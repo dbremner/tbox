@@ -3,7 +3,7 @@ using System.IO;
 using NUnit.Core;
 using NUnit.Util;
 
-namespace ParallelNUnit.Core
+namespace Mnk.Library.ParallelNUnit.Core
 {
     public static class NUnitBase
     {

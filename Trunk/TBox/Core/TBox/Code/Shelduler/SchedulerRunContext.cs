@@ -1,7 +1,7 @@
 ﻿using System;
-using TBox.Code.Shelduler.Settings;
+using Mnk.TBox.Core.Application.Code.Shelduler.Settings;
 
-namespace TBox.Code.Shelduler
+namespace Mnk.TBox.Core.Application.Code.Shelduler
 {
 	class SchedulerRunContext
 	{

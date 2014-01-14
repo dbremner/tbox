@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Tools;
-using Interface;
-using SqlRunner.Code.Settings;
-using SqlRunner.Components;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
+using Mnk.TBox.Plugins.SqlRunner.Components;
 
-namespace SqlRunner
+namespace Mnk.TBox.Plugins.SqlRunner
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

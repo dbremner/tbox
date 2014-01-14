@@ -1,4 +1,4 @@
-﻿namespace PluginsShared.Watcher
+﻿namespace Mnk.TBox.Core.PluginsShared.Watcher
 {
 	public enum FileDirection
 	{

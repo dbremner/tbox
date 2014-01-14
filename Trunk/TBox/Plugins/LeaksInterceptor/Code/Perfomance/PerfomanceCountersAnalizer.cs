@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Common.Base;
-using Common.Base.Log;
-using LeaksInterceptor.Code.Standart;
-using WPFControls.Dialogs.PerfomanceCounters;
-using WPFControls.Drawings.Graphics;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics;
+using Mnk.Library.WPFControls.Dialogs.PerfomanceCounters;
+using Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart;
 
-namespace LeaksInterceptor.Code.Perfomance
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Perfomance
 {
 	sealed class PerfomanceCountersAnalizer : IAnalizer, IDisposable
 	{

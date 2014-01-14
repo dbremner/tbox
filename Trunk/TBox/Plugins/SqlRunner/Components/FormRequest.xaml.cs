@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
-using Common.Network;
-using PluginsShared.Ddos.Statistic;
-using SqlRunner.Code;
-using SqlRunner.Code.Settings;
-using WPFControls.Code.OS;
+using Mnk.Library.Common.Network;
+using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Plugins.SqlRunner.Code;
+using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
+using Mnk.Library.WPFControls.Code.OS;
 
-namespace SqlRunner.Components
+namespace Mnk.TBox.Plugins.SqlRunner.Components
 {
 	/// <summary>
 	/// </summary>

@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace TBox.Code.Shelduler.Settings
+namespace Mnk.TBox.Core.Application.Code.Shelduler.Settings
 {
 	public class SchedulerTask : CheckableData
 	{

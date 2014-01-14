@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Data;
-using WPFWinForms.Icons;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace WPFWinForms
+namespace Mnk.Library.WPFWinForms
 {
     public class CustomIconsConverter : IValueConverter
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace ConsoleScriptRunner.Settings
+namespace Mnk.TBox.Tools.ConsoleScriptRunner.Settings
 {
 	[Serializable]
 	public sealed class Config

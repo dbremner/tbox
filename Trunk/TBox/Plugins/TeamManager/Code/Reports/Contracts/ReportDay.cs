@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TeamManager.Code.Reports.Contracts
+namespace Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts
 {
     class ReportDay
     {

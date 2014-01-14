@@ -1,25 +1,25 @@
 ﻿using System.IO;
-using Common.AutoUpdate;
-using Common.Base.Log;
-using Interface;
+using Mnk.Library.Common.AutoUpdate;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Core.Interface;
 using LightInject;
-using TBox.Code.AutoUpdate;
-using TBox.Code.Configs;
-using TBox.Code.ErrorsSender;
-using TBox.Code.FastStart;
-using TBox.Code.Managers;
-using TBox.Code.Menu;
-using TBox.Code.Objects;
-using TBox.Forms;
-using WPFControls.Code.Log;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Application.Code.AutoUpdate;
+using Mnk.TBox.Core.Application.Code.Configs;
+using Mnk.TBox.Core.Application.Code.ErrorsSender;
+using Mnk.TBox.Core.Application.Code.FastStart;
+using Mnk.TBox.Core.Application.Code.Managers;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.TBox.Core.Application.Code.Objects;
+using Mnk.TBox.Core.Application.Forms;
+using Mnk.Library.WPFControls.Code.Log;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace TBox.Code
+namespace Mnk.TBox.Core.Application.Code
 {
     class ServicesRegistrator
     {
         private static readonly string LogsFolder = Path.Combine(Folders.UserRootFolder, "Logs");
-        private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder, "errors.log");
+        private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder, "TBox.Errors.log");
 
         public ServicesRegistrator()
         {
@@ -27,7 +27,7 @@ namespace TBox.Code
             LogManager.Init(new MultiLog(new IBaseLog[]{
 					new FileLog(ErrorsLogsPath), new MsgLog()
 				}),
-                new FileLog(Path.Combine(LogsFolder, "info.log")));
+                new FileLog(Path.Combine(LogsFolder, "TBox.Info.log")));
         }
 
         public IServiceContainer Register()

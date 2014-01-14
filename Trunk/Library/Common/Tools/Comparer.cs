@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public class Comparer<T> : IComparer
 	{

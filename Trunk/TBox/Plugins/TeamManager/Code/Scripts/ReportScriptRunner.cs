@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using PluginsShared.ReportsGenerator;
-using PluginsShared.ScriptEngine;
-using ScriptEngine.Core;
-using ScriptEngine.Core.Interfaces;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.Library.ScriptEngine.Core.Interfaces;
+using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
-namespace TeamManager.Code.Scripts
+namespace Mnk.TBox.Plugins.TeamManager.Code.Scripts
 {
 	sealed class ReportScriptRunner : IScriptConfigurator
 	{

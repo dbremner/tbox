@@ -1,15 +1,19 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Common.Tools;
-using DevServerRunner.Code.Settings;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.DevServerRunner;
-using PluginsShared.Tools;
-using WPFWinForms;
+using System.Windows;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.DevServerRunner;
+using Mnk.TBox.Core.PluginsShared.Tools;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
+using Mnk.TBox.Plugins.DevServerRunner.Code.Settings;
 
-namespace DevServerRunner
+namespace Mnk.TBox.Plugins.DevServerRunner
 {
 	[PluginInfo(typeof(DevServerRunnerLang), typeof(Properties.Resources), PluginGroup.Web)]
 	public sealed class DevServerRunner : ConfigurablePlugin<Settings, Config>
@@ -64,10 +68,23 @@ namespace DevServerRunner
 
 		private void StartAll()
 		{
-			Config.ServerInfos.CheckedItems.ForEach(ProcessFolder);
+            DialogsCache.ShowProgress(
+                StartAll, 
+                DevServerRunnerLang.RunAll, null, icon: Icon.ToImageSource(), showInTaskBar:true );
 		}
 
-		private void ProcessFolder(ServerInfo info)
+	    private void StartAll(IUpdater u)
+	    {
+	        var i = 0;
+	        var items = Config.ServerInfos.CheckedItems.ToArray();
+	        foreach (var info in items)
+	        {
+	            ProcessFolder(info);
+                u.Update(info.Key, ++i/(float)items.Length);
+	        }
+	    }
+
+	    private void ProcessFolder(ServerInfo info)
 		{
 			runner.Run(
 				info.Key, info.Port, info.VPath, info.AdminPrivilegies, 

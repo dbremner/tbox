@@ -2,10 +2,10 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Media;
-using Common.Tools;
-using WPFWinForms;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.WPFWinForms;
 
-namespace TBox.Code.Menu
+namespace Mnk.TBox.Core.Application.Code.Menu
 {
 	sealed class MenuMan 
 	{

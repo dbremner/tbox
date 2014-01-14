@@ -16,7 +16,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-namespace MarketService
+namespace Mnk.TBox.Plugins.Market.Service
 {
     #region Contexts
     

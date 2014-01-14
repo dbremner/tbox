@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Common.Tools;
-using WPFWinForms;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.WPFWinForms;
 
-namespace WPFControls.Dialogs.Menu
+namespace Mnk.Library.WPFControls.Dialogs.Menu
 {
 	public static class MenuExtensions
 	{

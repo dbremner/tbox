@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace NUnitRunner.Components
+namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
     public class BoolToVisibilityConverter : IValueConverter
     {

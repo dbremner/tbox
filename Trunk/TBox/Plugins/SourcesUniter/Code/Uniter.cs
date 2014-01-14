@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.MT;
-using Localization.Plugins.SourcesUniter;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Locales.Localization.Plugins.SourcesUniter;
 
-namespace SourcesUniter.Code
+namespace Mnk.TBox.Plugins.SourcesUniter.Code
 {
 	sealed class Uniter
 	{

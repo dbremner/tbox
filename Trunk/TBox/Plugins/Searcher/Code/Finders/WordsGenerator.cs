@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Searcher.Code.Finders.Parsers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
 
-namespace Searcher.Code.Finders
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders
 {
 	class WordsGenerator : IAdder
 	{

@@ -6,14 +6,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Common.MT;
-using Common.Tools;
-using LibsLocalization.WPFControls;
-using WPFControls.Code.OS;
-using WPFControls.Controls;
-using WPFControls.Tools;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Localization.WPFControls;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Components;
+using Mnk.Library.WPFControls.Tools;
 
-namespace WPFControls.Dialogs.PerfomanceCounters
+namespace Mnk.Library.WPFControls.Dialogs.PerfomanceCounters
 {
 	/// <summary>
 	/// Interaction logic for SelectPerfomanceCounters.xaml

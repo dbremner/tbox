@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using WPFControls.Code.DataManagers;
-using WPFControls.Code.Dialogs;
-using WPFControls.Code.EditPanel;
+using Mnk.Library.WPFControls.Code.DataManagers;
+using Mnk.Library.WPFControls.Code.Dialogs;
+using Mnk.Library.WPFControls.Code.EditPanel;
 
-namespace WPFControls.Components.Units
+namespace Mnk.Library.WPFControls.Components.Units
 {
 	public abstract class BaseCheckableCollectionUnit : BaseCollectionUnit, ICheckableUnit
 	{

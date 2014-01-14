@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace WPFWinForms.GlobalHotKeys
+namespace Mnk.Library.WPFWinForms.GlobalHotKeys
 {
 	internal sealed class Window : NativeWindow, IDisposable
 	{

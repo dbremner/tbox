@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
-namespace ScriptEngine.Core
+namespace Mnk.Library.ScriptEngine.Core
 {
     public class ScriptPackage
     {

@@ -10,8 +10,8 @@
     <ProjectGuid>{F7D419F1-630B-4313-8932-B2A9AE5A5D1A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SkyNet.Server</RootNamespace>
-    <AssemblyName>SkyNet.Server</AssemblyName>
+    <RootNamespace>Mnk.TBox.Tools.SkyNet.Server</RootNamespace>
+    <AssemblyName>Mnk.TBox.Tools.SkyNet.Server</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -84,14 +84,14 @@
     <Compile Include="SkyNetServer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
-      <Name>Interface</Name>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\SkyNet.Common\SkyNet.Common.csproj">

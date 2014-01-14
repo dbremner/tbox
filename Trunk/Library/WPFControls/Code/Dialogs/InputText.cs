@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace WPFControls.Code.Dialogs
+namespace Mnk.Library.WPFControls.Code.Dialogs
 {
 	public sealed class InputText : BaseDialog
 	{

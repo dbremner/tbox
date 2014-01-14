@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.Tools;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace TBox.Code.Shelduler.Settings
+namespace Mnk.TBox.Core.Application.Code.Shelduler.Settings
 {
 	[Serializable]
 	public class SchedulerTasks

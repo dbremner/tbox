@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ScriptEngine.Core.Params;
 
-namespace ScriptEngine.Core.Params
+namespace Mnk.Library.ScriptEngine.Core.Params
 {
 	sealed class Factory
 	{

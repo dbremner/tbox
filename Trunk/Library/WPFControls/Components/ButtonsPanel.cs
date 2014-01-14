@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WPFControls.Components
+namespace Mnk.Library.WPFControls.Components
 {
 	public class ButtonsPanel : UserControl
 	{

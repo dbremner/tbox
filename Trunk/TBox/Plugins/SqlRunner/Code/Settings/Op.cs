@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.UI.Model;
-using PluginsShared.Ddos.Settings;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
 
-namespace SqlRunner.Code.Settings
+namespace Mnk.TBox.Plugins.SqlRunner.Code.Settings
 {
 	[Serializable]
 	public sealed class Op : CheckableData, IOperation

@@ -1,9 +1,9 @@
-﻿using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.HtmlPad;
-using WPFSyntaxHighlighter;
+﻿using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.HtmlPad;
+using Mnk.Library.WPFSyntaxHighlighter;
 
-namespace HtmlPad
+namespace Mnk.TBox.Plugins.HtmlPad
 {
 	[PluginInfo(typeof(HtmlPadLang), 220, PluginGroup.Web)]
 	public sealed class HtmlPad : SingleDialogPlugin<Config, Dialog>

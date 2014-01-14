@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ScriptEngine.Core.Params;
 
-namespace ScriptEngine.Core.Params
+namespace Mnk.Library.ScriptEngine.Core.Params
 {
 	public static class ParametersValidator
 	{

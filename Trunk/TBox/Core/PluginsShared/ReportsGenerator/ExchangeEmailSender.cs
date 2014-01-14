@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.Communications;
+using Mnk.Library.Common.Communications;
 using Microsoft.Exchange.WebServices.Data;
 
-namespace PluginsShared.ReportsGenerator
+namespace Mnk.TBox.Core.PluginsShared.ReportsGenerator
 {
 	public class ExchangeEmailSender : IEmailSender
 	{

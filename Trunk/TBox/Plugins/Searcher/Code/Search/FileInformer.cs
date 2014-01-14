@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using Searcher.Code.Checkers;
-using Searcher.Code.Finders.Scanner;
-using Searcher.Code.Finders.Search;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Plugins.Searcher.Code.Checkers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Search;
 
-namespace Searcher.Code.Search
+namespace Mnk.TBox.Plugins.Searcher.Code.Search
 {
 	class FileInformer : IFileInformer
 	{

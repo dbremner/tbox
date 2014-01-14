@@ -1,8 +1,8 @@
 ﻿using System;
-using WPFControls.Code.Log;
-using WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Code.Log;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace PluginsShared.Watcher
+namespace Mnk.TBox.Core.PluginsShared.Watcher
 {
 	public interface ILogDialog : ICaptionedLog
 	{

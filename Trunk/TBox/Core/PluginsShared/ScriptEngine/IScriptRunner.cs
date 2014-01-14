@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.MT;
+using Mnk.Library.Common.MT;
+using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
     public interface IScriptRunner : IScriptConfigurator
 	{

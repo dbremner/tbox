@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Core;
 
-namespace ParallelNUnit.Core
+namespace Mnk.Library.ParallelNUnit.Core
 {
     public interface IHasChildren
     {
@@ -26,6 +26,7 @@ namespace ParallelNUnit.Core
         public int AssertCount { get; set; }
         public bool IsTest { get { return string.Equals(Type, "TestMethod"); } }
         public IList<IHasChildren> Children { get; set; }
+        public string Output { get; set; }
 
         public Result()
         {

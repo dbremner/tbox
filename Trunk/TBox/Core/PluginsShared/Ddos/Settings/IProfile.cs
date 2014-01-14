@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PluginsShared.Ddos.Settings
+namespace Mnk.TBox.Core.PluginsShared.Ddos.Settings
 {
 	public interface IProfile
 	{

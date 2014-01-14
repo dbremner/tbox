@@ -1,8 +1,8 @@
-﻿using Localization.PluginsShared;
+﻿using Mnk.TBox.Locales.Localization.PluginsShared;
 
-namespace PluginsShared.Code.Localization
+namespace Mnk.TBox.Core.PluginsShared.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, PluginsSharedLang.ResourceManager) { }
 	}

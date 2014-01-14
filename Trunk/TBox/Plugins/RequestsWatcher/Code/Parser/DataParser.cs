@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Base.Log;
-using PluginsShared.Watcher;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Core.PluginsShared.Watcher;
 using ServiceStack.Text;
-using WPFControls.Code.Log;
+using Mnk.Library.WPFControls.Code.Log;
 
-namespace RequestsWatcher.Code.Parser
+namespace Mnk.TBox.Plugins.RequestsWatcher.Code.Parser
 {
 	class DataParser : IDataParser
 	{

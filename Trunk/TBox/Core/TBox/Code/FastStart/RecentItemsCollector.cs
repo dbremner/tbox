@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
-using Common.Data;
-using Common.Tools;
-using Interface;
-using Localization.TBox;
-using TBox.Code.FastStart.Settings;
-using TBox.Code.Menu;
-using WPFControls.Components.ButtonsView;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.FastStart.Settings;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.Library.WPFControls.Components.ButtonsView;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace TBox.Code.FastStart
+namespace Mnk.TBox.Core.Application.Code.FastStart
 {
 	class RecentItemsCollector : IMenuRunHandler
 	{

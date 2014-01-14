@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WPFWinForms.Communication
+namespace Mnk.Library.WPFWinForms.Communication
 {
 	public sealed class Server : NativeWindow, IDisposable
 	{

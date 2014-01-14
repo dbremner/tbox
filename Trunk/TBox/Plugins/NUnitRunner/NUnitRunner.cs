@@ -1,18 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.NUnitRunner;
-using NUnitRunner.Code.Settings;
-using NUnitRunner.Components;
-using WPFControls.Code;
-using WPFControls.Dialogs;
-using WPFControls.Dialogs.StateSaver;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
+using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
+using Mnk.TBox.Plugins.NUnitRunner.Components;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace NUnitRunner
+namespace Mnk.TBox.Plugins.NUnitRunner
 {
     [PluginInfo(typeof(NUnitRunnerLang), typeof(Properties.Resources), PluginGroup.Development)]
     public sealed class NUnitRunner : ConfigurablePlugin<Settings, Config>, IDisposable

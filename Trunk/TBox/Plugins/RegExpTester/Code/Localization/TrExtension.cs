@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.RegExpTester;
+﻿using Mnk.TBox.Locales.Localization.Plugins.RegExpTester;
 
-namespace RegExpTester.Code.Localization
+namespace Mnk.TBox.Plugins.RegExpTester.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, RegExpTesterLang.ResourceManager) { }
 	}

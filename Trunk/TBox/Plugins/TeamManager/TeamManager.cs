@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.TeamManager;
-using PluginsShared.ScriptEngine;
-using TeamManager.Code;
-using TeamManager.Code.Scripts;
-using TeamManager.Code.Settings;
-using TeamManager.Forms;
-using WPFControls.Code;
-using WPFControls.Dialogs.StateSaver;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.TBox.Plugins.TeamManager.Code;
+using Mnk.TBox.Plugins.TeamManager.Code.Scripts;
+using Mnk.TBox.Plugins.TeamManager.Code.Settings;
+using Mnk.TBox.Plugins.TeamManager.Forms;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace TeamManager
+namespace Mnk.TBox.Plugins.TeamManager
 {
 	[PluginInfo(typeof(TeamManagerLang), 160, PluginGroup.Development)]
 	public class TeamManager : ConfigurablePlugin<Settings, Config>, IDisposable

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ParallelNUnit.Execution
+namespace Mnk.Library.ParallelNUnit.Execution
 {
     public class TestRunConfig
     {

@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Media;
-using WPFWinForms;
+using Mnk.Library.WPFWinForms;
 
-namespace Interface 
+namespace Mnk.TBox.Core.Interface 
 {
 	public interface IPlugin
 	{

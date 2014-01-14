@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace PluginsShared.Watcher
+namespace Mnk.TBox.Core.PluginsShared.Watcher
 {
 	[Serializable]
 	public sealed class WatchSettings

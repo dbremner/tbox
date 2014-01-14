@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using Common.UI.Model;
-using WPFControls.Code.Dialogs;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WPFControls.Code.Dialogs;
 
-namespace WPFControls.Components.Units
+namespace Mnk.Library.WPFControls.Components.Units
 {
 	public interface IUnit
 	{

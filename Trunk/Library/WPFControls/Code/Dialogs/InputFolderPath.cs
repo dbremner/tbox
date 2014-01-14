@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
-using Common.Tools;
-using WPFControls.Dialogs;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.WPFControls.Dialogs;
 using MessageBox = System.Windows.MessageBox;
 
-namespace WPFControls.Code.Dialogs
+namespace Mnk.Library.WPFControls.Code.Dialogs
 {
 	public sealed class InputFolderPath : BaseDialog
 	{

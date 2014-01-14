@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Tools;
-using Interface;
-using Requestor.Code.Settings;
-using Requestor.Components;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Plugins.Requestor.Code.Settings;
+using Mnk.TBox.Plugins.Requestor.Components;
 
-namespace Requestor
+namespace Mnk.TBox.Plugins.Requestor
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

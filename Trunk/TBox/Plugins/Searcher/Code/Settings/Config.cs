@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Interface;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace Searcher.Code.Settings
+namespace Mnk.TBox.Plugins.Searcher.Code.Settings
 {
 	[Serializable]
 	public sealed class Config : IConfigWithDialogStates

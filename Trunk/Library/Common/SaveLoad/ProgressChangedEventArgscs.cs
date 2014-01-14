@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.SaveLoad
+namespace Mnk.Library.Common.SaveLoad
 {
 	public class ProgressChangedEventArgs : EventArgs
 	{

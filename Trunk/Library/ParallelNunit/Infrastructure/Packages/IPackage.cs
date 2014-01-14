@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using ParallelNUnit.Core;
-using ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
 
-namespace ParallelNUnit.Infrastructure.Packages
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 {
     public interface IPackage 
     {
         string FilePath { get; }
-        string[] Output { get; }
         int Count { get; }
         int FailedCount { get; }
 

@@ -4,22 +4,22 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Base.Log;
-using Common.Communications.Interprocess;
-using Common.Communications.Network;
-using Common.Tools;
-using Interface;
-using Localization.Plugins.TeamManager;
-using PluginsShared.ScriptEngine;
-using ScriptEngine;
-using SkyNet.Code.Settings;
-using SkyNet.Common.Configurations;
-using SkyNet.Common.Contracts.Agent;
-using SkyNet.Common.Contracts.Server;
-using WPFControls.Code;
-using WPFControls.Tools;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.Communications.Network;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Plugins.SkyNet.Code.Settings;
+using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Tools;
 
-namespace SkyNet
+namespace Mnk.TBox.Plugins.SkyNet
 {
     /// <summary>
     /// Interaction logic for Settings.xaml

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace WPFControls.Components.Units
+namespace Mnk.Library.WPFControls.Components.Units
 {
 	public sealed class ListBoxUnit : BaseCollectionUnit
 	{

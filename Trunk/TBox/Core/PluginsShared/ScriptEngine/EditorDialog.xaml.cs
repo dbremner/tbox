@@ -5,90 +5,131 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Base;
-using Common.Base.Log;
-using Interface;
-using Localization.PluginsShared;
-using ScriptEngine.Core;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
-using WPFControls.Tools;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.PluginsShared;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Tools;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
-	/// <summary>
-	/// Interaction logic for EditorDialog.xaml
-	/// </summary>
-	public partial class EditorDialog 
-	{
-		private static readonly ILog Log = LogManager.GetLogger<EditorDialog>();
-		public IPluginContext Context { get; set; }
+    /// <summary>
+    /// Interaction logic for EditorDialog.xaml
+    /// </summary>
+    public partial class EditorDialog
+    {
+        private static readonly ILog Log = LogManager.GetLogger<EditorDialog>();
+        public IPluginContext Context { get; set; }
         private IScriptConfigurator configurator;
-		public EditorDialog()
-		{
-			InitializeComponent();
-		}
+        public EditorDialog()
+        {
+            InitializeComponent();
+        }
 
-		public void ShowDialog(IList<string> pathes, IScriptConfigurator c)
-		{
-			if (!IsVisible)
-			{
-			    configurator = c;
-				Files.ItemsSource = pathes;
-				Files.IsEnabled = Files.Items.Count > 0;
-				if (Files.IsEnabled && Files.SelectedIndex == -1) Files.SelectedIndex = 0;
-			}
-			ShowAndActivate();
-		}
+        public void ShowDialog(IList<string> pathes, IScriptConfigurator c)
+        {
+            if (!IsVisible)
+            {
+                configurator = c;
+                Files.ItemsSource = pathes;
+                Files.IsEnabled = Files.Items.Count > 0;
+                if (Files.IsEnabled && Files.SelectedIndex == -1) Files.SelectedIndex = 0;
+            }
+            ShowAndActivate();
+        }
 
-		private void OnSelectFile(object sender, SelectionChangedEventArgs e)
-		{
-			var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, e.GetNewSelection());
-			ExceptionsHelper.HandleException(
-				() => Source.Read(path),
-				() => "Can't open file:" + path,
-				Log);
-			Output.Text = string.Empty;
-		}
+        private void OnSelectFile(object sender, SelectionChangedEventArgs e)
+        {
+            AskToSaveChanges();
+            var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, e.GetNewSelection());
+            ExceptionsHelper.HandleException(
+                () => Source.Read(path),
+                () => "Can't open file:" + path,
+                Log);
+            Output.Text = string.Empty;
+            UpdateTitle();
+        }
 
-		private void BuildClick(object sender, RoutedEventArgs e)
-		{
-			var text = Source.Value;
-			DialogsCache.ShowProgress(u=>Build(text), PluginsSharedLang.Building, this);
-		}
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            AskToSaveChanges();
+            base.OnClosing(e);
+        }
 
-		private void Build(string text)
-		{
-			var sw = new Stopwatch();
-			sw.Start();
-			Func<string> time = () => Environment.NewLine + string.Format(PluginsSharedLang.CompilationTimeTemplate, sw.ElapsedMilliseconds);
-			try
-			{
-			    configurator.GetParameters(text);
-				Mt.SetText(Output, PluginsSharedLang.NoErrors + time());
-			}
-			catch (CompilerExceptions cex)
-			{
-				Mt.SetText(Output, cex + time());
-			}
-			catch (Exception ex)
-			{
-				Mt.SetText(Output, ExceptionsHelper.Expand(ex) + time());
-			}
-		}
+        private void BuildClick(object sender, RoutedEventArgs e)
+        {
+            var text = Source.Value;
+            DialogsCache.ShowProgress(u => Build(text), PluginsSharedLang.Building, this);
+        }
 
-		private void SaveClick(object sender, RoutedEventArgs e)
-		{
-			var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, Files.Text);
-			ExceptionsHelper.HandleException(
-				() => File.WriteAllText(path, Source.Value, Encoding.UTF8),
-				() => "Can't save file:" + path,
-				Log);
-		}
+        private void Build(string text)
+        {
+            var sw = new Stopwatch();
+            sw.Start();
+            Func<string> time = () => Environment.NewLine + string.Format(PluginsSharedLang.CompilationTimeTemplate, sw.ElapsedMilliseconds);
+            try
+            {
+                configurator.GetParameters(text);
+                Mt.SetText(Output, PluginsSharedLang.NoErrors + time());
+            }
+            catch (CompilerExceptions cex)
+            {
+                Mt.SetText(Output, cex + time());
+            }
+            catch (Exception ex)
+            {
+                Mt.SetText(Output, ExceptionsHelper.Expand(ex) + time());
+            }
+        }
 
-		private void CancelClick(object sender, RoutedEventArgs e)
-		{
-			Close();
-		}
-	}
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, Files.Text);
+            ExceptionsHelper.HandleException(
+                () => File.WriteAllText(path, Source.Value, Encoding.UTF8),
+                () => "Can't save file:" + path,
+                Log);
+            UpdateTitle();
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void SourcesChanged(object sender, EventArgs e)
+        {
+            UpdateTitle();
+        }
+
+        private void UpdateTitle()
+        {
+            if (Files.SelectedIndex != -1)
+            {
+                Title = string.Format("{0} - [ {1}{2} ] ",
+                    PluginsSharedLang.SourcesEditor,
+                    Files.SelectedValue, Source.IsModified ? "*" : string.Empty);
+            }
+            else Title = PluginsSharedLang.SourcesEditor;
+        }
+
+        private void AskToSaveChanges()
+        {
+            if (!Source.IsModified) return;
+            if( MessageBox.Show(
+                PluginsSharedLang.AreYouWantToSaveChanges,
+                Title,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                SaveClick(null, null);
+            }
+            else
+            {
+                Source.Clear();
+            }
+        }
+    }
 }

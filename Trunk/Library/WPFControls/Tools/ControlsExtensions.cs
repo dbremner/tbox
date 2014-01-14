@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WPFControls.Tools
+namespace Mnk.Library.WPFControls.Tools
 {
 	public static class ControlsExtensions
 	{

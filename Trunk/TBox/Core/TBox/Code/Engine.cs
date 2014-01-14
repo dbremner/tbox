@@ -6,22 +6,22 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Common.Base.Log;
-using Common.Plugins;
-using Interface;
-using Interface.Atrributes;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Plugins;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
 using LightInject;
-using Localization.TBox;
-using TBox.Code.AutoUpdate;
-using TBox.Code.Configs;
-using TBox.Code.Managers;
-using TBox.Code.Objects;
-using WPFControls.Code.OS;
-using WPFControls.Localization;
-using WPFWinForms.Icons;
-using IUpdater = Common.MT.IUpdater;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.AutoUpdate;
+using Mnk.TBox.Core.Application.Code.Configs;
+using Mnk.TBox.Core.Application.Code.Managers;
+using Mnk.TBox.Core.Application.Code.Objects;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Localization;
+using Mnk.Library.WPFWinForms.Icons;
+using IUpdater = Mnk.Library.Common.MT.IUpdater;
 
-namespace TBox.Code
+namespace Mnk.TBox.Core.Application.Code
 {
 	class Engine : IDisposable
 	{

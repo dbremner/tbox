@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.MT
+namespace Mnk.Library.Common.MT
 {
 	public interface IProgressModel
 	{

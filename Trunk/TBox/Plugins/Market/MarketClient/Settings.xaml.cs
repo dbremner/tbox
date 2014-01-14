@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Interface;
-using MarketClient.Code;
-using WPFControls.Dialogs;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.TBox.Plugins.Market.Client.Code;
 
-namespace MarketClient
+namespace Mnk.TBox.Plugins.Market.Client
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

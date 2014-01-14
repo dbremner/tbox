@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using ScriptEngine;
-using SkyNet.Common.Contracts.Server;
+using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
 
-namespace SkyNet.Common
+namespace Mnk.TBox.Tools.SkyNet.Common
 {
     public class NUnitTestsRunner : ISkyScript
     {

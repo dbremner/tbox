@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace FileWatcher.Components
+namespace Mnk.TBox.Plugins.FileWatcher.Components
 {
 	/// <summary>
 	/// Interaction logic for MemoBoxLog.xaml

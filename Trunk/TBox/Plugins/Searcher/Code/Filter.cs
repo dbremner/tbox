@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Searcher.Code
+namespace Mnk.TBox.Plugins.Searcher.Code
 {
 	class Filter
 	{

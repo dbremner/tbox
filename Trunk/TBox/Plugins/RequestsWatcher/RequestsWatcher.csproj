@@ -7,8 +7,8 @@
     <ProjectGuid>{0982B3BE-FEEE-4CF4-BC02-2B67D45C40F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RequestsWatcher</RootNamespace>
-    <AssemblyName>RequestsWatcher</AssemblyName>
+    <RootNamespace>Mnk.TBox.Plugins.RequestsWatcher</RootNamespace>
+    <AssemblyName>Mnk.TBox.Plugins.RequestsWatcher</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,7 +34,8 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="ServiceStack.Text">
+    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -73,34 +74,34 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
       <Project>{6c4f391f-69bd-44b0-bc18-99414493a885}</Project>
-      <Name>WPFControls</Name>
+      <Name>Mnk.Library.WPFControls</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\WPFWinForms.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
       <Project>{c00d3ff6-4d09-4a1b-af2d-a6fbac950e3a}</Project>
-      <Name>WPFWinForms</Name>
+      <Name>Mnk.Library.WPFWinForms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
-      <Name>Interface</Name>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
+    <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
       <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
-      <Name>PluginsShared</Name>
+      <Name>Mnk.TBox.Core.PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Localization\Localization.csproj">
+    <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">
       <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
-      <Name>Localization</Name>
+      <Name>Mnk.TBox.Locales.Localization</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

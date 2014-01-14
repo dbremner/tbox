@@ -1,4 +1,4 @@
-﻿namespace SkyNet.Common
+﻿namespace Mnk.TBox.Tools.SkyNet.Common
 {
     public interface ISkyContext
     {

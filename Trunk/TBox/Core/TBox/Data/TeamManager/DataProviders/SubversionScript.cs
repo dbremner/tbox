@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using ScriptEngine;
-using PluginsShared.ReportsGenerator;
-using WPFControls.Tools;
+using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.Library.WPFControls.Tools;
 
 namespace TBox.Data.TeamManager
 {

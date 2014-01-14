@@ -1,14 +1,15 @@
-﻿<UserControl x:Class="MarketClient.Components.Installers.Installer"
+﻿<UserControl x:Class="Mnk.TBox.Plugins.Market.Client.Components.Installers.Installer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="400" xmlns:my="clr-namespace:WPFControls.Controls;assembly=WPFControls" xmlns:my1="clr-namespace:WPFControls.Components;assembly=WPFControls"
-             xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls">
+             d:DesignHeight="300" d:DesignWidth="400"
+             xmlns:my1="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
+             xmlns:captioned2="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
     <DockPanel>
-        <captioned:CaptionedComboBox Name="cbType" Caption="Type:" IsEditable="False" Margin="5" DockPanel.Dock="Top"/>
-        <captioned:CaptionedComboBox Name="cbAuthor" Caption="Author:" IsEditable="False" Margin="5" DockPanel.Dock="Top"/>
+        <captioned2:CaptionedComboBox Name="cbType" Caption="Type:" IsEditable="False" Margin="5" DockPanel.Dock="Top"/>
+        <captioned2:CaptionedComboBox Name="cbAuthor" Caption="Author:" IsEditable="False" Margin="5" DockPanel.Dock="Top"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom" >
             <Button Name="btnRefresh" Content="Refresh" Click="btnRefresh_Click" Margin="5" Width="72"/>
             <Button Name="btnAction" Content="Download" Click="btnAction_Click" Margin="5" Width="72" />

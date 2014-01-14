@@ -1,4 +1,4 @@
-﻿namespace PluginsShared.Ddos
+﻿namespace Mnk.TBox.Core.PluginsShared.Ddos
 {
 	public interface IOperationRunner
 	{

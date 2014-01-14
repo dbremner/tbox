@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
-using Common.Communications.Interprocess;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.ParallelNUnit.Execution;
+using Mnk.Library.ParallelNUnit.Interfaces;
 using NUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Interfaces;
 using ServiceStack.Text;
 
-namespace ParallelNUnit.Core
+namespace Mnk.Library.ParallelNUnit.Core
 {
     [Serializable]
     public sealed class RemoteListener : EventListener
@@ -36,10 +37,6 @@ namespace ParallelNUnit.Core
 
         public void RunFinished(TestResult result)
         {
-            if (Needoutput)
-            {
-                GetClient().Instance.SendOutput(Output.ToString());
-            }
             SendAll();
             client.Dispose();
         }
@@ -84,7 +81,9 @@ namespace ParallelNUnit.Core
                     Type = result.Test.TestType,
                     Executed = result.Executed,
                     AssertCount = result.AssertCount,
+                    Output = Output.ToString(),
                 });
+            if(Needoutput)Output.Clear();
         }
 
         public void SuiteStarted(TestName testName)

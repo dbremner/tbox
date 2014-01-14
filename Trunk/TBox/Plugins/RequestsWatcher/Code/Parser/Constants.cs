@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace RequestsWatcher.Code.Parser
+namespace Mnk.TBox.Plugins.RequestsWatcher.Code.Parser
 {
 	class Constants
 	{

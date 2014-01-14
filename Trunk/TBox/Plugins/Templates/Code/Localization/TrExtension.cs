@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.Templates;
+﻿using Mnk.TBox.Locales.Localization.Plugins.Templates;
 
-namespace Templates.Code.Localization
+namespace Mnk.TBox.Plugins.Templates.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, TemplatesLang.ResourceManager) { }
 	}

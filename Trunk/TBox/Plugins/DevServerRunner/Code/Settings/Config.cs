@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace DevServerRunner.Code.Settings
+namespace Mnk.TBox.Plugins.DevServerRunner.Code.Settings
 {
 	[Serializable]
 	public class Config 

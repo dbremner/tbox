@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WPFWinForms.GlobalHotKeys
+namespace Mnk.Library.WPFWinForms.GlobalHotKeys
 {
 	public class KeyPressedEventArgs : EventArgs
 	{

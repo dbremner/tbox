@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using ScriptEngine.Core.Params;
 
-namespace ScriptEngine.Core.Params
+namespace Mnk.Library.ScriptEngine.Core.Params
 {
 	public sealed class EqualityParameterComparer : IEqualityComparer<Parameter>
 	{

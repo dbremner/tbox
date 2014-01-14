@@ -1,4 +1,4 @@
-﻿namespace WPFWinForms
+﻿namespace Mnk.Library.WPFWinForms
 {
 	public enum TipIcon
 	{

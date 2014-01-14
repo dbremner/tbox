@@ -2,7 +2,7 @@
 using System.Threading;
 using Timer = System.Timers.Timer;
 
-namespace Common.MT
+namespace Mnk.Library.Common.MT
 {
 	public sealed class SafeTimer : IDisposable
 	{

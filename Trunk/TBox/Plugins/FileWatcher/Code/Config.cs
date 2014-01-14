@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.UI.ModelsContainers;
-using Interface;
-using PluginsShared.Watcher;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace FileWatcher.Code
+namespace Mnk.TBox.Plugins.FileWatcher.Code
 {
 	[Serializable]
 	public class Config : IConfigWithDialogStates

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
-using Common.Base.Log;
-using Common.Tools;
-using FileWatcher.Components;
-using Localization.Plugins.FileWatcher;
-using PluginsShared.Watcher;
-using WPFControls.Dialogs;
-using WPFControls.Tools;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Locales.Localization.Plugins.FileWatcher;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Tools;
+using Mnk.TBox.Plugins.FileWatcher.Components;
 
-namespace FileWatcher.Code
+namespace Mnk.TBox.Plugins.FileWatcher.Code
 {
 	class LogDialog : ILogDialog
 	{

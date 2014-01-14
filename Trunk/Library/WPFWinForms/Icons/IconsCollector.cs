@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace WPFWinForms.Icons
+namespace Mnk.Library.WPFWinForms.Icons
 {
 	public sealed class IconsCollector
 	{

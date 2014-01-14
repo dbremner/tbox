@@ -3,10 +3,10 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Data;
 using NUnit.Core;
-using NUnitRunner.Properties;
-using WPFWinForms.Icons;
+using Mnk.TBox.Plugins.NUnitRunner.Properties;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace NUnitRunner.Components
+namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
 	[ValueConversion(typeof(ResultState), typeof(string))]
 	class ResultStateToIconConverter : IValueConverter

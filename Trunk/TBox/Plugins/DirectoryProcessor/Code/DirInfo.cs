@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace DirectoryProcessor.Code
+namespace Mnk.TBox.Plugins.DirectoryProcessor.Code
 {
 	[Serializable]
 	public class DirInfo : CheckableData

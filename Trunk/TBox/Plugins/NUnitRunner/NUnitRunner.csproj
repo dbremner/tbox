@@ -7,8 +7,8 @@
     <ProjectGuid>{F62FE294-F3F6-4D62-BE07-D74194562EB5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NUnitRunner</RootNamespace>
-    <AssemblyName>NUnitRunner</AssemblyName>
+    <RootNamespace>Mnk.TBox.Plugins.NUnitRunner</RootNamespace>
+    <AssemblyName>Mnk.TBox.Plugins.NUnitRunner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -95,44 +95,44 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ParallelNunit\ParallelNunit.csproj">
+    <ProjectReference Include="..\..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
       <Project>{edfb8b45-08b4-4ea4-906a-2ec50b3cf582}</Project>
-      <Name>ParallelNUnit</Name>
+      <Name>Mnk.Library.ParallelNunit</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
       <Project>{6c4f391f-69bd-44b0-bc18-99414493a885}</Project>
-      <Name>WPFControls</Name>
+      <Name>Mnk.Library.WPFControls</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\WPFSyntaxHighlighter.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\Mnk.Library.WPFSyntaxHighlighter.csproj">
       <Project>{8A2CF1DC-BCD6-4A63-8CF7-B9EA4F297ACD}</Project>
-      <Name>WPFSyntaxHighlighter</Name>
+      <Name>Mnk.Library.WPFSyntaxHighlighter</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\WPFWinForms.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>WPFWinForms</Name>
+      <Name>Mnk.Library.WPFWinForms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Interface.csproj">
+    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
-      <Name>Interface</Name>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
+    <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
       <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
-      <Name>PluginsShared</Name>
+      <Name>Mnk.TBox.Core.PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Localization\Localization.csproj">
+    <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">
       <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
-      <Name>Localization</Name>
+      <Name>Mnk.TBox.Locales.Localization</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

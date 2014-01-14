@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Core;
 
-namespace ParallelNUnit.Infrastructure.Interfaces
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Interfaces
 {
     public interface IUnitTestsView
     {

@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.RequestsWatcher;
+﻿using Mnk.TBox.Locales.Localization.Plugins.RequestsWatcher;
 
-namespace RequestsWatcher.Code.Localization
+namespace Mnk.TBox.Plugins.RequestsWatcher.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, RequestsWatcherLang.ResourceManager) { }
 	}

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TBox.Code.Objects
+namespace Mnk.TBox.Core.Application.Code.Objects
 {
 	class PluginMenuUpdater
 	{

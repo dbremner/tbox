@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace LeaksInterceptor.Code.Getters
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters
 {
 	interface IGetter
 	{

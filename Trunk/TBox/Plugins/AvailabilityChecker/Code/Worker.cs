@@ -4,11 +4,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using Common.MT;
-using Localization.Plugins.AvailabilityChecker;
-using WPFWinForms;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Locales.Localization.Plugins.AvailabilityChecker;
+using Mnk.Library.WPFWinForms;
 
-namespace AvailabilityChecker.Code
+namespace Mnk.TBox.Plugins.AvailabilityChecker.Code
 {
 	class Worker : IDisposable
 	{

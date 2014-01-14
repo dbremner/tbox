@@ -4,21 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using Common.Tools;
-using Common.UI.Model;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.Templates;
-using Templates.Code.Settings;
-using Templates.Components;
-using WPFControls.Code;
-using WPFControls.Dialogs.StateSaver;
-using WPFSyntaxHighlighter;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.Templates;
+using Mnk.TBox.Plugins.Templates.Code.Settings;
+using Mnk.TBox.Plugins.Templates.Components;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
 [assembly: InternalsVisibleTo("UnitTests")]
-namespace Templates
+namespace Mnk.TBox.Plugins.Templates
 {
 	[PluginInfo(typeof(TemplatesLang), typeof(Properties.Resources), PluginGroup.Desktop)]
 	public sealed class Templates : ConfigurablePlugin<Settings, Config>, IDisposable

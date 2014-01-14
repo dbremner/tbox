@@ -46,14 +46,14 @@
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>TBox.App</StartupObject>
+    <StartupObject>Mnk.TBox.Core.Application.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>TBox</RootNamespace>
+    <RootNamespace>Mnk.TBox.Core.Application</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.1.0\lib\net40\LightInject.dll</HintPath>
+      <HintPath>..\..\..\Libs\LightInject.3.0.1.2\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -225,10 +225,16 @@
     <Content Include="Data\Automater\Scripts\ReplaceStrings.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Data\TeamManager\DataProviders\PMCScript.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\TeamManager\DataProviders\SubversionScript.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TeamManager\DataProviders\TargetProcessScript.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TeamManager\Validators\PMC.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TeamManager\Validators\Default.cs">
@@ -293,27 +299,27 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\WPFControls.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>WPFControls</Name>
+      <Name>Mnk.Library.WPFControls</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\WPFWinForms.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>WPFWinForms</Name>
+      <Name>Mnk.Library.WPFWinForms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Localization\Localization.csproj">
+    <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">
       <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
-      <Name>Localization</Name>
+      <Name>Mnk.TBox.Locales.Localization</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\Interface\Interface.csproj">
+    <ProjectReference Include="..\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
       <Name>Interface</Name>
       <Private>False</Private>

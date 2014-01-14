@@ -8,8 +8,8 @@
     <ProjectGuid>{82C7F60B-51CB-4E8D-8657-2B3C91CE48BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SkyNet.Common</RootNamespace>
-    <AssemblyName>SkyNet.Common</AssemblyName>
+    <RootNamespace>Mnk.TBox.Tools.SkyNet.Common</RootNamespace>
+    <AssemblyName>Mnk.TBox.Tools.SkyNet.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -83,19 +83,19 @@
     <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ScriptEngine\ScriptEngine.csproj">
+    <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
       <Project>{D1313F72-4F78-4CD1-852C-2ED0929A1AF7}</Project>
-      <Name>ScriptEngine</Name>
+      <Name>Mnk.Library.ScriptEngine</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\PluginsShared\PluginsShared.csproj">
+    <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
       <Project>{BCDBE777-304F-40AC-8C5F-31B3A6BE4341}</Project>
-      <Name>PluginsShared</Name>
+      <Name>Mnk.TBox.Core.PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

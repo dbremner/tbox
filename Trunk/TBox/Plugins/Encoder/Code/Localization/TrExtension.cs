@@ -1,9 +1,9 @@
 ﻿using System.Resources;
-using Localization.Plugins.Encoder;
+using Mnk.TBox.Locales.Localization.Plugins.Encoder;
 
-namespace Encoder.Code.Localization
+namespace Mnk.TBox.Plugins.Encoder.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, EncoderLang.ResourceManager) { }
 	}

@@ -1,4 +1,4 @@
-﻿namespace TeamManager.Code.Settings
+﻿namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
 {
     public sealed class Email
     {

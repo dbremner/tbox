@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Input;
-using Common.MT;
-using Common.Tools;
-using Interface;
-using Localization.PluginsShared;
-using WPFControls.Code.Log;
-using WPFControls.Dialogs.StateSaver;
-using WPFWinForms;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.PluginsShared;
+using Mnk.Library.WPFControls.Code.Log;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFWinForms;
 
-namespace PluginsShared.Watcher
+namespace Mnk.TBox.Core.PluginsShared.Watcher
 {
 	public sealed class Worker<TLogDialog> : IDisposable
 		where TLogDialog : ILogDialog

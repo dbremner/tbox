@@ -3,14 +3,14 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Common.Network;
-using PluginsShared.Watcher;
-using WPFControls.Dialogs;
-using WPFControls.Drawings.DirectionsTable;
-using WPFControls.Tools;
-using Request = RequestsWatcher.Code.Request;
+using Mnk.Library.Common.Network;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.Library.WPFControls.Components.Drawings.DirectionsTable;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Tools;
+using Request = Mnk.TBox.Plugins.RequestsWatcher.Code.Request;
 
-namespace RequestsWatcher.Components
+namespace Mnk.TBox.Plugins.RequestsWatcher.Components
 {
 	/// <summary>
 	/// Interaction logic for LogDialog.xaml
@@ -52,7 +52,7 @@ namespace RequestsWatcher.Components
 
 		private void TableOnSelected(object o, IDirectionable directionable)
 		{
-			var item = directionable as Request;
+			var item = directionable as Code.Request;
 			Send.Value = item == null ? null : CreateInfo(item.Send);
 			Receive.Value = item == null ? null : CreateInfo(item.Receive);
 		}
@@ -93,7 +93,7 @@ namespace RequestsWatcher.Components
 
 		public void Write(string caption, string value)
 		{
-			table.Add(ServiceStack.Text.JsonSerializer.DeserializeFromString<Request>(value) );
+			table.Add(ServiceStack.Text.JsonSerializer.DeserializeFromString<Code.Request>(value) );
 			needRedraw = true;
 		}
 

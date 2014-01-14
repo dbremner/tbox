@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 
-namespace ConsoleScriptRunner
+namespace Mnk.TBox.Tools.ConsoleScriptRunner
 {
 	class Loader
 	{

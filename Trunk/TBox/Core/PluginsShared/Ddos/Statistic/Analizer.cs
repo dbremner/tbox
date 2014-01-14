@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PluginsShared.Ddos.Statistic
+namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
 {
 	public sealed class Analizer
 	{

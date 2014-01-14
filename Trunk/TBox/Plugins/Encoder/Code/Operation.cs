@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Encoder.Code
+namespace Mnk.TBox.Plugins.Encoder.Code
 {
 	public class Operation
 	{

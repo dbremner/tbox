@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using PluginsShared.Automator;
-using ScriptEngine;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.Library.ScriptEngine;
 
 namespace Solution.Scripts
 {

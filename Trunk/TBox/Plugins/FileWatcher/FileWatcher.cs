@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows;
-using FileWatcher.Code;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.FileWatcher;
-using PluginsShared.Watcher;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.FileWatcher;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
+using Mnk.TBox.Plugins.FileWatcher.Code;
 
-namespace FileWatcher
+namespace Mnk.TBox.Plugins.FileWatcher
 {
 	[PluginInfo(typeof(FileWatcherLang), 55, PluginGroup.Desktop)]
 	public sealed class FileWatcher : ConfigurablePlugin<Settings, Config>, IDisposable

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace TeamManager.Code.Settings
+namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
 {
     public class Report 
     {

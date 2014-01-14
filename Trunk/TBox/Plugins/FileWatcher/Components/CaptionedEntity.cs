@@ -1,4 +1,4 @@
-﻿namespace FileWatcher.Components
+﻿namespace Mnk.TBox.Plugins.FileWatcher.Components
 {
 	public class CaptionedEntity
 	{

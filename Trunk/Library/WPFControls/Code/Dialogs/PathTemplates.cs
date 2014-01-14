@@ -1,6 +1,6 @@
-﻿using LibsLocalization.WPFControls;
+﻿using Mnk.Library.Localization.WPFControls;
 
-namespace WPFControls.Code.Dialogs
+namespace Mnk.Library.WPFControls.Code.Dialogs
 {
 	public class PathTemplates : Templates
 	{

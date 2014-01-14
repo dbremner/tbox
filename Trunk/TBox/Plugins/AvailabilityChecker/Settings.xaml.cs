@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace AvailabilityChecker
+namespace Mnk.TBox.Plugins.AvailabilityChecker
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

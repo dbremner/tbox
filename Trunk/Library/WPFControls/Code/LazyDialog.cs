@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
-using LibsLocalization.WPFControls;
-using WPFControls.Dialogs;
+using Mnk.Library.Localization.WPFControls;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace WPFControls.Code
+namespace Mnk.Library.WPFControls.Code
 {
 	public sealed class LazyDialog<TDialog> : Lazy<TDialog>, IDisposable
 		where TDialog : Window, IDisposable

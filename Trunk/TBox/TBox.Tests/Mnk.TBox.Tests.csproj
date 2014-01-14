@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{461301D0-790A-4C7F-A79D-1BDF38BDB79F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mnk.TBox.Tests</RootNamespace>
+    <AssemblyName>Mnk.TBox.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\Libs\EPPlus.3.1.3.3\lib\net35\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\Libs\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
+      <HintPath>..\..\Libs\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <HintPath>..\..\Libs\RhinoMocks.3.6.1\lib\net\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PlugingsShared\Automator\When_using_script_runner.cs" />
+    <Compile Include="PlugingsShared\ReportGenerator\When_using_validators.cs" />
+    <Compile Include="PlugingsShared\ReportGenerator\When_using_script_runner.cs" />
+    <Compile Include="PlugingsShared\UnitTestsRunner\When_running_unit_test.cs" />
+    <Compile Include="Plugins\BookletPagesGenerator\Utils\FakeBook.cs" />
+    <Compile Include="Plugins\BookletPagesGenerator\Utils\Page.cs" />
+    <Compile Include="Plugins\BookletPagesGenerator\When_using_config.cs" />
+    <Compile Include="Plugins\BookletPagesGenerator\When_using_pages_generator.cs" />
+    <Compile Include="Plugins\BookletPagesGenerator\When_using_result.cs" />
+    <Compile Include="PlugingsShared\When_using_brackets_formatter.cs" />
+    <Compile Include="PlugingsShared\When_using_ccode_formatter.cs" />
+    <Compile Include="PlugingsShared\When_using_common_ops.cs" />
+    <Compile Include="Plugins\TeamManager\Code\Email\When_send_emails.cs" />
+    <Compile Include="Plugins\TeamManager\Code\Email\When_work_with_report_context.cs" />
+    <Compile Include="Plugins\Templates\Code\When_using_string_filler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PlugingsShared\When_using_json_parser.cs" />
+    <Compile Include="TestFixture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\Common\Mnk.Library.Common.csproj">
+      <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
+      <Name>Mnk.Library.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
+      <Project>{EDFB8B45-08B4-4EA4-906A-2EC50B3CF582}</Project>
+      <Name>Mnk.Library.ParallelNunit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\LibsLocalization\Mnk.Library.Localization.csproj">
+      <Project>{E9990049-B8DB-4CC4-B22D-823D400633C0}</Project>
+      <Name>Mnk.Library.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
+      <Project>{D1313F72-4F78-4CD1-852C-2ED0929A1AF7}</Project>
+      <Name>Mnk.Library.ScriptEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
+      <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
+      <Name>Mnk.Library.WPFControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
+      <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
+      <Name>Mnk.Library.WPFWinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Empty\Mnk.TBox.Core.Empty.csproj">
+      <Project>{C7ED2917-A1DA-4A17-9748-8E7FDCFC4923}</Project>
+      <Name>Mnk.TBox.Core.Empty</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
+      <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
+      <Name>Mnk.TBox.Core.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
+      <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
+      <Name>Mnk.TBox.Core.PluginsShared</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Localization\Mnk.TBox.Locales.Localization.csproj">
+      <Project>{853FDE4C-F292-4BDF-8EEC-B50FE738CB46}</Project>
+      <Name>Mnk.TBox.Locales.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\BookletPagesGenerator\BookletPagesGenerator.csproj">
+      <Project>{2509B48D-3963-4450-AF65-4F8B5D11DB08}</Project>
+      <Name>BookletPagesGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\TeamManager\TeamManager.csproj">
+      <Project>{548CA550-22C0-4CF3-A473-8C52AD6A5B5E}</Project>
+      <Name>TeamManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plugins\TeamManager\Code\Email\Senders\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

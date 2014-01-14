@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Input;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 
-namespace WPFWinForms.GlobalHotKeys
+namespace Mnk.Library.WPFWinForms.GlobalHotKeys
 {
 	public sealed class GlobalHotkeys : IDisposable
 	{

@@ -1,4 +1,4 @@
-﻿namespace WPFControls.Code.Log
+﻿namespace Mnk.Library.WPFControls.Code.Log
 {
 	public interface ICaptionedLog
 	{

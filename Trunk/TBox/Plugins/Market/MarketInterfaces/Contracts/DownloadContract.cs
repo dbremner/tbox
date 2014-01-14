@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace MarketInterfaces.Contracts
+namespace Mnk.TBox.Plugins.Market.Interfaces.Contracts
 {
 	[MessageContract]
 	public class DownloadContract

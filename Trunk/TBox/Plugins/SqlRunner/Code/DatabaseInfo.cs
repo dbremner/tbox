@@ -1,6 +1,6 @@
-﻿using PluginsShared.Ddos.Statistic;
+﻿using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
 
-namespace SqlRunner.Code
+namespace Mnk.TBox.Plugins.SqlRunner.Code
 {
 	public class DatabaseInfo : StatisticInfo
 	{

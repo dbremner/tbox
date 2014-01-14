@@ -4,9 +4,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Core;
 
-namespace NUnitRunner.Components
+namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
     /// <summary>
     /// Interaction logic for CheckableTreeView.xaml

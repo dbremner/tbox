@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Base.Log;
-using Common.Tools;
-using Interface;
-using AppConfigManager.Code;
-using AppConfigManager.Components;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Plugins.AppConfigManager.Code;
+using Mnk.TBox.Plugins.AppConfigManager.Components;
 
-namespace AppConfigManager
+namespace Mnk.TBox.Plugins.AppConfigManager
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

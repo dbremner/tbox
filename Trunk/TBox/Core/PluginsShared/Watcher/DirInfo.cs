@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Xml.Serialization;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace PluginsShared.Watcher
+namespace Mnk.TBox.Core.PluginsShared.Watcher
 {
 	[Serializable]
 	public class DirInfo : CheckableData

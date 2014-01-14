@@ -246,4 +246,10 @@
   <data name="ValueAlreadyExistOrIncorrect" xml:space="preserve">
     <value>Value already exist or incorrect</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
 </root>

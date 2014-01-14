@@ -9,19 +9,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using Common.Base;
-using Common.Base.Log;
-using Common.Console;
-using Common.Tools;
-using Localization.Plugins.Searcher;
-using Searcher.Code.Finders.Parsers;
-using Searcher.Code.Finders.Search;
-using WPFControls.Tools;
-using Searcher.Code;
-using Searcher.Code.Checkers;
-using Searcher.Code.Settings;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Console;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Locales.Localization.Plugins.Searcher;
+using Mnk.TBox.Plugins.Searcher.Code;
+using Mnk.TBox.Plugins.Searcher.Code.Checkers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Search;
+using Mnk.TBox.Plugins.Searcher.Code.Settings;
+using Mnk.Library.WPFControls.Tools;
 
-namespace Searcher.Components
+namespace Mnk.TBox.Plugins.Searcher.Components
 {
 	/// <summary>
 	/// Interaction logic for SearchDialog.xaml

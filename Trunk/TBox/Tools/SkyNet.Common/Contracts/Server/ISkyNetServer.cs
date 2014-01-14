@@ -2,7 +2,7 @@
 using System.ServiceModel;
 using System.ServiceModel.Web;
 
-namespace SkyNet.Common.Contracts.Server
+namespace Mnk.TBox.Tools.SkyNet.Common.Contracts.Server
 {
     [ServiceContract]
     public interface ISkyNetServer

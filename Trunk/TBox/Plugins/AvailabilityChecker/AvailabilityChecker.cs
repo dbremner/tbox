@@ -1,11 +1,11 @@
 ﻿using System;
-using AvailabilityChecker.Code;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.AvailabilityChecker;
-using WPFWinForms;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.AvailabilityChecker;
+using Mnk.Library.WPFWinForms;
+using Mnk.TBox.Plugins.AvailabilityChecker.Code;
 
-namespace AvailabilityChecker
+namespace Mnk.TBox.Plugins.AvailabilityChecker
 {
 	[PluginInfo(typeof(AvailabilityCheckerLang), 10, PluginGroup.Web)]
 	public sealed class AvailabilityChecker : ConfigurablePlugin<Settings, Config>, IDisposable

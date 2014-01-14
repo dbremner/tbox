@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Tools;
-using AppConfigManager.Code;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Plugins.AppConfigManager.Code;
 
-namespace AppConfigManager.Components
+namespace Mnk.TBox.Plugins.AppConfigManager.Components
 {
 	/// <summary>
 	/// Interaction logic for BuildDialog.xaml

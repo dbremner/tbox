@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace WPFWinForms
+namespace Mnk.Library.WPFWinForms
 {
 	public class UMenuItem
 	{

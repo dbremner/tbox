@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using ICSharpCode.SharpZipLib.Zip;
-using PluginsShared.Automator;
-using ScriptEngine;
-using WPFControls.Dialogs;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.WPFControls.Dialogs;
 
 namespace Solution.Scripts
 {

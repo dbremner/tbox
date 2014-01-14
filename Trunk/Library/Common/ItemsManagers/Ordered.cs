@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Common.Base;
-using Common.Base.Log;
-using Common.Data;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Data;
 
-namespace Common.ItemsManagers
+namespace Mnk.Library.Common.ItemsManagers
 {
 	public sealed class Ordered<T>
 	{

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 
-namespace ScriptEngine.Core.Assemblies
+namespace Mnk.Library.ScriptEngine.Core.Assemblies
 {
 	class AssemblyInfo
 	{

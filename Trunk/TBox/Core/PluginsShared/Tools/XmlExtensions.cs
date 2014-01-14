@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
 
-namespace PluginsShared.Tools
+namespace Mnk.TBox.Core.PluginsShared.Tools
 {
     public static class XmlExtensions
     {

@@ -2,12 +2,12 @@
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using Common.Base.Log;
-using Common.Tools;
-using SkyNet.Common.Configurations;
-using SkyNet.Common.Contracts.Agent;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent;
 
-namespace SkyNet.Agent
+namespace Mnk.TBox.Tools.SkyNet.Agent
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = false)]
     public class SkyNetAgent : ISkyNetAgent

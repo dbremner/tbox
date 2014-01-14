@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using Common.Tools;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.Requestor;
-using PluginsShared.Ddos.Components;
-using Requestor.Code;
-using Requestor.Code.Settings;
-using Requestor.Components;
-using WPFControls.Code;
-using WPFControls.Dialogs.StateSaver;
-using WPFSyntaxHighlighter;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.Requestor;
+using Mnk.TBox.Core.PluginsShared.Ddos.Components;
+using Mnk.TBox.Plugins.Requestor.Code;
+using Mnk.TBox.Plugins.Requestor.Code.Settings;
+using Mnk.TBox.Plugins.Requestor.Components;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace Requestor
+namespace Mnk.TBox.Plugins.Requestor
 {
 	[PluginInfo(typeof(RequestorLang), 13, PluginGroup.Web)]
 	public sealed class Requestor : ConfigurablePlugin<Settings, Config>, IDisposable

@@ -7,7 +7,7 @@
     <ProjectGuid>{DD07582B-45F8-4257-A5B2-031F2E10BCB9}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleUnitTestsRunner</RootNamespace>
+    <RootNamespace>Mnk.TBox.Tools.ConsoleUnitTestsRunner</RootNamespace>
     <AssemblyName>ConsoleUnitTestsRunner</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -54,14 +54,19 @@
     <Compile Include="ConsoleRunner\TestsRunner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Common.csproj">
+    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Common</Name>
+      <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ParallelNunit\ParallelNunit.csproj">
+    <ProjectReference Include="..\..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
       <Project>{edfb8b45-08b4-4ea4-906a-2ec50b3cf582}</Project>
-      <Name>ParallelNUnit</Name>
+      <Name>Mnk.Library.ParallelNunit</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
+      <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

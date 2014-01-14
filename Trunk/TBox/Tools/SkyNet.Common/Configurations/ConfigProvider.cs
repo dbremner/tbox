@@ -2,10 +2,10 @@
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using Common.Base.Log;
-using Common.SaveLoad;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.SaveLoad;
 
-namespace SkyNet.Common.Configurations
+namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = false)]
     public class ConfigProvider<T> : IConfigProvider<T>

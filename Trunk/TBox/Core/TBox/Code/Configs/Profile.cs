@@ -1,8 +1,8 @@
-﻿using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+﻿using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace TBox.Code.Configs
+namespace Mnk.TBox.Core.Application.Code.Configs
 {
     public class Profile : Data
     {

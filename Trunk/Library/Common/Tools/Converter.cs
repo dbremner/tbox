@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public class Converter
 	{

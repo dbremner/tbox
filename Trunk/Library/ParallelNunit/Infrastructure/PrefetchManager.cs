@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Common.Base.Log;
-using ParallelNUnit.Core;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.ParallelNUnit.Core;
 using ServiceStack.Text;
 
-namespace ParallelNUnit.Infrastructure
+namespace Mnk.Library.ParallelNUnit.Infrastructure
 {
     class PrefetchManager
     {

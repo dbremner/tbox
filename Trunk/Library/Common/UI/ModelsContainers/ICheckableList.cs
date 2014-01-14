@@ -1,4 +1,4 @@
-﻿namespace Common.UI.ModelsContainers
+﻿namespace Mnk.Library.Common.UI.ModelsContainers
 {
 	public interface ICheckableList : ICheckable
 	{

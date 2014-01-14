@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 
-namespace WPFControls.Code.Log
+namespace Mnk.Library.WPFControls.Code.Log
 {
 	public abstract class CaptionedLog : AbstractLog
 	{

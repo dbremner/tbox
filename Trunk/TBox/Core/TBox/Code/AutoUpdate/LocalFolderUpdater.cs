@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using Common.Base.Log;
-using Common.Tools;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
 
-namespace TBox.Code.AutoUpdate
+namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {
 	class LocalFolderUpdater
 	{

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Text;
-using Common.MT;
-using ParallelNUnit.Core;
-using ParallelNUnit.Infrastructure;
-using ParallelNUnit.Infrastructure.Updater;
+using Mnk.Library.Common.MT;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure;
+using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
 
-namespace ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     class NUnitLabelsUpdater : SimpleUpdater
     {

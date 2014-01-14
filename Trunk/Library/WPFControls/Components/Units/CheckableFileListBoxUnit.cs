@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
-using WPFControls.Controls;
+using Mnk.Library.WPFControls.Components.FilesAndFolders;
 
-namespace WPFControls.Components.Units
+namespace Mnk.Library.WPFControls.Components.Units
 {
 	public sealed class CheckableFileListBoxUnit: BaseCheckableCollectionUnit
 	{

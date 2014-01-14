@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.DevServerRunner;
+﻿using Mnk.TBox.Locales.Localization.Plugins.DevServerRunner;
 
-namespace DevServerRunner.Code.Localization
+namespace Mnk.TBox.Plugins.DevServerRunner.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, DevServerRunnerLang.ResourceManager) { }
 	}

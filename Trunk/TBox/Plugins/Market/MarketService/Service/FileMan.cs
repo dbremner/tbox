@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Common.Base;
-using Common.Base.Log;
-using Common.SaveLoad;
-using MarketInterfaces.Contracts;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.SaveLoad;
+using Mnk.TBox.Plugins.Market.Interfaces.Contracts;
 
-namespace MarketService.Service
+namespace Mnk.TBox.Plugins.Market.Service.Service
 {
 	class FileMan
 	{

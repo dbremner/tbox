@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace LeaksInterceptor
+namespace Mnk.TBox.Plugins.LeaksInterceptor
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

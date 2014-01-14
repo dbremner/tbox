@@ -3,9 +3,9 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Documents;
 using System.Windows.Navigation;
-using Localization.TBox;
+using Mnk.TBox.Locales.Localization.TBox;
 
-namespace TBox.Forms
+namespace Mnk.TBox.Core.Application.Forms
 {
     /// <summary>
     /// Interaction logic for InfoDialog.xaml

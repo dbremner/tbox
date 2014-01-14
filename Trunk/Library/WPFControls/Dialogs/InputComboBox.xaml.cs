@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using Common.Tools;
-using LibsLocalization.WPFControls;
-using WPFControls.Tools;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Localization.WPFControls;
+using Mnk.Library.WPFControls.Tools;
 
-namespace WPFControls.Dialogs
+namespace Mnk.Library.WPFControls.Dialogs
 {
 	/// <summary>
 	/// Interaction logic for InputComboBox.xaml
@@ -32,11 +32,11 @@ namespace WPFControls.Dialogs
 			set { edData.Text = value.Trim(); }
 		}
 
-		public KeyValuePair<bool, string> ShowDialog(string question, string caption, string value, Func<string, bool> validator, IList<string> source, Window owner)
+		public KeyValuePair<bool, string> ShowDialog(string question, string caption, string value, Func<string, bool> validator, IList<string> source, Window owner, bool isReadOnly)
 		{
             btnOk.ToolTip = string.Empty;
 			initValue = value;
-			edData.IsEditable = true;
+            edData.IsEditable = !isReadOnly;
 			edData.ItemsSource = itemsSource = source;
 			Add( value );
 			Value = value;

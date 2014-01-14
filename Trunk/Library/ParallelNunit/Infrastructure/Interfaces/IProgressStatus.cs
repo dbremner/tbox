@@ -1,7 +1,7 @@
-﻿using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
+﻿using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Execution;
 
-namespace ParallelNUnit.Infrastructure.Interfaces
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Interfaces
 {
 	public interface IProgressStatus
 	{

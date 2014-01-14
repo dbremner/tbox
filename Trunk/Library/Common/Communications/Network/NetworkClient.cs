@@ -2,7 +2,7 @@
 using System.ServiceModel;
 using System.ServiceModel.Description;
 
-namespace Common.Communications.Network
+namespace Mnk.Library.Common.Communications.Network
 {
     [Serializable]
     public sealed class NetworkClient<T> : IDisposable

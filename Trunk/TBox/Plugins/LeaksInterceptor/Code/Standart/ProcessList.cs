@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
 
-namespace LeaksInterceptor.Code.Standart
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart
 {
 	class ProcessList
 	{

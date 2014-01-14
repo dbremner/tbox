@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Common.Encoders;
-using Common.Tools;
+using Mnk.Library.Common.Encoders;
+using Mnk.Library.Common.Tools;
 
-namespace PluginsShared.Encoders
+namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
 	public class HtmlParser
 	{

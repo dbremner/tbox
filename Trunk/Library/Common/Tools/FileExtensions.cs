@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public static class FileExtensions
 	{

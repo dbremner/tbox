@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data.Objects;
 using System.Linq;
-using Common.Base;
-using Common.Base.Log;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
 
-namespace MarketService.Service
+namespace Mnk.TBox.Plugins.Market.Service.Service
 {
 	class BugService
 	{
@@ -16,14 +16,14 @@ namespace MarketService.Service
 			this.marketEntities = marketEntities;
 			bugs = this.marketEntities.Bugs;
 		}
-		public MarketInterfaces.Bug[] GetList(long uid, int offset, int count)
+		public Mnk.TBox.Plugins.Market.Interfaces.Bug[] GetList(long uid, int offset, int count)
 		{
-			var ret = new MarketInterfaces.Bug[0];
+			var ret = new Mnk.TBox.Plugins.Market.Interfaces.Bug[0];
 			Shared.Do("Bug GetList", () =>
 			{
 				ret = bugs.Where(bug => Filter(bug, uid)).Skip(offset).Take(count).
 					Select(bug =>
-						new MarketInterfaces.Bug
+						new Mnk.TBox.Plugins.Market.Interfaces.Bug
 						{
 							Description = bug.Description,
 							UID = bug.UID,
@@ -45,7 +45,7 @@ namespace MarketService.Service
 			return bugs.Count(bug => Filter(bug, uid));
 		}
 
-		public void Send(MarketInterfaces.Bug bug)
+		public void Send(Mnk.TBox.Plugins.Market.Interfaces.Bug bug)
 		{
 			Shared.Do("Bug send", () =>
 			{

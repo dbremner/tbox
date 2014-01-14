@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SkyNet.Common.Contracts.Server
+namespace Mnk.TBox.Tools.SkyNet.Common.Contracts.Server
 {
     [DataContract]
     public class ServerTask

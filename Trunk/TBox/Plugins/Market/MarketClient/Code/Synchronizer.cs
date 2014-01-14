@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using Common.Base;
-using Common.Base.Log;
-using Common.MT;
-using MarketClient.ServiceReference;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
 
-namespace MarketClient.Code
+namespace Mnk.TBox.Plugins.Market.Client.Code
 {
 	static class Synchronizer
 	{

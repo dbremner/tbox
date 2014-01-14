@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TBox.Code.Shelduler.Settings
+namespace Mnk.TBox.Core.Application.Code.Shelduler.Settings
 {
 	[Flags]
 	[Serializable]

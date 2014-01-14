@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.MT
+namespace Mnk.Library.Common.MT
 {
 	public class NullUpdater : IUpdater
 	{
@@ -16,5 +16,9 @@ namespace Common.MT
 		public void Update(Func<int, string> caption, int current, int total)
 		{
 		}
+
+	    public void Dispose()
+	    {
+	    }
 	}
 }

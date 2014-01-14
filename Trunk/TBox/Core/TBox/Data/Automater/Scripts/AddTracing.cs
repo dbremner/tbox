@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
-using PluginsShared.Automator;
-using ScriptEngine;
-using PluginsShared.Tools;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Core.PluginsShared.Tools;
 
 namespace Solution.Scripts
 {

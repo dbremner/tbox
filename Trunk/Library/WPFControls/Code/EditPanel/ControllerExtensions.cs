@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using Common.UI.Model;
-using WPFControls.Code.DataManagers;
-using WPFControls.Code.Dialogs;
-using WPFControls.Components.EditButtons;
-using WPFControls.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WPFControls.Code.DataManagers;
+using Mnk.Library.WPFControls.Code.Dialogs;
+using Mnk.Library.WPFControls.Components.EditButtons;
+using Mnk.Library.WPFControls.Tools;
 
-namespace WPFControls.Code.EditPanel
+namespace Mnk.Library.WPFControls.Code.EditPanel
 {
 	public static class ControllerExtensions
 	{

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
-using Common.Base;
-using Common.Base.Log;
-using LibsLocalization.WPFControls;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Localization.WPFControls;
 
-namespace WPFControls.Code.Log
+namespace Mnk.Library.WPFControls.Code.Log
 {
 	public class MsgLog : AbstractLog
 	{

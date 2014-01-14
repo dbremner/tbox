@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WPFWinForms.GlobalHotKeys
+namespace Mnk.Library.WPFWinForms.GlobalHotKeys
 {
 	[Serializable]
 	public class HotKey

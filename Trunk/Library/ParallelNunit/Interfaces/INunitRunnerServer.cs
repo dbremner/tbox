@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace ParallelNUnit.Interfaces
+namespace Mnk.Library.ParallelNUnit.Interfaces
 {
 	[ServiceContract]
 	public interface INunitRunnerServer

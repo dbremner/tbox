@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Common.Data;
+using Mnk.Library.Common.Data;
 
-namespace PluginsShared.Encoders
+namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
 	public class SqlParser
 	{

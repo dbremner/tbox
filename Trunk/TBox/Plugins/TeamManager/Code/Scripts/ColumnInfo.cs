@@ -1,4 +1,4 @@
-﻿namespace TeamManager.Code.Scripts
+﻿namespace Mnk.TBox.Plugins.TeamManager.Code.Scripts
 {
     class ColumnInfo
     {

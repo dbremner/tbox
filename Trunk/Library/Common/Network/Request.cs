@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Net;
 using System.IO;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
 
-namespace Common.Network
+namespace Mnk.Library.Common.Network
 {
 	public class Request
 	{

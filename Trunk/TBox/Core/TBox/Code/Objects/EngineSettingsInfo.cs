@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace TBox.Code.Objects
+namespace Mnk.TBox.Core.Application.Code.Objects
 {
 	class EngineSettingsInfo : EnginePluginInfo
 	{

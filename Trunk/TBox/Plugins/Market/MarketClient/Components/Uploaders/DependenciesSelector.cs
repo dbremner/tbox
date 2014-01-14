@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using MarketClient.ServiceReference;
-using WPFControls.Code.Dialogs;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
+using Mnk.Library.WPFControls.Code.Dialogs;
 
-namespace MarketClient.Components.Uploaders
+namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 {
 	public sealed class DependenciesSelector : BaseDialog
 	{

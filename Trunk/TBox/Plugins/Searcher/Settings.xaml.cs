@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace Searcher
+namespace Mnk.TBox.Plugins.Searcher
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace ParallelNUnit.Infrastructure.Runners
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     public sealed class ThreadContext : IContext
     {

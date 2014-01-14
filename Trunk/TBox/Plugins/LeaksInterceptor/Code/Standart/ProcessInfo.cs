@@ -1,4 +1,4 @@
-﻿namespace LeaksInterceptor.Code.Standart
+﻿namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart
 {
 	public class ProcessInfo
 	{

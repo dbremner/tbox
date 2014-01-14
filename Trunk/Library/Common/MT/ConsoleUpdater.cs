@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.MT
+namespace Mnk.Library.Common.MT
 {
     public class ConsoleUpdater : IUpdater
     {
@@ -31,5 +31,8 @@ namespace Common.MT
             return (int)(value * 100);
         }
 
+        public void Dispose()
+        {
+        }
     }
 }

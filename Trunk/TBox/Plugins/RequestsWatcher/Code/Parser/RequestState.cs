@@ -1,4 +1,4 @@
-﻿namespace RequestsWatcher.Code.Parser
+﻿namespace Mnk.TBox.Plugins.RequestsWatcher.Code.Parser
 {
 	enum RequestState
 	{

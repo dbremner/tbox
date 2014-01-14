@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Controls;
-using Common.Base.Log;
-using TBox.Code.Managers;
-using WPFControls.Code.OS;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Core.Application.Code.Managers;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace TBox.Code.Objects
+namespace Mnk.TBox.Core.Application.Code.Objects
 {
 	class PluginsContextShared
 	{

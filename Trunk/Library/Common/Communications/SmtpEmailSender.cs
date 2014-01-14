@@ -2,7 +2,7 @@
 using System.Net.Mail;
 using System.Text;
 
-namespace Common.Communications
+namespace Mnk.Library.Common.Communications
 {
 	public class SmptEmailSender : IEmailSender
 	{

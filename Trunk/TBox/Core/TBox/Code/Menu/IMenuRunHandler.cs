@@ -1,6 +1,6 @@
-﻿using WPFWinForms;
+﻿using Mnk.Library.WPFWinForms;
 
-namespace TBox.Code.Menu
+namespace Mnk.TBox.Core.Application.Code.Menu
 {
 	interface IMenuRunHandler
 	{

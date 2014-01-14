@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Common.Tools;
-using Common.UI.Model;
-using ScriptEngine;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.ScriptEngine;
 
-namespace Automator.Code.Settings
+namespace Mnk.TBox.Plugins.Automator.Code.Settings
 {
 	[Serializable]
 	public sealed class Profile : Data

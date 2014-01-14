@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Common.Base.Log;
-using Common.Data;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Data;
 
-namespace Common.Plugins
+namespace Mnk.Library.Common.Plugins
 {
 	public sealed class PluginLoadInfo
 	{

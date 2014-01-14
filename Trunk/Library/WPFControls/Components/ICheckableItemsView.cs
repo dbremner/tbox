@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Windows;
 
-namespace WPFControls.Components
+namespace Mnk.Library.WPFControls.Components
 {
 	public interface ICheckableItemsView
 	{

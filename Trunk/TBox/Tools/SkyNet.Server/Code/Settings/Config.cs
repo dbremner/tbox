@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SkyNet.Common.Contracts.Server;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
 
-namespace SkyNet.Server.Code.Settings
+namespace Mnk.TBox.Tools.SkyNet.Server.Code.Settings
 {
     class Config
     {

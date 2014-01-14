@@ -77,11 +77,11 @@
           </Component>
         </Directory>
         <Component Id="Libraries" Guid="A7042115-AEAB-4632-A691-38B8AF4D7CC7">
-          <File Name='Common.dll'/>
+          <File Name='Mnk.Library.Common.dll'/>
           <File Name='EPPlus.dll'/>
-          <File Name='ParallelNUnit.dll'/>
+          <File Name='Mnk.Library.ParallelNUnit.dll'/>
           <File Name='ICSharpCode.SharpZipLib.dll'/>
-          <File Name='Interface.dll'/>
+          <File Name='Mnk.TBox.Core.Interface.dll'/>
           <File Name='LightInject.dll'/>
           <File Name='Microsoft.Exchange.WebServices.dll'/>
           <File Name='Microsoft.Windows.Shell.dll'/>
@@ -89,53 +89,53 @@
           <File Name='nunit.core.interfaces.dll'/>
           <File Name='nunit.util.dll'/>
           <File Name='Ookii.Dialogs.Wpf.dll'/>
-          <File Name='PluginsShared.dll'/>
+          <File Name='Mnk.TBox.Core.PluginsShared.dll'/>
           <File Name='RibbonControlsLibrary.dll'/>
           <File Name='ScintillaNET.dll'/>
-          <File Name='ScriptEngine.dll'/>
+          <File Name='Mnk.Library.ScriptEngine.dll'/>
           <File Name='ServiceStack.Text.dll'/>
-          <File Name='WPFControls.dll'/>
-          <File Name='WPFSyntaxHighlighter.dll'/>
-          <File Name='WPFWinForms.dll'/>
+          <File Name='Mnk.Library.WPFControls.dll'/>
+          <File Name='Mnk.Library.WPFSyntaxHighlighter.dll'/>
+          <File Name='Mnk.Library.WPFWinForms.dll'/>
         </Component>
       </Directory>
       <Directory Id='Localization' Name='Localization'>
           <Directory Id='LocalizationRu' Name='ru'>
           <Component Id="LocalizationRu" Guid="55FD1A00-8C2B-4A2F-BFC8-36DAD7DEBB23">
-            <File Name='LibsLocalization.resources.dll'/>
-            <File Name='Localization.resources.dll'/>
+            <File Name='Mnk.Library.Localization.resources.dll'/>
+            <File Name='Mnk.TBox.Locales.Localization.resources.dll'/>
           </Component>
         </Directory>
         <Component Id="Localization" Guid="31159BD2-D560-4D0C-8DF5-D29479F09785">
-          <File Name='LibsLocalization.dll'/>
-          <File Name='Localization.dll'/>
+          <File Name='Mnk.Library.Localization.dll'/>
+          <File Name='Mnk.TBox.Locales.Localization.dll'/>
         </Component>
       </Directory>
       <Directory Id='Plugins' Name='Plugins'>
         <Component Id="Plugins" Guid="B194EA31-6D91-4383-AC4E-CF8173784F35">
-          <File Name='AppConfigManager.dll'/>
-          <File Name='Automator.dll'/>
-          <File Name='AvailabilityChecker.dll'/>
-          <File Name='BookletPagesGenerator.dll'/>
-          <File Name='DevServerRunner.dll'/>
-          <File Name='DirectoryProcessor.dll'/>
-          <File Name='Encoder.dll'/>
-          <File Name='FileWatcher.dll'/>
-          <File Name='HtmlPad.dll'/>
-          <File Name='LeaksInterceptor.dll'/>
-          <File Name='NUnitRunner.dll'/>
-          <File Name='ProjectMan.dll'/>
-          <File Name='RegExpTester.dll'/>
-          <File Name='Requestor.dll'/>
-          <File Name='RequestsWatcher.dll'/>
-          <File Name='Searcher.dll'/>
-          <File Name='ServicesCommander.dll'/>
-          <File Name='SourcesUniter.dll'/>
-          <File Name='SqlRunner.dll'/>
-          <File Name='SqlWatcher.dll'/>
-          <File Name='TeamManager.dll'/>
-          <File Name='Templates.dll'/>
-          <File Name='TextGenerator.dll'/>
+          <File Name='Mnk.TBox.Plugins.AppConfigManager.dll'/>
+          <File Name='Mnk.TBox.Plugins.Automator.dll'/>
+          <File Name='Mnk.TBox.Plugins.AvailabilityChecker.dll'/>
+          <File Name='Mnk.TBox.Plugins.BookletPagesGenerator.dll'/>
+          <File Name='Mnk.TBox.Plugins.DevServerRunner.dll'/>
+          <File Name='Mnk.TBox.Plugins.DirectoryProcessor.dll'/>
+          <File Name='Mnk.TBox.Plugins.Encoder.dll'/>
+          <File Name='Mnk.TBox.Plugins.FileWatcher.dll'/>
+          <File Name='Mnk.TBox.Plugins.HtmlPad.dll'/>
+          <File Name='Mnk.TBox.Plugins.LeaksInterceptor.dll'/>
+          <File Name='Mnk.TBox.Plugins.NUnitRunner.dll'/>
+          <File Name='Mnk.TBox.Plugins.ProjectMan.dll'/>
+          <File Name='Mnk.TBox.Plugins.RegExpTester.dll'/>
+          <File Name='Mnk.TBox.Plugins.Requestor.dll'/>
+          <File Name='Mnk.TBox.Plugins.RequestsWatcher.dll'/>
+          <File Name='Mnk.TBox.Plugins.Searcher.dll'/>
+          <File Name='Mnk.TBox.Plugins.ServicesCommander.dll'/>
+          <File Name='Mnk.TBox.Plugins.SourcesUniter.dll'/>
+          <File Name='Mnk.TBox.Plugins.SqlRunner.dll'/>
+          <File Name='Mnk.TBox.Plugins.SqlWatcher.dll'/>
+          <File Name='Mnk.TBox.Plugins.TeamManager.dll'/>
+          <File Name='Mnk.TBox.Plugins.Templates.dll'/>
+          <File Name='Mnk.TBox.Plugins.TextGenerator.dll'/>
         </Component>
       </Directory>
       <Directory Id="Themes" Name="Themes">

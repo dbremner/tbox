@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using Common.Communications.Interprocess;
-using Common.Data;
-using ParallelNUnit.Interfaces;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.Data;
+using Mnk.Library.ParallelNUnit.Interfaces;
 
-namespace ParallelNUnit.Infrastructure
+namespace Mnk.Library.ParallelNUnit.Infrastructure
 {
     public class Synchronizer
     {

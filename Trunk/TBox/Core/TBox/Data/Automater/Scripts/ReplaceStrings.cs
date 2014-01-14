@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using PluginsShared.Automator;
-using ScriptEngine;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.Library.ScriptEngine;
 
 namespace Solution.Scripts
 {

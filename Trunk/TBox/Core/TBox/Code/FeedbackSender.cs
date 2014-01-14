@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using System.Web;
-using Common.Base.Log;
-using Common.Encoders;
-using Common.Network;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Encoders;
+using Mnk.Library.Common.Network;
 
-namespace TBox.Code
+namespace Mnk.TBox.Core.Application.Code
 {
 	class FeedbackSender
 	{

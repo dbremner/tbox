@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Common.Network;
-using Common.UI.ModelsContainers;
-using Interface;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.Network;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace Requestor.Code.Settings
+namespace Mnk.TBox.Plugins.Requestor.Code.Settings
 {
 	[Serializable]
 	public sealed class Config : IConfigWithDialogStates

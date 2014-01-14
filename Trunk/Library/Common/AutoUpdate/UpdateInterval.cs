@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.AutoUpdate
+namespace Mnk.Library.Common.AutoUpdate
 {
 	[Serializable]
 	public enum UpdateInterval

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Common.Base.Log;
-using MarketInterfaces;
-using MarketInterfaces.Contracts;
-using MarketService.Service;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Plugins.Market.Interfaces;
+using Mnk.TBox.Plugins.Market.Interfaces.Contracts;
+using Mnk.TBox.Plugins.Market.Service.Service;
 
-namespace MarketService
+namespace Mnk.TBox.Plugins.Market.Service
 {
 	sealed class MarketService : IMarketService, IDisposable
 	{
@@ -19,12 +19,12 @@ namespace MarketService
 			pluginService = new PluginService(marketEntities);
 		}
 
-		public MarketInterfaces.Plugin[] Plugin_GetList(MarketInterfaces.Plugin filter, int offset, int count, bool? onlyPlugins)
+		public Mnk.TBox.Plugins.Market.Interfaces.Plugin[] Plugin_GetList(Mnk.TBox.Plugins.Market.Interfaces.Plugin filter, int offset, int count, bool? onlyPlugins)
 		{
 			return pluginService.GetList(filter, offset, count, onlyPlugins);
 		}
 
-		public int Plugin_GetListCount(MarketInterfaces.Plugin filter)
+		public int Plugin_GetListCount(Mnk.TBox.Plugins.Market.Interfaces.Plugin filter)
 		{
 			return pluginService.GetListCount(filter);
 		}
@@ -44,19 +44,19 @@ namespace MarketService
 			return pluginService.Upgrade(body);
 		}
 
-		public bool Plugin_Delete(MarketInterfaces.Plugin plugin)
+		public bool Plugin_Delete(Mnk.TBox.Plugins.Market.Interfaces.Plugin plugin)
 		{
 			return pluginService.Delete(plugin);
 		}
 
-		public bool Plugin_Exist(MarketInterfaces.Plugin plugin)
+		public bool Plugin_Exist(Mnk.TBox.Plugins.Market.Interfaces.Plugin plugin)
 		{
 			return pluginService.Exist(plugin);
 		}
 
 
 
-		public MarketInterfaces.Bug[] Bug_GetList(long uid, int offset, int count)
+		public Mnk.TBox.Plugins.Market.Interfaces.Bug[] Bug_GetList(long uid, int offset, int count)
 		{
 			return bugService.GetList(uid, offset, count);
 		}
@@ -66,7 +66,7 @@ namespace MarketService
 			return bugService.GetListCount(uid);
 		}
 
-		public void Bug_Send(MarketInterfaces.Bug bug)
+		public void Bug_Send(Mnk.TBox.Plugins.Market.Interfaces.Bug bug)
 		{
 			bugService.Send(bug);
 		}

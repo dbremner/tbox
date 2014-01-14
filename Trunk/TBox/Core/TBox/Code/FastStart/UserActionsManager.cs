@@ -1,12 +1,12 @@
 ﻿using System;
-using Localization.TBox;
-using TBox.Code.FastStart.Settings;
-using TBox.Code.Menu;
-using TBox.Forms;
-using WPFControls.Components.Units;
-using WPFControls.Tools;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.FastStart.Settings;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.TBox.Core.Application.Forms;
+using Mnk.Library.WPFControls.Components.Units;
+using Mnk.Library.WPFControls.Tools;
 
-namespace TBox.Code.FastStart
+namespace Mnk.TBox.Core.Application.Code.FastStart
 {
 	sealed class UserActionsManager : IDisposable
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Base.Log
+namespace Mnk.Library.Common.Base.Log
 {
 	public abstract class AbstractLog : ILog
 	{

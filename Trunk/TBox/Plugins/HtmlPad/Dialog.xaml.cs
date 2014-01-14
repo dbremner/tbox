@@ -1,10 +1,10 @@
 ﻿using System;
-using Common.Base;
-using Common.Base.Log;
-using Localization.Plugins.HtmlPad;
-using WPFControls.Tools;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Locales.Localization.Plugins.HtmlPad;
+using Mnk.Library.WPFControls.Tools;
 
-namespace HtmlPad
+namespace Mnk.TBox.Plugins.HtmlPad
 {
 	/// <summary>
 	/// Interaction logic for Dialog.xaml

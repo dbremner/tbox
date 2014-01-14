@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
 
-namespace ScriptEngine
+namespace Mnk.Library.ScriptEngine
 {
 	[Serializable]
 	public sealed class SingleFileOperation : Operation

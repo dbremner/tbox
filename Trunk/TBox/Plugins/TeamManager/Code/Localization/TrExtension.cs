@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.TeamManager;
+﻿using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 
-namespace TeamManager.Code.Localization
+namespace Mnk.TBox.Plugins.TeamManager.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, TeamManagerLang.ResourceManager) { }
 	}

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public class BinaryComparer<T> : IComparer<T>
 	{

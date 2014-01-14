@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using Common.MT;
-using WPFControls.Drawings.Graphics;
+using Mnk.Library.Common.MT;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics;
 
-namespace LeaksInterceptor.Code
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code
 {
 	sealed class SystemAnalizer : IDisposable
 	{

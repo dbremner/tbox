@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ParallelNUnit.Infrastructure
+namespace Mnk.Library.ParallelNUnit.Infrastructure
 {
     class CopyDeepManager
     {

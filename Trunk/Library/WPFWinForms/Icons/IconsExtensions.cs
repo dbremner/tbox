@@ -7,7 +7,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace WPFWinForms.Icons
+namespace Mnk.Library.WPFWinForms.Icons
 {
 	public static class IconsExtensions
 	{

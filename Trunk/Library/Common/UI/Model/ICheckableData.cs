@@ -1,4 +1,4 @@
-﻿namespace Common.UI.Model
+﻿namespace Mnk.Library.Common.UI.Model
 {
 	public interface ICheckableData : IData
 	{

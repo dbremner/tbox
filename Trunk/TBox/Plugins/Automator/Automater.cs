@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Automator.Code;
-using Automator.Code.Settings;
-using Common.Base.Log;
-using Common.MT;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.Automator;
-using PluginsShared.Automator;
-using PluginsShared.ScriptEngine;
-using ScriptEngine;
-using ScriptEngine.Core;
-using WPFControls.Code;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
-using WPFControls.Dialogs.StateSaver;
-using WPFSyntaxHighlighter;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.Automator;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
+using Mnk.TBox.Plugins.Automator.Code;
+using Mnk.TBox.Plugins.Automator.Code.Settings;
 
-namespace Automator
+namespace Mnk.TBox.Plugins.Automator
 {
 	[PluginInfo(typeof(AutomatorLang), 12, PluginGroup.Development)]
 	public sealed class Automater : ConfigurablePlugin<Settings, Config>, IDisposable

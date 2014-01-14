@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
-using ParallelNUnit.Interfaces;
+using Mnk.Library.ParallelNUnit.Interfaces;
 
-namespace ParallelNUnit.Execution
+namespace Mnk.Library.ParallelNUnit.Execution
 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] 
 	class NUnitRunnerServer : INunitRunnerServer

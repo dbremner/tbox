@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Communications.Interprocess;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Infrastructure.Communication;
-using ParallelNUnit.Infrastructure.Interfaces;
-using ParallelNUnit.Infrastructure.Runners;
-using ParallelNUnit.Interfaces;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure.Communication;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Infrastructure.Runners;
+using Mnk.Library.ParallelNUnit.Execution;
+using Mnk.Library.ParallelNUnit.Interfaces;
 
-namespace ParallelNUnit.Infrastructure.Packages
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 {
     public sealed class ProcessPackage : BasePackage, IDisposable
     {

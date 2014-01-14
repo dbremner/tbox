@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
-using Common.Base;
-using Common.Network;
-using PluginsShared.Encoders;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Network;
+using Mnk.TBox.Core.PluginsShared.Encoders;
 
-namespace PluginsShared.Controls
+namespace Mnk.TBox.Core.PluginsShared.Controls
 {
 	/// <summary>
 	/// Interaction logic for ResponseBox.xaml

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Interface;
-using Localization.Plugins.ProjectMan;
-using WPFWinForms;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
+using Mnk.Library.WPFWinForms;
 
-namespace ProjectMan.Code
+namespace Mnk.TBox.Plugins.ProjectMan.Code
 {
 	class SvnStatisticOperations
 	{

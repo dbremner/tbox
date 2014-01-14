@@ -1,10 +1,10 @@
 ﻿using System;
-using Interface;
-using Interface.Atrributes;
-using LeaksInterceptor.Components;
-using Localization.Plugins.LeaksInterceptor;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.LeaksInterceptor;
+using Mnk.TBox.Plugins.LeaksInterceptor.Components;
 
-namespace LeaksInterceptor
+namespace Mnk.TBox.Plugins.LeaksInterceptor
 {
 	[PluginInfo(typeof(LeaksInterceptorLang), 165, PluginGroup.Desktop)]
 	public sealed class LeaksInterceptor : SingleDialogConfigurablePlugin<Settings, Config, Dialog>, IDisposable

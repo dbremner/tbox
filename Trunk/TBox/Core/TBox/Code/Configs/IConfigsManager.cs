@@ -1,4 +1,4 @@
-﻿namespace TBox.Code.Configs
+﻿namespace Mnk.TBox.Core.Application.Code.Configs
 {
     interface IConfigsManager
     {

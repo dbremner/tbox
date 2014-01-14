@@ -4,11 +4,11 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
 using System.Windows;
-using Common.Base.Log;
-using Common.Tools;
-using WPFControls.Controls;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.WPFControls.Components;
 
-namespace PluginsShared.Controls
+namespace Mnk.TBox.Core.PluginsShared.Controls
 {
     /// <summary>
     /// Interaction logic for ServiceControl.xaml

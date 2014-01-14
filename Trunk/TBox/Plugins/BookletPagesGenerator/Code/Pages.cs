@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace BookletPagesGenerator.Code
+namespace Mnk.TBox.Plugins.BookletPagesGenerator.Code
 {
 	sealed class Pages
 	{

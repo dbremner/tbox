@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SkyNet.Common.Contracts.Server;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
 
-namespace SkyNet.Common
+namespace Mnk.TBox.Tools.SkyNet.Common
 {
     public interface ISkyScript
     {

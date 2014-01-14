@@ -1,6 +1,6 @@
-﻿using Common.UI.Model;
+﻿using Mnk.Library.Common.UI.Model;
 
-namespace ProjectMan.Code.Settings
+namespace Mnk.TBox.Plugins.ProjectMan.Code.Settings
 {
 	public class ProjectInfo : CheckableData
 	{

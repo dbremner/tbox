@@ -2,16 +2,16 @@
 using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
-using Common.Network;
-using Localization.Plugins.Requestor;
-using Requestor.Code.Settings;
-using Requestor.Components;
-using WPFControls.Code;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs.StateSaver;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Network;
+using Mnk.TBox.Locales.Localization.Plugins.Requestor;
+using Mnk.TBox.Plugins.Requestor.Code.Settings;
+using Mnk.TBox.Plugins.Requestor.Components;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace Requestor.Code
+namespace Mnk.TBox.Plugins.Requestor.Code
 {
 	public sealed class Executor : BaseExecutor, IDisposable
 	{

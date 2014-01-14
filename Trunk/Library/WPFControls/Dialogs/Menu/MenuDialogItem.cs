@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
 
-namespace WPFControls.Dialogs.Menu
+namespace Mnk.Library.WPFControls.Dialogs.Menu
 {
 	public class MenuDialogItem
 	{

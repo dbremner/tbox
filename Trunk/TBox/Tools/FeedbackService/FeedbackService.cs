@@ -2,11 +2,11 @@
 using System.Configuration;
 using System.IO;
 using System.ServiceProcess;
-using Common.Base.Log;
-using Common.Communications.Network;
-using Interface;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications.Network;
+using Mnk.TBox.Core.Interface;
 
-namespace FeedbackService
+namespace Mnk.TBox.Tools.FeedbackService
 {
 	public partial class FeedbackService : ServiceBase
 	{

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Common.Tools;
-using WPFControls.Dialogs.Menu;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.WPFControls.Dialogs.Menu;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace TBox.Code.Menu
+namespace Mnk.TBox.Core.Application.Code.Menu
 {
 	class MenuItemsProvider : IMenuItemsProvider
 	{

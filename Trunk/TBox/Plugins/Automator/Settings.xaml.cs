@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Automator.Code.Settings;
-using Common.Tools;
-using Interface;
-using PluginsShared.ScriptEngine;
-using WPFControls.Code;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.WPFControls.Code;
+using Mnk.TBox.Plugins.Automator.Code.Settings;
 
-namespace Automator
+namespace Mnk.TBox.Plugins.Automator
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

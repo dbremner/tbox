@@ -1,4 +1,4 @@
-﻿namespace SkyNet.Agent
+﻿namespace Mnk.TBox.Tools.SkyNet.Agent
 {
     partial class SkyNetAgentService
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Common.Plugins
+namespace Mnk.Library.Common.Plugins
 {
 	public interface IConfigurable
 	{

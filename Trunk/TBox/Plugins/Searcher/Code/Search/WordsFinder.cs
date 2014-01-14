@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Searcher.Code.Checkers;
-using Searcher.Code.Finders;
+using Mnk.TBox.Plugins.Searcher.Code.Checkers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders;
 
-namespace Searcher.Code.Search
+namespace Mnk.TBox.Plugins.Searcher.Code.Search
 {
 	class WordsFinder
 	{

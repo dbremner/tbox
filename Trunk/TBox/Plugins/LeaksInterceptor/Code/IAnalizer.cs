@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WPFControls.Drawings.Graphics;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics;
 
-namespace LeaksInterceptor.Code
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code
 {
 	interface IAnalizer
 	{

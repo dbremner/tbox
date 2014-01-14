@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using Localization.PluginsShared;
-using ScriptEngine;
-using WPFControls.Tools;
+using Mnk.TBox.Locales.Localization.PluginsShared;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.WPFControls.Tools;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
 	/// <summary>
 	/// Interaction logic for OperationDialog.xaml

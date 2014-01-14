@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using Interface;
-using TBox.Code;
-using TBox.Code.FastStart;
-using WPFControls.Components.ButtonsView;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Application.Code;
+using Mnk.TBox.Core.Application.Code.FastStart;
+using Mnk.Library.WPFControls.Components.ButtonsView;
 
-namespace TBox.Forms
+namespace Mnk.TBox.Core.Application.Forms
 {
 	/// <summary>
 	/// Interaction logic for FastStartDialog.xaml

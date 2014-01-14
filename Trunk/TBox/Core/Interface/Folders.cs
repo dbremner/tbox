@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Interface
+namespace Mnk.TBox.Core.Interface
 {
     public static class Folders
     {

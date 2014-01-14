@@ -1,9 +1,9 @@
-﻿using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.Market;
-using MarketClient.Code;
+﻿using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.Market;
+using Mnk.TBox.Plugins.Market.Client.Code;
 
-namespace MarketClient
+namespace Mnk.TBox.Plugins.Market.Client
 {
 	[PluginInfo(typeof(MarketLang), 96, PluginGroup.Other)]
 	public class Market : ConfigurablePlugin<Settings, Config>

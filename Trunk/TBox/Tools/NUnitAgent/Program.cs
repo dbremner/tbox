@@ -2,15 +2,16 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Common.Base.Log;
-using Common.Communications.Interprocess;
-using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Infrastructure.Runners;
-using ParallelNUnit.Interfaces;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Execution;
+using Mnk.Library.ParallelNUnit.Infrastructure.Runners;
+using Mnk.Library.ParallelNUnit.Interfaces;
+using Mnk.TBox.Core.Interface;
 using ServiceStack.Text;
 
-namespace NUnitAgent
+namespace Mnk.TBox.Tools.NUnitAgent
 {
     class Program
     {
@@ -22,7 +23,7 @@ namespace NUnitAgent
         [STAThread]
         static int Main(string[] args)
         {
-            LogManager.Init(new MultiLog(new ConsoleLog()));
+            LogManager.Init(new MultiLog(new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "NUnitAgent.log"))));
             var log = LogManager.GetLogger<Program>();
             Console.WriteLine("Execute NUnitAgent with arguments: " + string.Join("; ", args));
             if (args.Length != 3)
@@ -73,7 +74,10 @@ namespace NUnitAgent
 
         static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)
         {
-            return (from dir in new[] { "Libraries", "Localization" } select Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\" + dir + "\\", new AssemblyName(args.Name).Name + ".dll")) into assemblyPath where File.Exists(assemblyPath) select Assembly.LoadFrom(assemblyPath)).FirstOrDefault();
+            return (from dir in new[] { "Libraries", "Localization" } 
+                    select Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\" + dir + "\\", new AssemblyName(args.Name).Name + ".dll")) 
+                    into assemblyPath where File.Exists(assemblyPath) 
+                    select Assembly.LoadFrom(assemblyPath)).FirstOrDefault();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Searcher.Code.Settings
+namespace Mnk.TBox.Plugins.Searcher.Code.Settings
 {
 	[Serializable]
 	public sealed class ResultConfig

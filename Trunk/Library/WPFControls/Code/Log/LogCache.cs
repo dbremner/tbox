@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Threading;
 
-namespace WPFControls.Code.Log
+namespace Mnk.Library.WPFControls.Code.Log
 {
 	public class LogCache : ICaptionedLog
 	{

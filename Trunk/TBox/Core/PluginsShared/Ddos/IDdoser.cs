@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using PluginsShared.Ddos.Settings;
-using PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
+using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
 
-namespace PluginsShared.Ddos
+namespace Mnk.TBox.Core.PluginsShared.Ddos
 {
 	public interface IDdoser
 	{

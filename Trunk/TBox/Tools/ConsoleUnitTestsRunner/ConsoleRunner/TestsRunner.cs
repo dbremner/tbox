@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
-using Common.Base.Log;
-using Common.MT;
-using Common.Tools;
-using ParallelNUnit.Infrastructure;
-using ParallelNUnit.Infrastructure.Packages;
-using ParallelNUnit.Infrastructure.Updater;
+using System.Linq;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.MT;
+using Mnk.Library.ParallelNUnit.Infrastructure;
+using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
+using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
 
-namespace ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     class TestsRunner
     {
@@ -60,7 +60,9 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
             if (!string.IsNullOrEmpty(xmlReport)) view.GenerateReport(path, xmlReport);
             if (!string.IsNullOrEmpty(outputReport))
             {
-                File.WriteAllText(Path.Combine(Environment.CurrentDirectory, outputReport), string.Join(Environment.NewLine + Environment.NewLine + Environment.NewLine, package.Output));
+                File.WriteAllText(
+                    Path.Combine(Environment.CurrentDirectory, outputReport), 
+                    string.Join(string.Empty, view.Tmc.All.Select(x=>x.Output)));
             }
         }
     }

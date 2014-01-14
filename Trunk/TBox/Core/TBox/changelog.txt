@@ -1,4 +1,4 @@
-﻿04/12/2013 Big improvements to NUNit tests runner. Now unit tests will run in domain instead of processes. Make UI more similar to standard. Fix some issues. Improve console unit tests runner(add comaptible with standart nunit params, add teamcity support). Remove batch run for NUnit tests runner.
+﻿10/01/2014 Bug fixing. Rename namespaces. Add ability to view tests while running for nunit tests runner. Add team reports for team manager.
 
 26/11/2013 Add ability to specify file path masks to copy and start delay for NUnit tests runner. Fix issue and add time instead seconds for progress.
 

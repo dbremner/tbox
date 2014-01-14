@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Common.AutoUpdate;
-using Common.Base.Log;
-using Common.Tools;
-using WPFControls.Code.OS;
+using Mnk.Library.Common.AutoUpdate;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.WPFControls.Code.OS;
 
-namespace TBox.Code.AutoUpdate
+namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {
 	public class SharedFolderApplicationUpdater : IApplicationUpdater
 	{

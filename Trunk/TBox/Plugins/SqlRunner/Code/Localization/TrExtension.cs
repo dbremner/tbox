@@ -1,9 +1,9 @@
 ﻿using System.Resources;
-using Localization.Plugins.SqlRunner;
+using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
 
-namespace SqlRunner.Code.Localization
+namespace Mnk.TBox.Plugins.SqlRunner.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, SqlRunnerLang.ResourceManager) { }
 	}

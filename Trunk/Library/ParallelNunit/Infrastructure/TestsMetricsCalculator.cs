@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Mnk.Library.ParallelNUnit.Core;
 using NUnit.Core;
-using ParallelNUnit.Core;
 
-namespace ParallelNUnit.Infrastructure
+namespace Mnk.Library.ParallelNUnit.Infrastructure
 {
     public class TestsMetricsCalculator
     {

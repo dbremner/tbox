@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Localization.TBox {
+namespace Mnk.TBox.Locales.Localization.TBox {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Localization.TBox {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Localization.TBox.TBoxLang", typeof(TBoxLang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mnk.TBox.Locales.Localization.TBox.TBoxLang", typeof(TBoxLang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

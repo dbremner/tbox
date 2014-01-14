@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.BookletPagesGenerator;
+﻿using Mnk.TBox.Locales.Localization.Plugins.BookletPagesGenerator;
 
-namespace BookletPagesGenerator.Code.Localization
+namespace Mnk.TBox.Plugins.BookletPagesGenerator.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, BookletPagesGeneratorLang.ResourceManager) { }
 	}

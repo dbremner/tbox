@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using ScriptEngine;
+using Mnk.Library.ScriptEngine;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
     public class SingleFileScriptConfigurator : ScriptsConfigurator
     {

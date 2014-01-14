@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Tools;
-using PluginsShared.ReportsGenerator;
-using TeamManager.Code.Settings;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.TBox.Plugins.TeamManager.Code.Settings;
 
-namespace TeamManager.Code.Reports
+namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
 {
     class DayTypeProvider : IDayTypeProvider
     {

@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using Common.Base;
-using Common.Base.Log;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
 
-namespace Common.Console
+namespace Mnk.Library.Common.Console
 {
 	public static class Cmd
 	{

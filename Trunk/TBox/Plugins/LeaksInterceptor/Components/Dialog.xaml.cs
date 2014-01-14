@@ -8,17 +8,17 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Common.Base.Log;
-using Common.UI.Model;
-using LeaksInterceptor.Code;
-using LeaksInterceptor.Code.Getters;
-using LeaksInterceptor.Code.Perfomance;
-using LeaksInterceptor.Code.Standart;
-using Localization.Plugins.LeaksInterceptor;
-using WPFControls.Code.OS;
-using WPFWinForms;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Locales.Localization.Plugins.LeaksInterceptor;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFWinForms;
+using Mnk.TBox.Plugins.LeaksInterceptor.Code;
+using Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters;
+using Mnk.TBox.Plugins.LeaksInterceptor.Code.Perfomance;
+using Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart;
 
-namespace LeaksInterceptor.Components
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Components
 {
 	/// <summary>
 	/// Interaction logic for Dialog.xaml

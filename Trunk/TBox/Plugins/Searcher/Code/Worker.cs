@@ -1,15 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Media;
-using Common.MT;
-using Localization.Plugins.Searcher;
-using Searcher.Code.Settings;
-using Searcher.Components;
-using WPFControls.Code;
-using WPFControls.Dialogs;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Locales.Localization.Plugins.Searcher;
+using Mnk.TBox.Plugins.Searcher.Code.Settings;
+using Mnk.TBox.Plugins.Searcher.Components;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace Searcher.Code
+namespace Mnk.TBox.Plugins.Searcher.Code
 {
 	sealed class Worker : IDisposable
 	{
@@ -64,7 +64,7 @@ namespace Searcher.Code
 			else
 			{
 				BeginOperation();
-                DialogsCache.ShowProgress(Init, SearcherLang.LoadIndexes, null, icon: icon);
+                DialogsCache.ShowProgress(Init, SearcherLang.LoadIndexes, null, icon: icon, showInTaskBar: true);
 			}
 		}
 
@@ -87,7 +87,7 @@ namespace Searcher.Code
 		public void RebuildIndexes()
 		{
 			BeginOperation();
-            DialogsCache.ShowProgress(u => DoMakeIndexes(u), SearcherLang.CreateIndexes, null, icon: icon);
+            DialogsCache.ShowProgress(u => DoMakeIndexes(u), SearcherLang.CreateIndexes, null, showInTaskBar:true, icon: icon);
 		}
 
 		private void ShowDialog(bool success)

@@ -1,9 +1,9 @@
 ﻿using System.Resources;
-using Localization.Plugins.ProjectMan;
+using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
 
-namespace ProjectMan.Code.Localization
+namespace Mnk.TBox.Plugins.ProjectMan.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, ProjectManLang.ResourceManager) { }
 	}

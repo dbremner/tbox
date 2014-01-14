@@ -1,17 +1,18 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using NUnitRunner.Code.Settings;
-using ParallelNUnit.Infrastructure;
-using ParallelNUnit.Infrastructure.Packages;
-using ParallelNUnit.Infrastructure.Updater;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
+using Mnk.Library.ParallelNUnit.Infrastructure;
+using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
+using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace NUnitRunner.Components
+namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
     /// <summary>
     /// Interaction logic for Dialog.xaml
@@ -29,6 +30,7 @@ namespace NUnitRunner.Components
             this.runAsx86Path = runAsx86Path;
             InitializeComponent();
             Panel.Content = view;
+            Progress.OnStartClick += StartClick;
         }
 
         public void ShowDialog(TestConfig cfg)
@@ -91,7 +93,7 @@ namespace NUnitRunner.Components
             {
                 package.ApplyResults(false);
                 Categories.ItemsSource = package.Categories;
-                view.Refresh((Environment.TickCount - time) / 1000, string.Empty);
+                view.Refresh((Environment.TickCount - time) / 1000);
             });
         }
 
@@ -101,7 +103,7 @@ namespace NUnitRunner.Components
             {
                 return;
             }
-            var caption = Path.GetFileName(config.Key);
+            PrepareUiToRun(false);
             RecreatePackage();
             var categories =
                 ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
@@ -110,9 +112,23 @@ namespace NUnitRunner.Components
             var packages = package.PrepareToRun(config.ProcessCount, categories, config.UseCategories ? (bool?)config.IncludeCategories : null, config.UsePrefetch, view.GetCheckedTests());
             var time = Environment.TickCount;
             var synchronizer = new Synchronizer(config.ProcessCount);
-            DialogsCache.ShowProgress(
-                u => package.DoRun(o => OnRunEnd(time), package.Items, packages, config.CopyToSeparateFolders, config.CopyMasks.CheckedItems.Select(x => x.Key).ToArray(), config.NeedSynchronizationForTests && config.ProcessCount > 1, config.StartDelay, synchronizer, new SimpleUpdater(u, synchronizer), true),
-                caption, this, false);
+            Progress.Start(
+                u => package.DoRun(o => OnRunEnd(time), package.Items, packages, config.CopyToSeparateFolders, config.CopyMasks.CheckedItems.Select(x => x.Key).ToArray(), config.NeedSynchronizationForTests && config.ProcessCount > 1, config.StartDelay, synchronizer, new SimpleUpdater(u, synchronizer), true)
+                );
+        }
+
+        private void PrepareUiToRun(bool enable)
+        {
+            Tabs.SelectedIndex = 0;
+            Settings.IsEnabled = enable;
+            btnCancel.IsEnabled = enable;
+            btnRefresh.IsEnabled = enable;
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (!btnRefresh.IsEnabled) e.Cancel = true;
+            else base.OnClosing(e);
         }
 
         private void OnRunEnd(int time)
@@ -121,7 +137,8 @@ namespace NUnitRunner.Components
                   () =>
                   {
                       package.ApplyResults(config.UsePrefetch);
-                      view.Refresh((Environment.TickCount - time) / 1000, package.Output);
+                      view.Refresh((Environment.TickCount - time) / 1000);
+                      PrepareUiToRun(true);
                   }
                 );
         }

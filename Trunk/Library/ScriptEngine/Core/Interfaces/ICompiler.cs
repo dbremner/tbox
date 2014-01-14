@@ -1,4 +1,4 @@
-﻿namespace ScriptEngine.Core.Interfaces
+﻿namespace Mnk.Library.ScriptEngine.Core.Interfaces
 {
 	public interface ICompiler<out T>
 	{

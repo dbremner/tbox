@@ -2,9 +2,9 @@
 using System.CodeDom.Compiler;
 using System.Linq;
 using System.Reflection;
-using ScriptEngine.Core.Interfaces;
+using Mnk.Library.ScriptEngine.Core.Interfaces;
 
-namespace ScriptEngine.Core
+namespace Mnk.Library.ScriptEngine.Core
 {
 	public class Compiler<T> : ICompiler<T>
         where T : class

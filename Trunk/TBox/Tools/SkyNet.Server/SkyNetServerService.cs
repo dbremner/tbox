@@ -6,11 +6,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
-using SkyNet.Common.Configurations;
-using SkyNet.Common.Contracts.Server;
-using Common.Communications.Network;
+using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
+using Mnk.Library.Common.Communications.Network;
 
-namespace SkyNet.Server
+namespace Mnk.TBox.Tools.SkyNet.Server
 {
     public partial class SkyNetServerService : ServiceBase
     {

@@ -1,6 +1,6 @@
-﻿using WPFControls.Components.ButtonsView;
+﻿using Mnk.Library.WPFControls.Components.ButtonsView;
 
-namespace TBox.Code.Objects
+namespace Mnk.TBox.Core.Application.Code.Objects
 {
 	class ExtButtonInfo : ButtonInfo
 	{

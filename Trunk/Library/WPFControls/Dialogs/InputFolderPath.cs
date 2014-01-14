@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using Ookii.Dialogs.Wpf;
-using WPFWinForms;
+using Mnk.Library.WPFWinForms;
 
-namespace WPFControls.Dialogs
+namespace Mnk.Library.WPFControls.Dialogs
 {
 	class InputFolderPath : IDialog
 	{

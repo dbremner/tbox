@@ -1,4 +1,4 @@
-﻿namespace WPFControls.Components.Units.Properties
+﻿namespace Mnk.Library.WPFControls.Components.Units.Properties
 {
 	public enum UnitTypes
 	{

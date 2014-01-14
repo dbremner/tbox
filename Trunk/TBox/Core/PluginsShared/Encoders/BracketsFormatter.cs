@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Common.Encoders;
+using Mnk.Library.Common.Encoders;
 
-namespace PluginsShared.Encoders
+namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
 	public class BracketsFormatter
 	{

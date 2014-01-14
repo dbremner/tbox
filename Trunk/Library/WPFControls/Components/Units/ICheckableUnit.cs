@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WPFControls.Components.Units
+namespace Mnk.Library.WPFControls.Components.Units
 {
     public interface ICheckableUnit : IUnit
     {

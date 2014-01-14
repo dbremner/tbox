@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using Localization.Plugins.SqlRunner;
-using SqlRunner.Code.Settings;
-using WPFControls.Code;
-using WPFControls.Code.OS;
-using WPFControls.Dialogs.StateSaver;
-using WPFSyntaxHighlighter;
+using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
+using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFSyntaxHighlighter;
 
-namespace SqlRunner.Code
+namespace Mnk.TBox.Plugins.SqlRunner.Code
 {
     sealed class Executor : BaseExecutor, IDisposable
     {

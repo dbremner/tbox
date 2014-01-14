@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public static class DirectoryExtensions
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.AutoUpdate;
+using Mnk.Library.Common.AutoUpdate;
 
-namespace TBox.Code.AutoUpdate
+namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {
 	[Serializable]
 	public class Update

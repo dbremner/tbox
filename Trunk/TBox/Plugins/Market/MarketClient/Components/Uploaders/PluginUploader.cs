@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using Common.MT;
-using Common.SaveLoad;
-using MarketClient.Code;
-using MarketClient.ServiceReference;
-using WPFControls.Dialogs;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.SaveLoad;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
+using Mnk.Library.WPFControls.Dialogs;
+using Mnk.TBox.Plugins.Market.Client.Code;
 
-namespace MarketClient.Components.Uploaders
+namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 {
 	public class PluginUploader
 	{

@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Common.MT;
-using PluginsShared.Automator;
-using PluginsShared.ScriptEngine;
-using ScriptEngine;
-using ScriptEngine.Core;
-using ScriptEngine.Core.Interfaces;
+using Mnk.Library.Common.MT;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.Library.ScriptEngine.Core.Interfaces;
+using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
-namespace Automator.Code
+namespace Mnk.TBox.Plugins.Automator.Code
 {
 	sealed class ScriptRunner : IScriptRunner
 	{

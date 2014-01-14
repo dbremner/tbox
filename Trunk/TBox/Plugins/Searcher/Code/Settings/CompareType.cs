@@ -1,4 +1,4 @@
-﻿namespace Searcher.Code.Settings
+﻿namespace Mnk.TBox.Plugins.Searcher.Code.Settings
 {
 	public enum CompareType
 	{

@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.SqlWatcher;
+﻿using Mnk.TBox.Locales.Localization.Plugins.SqlWatcher;
 
-namespace SqlWatcher.Code.Localization
+namespace Mnk.TBox.Plugins.SqlWatcher.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, SqlWatcherLang.ResourceManager) { }
 	}

@@ -1,4 +1,4 @@
-﻿namespace WPFControls.Dialogs
+﻿namespace Mnk.Library.WPFControls.Dialogs
 {
 	public interface IDialog 
 	{

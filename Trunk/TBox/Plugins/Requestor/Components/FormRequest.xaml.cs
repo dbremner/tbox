@@ -4,12 +4,12 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using Requestor.Code;
-using Requestor.Code.Settings;
-using WPFControls.Code.OS;
-using WPFControls.Tools;
+using Mnk.TBox.Plugins.Requestor.Code;
+using Mnk.TBox.Plugins.Requestor.Code.Settings;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Tools;
 
-namespace Requestor.Components
+namespace Mnk.TBox.Plugins.Requestor.Components
 {
 	/// <summary>
 	/// </summary>

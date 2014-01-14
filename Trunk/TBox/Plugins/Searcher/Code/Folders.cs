@@ -1,4 +1,4 @@
-﻿namespace Searcher.Code
+﻿namespace Mnk.TBox.Plugins.Searcher.Code
 {
 	static class Folders
 	{

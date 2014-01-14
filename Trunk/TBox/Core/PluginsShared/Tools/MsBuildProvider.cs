@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using Common.Base.Log;
-using Common.Console;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Console;
 
-namespace PluginsShared.Tools
+namespace Mnk.TBox.Core.PluginsShared.Tools
 {
 	public class MsBuildProvider : IMsBuildProvider
 	{

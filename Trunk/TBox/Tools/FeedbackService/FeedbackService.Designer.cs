@@ -1,4 +1,4 @@
-﻿namespace FeedbackService
+﻿namespace Mnk.TBox.Tools.FeedbackService
 {
 	partial class FeedbackService
 	{

@@ -1,10 +1,10 @@
 ﻿using System.Windows;
-using Localization.TBox;
-using TBox.Code.FastStart.Settings;
-using TBox.Code.Menu;
-using WPFControls.Tools;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.FastStart.Settings;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.Library.WPFControls.Tools;
 
-namespace TBox.Forms
+namespace Mnk.TBox.Core.Application.Forms
 {
 	/// <summary>
 	/// Interaction logic for OperationDialog.xaml
@@ -18,7 +18,7 @@ namespace TBox.Forms
 
 		public void ShowDialog(MenuItemsSequence operation, IMenuItemsProvider menuItemsProvider)
 		{
-			Owner = Application.Current.MainWindow;
+			Owner = System.Windows.Application.Current.MainWindow;
 			DataContext = operation;
 			Pathes.ConfigureInputMenuItem(TBoxLang.SelectMenuActions, 
 				operation.MenuItems, 

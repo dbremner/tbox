@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace LeaksInterceptor.Code.Getters
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters
 {
 	class BasePriority : IGetter
 	{

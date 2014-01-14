@@ -1,7 +1,7 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
 
-namespace SkyNet.Common.Contracts.Agent
+namespace Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent
 {
     [ServiceContract]
     public interface ISkyNetAgent

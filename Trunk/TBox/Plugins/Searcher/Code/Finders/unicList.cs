@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.Base;
-using Common.Base.Log;
-using Common.Tools;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
 
-namespace Searcher.Code.Finders
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders
 {
 	sealed class UnicList
 	{

@@ -3,11 +3,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Common.Base.Log;
-using LeaksInterceptor.Code.Getters;
-using WPFControls.Drawings.Graphics;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.WPFControls.Components.Drawings.Graphics;
+using Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters;
 
-namespace LeaksInterceptor.Code.Standart
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart
 {
 	class ProcessAnalizer : IAnalizer
 	{

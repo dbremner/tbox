@@ -1,4 +1,4 @@
-﻿namespace BookletPagesGenerator.Code
+﻿namespace Mnk.TBox.Plugins.BookletPagesGenerator.Code
 {
 	sealed class Result
 	{

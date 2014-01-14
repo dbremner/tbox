@@ -1,4 +1,4 @@
-﻿namespace Interface
+﻿namespace Mnk.TBox.Core.Interface
 {
 	public enum PluginGroup 
 	{

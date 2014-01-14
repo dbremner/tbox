@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Common.Base;
-using Common.Base.Log;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
 
-namespace TBox.Code.ErrorsSender
+namespace Mnk.TBox.Core.Application.Code.ErrorsSender
 {
 	class LogsSender
 	{

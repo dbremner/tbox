@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Localization.Plugins.SkyNet {
+namespace Mnk.TBox.Locales.Localization.Plugins.SkyNet {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Localization.Plugins.SkyNet {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Localization.Plugins.SkyNet.SkyNetLang", typeof(SkyNetLang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mnk.TBox.Locales.Localization.Plugins.SkyNet.SkyNetLang", typeof(SkyNetLang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

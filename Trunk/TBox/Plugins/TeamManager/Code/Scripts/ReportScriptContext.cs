@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using PluginsShared.ReportsGenerator;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 
-namespace TeamManager.Code.Scripts
+namespace Mnk.TBox.Plugins.TeamManager.Code.Scripts
 {
     sealed class ReportScriptContext : IReportScriptContext
     {

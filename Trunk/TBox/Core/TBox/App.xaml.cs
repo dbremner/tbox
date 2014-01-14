@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using Common.Base;
-using Common.Base.Log;
-using Localization.TBox;
-using WPFControls.Code.OS;
-using WPFControls.Localization;
-using WPFWinForms;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Localization;
+using Mnk.Library.WPFWinForms;
 
-namespace TBox
+namespace Mnk.TBox.Core.Application
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
 	public partial class App
 	{
-		private static readonly ILog Log = LogManager.GetLogger<App>();
+		private readonly ILog Log = LogManager.GetLogger<App>();
 		private static bool handled = false;
 
 		[DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]

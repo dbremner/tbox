@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PluginsShared.Templates
+namespace Mnk.TBox.Core.PluginsShared.Templates
 {
 	public sealed class StringFiller : IStringFiller
 	{

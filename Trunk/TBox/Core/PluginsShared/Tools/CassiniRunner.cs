@@ -2,11 +2,11 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Common.Base;
-using Common.Base.Log;
-using Common.Tools;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
 
-namespace PluginsShared.Tools
+namespace Mnk.TBox.Core.PluginsShared.Tools
 {
 	public class CassiniRunner
 	{

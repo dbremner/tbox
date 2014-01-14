@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace WPFWinForms.Icons
+namespace Mnk.Library.WPFWinForms.Icons
 {
 	public sealed class IconsExtractor
 	{

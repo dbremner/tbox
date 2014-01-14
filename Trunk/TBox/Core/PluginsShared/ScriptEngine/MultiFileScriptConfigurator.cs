@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ScriptEngine;
+using Mnk.Library.ScriptEngine;
 
-namespace PluginsShared.ScriptEngine
+namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
     public class MultiFileScriptConfigurator : ScriptsConfigurator
     {

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Common.Network
+namespace Mnk.Library.Common.Network
 {
 	public class ResponseInfo
 	{

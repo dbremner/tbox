@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Common.Base;
-using Common.Base.Log;
-using Common.Tools;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Tools;
 
-namespace PluginsShared.Templates
+namespace Mnk.TBox.Core.PluginsShared.Templates
 {
 	class KeysCollector
 	{

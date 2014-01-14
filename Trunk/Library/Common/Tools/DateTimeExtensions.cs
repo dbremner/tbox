@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
     public static class DateTimeExtensions
     {

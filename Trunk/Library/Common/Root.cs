@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Library.Tests")]
-namespace Common
+namespace Mnk.Library.Common
 {
 }

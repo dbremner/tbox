@@ -1,9 +1,9 @@
 ﻿using System.Threading;
-using PluginsShared.Ddos;
-using PluginsShared.Ddos.Statistic;
-using SqlRunner.Code.Settings;
+using Mnk.TBox.Core.PluginsShared.Ddos;
+using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 
-namespace SqlRunner.Code
+namespace Mnk.TBox.Plugins.SqlRunner.Code
 {
 	class RequestMaker : BaseExecutor, IOperationRunner
 	{

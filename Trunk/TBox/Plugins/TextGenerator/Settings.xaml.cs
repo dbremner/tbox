@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace TextGenerator
+namespace Mnk.TBox.Plugins.TextGenerator
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

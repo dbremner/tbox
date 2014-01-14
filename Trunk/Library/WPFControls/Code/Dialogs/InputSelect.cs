@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using WPFControls.Dialogs;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace WPFControls.Code.Dialogs
+namespace Mnk.Library.WPFControls.Code.Dialogs
 {
 	public sealed class InputSelect : BaseDialog
 	{

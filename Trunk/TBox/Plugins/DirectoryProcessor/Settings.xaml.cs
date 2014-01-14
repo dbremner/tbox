@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace DirectoryProcessor
+namespace Mnk.TBox.Plugins.DirectoryProcessor
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

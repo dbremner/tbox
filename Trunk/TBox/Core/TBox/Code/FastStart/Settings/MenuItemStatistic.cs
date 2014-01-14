@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace TBox.Code.FastStart.Settings
+namespace Mnk.TBox.Core.Application.Code.FastStart.Settings
 {
 	[Serializable]
 	public class MenuItemStatistic

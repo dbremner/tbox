@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Common.Tools;
-using Localization.Plugins.TeamManager;
-using TeamManager.Code.Reports.Contracts;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
+using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
 
-namespace TeamManager.Code.Reports
+namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
 {
     class PlainTextReport : IReportsPrinter
     {

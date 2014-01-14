@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
-using Interface;
-using ScriptEngine;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace Automator.Code.Settings
+namespace Mnk.TBox.Plugins.Automator.Code.Settings
 {
 	[Serializable]
 	public sealed class Config : IConfigWithDialogStates

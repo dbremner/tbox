@@ -1,18 +1,18 @@
-﻿<UserControl x:Class="TeamManager.Settings"
-             xmlns:loc="clr-namespace:TeamManager.Code.Localization"
+﻿<UserControl x:Class="Mnk.TBox.Plugins.TeamManager.Settings"
+             xmlns:loc="clr-namespace:Mnk.TBox.Plugins.TeamManager.Code.Localization"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" 
-             xmlns:units="clr-namespace:WPFControls.Components.Units;assembly=WPFControls"
-             xmlns:scriptEngine="clr-namespace:ScriptEngine;assembly=ScriptEngine"
-             xmlns:captioned="clr-namespace:WPFControls.Controls.Captioned;assembly=WPFControls"
-             xmlns:settings="clr-namespace:TeamManager.Code.Settings"
-             xmlns:tools="clr-namespace:WPFControls.Tools;assembly=WPFControls"
-             xmlns:controls="clr-namespace:WPFControls.Controls;assembly=WPFControls"
-             xmlns:teamManager="clr-namespace:TeamManager">
+             xmlns:units="clr-namespace:Mnk.Library.WPFControls.Components.Units;assembly=Mnk.Library.WPFControls"
+             xmlns:scriptEngine="clr-namespace:Mnk.Library.ScriptEngine;assembly=Mnk.Library.ScriptEngine"
+             xmlns:settings="clr-namespace:Mnk.TBox.Plugins.TeamManager.Code.Settings"
+             xmlns:tools="clr-namespace:Mnk.Library.WPFControls.Tools;assembly=Mnk.Library.WPFControls"
+             xmlns:teamManager="clr-namespace:Mnk.TBox.Plugins.TeamManager"
+             xmlns:captioned1="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
+             xmlns:components="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls">
     <UserControl.Resources>
         <tools:BoolInverterConverter x:Key="BoolInverterConverter"/>
     </UserControl.Resources>
@@ -24,11 +24,12 @@
                 </GroupBox>
                 <TabControl IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}">
                     <TabItem Header="{loc:Tr MembersEmails}">
-                        <units:ListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" Name="PersonsNames" >
+                        <units:ListBoxUnit ItemsSource="{Binding Persons}" UnitType="Text" Title="{loc:Tr ConfigurePersons}" Name="PersonsNames" SmoothScrolling="True">
                             <units:BaseCollectionUnit.ItemTemplate>
                                 <DataTemplate DataType="{x:Type settings:Person }">
                                     <DockPanel >
-                                        <controls:FlagsCheckBoxes Value="{Binding ReportType}" BaseType="{x:Type settings:TimeReportType}" Caption="{loc:Tr ReportType}" Orientation="Horizontal" Margin="2" DockPanel.Dock="Right"/>
+                                        <Button Content="..." Click="SelectTeamMembersClick" DataContext="{Binding TeamMembers}" HorizontalAlignment="Center" VerticalAlignment="Center" DockPanel.Dock="Right" />
+                                        <components:FlagsCheckBoxes Value="{Binding ReportType}" BaseType="{x:Type settings:TimeReportType}" Caption="{loc:Tr ReportType}" Orientation="Horizontal" Margin="2" DockPanel.Dock="Right"/>
                                         <TextBlock Text="{Binding Key}" Padding="0" FontWeight="Bold" Margin="5" VerticalAlignment="Center"/>
                                     </DockPanel>
                                 </DataTemplate>
@@ -40,7 +41,7 @@
                             <units:ListBoxUnit.ItemTemplate>
                                 <DataTemplate DataType="{x:Type scriptEngine:SingleFileOperation}">
                                     <DockPanel>
-                                        <Button Content="{loc:Tr SetParameters}" VerticalAlignment="Center" Margin="3" Click="BtnSetParamtersClick" DockPanel.Dock="Right" />
+                                        <Button Content="{loc:Tr SetParameters}" VerticalAlignment="Center" Margin="3" Click="BtnSetParamtersClick" DockPanel.Dock="Right" DataContext="{Binding Key}"/>
                                         <ComboBox VerticalAlignment="Center" Margin="3" DockPanel.Dock="Right" SelectedValue="{Binding Path}"  ItemsSource ="{Binding FilePathes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type teamManager:Settings}}}" Width="168"/>
                                         <TextBlock Text="{loc:Tr SetScripts}" VerticalAlignment="Center" Margin="3" DockPanel.Dock="Right"/>
                                         <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
@@ -54,14 +55,14 @@
                     </TabItem>
                     <TabItem Header="{loc:Tr Emails}">
                         <StackPanel Margin="5">
-                            <captioned:CaptionedTextBox Value="{Binding Email.Login}" Caption="{loc:Tr Login}"/>
-                            <captioned:CaptionedPasswordBox Value="{Binding Email.Password}" Caption="{loc:Tr Password}"/>
-                            <captioned:CaptionedTextBox Value="{Binding Email.ServerUrl}" Caption="{loc:Tr ServerUrl}"/>
+                            <captioned1:CaptionedTextBox Value="{Binding Email.Login}" Caption="{loc:Tr Login}"/>
+                            <captioned1:CaptionedPasswordBox Value="{Binding Email.Password}" Caption="{loc:Tr Password}"/>
+                            <captioned1:CaptionedTextBox Value="{Binding Email.ServerUrl}" Caption="{loc:Tr ServerUrl}"/>
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton IsChecked="{Binding Email.IsSmtp}" Content="{loc:Tr IsSmtp}" Name="IsSmtp" GroupName="Email" Margin="5"/>
                                 <RadioButton IsChecked="{Binding Email.IsSmtp, Converter={StaticResource BoolInverterConverter}}" Content="{loc:Tr IsExchange}" GroupName="Email" Margin="5"/>
                             </StackPanel>
-                            <captioned:CaptionedNumericUpDown Value="{Binding Email.Port}" Caption="{loc:Tr Port}" IsEnabled="{Binding ElementName=IsSmtp, Path=IsChecked}" Minimum="0" Maximum="65536"/>
+                            <captioned1:CaptionedNumericUpDown Value="{Binding Email.Port}" Caption="{loc:Tr Port}" IsEnabled="{Binding ElementName=IsSmtp, Path=IsChecked}" Minimum="0" Maximum="65536"/>
                         </StackPanel>
                     </TabItem>
                 </TabControl>
@@ -75,9 +76,9 @@
                             <TextBlock Text="{Binding Key}" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
                             <StackPanel Orientation="Horizontal"  Margin="10 5" >
                                 <StackPanel Orientation="Horizontal">
-                                    <RadioButton IsChecked="{Binding IsHolyday}" GroupName="Day" Margin="5"/>
+                                    <RadioButton IsChecked="{Binding IsHolyday}" GroupName="{Binding Key}" Margin="5"/>
                                     <TextBlock Text="{loc:Tr IsHolyday}" Margin="0 5"/>
-                                    <RadioButton IsChecked="{Binding IsHolyday, Converter={StaticResource BoolInverterConverter}}" GroupName="Day" Margin="5"/>
+                                    <RadioButton IsChecked="{Binding IsHolyday, Converter={StaticResource BoolInverterConverter}}" GroupName="{Binding Key}" Margin="5"/>
                                     <TextBlock Text="{loc:Tr IsWorkingDay}" Margin="0 5"/>
                                 </StackPanel>
                             </StackPanel>

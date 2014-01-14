@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using WPFWinForms.GlobalHotKeys;
+using Mnk.Library.WPFWinForms.GlobalHotKeys;
 
-namespace WPFControls.Components
+namespace Mnk.Library.WPFControls.Components
 {
 	public class HotKeyBox : TextBox
 	{

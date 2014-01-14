@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ServiceProcess;
-using Common.Base.Log;
-using Common.Communications.Network;
-using SkyNet.Common.Configurations;
-using SkyNet.Common.Contracts.Agent;
-using SkyNet.Common.Contracts.Server;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications.Network;
+using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent;
+using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
 
-namespace SkyNet.Agent
+namespace Mnk.TBox.Tools.SkyNet.Agent
 {
     public partial class SkyNetAgentService : ServiceBase
     {

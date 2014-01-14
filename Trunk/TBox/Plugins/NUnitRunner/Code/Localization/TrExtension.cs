@@ -1,9 +1,9 @@
 ﻿using System.Resources;
-using Localization.Plugins.NUnitRunner;
+using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 
-namespace NUnitRunner.Code.Localization
+namespace Mnk.TBox.Plugins.NUnitRunner.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, NUnitRunnerLang.ResourceManager) { }
 	}

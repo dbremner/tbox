@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ScriptEngine.Core.Params;
 
+// for compability reason don't change this namespace
 namespace ScriptEngine.Core.Params
 {
 	public interface IBoolParameter { }

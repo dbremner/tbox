@@ -1,6 +1,6 @@
-﻿using PluginsShared.ScriptEngine;
+﻿using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 
-namespace PluginsShared.Automator
+namespace Mnk.TBox.Core.PluginsShared.Automator
 {
 	public interface IScript
 	{

@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace RequestsWatcher
+namespace Mnk.TBox.Plugins.RequestsWatcher
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

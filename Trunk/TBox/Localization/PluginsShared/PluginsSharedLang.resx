@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AreYouWantToSaveChanges" xml:space="preserve">
+    <value>Current file is changed, are you want to save changes?</value>
+  </data>
   <data name="AverageTime" xml:space="preserve">
     <value>Average time</value>
   </data>

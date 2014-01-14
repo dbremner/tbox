@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Data;
-using WPFControls.Code.Log;
+using Mnk.Library.Common.Data;
+using Mnk.Library.WPFControls.Code.Log;
 
-namespace PluginsShared.Watcher
+namespace Mnk.TBox.Core.PluginsShared.Watcher
 {
 	sealed class WatchEngine
 	{

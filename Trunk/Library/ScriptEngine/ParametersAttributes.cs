@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ScriptEngine.Core.Params;
+using Mnk.Library.Common.Tools;
 using ScriptEngine.Core.Params;
-using Common.Tools;
 
-namespace ScriptEngine
+namespace Mnk.Library.ScriptEngine
 {
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
 	public abstract class ParameterAttribute : Attribute

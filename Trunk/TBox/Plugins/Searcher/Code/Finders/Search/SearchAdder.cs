@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Searcher.Code.Finders.Parsers;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
 
-namespace Searcher.Code.Finders.Search
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Search
 {
 	class SearchAdder : IAdder
 	{

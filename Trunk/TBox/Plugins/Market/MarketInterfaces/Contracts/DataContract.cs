@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.ServiceModel;
-using Common.Data;
+using Mnk.Library.Common.Data;
 
-namespace MarketInterfaces.Contracts
+namespace Mnk.TBox.Plugins.Market.Interfaces.Contracts
 {
 	[MessageContract]
 	public class DataContract : IDisposable

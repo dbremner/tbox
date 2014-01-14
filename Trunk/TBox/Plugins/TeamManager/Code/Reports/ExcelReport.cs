@@ -2,12 +2,12 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using Localization.Plugins.TeamManager;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
+using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using TeamManager.Code.Reports.Contracts;
 
-namespace TeamManager.Code.Reports
+namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
 {
     class ExcelReport : IReportsPrinter
     {

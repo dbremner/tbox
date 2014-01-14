@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace Searcher.Code.Settings
+namespace Mnk.TBox.Plugins.Searcher.Code.Settings
 {
 	[Serializable]
 	public sealed class IndexSettings : Data

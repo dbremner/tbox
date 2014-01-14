@@ -1,9 +1,9 @@
 ﻿using System.Resources;
-using Localization.Plugins.DirectoryProcessor;
+using Mnk.TBox.Locales.Localization.Plugins.DirectoryProcessor;
 
-namespace DirectoryProcessor.Code.Localization
+namespace Mnk.TBox.Plugins.DirectoryProcessor.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, DirectoryProcessorLang.ResourceManager) { }
 	}

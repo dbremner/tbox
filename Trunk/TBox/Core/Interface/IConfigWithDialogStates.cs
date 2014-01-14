@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace Interface
+namespace Mnk.TBox.Core.Interface
 {
 	public interface IConfigWithDialogStates
 	{

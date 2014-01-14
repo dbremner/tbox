@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Common.Tools;
-using Localization.Plugins.TeamManager;
-using PluginsShared.ReportsGenerator;
-using TeamManager.Code.Reports.Contracts;
-using TeamManager.Code.Scripts;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
+using Mnk.TBox.Plugins.TeamManager.Code.Scripts;
 
-namespace TeamManager.Code.Reports
+namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
 {
     class ReportsBuilder
     {

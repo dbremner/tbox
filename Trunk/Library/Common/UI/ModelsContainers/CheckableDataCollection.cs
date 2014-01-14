@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace Common.UI.ModelsContainers
+namespace Mnk.Library.Common.UI.ModelsContainers
 {
 	[Serializable]
 	public class CheckableDataCollection<T> : ObservableCollection<T>, ICheckableDataCollection

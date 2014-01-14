@@ -1,4 +1,4 @@
-﻿namespace PluginsShared.Tools
+﻿namespace Mnk.TBox.Core.PluginsShared.Tools
 {
 	public interface IMsBuildProvider
 	{

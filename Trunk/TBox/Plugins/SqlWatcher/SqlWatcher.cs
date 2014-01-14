@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.SqlWatcher;
-using PluginsShared.Watcher;
-using SqlWatcher.Code;
-using WPFSyntaxHighlighter;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.SqlWatcher;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.TBox.Plugins.SqlWatcher.Code;
+using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace SqlWatcher
+namespace Mnk.TBox.Plugins.SqlWatcher
 {
 	[PluginInfo(typeof(SqlWatcherLang), typeof(Properties.Resources), PluginGroup.Database)]
 	public sealed class SqlWatcher : ConfigurablePlugin<Settings, Config>, IDisposable

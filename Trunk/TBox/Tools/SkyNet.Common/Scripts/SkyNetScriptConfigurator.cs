@@ -1,9 +1,9 @@
-﻿using PluginsShared.ReportsGenerator;
-using PluginsShared.ScriptEngine;
-using ScriptEngine.Core;
-using ScriptEngine.Core.Interfaces;
+﻿using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.Library.ScriptEngine.Core;
+using Mnk.Library.ScriptEngine.Core.Interfaces;
 
-namespace SkyNet.Common.Scripts
+namespace Mnk.TBox.Tools.SkyNet.Common.Scripts
 {
     public class SkyNetScriptConfigurator : IScriptConfigurator
     {

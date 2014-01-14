@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Common.UI.ModelsContainers;
-using Interface;
-using ScriptEngine;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.ScriptEngine;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace SkyNet.Code.Settings
+namespace Mnk.TBox.Plugins.SkyNet.Code.Settings
 {
     public class Config: IConfigWithDialogStates
 	{

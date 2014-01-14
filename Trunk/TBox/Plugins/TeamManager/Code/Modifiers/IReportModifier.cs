@@ -1,4 +1,4 @@
-﻿namespace TeamManager.Code.Modifiers
+﻿namespace Mnk.TBox.Plugins.TeamManager.Code.Modifiers
 {
     interface IReportModifier
     {

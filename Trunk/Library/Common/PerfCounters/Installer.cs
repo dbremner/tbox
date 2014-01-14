@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 
-namespace Common.PerfCounters
+namespace Mnk.Library.Common.PerfCounters
 {
 	public class Installer
 	{

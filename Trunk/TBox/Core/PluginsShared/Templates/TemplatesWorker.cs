@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Common.Tools;
-using Common.UI.Model;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
 
 [assembly: InternalsVisibleTo("UnitTests")]
-namespace PluginsShared.Templates
+namespace Mnk.TBox.Core.PluginsShared.Templates
 {
 	public class TemplatesWorker
 	{

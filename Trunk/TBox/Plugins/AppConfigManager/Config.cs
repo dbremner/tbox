@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using AppConfigManager.Code;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Plugins.AppConfigManager.Code;
 
-namespace AppConfigManager
+namespace Mnk.TBox.Plugins.AppConfigManager
 {
 	[Serializable]
 	public class Config

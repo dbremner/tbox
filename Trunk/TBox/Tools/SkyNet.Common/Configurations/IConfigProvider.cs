@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace SkyNet.Common.Configurations
+namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
 {
     [ServiceContract]
     public interface IConfigProvider<T>

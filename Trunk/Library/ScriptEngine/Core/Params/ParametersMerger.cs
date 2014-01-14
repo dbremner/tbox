@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
+using ScriptEngine.Core.Params;
 
-namespace ScriptEngine.Core.Params
+namespace Mnk.Library.ScriptEngine.Core.Params
 {
 	public sealed class ParametersMerger
 	{

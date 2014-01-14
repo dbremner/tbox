@@ -1,38 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.UI.ModelsContainers;
-using ParallelNUnit.Core;
-using ParallelNUnit.Infrastructure;
-using ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
 
-namespace ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     internal class ConsoleView : IUnitTestsView
     {
         public double Time { get; set; }
-        private TestsMetricsCalculator tmc;
+        public TestsMetricsCalculator Tmc { get; private set; }
         private IList<Result> testsResults;
 
         public void SetItems(IList<Result> items, TestsMetricsCalculator metrics)
         {
-            tmc = metrics;
+            Tmc = metrics;
             Console.WriteLine();
             testsResults = items;
             Console.WriteLine(
                 "Tests run: {0}, Errors: {1}, Failures: {2}, Inconclusive: {3}, Time: {4} seconds\n  Not run: {5}, Invalid: {6}, Ignored: {7}, Skipped: {8}",
-                tmc.Passed,
-                tmc.Errors,
-                tmc.Failures,
-                tmc.Inconclusive,
+                Tmc.Passed,
+                Tmc.Errors,
+                Tmc.Failures,
+                Tmc.Inconclusive,
                 Time,
-                tmc.NotRun.Length,
-                tmc.Invalid,
-                tmc.Ignored,
-                tmc.Skipped
+                Tmc.NotRun.Length,
+                Tmc.Invalid,
+                Tmc.Ignored,
+                Tmc.Skipped
                 );
 
-            PrintArray("Errors and Failures:", tmc.Failed, true);
-            PrintArray("Tests Not Run:", tmc.NotRun, false);
+            PrintArray("Errors and Failures:", Tmc.Failed, true);
+            PrintArray("Tests Not Run:", Tmc.NotRun, false);
 
             Console.WriteLine();
         }
@@ -59,7 +59,7 @@ namespace ConsoleUnitTestsRunner.ConsoleRunner
 
         public void GenerateReport(string path, string xmlReport)
         {
-            new ReportBuilder().GenerateReport(path,xmlReport,tmc,testsResults);
+            new ReportBuilder().GenerateReport(path,xmlReport,Tmc,testsResults);
         }
     }
 }

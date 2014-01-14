@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace PluginsShared.Encoders
+namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
 	public class CCodeFormatter : BracketsFormatter
 	{

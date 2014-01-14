@@ -5,14 +5,13 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using Common.UI.Model;
-using WPFControls.Code.Dialogs;
-using WPFControls.Code.EditPanel;
-using WPFControls.Components.EditButtons;
-using WPFControls.Components.Units.Properties;
-using WPFControls.Controls;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WPFControls.Code.Dialogs;
+using Mnk.Library.WPFControls.Components.EditButtons;
+using Mnk.Library.WPFControls.Components.Units.Properties;
+using Mnk.Library.WPFControls.Code.EditPanel;
 
-namespace WPFControls.Components.Units
+namespace Mnk.Library.WPFControls.Components.Units
 {
 	public abstract class BaseCollectionUnit : UserControl, IUnit
 	{

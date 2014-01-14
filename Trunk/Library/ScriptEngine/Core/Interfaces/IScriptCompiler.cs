@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
-namespace ScriptEngine.Core.Interfaces
+namespace Mnk.Library.ScriptEngine.Core.Interfaces
 {
 	public interface IScriptCompiler<out T> : ICompiler<T>
 	{

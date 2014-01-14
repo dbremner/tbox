@@ -2,10 +2,10 @@
 using System.ServiceProcess;
 using System.Windows;
 using System.Windows.Controls;
-using Interface;
-using WPFControls.Code.Dialogs;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Code.Dialogs;
 
-namespace ServicesCommander
+namespace Mnk.TBox.Plugins.ServicesCommander
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

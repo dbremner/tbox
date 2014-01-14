@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Interface;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace BookletPagesGenerator.Code
+namespace Mnk.TBox.Plugins.BookletPagesGenerator.Code
 {
 	[Serializable]
 	public sealed class Config : IConfigWithDialogStates

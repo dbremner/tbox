@@ -2,10 +2,10 @@
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using Common.Base.Log;
-using Common.Communications;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications;
 
-namespace FeedbackService
+namespace Mnk.TBox.Tools.FeedbackService
 {
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = false)]
 	class FeedbackServer : IFeedbackServer

@@ -3,12 +3,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
-using Common.Base.Log;
-using Interface;
-using SkyNet.Common.Configurations;
-using Common.Communications.Interprocess;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.Library.Common.Communications.Interprocess;
 
-namespace SkyNet.Server
+namespace Mnk.TBox.Tools.SkyNet.Server
 {
     static class Program
     {

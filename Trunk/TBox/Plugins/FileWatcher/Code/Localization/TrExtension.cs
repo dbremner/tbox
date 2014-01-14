@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.FileWatcher;
+﻿using Mnk.TBox.Locales.Localization.Plugins.FileWatcher;
 
-namespace FileWatcher.Code.Localization
+namespace Mnk.TBox.Plugins.FileWatcher.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, FileWatcherLang.ResourceManager) { }
 	}

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Common.Base.Log
+namespace Mnk.Library.Common.Base.Log
 {
 	public sealed class MemLog : AbstractLog
 	{

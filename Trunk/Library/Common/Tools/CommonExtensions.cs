@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Common.Tools
+namespace Mnk.Library.Common.Tools
 {
 	public static class CommonExtensions
 	{

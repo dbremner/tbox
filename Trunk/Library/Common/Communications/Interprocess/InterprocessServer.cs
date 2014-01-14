@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
 
-namespace Common.Communications.Interprocess
+namespace Mnk.Library.Common.Communications.Interprocess
 {
     public sealed class InterprocessServer<T> : IDisposable
     {

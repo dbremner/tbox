@@ -2,10 +2,10 @@
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using Common.UI.Model;
-using WPFControls.Controls;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WPFControls.Components.FilesAndFolders;
 
-namespace WPFControls.Components
+namespace Mnk.Library.WPFControls.Components
 {
 	public class CheckableFileListBox : CheckableListBox
 	{

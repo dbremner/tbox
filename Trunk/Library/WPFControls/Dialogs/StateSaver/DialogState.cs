@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace WPFControls.Dialogs.StateSaver
+namespace Mnk.Library.WPFControls.Dialogs.StateSaver
 {
 	[Serializable]
 	public class DialogState

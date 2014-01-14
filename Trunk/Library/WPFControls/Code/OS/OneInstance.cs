@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace WPFControls.Code.OS
+namespace Mnk.Library.WPFControls.Code.OS
 {
 	public static class OneInstance
 	{

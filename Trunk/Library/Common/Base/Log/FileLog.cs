@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Common.Base.Log
+namespace Mnk.Library.Common.Base.Log
 {
 	public class FileLog : AbstractLog
 	{

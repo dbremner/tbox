@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace TBox.Code.Configs
+namespace Mnk.TBox.Core.Application.Code.Configs
 {
     public class Configuration
     {

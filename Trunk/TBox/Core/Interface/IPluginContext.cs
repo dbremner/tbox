@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Interface
+namespace Mnk.TBox.Core.Interface
 {
 	public interface IPluginContext
 	{

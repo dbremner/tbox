@@ -2,12 +2,12 @@
 using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Common.UI.Model;
-using Interface;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.UI.Model;
+using Mnk.TBox.Core.Interface;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace TBox.Code.Objects
+namespace Mnk.TBox.Core.Application.Code.Objects
 {
 	public class EnginePluginInfo : CheckableData
 	{

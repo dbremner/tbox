@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Timers;
 
-namespace Common.PerfCounters
+namespace Mnk.Library.Common.PerfCounters
 {
 	public sealed class CounterManager
 	{

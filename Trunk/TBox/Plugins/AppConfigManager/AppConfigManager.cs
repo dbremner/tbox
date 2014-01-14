@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.AppConfigManager;
-using PluginsShared.Tools;
-using WPFWinForms;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.AppConfigManager;
+using Mnk.TBox.Core.PluginsShared.Tools;
+using Mnk.Library.WPFWinForms;
 
-namespace AppConfigManager
+namespace Mnk.TBox.Plugins.AppConfigManager
 {
 	[PluginInfo(typeof(AppConfigManagerLang), typeof(Properties.Resources), PluginGroup.Desktop)]
 	public class AppConfigManager : ConfigurablePlugin<Settings, Config>

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using TBox.Code.AutoUpdate;
-using TBox.Code.Configs;
-using TBox.Code.ErrorsSender;
-using TBox.Code.FastStart.Settings;
-using TBox.Code.HotKeys.Settings;
-using TBox.Code.Shelduler.Settings;
-using WPFControls.Dialogs.StateSaver;
+using Mnk.TBox.Core.Application.Code.AutoUpdate;
+using Mnk.TBox.Core.Application.Code.Configs;
+using Mnk.TBox.Core.Application.Code.ErrorsSender;
+using Mnk.TBox.Core.Application.Code.FastStart.Settings;
+using Mnk.TBox.Core.Application.Code.HotKeys.Settings;
+using Mnk.TBox.Core.Application.Code.Shelduler.Settings;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
 
-namespace TBox.Code
+namespace Mnk.TBox.Core.Application.Code
 {
 	[Serializable]
 	public sealed class Config

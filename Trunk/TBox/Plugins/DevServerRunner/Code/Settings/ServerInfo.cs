@@ -1,7 +1,7 @@
 ﻿using System;
-using Common.UI.Model;
+using Mnk.Library.Common.UI.Model;
 
-namespace DevServerRunner.Code.Settings
+namespace Mnk.TBox.Plugins.DevServerRunner.Code.Settings
 {
 	[Serializable]
 	public class ServerInfo : CheckableData

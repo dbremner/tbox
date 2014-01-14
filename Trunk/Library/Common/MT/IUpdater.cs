@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Common.MT
+namespace Mnk.Library.Common.MT
 {
-	public interface IUpdater
+	public interface IUpdater : IDisposable
 	{
 		void Update(float value);
 		void Update(string caption, float value);

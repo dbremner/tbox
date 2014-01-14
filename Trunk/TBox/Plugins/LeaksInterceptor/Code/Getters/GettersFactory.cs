@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace LeaksInterceptor.Code.Getters
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters
 {
 	class GettersFactory
 	{

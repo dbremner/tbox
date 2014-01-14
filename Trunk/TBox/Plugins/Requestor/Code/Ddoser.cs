@@ -1,8 +1,8 @@
-﻿using PluginsShared.Ddos;
-using PluginsShared.Ddos.Statistic;
-using Requestor.Code.Settings;
+﻿using Mnk.TBox.Core.PluginsShared.Ddos;
+using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Plugins.Requestor.Code.Settings;
 
-namespace Requestor.Code
+namespace Mnk.TBox.Plugins.Requestor.Code
 {
 	class Ddoser : Ddoser<Op>
 	{

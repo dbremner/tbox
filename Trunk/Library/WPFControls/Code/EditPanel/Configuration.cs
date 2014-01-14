@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using WPFControls.Code.DataManagers;
-using WPFControls.Code.Dialogs;
+using Mnk.Library.WPFControls.Code.DataManagers;
+using Mnk.Library.WPFControls.Code.Dialogs;
 
-namespace WPFControls.Code.EditPanel
+namespace Mnk.Library.WPFControls.Code.EditPanel
 {
 	class Configuration
 	{

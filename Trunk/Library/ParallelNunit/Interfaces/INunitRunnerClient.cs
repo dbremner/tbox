@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace ParallelNUnit.Interfaces
+namespace Mnk.Library.ParallelNUnit.Interfaces
 {
     [ServiceContract]
     public interface INunitRunnerClient
@@ -13,7 +13,5 @@ namespace ParallelNUnit.Interfaces
         bool SendTestsResults(string items);
         [OperationContract]
         void CanFinish(string handle);
-        [OperationContract]
-        void SendOutput(string text);
     }
 }

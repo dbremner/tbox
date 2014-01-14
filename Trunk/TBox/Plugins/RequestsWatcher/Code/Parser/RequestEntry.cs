@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace RequestsWatcher.Code.Parser
+namespace Mnk.TBox.Plugins.RequestsWatcher.Code.Parser
 {
 	class RequestEntry
 	{

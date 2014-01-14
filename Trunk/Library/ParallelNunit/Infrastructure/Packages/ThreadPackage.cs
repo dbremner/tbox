@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.UI.ModelsContainers;
-using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Infrastructure.Interfaces;
-using ParallelNUnit.Infrastructure.Runners;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Execution;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Infrastructure.Runners;
 
-namespace ParallelNUnit.Infrastructure.Packages
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 {
     public sealed class ThreadPackage : BasePackage
     {

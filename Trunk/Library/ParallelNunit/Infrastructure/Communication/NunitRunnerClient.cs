@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Execution;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Infrastructure.Runners;
+using Mnk.Library.ParallelNUnit.Interfaces;
 using NUnit.Core;
-using ParallelNUnit.Core;
-using ParallelNUnit.Execution;
-using ParallelNUnit.Infrastructure.Interfaces;
-using ParallelNUnit.Infrastructure.Runners;
-using ParallelNUnit.Interfaces;
 using ServiceStack.Text;
 
-namespace ParallelNUnit.Infrastructure.Communication
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Communication
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     class NunitRunnerClient : INunitRunnerClient
@@ -19,7 +19,6 @@ namespace ParallelNUnit.Infrastructure.Communication
         private readonly object locker = new object();
         public Result[] Collection { get; private set; }
         private readonly IDictionary<int, Result> allTestsResults;
-        public IList<string> Output { get; private set; }
         private int allTestsCount;
         public IContext TestsContext { get; private set; }
         private TestRunConfig runConfig;
@@ -29,7 +28,6 @@ namespace ParallelNUnit.Infrastructure.Communication
         public NunitRunnerClient()
         {
             Collection = new Result[0];
-            Output = new List<string>();
             allTestsResults = new Dictionary<int, Result>();
             TestsContext = null;
         }
@@ -41,7 +39,6 @@ namespace ParallelNUnit.Infrastructure.Communication
 
         public void PrepareToRun(Synchronizer sync, IProgressStatus u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , IContext context)
         {
-            Output.Clear();
             runConfig = config;
             allTestsCount = 0;
             allTestsResults.Clear();
@@ -125,6 +122,7 @@ namespace ParallelNUnit.Infrastructure.Communication
             item.Description = i.Description;
             item.Message = i.Message;
             item.StackTrace = i.StackTrace;
+            item.Output = i.Output;
             item.State = i.State;
         }
 
@@ -136,11 +134,6 @@ namespace ParallelNUnit.Infrastructure.Communication
         public void CanFinish(string handle)
         {
             synchronizer.ProcessNextAgent(handle);
-        }
-
-        public void SendOutput(string text)
-        {
-            Output.Add(text);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using Common.Network;
-using Localization.Plugins.Requestor;
-using Requestor.Code.Settings;
-using WPFControls.Dialogs;
+using Mnk.Library.Common.Network;
+using Mnk.TBox.Locales.Localization.Plugins.Requestor;
+using Mnk.TBox.Plugins.Requestor.Code.Settings;
+using Mnk.Library.WPFControls.Dialogs;
 
-namespace Requestor.Code
+namespace Mnk.TBox.Plugins.Requestor.Code
 {
 	public class BaseExecutor
 	{

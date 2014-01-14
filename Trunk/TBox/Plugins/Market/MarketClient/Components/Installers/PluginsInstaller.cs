@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using MarketClient.ServiceReference;
+using Mnk.TBox.Plugins.Market.Client.ServiceReference;
 
-namespace MarketClient.Components.Installers
+namespace Mnk.TBox.Plugins.Market.Client.Components.Installers
 {
 	public class PluginsInstaller
 	{

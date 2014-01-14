@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.SkyNet;
-using PluginsShared.ScriptEngine;
-using SkyNet.Code.Settings;
-using SkyNet.Common.Scripts;
-using WPFControls.Code;
-using WPFControls.Dialogs.StateSaver;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.TBox.Plugins.SkyNet.Code.Settings;
+using Mnk.TBox.Tools.SkyNet.Common.Scripts;
+using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace SkyNet
+namespace Mnk.TBox.Plugins.SkyNet
 {
     [PluginInfo(typeof(SkyNetLang), 18, PluginGroup.Development)]
     public class SkyNet : ConfigurablePlugin<Settings, Config>

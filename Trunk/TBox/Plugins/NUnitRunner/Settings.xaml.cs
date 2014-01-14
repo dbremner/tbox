@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace NUnitRunner
+namespace Mnk.TBox.Plugins.NUnitRunner
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

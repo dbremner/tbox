@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Base.Log;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.ProjectMan;
-using PluginsShared.Tools;
-using ProjectMan.Code;
-using ProjectMan.Code.Settings;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
+using Mnk.TBox.Core.PluginsShared.Tools;
+using Mnk.TBox.Plugins.ProjectMan.Code;
+using Mnk.TBox.Plugins.ProjectMan.Code.Settings;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace ProjectMan
+namespace Mnk.TBox.Plugins.ProjectMan
 {
 	[PluginInfo(typeof(ProjectManLang), 43, PluginGroup.Development)]
 	public class ProjectMan : ConfigurablePlugin<Settings, Config>

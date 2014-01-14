@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Data;
-using Common.MT;
-using Common.SaveLoad;
-using Common.Tools;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.Data;
+using Mnk.Library.Common.MT;
+using Mnk.Library.Common.SaveLoad;
 
-namespace Common.Plugins
+namespace Mnk.Library.Common.Plugins
 {
 	public class PlugMan<TInterface> : IEnumerable<Pair<string, TInterface>>
 		where TInterface : class 

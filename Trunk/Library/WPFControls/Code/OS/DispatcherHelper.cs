@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Threading;
 
-namespace WPFControls.Code.OS
+namespace Mnk.Library.WPFControls.Code.OS
 {
 	public class DispatcherHelper
 	{

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 
-namespace WPFWinForms
+namespace Mnk.Library.WPFWinForms
 {
 	public static class MenuExtenstions
 	{

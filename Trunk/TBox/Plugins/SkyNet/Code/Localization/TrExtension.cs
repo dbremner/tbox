@@ -1,7 +1,7 @@
-﻿using Localization.Plugins.SkyNet;
-using WPFControls.Localization;
+﻿using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
+using Mnk.Library.WPFControls.Localization;
 
-namespace SkyNet.Code.Localization
+namespace Mnk.TBox.Plugins.SkyNet.Code.Localization
 {
 	public class TrExtension : TranslateExtension
 	{

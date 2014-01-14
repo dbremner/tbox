@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Base.Log;
-using Common.Communications.Interprocess;
-using Common.Tools;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.ParallelNUnit.Core;
+using Mnk.Library.ParallelNUnit.Infrastructure.Communication;
+using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Interfaces;
 using NUnit.Core;
-using ParallelNUnit.Core;
-using ParallelNUnit.Infrastructure.Communication;
-using ParallelNUnit.Infrastructure.Interfaces;
-using ParallelNUnit.Interfaces;
 
-namespace ParallelNUnit.Infrastructure.Packages
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 {
     public abstract class BasePackage : IPackage, IDisposable
     {
@@ -37,11 +37,6 @@ namespace ParallelNUnit.Infrastructure.Packages
         private readonly PrefetchManager prefetchManager;
         public int Count { get { return Metrics.Total; } }
         public int FailedCount { get { return Metrics.Failed.Length; } }
-
-        public string[] Output
-        {
-            get { return ((NunitRunnerClient)Server.Owner).Output.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); }
-        }
 
         protected BasePackage(string path, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view)
         {
@@ -73,19 +68,25 @@ namespace ParallelNUnit.Infrastructure.Packages
 
         public IList<IList<Result>> PrepareToRun(int processCount, string[] categories, bool? include, bool usePrefetch, IList<Result> checkedTests=null)
         {
+            ResetTests(checkedTests);
+            var items = checkedTests ?? Metrics.Tests;
+            var filter = GetFilter(categories, include);
+            return (processCount > 1)
+                                ? DivideTestsToRun(items.Where(filter).ToArray(), processCount, usePrefetch).ToArray()
+                                : new[] { items.Where(filter).ToArray() };
+        }
+
+        private void ResetTests(IList<Result> checkedTests)
+        {
             var items = checkedTests ?? Metrics.All;
             foreach (var i in items)
             {
                 i.State = ResultState.NotRunnable;
                 i.Message = i.StackTrace = i.Description = string.Empty;
-                i.Time = i.AssertCount = 0 ;
+                i.Time = i.AssertCount = 0;
                 i.Executed = false;
+                i.Output = string.Empty;
             }
-            items = checkedTests ?? Metrics.Tests;
-            var filter = GetFilter(categories, include);
-            return (processCount > 1)
-                                ? DivideTestsToRun(items.Where(filter).ToArray(), processCount, usePrefetch).ToArray()
-                                : new[] { items.Where(filter).ToArray() };
         }
 
 

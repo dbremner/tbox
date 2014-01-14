@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Common.Data;
+using Mnk.Library.Common.Data;
 
-namespace TBox.Code.Managers
+namespace Mnk.TBox.Core.Application.Code.Managers
 {
 	class WarmingUpManager
 	{

@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using FileWatcher.Code;
-using Interface;
+using Mnk.TBox.Plugins.FileWatcher.Code;
+using Mnk.TBox.Core.Interface;
 
-namespace FileWatcher
+namespace Mnk.TBox.Plugins.FileWatcher
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

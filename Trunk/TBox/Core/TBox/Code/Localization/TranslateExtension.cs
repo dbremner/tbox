@@ -1,7 +1,7 @@
-﻿using Localization.TBox;
-using WPFControls.Localization;
+﻿using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.Library.WPFControls.Localization;
 
-namespace TBox.Code.Localization
+namespace Mnk.TBox.Core.Application.Code.Localization
 {
 	public class TrExtension : TranslateExtension
 	{

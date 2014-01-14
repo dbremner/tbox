@@ -1,7 +1,7 @@
 ﻿using System;
-using Searcher.Code.Settings;
+using Mnk.TBox.Plugins.Searcher.Code.Settings;
 
-namespace Searcher.Code.Checkers
+namespace Mnk.TBox.Plugins.Searcher.Code.Checkers
 {
 	public interface IFileChecker
 	{

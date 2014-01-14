@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
-using Interface;
+using Mnk.TBox.Core.Interface;
 
-namespace ProjectMan
+namespace Mnk.TBox.Plugins.ProjectMan
 {
 	/// <summary>
 	/// Interaction logic for Settings.xaml

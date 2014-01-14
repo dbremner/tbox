@@ -2,10 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using Encoder.Code;
-using Localization.Plugins.Encoder;
+using Mnk.TBox.Locales.Localization.Plugins.Encoder;
+using Mnk.TBox.Plugins.Encoder.Code;
 
-namespace Encoder.Components
+namespace Mnk.TBox.Plugins.Encoder.Components
 {
 	/// <summary>
 	/// Interaction logic for Dialog.xaml

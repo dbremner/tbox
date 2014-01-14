@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Common.Base.Log;
-using Common.Console;
-using WPFWinForms;
+using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Console;
+using Mnk.Library.WPFWinForms;
 
-namespace DirectoryProcessor.Code
+namespace Mnk.TBox.Plugins.DirectoryProcessor.Code
 {
 	class Executor
 	{

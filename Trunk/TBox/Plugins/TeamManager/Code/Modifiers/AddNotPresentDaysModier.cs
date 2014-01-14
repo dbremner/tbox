@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Tools;
-using PluginsShared.ReportsGenerator;
+using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 
-namespace TeamManager.Code.Modifiers
+namespace Mnk.TBox.Plugins.TeamManager.Code.Modifiers
 {
     class AddNotPresentDaysModier : IReportModifier
     {

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Common.Network;
-using PluginsShared.Automator;
-using PluginsShared.Tools;
-using ScriptEngine;
+using Mnk.Library.Common.Network;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.TBox.Core.PluginsShared.Tools;
+using Mnk.Library.ScriptEngine;
 
 namespace Solution.Scripts
 {

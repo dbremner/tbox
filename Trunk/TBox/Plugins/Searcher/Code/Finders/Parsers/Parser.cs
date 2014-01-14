@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Text;
-using Searcher.Code.Finders.Scanner;
-using Searcher.Code.Settings;
+using Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner;
+using Mnk.TBox.Plugins.Searcher.Code.Settings;
 
-namespace Searcher.Code.Finders.Parsers
+namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
 {
 	sealed class Parser : IParser
 	{

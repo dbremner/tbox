@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.UI.Model
+namespace Mnk.Library.Common.UI.Model
 {
 	[Serializable]
 	public class PairData : Data

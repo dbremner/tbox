@@ -1,4 +1,4 @@
-﻿namespace PluginsShared.Ddos.Statistic
+﻿namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
 {
 	public class StatisticInfo
 	{

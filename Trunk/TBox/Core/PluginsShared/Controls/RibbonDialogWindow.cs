@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using Microsoft.Windows.Controls.Ribbon;
 
-namespace PluginsShared.Controls
+namespace Mnk.TBox.Core.PluginsShared.Controls
 {
     public class RibbonDialogWindow : RibbonWindow, IDisposable
 	{

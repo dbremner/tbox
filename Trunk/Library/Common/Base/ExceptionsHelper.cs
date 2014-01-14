@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Text;
-using Common.Base.Log;
+using Mnk.Library.Common.Base.Log;
 
-namespace Common.Base
+namespace Mnk.Library.Common.Base
 {
 	public static class ExceptionsHelper
 	{

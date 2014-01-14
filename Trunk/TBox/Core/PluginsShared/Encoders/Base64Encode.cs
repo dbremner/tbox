@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace PluginsShared.Encoders
+namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
 	public static class Base64Encode
 	{

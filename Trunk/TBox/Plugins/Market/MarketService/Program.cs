@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ServiceModel;
-using Common.Base;
-using Common.Base.Log;
+using Mnk.Library.Common.Base;
+using Mnk.Library.Common.Base.Log;
 
-namespace MarketService
+namespace Mnk.TBox.Plugins.Market.Service
 {
 	class Program
 	{

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using ParallelNUnit.Execution;
+using Mnk.Library.ParallelNUnit.Execution;
 
-namespace ParallelNUnit.Infrastructure.Runners
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     class ThreadTestsRunner : TestsRunner
     {
@@ -12,7 +12,7 @@ namespace ParallelNUnit.Infrastructure.Runners
             this.loadFromSameFolder = loadFromSameFolder;
         }
 
-        protected override IContext Run(bool needSynchronizationForTests, string handle, bool needOutput)
+        protected override IContext Run(string path, bool needSynchronizationForTests, string handle, bool needOutput)
         {
             var t = new Thread(o => new NUnitExecutor(loadFromSameFolder).RunTests(handle, !needSynchronizationForTests, needOutput));
             t.Start();

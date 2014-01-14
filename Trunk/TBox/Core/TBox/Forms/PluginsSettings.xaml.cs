@@ -6,22 +6,22 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
-using Common.OS;
-using Common.Tools;
-using Common.UI.ModelsContainers;
-using Localization.TBox;
-using TBox.Code;
-using TBox.Code.AutoUpdate;
-using TBox.Code.FastStart;
-using TBox.Code.HotKeys;
-using TBox.Code.Menu;
-using TBox.Code.Objects;
-using TBox.Code.Shelduler;
-using TBox.Code.Themes;
-using WPFControls.Code.OS;
-using WPFControls.Components;
+using Mnk.Library.Common.OS;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code;
+using Mnk.TBox.Core.Application.Code.AutoUpdate;
+using Mnk.TBox.Core.Application.Code.FastStart;
+using Mnk.TBox.Core.Application.Code.HotKeys;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.TBox.Core.Application.Code.Objects;
+using Mnk.TBox.Core.Application.Code.Shelduler;
+using Mnk.TBox.Core.Application.Code.Themes;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Components;
 
-namespace TBox.Forms
+namespace Mnk.TBox.Core.Application.Forms
 {
 	/// <summary>
 	/// Interaction logic for PluginsSettings.xaml

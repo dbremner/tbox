@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Common.Tools;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace TBox.Code.FastStart.Settings
+namespace Mnk.TBox.Core.Application.Code.FastStart.Settings
 {
 	[Serializable]
 	public class FastStartConfig

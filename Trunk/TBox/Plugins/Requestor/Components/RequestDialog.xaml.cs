@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Common.Network;
+using Mnk.Library.Common.Network;
 
-namespace Requestor.Components
+namespace Mnk.TBox.Plugins.Requestor.Components
 {
 	/// <summary>
 	/// Interaction logic for RequestDialog.xaml

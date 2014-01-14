@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Localization.TBox;
-using TBox.Code.HotKeys.Settings;
-using TBox.Code.Menu;
-using WPFControls.Components.Units;
-using WPFControls.Tools;
-using WPFWinForms;
-using WPFWinForms.GlobalHotKeys;
+using Mnk.TBox.Locales.Localization.TBox;
+using Mnk.TBox.Core.Application.Code.HotKeys.Settings;
+using Mnk.TBox.Core.Application.Code.Menu;
+using Mnk.Library.WPFControls.Components.Units;
+using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.GlobalHotKeys;
 
-namespace TBox.Code.HotKeys
+namespace Mnk.TBox.Core.Application.Code.HotKeys
 {
 	sealed class HotKeysManager : IDisposable
 	{

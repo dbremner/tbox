@@ -1,8 +1,8 @@
-﻿using Localization.Plugins.LeaksInterceptor;
+﻿using Mnk.TBox.Locales.Localization.Plugins.LeaksInterceptor;
 
-namespace LeaksInterceptor.Code.Localization
+namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Localization
 {
-	public class TrExtension : WPFControls.Localization.TranslateExtension
+	public class TrExtension : Mnk.Library.WPFControls.Localization.TranslateExtension
 	{
         public TrExtension(string key) : base(key, LeaksInterceptorLang.ResourceManager) { }
 	}

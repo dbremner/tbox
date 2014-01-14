@@ -1,8 +1,8 @@
 ﻿using System;
-using Common.Network;
-using Common.UI.Model;
+using Mnk.Library.Common.Network;
+using Mnk.Library.Common.UI.Model;
 
-namespace Requestor.Code.Settings
+namespace Mnk.TBox.Plugins.Requestor.Code.Settings
 {
 	[Serializable]
 	public sealed class Header : Data, IHeader

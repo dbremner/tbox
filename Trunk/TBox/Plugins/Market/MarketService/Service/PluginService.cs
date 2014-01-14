@@ -1,11 +1,11 @@
 ﻿using System.Data.Objects;
 using System.Linq;
-using Common.Base.Log;
-using MarketInterfaces.Contracts;
-using Common.Base;
-using IPlugin = MarketInterfaces.Plugin;
+using Mnk.Library.Common.Base.Log;
+using Mnk.TBox.Plugins.Market.Interfaces.Contracts;
+using Mnk.Library.Common.Base;
+using IPlugin = Mnk.TBox.Plugins.Market.Interfaces.Plugin;
 
-namespace MarketService.Service
+namespace Mnk.TBox.Plugins.Market.Service.Service
 {
 	class PluginService
 	{

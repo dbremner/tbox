@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace ParallelNUnit.Infrastructure.Runners
+namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     class AgentProcessCreator
     {

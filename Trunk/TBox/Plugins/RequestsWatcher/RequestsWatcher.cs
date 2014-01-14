@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows;
-using Interface;
-using Interface.Atrributes;
-using Localization.Plugins.RequestsWatcher;
-using PluginsShared.Watcher;
-using RequestsWatcher.Code;
-using RequestsWatcher.Code.Parser;
-using RequestsWatcher.Components;
-using WPFWinForms;
-using WPFWinForms.Icons;
+using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Locales.Localization.Plugins.RequestsWatcher;
+using Mnk.TBox.Core.PluginsShared.Watcher;
+using Mnk.TBox.Plugins.RequestsWatcher.Code;
+using Mnk.TBox.Plugins.RequestsWatcher.Code.Parser;
+using Mnk.TBox.Plugins.RequestsWatcher.Components;
+using Mnk.Library.WPFWinForms;
+using Mnk.Library.WPFWinForms.Icons;
 
-namespace RequestsWatcher
+namespace Mnk.TBox.Plugins.RequestsWatcher
 {
 	[PluginInfo(typeof(RequestsWatcherLang), 14, PluginGroup.Web)]
     public sealed class RequestsWatcher : ConfigurablePlugin<Settings, Config>, IDisposable

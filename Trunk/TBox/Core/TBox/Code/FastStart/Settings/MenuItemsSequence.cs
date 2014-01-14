@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Tools;
-using Common.UI.Model;
-using Common.UI.ModelsContainers;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace TBox.Code.FastStart.Settings
+namespace Mnk.TBox.Core.Application.Code.FastStart.Settings
 {
 	[Serializable]
 	public class MenuItemsSequence : CheckableData
