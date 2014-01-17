@@ -225,16 +225,10 @@
     <Content Include="Data\Automater\Scripts\ReplaceStrings.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Data\TeamManager\DataProviders\PMCScript.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Data\TeamManager\DataProviders\SubversionScript.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TeamManager\DataProviders\TargetProcessScript.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\TeamManager\Validators\PMC.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Data\TeamManager\Validators\Default.cs">
