@@ -58,7 +58,7 @@
                 <RowDefinition Height="5"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <DataGrid Name="lvResult" DockPanel.Dock="Top" AutoGenerateColumns="True" DataContext="{Binding}" MouseDoubleClick="LvResultMouseDoubleClick" SelectionChanged="LvResultSelectedIndexChanged" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" IsReadOnly="True" />
+            <DataGrid Name="lvResult" DockPanel.Dock="Top" AutoGenerateColumns="True" DataContext="{Binding}" MouseDoubleClick="LvResultMouseDoubleClick" SelectionChanged="LvResultSelectedIndexChanged" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" IsReadOnly="True" ColumnWidth="*"/>
             <GridSplitter Grid.Row="1" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
             <WPFSyntaxHighlighter:SyntaxHighlighter Grid.Row="2" Name="edText" IsReadOnly="True"/>
         </Grid>

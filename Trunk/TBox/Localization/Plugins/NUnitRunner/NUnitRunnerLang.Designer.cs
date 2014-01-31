@@ -124,6 +124,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collapse.
+        /// </summary>
+        public static string CollapseAll {
+            get {
+                return ResourceManager.GetString("CollapseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Command to run before tests.
         /// </summary>
         public static string CommandToRunBeforeTests {
@@ -210,6 +219,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         public static string Exclude {
             get {
                 return ResourceManager.GetString("Exclude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand.
+        /// </summary>
+        public static string ExpandAll {
+            get {
+                return ResourceManager.GetString("ExpandAll", resourceCulture);
             }
         }
         

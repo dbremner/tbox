@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using System.Threading.Tasks;
 using Mnk.Library.Common.Base.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
+using Mnk.TBox.Core.PluginsShared.LongPaths;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
 using Mnk.TBox.Plugins.Searcher.Code.Finders.Search;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
+using ZetaLongPaths;
 
 namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 {
@@ -41,7 +42,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 			filter = new Filter(index.FileMasksToExclude.Select(x => x.Key));
 			settings = index;
 			dirsCount = settings.FileNames.CheckedItems
-				.Sum(x => GetSubdirsCount(new DirectoryInfo(x.Key)));
+				.Sum(x => GetSubdirsCount(new ZlpDirectoryInfo(x.Key)));
 			currDirNo = 0;
 			readedSize = 0;
 			foreach (var s in settings.FileTypes)
@@ -53,7 +54,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 			updater.Update(dirsCount);
 		}
 
-		private int GetSubdirsCount(DirectoryInfo info)
+		private int GetSubdirsCount(ZlpDirectoryInfo info)
 		{
 			return 1 + info.SafeEnumerateDirectories(Log)
 				.Where(x => filter.CheckAttribute(x.Attributes))
@@ -94,29 +95,21 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 					currDirNo, dirsCount);
 
 			path.Add(Dirs.Add(dirName));
-			var dirInfo = new DirectoryInfo(fullDirName);
+			var dirInfo = new ZlpDirectoryInfo(fullDirName);
 			var count = 0;
 			foreach (var data in Files)
 			{
 				foreach (var file in dirInfo.SafeEnumerateFiles(Log, "*." + data.Key)
 					.Where(x => filter.CanInclude(x)))
 				{
-					AddInfo info = null;
-					try
-					{
-						 info = new AddInfo
-							{
-								Path = file.FullName,
-								Id = count + data.Value.Count
-							};
-						data.Value.Add(Path.GetFileNameWithoutExtension(file.Name), path);
-						readedSize += file.Length;
-					}
-					catch (PathTooLongException ex)
-					{
-						Log.Write(ex, "Can't access file: " + file.Name);
-					}
-					if(info!=null)yield return info;
+				    var info = new AddInfo
+						{
+							Path = file.FullName,
+							Id = count + data.Value.Count
+						};
+					data.Value.Add(ZlpPathHelper.GetFileNameWithoutExtension(file.Name), path);
+					readedSize += file.Length;
+					yield return info;
 				}
 				count += MaxFilesPerType;
 			}
@@ -125,7 +118,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 			{
 				var tmp = new List<int>();
 				tmp.AddRange(path);
-				foreach (var info in ScanDirectory(dir.Name, tmp, Path.Combine(fullDirName, dir.Name)))
+                foreach (var info in ScanDirectory(dir.Name, tmp, ZlpPathHelper.Combine(fullDirName, dir.Name)))
 				{
 					yield return info;
 				}
@@ -135,10 +128,10 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner
 		public void Save(string path)
 		{
 			var dirName = path;
-			if (!Dirs.Save(Path.Combine(dirName, Folders.DirPath))) return;
-			dirName = Path.Combine(dirName, Folders.FilesPath);
-			if (!Directory.Exists(dirName)) Directory.CreateDirectory(dirName);
-			Files.ForEach( data => data.Value.Save(Path.Combine(dirName, data.Key)));
+            if (!Dirs.Save(ZlpPathHelper.Combine(dirName, Folders.DirPath))) return;
+            dirName = ZlpPathHelper.Combine(dirName, Folders.FilesPath);
+            if (!ZlpIOHelper.DirectoryExists(dirName)) ZlpIOHelper.CreateDirectory(dirName);
+            Files.ForEach(data => data.Value.Save(ZlpPathHelper.Combine(dirName, data.Key)));
 		}
 	}
 }

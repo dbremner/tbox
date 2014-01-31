@@ -70,6 +70,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="ZetaLongPaths">
+      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0\lib\ZetaLongPaths.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\AvailabilityChecker.cs" />
@@ -141,6 +145,11 @@
       <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
+      <Project>{BCDBE777-304F-40AC-8C5F-31B3A6BE4341}</Project>
+      <Name>Mnk.TBox.Core.PluginsShared</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">
       <Project>{853fde4c-f292-4bdf-8eec-b50fe738cb46}</Project>
       <Name>Mnk.TBox.Locales.Localization</Name>
@@ -163,6 +172,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
 [assembly: Guid("afc0db06-0f9c-4889-bf10-f99883bdaa0d")]
+[assembly: InternalsVisibleTo("Library.Tests")]

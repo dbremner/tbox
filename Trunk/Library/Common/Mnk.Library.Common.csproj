@@ -105,7 +105,6 @@
     <Compile Include="PerfCounters\CounterManager.cs" />
     <Compile Include="Plugins\Factory.cs" />
     <Compile Include="Plugins\IConfigurable.cs" />
-    <Compile Include="Root.cs" />
     <Compile Include="SaveLoad\AnySerializer.cs" />
     <Compile Include="Plugins\PlugMan.cs" />
     <Compile Include="SaveLoad\ExtFile.cs" />

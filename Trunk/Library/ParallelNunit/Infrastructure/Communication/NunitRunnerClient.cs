@@ -104,7 +104,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Communication
                     }
                     else
                     {
-                        if (!IsFailed(item))
+                        if (!IsFailed(item) && !(item.State == ResultState.Success && i.State == ResultState.Inconclusive))
                         {
                             Map(item, i);
                         }
@@ -124,6 +124,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Communication
             item.StackTrace = i.StackTrace;
             item.Output = i.Output;
             item.State = i.State;
+            item.Refresh();
         }
 
         private static bool IsFailed(Result i)

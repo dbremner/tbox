@@ -41,7 +41,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure
             Passed = Total - Ignored - Inconclusive - Skipped - Invalid - Failures - Errors;
         }
 
-        private static IEnumerable<Result> Collect(Result result)
+        public static IEnumerable<Result> Collect(Result result)
         {
             foreach (var r in result.Children.Cast<Result>().SelectMany(Collect))
             {

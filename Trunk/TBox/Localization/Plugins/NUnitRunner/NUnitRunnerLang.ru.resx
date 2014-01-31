@@ -138,6 +138,9 @@
   <data name="Clonning" xml:space="preserve">
     <value>Клонирование</value>
   </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>Свернуть</value>
+  </data>
   <data name="CommandToRunBeforeTests" xml:space="preserve">
     <value>Команда для запуска до тестов</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="Exclude" xml:space="preserve">
     <value>Все кроме указанных</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Развернуть</value>
   </data>
   <data name="Failed" xml:space="preserve">
     <value>Неудалось:</value>

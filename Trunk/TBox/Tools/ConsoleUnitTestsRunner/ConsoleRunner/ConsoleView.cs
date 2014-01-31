@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mnk.Library.Common.UI.ModelsContainers;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;

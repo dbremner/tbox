@@ -97,6 +97,7 @@
           <File Name='Mnk.Library.WPFControls.dll'/>
           <File Name='Mnk.Library.WPFSyntaxHighlighter.dll'/>
           <File Name='Mnk.Library.WPFWinForms.dll'/>
+          <File Name='ZetaLongPaths.dll'/>
         </Component>
       </Directory>
       <Directory Id='Localization' Name='Localization'>

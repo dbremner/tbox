@@ -49,6 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\CachedIcons.cs" />
     <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\Settings\BatchConfig.cs" />
     <Compile Include="Code\Settings\Config.cs" />

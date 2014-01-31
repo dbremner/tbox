@@ -46,8 +46,13 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             set
             {
                 data = value;
-                RaisePropertyChanged("Data");
+                RefreshData();
             }
+        }
+
+        public void RefreshData()
+        {
+            RaisePropertyChanged("Data");
         }
 
         public bool IsExpanded

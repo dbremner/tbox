@@ -161,17 +161,25 @@ namespace Mnk.Library.WPFSyntaxHighlighter
 
         public void Read(string path)
         {
+            using (var s = File.OpenRead(path))
+            {
+                Read(s);
+            }
+        }
+
+        public void Read(Stream s)
+        {
             ApplyValue(() =>
             {
-                using (var s = new StreamReader(path, Encoding.UTF8))
+                using (var sr = new StreamReader(s, Encoding.UTF8))
                 {
                     editor.ResetText();
                     var i = 0;
                     var buf = new char[32000];
-                    while (!s.EndOfStream)
+                    while (!sr.EndOfStream)
                     {
                         if (i != 0) editor.AppendText(Environment.NewLine);
-                        var size = s.ReadBlock(buf, 0, buf.Length);
+                        var size = sr.ReadBlock(buf, 0, buf.Length);
                         i += size;
                         editor.AppendText(new string(buf, 0, size));
                     }

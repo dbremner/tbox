@@ -1,4 +1,6 @@
-﻿10/01/2014 Bug fixing. Rename namespaces. Add ability to view tests while running for nunit tests runner. Add team reports for team manager.
+﻿24/01/2014 Add long file paths support for Searcher plugin. Fix projectMan readonly combobox build issue.
+
+10/01/2014 Bug fixing. Rename namespaces. Add ability to view tests while running for nunit tests runner. Add team reports for team manager.
 
 26/11/2013 Add ability to specify file path masks to copy and start delay for NUnit tests runner. Fix issue and add time instead seconds for progress.
 

@@ -9,8 +9,14 @@ namespace Mnk.Library.ParallelNUnit.Core
         IList<IHasChildren> Children { get; }
     }
 
+    public interface IRefreshable
+    {
+        event Action OnRefresh;
+        void Refresh();
+    }
+
     [Serializable]
-    public class Result : IHasChildren
+    public class Result : IHasChildren, IRefreshable
     {
         public int Id { get; set; }
         public string Description { get; set; }
@@ -27,11 +33,17 @@ namespace Mnk.Library.ParallelNUnit.Core
         public bool IsTest { get { return string.Equals(Type, "TestMethod"); } }
         public IList<IHasChildren> Children { get; set; }
         public string Output { get; set; }
+        public event Action OnRefresh;
 
         public Result()
         {
             Children = new List<IHasChildren>();
             State = ResultState.NotRunnable;
+        }
+
+        public virtual void Refresh()
+        {
+            if (OnRefresh != null) OnRefresh();
         }
     }
 }

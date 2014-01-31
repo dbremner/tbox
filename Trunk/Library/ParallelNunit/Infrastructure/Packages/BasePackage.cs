@@ -86,6 +86,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
                 i.Time = i.AssertCount = 0;
                 i.Executed = false;
                 i.Output = string.Empty;
+                i.Refresh();
             }
         }
 

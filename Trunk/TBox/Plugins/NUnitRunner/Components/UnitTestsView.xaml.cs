@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.Common.Data;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
-using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.TBox.Plugins.NUnitRunner.Code;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
@@ -31,7 +27,6 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         public void Refresh(int time)
         {
-            results.Refresh();
             if (results.IsEmpty) return;
             Total.Content = tmc.Total;
             Passed.Content = tmc.Passed;
@@ -86,7 +81,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         public IList<Result> GetCheckedTests()
         {
-            return new TestsMetricsCalculator(results.GetChecked().Cast<Result>()).Tests;
+            return results.GetChecked().Cast<Result>()
+                .SelectMany(TestsMetricsCalculator.Collect)
+                .ToList();
         }
     }
 }

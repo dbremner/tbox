@@ -12,8 +12,10 @@
     </UserControl.Resources>
     <DockPanel>
         <StatusBar  HorizontalAlignment="Stretch"  Margin="0,0,6,0" DockPanel.Dock="Bottom">
-            <Button Content="{loc:Tr CheckAll}" Width="100" Click="ButtonCheckAllClick" />
-            <Button Content="{loc:Tr UncheckAll}"  Width="100" Click="ButtonUncheckAllClick" />
+            <Button Content="{loc:Tr CheckAll}" Click="ButtonCheckAllClick" />
+            <Button Content="{loc:Tr UncheckAll}"  Click="ButtonUncheckAllClick" />
+            <Button Content="{loc:Tr ExpandAll}" Click="ButtonExpandClick" />
+            <Button Content="{loc:Tr CollapseAll}"  Click="ButtonCollapseClick" />
         </StatusBar>
         <TreeView Name="treeView" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <TreeView.Resources>

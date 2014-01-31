@@ -96,6 +96,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LeaksInterceptorLang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\LocalizationTool\LocalizationToolLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalizationToolLang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\Market\MarketLang.Designer.cs">
       <DependentUpon>MarketLang.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -236,6 +241,11 @@
     <EmbeddedResource Include="Plugins\LeaksInterceptor\LeaksInterceptorLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LeaksInterceptorLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\LocalizationTool\LocalizationToolLang.ru.resx" />
+    <EmbeddedResource Include="Plugins\LocalizationTool\LocalizationToolLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizationToolLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Plugins\Market\MarketLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -67,6 +67,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZetaLongPaths">
+      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0\lib\ZetaLongPaths.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

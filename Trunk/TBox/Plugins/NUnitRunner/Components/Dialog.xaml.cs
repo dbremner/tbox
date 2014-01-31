@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.WPFWinForms.Icons;
+using Mnk.TBox.Plugins.NUnitRunner.Code;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
 using Mnk.Library.ParallelNUnit.Infrastructure;
 using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
@@ -31,6 +36,12 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             InitializeComponent();
             Panel.Content = view;
             Progress.OnStartClick += StartClick;
+            //load icons
+            foreach (DictionaryEntry res in Properties.Resources.ResourceManager.GetResourceSet(Thread.CurrentThread.CurrentUICulture, true, true))
+            {
+                var icon = res.Value as Icon;
+                CachedIcons.Icons[res.Key.ToString()] = icon.ToImageSource();
+            }
         }
 
         public void ShowDialog(TestConfig cfg)

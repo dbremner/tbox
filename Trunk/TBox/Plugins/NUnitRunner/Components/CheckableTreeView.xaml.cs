@@ -80,6 +80,8 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private static Node BuildTree(IHasChildren item, params Node[] parents)
         {
             var node = new Node { Data = item };
+            var r = item as IRefreshable;
+            if (r != null) r.OnRefresh += node.RefreshData;
             foreach (var parent in parents)
             {
                 node.Parent.Add(parent);
@@ -115,7 +117,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 if (item.Children.Count != 0) CheckedTree(item.Children, isChecked);
             }
         }
-        /* so slow :(
+
         private void ButtonExpandClick(object sender, RoutedEventArgs e)
         {
             ExpandTree(nodes, true);
@@ -134,6 +136,5 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 if (item.Children.Count != 0) ExpandTree(item.Children, isExpanded);
             }
         }
-         * */
     }
 }
