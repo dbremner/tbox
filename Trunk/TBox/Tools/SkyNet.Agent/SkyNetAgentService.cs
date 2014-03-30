@@ -19,14 +19,14 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
             InitializeComponent();
         }
 
-        private NetworkServer<ISkyNetAgent> server;
+        private NetworkServer<ISkyNetAgentService> server;
 
         protected override void OnStart(string[] args)
         {
-            server = new NetworkServer<ISkyNetAgent>(new SkyNetAgent(config), config.Port);
+            server = new NetworkServer<ISkyNetAgentService>(new SkyNetAgent(config), config.Port);
             try
             {
-                using (var cl = new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint)))
+                using (var cl = new NetworkClient<ISkyNetServerService>(new Uri(config.ServerEndpoint)))
                 {
                     cl.Instance.ConnectAgent(new ServerAgent
                     {
@@ -46,7 +46,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
             if (server == null) return;
             try
             {
-                using (var cl = new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint)))
+                using (var cl = new NetworkClient<ISkyNetServerService>(new Uri(config.ServerEndpoint)))
                 {
                     cl.Instance.DisconnectAgent(server.Endpoint);
                 }

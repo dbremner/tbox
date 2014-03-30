@@ -106,10 +106,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Plugins\Notes\NotesLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotesLang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Plugins\NUnitRunner\NUnitRunnerLang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NUnitRunnerLang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Plugins\PasswordsStorage\PasswordsStorageLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PasswordsStorageLang.resx</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ProjectMan\ProjectManLang.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -252,11 +262,21 @@
       <LastGenOutput>MarketLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Plugins\Market\MarketLang.ru.resx" />
+    <EmbeddedResource Include="Plugins\Notes\NotesLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotesLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\Notes\NotesLang.ru.resx" />
     <EmbeddedResource Include="Plugins\NUnitRunner\NUnitRunnerLang.ru.resx" />
     <EmbeddedResource Include="Plugins\NUnitRunner\NUnitRunnerLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NUnitRunnerLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\PasswordsStorage\PasswordsStorageLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PasswordsStorageLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\PasswordsStorage\PasswordsStorageLang.ru.resx" />
     <EmbeddedResource Include="Plugins\ProjectMan\ProjectManLang.ru.resx" />
     <EmbeddedResource Include="Plugins\ProjectMan\ProjectManLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

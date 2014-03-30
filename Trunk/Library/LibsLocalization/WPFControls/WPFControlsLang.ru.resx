@@ -252,4 +252,16 @@
   <data name="Start" xml:space="preserve">
     <value>Старт</value>
   </data>
+  <data name="CheckAll" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>Свернуть</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Развернуть</value>
+  </data>
+  <data name="UncheckAll" xml:space="preserve">
+    <value>Убрать выделение</value>
+  </data>
 </root>

@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
+using Mnk.Library.Common.Base.Log;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
-using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
 using Mnk.Library.Common.Communications.Network;
+using Mnk.TBox.Tools.SkyNet.Server.Code.Services;
 
 namespace Mnk.TBox.Tools.SkyNet.Server
 {
     public partial class SkyNetServerService : ServiceBase
     {
+        private readonly ILog log = LogManager.GetLogger<SkyNetServerService>();
         private readonly ServerConfig config;
 
         public SkyNetServerService(ServerConfig config)
@@ -26,14 +22,35 @@ namespace Mnk.TBox.Tools.SkyNet.Server
 
         protected override void OnStart(string[] args)
         {
-            server = new NetworkServer<ISkyNetServer>(new SkyNetServer(config), config.Port);
+            try
+            {
+                server = new NetworkServer<ISkyNetCommon>(new SkyNetServer(config), config.Port);
+            }
+            catch (Exception ex)
+            {
+                log.Write(ex, "Can't start");
+                throw;
+            }
         }
 
         protected override void OnStop()
         {
-            if (server == null) return;
-            server.Dispose();
-            server = null;
+            try
+            {
+                StopService(ref server);
+            }
+            catch (Exception ex)
+            {
+                log.Write(ex, "Can't stop");
+                throw;
+            }
+        }
+
+        private void StopService(ref IDisposable o)
+        {
+            if (o == null) return;
+            o.Dispose();
+            o = null;
         }
 
         public void StartService()

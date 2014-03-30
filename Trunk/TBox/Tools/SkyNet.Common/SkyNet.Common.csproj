@@ -15,25 +15,6 @@
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>..\..\bin\Debug\Libraries\</OutputPath>
@@ -64,19 +45,24 @@
     <Compile Include="Configurations\ServerConfig.cs" />
     <Compile Include="Configurations\AgentConfig.cs" />
     <Compile Include="Contracts\Agent\AgentTask.cs" />
-    <Compile Include="Contracts\Agent\ISkyNetAgent.cs" />
+    <Compile Include="Contracts\Agent\ISkyNetAgentService.cs" />
     <Compile Include="Configurations\IConfigProvider.cs" />
+    <Compile Include="Contracts\Files\ISkyNetFileService.cs" />
     <Compile Include="Contracts\Server\ServerAgentState.cs" />
     <Compile Include="Contracts\Server\ServerTask.cs" />
-    <Compile Include="Contracts\Server\ISkyNetServer.cs" />
+    <Compile Include="Contracts\Server\ISkyNetServerService.cs" />
     <Compile Include="ISkyContext.cs" />
-    <Compile Include="NUnitTestsRunner.cs" />
+    <Compile Include="NUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Server\ServerAgent.cs" />
     <Compile Include="Scripts\SkyNetScriptConfigurator.cs" />
     <Compile Include="ISkyScript.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -86,6 +72,11 @@
     <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
       <Name>Mnk.Library.Common</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
+      <Project>{EDFB8B45-08B4-4EA4-906A-2EC50B3CF582}</Project>
+      <Name>Mnk.Library.ParallelNunit</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
@@ -98,6 +89,9 @@
       <Name>Mnk.TBox.Core.PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

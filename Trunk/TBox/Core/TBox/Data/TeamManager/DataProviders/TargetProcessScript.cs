@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Net;
 using System.Linq;
+using System.Windows;
+using System.Collections.Generic;
 using Mnk.Library.ScriptEngine;
 using ServiceStack.Text;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
@@ -9,8 +11,8 @@ using Mnk.Library.WPFControls.Tools;
 
 namespace TBox.Data.TeamManager
 {
-	public class TargetProcessScript : IReportScript
-	{
+    public class TargetProcessScript : IReportScript
+    {
         class AssignableItem
         {
             public int Id { get; set; }
@@ -44,58 +46,74 @@ namespace TBox.Data.TeamManager
         [String("{0}/restui/tpview.aspx#task/{1}", CanBeEmpty = false)]
         public string LinkUrlTemplate { get; set; }
 
-	    public void Run(IReportScriptContext context)
-		{
+        public IDictionary<string, string> Aliases { get; set; }
+
+        public void Run(IReportScriptContext context)
+        {
             context.Configure(true);
-			using (var cl = CreateClient())
-			{
-			    var query =
-			        string.Format(
+            using (var cl = CreateClient())
+            {
+                var query =
+                    string.Format(
                         "Times?include=[spent,user[email],date,assignable[id]]&format=json&take=100000&where=(user.email%20in%20({2}))and(date%20gte'{0}')and(date%20lte'{1}')",
-                        FormatDate(context.DateFrom), FormatDate(context.DateTo), string.Join(",", context.Persons.Select(x => "'" + x + "'")));
-			    foreach (var x in JsonSerializer.DeserializeFromString<TimeReport>(cl.DownloadString(BuildUrl(query))).Items)
-			    {
-			        var task = x.Assignable != null ? x.Assignable.Id.ToString(CultureInfo.InvariantCulture) : "DELETED";
+                        FormatDate(context.DateFrom), FormatDate(context.DateTo), string.Join(",", context.Persons.Select(x => "'" + GetAlias(x) + "'")));
+                foreach (var x in JsonSerializer.DeserializeFromString<TimeReport>(cl.DownloadString(BuildUrl(query))).Items)
+                {
+                    var task = x.Assignable != null ? x.Assignable.Id.ToString(CultureInfo.InvariantCulture) : "DELETED";
                     context.AddResult(new LoggedInfo
-                        {
-                            Date = x.Date,
-                            Email =
-                                context.Persons.FirstOrDefault(
-                                    o => string.Equals(o, x.User.Email, StringComparison.InvariantCultureIgnoreCase)),
-                            Task = task,
-                            Link = string.Format(LinkUrlTemplate, TargetProcessUrl, task),
-                            Spent = x.Spent,
-                            Column = context.Name
-                        });
-			    }
-			}
-		}
+                    {
+                        Date = x.Date,
+                        Email =
+                            context.Persons.FirstOrDefault(
+                                o => string.Equals(o, GetName(x.User.Email), StringComparison.InvariantCultureIgnoreCase)),
+                        Task = task,
+                        Link = string.Format(LinkUrlTemplate, TargetProcessUrl, task),
+                        Spent = x.Spent,
+                        Column = context.Name
+                    });
+                }
+            }
+        }
 
-	    private string FormatDate(DateTime dateFrom)
-	    {
-	        return dateFrom.ToString(DateTimeFormat);
-	    }
+        private string GetName(string name)
+        {
+            foreach (var i in Aliases)
+            {
+                if (string.Equals(i.Value, name, StringComparison.InvariantCultureIgnoreCase)) return i.Key;
+            }
+            return name;
+        }
 
-	    private WebClient CreateClient()
-		{
-			var cl = new WebClient {Credentials = new NetworkCredential(Login, GetPassword())};
-			cl.Headers.Add("Content-Type", "application/json");
-			return cl;
-		}
+        private string GetAlias(string name)
+        {
+            return Aliases.ContainsKey(name) ? Aliases[name] : name;
+        }
 
-	    private string GetPassword()
-	    {
-	        return Password.DecryptPassword();
-	    }
+        private string FormatDate(DateTime dateFrom)
+        {
+            return dateFrom.ToString(DateTimeFormat);
+        }
 
-	    private Uri BuildUrl(string relativeUri)
-		{
+        private WebClient CreateClient()
+        {
+            var cl = new WebClient { Credentials = new NetworkCredential(Login, GetPassword()) };
+            cl.Headers.Add("Content-Type", "application/json");
+            return cl;
+        }
+
+        private string GetPassword()
+        {
+            return Password.DecryptPassword();
+        }
+
+        private Uri BuildUrl(string relativeUri)
+        {
             var url = TargetProcessUrl;
             if (!string.IsNullOrEmpty(url) && url[url.Length - 1] != '/')
             {
                 url += "/";
             }
-			return new Uri(new Uri(url + "api/v1/"), relativeUri);
-		}
-	}
+            return new Uri(new Uri(url + "api/v1/"), relativeUri);
+        }
+    }
 }

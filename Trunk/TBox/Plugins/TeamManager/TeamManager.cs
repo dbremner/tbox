@@ -40,6 +40,13 @@ namespace Mnk.TBox.Plugins.TeamManager
             timeReportDialog.Dispose();
         }
 
+        public override void Load()
+        {
+            base.Load();
+            timeReportDialog.Hide();
+            dataProvidersEditorDialog.Hide();
+        }
+
         public override void Save(bool autoSaveOnExit)
         {
             base.Save(autoSaveOnExit);
@@ -112,7 +119,7 @@ namespace Mnk.TBox.Plugins.TeamManager
             var s = base.CreateSettings();
             s.FilePathes = GetPathes(DataProvidersFolder);
             s.ScriptConfigurator = reportScriptRunner;
-            s.ScriptsConfigurator = new LazyDialog<ScriptsConfigurator>(
+            s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
                 () => new SingleFileScriptConfigurator{Context = Context, Icon = imageSource}, "scripts configurator");
             return s;
         }

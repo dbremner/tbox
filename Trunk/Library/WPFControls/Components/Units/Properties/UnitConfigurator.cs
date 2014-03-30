@@ -75,5 +75,6 @@ namespace Mnk.Library.WPFControls.Components.Units.Properties
 			configureAction();
 			isConfigured = true;
 		}
+
 	}
 }

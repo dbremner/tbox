@@ -1,20 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mnk.Library.Common.Data;
 using NUnit.Core;
 
 namespace Mnk.Library.ParallelNUnit.Core
 {
-    public interface IHasChildren
-    {
-        IList<IHasChildren> Children { get; }
-    }
-
-    public interface IRefreshable
-    {
-        event Action OnRefresh;
-        void Refresh();
-    }
-
     [Serializable]
     public class Result : IHasChildren, IRefreshable
     {

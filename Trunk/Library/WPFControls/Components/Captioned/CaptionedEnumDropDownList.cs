@@ -37,6 +37,7 @@ namespace Mnk.Library.WPFControls.Components.Captioned
 			{
 				SetValue(SourceEnumTypeProperty, value);
 				child.ItemsSource = Enum.GetValues(value).Cast<object>().Select(x => x.ToString());
+			    if (Value != null) Value = Value;
 			}
 		}
 

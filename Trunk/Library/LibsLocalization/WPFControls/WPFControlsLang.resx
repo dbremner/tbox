@@ -252,4 +252,16 @@
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="CheckAll" xml:space="preserve">
+    <value>Check All</value>
+  </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>Collapse</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="UncheckAll" xml:space="preserve">
+    <value>Uncheck All</value>
+  </data>
 </root>

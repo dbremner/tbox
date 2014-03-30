@@ -113,9 +113,20 @@ namespace Mnk.Library.ScriptEngine.Core
                 }
             }
             Parallel.For(0, parameters.ReferencedAssemblies.Count,
-                i => Assembly.ReflectionOnlyLoadFrom(parameters.ReferencedAssemblies[i]));
+                i => LoadAssembly(parameters, i));
             return parameters;
         }
 
+        private static Assembly LoadAssembly(CompilerParameters parameters, int i)
+        {
+            try
+            {
+                return Assembly.ReflectionOnlyLoadFrom(parameters.ReferencedAssemblies[i]);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

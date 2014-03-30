@@ -62,7 +62,6 @@
     <Compile Include="Infrastructure\Runners\AgentProcessCreator.cs" />
     <Compile Include="Infrastructure\Runners\Calculator.cs" />
     <Compile Include="Infrastructure\Communication\NunitRunnerClient.cs" />
-    <Compile Include="Infrastructure\CopyDeepManager.cs" />
     <Compile Include="Infrastructure\DirectoriesManipulator.cs" />
     <Compile Include="Infrastructure\Interfaces\IProgressStatus.cs" />
     <Compile Include="Infrastructure\Interfaces\IUnitTestsView.cs" />

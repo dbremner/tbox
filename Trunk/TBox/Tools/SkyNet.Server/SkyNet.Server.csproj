@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Services\ISkyNetCommon.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Storage.cs" />
     <Compile Include="SkyNetServerService.cs">
@@ -81,7 +82,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SkyNetServer.cs" />
+    <Compile Include="Code\Services\SkyNetServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">

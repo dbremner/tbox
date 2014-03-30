@@ -14,7 +14,6 @@ namespace Mnk.Library.WPFControls.Components.Units
 		public ComboBoxUnit()
 		{
 			Init();
-			Items.SelectionChanged += ItemsOnSelectionChanged;
 		}
 
 		protected override Selector CreateItems()
@@ -38,7 +37,7 @@ namespace Mnk.Library.WPFControls.Components.Units
 			});
 		}
 
-		private void ItemsOnSelectionChanged(object o, EventArgs e)
+		protected override void ItemsOnSelectionChanged(object o, EventArgs e)
 		{
 			var selected = ((ComboBox)o).SelectedItem;
 			Items.IsEnabled = Items.Items.Count > 0;
@@ -60,25 +59,6 @@ namespace Mnk.Library.WPFControls.Components.Units
 				SetValue(ValueCaptionProperty, value);
 				Items.SelectItemByKey<Data>(value);
 			}
-		}
-
-		public static readonly DependencyProperty SelectedValueProperty =
-			DpHelper.Create<ComboBoxUnit, object>("SelectedValue", (s, v) => s.SelectedValue = v);
-		public object SelectedValue
-		{
-			get { return Items.SelectedItem; }
-			set
-			{
-				SetValue(SelectedValueProperty, value);
-				Items.SelectedValue = value;
-			}
-		}
-
-		public static readonly DependencyProperty IsSelectedProperty =
-			DpHelper.Create<ComboBoxUnit, bool>("IsSelected");
-		public bool IsSelected
-		{
-			get { return (bool)GetValue(IsSelectedProperty); }
 		}
 
 	}

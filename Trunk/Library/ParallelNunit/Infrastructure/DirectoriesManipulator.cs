@@ -2,33 +2,30 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Mnk.Library.Common.Base.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
-using Mnk.Library.ParallelNUnit.Execution;
 
 namespace Mnk.Library.ParallelNUnit.Infrastructure
 {
     class DirectoriesManipulator
     {
         private static readonly ILog Log = LogManager.GetLogger<DirectoriesManipulator>();
-        private readonly CopyDeepManager cdManager = new CopyDeepManager();
+        private readonly CopyDirGenerator cdGenerator = new CopyDirGenerator();
 
-        public List<string> GenerateFolders(string path, IList<IList<Result>> packages, bool copyToLocalFolders, string[] copyMasks, string dirToCloneTests, IProgressStatus u)
+        public List<string> GenerateFolders(string path, int count, bool copyToLocalFolders, string[] copyMasks, string dirToCloneTests, IProgressStatus u)
         {
             var dllPaths = new List<string>();
             if (copyToLocalFolders)
             {
                 u.Update("Start cloning of the unit tests folder");
-                CopyToLocalFolders(path, packages, copyMasks, dirToCloneTests, u, dllPaths);
+                CopyToLocalFolders(path, count, copyMasks, dirToCloneTests, u, dllPaths);
                 u.Update("Cloning of the unit tests folder finished");
             }
             else
             {
-                for (var i = 0; i < packages.Count; i++)
+                for (var i = 0; i < count; i++)
                 {
                     dllPaths.Add(path);
                 }
@@ -36,68 +33,50 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure
             return dllPaths;
         }
 
-        private void CopyToLocalFolders(string path, IList<IList<Result>> packages, string[] copyMasks, string dirToCloneTests, IProgressStatus u, List<string> dllPaths)
+        private void CopyToLocalFolders(string path, int count, string[] copyMasks, string dirToCloneTests, IProgressStatus u, List<string> dllPaths)
         {
-            copyMasks = cdManager.NormalizePathes(copyMasks);
-            var copyDeep = cdManager.CalcCopyDeep(copyMasks);
-            var source = new DirectoryInfo(Path.GetDirectoryName(path));
-            var name = Path.GetFileName(path);
-            var maximumPathes = cdManager.BuildMaximumPathes(source.FullName, copyDeep);
-            copyMasks = copyMasks
-                .Select(x => cdManager.NormalizePath(x, copyDeep, maximumPathes))
-                .ToArray();
-            var filters = copyMasks
-                .Select(x => new Regex(x.Replace(".", "[.]").Replace("*", ".*").Replace("?", ".").Replace("\\", "\\\\"), RegexOptions.Compiled | RegexOptions.IgnoreCase))
-                .ToArray();
-            for (var i = 1; i < copyDeep && source.Parent != null; ++i)
+            string name;
+            string sourceDir;
+            var files = cdGenerator.GetFiles(path, copyMasks, out name, out sourceDir);
+            foreach (var folder in GenerateFolders(count, dirToCloneTests))
             {
-                name = Path.Combine(source.Name, name);
-                source = source.Parent;
-            }
-            dirToCloneTests = Path.GetFullPath(dirToCloneTests);
-            var fileId = 0;
-            DirectoryInfo existCopiedData = null;
-            for (var i = 0; i < packages.Count; i++)
-            {
-                var folder = string.Empty;
-                while (true)
+                u.Update("Copy files to: " + folder);
+                foreach (var item in files)
                 {
-                    if (u.UserPressClose) return;
-                    folder = Path.Combine(dirToCloneTests, (++fileId).ToString(CultureInfo.InvariantCulture));
-                    var destination = new DirectoryInfo(folder);
-                    if (destination.Exists || File.Exists(folder)) continue;
-                    destination.Create();
-                    u.Update("Copy files to: " + destination.FullName);
-                    if (existCopiedData == null)
+                    if(u.UserPressClose)break;
+                    var target = Path.Combine(folder, item.Key);
+                    if (!Directory.Exists(target)) Directory.CreateDirectory(target);
+                    foreach (var file in item.Value)
                     {
-                        CopyFiles(source, destination, filters);
-                        existCopiedData = destination;
+                        File.Copy(Path.Combine(sourceDir, item.Key, file), Path.Combine(target, file));
                     }
-                    else
-                    {
-                        existCopiedData.CopyFilesTo(destination.FullName, false);
-                    }
-                    break;
                 }
+                if (u.UserPressClose) break;
                 dllPaths.Add(Path.Combine(folder, name));
             }
         }
 
-        private static void CopyFiles(DirectoryInfo source, DirectoryInfo destination, IEnumerable<Regex> filters)
+        private static IEnumerable<string> GenerateFolders(int count, string dirToCloneTests)
         {
-            foreach (var file in source.GetFiles("*", SearchOption.AllDirectories).Where(x=>filters.Any(o=>o.IsMatch(x.FullName.Substring(source.FullName.Length)))))
+            var folders = new List<string>(count);
+            var fileId = 0;
+            for (var i = 0; i < count; ++i)
             {
-                var target = file.FullName.Replace(source.FullName, destination.FullName);
-                var folderName = Path.GetDirectoryName(target);
-                if (!Directory.Exists(folderName)) Directory.CreateDirectory(folderName);
-                file.CopyTo(target);
+                string folder;
+                while (true)
+                {
+                    folder = Path.Combine(dirToCloneTests, (++fileId).ToString(CultureInfo.InvariantCulture));
+                    if (!File.Exists(folder) && !Directory.Exists(folder)) break;
+                }
+                folders.Add(folder);
             }
+            return folders;
         }
 
         public void ClearFolders(IList<string> dllPaths, bool copyToLocalFolders, string[] copyMasks)
         {
             if (!copyToLocalFolders) return;
-            var copyDeep = cdManager.CalcCopyDeep(cdManager.NormalizePathes(copyMasks));
+            var copyDeep = cdGenerator.CalcCopyDeep(cdGenerator.NormalizePathes(copyMasks));
             foreach (var t in dllPaths)
             {
                 try

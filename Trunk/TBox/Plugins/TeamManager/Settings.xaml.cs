@@ -22,7 +22,7 @@ namespace Mnk.TBox.Plugins.TeamManager
     /// </summary>
     public sealed partial class Settings : ISettings, IDisposable
     {
-        public LazyDialog<ScriptsConfigurator> ScriptsConfigurator { get; set; }
+        public LazyDialog<ScriptsConfigurator> ScriptConfiguratorDialog { get; set; }
 
         public Settings()
         {
@@ -42,7 +42,7 @@ namespace Mnk.TBox.Plugins.TeamManager
                 MessageBox.Show(TeamManagerLang.PleaseSpecifyScriptPath);
                 return;
             }
-            ScriptsConfigurator.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
+            ScriptConfiguratorDialog.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
         }
 
         private SingleFileOperation GetSelectedOperation(object sender)
@@ -55,7 +55,7 @@ namespace Mnk.TBox.Plugins.TeamManager
 
         public void Dispose()
         {
-            ScriptsConfigurator.Dispose();
+            ScriptConfiguratorDialog.Dispose();
         }
 
         private void SelectTeamMembersClick(object sender, RoutedEventArgs e)

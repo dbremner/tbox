@@ -1,5 +1,4 @@
-﻿using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
-using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+﻿using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine.Core;
 using Mnk.Library.ScriptEngine.Core.Interfaces;
 
@@ -7,7 +6,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common.Scripts
 {
     public class SkyNetScriptConfigurator : IScriptConfigurator
     {
-        private readonly IScriptCompiler<IReportScript> compiler = new ScriptCompiler<IReportScript>();
+        private readonly IScriptCompiler<ISkyScript> compiler = new ScriptCompiler<ISkyScript>();
 
         public ScriptPackage GetParameters(string scriptText)
         {

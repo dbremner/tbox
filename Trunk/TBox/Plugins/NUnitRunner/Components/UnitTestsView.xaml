@@ -8,8 +8,12 @@
              xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WPFSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
              xmlns:components1="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
              xmlns:core="clr-namespace:Mnk.Library.ParallelNUnit.Core;assembly=Mnk.Library.ParallelNUnit"
+             xmlns:local="clr-namespace:Mnk.Library.WPFControls.Components.CheckableTreeView;assembly=Mnk.Library.WPFControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <components:ResultStateToIconConverter x:Key="IconConverter"/>
+    </UserControl.Resources>
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom" HorizontalAlignment="Right">
             <StatusBarItem Content="{loc:Tr Total}" />
@@ -37,6 +41,20 @@
                 <ColumnDefinition Width="5"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <local:CheckableTreeView Name="results" SelectedItemChanged="SelectedTestChanged">
+                <local:CheckableTreeView.TreeViewResources>
+                    <HierarchicalDataTemplate DataType="{x:Type local:Node}" ItemsSource="{Binding Children}">
+                        <StackPanel Orientation="Horizontal" >
+                            <CheckBox Focusable="False" IsChecked="{Binding IsChecked}" Uid="{Binding Id}" PreviewMouseLeftButtonDown="OnMouseLeftButtonDown" Margin="1"/>
+                            <Image Source="{Binding Data.State, Converter={StaticResource IconConverter}}" DockPanel.Dock="Left" Margin="5,0" Width="16" Height="16"/>
+                            <TextBlock Text="{Binding Data.Key}" Margin="1" TextTrimming="CharacterEllipsis" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
+                    </Style>
+                </local:CheckableTreeView.TreeViewResources>
+            </local:CheckableTreeView>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeDirection="Columns"/>
             <TabControl Grid.Column="2" TabStripPlacement="Bottom" >
                 <TabItem Header="{loc:Tr SelectedItemInfo}">

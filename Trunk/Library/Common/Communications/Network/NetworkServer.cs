@@ -17,7 +17,11 @@ namespace Mnk.Library.Common.Communications.Network
             Endpoint = string.Format("http://{0}:{1}", Environment.MachineName, port);
             server = new ServiceHost(owner);
             var ep = server.AddServiceEndpoint(typeof(T),
-                new WebHttpBinding { Security = new WebHttpSecurity { Mode = WebHttpSecurityMode.None } },
+                new WebHttpBinding { 
+                    Security = new WebHttpSecurity { Mode = WebHttpSecurityMode.None }, 
+                    TransferMode = TransferMode.Streamed,
+                    MaxReceivedMessageSize = int.MaxValue
+                },
                 Endpoint);
             ep.Behaviors.Add(new WebHttpBehavior());
             server.Open();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure;
@@ -17,12 +18,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
     public partial class UnitTestsView : IUnitTestsView
     {
         private TestsMetricsCalculator tmc;
-        private readonly CheckableTreeView results = new CheckableTreeView();
         public UnitTestsView()
         {
             InitializeComponent();
-            results.SelectedItemChanged += SelectedTestChanged;
-            Panel.Children.Add(results);
         }
 
         public void Refresh(int time)
@@ -84,6 +82,11 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             return results.GetChecked().Cast<Result>()
                 .SelectMany(TestsMetricsCalculator.Collect)
                 .ToList();
+        }
+
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            results.OnMouseLeftButtonDown(sender, e);
         }
     }
 }

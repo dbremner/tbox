@@ -5,17 +5,15 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Communications.Interprocess;
 using Mnk.Library.Common.Communications.Network;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Plugins.SkyNet.Code;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
 using Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent;
-using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
 using Mnk.Library.WPFControls.Code;
 using Mnk.Library.WPFControls.Tools;
 
@@ -27,32 +25,20 @@ namespace Mnk.TBox.Plugins.SkyNet
     public partial class Settings : ISettings
     {
         private readonly ILog log = LogManager.GetLogger<Settings>();
-        public LazyDialog<ScriptsConfigurator> ScriptsConfigurator { get; set; }
+        public LazyDialog<ScriptsConfigurator> ScriptConfiguratorDialog { get; set; }
+        public ServicesFacade ServicesFacade { get; set; }
 
         public Settings()
         {
             InitializeComponent();
         }
 
-        private static NetworkClient<ISkyNetServer> CreateServerClient(AgentConfig config)
-        {
-            return new NetworkClient<ISkyNetServer>(new Uri(config.ServerEndpoint));
-        }
-
-        private InterprocessClient<IConfigProvider<AgentConfig>> CreateAgentConfigProvider()
-        {
-            return new InterprocessClient<IConfigProvider<AgentConfig>>(AgentService.ServiceName);
-        }
-
-        private InterprocessClient<IConfigProvider<ServerConfig>> CreateServerConfigProvider()
-        {
-            return new InterprocessClient<IConfigProvider<ServerConfig>>(ServerService.ServiceName); 
-        }
-
         public void Init(IPluginContext context)
         {
-            AgentService.ServicePath = Path.Combine(context.DataProvider.ToolsPath, "SkyNet.Agent.exe");
-            ServerService.ServicePath = Path.Combine(context.DataProvider.ToolsPath, "SkyNet.Server.exe");
+            AgentService.ServiceName = ServicesFacade.AgentServiceName;
+            AgentService.ServicePath = Path.Combine(context.DataProvider.ToolsPath, "Mnk.TBox.Tools.SkyNet.Agent.exe");
+            ServerService.ServiceName = ServicesFacade.ServerServiceName;
+            ServerService.ServicePath = Path.Combine(context.DataProvider.ToolsPath, "Mnk.TBox.Tools.SkyNet.Server.exe");
             AgentSettingsNeedRefresh(null, new DependencyPropertyChangedEventArgs());
             ServerSettingsNeedRefresh(null, new DependencyPropertyChangedEventArgs());
         }
@@ -63,10 +49,7 @@ namespace Mnk.TBox.Plugins.SkyNet
 
         private void ChangeAgentSettingsClick(object sender, RoutedEventArgs e)
         {
-            using (var cl = CreateAgentConfigProvider())
-            {
-                SetConfig(cl, AgentConfiguration.DataContext);
-            }
+            ServicesFacade.SetAgentConfig((AgentConfig)AgentConfiguration.DataContext);
         }
 
         private void AgentSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -76,19 +59,12 @@ namespace Mnk.TBox.Plugins.SkyNet
                 AgentConfiguration.DataContext = null;
                 return;
             }
-            using (var cl = CreateAgentConfigProvider())
-            {
-                var config = GetConfig(cl);
-                AgentConfiguration.DataContext = config;
-            }
+            AgentConfiguration.DataContext = ServicesFacade.GetAgentConfig();
         }
 
         private void ChangeServerSettingsClick(object sender, RoutedEventArgs e)
         {
-            using (var cl = CreateServerConfigProvider())
-            {
-                SetConfig(cl, ServerConfiguration.DataContext);
-            }
+            ServicesFacade.SetServerConfig((ServerConfig)ServerConfiguration.DataContext);
         }
 
         private void ServerSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -98,38 +74,7 @@ namespace Mnk.TBox.Plugins.SkyNet
                 ServerConfiguration.DataContext = null;
                 return;
             }
-            using (var cl = CreateServerConfigProvider())
-            {
-                ServerConfiguration.DataContext = GetConfig(cl);
-            }
-        }
-
-        private void SetConfig<T>(InterprocessClient<IConfigProvider<T>> cl, object config)
-            where T : class
-        {
-            if (config == null)return;
-            try
-            {
-                cl.Instance.Set((T)config);
-            }
-            catch (Exception ex)
-            {
-                log.Write(ex, "Can't update configuration");
-            }
-        }
-
-        private T GetConfig<T>(InterprocessClient<IConfigProvider<T>> cl)
-            where T: class
-        {
-            try
-            {
-                return cl.Instance.Get();
-            }
-            catch (Exception ex)
-            {
-                log.Write(ex, "Can't get configuration");
-            }
-            return null;
+            ServerConfiguration.DataContext = ServicesFacade.GetServerConfig();
         }
 
         private void RefreshInfoClick(object sender, RoutedEventArgs e)
@@ -138,22 +83,24 @@ namespace Mnk.TBox.Plugins.SkyNet
             if (config == null) return;
             try
             {
-                var agentClient = new NetworkClient<ISkyNetAgent>(Environment.MachineName, config.Port);
-                AgentInfo.DataContext = agentClient.Instance.GetCurrentTask();
-
-                using (var serverClient = CreateServerClient(config))
+                using (var agentClient = new NetworkClient<ISkyNetAgentService>(Environment.MachineName, config.Port))
                 {
-                    ConnectedAgents.ItemsSource =
-                        serverClient.Instance.GetAgents()
-                            .Select(x => string.Format("{0}\t{1}\t{2}", x.Endpoint, x.State, x.TotalCores));
-                    ExistTasks.ItemsSource =
-                        serverClient.Instance.GetTasks()
-                            .Select(x => string.Format("{0}\t{1}\t{2}", x.Owner, x.Progress, x.CreatedTime));
+                    AgentInfo.DataContext = agentClient.Instance.GetCurrentTask();
+
+                    using (var serverClient = ServicesFacade.CreateServerClient(config))
+                    {
+                        ConnectedAgents.ItemsSource =
+                            serverClient.Instance.GetAgents()
+                                .Select(x => string.Format("{0}\t{1}\t{2}", x.Endpoint, x.State, x.TotalCores));
+                        ExistTasks.ItemsSource =
+                            serverClient.Instance.GetTasks()
+                                .Select(x => string.Format("{0}\t{1}\t{2}", x.Owner, x.Progress, x.CreatedTime));
+                    }
                 }
             }
             catch (Exception ex)
             {
-                log.Write(ex, "Can't retreive information");
+                log.Write(ex, "Can't retrieve information");
             }
         }
 
@@ -165,12 +112,12 @@ namespace Mnk.TBox.Plugins.SkyNet
                 MessageBox.Show("{PleaseSpecifyScriptPath}");
                 return;
             }
-            ScriptsConfigurator.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
+            ScriptConfiguratorDialog.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
         }
 
         private SingleFileOperation GetSelectedOperation(object sender)
         {
-            var selectedKey = ((TextBlock)((DockPanel)((Button)sender).Parent).Children[3]).Text;
+            var selectedKey = (string)((Button)sender).DataContext;
             var cfg = (Config)DataContext;
             var id = cfg.Operations.GetExistIndexByKeyIgnoreCase(selectedKey);
             return cfg.Operations[id];
@@ -178,7 +125,7 @@ namespace Mnk.TBox.Plugins.SkyNet
 
         public void Dispose()
         {
-            ScriptsConfigurator.Dispose();
+            ScriptConfiguratorDialog.Dispose();
         }
 
         private void OnCheckChangedEvent(object sender, RoutedEventArgs e)

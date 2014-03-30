@@ -15,7 +15,12 @@ namespace Mnk.Library.Common.Communications.Network
         public NetworkClient(Uri uri)
         {
             var factory = new ChannelFactory<T>(
-                new WebHttpBinding { Security = new WebHttpSecurity { Mode = WebHttpSecurityMode.None } },
+                new WebHttpBinding
+                {
+                    Security = new WebHttpSecurity { Mode = WebHttpSecurityMode.None },
+                    TransferMode = TransferMode.Streamed,
+                    MaxReceivedMessageSize = int.MaxValue
+                },
                 new EndpointAddress(uri));
             factory.Endpoint.Behaviors.Add(new WebHttpBehavior());
             Instance = factory.CreateChannel();

@@ -1,8 +1,9 @@
-﻿namespace Mnk.TBox.Tools.SkyNet.Common
+﻿using Mnk.Library.Common.MT;
+
+namespace Mnk.TBox.Tools.SkyNet.Common
 {
-    public interface ISkyContext
+    public interface ISkyContext : IUpdater
     {
-        void Update(float porgress, string data);
-        bool ShouldBeTerminated { get; }
+        string TargetFolder { get; set; }
     }
 }

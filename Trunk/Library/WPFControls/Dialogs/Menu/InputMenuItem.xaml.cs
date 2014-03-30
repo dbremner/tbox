@@ -49,7 +49,7 @@ namespace Mnk.Library.WPFControls.Dialogs.Menu
 		private void Selector_OnSelectionChanged(object sender, RoutedPropertyChangedEventArgs<object> routedPropertyChangedEventArgs)
 		{
 			btnOk.IsEnabled = CanChoose();
-            btnOk.ToolTip = btnOk.IsEnabled ? "" : WPFControlsLang.ValueAlreadyExistOrIncorrect;
+            btnOk.ToolTip = btnOk.IsEnabled ? string.Empty : WPFControlsLang.ValueAlreadyExistOrIncorrect;
 		}
 
 		private bool CanChoose()

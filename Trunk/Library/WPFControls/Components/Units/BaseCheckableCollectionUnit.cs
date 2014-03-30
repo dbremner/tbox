@@ -8,48 +8,48 @@ using Mnk.Library.WPFControls.Code.EditPanel;
 
 namespace Mnk.Library.WPFControls.Components.Units
 {
-	public abstract class BaseCheckableCollectionUnit : BaseCollectionUnit, ICheckableUnit
-	{
-		protected readonly PanelToICheckable Checkable;
-		public event Action<BaseDialog> OnConfigured;
-		public IDataManager CustomDataManager { get; set; }
+    public abstract class BaseCheckableCollectionUnit : BaseCollectionUnit, ICheckableUnit
+    {
+        protected readonly PanelToICheckable Checkable;
+        public event Action<BaseDialog> OnConfigured;
+        public IDataManager CustomDataManager { get; set; }
 
-		protected BaseCheckableCollectionUnit()
-		{
-			Init();
-			Checkable = new PanelToICheckable{Margin = new Thickness(1)};
-			Panel.Children.Insert(1, Checkable);
-			DockPanel.SetDock(Checkable, Dock.Bottom);
-		}
+        protected BaseCheckableCollectionUnit()
+        {
+            Init();
+            Checkable = new PanelToICheckable { Margin = new Thickness(1) };
+            Panel.Children.Insert(1, Checkable);
+            DockPanel.SetDock(Checkable, Dock.Bottom);
+        }
 
-		public override void Configure<T>(Collection<T> items, BaseDialog dialog)
-		{
-			if (CustomDataManager != null)
-			{
-				Items.ConfigureSelector(items, Buttons, dialog, CustomDataManager);
-			}
-			else
-			{
-				Items.ConfigureSelector(items, Buttons, dialog);
-			}
-			Checkable.View = (ICheckableItemsView)Items;
-			if (OnConfigured != null) OnConfigured(dialog);
-		}
+        public override void Configure<T>(Collection<T> items, BaseDialog dialog)
+        {
+            if (CustomDataManager != null)
+            {
+                Items.ConfigureSelector(items, Buttons, dialog, CustomDataManager, OnEditHandler);
+            }
+            else
+            {
+                Items.ConfigureSelector(items, Buttons, dialog, OnEditHandler);
+            }
+            Checkable.View = (ICheckableItemsView)Items;
+            if (OnConfigured != null) OnConfigured(dialog);
+        }
 
-		public override void Unconfigure()
-		{
-			base.Unconfigure();
-			Checkable.View = null;
-		}
+        public override void Unconfigure()
+        {
+            base.Unconfigure();
+            Checkable.View = null;
+        }
 
-		public void OnCheckChangedEvent(object sender, RoutedEventArgs routedEventArgs)
-		{
-			((CheckableListBox)Items).OnCheckChangedEvent(sender, routedEventArgs);
-		}
+        public void OnCheckChangedEvent(object sender, RoutedEventArgs routedEventArgs)
+        {
+            ((CheckableListBox)Items).OnCheckChangedEvent(sender, routedEventArgs);
+        }
 
-		public void Refresh()
-		{
-			((CheckableListBox)Items).Refresh();
-		}
-	}
+        public void Refresh()
+        {
+            ((CheckableListBox)Items).Refresh();
+        }
+    }
 }

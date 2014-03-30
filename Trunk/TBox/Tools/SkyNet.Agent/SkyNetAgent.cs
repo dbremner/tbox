@@ -10,7 +10,7 @@ using Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent;
 namespace Mnk.TBox.Tools.SkyNet.Agent
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = false)]
-    public class SkyNetAgent : ISkyNetAgent
+    public class SkyNetAgent : ISkyNetAgentService
     {
         private readonly AgentConfig config;
         private readonly ILog log = LogManager.GetLogger<SkyNetAgent>();

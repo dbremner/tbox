@@ -13,7 +13,7 @@ using NUnit.Core;
 
 namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 {
-    public abstract class BasePackage : IPackage, IDisposable
+    public abstract class BasePackage : IPackage
     {
         protected readonly InterprocessServer<INunitRunnerClient> Server;
         protected string DirToCloneTests;
@@ -73,7 +73,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
             var filter = GetFilter(categories, include);
             return (processCount > 1)
                                 ? DivideTestsToRun(items.Where(filter).ToArray(), processCount, usePrefetch).ToArray()
-                                : new[] { items.Where(filter).ToArray() };
+                                : new IList<Result>[] { items.Where(filter).ToArray() };
         }
 
         private void ResetTests(IList<Result> checkedTests)

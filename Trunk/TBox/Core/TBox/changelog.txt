@@ -1,4 +1,6 @@
-﻿24/01/2014 Add long file paths support for Searcher plugin. Fix projectMan readonly combobox build issue.
+﻿30/03/2014 Add Notes and Passwords Storage plugins. Fix validation
+
+24/01/2014 Add long file paths support for Searcher plugin. Fix projectMan readonly combobox build issue.
 
 10/01/2014 Bug fixing. Rename namespaces. Add ability to view tests while running for nunit tests runner. Add team reports for team manager.
 

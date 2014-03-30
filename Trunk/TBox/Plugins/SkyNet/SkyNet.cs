@@ -5,6 +5,7 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.TBox.Plugins.SkyNet.Code;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.TBox.Tools.SkyNet.Common.Scripts;
 using Mnk.Library.WPFControls.Code;
@@ -19,10 +20,14 @@ namespace Mnk.TBox.Plugins.SkyNet
     {
         private readonly SkyNetScriptConfigurator scriptConfigurator = new SkyNetScriptConfigurator();
         private readonly LazyDialog<EditorDialog> editorDialog;
+        private readonly TaskExecutor taskExecutor;
+        private readonly ServicesFacade servicesFacade;
 
         public SkyNet()
         {
+            servicesFacade = new ServicesFacade();
             editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
+            taskExecutor = new TaskExecutor(servicesFacade);
         }
 
         private EditorDialog CreateEditor()
@@ -36,7 +41,7 @@ namespace Mnk.TBox.Plugins.SkyNet
                 x => new UMenuItem
                 {
                     Header = x.Key,
-                    OnClick = o => { }
+                    OnClick = o => taskExecutor.Execute(x)
                 })
                 .Concat(
                     new[]
@@ -62,6 +67,9 @@ namespace Mnk.TBox.Plugins.SkyNet
             var s = base.CreateSettings();
             s.FilePathes = GetPathes();
             s.ScriptConfigurator = scriptConfigurator;
+            s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
+                ()=>new SingleFileScriptConfigurator{Context = Context, Icon = Icon.ToImageSource()}, "script configurator" );
+            s.ServicesFacade = servicesFacade;
             s.Init(Context);
             return s;
         }

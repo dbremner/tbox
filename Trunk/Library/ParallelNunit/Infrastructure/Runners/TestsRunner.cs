@@ -18,7 +18,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 
         public void Run(string path, IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, bool copyToLocalFolders, string[] copyMasks, bool needSynchronizationForTests, string dirToCloneTests, string commandToExecuteBeforeTests, int startDelay, Synchronizer synchronizer, IProgressStatus u, bool needOutput)
         {
-            var dllPaths = dirMan.GenerateFolders(path, packages, copyToLocalFolders, copyMasks, dirToCloneTests, u);
+            var dllPaths = dirMan.GenerateFolders(path, packages.Count, copyToLocalFolders, copyMasks, dirToCloneTests, u);
             var s = (NunitRunnerClient)server.Owner;
             try
             {

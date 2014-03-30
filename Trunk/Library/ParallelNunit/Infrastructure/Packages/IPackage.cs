@@ -5,7 +5,7 @@ using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
 
 namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 {
-    public interface IPackage 
+    public interface IPackage: IDisposable 
     {
         string FilePath { get; }
         int Count { get; }

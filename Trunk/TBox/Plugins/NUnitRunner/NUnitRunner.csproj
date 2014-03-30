@@ -55,13 +55,9 @@
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Settings\TestConfig.cs" />
     <Compile Include="Components\BoolToVisibilityConverter.cs" />
-    <Compile Include="Components\CheckableTreeView.xaml.cs">
-      <DependentUpon>CheckableTreeView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Components\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\Node.cs" />
     <Compile Include="Components\ResultStateToIconConverter.cs" />
     <Compile Include="Components\UnitTestsView.xaml.cs">
       <DependentUpon>UnitTestsView.xaml</DependentUpon>
@@ -78,10 +74,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Components\CheckableTreeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Components\Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

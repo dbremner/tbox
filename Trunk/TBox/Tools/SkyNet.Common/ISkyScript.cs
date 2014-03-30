@@ -5,18 +5,20 @@ namespace Mnk.TBox.Tools.SkyNet.Common
 {
     public interface ISkyScript
     {
+        string DataFolder { get; set; }
+        string[] CopyMasks { get; set; }
+
         // this part will be executed on the each server
         #region Server
-        string[] DivideTasks(ServerAgent[] agents);
-        void Update(int agentId, string data);
+        string[] ServerDivideTasks(ServerAgent[] agents, ISkyContext context);
         //this method should return report
-        string BuildResult(IDictionary<int,string> results);
+        string ServerBuildResult(IDictionary<string,string> results);
         #endregion Server
 
         // this part will be executed on the each agent
         #region Agent
         //this method should return report
-        string Execute(string data, ISkyContext context);
+        string AgentExecute(string data, ISkyContext context);
         #endregion Agent
     }
 }
