@@ -17,22 +17,22 @@ using Mnk.Library.WPFWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.TeamManager
 {
-	[PluginInfo(typeof(TeamManagerLang), 160, PluginGroup.Development)]
-	public class TeamManager : ConfigurablePlugin<Settings, Config>, IDisposable
-	{
+    [PluginInfo(typeof(TeamManagerLang), 160, PluginGroup.Development)]
+    public class TeamManager : ConfigurablePlugin<Settings, Config>, IDisposable
+    {
         private const string DataProvidersFolder = "DataProviders";
         private const string ValidatorsFolder = "Validators";
-	    private ReportReceiver receiver;
+        private ReportReceiver receiver;
         private readonly ValidatorScriptConfigurator validatorScriptConfigurator = new ValidatorScriptConfigurator();
         private readonly ReportScriptRunner reportScriptRunner = new ReportScriptRunner();
         private readonly LazyDialog<EditorDialog> dataProvidersEditorDialog;
-	    private readonly LazyDialog<TimeReportDialog> timeReportDialog;
+        private readonly LazyDialog<TimeReportDialog> timeReportDialog;
 
-	    public TeamManager()
-	    {
-            timeReportDialog = new LazyDialog<TimeReportDialog>(()=> new TimeReportDialog(receiver) { Icon = Icon.ToImageSource() }, "timeReportDialog");
+        public TeamManager()
+        {
+            timeReportDialog = new LazyDialog<TimeReportDialog>(() => new TimeReportDialog(receiver) { Icon = Icon.ToImageSource() }, "timeReportDialog");
             dataProvidersEditorDialog = new LazyDialog<EditorDialog>(CreateEditor, "dataProvidersEditorDialog");
-	    }
+        }
 
         public void Dispose()
         {
@@ -50,35 +50,35 @@ namespace Mnk.TBox.Plugins.TeamManager
         public override void Save(bool autoSaveOnExit)
         {
             base.Save(autoSaveOnExit);
+            timeReportDialog.Hide();
+            dataProvidersEditorDialog.Hide();
             if (!autoSaveOnExit) return;
             timeReportDialog.SaveState(Config.States);
             dataProvidersEditorDialog.SaveState(Config.States);
-            timeReportDialog.Hide();
-            dataProvidersEditorDialog.Hide();
         }
 
 
-	    private EditorDialog CreateEditor()
-	    {
+        private EditorDialog CreateEditor()
+        {
             return new EditorDialog { Context = Context, Icon = Icon.ToImageSource() };
-	    }
+        }
 
-	    public override void Init(IPluginContext context)
+        public override void Init(IPluginContext context)
         {
             base.Init(context);
             receiver = new ReportReceiver(context.DataProvider.ReadOnlyDataPath);
         }
 
-		public override void OnRebuildMenu()
-		{
-			Menu = Config.Profiles.Select(
-                x=>new UMenuItem
-				{
-					Header = x.Key,
-					OnClick = o=>GetTimeTable(o, x)
-				})
+        public override void OnRebuildMenu()
+        {
+            Menu = Config.Profiles.Select(
+                x => new UMenuItem
+                {
+                    Header = x.Key,
+                    OnClick = o => GetTimeTable(o, x)
+                })
                 .Concat(
-                    new []
+                    new[]
 			        {
                         new USeparator(), 
 				        new UMenuItem
@@ -93,13 +93,13 @@ namespace Mnk.TBox.Plugins.TeamManager
 				        }
 			        })
                 .ToArray();
-		}
-        
-	    private void GetTimeTable(object o, Profile p)
-		{
+        }
+
+        private void GetTimeTable(object o, Profile p)
+        {
             timeReportDialog.LoadState(Config.States);
             timeReportDialog.Value.ShowReportDialog(p, Context, Config.SpecialDays, o is NonUserRunContext);
-		}
+        }
 
         private void OpenProvidersEditor(object o)
         {
@@ -120,7 +120,7 @@ namespace Mnk.TBox.Plugins.TeamManager
             s.FilePathes = GetPathes(DataProvidersFolder);
             s.ScriptConfigurator = reportScriptRunner;
             s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
-                () => new SingleFileScriptConfigurator{Context = Context, Icon = imageSource}, "scripts configurator");
+                () => new SingleFileScriptConfigurator { Context = Context, Icon = imageSource }, "scripts configurator");
             return s;
         }
 
@@ -136,5 +136,5 @@ namespace Mnk.TBox.Plugins.TeamManager
                 .ToArray();
         }
 
-	}
+    }
 }

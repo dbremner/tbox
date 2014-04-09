@@ -50,8 +50,8 @@
     <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Settings\Profile.cs" />
-    <Compile Include="Components\NotesDialog.xaml.cs">
-      <DependentUpon>NotesDialog.xaml</DependentUpon>
+    <Compile Include="Components\Dialog.xaml.cs">
+      <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Notes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,7 +102,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Components\NotesDialog.xaml">
+    <Page Include="Components\Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

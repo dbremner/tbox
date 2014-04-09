@@ -16,16 +16,16 @@ namespace Mnk.TBox.Plugins.Notes
     [PluginInfo(typeof(NotesLang), 1, PluginGroup.Desktop)]
     public class Notes : ConfigurablePlugin<Settings, Config>
     {
-        protected readonly LazyDialog<NotesDialog> Dialog;
+        private readonly LazyDialog<Dialog> dialog;
 
         public Notes()
         {
-            Dialog = new LazyDialog<NotesDialog>(CreateDialog, "notes-dialog");
+            dialog = new LazyDialog<Dialog>(CreateDialog, "notes-dialog");
         }
 
-        private NotesDialog CreateDialog()
+        private Dialog CreateDialog()
         {
-            return new NotesDialog{Icon = Icon.ToImageSource()};
+            return new Dialog{Icon = Icon.ToImageSource()};
         }
 
         public override void Init(IPluginContext context)
@@ -47,8 +47,8 @@ namespace Mnk.TBox.Plugins.Notes
          
         private void ShowDialog(Profile p, Window owner)
         {
-            Dialog.LoadState(ConfigManager.Config.States);
-            Dialog.Do(Context.DoSync, d=>d.ShowDialog(p,owner));
+            dialog.LoadState(ConfigManager.Config.States);
+            dialog.Do(Context.DoSync, d=>d.ShowDialog(p,owner));
         }
 
         protected override Settings CreateSettings()
@@ -61,12 +61,12 @@ namespace Mnk.TBox.Plugins.Notes
         public override void Save(bool autoSaveOnExit)
         {
             base.Save(autoSaveOnExit);
-            if (autoSaveOnExit) Dialog.SaveState(ConfigManager.Config.States);
+            if (autoSaveOnExit) dialog.SaveState(ConfigManager.Config.States);
         }
 
         public virtual void Dispose()
         {
-            Dialog.Dispose();
+            dialog.Dispose();
         }
     }
 }

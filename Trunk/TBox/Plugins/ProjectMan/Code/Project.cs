@@ -179,7 +179,7 @@ namespace Mnk.TBox.Plugins.ProjectMan.Code
         {
             if (!(context is NonUserRunContext))
             {
-                var r = DialogsCache.ShowInputComboBox(ProjectManLang.PleaseSpecifyBuildArguments, ProjectManLang.Build + " " + key, projectInfo.MsBuildParams, null, KnownArgs, null, false);
+                var r = DialogsCache.ShowInputComboBox(ProjectManLang.PleaseSpecifyBuildArguments, ProjectManLang.Build + " " + key, projectInfo.MsBuildParams, x=>true, KnownArgs, null, false);
                 if (!r.Key) return;
                 projectInfo.MsBuildParams = r.Value;
             }

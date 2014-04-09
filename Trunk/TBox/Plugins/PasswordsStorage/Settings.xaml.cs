@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.Common.Base.Log;
 using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Plugins.PasswordsStorage.Code.Settings;
 
 namespace Mnk.TBox.Plugins.PasswordsStorage
 {
@@ -21,9 +21,18 @@ namespace Mnk.TBox.Plugins.PasswordsStorage
             get { return this; }
         }
 
-        private void CheckChanged(object sender, RoutedEventArgs e)
+        public event Action<Profile> EditHandler;
+
+        protected virtual void OnEditHandler(Profile obj)
         {
-            Passwords.OnCheckChangedEvent(sender,e);
+            var handler = EditHandler;
+            if (handler != null) handler(obj);
         }
+
+        private void EditProfileClick(object sender, RoutedEventArgs e)
+        {
+            OnEditHandler((Profile)((Button)sender).DataContext);
+        }
+
     }
 }

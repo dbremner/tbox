@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.Common.UI.ModelsContainers;
 
 namespace Mnk.TBox.Plugins.PasswordsStorage.Code.Settings
 {
     [Serializable]
     public class Profile : Data
     {
-        public CheckableDataCollection<CheckableData<string>> Passwords { get; set; }
+        public ObservableCollection<LoginInfo> LoginInfos { get; set; }
 
         public Profile()
         {
-            Passwords = new CheckableDataCollection<CheckableData<string>>();
+            LoginInfos = new ObservableCollection<LoginInfo>();
         }
 
         public override object Clone()
@@ -20,7 +20,7 @@ namespace Mnk.TBox.Plugins.PasswordsStorage.Code.Settings
             return new Profile
             {
                 Key = Key,
-                Passwords = Passwords.Clone()
+                LoginInfos = LoginInfos.Clone()
             };
         }
     }

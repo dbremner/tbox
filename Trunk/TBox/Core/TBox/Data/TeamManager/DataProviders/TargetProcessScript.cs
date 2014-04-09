@@ -53,25 +53,25 @@ namespace TBox.Data.TeamManager
             context.Configure(true);
             using (var cl = CreateClient())
             {
-                var query =
-                    string.Format(
-                        "Times?include=[spent,user[email],date,assignable[id]]&format=json&take=100000&where=(user.email%20in%20({2}))and(date%20gte'{0}')and(date%20lte'{1}')",
-                        FormatDate(context.DateFrom), FormatDate(context.DateTo), string.Join(",", context.Persons.Select(x => "'" + GetAlias(x) + "'")));
-                foreach (var x in JsonSerializer.DeserializeFromString<TimeReport>(cl.DownloadString(BuildUrl(query))).Items)
-                {
-                    var task = x.Assignable != null ? x.Assignable.Id.ToString(CultureInfo.InvariantCulture) : "DELETED";
-                    context.AddResult(new LoggedInfo
-                    {
-                        Date = x.Date,
-                        Email =
-                            context.Persons.FirstOrDefault(
-                                o => string.Equals(o, GetName(x.User.Email), StringComparison.InvariantCultureIgnoreCase)),
-                        Task = task,
-                        Link = string.Format(LinkUrlTemplate, TargetProcessUrl, task),
-                        Spent = x.Spent,
-                        Column = context.Name
-                    });
-                }
+				foreach(var p in context.Persons)
+				{
+	                var query = string.Format(
+                        "Times?include=[spent,user[email],date,assignable[id]]&format=json&take=1000000&where=(user.email%20in%20({2}))and(date%20gte'{0}')and(date%20lte'{1}')",
+                        FormatDate(context.DateFrom), FormatDate(context.DateTo), string.Join(",", "'" + GetAlias(p) + "'"));
+					foreach (var x in JsonSerializer.DeserializeFromString<TimeReport>(cl.DownloadString(BuildUrl(query))).Items)
+					{
+						var task = x.Assignable != null ? x.Assignable.Id.ToString(CultureInfo.InvariantCulture) : "DELETED";
+						context.AddResult(new LoggedInfo
+						{
+							Date = x.Date,
+							Email = p,
+							Task = task,
+							Link = string.Format(LinkUrlTemplate, TargetProcessUrl, task),
+							Spent = x.Spent,
+							Column = context.Name
+						});
+					}
+				}
             }
         }
 

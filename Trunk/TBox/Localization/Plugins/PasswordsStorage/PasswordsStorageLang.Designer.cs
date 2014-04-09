@@ -61,6 +61,24 @@ namespace Mnk.TBox.Locales.Localization.Plugins.PasswordsStorage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click on cell to copy value.
+        /// </summary>
+        public static string ClickOnCellToCopyPassword {
+            get {
+                return ResourceManager.GetString("ClickOnCellToCopyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configure password.
         /// </summary>
         public static string ConfigurePassword {
@@ -75,6 +93,42 @@ namespace Mnk.TBox.Locales.Localization.Plugins.PasswordsStorage {
         public static string ConfigureProfile {
             get {
                 return ResourceManager.GetString("ConfigureProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy selected line.
+        /// </summary>
+        public static string CopySelected {
+            get {
+                return ResourceManager.GetString("CopySelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key.
+        /// </summary>
+        public static string Key {
+            get {
+                return ResourceManager.GetString("Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
@@ -102,6 +156,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.PasswordsStorage {
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of profiles.
+        /// </summary>
+        public static string ProfilesList {
+            get {
+                return ResourceManager.GetString("ProfilesList", resourceCulture);
             }
         }
     }

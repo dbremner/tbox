@@ -8,6 +8,7 @@ namespace Mnk.TBox.Plugins.Notes.Code.Settings
     [Serializable]
     public class Profile : Data
     {
+        public string SelectedNote { get; set; }
         public ObservableCollection<Data<string>> Notes { get; set; }
 
         public Profile()
@@ -20,6 +21,7 @@ namespace Mnk.TBox.Plugins.Notes.Code.Settings
             return new Profile
             {
                 Key = Key,
+                SelectedNote = SelectedNote,
                 Notes = Notes.Clone()
             };
         }

@@ -20,7 +20,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
         {
             string name;
             var path = dataPacker.Pack(
-                @"d:\sample.dll",
+                @"d:\tests.dll",
                 new[] { "*.dll" }, out name);
             using (var cl = servicesFacade.CreateFileServerClient(servicesFacade.GetAgentConfig()))
             {

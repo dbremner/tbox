@@ -1,15 +1,14 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using Mnk.TBox.Plugins.Notes.Code.Settings;
 
 namespace Mnk.TBox.Plugins.Notes.Components
 {
     /// <summary>
-    /// Interaction logic for NotesDialog.xaml
+    /// Interaction logic for dialog.xaml
     /// </summary>
-    public partial class NotesDialog 
+    public partial class Dialog 
     {
-        public NotesDialog()
+        public Dialog()
         {
             InitializeComponent();
         }

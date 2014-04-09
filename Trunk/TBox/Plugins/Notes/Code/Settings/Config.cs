@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Mnk.Library.Common.UI.Model;
 using Mnk.Library.WPFControls.Dialogs.StateSaver;
 using Mnk.TBox.Core.Interface;
 
@@ -15,7 +16,17 @@ namespace Mnk.TBox.Plugins.Notes.Code.Settings
 
         public Config()
         {
-            Profiles = new ObservableCollection<Profile>();
+            Profiles = new ObservableCollection<Profile>
+            {
+                new Profile
+                {
+                    Key = "Sample",
+                    Notes = new ObservableCollection<Data<string>>
+                    {
+                        new Data<string>{Key = "Hello", Value = "world"}
+                    }
+                }
+            };
             States = new Dictionary<string, DialogState>();
         }
 
