@@ -66,5 +66,13 @@ namespace Mnk.Library.WPFControls.Tools
                 return ss.ToInsecureString();
             }
         }
+
+        public static string EncryptPassword(this string value)
+        {
+            using (var ss = value.ToSecureString())
+            {
+                return ss.EncryptString();
+            }
+        }
     }
 }

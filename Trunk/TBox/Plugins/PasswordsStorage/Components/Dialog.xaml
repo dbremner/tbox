@@ -13,10 +13,13 @@
              MinWidth="480" MinHeight="320"
              Width="480" Height="320" >
     <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem Content="{loc:Tr ClickOnCellToCopyPassword}" HorizontalAlignment="Right"/>
+        </StatusBar>
         <DockPanel DockPanel.Dock="Bottom" >
             <Button Content="{loc:Tr CopySelected}" Click="CopyAll" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
+            <Button Content="{loc:Tr NewPassword}" Click="NewPassword" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
             <Button Content="Close" IsDefault="True" IsCancel="True" Margin="20 10" Click="CloseClick" DockPanel.Dock="Right" />
-            <Label Content="{loc:Tr ClickOnCellToCopyPassword}" HorizontalAlignment="Center" />
         </DockPanel>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Margin="55 0 5 0">
             <Grid.ColumnDefinitions>

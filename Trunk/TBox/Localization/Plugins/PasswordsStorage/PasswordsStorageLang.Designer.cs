@@ -124,11 +124,47 @@ namespace Mnk.TBox.Locales.Localization.Plugins.PasswordsStorage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password generation.
+        /// </summary>
+        public static string PasswordGeneration {
+            get {
+                return ResourceManager.GetString("PasswordGeneration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length.
+        /// </summary>
+        public static string PasswordLength {
+            get {
+                return ResourceManager.GetString("PasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non alpha characters count.
+        /// </summary>
+        public static string PasswordNonAlphaCharacters {
+            get {
+                return ResourceManager.GetString("PasswordNonAlphaCharacters", resourceCulture);
             }
         }
         

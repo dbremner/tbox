@@ -41,7 +41,7 @@ namespace Mnk.TBox.Plugins.PasswordsStorage
         private void ShowDialog(Profile p, Window owner)
         {
             dialog.LoadState(ConfigManager.Config.States);
-            dialog.Do(Context.DoSync, d=>d.ShowDialog(p,owner));
+            dialog.Do(Context.DoSync, d=>d.ShowDialog(ConfigManager, p, owner));
         }
 
         protected override Settings CreateSettings()
