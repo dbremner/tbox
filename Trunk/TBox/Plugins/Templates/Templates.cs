@@ -17,10 +17,9 @@ using Mnk.Library.WPFSyntaxHighlighter;
 using Mnk.Library.WPFWinForms;
 using Mnk.Library.WPFWinForms.Icons;
 
-[assembly: InternalsVisibleTo("UnitTests")]
 namespace Mnk.TBox.Plugins.Templates
 {
-	[PluginInfo(typeof(TemplatesLang), typeof(Properties.Resources), PluginGroup.Desktop)]
+	[PluginInfo(typeof(TemplatesLang), typeof(Properties.Resources), PluginGroup.Development)]
 	public sealed class Templates : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
 		private readonly LazyDialog<FileDialog> fileDialog;

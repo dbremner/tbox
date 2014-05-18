@@ -74,14 +74,14 @@
                     <DataTemplate DataType="{x:Type settings:SpecialDay}">
                         <StackPanel Orientation="Vertical">
                             <TextBlock Text="{Binding Key}" FontWeight="Bold" TextTrimming="CharacterEllipsis" />
-                            <StackPanel Orientation="Horizontal"  Margin="10 5" >
-                                <StackPanel Orientation="Horizontal">
-                                    <RadioButton IsChecked="{Binding IsHolyday}" GroupName="{Binding Key}" Margin="5"/>
+                            <GroupItem>
+                                <StackPanel Orientation="Horizontal" Margin="10 5">
+                                    <RadioButton IsChecked="{Binding IsHolyday}" Margin="5"/>
                                     <TextBlock Text="{loc:Tr IsHolyday}" Margin="0 5"/>
-                                    <RadioButton IsChecked="{Binding IsHolyday, Converter={StaticResource BoolInverterConverter}}" GroupName="{Binding Key}" Margin="5"/>
+                                    <RadioButton IsChecked="{Binding IsHolyday, Converter={StaticResource BoolInverterConverter}}" Margin="5"/>
                                     <TextBlock Text="{loc:Tr IsWorkingDay}" Margin="0 5"/>
                                 </StackPanel>
-                            </StackPanel>
+                            </GroupItem>
                         </StackPanel>
                     </DataTemplate>
                 </units:ListBoxUnit.ItemTemplate>

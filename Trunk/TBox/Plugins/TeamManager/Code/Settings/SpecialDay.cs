@@ -1,4 +1,5 @@
-﻿using Mnk.Library.Common.UI.Model;
+﻿using System;
+using Mnk.Library.Common.UI.Model;
 
 namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
 {
@@ -18,6 +19,11 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
                     Key = Key,
                     IsHolyday = IsHolyday
                 };
+        }
+
+        public override string ToString()
+        {
+            return DateTime.Parse(Key).ToString("yyyyMMdd");
         }
     }
 }

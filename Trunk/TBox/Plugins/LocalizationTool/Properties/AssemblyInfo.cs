@@ -1,14 +1,13 @@
 ﻿using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Resources;
 
-[assembly: AssemblyTitle("Templates")]
+[assembly: AssemblyTitle("LocalizationTool")]
 [assembly: AssemblyCompany( "Mnk" )]
 [assembly: AssemblyProduct( "TBox" )]
 [assembly: ComVisible( false )]
 [assembly: AssemblyVersion("1.0.*")]
-[assembly: Guid("1cbfafde-3337-4612-a8c3-effc366809b4")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
-
-[assembly: InternalsVisibleTo("UnitTests")]
+[assembly: Guid("053a4ec5-88a0-41b5-8031-1a3c2ae1493f")]
+[assembly: InternalsVisibleTo("Mnk.TBox.Tests")]

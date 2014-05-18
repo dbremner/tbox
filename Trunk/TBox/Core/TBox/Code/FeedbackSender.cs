@@ -13,7 +13,7 @@ namespace Mnk.TBox.Core.Application.Code
 
 		public bool Send(string title, string body)
 		{
-			var url = string.Format("http://mnk.dyndns-pics.com:61234/send/{0}", HttpUtility.UrlPathEncode(title));
+			var url = string.Format("http://mnk92.noip.me:61234/send/{0}", HttpUtility.UrlPathEncode(title));
 			var result = request.GetResult(url,
 			                  Methods.POST,
 							  string.Format("\"{0}\"", CommonOps.EncodeString(body)),

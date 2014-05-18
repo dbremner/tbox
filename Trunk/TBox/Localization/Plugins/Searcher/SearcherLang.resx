@@ -264,4 +264,7 @@
   <data name="Words" xml:space="preserve">
     <value>Words:</value>
   </data>
+  <data name="TextDontContainSearchableSymbols" xml:space="preserve">
+    <value>Text don't contain searchable symbols</value>
+  </data>
 </root>

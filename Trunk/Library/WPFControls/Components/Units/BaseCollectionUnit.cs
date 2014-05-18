@@ -46,9 +46,10 @@ namespace Mnk.Library.WPFControls.Components.Units
 
         protected virtual void ItemsOnSelectionChanged(object o, EventArgs e)
         {
-            var selected = ((ListBox)o).SelectedItem;
-            SetValue(SelectedValueProperty, selected);
-            SetValue(IsSelectedProperty, selected != null);
+            var selected = ((ListBox)o);
+            SetValue(SelectedValueProperty, selected.SelectedItem);
+            SetValue(SelectedIndexProperty, selected.SelectedIndex);
+            SetValue(IsSelectedProperty, selected.SelectedItem != null);
         }
 
         protected virtual EditButtonsPanel CreateEditButtonsPanel()
@@ -139,6 +140,18 @@ namespace Mnk.Library.WPFControls.Components.Units
             {
                 SetValue(SelectedValueProperty, value);
                 Items.SelectedValue = value;
+            }
+        }
+
+        public static readonly DependencyProperty SelectedIndexProperty =
+            DpHelper.Create<BaseCollectionUnit, int>("SelectedIndex", (s, v) => s.SelectedIndex = v);
+        public int SelectedIndex
+        {
+            get { return Items.SelectedIndex; }
+            set
+            {
+                SetValue(SelectedIndexProperty, value);
+                Items.SelectedIndex = value;
             }
         }
 

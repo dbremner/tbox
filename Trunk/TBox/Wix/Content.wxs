@@ -25,11 +25,6 @@
             <File Name='Solution.sln'/>
           </Component>
         </Directory>
-        <Directory Id="LocalizationTool" Name="LocalizationTool">
-          <Component Id="LocalizationTool" Guid="3E9C0AFC-3DE6-49E9-9E23-B0757C7E377D">
-            <CreateFolder/>
-          </Component>
-        </Directory>
         <Directory Id="ProjectMan" Name="ProjectMan">
           <Component Id="ProjectMan" Guid="6DC7D5CC-A546-4A41-AE15-0FC499E15D73">
             <CreateFolder/>
@@ -124,6 +119,7 @@
           <File Name='Mnk.TBox.Plugins.FileWatcher.dll'/>
           <File Name='Mnk.TBox.Plugins.HtmlPad.dll'/>
           <File Name='Mnk.TBox.Plugins.LeaksInterceptor.dll'/>
+          <File Name='Mnk.TBox.Plugins.LocalizationTool.dll'/>
           <File Name='Mnk.TBox.Plugins.Notes.dll'/>
           <File Name='Mnk.TBox.Plugins.NUnitRunner.dll'/>
           <File Name='Mnk.TBox.Plugins.PasswordsStorage.dll'/>

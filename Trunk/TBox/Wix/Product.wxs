@@ -39,7 +39,6 @@
     <Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
       <ComponentRef Id="Automater" />
       <ComponentRef Id="AutomaterMsc" />
-      <ComponentRef Id="LocalizationTool" />
       <ComponentRef Id="ProjectMan" />
       <ComponentRef Id="Templates" />
       <ComponentRef Id="TemplatesSample" />

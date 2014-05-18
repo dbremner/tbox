@@ -12,6 +12,9 @@ using System.Windows.Input;
 using Mnk.Library.Common.Base;
 using Mnk.Library.Common.Base.Log;
 using Mnk.Library.Common.Console;
+using Mnk.Library.Common.MT;
+using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WPFControls.Dialogs;
 using Mnk.TBox.Core.PluginsShared.LongPaths;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code;
@@ -238,7 +241,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
                 }
                 if (!searchAdder.Words.Any())
                 {
-                    MessageBox.Show("Text don't contain searchable symbols", "Searcher", MessageBoxButton.OK, MessageBoxImage.Hand);
+                    MessageBox.Show(SearcherLang.TextDontContainSearchableSymbols, Title, MessageBoxButton.OK, MessageBoxImage.Hand);
                     return;
                 }
                 if (searchAdder.Words.Count < 2 && (!config.Search.FullTextSearch || config.Search.SearchMode == SearchMode.FileNames))
@@ -265,13 +268,36 @@ namespace Mnk.TBox.Plugins.Searcher.Components
                     var items = (IEnumerable<int>)files;
                     if (config.Search.FullTextSearch && config.Search.SearchMode == SearchMode.FileData)
                     {
-                        items = files.AsParallel().Where(x => FileContains(x, searchText));
+                        DialogsCache.ShowProgress(
+                            u => DoFullTextSearch(files, u, searchText), 
+                            SearcherLang.FullTextSearch, 
+                            this, icon: Icon);
+                        return;
                     }
                     PrintResults(items.Take(config.Search.FileCount).ToArray());
                     return;
                 }
             }
             PrintResults(files);
+        }
+
+        private void DoFullTextSearch(HashSet<int> files, IUpdater u, string searchText)
+        {
+            var count = (float)Math.Min(files.Count, config.Search.FileCount);
+            var i = 0;
+            var founded = files.AsParallel()
+                .Where(x => CheckFile(u, searchText, x, count, ref i))
+                .Take(config.Search.FileCount)
+                .ToArray();
+            if (u.UserPressClose) return;
+            Mt.Do(this, () => PrintResults(founded));
+        }
+
+        private bool CheckFile(IUpdater u, string searchText, int x, float count, ref int i)
+        {
+            if (u.UserPressClose || !FileContains(x, searchText)) return false;
+            u.Update(++i/count);
+            return true;
         }
 
         private bool FileContains(int i, string searchText)

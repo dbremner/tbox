@@ -102,8 +102,8 @@
                             <StackPanel Margin="2">
                                 <DockPanel HorizontalAlignment="Stretch" Margin="1">
                                     <my:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="ScheldulerCheckChanged" VerticalAlignment="Center"/>
-                                    <Button Content="x" Click="ButtonClearHotkeyClick" DockPanel.Dock="Right" IsEnabled="{Binding IsChecked}"/>
-                                    <my:HotKeyBox HotKey="{Binding HotKey}" Width="128" Padding="0" DockPanel.Dock="Right" IsEnabled="{Binding IsChecked}"/>
+                                    <Button Content="x" Click="ButtonClearHotkeyClick" Margin="2" Padding="2 0" DockPanel.Dock="Right" IsEnabled="{Binding IsChecked}" VerticalAlignment="Center"/>
+                                    <my:HotKeyBox HotKey="{Binding HotKey}" Width="128" Margin="2" Padding="2" DockPanel.Dock="Right" IsEnabled="{Binding IsChecked}" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding}" FontWeight="Bold" Padding="0" Margin="2" VerticalAlignment="Center" />
                                 </DockPanel>
                             </StackPanel>
@@ -125,7 +125,7 @@
                                 </DockPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <my:FlagsCheckBoxes BaseType="{x:Type settings2:ShortDayOfWeek}" Caption="{loc:Tr DayOfTheWeek}" Orientation="Horizontal" Value="{Binding DaysOfWeek}" IsEnabled="{Binding IsChecked}"/>
-                                    <captioned2:CaptionedTimeBox Caption="{loc:Tr DayTime}" Value="{Binding TimeOfTheDay, Mode=TwoWay}" IsEnabled="{Binding IsChecked}"/>
+                                    <captioned2:CaptionedTimeBox Caption="{loc:Tr DayTime}" Value="{Binding TimeOfTheDay, Mode=TwoWay}" IsEnabled="{Binding IsChecked}" Margin="2" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -137,14 +137,19 @@
             <DockPanel>
                 <units:CheckableListBoxUnit Name="UserActionsView" UnitType="Text" Title="{loc:Tr ConfigureUserAction}">
                     <units:CheckableListBoxUnit.ItemTemplate>
-                        <DataTemplate DataType="{x:Type settings:MenuItemsSequence}">
+                        <DataTemplate DataType="{x:Type settings:MenuItemsSequence}" >
                             <DockPanel>
-                                <Button Content="..." VerticalAlignment="Center" Width="32" Margin="1" Click="BtnEditUserActionClick" DockPanel.Dock="Right"/>
+                                <Button Content="..." VerticalAlignment="Center" Width="32" Margin="2" Click="BtnEditUserActionClick" DockPanel.Dock="Right"/>
                                 <my:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="UserActionsCheckChanged" VerticalAlignment="Center" DockPanel.Dock="Left"/>
                                 <TextBlock Text="{Binding Key}" Padding="0" Margin="2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
                             </DockPanel>
                         </DataTemplate>
                     </units:CheckableListBoxUnit.ItemTemplate>
+                    <units:CheckableListBoxUnit.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="AllowDrop" Value="True" />
+                        </Style>
+                    </units:CheckableListBoxUnit.ItemContainerStyle>
                 </units:CheckableListBoxUnit>
             </DockPanel>
         </TabItem>
