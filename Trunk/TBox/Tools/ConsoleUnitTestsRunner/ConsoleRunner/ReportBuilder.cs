@@ -31,7 +31,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
                Pair.Create("time", DateTime.Now.ToString("HH:mm:ss"))
                ));
            root.AppendChild(CreateElement(doc, "environment",
-               Pair.Create("nunit-version", "2.6.2.0"),
+               Pair.Create("nunit-version", "2.6.3.0"),
                Pair.Create("clr-version", Environment.Version.ToString()),
                Pair.Create("os-version", Environment.OSVersion.ToString()),
                Pair.Create("platform", Environment.OSVersion.Platform.ToString()),

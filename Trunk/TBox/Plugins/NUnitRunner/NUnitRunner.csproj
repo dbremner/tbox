@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\..\Libs\nunit\nunit.core.interfaces.dll</HintPath>
+      <HintPath>..\..\..\Libs\NUnit.2.6.3\lib\nunit.core.interfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
