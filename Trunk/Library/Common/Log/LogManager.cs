@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.Common.Base.Log
+namespace Mnk.Library.Common.Log
 {
 	public static class LogManager
 	{

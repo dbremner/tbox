@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit.Infrastructure;
 using Mnk.Library.ParallelNUnit.Infrastructure.Packages;

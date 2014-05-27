@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.WPFControls.Components.Drawings.Graphics;
 using Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters;
 

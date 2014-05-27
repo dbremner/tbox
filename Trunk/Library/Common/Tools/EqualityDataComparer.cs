@@ -19,24 +19,11 @@ namespace Mnk.Library.Common.Tools
 		}
 	}
 
-	public sealed class EqualityNoCaseComparer : IEqualityComparer<string>
-	{
-		public bool Equals(string x, string y)
-		{
-			return string.Equals(x, y, StringComparison.OrdinalIgnoreCase);
-		}
-
-		public int GetHashCode(string obj)
-		{
-			return obj.ToUpperInvariant().GetHashCode();
-		}
-	}
-
 	public sealed class EqualityDataValueStringComparer : IEqualityComparer<CheckableData<string>>
 	{
 		public bool Equals(CheckableData<string> x, CheckableData<string> y)
 		{
-			return string.Equals(x.Value, y.Value);
+            return string.Equals(x.Value, y.Value);
 		}
 
 		public int GetHashCode(CheckableData<string> obj)

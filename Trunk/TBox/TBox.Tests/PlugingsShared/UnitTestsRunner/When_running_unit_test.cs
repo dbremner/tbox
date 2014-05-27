@@ -18,14 +18,15 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
         private const string ToolsPath = "../../../bin/Release/Tools";
         private static readonly string NUnitAgentPath = Path.Combine(ToolsPath, "NUnitAgent.exe");
         private static readonly string RunAsx86Path = Path.Combine(ToolsPath, "RunAsx86.exe");
-        public static readonly bool[] Bools = new []{true,false};
+        public static readonly bool[] Bools = {true,false};
+        public static readonly string[] Frameworks = { "net-4.0" };
 
         [Test]
         public void When_check_invalid_path([ValueSource("Bools")]bool x86)
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new ProcessPackage("Wrong path", NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage("Wrong path", NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path, null))
             {
                 //Assert
                 Assert.IsFalse(p.EnsurePathIsValid());
@@ -37,7 +38,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path, null))
             {
                 //Assert
                 Assert.IsTrue(p.EnsurePathIsValid());
@@ -49,7 +50,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path, null))
             {
                 p.EnsurePathIsValid();
 
@@ -69,7 +70,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
             var view = MockRepository.GenerateMock<IUnitTestsView>();
             using (
                 var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty,
-                                         view, RunAsx86Path))
+                                         view, RunAsx86Path, null))
             {
                 p.EnsurePathIsValid();
 
@@ -91,11 +92,12 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
             [ValueSource("Bools")]bool copy,
             [ValueSource("Bools")]bool needOutput,
             [ValueSource("Bools")]bool prefetch,
+            [ValueSource("Frameworks")]string framework,
             [Values(0, 1)]int startDelay)
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
-            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path))
+            using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path, framework))
             {
                 p.EnsurePathIsValid();
 

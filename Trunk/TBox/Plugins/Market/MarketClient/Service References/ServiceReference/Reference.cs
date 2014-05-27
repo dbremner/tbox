@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 
 namespace Mnk.TBox.Plugins.Market.Client.ServiceReference {
     using System.Runtime.Serialization;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using Mnk.Library.Common.Encoders;
+using Mnk.Library.Common;
 
 namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
@@ -28,9 +28,9 @@ namespace Mnk.TBox.Core.PluginsShared.Encoders
 					{
 						var block = s.Substring(start + 1, last - start - 1);
 						AppendText(sb, s.Substring(pos, start - pos));
-						sb.AppendIdent(0).Append(begin);
-						sb.AppendIdentedText(Format(block), 1);
-						sb.AppendIdent(0).Append(end);
+						sb.AppendIndent(0).Append(begin);
+						sb.AppendIndentedText(Format(block), 1);
+						sb.AppendIndent(0).Append(end);
 						pos = last + 1;
 						continue;
 					}
@@ -45,7 +45,7 @@ namespace Mnk.TBox.Core.PluginsShared.Encoders
 		{
 			s = s.Trim();
 			if(string.IsNullOrWhiteSpace(s))return;
-			sb.AppendIdent(0).Append(s);
+			sb.AppendIndent(0).Append(s);
 		}
 	}
 }

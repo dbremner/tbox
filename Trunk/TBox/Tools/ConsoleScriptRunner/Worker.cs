@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.SaveLoad;
 using Mnk.Library.Common.Tools;
@@ -14,13 +14,13 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
 	class Worker
 	{
 		private static readonly ILog Log = LogManager.GetLogger<Worker>();
-		private readonly ParamSerializer<Config> serializer;
+		private readonly ConfigurationSerializer<Config> serializer;
 		private readonly string rootPath;
 
 		public Worker(string cfgPath, string rootPath)
 		{
 			this.rootPath = rootPath;
-			serializer = new ParamSerializer<Config>(Path.Combine(cfgPath, "Config/Automater.config"));
+			serializer = new ConfigurationSerializer<Config>(Path.Combine(cfgPath, "Config/Automater.config"));
 		}
 
 		public void Run(string profileToRun)

@@ -22,7 +22,7 @@ namespace Mnk.TBox.Tests.Plugins.BookletPagesGenerator
 		public void Should_be_serializable()
 		{
 			var config = new Config();
-			var ser = new ParamSerializer<Config>("temp.xml");
+			var ser = new ConfigurationSerializer<Config>("temp.xml");
 
 			ser.Save(config);
 		}

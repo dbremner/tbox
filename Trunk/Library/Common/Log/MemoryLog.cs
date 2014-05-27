@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Mnk.Library.Common.Base.Log
+namespace Mnk.Library.Common.Log
 {
-	public sealed class MemLog : AbstractLog
+	public sealed class MemoryLog : AbstractLog
 	{
 		private readonly List<string> data = new List<string>();
 		public IList<string> Data { get { return data; } }

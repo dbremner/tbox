@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using Mnk.Library.Common.AutoUpdate;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Interface;
 using LightInject;
 using Mnk.TBox.Core.Application.Code.AutoUpdate;
@@ -24,7 +24,7 @@ namespace Mnk.TBox.Core.Application.Code
         public ServicesRegistrator()
         {
             if (!Directory.Exists(LogsFolder)) Directory.CreateDirectory(LogsFolder);
-            LogManager.Init(new MultiLog(new IBaseLog[]{
+            LogManager.Init(new MultiplyLog(new IBaseLog[]{
 					new FileLog(ErrorsLogsPath), new MsgLog()
 				}),
                 new FileLog(Path.Combine(LogsFolder, "TBox.Info.log")));

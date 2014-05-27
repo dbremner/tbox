@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner;
 
@@ -17,7 +17,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
         {
             var logsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox", "Logs");
             if (!Directory.Exists(logsFolder)) Directory.CreateDirectory(logsFolder);
-            LogManager.Init(new MultiLog(new ConsoleLog(), new FileLog(Path.Combine(logsFolder, "ConsoleUnitTestsRunner.log"))));
+            LogManager.Init(new MultiplyLog(new ConsoleLog(), new FileLog(Path.Combine(logsFolder, "ConsoleUnitTestsRunner.log"))));
             log = LogManager.GetLogger<Program>();
 
             if (args.Length <= 0 || string.Equals(args[0], "/?") || string.Equals(args[0], "/help", StringComparison.OrdinalIgnoreCase))
@@ -37,6 +37,17 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
                 {
                     ShowLogo();
                     ShowArgs(cmdArgs);
+                }
+                if (!cmdArgs.Paths.Any())
+                {
+                    ShowHelp();
+                    return -1;
+                }
+                var notExist = cmdArgs.Paths.Where(x => !File.Exists(x)).ToArray();
+                if (notExist.Any())
+                {
+                    log.Write("Can't find files: " + string.Join(" ", notExist));
+                    return -2;
                 }
 
                 Console.WriteLine("ProcessModel: Default\tDomainUseage: Single");

@@ -1,6 +1,6 @@
 ﻿using System;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.Plugins.HtmlPad;
 using Mnk.Library.WPFControls.Tools;
 

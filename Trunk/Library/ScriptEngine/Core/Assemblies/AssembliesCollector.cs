@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 
 namespace Mnk.Library.ScriptEngine.Core.Assemblies
 {

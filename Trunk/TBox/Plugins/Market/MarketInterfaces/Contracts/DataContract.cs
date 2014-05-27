@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.ServiceModel;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 
 namespace Mnk.TBox.Plugins.Market.Interfaces.Contracts
 {

@@ -1,10 +1,10 @@
 ﻿namespace Mnk.Library.Common.SaveLoad
 {
-	public sealed class ParamSerializer<T>
+	public sealed class ConfigurationSerializer<T>
 	{
 		private readonly AnySerializer serializer;
 
-		public ParamSerializer(string configFilePath)
+		public ConfigurationSerializer(string configFilePath)
 		{
 			serializer = new AnySerializer(configFilePath, typeof(T));
 		}

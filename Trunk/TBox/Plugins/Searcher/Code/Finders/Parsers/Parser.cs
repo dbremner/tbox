@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.PluginsShared.LongPaths;
 using Mnk.TBox.Plugins.Searcher.Code.Finders.Scanner;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;

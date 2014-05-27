@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using Mnk.Library.Common.AutoUpdate;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.TBox;
 
 namespace Mnk.TBox.Core.Application.Code.AutoUpdate

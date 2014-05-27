@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Localization.WPFControls;
 
 namespace Mnk.Library.WPFControls.Code.Log

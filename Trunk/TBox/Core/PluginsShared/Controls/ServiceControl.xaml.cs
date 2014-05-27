@@ -4,7 +4,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Threading;
 using System.Windows;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.WPFControls.Components;
 

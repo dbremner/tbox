@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Interface;
 using Mnk.Library.ScriptEngine.Core;
 
@@ -18,7 +18,7 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
         [STAThread]
         static int Main(string[] args)
         {
-            LogManager.Init(new MultiLog(new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "ConsoleScriptRunner.log"))));
+            LogManager.Init(new MultiplyLog(new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "ConsoleScriptRunner.log"))));
             var log = LogManager.GetLogger<Program>();
 
             if (args.Length <= 0)

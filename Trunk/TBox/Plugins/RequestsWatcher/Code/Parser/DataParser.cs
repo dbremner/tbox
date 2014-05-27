@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.PluginsShared.Watcher;
 using ServiceStack.Text;
 using Mnk.Library.WPFControls.Code.Log;

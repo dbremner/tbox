@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mnk.Library.Common.Encoders
+namespace Mnk.Library.Common
 {
-	public static class CommonOps
+	public static class CommonEncoders
 	{
 		private const char Fill = '\t';
 
-		public static StringBuilder AppendIdent(this StringBuilder sb, int ident)
+		public static StringBuilder AppendIndent(this StringBuilder sb, int indent)
 		{
 			if (sb.Length != 0)
 				sb.AppendLine();
-			return sb.Append(new string(Fill, ident));
+			return sb.Append(new string(Fill, indent));
 		}
 
-		public static StringBuilder AppendIdentedText(this StringBuilder sb, string text, int ident)
+		public static StringBuilder AppendIndentedText(this StringBuilder sb, string text, int indent)
 		{
 			foreach (var line in text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
 			{
-				sb.AppendIdent(ident).Append(line);
+				sb.AppendIndent(indent).Append(line);
 			}
 			return sb;
 		}
 
-		public static string Minimize(string s)
+		public static string Minimize(string value)
 		{
-			var text = s.Replace("\r", " ").Replace("\n", " ").Replace("\t", " ");
+			var text = value.Replace("\r", " ").Replace("\n", " ").Replace("\t", " ");
 			while (text.Contains("  "))
 			{
 				text = text.Replace("  ", " ");
@@ -46,9 +46,9 @@ namespace Mnk.Library.Common.Encoders
 					  {"\0", "0"},
 				  };
 
-		public static string EncodeString(string s)
+		public static string EncodeString(string value)
 		{
-			var sb = new StringBuilder(s);
+			var sb = new StringBuilder(value);
 			foreach (var ch in CharsToEscape)
 			{
 				sb.Replace(ch, "\\" + ch);
@@ -60,9 +60,9 @@ namespace Mnk.Library.Common.Encoders
 			return sb.ToString();
 		}
 
-		public static string DecodeString(string str)
+		public static string DecodeString(string value)
 		{
-			var sb = new StringBuilder(str);
+			var sb = new StringBuilder(value);
 			for (var i = 0; i < sb.Length-1; ++i)
 			{
 				if (sb[i] != '\\')continue;

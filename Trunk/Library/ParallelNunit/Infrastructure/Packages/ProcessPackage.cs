@@ -29,10 +29,10 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
             }
         }
 
-        public ProcessPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, string runAsx86Path)
-            :base(path, dirToCloneTests, commandToExecuteBeforeTests, view, null)
+        public ProcessPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, string runAsx86Path, string runtimeFramework)
+            :base(path, dirToCloneTests, commandToExecuteBeforeTests, view, runtimeFramework)
         {
-            var processCreator = new AgentProcessCreator(nunitAgentPath, runAsx86Path, runAsx86, runAsAdmin);
+            var processCreator = new AgentProcessCreator(nunitAgentPath, runAsx86Path, runAsx86, runAsAdmin, runtimeFramework);
             calculator = new Calculator(processCreator);
             testsRunner = new ProcessTestsRunner(processCreator);
         }

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Locales.Localization.PluginsShared;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 
 namespace Mnk.TBox.Plugins.Market.Service
 {
@@ -10,7 +9,7 @@ namespace Mnk.TBox.Plugins.Market.Service
 		private static readonly ILog Log = LogManager.GetLogger<Program>();
 		static void Main(string[] args)
 		{
-			LogManager.Init( new MultiLog( new IBaseLog[] { new FileLog( "log.log" ), new ConsoleLog() } ) );
+			LogManager.Init( new MultiplyLog( new IBaseLog[] { new FileLog( "log.log" ), new ConsoleLog() } ) );
 			Console.WriteLine("***** Console Based WCF Host *****");
 			try
 			{

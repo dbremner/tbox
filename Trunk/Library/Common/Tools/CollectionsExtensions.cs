@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
 
@@ -131,30 +131,30 @@ namespace Mnk.Library.Common.Tools
             ArrayList.Adapter(list).Sort(begin, end, new Comparer<object>((x, y) => string.Compare(x.ToString(), y.ToString(), StringComparison.CurrentCultureIgnoreCase)));
         }
 
-        public static void Swap<T>(this IList<T> list, int i, int j)
+        public static void Swap<T>(this IList<T> list, int left, int right)
         {
-            var tmp = list[i];
-            list[i] = list[j];
-            list[j] = tmp;
+            var tmp = list[left];
+            list[left] = list[right];
+            list[right] = tmp;
         }
 
         public static IDictionary<string, T> ToDictionary<T>(this object[] values)
         {
             if (values.Length % 2 != 0)
                 throw new ArgumentException("Can't create dicitonary, invalid values count");
-            var dict = new Dictionary<string, T>();
+            var dictionary = new Dictionary<string, T>();
             for (var i = 0; i < values.Length; i += 2)
             {
                 try
                 {
-                    dict[(string)values[i]] = (T)values[i + 1];
+                    dictionary[(string)values[i]] = (T)values[i + 1];
                 }
                 catch (Exception)
                 {
                     throw new ArgumentException("Cant't convert: " + values[i + 1] + " to " + typeof(T));
                 }
             }
-            return dict;
+            return dictionary;
         }
 
         public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> collection, TKey key)
@@ -201,10 +201,10 @@ namespace Mnk.Library.Common.Tools
             return collection.Distinct(new EqualityDataValueDoubleComparer());
         }
 
-        public static CheckableDataCollection<CheckableData<T>> ToCollection<T>(this IDictionary<string, T> dict)
+        public static CheckableDataCollection<CheckableData<T>> ToCollection<T>(this IDictionary<string, T> dictionary)
         {
             return new CheckableDataCollection<CheckableData<T>>(
-                    dict.Select(x => new CheckableData<T>
+                    dictionary.Select(x => new CheckableData<T>
                     {
                         Key = x.Key,
                         Value = x.Value

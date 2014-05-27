@@ -11,7 +11,7 @@ namespace Mnk.TBox.Core.Application.Code.Configs
 	class ConfigManager : IConfigManager<Config>, IConfigsManager
 	{
 		public Config Config { get; private set; }
-		private ParamSerializer<Config> paramSer;
+		private ConfigurationSerializer<Config> configurationSer;
 		private const string ConfigFileName = "Config.config";
         private readonly string localFolder = Folders.LocalFolder;
         private readonly string userFolder = Folders.UserRootFolder;
@@ -24,8 +24,8 @@ namespace Mnk.TBox.Core.Application.Code.Configs
             {
                 if (!TryLoad(userConfig, localConfig, false))
                 {
-                    paramSer = new ParamSerializer<Config>(userConfig);
-                    Config = paramSer.Load(Config = new Config());
+                    configurationSer = new ConfigurationSerializer<Config>(userConfig);
+                    Config = configurationSer.Load(Config = new Config());
                 }
             }
 			var localUpdater = CreateUpdater();
@@ -46,11 +46,11 @@ namespace Mnk.TBox.Core.Application.Code.Configs
         {
             if (File.Exists(targetConfig))
             {
-                paramSer = new ParamSerializer<Config>(targetConfig);
-                Config = paramSer.Load(Config = new Config());
+                configurationSer = new ConfigurationSerializer<Config>(targetConfig);
+                Config = configurationSer.Load(Config = new Config());
                 if (Config.Configuration.PortableMode != portability)
                 {
-                    paramSer = new ParamSerializer<Config>(alternativeConfig);
+                    configurationSer = new ConfigurationSerializer<Config>(alternativeConfig);
                 }
                 return true;
             }
@@ -59,12 +59,12 @@ namespace Mnk.TBox.Core.Application.Code.Configs
 
 		public void Save()
 		{
-			paramSer.Save(Config);
+			configurationSer.Save(Config);
 		}
 
 		public void Load()
 		{
-			Config = paramSer.Load(Config = new Config());
+			Config = configurationSer.Load(Config = new Config());
 		}
 
 	    public string Root { get; private set; }

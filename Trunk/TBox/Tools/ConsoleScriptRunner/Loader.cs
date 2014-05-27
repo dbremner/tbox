@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 
 namespace Mnk.TBox.Tools.ConsoleScriptRunner
 {

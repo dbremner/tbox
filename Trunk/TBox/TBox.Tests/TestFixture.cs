@@ -15,7 +15,7 @@ namespace Mnk.TBox.Tests
         [SetUp]
         public void RunBeforeAnyTests()
         {
-            CompilerCore.Serializer = new ParamSerializer<IDictionary<string, IList<string>>>(Path.GetTempFileName());
+            CompilerCore.Serializer = new ConfigurationSerializer<IDictionary<string, IList<string>>>(Path.GetTempFileName());
             foreach (var path in Directory.GetFiles(Environment.CurrentDirectory, "*.dll"))
             {
                 Assembly.LoadFile(path);

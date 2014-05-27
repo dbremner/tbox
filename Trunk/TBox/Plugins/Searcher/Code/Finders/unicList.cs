@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 
 namespace Mnk.TBox.Plugins.Searcher.Code.Finders

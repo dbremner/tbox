@@ -8,7 +8,7 @@ namespace Mnk.TBox.Plugins.Requestor.Code.Settings
 	public sealed class RequestConfig : ICloneable
 	{
 		public string Url { get; set; }
-		public Methods Method { get; set; }
+		public HttpMethod Method { get; set; }
 
 		public string Body { get; set; }
 		public ObservableCollection<Header> Headers { get; set; }
@@ -16,7 +16,7 @@ namespace Mnk.TBox.Plugins.Requestor.Code.Settings
 		public RequestConfig()
 		{
 			Url = @"http://google.com";
-			Method = Methods.GET;
+			Method = HttpMethod.GET;
 			Headers = new ObservableCollection<Header>();
 		}
 

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.TBox.Locales.Localization.Plugins.SourcesUniter;
 using Mnk.TBox.Plugins.SourcesUniter.Code;

@@ -80,49 +80,49 @@ namespace Mnk.Library.WPFControls.Tools
         public static void ConfigureInputText<T>(this IUnit unit, string caption, Collection<T> items, Templates templates = null, Func<string, bool> validator = null, Window owner = null)
             where T : Data, new()
         {
-            unit.Configure(items, new InputText(caption, templates ?? Templates.Default, validator ?? items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit)));
+            unit.Configure(items, new InputText(caption, templates ?? Templates.Default, validator ?? items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit)));
         }
 
         public static void ConfigureInputTextList<T>(this IUnit unit, string caption, Collection<T> items, Templates templates = null, Window owner = null)
             where T : Data, new()
         {
-            unit.Configure(items, new InputTextList(caption, templates ?? Templates.Default, items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit)));
+            unit.Configure(items, new InputTextList(caption, templates ?? Templates.Default, items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit)));
         }
 
         public static void ConfigureInputTextList<T>(this IUnit unit, string caption, Collection<T> items, IList<string> itemSource, Templates templates = null, Window owner = null, bool isReadOnly = false)
             where T : Data, new()
         {
-            unit.Configure(items, new InputTextList(caption, templates ?? Templates.Default, items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit), isReadOnly) { ItemsSource = itemSource });
+            unit.Configure(items, new InputTextList(caption, templates ?? Templates.Default, items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit), isReadOnly) { ItemsSource = itemSource });
         }
 
         public static void ConfigureInputSelect<T>(this IUnit unit, string caption, Collection<T> items, IList<string> itemSource = null, Templates templates = null, Window owner = null)
             where T : Data, new()
         {
-            unit.Configure(items, new InputSelect(caption, templates ?? Templates.Default, items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit)) { ItemsSource = itemSource });
+            unit.Configure(items, new InputSelect(caption, templates ?? Templates.Default, items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit)) { ItemsSource = itemSource });
         }
 
         public static void ConfigureInputFilePath<T>(this IUnit unit, string caption, Collection<T> items, PathTemplates templates = null, Func<string, bool> validator = null, Window owner = null)
             where T : Data, new()
         {
-            unit.Configure(items, new InputFilePath(caption, templates ?? PathTemplates.Default, validator ?? items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit)));
+            unit.Configure(items, new InputFilePath(caption, templates ?? PathTemplates.Default, validator ?? items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit)));
         }
 
         public static void ConfigureInputFolderPath<T>(this IUnit unit, string caption, Collection<T> items, PathTemplates templates = null, Func<string, bool> validator = null, Window owner = null)
             where T : Data, new()
         {
-            unit.Configure(items, new InputFolderPath(caption, templates ?? PathTemplates.Default, validator ?? items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit)));
+            unit.Configure(items, new InputFolderPath(caption, templates ?? PathTemplates.Default, validator ?? items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit)));
         }
 
         public static void ConfigureInputMenuItem<T>(this IUnit unit, string caption, Collection<T> items, IList<MenuDialogItem> itemSource, Templates templates = null, Window owner = null, Func<string, bool> validator = null)
             where T : Data, new()
         {
-            unit.Configure(items, new InputMenuDialog(caption, templates ?? Templates.Default, validator ?? items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit)) { ItemsSource = itemSource });
+            unit.Configure(items, new InputMenuDialog(caption, templates ?? Templates.Default, validator ?? items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit)) { ItemsSource = itemSource });
         }
 
         public static void ConfigureInputDate<T>(this IUnit unit, string caption, Collection<T> items, Templates templates = null, Func<string, bool> validator = null, Window owner = null)
             where T : Data, new()
         {
-            unit.Configure(items, new InputDate(caption, templates ?? Templates.Default, validator ?? items.IsUniqIgnoreCase, () => owner ?? GetOwner(unit)));
+            unit.Configure(items, new InputDate(caption, templates ?? Templates.Default, validator ?? items.IsUniqueIgnoreCase, () => owner ?? GetOwner(unit)));
         }
 
 

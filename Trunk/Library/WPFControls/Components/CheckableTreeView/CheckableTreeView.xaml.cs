@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 using Mnk.Library.Common.UI.ModelsContainers;
 
 namespace Mnk.Library.WPFControls.Components.CheckableTreeView

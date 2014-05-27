@@ -11,19 +11,21 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
         private readonly string runAsx86Path;
         private readonly bool runAsx86;
         private readonly bool runAsAdmin;
+        private readonly string runtimeFramework;
 
-        public AgentProcessCreator(string nunitAgentPath, string runAsx86Path, bool runAsx86, bool runAsAdmin)
+        public AgentProcessCreator(string nunitAgentPath, string runAsx86Path, bool runAsx86, bool runAsAdmin, string runtimeFramework)
         {
             this.nunitAgentPath = nunitAgentPath;
             this.runAsx86Path = runAsx86Path;
             this.runAsx86 = runAsx86;
             this.runAsAdmin = runAsAdmin;
+            this.runtimeFramework = runtimeFramework;
         }
 
         public IContext Create(string path, string handle, string command)
         {
             var fileName = nunitAgentPath;
-            var args = string.Format(CultureInfo.InvariantCulture, "{0} \"{1}\" {2}", handle, path, command);
+            var args = string.Format(CultureInfo.InvariantCulture, "{0} \"{1}\" {2} {3}", handle, path, command, runtimeFramework??string.Empty);
             if (runAsx86) ApplyCommand(Path.Combine(Environment.CurrentDirectory, runAsx86Path), ref args, ref fileName);
             if (!File.Exists(nunitAgentPath)) throw new ArgumentException("Can't find nunit agent: " + nunitAgentPath);
             var pi = new ProcessStartInfo

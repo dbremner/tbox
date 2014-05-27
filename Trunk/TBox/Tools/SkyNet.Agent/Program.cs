@@ -3,8 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
 
@@ -17,7 +17,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
         /// </summary>
         static void Main()
         {
-            LogManager.Init(new MultiLog(new IBaseLog[] { new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "SkyNet.Agent.log")) }));
+            LogManager.Init(new MultiplyLog(new IBaseLog[] { new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "SkyNet.Agent.log")) }));
             var provider = new ConfigProvider<AgentConfig>(Path.Combine(Folders.UserToolsFolder, "SkyNet.Agent.config"));
             using (new InterprocessServer<IConfigProvider<AgentConfig>>(provider, "TBox.SkyNet.Agent"))
             {

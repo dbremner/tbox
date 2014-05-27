@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleRunner\CommandLineConstants.cs" />
     <Compile Include="ConsoleRunner\ConsoleView.cs" />
     <Compile Include="ConsoleRunner\CommandLineArgs.cs" />
     <Compile Include="ConsoleRunner\TeamcityUpdater.cs" />
@@ -64,6 +65,9 @@
       <Name>Mnk.Library.ParallelNunit</Name>
       <Private>False</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

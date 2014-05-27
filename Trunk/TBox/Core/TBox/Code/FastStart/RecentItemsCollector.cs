@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Locales.Localization.TBox;

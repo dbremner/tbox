@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
@@ -67,7 +67,7 @@ namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 				new InputFilePath(
 					"Plugins",
 					pluginsTemplates,
-					text => currPlugins.IsUniqIgnoreCase(s => s.ToString(), Path.GetFileName(text)),
+					text => currPlugins.IsUniqueIgnoreCase(s => s.ToString(), Path.GetFileName(text)),
                     ()=>null
 					)
 				);
@@ -78,7 +78,7 @@ namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 				ebpDependencies,
 				new DependenciesSelector("Dependencies",
 					dependenciesTemplates,
-					x => currDependencies.IsUniqIgnoreCase(a => a.ToString(),x),
+					x => currDependencies.IsUniqueIgnoreCase(a => a.ToString(),x),
                     () => null
 					)
 				);

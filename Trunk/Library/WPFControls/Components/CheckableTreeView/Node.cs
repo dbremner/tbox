@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 
 namespace Mnk.Library.WPFControls.Components.CheckableTreeView
 {

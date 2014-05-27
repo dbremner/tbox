@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
-using Mnk.Library.Common.Base;
+using Mnk.Library.Common;
 using Mnk.Library.Common.Network;
 using Mnk.TBox.Core.PluginsShared.Encoders;
 

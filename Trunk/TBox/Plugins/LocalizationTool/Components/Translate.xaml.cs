@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.WPFControls.Code.OS;
 using Mnk.Library.WPFControls.Dialogs;

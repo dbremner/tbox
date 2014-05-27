@@ -42,15 +42,15 @@ namespace Mnk.Library.Common.Tools
 			}
 		}
 
-		public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> source, int chunksize)
+		public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> source, int chunkSize)
 		{
-			var result = new List<T>(chunksize);
+			var result = new List<T>(chunkSize);
 			foreach (var x in source)
 			{
-				if(result.Count > chunksize)
+				if(result.Count > chunkSize)
 				{
 					yield return result;
-					result = new List<T>(chunksize);
+					result = new List<T>(chunkSize);
 				}
 				result.Add(x);
 			}

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using ZetaLongPaths;
 
 namespace Mnk.TBox.Core.PluginsShared.LongPaths

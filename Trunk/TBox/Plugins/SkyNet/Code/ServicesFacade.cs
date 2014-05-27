@@ -1,7 +1,6 @@
 ﻿using System;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Communications.Interprocess;
-using Mnk.Library.Common.Communications.Network;
+using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
 using Mnk.TBox.Tools.SkyNet.Common.Contracts.Files;
 using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;

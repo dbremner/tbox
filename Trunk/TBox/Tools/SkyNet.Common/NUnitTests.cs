@@ -25,6 +25,8 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         public string[] CopyMasks { get; set; }
         [String]
         public string CommandBeforeTestsRun { get; set; }
+        [String]
+        public string FrameworkVersion { get; set; }
         [Bool(true)]
         public bool RunAsx86 { get; set; }
         [Bool]
@@ -53,7 +55,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common
             var p = new ProcessPackage(Path.Combine(context.TargetFolder, TestDllPath), 
                 NunitAgentPath, RunAsx86, false,
                 Path.GetTempPath(),
-                CommandBeforeTestsRun, new ScriptView(), RunAsx86Path);
+                CommandBeforeTestsRun, new ScriptView(), RunAsx86Path, FrameworkVersion);
             if (!p.EnsurePathIsValid())
             {
                 throw new ArgumentException("Incorrect path: " + context);

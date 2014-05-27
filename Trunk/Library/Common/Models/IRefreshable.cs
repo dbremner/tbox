@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.Common.Data
+namespace Mnk.Library.Common.Models
 {
     public interface IRefreshable
     {

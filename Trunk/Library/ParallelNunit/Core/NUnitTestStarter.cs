@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using NUnit.Core;
 using NUnit.Util;
 

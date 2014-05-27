@@ -33,7 +33,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <DockPanel>
-                        <captioned2:CaptionedEnumDropDownList Caption="{loc:Tr Method}" SourceEnumType="network:Methods" Value="{Binding Request.Method}" Margin="5" Width="108" DockPanel.Dock="Left" />
+                        <captioned2:CaptionedEnumDropDownList Caption="{loc:Tr Method}" SourceEnumType="network:HttpMethod" Value="{Binding Request.Method}" Margin="5" Width="108" DockPanel.Dock="Left" />
                         <captioned2:CaptionedComboBox Name="cbUrl" Value="{Binding Request.Url}" ItemsSource="{Binding KnownUrls, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Components:FormRequest}}}" IsEditable="True" Caption="{loc:Tr Url}" Margin="5" DockPanel.Dock="Top"/>
                     </DockPanel>
                     <DockPanel Grid.Row="1">

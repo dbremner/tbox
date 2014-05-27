@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Console;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.Library.WPFWinForms;
 
 namespace Mnk.TBox.Plugins.DirectoryProcessor.Code

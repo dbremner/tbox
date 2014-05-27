@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Markup;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Locales.Localization.TBox;
 

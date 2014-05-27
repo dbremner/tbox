@@ -22,6 +22,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
         public bool IncludeCategories { get; set; }
         public bool UsePrefetch { get; set; }
         public int StartDelay { get; set; }
+        public string Framework { get; set; }
 
         public TestConfig()
         {
@@ -41,6 +42,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
             IncludeCategories = true;
             StartDelay = 0;
             UsePrefetch = false;
+            Framework = "net-4.0";
         }
 
         public override object Clone()
@@ -62,6 +64,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
                 IncludeCategories = IncludeCategories,
                 StartDelay = StartDelay,
                 UsePrefetch = UsePrefetch,
+                Framework = Framework
             };
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Controls;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Application.Code.Managers;
 using Mnk.Library.WPFControls.Code.OS;
 using Mnk.Library.WPFWinForms.Icons;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Plugins.Market.Interfaces;
 using Mnk.TBox.Plugins.Market.Interfaces.Contracts;
 using Mnk.TBox.Plugins.Market.Service.Service;

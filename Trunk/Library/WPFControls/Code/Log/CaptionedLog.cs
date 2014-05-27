@@ -1,5 +1,5 @@
 ﻿using System;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 
 namespace Mnk.Library.WPFControls.Code.Log
 {

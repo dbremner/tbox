@@ -2,8 +2,8 @@
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using Mnk.Library.Common.Base.Log;
 using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Log;
 
 namespace Mnk.TBox.Tools.FeedbackService
 {

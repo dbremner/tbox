@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
@@ -76,7 +76,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure
         public void ClearFolders(IList<string> dllPaths, bool copyToLocalFolders, string[] copyMasks)
         {
             if (!copyToLocalFolders) return;
-            var copyDeep = cdGenerator.CalcCopyDeep(cdGenerator.NormalizePathes(copyMasks));
+            var copyDeep = cdGenerator.CalcCopyDeep(cdGenerator.NormalizePaths(copyMasks));
             foreach (var t in dllPaths)
             {
                 try

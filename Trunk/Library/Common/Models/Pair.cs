@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.Common.Data
+namespace Mnk.Library.Common.Models
 {
 	[Serializable]
 	public sealed class Pair<TKey, TValue>

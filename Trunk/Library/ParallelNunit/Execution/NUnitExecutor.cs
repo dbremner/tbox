@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Log;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Interfaces;
 using ServiceStack.Text;

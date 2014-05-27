@@ -30,7 +30,7 @@ namespace Mnk.TBox.Plugins.Requestor.Code.Settings
 											Key = "Sample request",
 											Request = new RequestConfig
 												{
-													Method = Methods.GET,
+													Method = HttpMethod.GET,
 													Url = "http://tbox.codeplex.com",
 													Headers = new ObservableCollection<Header>
 														{

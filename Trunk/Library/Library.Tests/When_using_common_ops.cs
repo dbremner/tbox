@@ -1,4 +1,4 @@
-﻿using Mnk.Library.Common.Encoders;
+﻿using Mnk.Library.Common;
 using NUnit.Framework;
 
 namespace Mnk.Library.Tests
@@ -16,7 +16,7 @@ namespace Mnk.Library.Tests
 		[TestCase("\\\r", "\\\\\\r")]
 		public void Should_encode_string(string value, string expected)
 		{
-			Assert.AreEqual(expected, CommonOps.EncodeString(value));
+			Assert.AreEqual(expected, CommonEncoders.EncodeString(value));
 		}
 
 		[Test]
@@ -30,7 +30,7 @@ namespace Mnk.Library.Tests
 		[TestCase("\"test\\\"", "\"test\"")]
 		public void Should_decode_string(string value, string expected)
 		{
-			Assert.AreEqual(expected, CommonOps.DecodeString(value));
+			Assert.AreEqual(expected, CommonEncoders.DecodeString(value));
 		}
 
 		[Test]
@@ -42,7 +42,7 @@ namespace Mnk.Library.Tests
 		[TestCase("a\r\nb      c", "a b c")]
 		public void Should_minimize_string(string value, string expected)
 		{
-			Assert.AreEqual(expected, CommonOps.Minimize(value));
+			Assert.AreEqual(expected, CommonEncoders.Minimize(value));
 		}
 
 	}

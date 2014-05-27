@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Mnk.Library.Common.Encoders;
 using NUnit.Framework;
 using Mnk.TBox.Core.PluginsShared.Encoders;
 

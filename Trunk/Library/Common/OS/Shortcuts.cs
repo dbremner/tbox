@@ -19,7 +19,7 @@ namespace Mnk.Library.Common.OS
 			Create(Path.Combine(folder, GetLinkName(appPath)), appPath);
 		}
 
-		public static void CreateOnAutorun(string appPath)
+		public static void CreateOnStartup(string appPath)
 		{
 			var folder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
 			Create(Path.Combine(folder, GetLinkName(appPath)), appPath);

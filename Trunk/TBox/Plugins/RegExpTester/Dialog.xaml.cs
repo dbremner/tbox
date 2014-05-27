@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.Common.Base;
+using Mnk.Library.Common;
 using Mnk.Library.WPFControls.Tools;
 
 namespace Mnk.TBox.Plugins.RegExpTester

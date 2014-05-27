@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Mnk.Library.Common.AutoUpdate;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Interface;
 using Mnk.Library.WPFControls.Code.OS;
 

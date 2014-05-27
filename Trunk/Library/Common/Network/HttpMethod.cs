@@ -1,6 +1,6 @@
 ﻿namespace Mnk.Library.Common.Network
 {
-	public enum Methods
+	public enum HttpMethod
 	{
 		GET,
 		POST,

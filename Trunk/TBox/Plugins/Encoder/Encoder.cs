@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Windows;
-using Mnk.Library.Common.Encoders;
+using Mnk.Library.Common;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.Encoder;
@@ -34,8 +34,8 @@ namespace Mnk.TBox.Plugins.Encoder
 
 		private static IEnumerable<Operation> GetOperations()
 		{
-			yield return new Operation { Header = EncoderLang.EncodeCstring, Work = x => CommonOps.EncodeString(x) };
-			yield return new Operation { Header = EncoderLang.DecodeCstring, Work = x => CommonOps.DecodeString(x) };
+			yield return new Operation { Header = EncoderLang.EncodeCstring, Work = x => CommonEncoders.EncodeString(x) };
+			yield return new Operation { Header = EncoderLang.DecodeCstring, Work = x => CommonEncoders.DecodeString(x) };
 			yield return new Operation { Header = EncoderLang.EncodeUri, Work = x => HttpUtility.UrlEncode(x) };
 			yield return new Operation { Header = EncoderLang.DecodeUri, Work = x => HttpUtility.UrlDecode(x) };
 			yield return new Operation { Header = EncoderLang.EncodeHtml, Work = x => HttpUtility.HtmlEncode(x)};
@@ -49,7 +49,7 @@ namespace Mnk.TBox.Plugins.Encoder
 			yield return new Operation { Header = EncoderLang.FormatHtml, Work = x => new HtmlParser().Parse(x), Format = "html" };
 			yield return new Operation { Header = EncoderLang.FormatJSON, Work = x => new JsonParser().Format(x), Format = "js" };
 			yield return new Operation { Header = EncoderLang.FormatClikeCode, Work = x => new CCodeFormatter().Format(x), Format = "js" };
-			yield return new Operation { Header = EncoderLang.MinimizeToLine, Work = x => CommonOps.Minimize(x) };
+			yield return new Operation { Header = EncoderLang.MinimizeToLine, Work = x => CommonEncoders.Minimize(x) };
 		}
 
 		private IEnumerable<UMenuItem> CreateMenu(IEnumerable<Operation> ops)

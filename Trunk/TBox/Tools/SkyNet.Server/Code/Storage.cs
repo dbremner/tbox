@@ -8,7 +8,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
 {
     class Storage 
     {
-        private readonly ParamSerializer<Config> serializer = new ParamSerializer<Config>(
+        private readonly ConfigurationSerializer<Config> serializer = new ConfigurationSerializer<Config>(
                 Path.Combine(Folders.UserToolsFolder, "SkyNet.Server.Data.config"));
         public Storage()
         {

@@ -2,8 +2,8 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code.Finders;

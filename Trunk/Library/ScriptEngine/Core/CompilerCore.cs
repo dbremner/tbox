@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 using Mnk.Library.Common.SaveLoad;
 using Mnk.Library.ScriptEngine.Core.Assemblies;
 
@@ -23,11 +23,11 @@ namespace Mnk.Library.ScriptEngine.Core
             new List<Pair<int, CompilerResults>>();
         private static readonly object Locker = new object();
 
-        internal static ParamSerializer<IDictionary<string, IList<string>>> Serializer { get; set; }
+        internal static ConfigurationSerializer<IDictionary<string, IList<string>>> Serializer { get; set; }
 
         static CompilerCore()
         {
-            Serializer = new ParamSerializer<IDictionary<string, IList<string>>>(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox.ScriptCompiler.cache"));
+            Serializer = new ConfigurationSerializer<IDictionary<string, IList<string>>>(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox.ScriptCompiler.cache"));
             knownReferences = Serializer.Load(new Dictionary<string, IList<string>>());
         }
 

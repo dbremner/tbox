@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 
-namespace Mnk.Library.Common.Console
+namespace Mnk.Library.Common
 {
 	public static class Cmd
 	{
-		public static bool Start(string path, ILog log, string args = null, bool waitEnd = true, bool nowindow = false, string directory=null)
+		public static bool Start(string path, ILog log, string args = null, bool waitEnd = true, bool noWindow = false, string directory=null)
 		{
             if (string.IsNullOrEmpty(path))
             {
@@ -16,20 +15,20 @@ namespace Mnk.Library.Common.Console
             }
             if (string.IsNullOrEmpty(directory)) directory = Path.GetDirectoryName(path) ?? string.Empty;
 			return ExceptionsHelper.HandleException(
-				() => DoStart(path, args ?? string.Empty, directory, waitEnd, nowindow),
+				() => DoStart(path, args ?? string.Empty, directory, waitEnd, noWindow),
 				() => "Can't execute: " + path,
 				log
 				);
 		}
 
-		private static void DoStart(string path, string args, string workingDirectory, bool waitEnd, bool nowindow)
+		private static void DoStart(string path, string args, string workingDirectory, bool waitEnd, bool noWindow)
 		{
 			var info = new ProcessStartInfo
 			{
 				FileName = path,
 				WorkingDirectory = workingDirectory,
 				Arguments = args,
-				CreateNoWindow = nowindow,
+				CreateNoWindow = noWindow,
 				UseShellExecute = false,
 			};
 			using (var proc = Process.Start(info))

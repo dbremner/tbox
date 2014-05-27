@@ -83,7 +83,7 @@ namespace Mnk.TBox.Core.Application.Forms
 
 		private void ShortcutToAutorunClick(object sender, RoutedEventArgs e)
 		{
-			Shortcuts.CreateOnAutorun(FilePath);
+			Shortcuts.CreateOnStartup(FilePath);
 		}
 
 		private void OnCheckChangedEvent(object sender, RoutedEventArgs e)

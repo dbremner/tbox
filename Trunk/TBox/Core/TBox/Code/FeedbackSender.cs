@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Encoders;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Network;
 
 namespace Mnk.TBox.Core.Application.Code
@@ -15,8 +15,8 @@ namespace Mnk.TBox.Core.Application.Code
 		{
 			var url = string.Format("http://mnk92.noip.me:61234/send/{0}", HttpUtility.UrlPathEncode(title));
 			var result = request.GetResult(url,
-			                  Methods.POST,
-							  string.Format("\"{0}\"", CommonOps.EncodeString(body)),
+			                  HttpMethod.POST,
+							  string.Format("\"{0}\"", CommonEncoders.EncodeString(body)),
 							  new[]
 								  {
 									  new Header("Content-Type", "application/json; charset=utf-8"),

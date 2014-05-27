@@ -17,7 +17,7 @@ namespace Mnk.TBox.Core.PluginsShared.ReportsGenerator
 			this.password = password;
 		}
 
-        public void Send(string subject, string body, bool isHtml, string[] to)
+        public void Send(string subject, string body, bool isHtml, string[] recipients)
 		{
             var message = new EmailMessage(
                 new ExchangeService(ExchangeVersion.Exchange2010)
@@ -25,7 +25,7 @@ namespace Mnk.TBox.Core.PluginsShared.ReportsGenerator
                     Url = new Uri(exchangeServer),
                     Credentials = new WebCredentials(login, password)
                 });
-            foreach (var email in to)
+            foreach (var email in recipients)
             {
                 message.ToRecipients.Add(email);
             }

@@ -2,8 +2,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-using Mnk.Library.Common.Base;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.Plugins.BookletPagesGenerator;
 using Mnk.Library.WPFControls.Tools;
 using Mnk.TBox.Plugins.BookletPagesGenerator.Code;

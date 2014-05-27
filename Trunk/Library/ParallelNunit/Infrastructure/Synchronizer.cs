@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using Mnk.Library.Common.Communications.Interprocess;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Models;
 using Mnk.Library.ParallelNUnit.Interfaces;
 
 namespace Mnk.Library.ParallelNUnit.Infrastructure

@@ -34,7 +34,7 @@ namespace Solution.Scripts
 			Console.WriteLine("Start dev server: " + project.Key);
 			new CassiniRunner("").Run(project.Key, project.Value, "/", false, PathToDevServer, "", false);
 			Console.WriteLine("Open page: " + project.Key);
-			var r = new Request().GetResult("http://localhost:" + project.Value, timeOut: TimeOut*1000);
+			var r = new Request().GetResult("http://localhost:" + project.Value, timeout: TimeOut*1000);
 			Console.WriteLine("Page '{0}' time: {1}", project.Key, r.Time);
 			if (r.HttpStatusCode == HttpStatusCode.OK || AllowedHttpStatusCodes.Contains((int)r.HttpStatusCode)) return;
 			Console.WriteLine("Body: {0}", r.Body);

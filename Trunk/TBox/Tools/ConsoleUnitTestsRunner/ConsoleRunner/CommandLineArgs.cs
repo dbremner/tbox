@@ -56,77 +56,77 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
         private void ParseArgument(string arg)
         {
-            if (Starts(arg, "-p="))
+            if (Starts(arg, CommandLineConstants.ProcessCount))
             {
-                ProcessCount = int.Parse(arg.Substring("-p=".Length), CultureInfo.InvariantCulture);
+                ProcessCount = int.Parse(arg.Substring(CommandLineConstants.ProcessCount.Length), CultureInfo.InvariantCulture);
             }
-            else if (Starts(arg, "-startDelay="))
+            else if (Starts(arg, CommandLineConstants.StartDelay))
             {
-                StartDelay = int.Parse(arg.Substring("-startDelay=".Length), CultureInfo.InvariantCulture);
+                StartDelay = int.Parse(arg.Substring(CommandLineConstants.StartDelay.Length), CultureInfo.InvariantCulture);
             }
-            else if (Equals(arg, "-clone"))
+            else if (Equals(arg, CommandLineConstants.Clone))
             {
                 Clone = true;
             }
-            else if (Starts(arg, "-copyMasks="))
+            else if (Starts(arg, CommandLineConstants.CopyMasks))
             {
-                CopyMasks = arg.Substring("-copyMasks=".Length).Split(';');
+                CopyMasks = arg.Substring(CommandLineConstants.CopyMasks.Length).Split(';');
             }
-            else if (Starts(arg, "-dirToCloneTests="))
+            else if (Starts(arg, CommandLineConstants.DirToCloneTests))
             {
-                DirToCloneTests = arg.Substring("-dirToCloneTests=".Length);
+                DirToCloneTests = arg.Substring(CommandLineConstants.DirToCloneTests.Length);
             }
-            else if (Starts(arg, "-commandBeforeTestsRun="))
+            else if (Starts(arg, CommandLineConstants.CommandBeforeTestsRun))
             {
-                CommandBeforeTestsRun = arg.Substring("-commandBeforeTestsRun=".Length);
+                CommandBeforeTestsRun = arg.Substring(CommandLineConstants.CommandBeforeTestsRun.Length);
             }
-            else if (Equals(arg, "-sync"))
+            else if (Equals(arg, CommandLineConstants.Sync))
             {
                 Sync = true;
             }
-            else if (Equals(arg, "-prefetch"))
+            else if (Equals(arg, CommandLineConstants.Prefetch))
             {
                 Prefetch = true;
             }
-            else if (Equals(arg, "-teamcity"))
+            else if (Equals(arg, CommandLineConstants.Teamcity))
             {
                 Teamcity = true;
             }
             //NUnit arguments
-            else if (Starts(arg, "/include="))
+            else if (Starts(arg, CommandLineConstants.Include))
             {
                 if (Exclude != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
-                Include = arg.Substring("/include=".Length).Split(';');
+                Include = arg.Substring(CommandLineConstants.Include.Length).Split(';');
             }
-            else if (Starts(arg, "/exclude="))
+            else if (Starts(arg, CommandLineConstants.Exclude))
             {
                 if (Include != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
-                Exclude = arg.Substring("/exclude=".Length).Split(';');
+                Exclude = arg.Substring(CommandLineConstants.Exclude.Length).Split(';');
             }
-            else if (Starts(arg, "/output:"))
+            else if (Starts(arg, CommandLineConstants.Output))
             {
-                OutputReport = arg.Substring("/output:".Length);
+                OutputReport = arg.Substring(CommandLineConstants.Output.Length);
             }
-            else if (Starts(arg, "/xml="))
+            else if (Starts(arg, CommandLineConstants.Xml))
             {
-                XmlReport = arg.Substring("/xml=".Length);
+                XmlReport = arg.Substring(CommandLineConstants.Xml.Length);
             }
-            else if (Starts(arg, "/framework="))
+            else if (Starts(arg, CommandLineConstants.Framework))
             {
-                RuntimeFramework = arg.Substring("/framework=".Length);
+                RuntimeFramework = arg.Substring(CommandLineConstants.Framework.Length);
             }
-            else if (Equals(arg, "/nologo"))
+            else if (Equals(arg, CommandLineConstants.Nologo))
             {
                 Logo = false;
             }
-            else if (Equals(arg, "/labels"))
+            else if (Equals(arg, CommandLineConstants.Labels))
             {
                 Labels = true;
             }
-            else if (Equals(arg, "/noshadow"))
+            else if (Equals(arg, CommandLineConstants.Noshadow))
             {
             }
-            else if (Equals(arg, "/wait"))
+            else if (Equals(arg, CommandLineConstants.Wait))
             {
                 Wait = true;
             }

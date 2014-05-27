@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Locales.Localization.Plugins.FileWatcher;
 using Mnk.TBox.Core.PluginsShared.Watcher;

@@ -6,12 +6,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:my="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
-             xmlns:autoUpdate="clr-namespace:Mnk.Library.Common.AutoUpdate;assembly=Mnk.Library.Common"
              xmlns:units="clr-namespace:Mnk.Library.WPFControls.Components.Units;assembly=Mnk.Library.WPFControls"
              xmlns:objects="clr-namespace:Mnk.TBox.Core.Application.Code.Objects" 
              xmlns:settings2="clr-namespace:Mnk.TBox.Core.Application.Code.Shelduler.Settings"
              xmlns:settings="clr-namespace:Mnk.TBox.Core.Application.Code.FastStart.Settings" xmlns:TBox="clr-namespace:Mnk.TBox.Core.Application.Properties"
              xmlns:captioned2="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
+             xmlns:autoUpdate="clr-namespace:Mnk.Library.Common.AutoUpdate;assembly=Mnk.Library.Common"
              d:DesignHeight="400" d:DesignWidth="500">
     <TabControl >
         <TabItem Header="{loc:Tr TabsEnabledPlugins}">

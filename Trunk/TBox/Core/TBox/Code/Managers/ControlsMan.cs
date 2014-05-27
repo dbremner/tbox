@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.Objects;
 using Mnk.Library.WPFControls.Code.OS;

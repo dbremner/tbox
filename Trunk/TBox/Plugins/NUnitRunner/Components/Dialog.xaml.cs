@@ -34,6 +34,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             this.nunitAgentPath = nunitAgentPath;
             this.runAsx86Path = runAsx86Path;
             InitializeComponent();
+            Framework.ItemsSource = new[] {"net-2.0", "net-4.0"};
             Panel.Content = view;
             Progress.OnStartClick += StartClick;
             //load icons
@@ -65,7 +66,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             DisposePackage();
             package = new ProcessPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin,
                                          config.DirToCloneTests,
-                                         config.CommandBeforeTestsRun, view, runAsx86Path);
+                                         config.CommandBeforeTestsRun, view, runAsx86Path, config.Framework);
             if (items != null) package.Items = items;
         }
 

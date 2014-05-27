@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Input;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 
 namespace Mnk.Library.WPFWinForms.GlobalHotKeys
 {

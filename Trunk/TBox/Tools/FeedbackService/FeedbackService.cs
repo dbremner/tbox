@@ -2,8 +2,8 @@
 using System.Configuration;
 using System.IO;
 using System.ServiceProcess;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Communications.Network;
+using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Interface;
 
 namespace Mnk.TBox.Tools.FeedbackService
@@ -12,7 +12,7 @@ namespace Mnk.TBox.Tools.FeedbackService
 	{
 		static void Main(string[] args)
 		{
-			LogManager.Init(new MultiLog(new IBaseLog[]{new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "TBox.Feedback.Service.log")) }));
+			LogManager.Init(new MultiplyLog(new IBaseLog[]{new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "TBox.Feedback.Service.log")) }));
 			var service = new FeedbackService();
 			if (Environment.UserInteractive)
 			{

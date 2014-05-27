@@ -11,12 +11,12 @@ namespace Mnk.Library.Common.Network
 	public class Request
 	{
 		private readonly Stopwatch stopwatch = new Stopwatch();
-		public ResponseInfo GetResult(string url, Methods method = Methods.GET, string body = "", IEnumerable<IHeader> headers = null, int timeOut = 120000)
+		public ResponseInfo GetResult(string url, HttpMethod method = HttpMethod.GET, string body = "", IEnumerable<IHeader> headers = null, int timeout = 120000)
 		{
 			try
 			{
 				var request=(HttpWebRequest)WebRequest.Create(url);
-				request.ReadWriteTimeout = request.Timeout = timeOut;
+				request.ReadWriteTimeout = request.Timeout = timeout;
 				request.Proxy = null;
 				request.Credentials = CredentialCache.DefaultCredentials;
 				if (headers != null)

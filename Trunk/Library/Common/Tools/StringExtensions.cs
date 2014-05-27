@@ -9,17 +9,17 @@ namespace Mnk.Library.Common.Tools
 {
     public static class StringExtensions
     {
-        public static bool EqualsIgnoreCase(this string a, string b)
+        public static bool EqualsIgnoreCase(this string left, string right)
         {
-            return String.Equals(a, b, StringComparison.OrdinalIgnoreCase);
+            return String.Equals(left, right, StringComparison.InvariantCultureIgnoreCase);
         }
 
-        public static bool EqualsIgnoreCaseAndTrim(this string a, string b)
+        public static bool EqualsIgnoreCaseAndTrim(this string left, string right)
         {
-            return String.Equals((a ?? string.Empty).Trim(), (b ?? string.Empty).Trim(), StringComparison.OrdinalIgnoreCase);
+            return String.Equals((left ?? string.Empty).Trim(), (right ?? string.Empty).Trim(), StringComparison.InvariantCultureIgnoreCase);
         }
 
-        public static bool IsUniqIgnoreCase<T>(this IEnumerable<T> collection, Func<T, string> getter, string value)
+        public static bool IsUniqueIgnoreCase<T>(this IEnumerable<T> collection, Func<T, string> getter, string value)
         {
             return collection.All(x => !getter(x).EqualsIgnoreCase(value));
         }
@@ -29,7 +29,7 @@ namespace Mnk.Library.Common.Tools
             return collection.FirstOrDefault(item => getter(item).EqualsIgnoreCase(key));
         }
 
-        public static void MergeIgnoreCase(this Collection<string> collection, IList<string> existValues)
+        public static void MergeIgnoreCase(this ICollection<string> collection, IList<string> existValues)
         {
             foreach (var value in existValues
                 .Where(value => !string.IsNullOrWhiteSpace(value) && collection.GetExistByKeyIgnoreCase(x => x, value) == null))
@@ -103,13 +103,13 @@ namespace Mnk.Library.Common.Tools
             return (s.Length < length) ? s.PadRight(length) : s;
         }
 
-        public static bool IsUniqIgnoreCase<T>(this Collection<T> collection, string text)
+        public static bool IsUniqueIgnoreCase<T>(this ICollection<T> collection, string text)
             where T : UI.Model.Data
         {
-            return collection.IsUniqIgnoreCase(x => x.Key, text);
+            return collection.IsUniqueIgnoreCase(x => x.Key, text);
         }
 
-        public static T GetExistByKeyIgnoreCase<T>(this Collection<T> collection, string key)
+        public static T GetExistByKeyIgnoreCase<T>(this ICollection<T> collection, string key)
             where T : UI.Model.Data
         {
             return collection.GetExistByKeyIgnoreCase(x => x.Key, key);

@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.UI.Model;
 using Mnk.TBox.Locales.Localization.Plugins.LeaksInterceptor;
 using Mnk.Library.WPFControls.Code.OS;

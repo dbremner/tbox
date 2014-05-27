@@ -5,6 +5,12 @@ namespace Mnk.Library.Common.MT
     public sealed class ConsoleUpdater : IUpdater
     {
         private readonly int time = Environment.TickCount;
+
+        public ConsoleUpdater()
+        {
+            UserPressClose = false;
+        }
+
         public void Update(float value)
         {
             Update(string.Empty, value);

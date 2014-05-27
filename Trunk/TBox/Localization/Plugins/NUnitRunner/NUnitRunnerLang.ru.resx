@@ -186,6 +186,9 @@
   <data name="FolderToCloneTests" xml:space="preserve">
     <value>Папки для клонирования тестов</value>
   </data>
+  <data name="Framework" xml:space="preserve">
+    <value>Фрэймворк</value>
+  </data>
   <data name="Ignored" xml:space="preserve">
     <value>Проигнорировано:</value>
   </data>
@@ -247,7 +250,7 @@
     <value>Старт</value>
   </data>
   <data name="StartDelay" xml:space="preserve">
-    <value>Задержка перед запуском теста (сек)</value>
+    <value>Задержка запуска (сек)</value>
   </data>
   <data name="SynchronizeTestsAgents" xml:space="preserve">
     <value>Синхронизация тестовых агентов</value>

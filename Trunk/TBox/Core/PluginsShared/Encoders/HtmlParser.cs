@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using Mnk.Library.Common.Encoders;
+using Mnk.Library.Common;
 using Mnk.Library.Common.Tools;
 
 namespace Mnk.TBox.Core.PluginsShared.Encoders
@@ -62,7 +62,7 @@ namespace Mnk.TBox.Core.PluginsShared.Encoders
 			var newIdent = isComment ? ident : CalcIdent(text, begin, end, ident);
 			if (newIdent < ident) ident = newIdent;
 
-			sb.AppendIdent(ident)
+			sb.AppendIndent(ident)
 				.Append(text.Substring(begin, end - begin));
 
 			ident = newIdent;
@@ -76,7 +76,7 @@ namespace Mnk.TBox.Core.PluginsShared.Encoders
 				.Split(new[]{Environment.NewLine},StringSplitOptions.None)
 				.Where(line => !string.IsNullOrWhiteSpace(line)))
 			{
-				sb.AppendIdent(ident).Append(line.Trim());
+				sb.AppendIndent(ident).Append(line.Trim());
 			}
 		}
 

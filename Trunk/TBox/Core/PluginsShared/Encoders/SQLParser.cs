@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 
 namespace Mnk.TBox.Core.PluginsShared.Encoders
 {

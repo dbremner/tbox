@@ -1,6 +1,6 @@
 ﻿using System.IO;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Console;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Log;
 
 namespace Mnk.TBox.Core.PluginsShared.Tools
 {

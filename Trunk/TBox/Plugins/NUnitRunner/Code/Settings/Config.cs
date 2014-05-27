@@ -12,14 +12,12 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
     {
         public CheckableDataCollection<TestConfig> DllPathes { get; set; }
         public IDictionary<string, DialogState> States { get; set; }
-        public BatchConfig Batch { get; set; }
 
         public Config()
 		{
 			(DllPathes = new CheckableDataCollection<TestConfig>()).
 				FillCollection("c:\\projects\\sample.lib.tests.dll");
 			States = new Dictionary<string, DialogState>();
-			Batch = new BatchConfig();
 		}
 
 	}

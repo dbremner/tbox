@@ -45,13 +45,13 @@
       <HintPath>..\..\..\Libs\LightInject.3.0.1.6\lib\net40\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
-      <HintPath>..\..\..\Libs\nunit\nunit.core.dll</HintPath>
+      <HintPath>..\..\..\Libs\NUnit.2.6.3\lib\nunit.core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\..\Libs\nunit\nunit.core.interfaces.dll</HintPath>
+      <HintPath>..\..\..\Libs\NUnit.2.6.3\lib\nunit.core.interfaces.dll</HintPath>
     </Reference>
     <Reference Include="nunit.util">
-      <HintPath>..\..\..\Libs\nunit\nunit.util.dll</HintPath>
+      <HintPath>..\..\..\Libs\NUnit.2.6.3\lib\nunit.util.dll</HintPath>
     </Reference>
     <Reference Include="Ookii.Dialogs.Wpf">
       <HintPath>..\..\..\Libs\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>

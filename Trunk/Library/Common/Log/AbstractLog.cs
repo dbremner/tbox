@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace Mnk.Library.Common.Base.Log
+namespace Mnk.Library.Common.Log
 {
     public abstract class AbstractLog : ILog
     {

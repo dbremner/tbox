@@ -12,7 +12,7 @@ namespace Mnk.Library.Common.UI.ModelsContainers
 	{
 		public CheckableDataCollection(){}
 		public CheckableDataCollection(IEnumerable<T> collection) : base(collection) { }
-		public CheckableDataCollection(List<T> collection) : base(collection) { }
+		public CheckableDataCollection(IList<T> collection) : base(collection) { }
 
 		public void SetCheck(bool isChecked = true)
 		{
@@ -53,7 +53,7 @@ namespace Mnk.Library.Common.UI.ModelsContainers
 
 		public void SetCheck(string name, bool isChecked = true)
 		{
-			this.Where(x => x.Key == name).FirstOrDefault().IsChecked = isChecked;
+			this.FirstOrDefault(x => x.Key == name).IsChecked = isChecked;
 		}
 
 		public bool GetCheck(int id)
@@ -82,7 +82,7 @@ namespace Mnk.Library.Common.UI.ModelsContainers
 			get { return this.Where(x => x.IsChecked); }
 		}
 
-		public IEnumerable<T> UnCheckedItems
+		public IEnumerable<T> UncheckedItems
 		{
 			get { return this.Where(x => !x.IsChecked); }
 		}

@@ -52,10 +52,11 @@
                                     <StackPanel DockPanel.Dock="Left" >
                                         <components:ExtCheckBox Content="{loc:Tr RunAsx86}" IsChecked="{Binding RunAsx86}" Margin="5"/>
                                         <components:ExtCheckBox Content="{loc:Tr RunAsAdmin}" IsChecked="{Binding RunAsAdmin}" Margin="5"/>
-                                        <captioned1:CaptionedNumericUpDown Caption="{loc:Tr StartDelay}" Value="{Binding StartDelay}" Minimum="0" Maximum="60" Margin="5"/>
+                                        <captioned1:CaptionedComboBox Caption="{loc:Tr Framework}" Value="{Binding Framework}" Margin="5" IsEditable="True" Name="Framework"/>
                                     </StackPanel>
                                     <GroupBox Margin="5" Header="{loc:Tr Multithreading}">
                                         <StackPanel>
+                                            <captioned1:CaptionedNumericUpDown Caption="{loc:Tr StartDelay}" Value="{Binding StartDelay}" Minimum="0" Maximum="60" Margin="5"/>
                                             <captioned1:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16" Margin="5"/>
                                             <components:ExtCheckBox Content="{loc:Tr UsePrefetch}" IsChecked="{Binding UsePrefetch}" Margin="5"/>
                                         </StackPanel>

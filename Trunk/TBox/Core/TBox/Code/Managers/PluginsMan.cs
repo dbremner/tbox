@@ -5,7 +5,7 @@ using Mnk.TBox.Core.Interface;
 
 namespace Mnk.TBox.Core.Application.Code.Managers
 {
-	class PluginsMan : PlugMan<IPlugin>
+	class PluginsMan : PluginsManager<IPlugin>
 	{
 		private readonly Action<Action> sync;
 		public PluginsMan(Factory<IPlugin> factory, string pluginsConfigDir, Action<Action> sync) :

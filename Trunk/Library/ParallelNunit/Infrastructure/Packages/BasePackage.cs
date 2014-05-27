@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Communications.Interprocess;
+using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure.Communication;

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Mnk.Library.Common.Base.Log;
-using Mnk.Library.Common.Communications.Interprocess;
-using Mnk.Library.Common.Console;
+using Mnk.Library.Common;
+using Mnk.Library.Common.Communications;
+using Mnk.Library.Common.Log;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Execution;
 using Mnk.Library.ParallelNUnit.Infrastructure.Communication;
@@ -31,7 +31,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
                         Cmd.Start(commandToExecuteBeforeTests, Log,
                             directory: Path.GetDirectoryName(folder),
                             waitEnd: true,
-                            nowindow: true);
+                            noWindow: true);
                     }
                 }
                 if (u.UserPressClose) return;

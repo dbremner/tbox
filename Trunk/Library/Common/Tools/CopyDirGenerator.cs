@@ -26,13 +26,13 @@ namespace Mnk.Library.Common.Tools
             return GenerateDictionary(source, filters);
         }
 
-        private Regex[] GetFilters(string[] copyMasks, DirectoryInfo source, out int copyDeep)
+        private IEnumerable<Regex> GetFilters(string[] copyMasks, DirectoryInfo source, out int copyDeep)
         {
-            copyMasks = NormalizePathes(copyMasks);
+            copyMasks = NormalizePaths(copyMasks);
             var deep = CalcCopyDeep(copyMasks);
-            var maximumPathes = BuildMaximumPathes(source.FullName, deep);
+            var maximumPaths = BuildMaximumPaths(source.FullName, deep);
             var filters = copyMasks
-                .Select(x => NormalizePath(x, deep, maximumPathes))
+                .Select(x => NormalizePath(x, deep, maximumPaths))
                 .Select(
                     x =>
                         new Regex(x.Replace(".", "[.]").Replace("*", ".*").Replace("?", ".").Replace("\\", "\\\\"),
@@ -42,7 +42,7 @@ namespace Mnk.Library.Common.Tools
             return filters;
         }
 
-        private static IDictionary<string, IList<string>> GenerateDictionary(DirectoryInfo source, Regex[] filters)
+        private static IDictionary<string, IList<string>> GenerateDictionary(DirectoryInfo source, IEnumerable<Regex> filters)
         {
             var result = new Dictionary<string, IList<string>>();
             foreach (
@@ -82,18 +82,18 @@ namespace Mnk.Library.Common.Tools
             return a.HasFlag(FileAttributes.Hidden) || a.HasFlag(FileAttributes.System) || a.HasFlag(FileAttributes.ReadOnly);
         }
 
-        public string[] NormalizePathes(IEnumerable<string> pathes)
+        public string[] NormalizePaths(IEnumerable<string> paths)
         {
-            return pathes
+            return paths
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .Select(x => string.Join(Divider,
                     x.Replace("/", Divider).Trim().Split(new[] { Divider }, StringSplitOptions.RemoveEmptyEntries)))
                 .ToArray();
         }
 
-        public int CalcCopyDeep(IEnumerable<string> pathes)
+        public int CalcCopyDeep(IEnumerable<string> paths)
         {
-            return pathes.Max(x => CalcCopyDeep(x));
+            return paths.Max(x => CalcCopyDeep(x));
         }
 
         private static int CalcCopyDeep(string path)
@@ -107,7 +107,7 @@ namespace Mnk.Library.Common.Tools
             return deep;
         }
 
-        private static IEnumerable<string> BuildMaximumPathes(string directory, int copyDeep)
+        private static IEnumerable<string> BuildMaximumPaths(string directory, int copyDeep)
         {
             return directory
                 .Split(new[] { Divider }, StringSplitOptions.RemoveEmptyEntries)
@@ -115,11 +115,11 @@ namespace Mnk.Library.Common.Tools
                 .ToArray();
         }
 
-        private static string NormalizePath(string path, int copyDeep, IEnumerable<string> maximumPathes)
+        private static string NormalizePath(string path, int copyDeep, IEnumerable<string> maximumPaths)
         {
             var deep = CalcCopyDeep(path);
             return string.Join(Divider,
-                    maximumPathes
+                    maximumPaths
                     .Take(copyDeep - deep)
                     .Concat(
                         path

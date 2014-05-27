@@ -2,7 +2,7 @@
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using Mnk.Library.Common.Base.Log;
+using Mnk.Library.Common.Log;
 using Mnk.Library.Common.SaveLoad;
 
 namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
@@ -11,13 +11,13 @@ namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
     public class ConfigProvider<T> : IConfigProvider<T>
         where T: new()
     {
-        private readonly ParamSerializer<T> serializer;
+        private readonly ConfigurationSerializer<T> serializer;
         private readonly ILog log = LogManager.GetLogger<ConfigProvider<T>>();
         public T Config { get; private set; }
         
         public ConfigProvider(string path)
         {
-            serializer = new ParamSerializer<T>(path);
+            serializer = new ConfigurationSerializer<T>(path);
             Config = serializer.Load(new T());
         }
 

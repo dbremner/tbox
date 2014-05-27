@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 using NUnit.Core;
 
 namespace Mnk.Library.ParallelNUnit.Core

@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Mnk.Library.Common.Base.Log
+namespace Mnk.Library.Common.Log
 {
-	public class MultiLog : AbstractLog
+	public class MultiplyLog : AbstractLog
 	{
 		private readonly IBaseLog[] logs;
 
-		public MultiLog(params IBaseLog[] logs)
+		public MultiplyLog(params IBaseLog[] logs)
 		{
 			this.logs = logs;
 		}

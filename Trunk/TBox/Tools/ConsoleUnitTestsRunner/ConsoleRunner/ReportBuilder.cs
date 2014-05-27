@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Xml;
-using Mnk.Library.Common.Data;
+using Mnk.Library.Common.Models;
 using NUnit.Core;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure;

@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Mnk.Library.Common.Models;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.Common.Data;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.SaveLoad;
 
 namespace Mnk.Library.Common.Plugins
 {
-	public class PlugMan<TInterface> : IEnumerable<Pair<string, TInterface>>
+	public class PluginsManager<TInterface> : IEnumerable<Pair<string, TInterface>>
 		where TInterface : class 
 	{
 		protected sealed class Info
@@ -23,9 +23,9 @@ namespace Mnk.Library.Common.Plugins
 
 		public Factory<TInterface> Factory { get; private set; }
 		private readonly string pluginsConfigDir;
-		protected Dictionary<string,Info> Items { get; private set; }
+		protected IDictionary<string,Info> Items { get; private set; }
 
-		public PlugMan(Factory<TInterface> factory, string pluginsConfigDir)
+		public PluginsManager(Factory<TInterface> factory, string pluginsConfigDir)
 		{
 			Items = new Dictionary<string, Info>();
 			Factory = factory;

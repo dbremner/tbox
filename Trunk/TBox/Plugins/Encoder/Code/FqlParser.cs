@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Mnk.Library.Common.Encoders;
+using Mnk.Library.Common;
 
 namespace Mnk.TBox.Plugins.Encoder.Code
 {
@@ -21,11 +21,11 @@ namespace Mnk.TBox.Plugins.Encoder.Code
 				pos = text.IndexOfAny(Dividers, pos);
 				if (pos == -1)
 				{
-					result.AppendIdent(ident);
+					result.AppendIndent(ident);
 					result.Append(text.Substring(lastPos, text.Length - lastPos));
 					break;
 				}
-				result.AppendIdent(ident);
+				result.AppendIndent(ident);
 				result.Append(text.Substring(lastPos, pos - lastPos)).Append(text[pos]);
 				ident = Math.Max(0, ident + ((text[pos] == Begin) ? +1 : -1));
 				++pos;
@@ -45,7 +45,7 @@ namespace Mnk.TBox.Plugins.Encoder.Code
 				pos = text.IndexOfAny(Dividers, pos);
 				if (pos == -1)
 				{
-					result.AppendIdent(ident);
+					result.AppendIndent(ident);
 					result.Append(text.Substring(lastPos, text.Length - lastPos));
 					break;
 				}
@@ -53,7 +53,7 @@ namespace Mnk.TBox.Plugins.Encoder.Code
 				isBegin = (text[pos] == Begin);
 				if (isBegin && lastBegin || !isBegin && !lastBegin)
 				{
-					result.AppendIdent(ident);
+					result.AppendIndent(ident);
 				}
 				result.Append(text.Substring(lastPos, pos - lastPos)).Append(text[pos]);
 				ident = Math.Max(0, ident + (isBegin ? +1 : -1));

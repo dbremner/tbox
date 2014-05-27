@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mnk.Library.Common.Data
+namespace Mnk.Library.Common.Models
 {
     public interface IHasChildren
     {
