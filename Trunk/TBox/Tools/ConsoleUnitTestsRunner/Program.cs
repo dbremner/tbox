@@ -60,11 +60,11 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
 
         private static void ShowArgs(CommandLineArgs cmd)
         {
-            Console.WriteLine("Start with arguments: {0} -p={1}{2}{3}{4}{5}{6} -dirToCloneTests='{7}' -commandBeforeTestsRun='{8}'{9}{10} -startDelay={11}{12}{13}{14}{15}{16}",
+            Console.WriteLine("Start with arguments: {0} -p={1}{2}{3}{4}{5}{6}{7} -dirToCloneTests='{8}' -commandBeforeTestsRun='{9}'{10}{11} -startDelay={12}{13}{14}{15}{16}{17}",
                 string.Join(" ", cmd.Paths),
                 cmd.ProcessCount, AddIfTrue(" /wait ", cmd.Wait),
                 AddIfTrue(" -clone ", cmd.Clone), Format(" -copyMasks=", cmd.CopyMasks),
-                AddIfTrue(" -sync ", cmd.Sync), Format(" /xml=",cmd.XmlReport),
+                AddIfTrue(" -sync ", cmd.Sync), Format(" /xml=", cmd.XmlReport), Format(" /framework=", cmd.RuntimeFramework),
                 cmd.DirToCloneTests, cmd.CommandBeforeTestsRun,
                 Format(" /include=", cmd.Include), Format(" /exclude=", cmd.Exclude),
                 cmd.StartDelay, 
@@ -113,6 +113,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
             Console.WriteLine("/include=a1[;a2] - include only tests with specified categories");
             Console.WriteLine("/exclude=a1[;a2] - exclude all tests with specified categories");
             Console.WriteLine("/xml=[path]        path for xml report, by default empty");
+            Console.WriteLine("/framework=[v]     framework version to use, by default empty");
             Console.WriteLine("/output:[path]     path for tests output, by default empty");
             Console.WriteLine("/labels            Label each test in stdOut, by default false");
             Console.WriteLine("/noshadow          Do nothing (for now)");

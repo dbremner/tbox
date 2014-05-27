@@ -23,6 +23,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 
         public IUnitTestsView Results { get; private set; }
         public string FilePath { get; private set; }
+        public string RuntimeFramework { get; private set; }
         public IList<Result> Items
         {
             get { return collected; }
@@ -38,12 +39,13 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
         public int Count { get { return Metrics.Total; } }
         public int FailedCount { get { return Metrics.Failed.Length; } }
 
-        protected BasePackage(string path, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view)
+        protected BasePackage(string path, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, string runtimeFramework)
         {
             Server = new InterprocessServer<INunitRunnerClient>(new NunitRunnerClient());
             DirToCloneTests = dirToCloneTests;
             CommandToExecuteBeforeTests = commandToExecuteBeforeTests;
             FilePath = path;
+            RuntimeFramework = runtimeFramework;
             Items = new Result[0];
             Results = view;
             prefetchManager = new PrefetchManager();

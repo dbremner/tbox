@@ -12,8 +12,8 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
     {
         private readonly ResolveEventHandler loadFromSameFolder;
 
-        public ThreadPackage(string path, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, ResolveEventHandler loadFromSameFolder)
-            :base(path, dirToCloneTests, commandToExecuteBeforeTests, view)
+        public ThreadPackage(string path, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, ResolveEventHandler loadFromSameFolder, string runtimeFramework)
+            :base(path, dirToCloneTests, commandToExecuteBeforeTests, view, runtimeFramework)
         {
             this.loadFromSameFolder = loadFromSameFolder;
         }
@@ -23,7 +23,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
             try
             {
                 var cl = new NUnitExecutor(loadFromSameFolder);
-                var results = cl.CollectTests(FilePath);
+                var results = cl.CollectTests(FilePath, RuntimeFramework);
                 if(results == null)
                     throw new ArgumentException("Can't collect tests in: " + FilePath);
                 Items = new[]{results};
@@ -41,7 +41,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
             try
             {
                 var runner = new ThreadTestsRunner(loadFromSameFolder);
-                runner.Run(FilePath, allTests, packages, Server, copyToSeparateFolders, copyMasks, needSynchronizationForTests, DirToCloneTests, CommandToExecuteBeforeTests, startDelay, synchronizer, u, needOutput);
+                runner.Run(FilePath, allTests, packages, Server, copyToSeparateFolders, copyMasks, needSynchronizationForTests, DirToCloneTests, CommandToExecuteBeforeTests, startDelay, synchronizer, u, needOutput, RuntimeFramework);
                 onReceive(this);
             }
             catch (Exception ex)

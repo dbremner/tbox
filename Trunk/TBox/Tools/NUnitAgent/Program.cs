@@ -42,7 +42,7 @@ namespace Mnk.TBox.Tools.NUnitAgent
                         Result list = null;
                         try
                         {
-                            list = w.CollectTests(path);
+                            list = w.CollectTests(path, null);
                             return 1;
                         }
                         finally
@@ -53,9 +53,9 @@ namespace Mnk.TBox.Tools.NUnitAgent
                             }
                         }
                     case TestsCommands.FastTest:
-                        return w.RunTests(handle, true, true);
+                        return w.RunTests(handle, true, true, null);
                     case TestsCommands.Test:
-                        return w.RunTests(handle, false, true);
+                        return w.RunTests(handle, false, true, null);
                     default:
                         log.Write("Unknown command: " + args[2]);
                         break;

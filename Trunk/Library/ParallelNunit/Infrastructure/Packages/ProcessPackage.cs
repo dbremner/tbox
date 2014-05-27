@@ -30,7 +30,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
         }
 
         public ProcessPackage(string path, string nunitAgentPath, bool runAsx86, bool runAsAdmin, string dirToCloneTests, string commandToExecuteBeforeTests, IUnitTestsView view, string runAsx86Path)
-            :base(path, dirToCloneTests, commandToExecuteBeforeTests, view)
+            :base(path, dirToCloneTests, commandToExecuteBeforeTests, view, null)
         {
             var processCreator = new AgentProcessCreator(nunitAgentPath, runAsx86Path, runAsx86, runAsAdmin);
             calculator = new Calculator(processCreator);
@@ -58,7 +58,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
         {
             try
             {
-                testsRunner.Run(FilePath, allTests, packages, Server, copyToSeparateFolders, copyMasks, needSynchronizationForTests, DirToCloneTests, CommandToExecuteBeforeTests, startDelay, synchronizer, u, needOutput);
+                testsRunner.Run(FilePath, allTests, packages, Server, copyToSeparateFolders, copyMasks, needSynchronizationForTests, DirToCloneTests, CommandToExecuteBeforeTests, startDelay, synchronizer, u, needOutput, RuntimeFramework);
                 onReceive(this);
             }
             catch (Exception ex)

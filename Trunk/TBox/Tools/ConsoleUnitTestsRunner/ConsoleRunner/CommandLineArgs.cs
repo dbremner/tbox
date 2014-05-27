@@ -27,6 +27,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         public string XmlReport { get; set; }
         public string OutputReport { get; set; }
         public bool Wait { get; set; }
+        public string RuntimeFramework { get; set; }
 
         public CommandLineArgs()
         {
@@ -110,6 +111,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             else if (Starts(arg, "/xml="))
             {
                 XmlReport = arg.Substring("/xml=".Length);
+            }
+            else if (Starts(arg, "/framework="))
+            {
+                RuntimeFramework = arg.Substring("/framework=".Length);
             }
             else if (Equals(arg, "/nologo"))
             {

@@ -21,12 +21,14 @@ namespace Mnk.Library.ParallelNUnit.Core
             CoreExtensions.Host.AddinRegistry = Services.AddinRegistry;
         }
 
-        public static TestPackage CreatePackage(string path)
+        public static TestPackage CreatePackage(string path, string runtimeFramework)
         {
             var p = new TestPackage(Path.GetFullPath(path));
             p.Settings["ProcessModel"] = ProcessModel.Single;
             p.Settings["DomainUsage"] = DomainUsage.None;
             p.Settings["ShadowCopyFiles"] = false;
+            if (!string.IsNullOrEmpty(runtimeFramework))
+                p.Settings["RuntimeFramework"] = RuntimeFramework.Parse(runtimeFramework);
             return p;
         }
 

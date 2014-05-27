@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Mnk.Library.Common.Base.Log;
 using NUnit.Core;
@@ -11,9 +12,9 @@ namespace Mnk.Library.ParallelNUnit.Core
     {
         private readonly ILog log = LogManager.GetLogger<NUnitTestStarter>();
 
-        public int Run(string handle, string path, int[] items, bool fast, bool needOutput)
+        public int Run(string handle, string path, int[] items, bool fast, bool needOutput, string runtimeFramework)
         {
-            var p = NUnitBase.CreatePackage(path);
+            var p = NUnitBase.CreatePackage(path, runtimeFramework);
             using (var runner = new TestDomain())
             {
                 if (!runner.Load(p))
@@ -37,11 +38,11 @@ namespace Mnk.Library.ParallelNUnit.Core
             }
         }
 
-        public Result CollectTests(string path)
+        public Result CollectTests(string path, string runtimeFramework)
         {
             using (var runner = new TestDomain())
             {
-                var p = NUnitBase.CreatePackage(path);
+                var p = NUnitBase.CreatePackage(path, runtimeFramework);
                 if (!runner.Load(p)) return null;
                 try
                 {

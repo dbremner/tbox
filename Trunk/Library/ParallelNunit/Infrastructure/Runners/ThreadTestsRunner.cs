@@ -12,9 +12,9 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
             this.loadFromSameFolder = loadFromSameFolder;
         }
 
-        protected override IContext Run(string path, bool needSynchronizationForTests, string handle, bool needOutput)
+        protected override IContext Run(string path, bool needSynchronizationForTests, string handle, bool needOutput, string runtimeFramework)
         {
-            var t = new Thread(o => new NUnitExecutor(loadFromSameFolder).RunTests(handle, !needSynchronizationForTests, needOutput));
+            var t = new Thread(o => new NUnitExecutor(loadFromSameFolder).RunTests(handle, !needSynchronizationForTests, needOutput, runtimeFramework));
             t.Start();
             return new ThreadContext(t);
         }

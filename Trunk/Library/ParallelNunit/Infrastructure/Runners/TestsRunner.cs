@@ -16,7 +16,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
         private static readonly ILog Log = LogManager.GetLogger<TestsRunner>();
         private readonly DirectoriesManipulator dirMan = new DirectoriesManipulator();
 
-        public void Run(string path, IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, bool copyToLocalFolders, string[] copyMasks, bool needSynchronizationForTests, string dirToCloneTests, string commandToExecuteBeforeTests, int startDelay, Synchronizer synchronizer, IProgressStatus u, bool needOutput)
+        public void Run(string path, IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, bool copyToLocalFolders, string[] copyMasks, bool needSynchronizationForTests, string dirToCloneTests, string commandToExecuteBeforeTests, int startDelay, Synchronizer synchronizer, IProgressStatus u, bool needOutput, string runtimeFramework)
         {
             var dllPaths = dirMan.GenerateFolders(path, packages.Count, copyToLocalFolders, copyMasks, dirToCloneTests, u);
             var s = (NunitRunnerClient)server.Owner;
@@ -42,7 +42,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
                             DllPathes = dllPaths
                         },
                     packages, allTests,
-                    Run(path, needSynchronizationForTests, handle, needOutput)
+                    Run(path, needSynchronizationForTests, handle, needOutput, runtimeFramework)
                     );
             }
             finally
@@ -53,6 +53,6 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
             }
         }
 
-        protected abstract IContext Run(string path, bool needSynchronizationForTests, string handle, bool needOutput);
+        protected abstract IContext Run(string path, bool needSynchronizationForTests, string handle, bool needOutput, string runtimeFramework);
     }
 }

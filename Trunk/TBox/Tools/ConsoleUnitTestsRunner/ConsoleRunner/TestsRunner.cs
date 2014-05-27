@@ -28,7 +28,8 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
                         args.DirToCloneTests,
                         args.CommandBeforeTestsRun,
                         view,
-                        Program.LoadFromSameFolder))
+                        Program.LoadFromSameFolder,
+                        args.RuntimeFramework))
                 {
                     view.NotifyNewAssemblyStartTest();
 

@@ -20,12 +20,12 @@ namespace Mnk.Library.ParallelNUnit.Execution
             this.loadFromSameFolder = loadFromSameFolder;
         }
 
-        public Result CollectTests(string path)
+        public Result CollectTests(string path, string runtimeFramework)
         {
-            return new NUnitTestStarter().CollectTests(path);
+            return new NUnitTestStarter().CollectTests(path, runtimeFramework);
         }
 
-        public int RunTests(string handle, bool fast, bool needOutput)
+        public int RunTests(string handle, bool fast, bool needOutput, string runtimeFramework)
         {
             using (var cl = new InterprocessClient<INunitRunnerClient>(handle))
             {
@@ -39,7 +39,7 @@ namespace Mnk.Library.ParallelNUnit.Execution
                         {
                             Thread.Sleep(i*config.StartDelay);
                         }
-                        ProcessMessage(s => s.Run(handle, path, items, fast, needOutput));
+                        ProcessMessage(s => s.Run(handle, path, items, fast, needOutput, runtimeFramework));
                     });
             }
             return 1;
