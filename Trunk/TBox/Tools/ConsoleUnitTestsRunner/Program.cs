@@ -25,6 +25,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
                 ShowHelp();
                 return -1;
             }
+
             int ret = -1;
             var wait = false;
             try
@@ -37,15 +38,11 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
                     ShowLogo();
                     ShowArgs(cmdArgs);
                 }
+
                 Console.WriteLine("ProcessModel: Default\tDomainUseage: Single");
                 Console.WriteLine("Execution Runtime: Default\tCPUCount: " + Environment.ProcessorCount);
-                if (!File.Exists(args[0]))
-                {
-                    log.Write("Can't find tests in library: " + args[0]);
-                    return -2;
-                }
-                var testsRunner = new TestsRunner();
-                ret = testsRunner.Run(cmdArgs);
+
+                ret = TestsRunner.Run(cmdArgs);
             }
             catch (Exception ex)
             {
@@ -56,6 +53,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
             {
                 NUnitBase.Dispose();
             }
+
             if (wait) Console.ReadKey();
             return ret;
         }
@@ -63,7 +61,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
         private static void ShowArgs(CommandLineArgs cmd)
         {
             Console.WriteLine("Start with arguments: {0} -p={1}{2}{3}{4}{5}{6} -dirToCloneTests='{7}' -commandBeforeTestsRun='{8}'{9}{10} -startDelay={11}{12}{13}{14}{15}{16}",
-                cmd.Path,
+                string.Join(" ", cmd.Paths),
                 cmd.ProcessCount, AddIfTrue(" /wait ", cmd.Wait),
                 AddIfTrue(" -clone ", cmd.Clone), Format(" -copyMasks=", cmd.CopyMasks),
                 AddIfTrue(" -sync ", cmd.Sync), Format(" /xml=",cmd.XmlReport),
@@ -100,7 +98,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
 
         private static void ShowHelp()
         {
-            Console.WriteLine("You should specify at least 1 parameter: path to unit tests");
+            Console.WriteLine("You should specify at least 1 parameter: path to unit tests (multiple separated by space).");
             Console.WriteLine("Other parameters:");
             Console.WriteLine("-p=N             - specify process count, by default N = cpu cores count");
             Console.WriteLine("-clone           - clone unit tests folder, by default false");

@@ -3,9 +3,12 @@ using System.Linq;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+
     class CommandLineArgs
     {
-        public string Path { get; set; }
+        public IList<string> Paths { get; set; }
         public int ProcessCount { get; set; }
         public bool Prefetch { get; set; }
         public bool Clone { get; set; }
@@ -40,12 +43,12 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             Labels = false;
             Wait = false;
             Teamcity = false;
+            Paths = new List<string>();
         }
 
         public void Parse(string[] args)
         {
-            Path = args[0];
-            foreach (var s in args.Skip(1))
+            foreach (var s in args)
             {
                 ParseArgument(s);
             }
@@ -55,11 +58,11 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         {
             if (Starts(arg, "-p="))
             {
-                ProcessCount = int.Parse(arg.Substring(3));
+                ProcessCount = int.Parse(arg.Substring("-p=".Length));
             }
             else if (Starts(arg, "-startDelay="))
             {
-                StartDelay = int.Parse(arg.Substring(12));
+                StartDelay = int.Parse(arg.Substring("-startDelay=".Length));
             }
             else if (Equals(arg, "-clone"))
             {
@@ -67,15 +70,15 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             }
             else if (Starts(arg, "-copyMasks="))
             {
-                CopyMasks = arg.Substring(11).Split(';');
+                CopyMasks = arg.Substring("-copyMasks=".Length).Split(';');
             }
             else if (Starts(arg, "-dirToCloneTests="))
             {
-                DirToCloneTests = arg.Substring(17);
+                DirToCloneTests = arg.Substring("-dirToCloneTests=".Length);
             }
             else if (Starts(arg, "-commandBeforeTestsRun="))
             {
-                CommandBeforeTestsRun = arg.Substring(23);
+                CommandBeforeTestsRun = arg.Substring("-commandBeforeTestsRun=".Length);
             }
             else if (Equals(arg, "-sync"))
             {
@@ -93,20 +96,20 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             else if (Starts(arg, "/include="))
             {
                 if (Exclude != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
-                Include = arg.Substring(9).Split(';');
+                Include = arg.Substring("/include=".Length).Split(';');
             }
             else if (Starts(arg, "/exclude="))
             {
                 if (Include != null) throw new ArgumentException("You can't specify include and exclude at the same time.");
-                Exclude = arg.Substring(9).Split(';');
+                Exclude = arg.Substring("/exclude=".Length).Split(';');
             }
             else if (Starts(arg, "/output:"))
             {
-                OutputReport = arg.Substring(8);
+                OutputReport = arg.Substring("/output:".Length);
             }
             else if (Starts(arg, "/xml="))
             {
-                XmlReport = arg.Substring(5);
+                XmlReport = arg.Substring("/xml=".Length);
             }
             else if (Equals(arg, "/nologo"))
             {
@@ -125,7 +128,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             }
             else
             {
-                throw new ArgumentException("Unknown argument: " + arg);
+                Paths.Add(arg);
             }
         }
 
