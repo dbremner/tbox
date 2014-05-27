@@ -16,6 +16,8 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
         protected override void ProcessResults(int allCount, Result[] items)
         {
+            if (items == null) return;
+
             var sb = new StringBuilder();
             foreach (var result in items)
             {

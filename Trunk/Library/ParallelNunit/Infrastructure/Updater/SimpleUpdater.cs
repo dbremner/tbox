@@ -1,4 +1,5 @@
-﻿using Mnk.Library.Common.MT;
+﻿using System.Globalization;
+using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
@@ -22,7 +23,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
 
         public virtual void Update(string text)
         {
-            u.Update(i => string.Format("{0}, time: {1}",text, i.FormatTimeInSec()), 0,1);
+            u.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", text, i.FormatTimeInSec()), 0, 1);
         }
 
         public bool UserPressClose { get { return u.UserPressClose; } }
@@ -39,11 +40,11 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
 
         protected virtual void ProcessResults(int allCount, Result[] items)
         {
-            var caption = string.Format("Tested: {0}/{1}, failed: {2}, finished = {3}/{4}",
+            var caption = string.Format(CultureInfo.InvariantCulture, "Tested: {0}/{1}, failed: {2}, finished = {3}/{4}",
                                         passedCount,
                                         allCount, failedCount,
                                         synchronizer.Finished, synchronizer.Count);
-            u.Update(i => string.Format("{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, allCount);
+            u.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, allCount);
         }
     }
 }

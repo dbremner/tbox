@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Mnk.Library.Common.UI.Model;
 
 namespace Mnk.Library.Common.Tools
@@ -18,18 +19,18 @@ namespace Mnk.Library.Common.Tools
 		}
 	}
 
-    public sealed class EqualityNoCaseComparer : IEqualityComparer<string>
-    {
-        public bool Equals(string x, string y)
-        {
-            return string.Equals(x, y, StringComparison.InvariantCultureIgnoreCase);
-        }
+	public sealed class EqualityNoCaseComparer : IEqualityComparer<string>
+	{
+		public bool Equals(string x, string y)
+		{
+			return string.Equals(x, y, StringComparison.OrdinalIgnoreCase);
+		}
 
-        public int GetHashCode(string obj)
-        {
-            return obj.ToLower().GetHashCode();
-        }
-    }
+		public int GetHashCode(string obj)
+		{
+			return obj.ToUpperInvariant().GetHashCode();
+		}
+	}
 
 	public sealed class EqualityDataValueStringComparer : IEqualityComparer<CheckableData<string>>
 	{

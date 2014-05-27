@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -70,7 +71,7 @@ namespace Mnk.Library.ParallelNUnit.Core
         {
             items.Add(new Result
                 {
-                    Id = int.Parse(result.Test.TestName.TestID.ToString()),
+                    Id = int.Parse(result.Test.TestName.TestID.ToString(), CultureInfo.InvariantCulture),
                     Key = result.Test.TestName.Name,
                     FullName = result.Test.TestName.FullName,
                     Description = result.Description,

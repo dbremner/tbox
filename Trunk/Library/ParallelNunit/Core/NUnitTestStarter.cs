@@ -73,7 +73,7 @@ namespace Mnk.Library.ParallelNUnit.Core
         {
             return new Result
             {
-                Id = int.Parse(result.TestName.TestID.ToString()),
+                Id = int.Parse(result.TestName.TestID.ToString(), CultureInfo.InvariantCulture),
                 Key = result.TestName.Name,
                 FullName = result.TestName.FullName,
                 Categories = categories,

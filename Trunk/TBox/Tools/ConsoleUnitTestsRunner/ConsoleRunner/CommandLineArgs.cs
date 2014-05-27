@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
-    using System.Collections.Generic;
-    using System.Globalization;
-
     class CommandLineArgs
     {
         public IList<string> Paths { get; set; }
@@ -59,11 +58,11 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         {
             if (Starts(arg, "-p="))
             {
-                ProcessCount = int.Parse(arg.Substring("-p=".Length));
+                ProcessCount = int.Parse(arg.Substring("-p=".Length), CultureInfo.InvariantCulture);
             }
             else if (Starts(arg, "-startDelay="))
             {
-                StartDelay = int.Parse(arg.Substring("-startDelay=".Length));
+                StartDelay = int.Parse(arg.Substring("-startDelay=".Length), CultureInfo.InvariantCulture);
             }
             else if (Equals(arg, "-clone"))
             {

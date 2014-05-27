@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 
 namespace Mnk.Library.Common.Base.Log
@@ -13,17 +14,17 @@ namespace Mnk.Library.Common.Base.Log
             {
                 ex = aex.InnerExceptions.First();
             }
-            Write(string.Format("{0}{1}{2}", value, Environment.NewLine, ex));
+            Write(string.Format(CultureInfo.InvariantCulture, "{0}{1}{2}", value, Environment.NewLine, ex));
         }
 
         public void Write(string format, params object[] args)
         {
-            Write(string.Format(format, args));
+            Write(string.Format(CultureInfo.InvariantCulture, format, args));
         }
 
         public void Write(Exception ex, string format, params object[] args)
         {
-            Write(ex, string.Format(format, args));
+            Write(ex, string.Format(CultureInfo.InvariantCulture, format, args));
         }
     }
 }

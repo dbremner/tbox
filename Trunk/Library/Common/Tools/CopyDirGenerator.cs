@@ -99,7 +99,7 @@ namespace Mnk.Library.Common.Tools
         private static int CalcCopyDeep(string path)
         {
             var deep = 1;
-            while (path.StartsWith("..\\"))
+            while (path.StartsWith("..\\", StringComparison.OrdinalIgnoreCase))
             {
                 ++deep;
                 path = path.Substring(3);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using NUnit.Core;
 
 namespace Mnk.Library.ParallelNUnit.Core
@@ -11,8 +12,8 @@ namespace Mnk.Library.ParallelNUnit.Core
         public bool Pass(ITest test)
         {
             if (RemoteListener.ShouldStop) return false;
-            return !string.Equals(test.TestType, "TestMethod") ||
-                   Items.Contains(int.Parse(test.TestName.TestID.ToString()));
+            return !string.Equals(test.TestType, "TestMethod", StringComparison.OrdinalIgnoreCase) ||
+                   Items.Contains(int.Parse(test.TestName.TestID.ToString(), CultureInfo.InvariantCulture));
         }
 
         public bool Match(ITest test)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.ServiceModel;
 
 namespace Mnk.Library.Common.Communications.Interprocess
@@ -15,7 +16,7 @@ namespace Mnk.Library.Common.Communications.Interprocess
             server = new ServiceHost(owner);
             server.AddServiceEndpoint(typeof(T),
                 new NetNamedPipeBinding(NetNamedPipeSecurityMode.None) { MaxReceivedMessageSize = int.MaxValue },
-                string.Format("net.pipe://{0}/{1}", Environment.MachineName, Handle));
+                string.Format(CultureInfo.InvariantCulture, "net.pipe://{0}/{1}", Environment.MachineName, Handle));
             server.Open();
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Globalization;
 
 namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
@@ -22,7 +23,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
         public IContext Create(string path, string handle, string command)
         {
             var fileName = nunitAgentPath;
-            var args = string.Format("{0} \"{1}\" {2}", handle, path, command);
+            var args = string.Format(CultureInfo.InvariantCulture, "{0} \"{1}\" {2}", handle, path, command);
             if (runAsx86) ApplyCommand(Path.Combine(Environment.CurrentDirectory, runAsx86Path), ref args, ref fileName);
             if (!File.Exists(nunitAgentPath)) throw new ArgumentException("Can't find nunit agent: " + nunitAgentPath);
             var pi = new ProcessStartInfo
@@ -32,13 +33,13 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
                 CreateNoWindow = true,
                 UseShellExecute = runAsAdmin,
             };
-            if (runAsAdmin && !string.Equals(command, TestsCommands.Collect)) pi.Verb = "runas";
+            if (runAsAdmin && !string.Equals(command, TestsCommands.Collect, StringComparison.OrdinalIgnoreCase)) pi.Verb = "runas";
             return new ProcessContext(Process.Start(pi));
         }
 
         private static void ApplyCommand(string command, ref string args, ref string fileName)
         {
-            args = string.Format("\"{0}\" {1}", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName), args);
+            args = string.Format(CultureInfo.InvariantCulture, "\"{0}\" {1}", Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName), args);
             fileName = command;
         }
     }

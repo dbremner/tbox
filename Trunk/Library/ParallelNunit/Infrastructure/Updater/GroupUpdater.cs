@@ -1,4 +1,5 @@
-﻿using Mnk.Library.Common.MT;
+﻿using System.Globalization;
+using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
@@ -33,8 +34,8 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
                 passedCount += items.Length;
                 failedCount += failed;
             }
-            var caption = string.Format("Tested: {0}/{1}, failed: {2}", passedCount, overalCount, failedCount);
-            u.Update(i => string.Format("{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, overalCount);
+            var caption = string.Format(CultureInfo.InvariantCulture, "Tested: {0}/{1}, failed: {2}", passedCount, overalCount, failedCount);
+            u.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, overalCount);
         }
     }
 }

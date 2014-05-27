@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.ServiceModel;
 
 namespace Mnk.Library.Common.Communications.Interprocess
@@ -12,7 +13,7 @@ namespace Mnk.Library.Common.Communications.Interprocess
             Instance = ChannelFactory<T>.
                 CreateChannel(
                     new NetNamedPipeBinding(NetNamedPipeSecurityMode.None) { MaxReceivedMessageSize = int.MaxValue },
-                    new EndpointAddress(string.Format("net.pipe://{0}/{1}", Environment.MachineName, handle)));
+                    new EndpointAddress(string.Format(CultureInfo.InvariantCulture, "net.pipe://{0}/{1}", Environment.MachineName, handle)));
         }
 
         public void Dispose()

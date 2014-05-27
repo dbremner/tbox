@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Infrastructure;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
+    using System.Globalization;
+    using System.Linq;
+
     internal class ConsoleView : IUnitTestsView
     {
         private List<TestResults> Results { get; set; }
@@ -118,7 +119,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             }
 
             var totalResult = this.CreateTotalResult();
-            new ReportBuilder().GenerateReport(path, xmlReport, totalResult.Metrics, totalResult.Result);
+            ReportBuilder.GenerateReport(path, xmlReport, totalResult.Metrics, totalResult.Result);
         }
 
         internal class TestResults

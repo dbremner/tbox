@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Globalization;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 
 namespace Mnk.Library.Common.Communications.Network
 {
+
     [Serializable]
     public sealed class NetworkClient<T> : IDisposable
     {
         public T Instance { get; private set; }
 
         public NetworkClient(string machineName, int port) :
-            this(new Uri(string.Format("http://{0}:{1}", machineName, port))) { }
+            this(new Uri(string.Format(CultureInfo.InvariantCulture, "http://{0}:{1}", machineName, port))) { }
 
         public NetworkClient(Uri uri)
         {

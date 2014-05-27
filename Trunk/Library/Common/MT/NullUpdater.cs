@@ -2,7 +2,7 @@
 
 namespace Mnk.Library.Common.MT
 {
-	public class NullUpdater : IUpdater
+	public sealed class NullUpdater : IUpdater
 	{
 		public void Update(float value)
 		{

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Globalization;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 
 namespace Mnk.Library.Common.Communications.Network
 {
+
     public sealed class NetworkServer<T> : IDisposable
     {
         private readonly ServiceHost server;
@@ -14,7 +16,7 @@ namespace Mnk.Library.Common.Communications.Network
         {
             Port = port;
             Owner = owner;
-            Endpoint = string.Format("http://{0}:{1}", Environment.MachineName, port);
+            Endpoint = string.Format(CultureInfo.InvariantCulture, "http://{0}:{1}", Environment.MachineName, port);
             server = new ServiceHost(owner);
             var ep = server.AddServiceEndpoint(typeof(T),
                 new WebHttpBinding { 

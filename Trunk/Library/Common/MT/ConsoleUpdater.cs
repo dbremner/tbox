@@ -2,7 +2,7 @@
 
 namespace Mnk.Library.Common.MT
 {
-    public class ConsoleUpdater : IUpdater
+    public sealed class ConsoleUpdater : IUpdater
     {
         private readonly int time = Environment.TickCount;
         public void Update(float value)

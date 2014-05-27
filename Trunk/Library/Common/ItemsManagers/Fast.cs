@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Mnk.Library.Common.Base;
 using Mnk.Library.Common.Base.Log;
@@ -18,12 +19,12 @@ namespace Mnk.Library.Common.ItemsManagers
 				log.Write("Key '{0}' already exist!", name);
 				return;
 			}
-			objects.Add(name.ToLower(), obj);
+			objects.Add(name.ToUpperInvariant(), obj);
 		}
 
 		public bool IsExist(string name)
 		{
-			return objects.ContainsKey(name.ToLower());
+			return objects.ContainsKey(name.ToUpperInvariant());
 		}
 
 		public int Count
@@ -42,7 +43,7 @@ namespace Mnk.Library.Common.ItemsManagers
 			{
 				return default(T);
 			}
-			return objects[name.ToLower()];
+			return objects[name.ToUpperInvariant()];
 		}
 
 		public void Del(string name)
@@ -52,7 +53,7 @@ namespace Mnk.Library.Common.ItemsManagers
 				log.Write("Key '{0}' is not finded, can't delete!", name);
 				return;
 			}
-			objects.Remove(name.ToLower());
+			objects.Remove(name.ToUpperInvariant());
 		}
 
 		public void Clear()

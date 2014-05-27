@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,12 @@ namespace Mnk.Library.Common.Tools
     {
         public static bool EqualsIgnoreCase(this string a, string b)
         {
-            return String.Equals(a, b, StringComparison.InvariantCultureIgnoreCase);
+            return String.Equals(a, b, StringComparison.OrdinalIgnoreCase);
         }
 
         public static bool EqualsIgnoreCaseAndTrim(this string a, string b)
         {
-            return String.Equals((a ?? string.Empty).Trim(), (b ?? string.Empty).Trim(), StringComparison.InvariantCultureIgnoreCase);
+            return String.Equals((a ?? string.Empty).Trim(), (b ?? string.Empty).Trim(), StringComparison.OrdinalIgnoreCase);
         }
 
         public static bool IsUniqIgnoreCase<T>(this IEnumerable<T> collection, Func<T, string> getter, string value)
@@ -130,7 +131,7 @@ namespace Mnk.Library.Common.Tools
 
         public static string FormatTimeInSec(this int time)
         {
-            return string.Format("{0:00}:{1:00}:{2:00}", time / 3600, (time / 60) % 60, time % 60);
+            return string.Format(CultureInfo.InvariantCulture, "{0:00}:{1:00}:{2:00}", time / 3600, (time / 60) % 60, time % 60);
         }
     }
 }

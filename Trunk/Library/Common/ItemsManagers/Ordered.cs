@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Mnk.Library.Common.Base;
 using Mnk.Library.Common.Base.Log;
@@ -18,13 +20,12 @@ namespace Mnk.Library.Common.ItemsManagers
 				log.Write("Key '{0}' already exist!", name);
 				return;
 			}
-			objects.Add(new Pair<string, T>(name.ToLower(), obj));
+			objects.Add(new Pair<string, T>(name.ToUpperInvariant(), obj));
 		}
 
 		public bool IsExist(string name)
 		{
-			name = name.ToLower();
-			return objects.Any(obj => string.Equals(name, obj.Key));
+			return objects.Any(obj => string.Equals(name, obj.Key, StringComparison.OrdinalIgnoreCase));
 		}
 
 		public int Count
@@ -34,8 +35,7 @@ namespace Mnk.Library.Common.ItemsManagers
 
 		public T Get(string name)
 		{
-			name = name.ToLower();
-			foreach (var obj in objects.Where(obj => string.Equals(name, obj.Key)))
+			foreach (var obj in objects.Where(obj => string.Equals(name, obj.Key, StringComparison.OrdinalIgnoreCase)))
 			{
 				return obj.Value;
 			}
@@ -44,8 +44,7 @@ namespace Mnk.Library.Common.ItemsManagers
 
 		public void Del(string name)
 		{
-			name = name.ToLower();
-			foreach (var obj in objects.Where(obj => string.Equals(name, obj.Key)))
+			foreach (var obj in objects.Where(obj => string.Equals(name, obj.Key, StringComparison.OrdinalIgnoreCase)))
 			{
 				objects.Remove(obj);
 				return;

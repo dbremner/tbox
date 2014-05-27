@@ -11,9 +11,9 @@ using Mnk.Library.ParallelNUnit.Infrastructure;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
-    class ReportBuilder
+    internal static class ReportBuilder
     {
-       public void GenerateReport(string path, string xmlReport, TestsMetricsCalculator tmc, IEnumerable<Result> testResults )
+       public static void GenerateReport(string path, string xmlReport, TestsMetricsCalculator tmc, IEnumerable<Result> testResults )
        {
            var doc = new XmlDocument();
            doc.AppendChild(doc.CreateXmlDeclaration("1.0", "utf-8", "no"));
@@ -27,8 +27,8 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
                Pair.Create("ignored", tmc.Ignored.ToString(CultureInfo.InvariantCulture)),
                Pair.Create("skipped", tmc.Skipped.ToString(CultureInfo.InvariantCulture)),
                Pair.Create("invalid", tmc.Invalid.ToString(CultureInfo.InvariantCulture)),
-               Pair.Create("date", DateTime.Now.ToString("yyyy-MM-dd")),
-               Pair.Create("time", DateTime.Now.ToString("HH:mm:ss"))
+               Pair.Create("date", DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)),
+               Pair.Create("time", DateTime.Now.ToString("HH:mm:ss", CultureInfo.InvariantCulture))
                ));
            root.AppendChild(CreateElement(doc, "environment",
                Pair.Create("nunit-version", "2.6.3.0"),
@@ -59,7 +59,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
                    Pair.Create("executed", r.Executed.ToString()),
                    Pair.Create("result", r.State.ToString()),
                    Pair.Create("success", (r.State == ResultState.Success).ToString()),
-                   Pair.Create("time", string.Format("{0:0.###}", r.Time)),
+                   Pair.Create("time", string.Format(CultureInfo.InvariantCulture, "{0:0.###}", r.Time)),
                    Pair.Create("asserts", r.AssertCount.ToString(CultureInfo.InvariantCulture))
                );
            if (r.IsTest)
