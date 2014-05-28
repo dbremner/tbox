@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mnk.TBox.Tools.NUnitAgent</RootNamespace>
-    <AssemblyName>Mnk.TBox.Tools.NUnitAgent</AssemblyName>
+    <AssemblyName>NUnitAgent</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
