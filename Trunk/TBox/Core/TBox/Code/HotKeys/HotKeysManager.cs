@@ -4,16 +4,16 @@ using System.Linq;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.HotKeys.Settings;
 using Mnk.TBox.Core.Application.Code.Menu;
-using Mnk.Library.WPFControls.Components.Units;
-using Mnk.Library.WPFControls.Tools;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.GlobalHotKeys;
+using Mnk.Library.WpfControls.Components.Units;
+using Mnk.Library.WpfControls.Tools;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.GlobalHotkeys;
 
 namespace Mnk.TBox.Core.Application.Code.HotKeys
 {
 	sealed class HotKeysManager : IDisposable
 	{
-		private GlobalHotkeys globalHotkeys = null;
+		private GlobalHotkeysManager globalHotkeysManager = null;
 		private readonly CheckableListBoxUnit view;
 		private readonly IMenuItemsProvider menuItemsProvider;
 		private HotKeyTasks config;
@@ -35,7 +35,7 @@ namespace Mnk.TBox.Core.Application.Code.HotKeys
 				menuItemsProvider.GetDialogItems(), 
 				validator: x => true);
 			if (!config.IsEnabled)return;
-			globalHotkeys = new GlobalHotkeys();
+			globalHotkeysManager = new GlobalHotkeysManager();
 			foreach (var item in config.Tasks.CheckedItems.OrderBy(x=>x.Key))
 			{
 				UpdateMenu(item);
@@ -59,7 +59,7 @@ namespace Mnk.TBox.Core.Application.Code.HotKeys
 		{
 			foreach (var item in menuItems)
 			{
-				item.HotKey = null;
+				item.Hotkey = null;
 				ClearHotKeys(item.Items);
 			}
 		}
@@ -67,9 +67,9 @@ namespace Mnk.TBox.Core.Application.Code.HotKeys
 		private void UpdateMenu(HotKeyTask item)
 		{
 			var menu = menuItemsProvider.Get(item.Key);
-			if (menu == null || menu.Items.Count > 0 || item.HotKey == null) return;
-			menu.HotKey = item.HotKey.ToString();
-			globalHotkeys.RegisterHotKey(item.HotKey, ()=>menu.OnClick(null));
+			if (menu == null || menu.Items.Count > 0 || item.GlobalHotkey == null) return;
+			menu.Hotkey = item.GlobalHotkey.ToString();
+			globalHotkeysManager.RegisterHotkey(item.GlobalHotkey, ()=>menu.OnClick(null));
 		}
 
 		public void OnConfigUpdated(HotKeyTasks cfg)
@@ -80,9 +80,9 @@ namespace Mnk.TBox.Core.Application.Code.HotKeys
 
 		public void Dispose()
 		{
-			if (globalHotkeys == null) return;
-			globalHotkeys.Dispose();
-			globalHotkeys = null;
+			if (globalHotkeysManager == null) return;
+			globalHotkeysManager.Dispose();
+			globalHotkeysManager = null;
 		}
 	}
 }

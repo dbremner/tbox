@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using Mnk.Library.WPFControls.Components.Drawings.Background;
+using Mnk.Library.WpfControls.Components.Drawings.Background;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.Graphics
+namespace Mnk.Library.WpfControls.Components.Drawings.Graphics
 {
 	public class Graph : GraphPanel
 	{

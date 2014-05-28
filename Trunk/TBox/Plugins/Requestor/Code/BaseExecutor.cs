@@ -4,7 +4,7 @@ using System.Windows.Media;
 using Mnk.Library.Common.Network;
 using Mnk.TBox.Locales.Localization.Plugins.Requestor;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs;
 
 namespace Mnk.TBox.Plugins.Requestor.Code
 {

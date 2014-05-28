@@ -8,8 +8,8 @@ using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
 using Mnk.TBox.Core.PluginsShared.Tools;
 using Mnk.TBox.Plugins.ProjectMan.Code;
 using Mnk.TBox.Plugins.ProjectMan.Code.Settings;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.ProjectMan
 {

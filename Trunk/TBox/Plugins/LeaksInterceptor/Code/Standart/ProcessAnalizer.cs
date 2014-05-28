@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Mnk.Library.Common.Log;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics;
 using Mnk.TBox.Plugins.LeaksInterceptor.Code.Getters;
 
 namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart

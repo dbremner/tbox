@@ -11,10 +11,10 @@ using Mnk.TBox.Plugins.SkyNet.Code;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.TBox.Tools.SkyNet.Common.Scripts;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.SkyNet
 {

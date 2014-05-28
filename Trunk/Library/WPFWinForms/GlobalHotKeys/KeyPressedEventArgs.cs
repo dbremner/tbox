@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace Mnk.Library.WPFWinForms.GlobalHotKeys
+namespace Mnk.Library.WpfWinForms.GlobalHotkeys
 {
 	public class KeyPressedEventArgs : EventArgs
 	{
-		public HotKey HotKey { get; private set; }
-		public KeyPressedEventArgs(HotKey hotKey)
+		public GlobalHotkey GlobalHotkey { get; private set; }
+		public KeyPressedEventArgs(GlobalHotkey globalHotkey)
 		{
-			HotKey = hotKey;
+			GlobalHotkey = globalHotkey;
 		}
 	}
 }

@@ -4,8 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Mnk.Library.Common.UI.Model;
 using Mnk.TBox.Core.Interface;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application.Code.Objects
 {

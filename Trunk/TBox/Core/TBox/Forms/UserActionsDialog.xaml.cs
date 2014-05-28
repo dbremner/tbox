@@ -2,7 +2,7 @@
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.FastStart.Settings;
 using Mnk.TBox.Core.Application.Code.Menu;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Core.Application.Forms
 {

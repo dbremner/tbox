@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" 
-             d:DesignHeight="380" d:DesignWidth="400" xmlns:my="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
-             xmlns:EditButtons="clr-namespace:Mnk.Library.WPFControls.Components.EditButtons;assembly=Mnk.Library.WPFControls"
-             xmlns:captioned2="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
+             d:DesignHeight="380" d:DesignWidth="400" xmlns:my="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
+             xmlns:EditButtons="clr-namespace:Mnk.Library.WpfControls.Components.EditButtons;assembly=Mnk.Library.WPFControls"
+             xmlns:captioned2="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="64"/>

@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Dialogs
+namespace Mnk.Library.WpfControls.Dialogs
 {
     /// <summary>
     /// Interaction logic for InputComboBox.xaml

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.Background
+namespace Mnk.Library.WpfControls.Components.Drawings.Background
 {
 	public class SolidBackground : IBackground
 	{

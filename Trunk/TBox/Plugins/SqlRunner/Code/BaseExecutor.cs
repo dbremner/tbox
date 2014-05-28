@@ -8,7 +8,7 @@ using System.Windows.Media;
 using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs;
 
 namespace Mnk.TBox.Plugins.SqlRunner.Code
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Mnk.Library.WPFControls.Components.DropDown
+namespace Mnk.Library.WpfControls.Components.DropDown
 {
 	public class NumericUpDown : BaseDropDownControl
 	{

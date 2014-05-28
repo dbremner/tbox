@@ -4,9 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:dialogs="clr-namespace:Mnk.Library.WPFControls.Dialogs;assembly=Mnk.Library.WPFControls" mc:Ignorable="d" 
-             xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WPFSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
-                      xmlns:components="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
+             xmlns:dialogs="clr-namespace:Mnk.Library.WpfControls.Dialogs;assembly=Mnk.Library.WPFControls" mc:Ignorable="d" 
+             xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
+                      xmlns:components="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
                       xmlns:components1="clr-namespace:Mnk.TBox.Plugins.Encoder.Components"
                       ShowInTaskbar="True" Title="Encoder"
              Width="640" Height="480"
@@ -29,7 +29,7 @@
                 <RowDefinition Height="5"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <wpfSyntaxHighlighter:SyntaxHighlighter x:Name="Source" IsWordWrap="{Binding ElementName=Result, Path=IsWordWrap}" IsWhitespaces="{Binding ElementName=Result, Path=IsWhitespaces}" Format="{Binding ElementName=Result, Path=Format}" IsStatusBarVisible="False" TextChanged="Source_OnTextChanged" Value="{Binding SourceText}"/>
+            <wpfSyntaxHighlighter:SyntaxHighlighter x:Name="Source" IsWordWrap="{Binding ElementName=Result, Path=IsWordWrap}" IsWhiteSpaces="{Binding ElementName=Result, Path=IsWhiteSpaces}" Format="{Binding ElementName=Result, Path=Format}" IsStatusBarVisible="False" TextChanged="Source_OnTextChanged" Text="{Binding SourceText}"/>
             <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1"/>
             <wpfSyntaxHighlighter:SyntaxHighlighter x:Name="Result" Grid.Row="2" IsWordWrap="True"/>
         </Grid>

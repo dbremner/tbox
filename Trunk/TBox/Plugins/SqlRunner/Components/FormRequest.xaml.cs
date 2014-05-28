@@ -4,7 +4,7 @@ using Mnk.Library.Common.Network;
 using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
 using Mnk.TBox.Plugins.SqlRunner.Code;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
-using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WpfControls.Code.OS;
 
 namespace Mnk.TBox.Plugins.SqlRunner.Components
 {
@@ -25,7 +25,7 @@ namespace Mnk.TBox.Plugins.SqlRunner.Components
 			connectionString = connection;
 			LastResponse = null;
 			Tabs.SelectedIndex = 0;
-			Response.Value = string.Empty;
+			Response.Text = string.Empty;
 			Owner = Application.Current.MainWindow;
 			DataContext = config;
 			SafeShowDialog();
@@ -37,7 +37,7 @@ namespace Mnk.TBox.Plugins.SqlRunner.Components
 				r => Mt.Do(this, 
 					() =>{
 							LastResponse = r;
-							Response.Value = r.Status + Environment.NewLine + r.Body;
+							Response.Text = r.Status + Environment.NewLine + r.Body;
 							Tabs.SelectedIndex = 1;
 					}), Icon);
 		}

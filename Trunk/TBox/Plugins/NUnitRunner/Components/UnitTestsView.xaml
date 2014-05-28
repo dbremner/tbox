@@ -5,10 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:components="clr-namespace:Mnk.TBox.Plugins.NUnitRunner.Components"
-             xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WPFSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
-             xmlns:components1="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
+             xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
+             xmlns:components1="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
              xmlns:core="clr-namespace:Mnk.Library.ParallelNUnit.Core;assembly=Mnk.Library.ParallelNUnit"
-             xmlns:local="clr-namespace:Mnk.Library.WPFControls.Components.CheckableTreeView;assembly=Mnk.Library.WPFControls"
+             xmlns:local="clr-namespace:Mnk.Library.WpfControls.Components.CheckableTreeView;assembly=Mnk.Library.WPFControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>

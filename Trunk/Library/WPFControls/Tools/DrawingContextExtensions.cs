@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Tools
+namespace Mnk.Library.WpfControls.Tools
 {
 	public static class DrawingContextExtensions
 	{

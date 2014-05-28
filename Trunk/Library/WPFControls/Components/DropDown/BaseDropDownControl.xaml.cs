@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Components.DropDown
+namespace Mnk.Library.WpfControls.Components.DropDown
 {
 	/// <summary>
 	/// Interaction logic for BaseDropDownControl.xaml

@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Mnk.Library.WPFWinForms.GlobalHotKeys;
+using Mnk.Library.WpfWinForms.GlobalHotkeys;
 
-namespace Mnk.Library.WPFControls.Components
+namespace Mnk.Library.WpfControls.Components
 {
 	public class HotKeyBox : TextBox
 	{
@@ -23,29 +23,29 @@ namespace Mnk.Library.WPFControls.Components
 			IsReadOnly = true;
 		}
 
-		public static readonly DependencyProperty HotKeyProperty =
-			DependencyProperty.Register("HotKey", typeof(HotKey),
-			typeof(HotKeyBox), new FrameworkPropertyMetadata(new HotKey(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCurrentValuePropertyChanged)
+		public static readonly DependencyProperty GlobalHotkeyProperty =
+			DependencyProperty.Register("GlobalHotkey", typeof(GlobalHotkey),
+			typeof(HotKeyBox), new FrameworkPropertyMetadata(new GlobalHotkey(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCurrentValuePropertyChanged)
 			);
 		private static void OnCurrentValuePropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
 		{
-			((HotKeyBox)source).HotKey = (HotKey)e.NewValue;
+			((HotKeyBox)source).GlobalHotkey = (GlobalHotkey)e.NewValue;
 		}
 
-		private HotKey hotKey;
-		public HotKey HotKey
+		private GlobalHotkey globalHotkey;
+		public GlobalHotkey GlobalHotkey
 		{
-			get { return hotKey; } 
+			get { return globalHotkey; } 
 			set
 			{
-				hotKey = value;
-				SetValue(HotKeyProperty, value);
-				if (hotKey == null)
+				globalHotkey = value;
+				SetValue(GlobalHotkeyProperty, value);
+				if (globalHotkey == null)
 				{
 					Text = string.Empty;
 					return;
 				}
-				Text = hotKey.ToString();
+				Text = globalHotkey.ToString();
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace Mnk.Library.WPFControls.Components
 			if(IsWinPressed(e))isWinPressed = true;
 			var system = GetModifiersKeys();
 			if(isWinPressed)system |= ModifierKeys.Windows;
-			HotKey = new HotKey(system, GetValidKey(e));
+			GlobalHotkey = new GlobalHotkey(system, GetValidKey(e));
 		}
 
 		protected override void OnGotFocus(RoutedEventArgs e)

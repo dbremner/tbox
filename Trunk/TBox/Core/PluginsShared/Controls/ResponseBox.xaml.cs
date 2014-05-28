@@ -38,14 +38,14 @@ namespace Mnk.TBox.Core.PluginsShared.Controls
 				if (value == null)
 				{
 					LastResponse = null;
-					Response.Value = string.Empty;
-					ResponseHeaders.Value = string.Empty;
+					Response.Text = string.Empty;
+					ResponseHeaders.Text = string.Empty;
 				}
 				else
 				{
 					LastResponse = value;
-					Response.Value = value.Body;
-					ResponseHeaders.Value = value.Headers;
+					Response.Text = value.Body;
+					ResponseHeaders.Text = value.Headers;
 					Formatters_OnSelectionChanged(this, null);
 				}
 			}
@@ -56,8 +56,8 @@ namespace Mnk.TBox.Core.PluginsShared.Controls
 			if (Formatters.SelectedIndex == -1 || LastResponse == null) return;
 			var op = operations[Formatters.SelectedIndex].Value;
 			ExceptionsHelper.HandleException(
-				() => Response.Value = op(LastResponse.Body),
-				ex => { Response.Value = ex.Message; }
+				() => Response.Text = op(LastResponse.Body),
+				ex => { Response.Text = ex.Message; }
 				);
 		}
 

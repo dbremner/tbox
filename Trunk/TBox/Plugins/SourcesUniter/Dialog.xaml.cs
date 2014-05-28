@@ -6,7 +6,7 @@ using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.TBox.Locales.Localization.Plugins.SourcesUniter;
 using Mnk.TBox.Plugins.SourcesUniter.Code;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs;
 
 namespace Mnk.TBox.Plugins.SourcesUniter
 {

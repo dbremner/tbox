@@ -11,10 +11,10 @@ using System.Windows.Forms.Integration;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Localization.WPFSyntaxHighlighter;
 using ScintillaNET;
-using Mnk.Library.WPFControls.Components;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Components;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFSyntaxHighlighter
+namespace Mnk.Library.WpfSyntaxHighlighter
 {
     public sealed class SyntaxHighlighter : UserControl
     {
@@ -36,7 +36,7 @@ namespace Mnk.Library.WPFSyntaxHighlighter
             SelectedIndex = 7,
         };
         private readonly ExtCheckBox sbWordWrap = new ExtCheckBox { Content = WPFSyntaxHighlighterLang.WordWrap };
-        private readonly ExtCheckBox sbWhitespaces = new ExtCheckBox { Content = WPFSyntaxHighlighterLang.Whitespaces };
+        private readonly ExtCheckBox sbWhiteSpaces = new ExtCheckBox { Content = WPFSyntaxHighlighterLang.WhiteSpaces };
         private readonly StatusBarItem sbSize = new StatusBarItem();
         private readonly WindowsFormsHost wfh;
         private readonly Scintilla editor = new Scintilla
@@ -57,8 +57,8 @@ namespace Mnk.Library.WPFSyntaxHighlighter
             statusBar.Items.Add(new StatusBarItem { Content = cbFormats });
             sbWordWrap.ValueChanged += sbWordWrap_Checked;
             statusBar.Items.Add(new StatusBarItem { Content = sbWordWrap });
-            sbWhitespaces.ValueChanged += sbWhitespaces_Checked;
-            statusBar.Items.Add(new StatusBarItem { Content = sbWhitespaces });
+            sbWhiteSpaces.ValueChanged += SbWhiteSpacesChecked;
+            statusBar.Items.Add(new StatusBarItem { Content = sbWhiteSpaces });
             statusBar.Items.Add(new StatusBarItem { Content = WPFSyntaxHighlighterLang.Size, Margin = new Thickness(10, 0, 0, 0) });
             statusBar.Items.Add(sbSize);
 
@@ -68,7 +68,7 @@ namespace Mnk.Library.WPFSyntaxHighlighter
             editor.TextChanged += EditorTextChanged;
             editor.LostFocus += EditorLostFocus;
             panel.Children.Add(wfh = new WindowsFormsHost { Child = editor });
-            sbWhitespaces.ValueChanged += (o, e) => SetValue(IsWhitespacesProperty, sbWhitespaces.IsChecked);
+            sbWhiteSpaces.ValueChanged += (o, e) => SetValue(IsWhiteSpacesProperty, sbWhiteSpaces.IsChecked);
             sbWordWrap.ValueChanged += (o, e) => SetValue(IsWordWrapProperty, sbWordWrap.IsChecked);
             CbFormatsSelectionChanged(null, null);
             Loaded += OnLoaded;
@@ -94,7 +94,7 @@ namespace Mnk.Library.WPFSyntaxHighlighter
         private void EditorLostFocus(object sender, EventArgs e)
         {
             if (!CanEdit) return;
-            SetValue(ValueProperty, editor.Text);
+            SetValue(TextProperty, editor.Text);
         }
 
         private void EditorTextChanged(object sender, EventArgs e)
@@ -133,9 +133,9 @@ namespace Mnk.Library.WPFSyntaxHighlighter
             return editor.Focus();
         }
 
-        public static readonly DependencyProperty ValueProperty =
-            DpHelper.Create<SyntaxHighlighter, string>("Value", (s, v) => s.SetValue(v));
-        public string Value
+        public static readonly DependencyProperty TextProperty =
+            DpHelper.Create<SyntaxHighlighter, string>("Text", (s, v) => s.SetValue(v));
+        public string Text
         {
             get { return editor.Text; }
             set
@@ -167,11 +167,11 @@ namespace Mnk.Library.WPFSyntaxHighlighter
             }
         }
 
-        public void Read(Stream s)
+        public void Read(Stream stream)
         {
             ApplyValue(() =>
             {
-                using (var sr = new StreamReader(s, Encoding.UTF8))
+                using (var sr = new StreamReader(stream, Encoding.UTF8))
                 {
                     editor.ResetText();
                     var i = 0;
@@ -246,9 +246,9 @@ namespace Mnk.Library.WPFSyntaxHighlighter
                 LineWrappingMode.Word : LineWrappingMode.None;
         }
 
-        private void sbWhitespaces_Checked(object sender, RoutedEventArgs e)
+        private void SbWhiteSpacesChecked(object sender, RoutedEventArgs e)
         {
-            if (sbWhitespaces.IsChecked == true)
+            if (sbWhiteSpaces.IsChecked == true)
             {
                 editor.Indentation.ShowGuides = true;
                 editor.Whitespace.Mode = WhitespaceMode.VisibleAlways;
@@ -279,15 +279,15 @@ namespace Mnk.Library.WPFSyntaxHighlighter
             }
         }
 
-        public static readonly DependencyProperty IsWhitespacesProperty =
-            DpHelper.Create<SyntaxHighlighter, bool>("IsWhitespaces", (s, v) => s.IsWhitespaces = v);
-        public bool IsWhitespaces
+        public static readonly DependencyProperty IsWhiteSpacesProperty =
+            DpHelper.Create<SyntaxHighlighter, bool>("IsWhiteSpaces", (s, v) => s.IsWhiteSpaces = v);
+        public bool IsWhiteSpaces
         {
-            get { return sbWhitespaces.IsChecked == true; }
+            get { return sbWhiteSpaces.IsChecked == true; }
             set
             {
-                SetValue(IsWhitespacesProperty, value);
-                sbWhitespaces.IsChecked = value;
+                SetValue(IsWhiteSpacesProperty, value);
+                sbWhiteSpaces.IsChecked = value;
             }
         }
 
@@ -317,9 +317,9 @@ namespace Mnk.Library.WPFSyntaxHighlighter
             set { statusBar.Visibility = value ? Visibility.Visible : Visibility.Collapsed; }
         }
 
-        public void AppendText(string s)
+        public void AppendText(string text)
         {
-            HandleReadOnly(() => editor.AppendText(s));
+            HandleReadOnly(() => editor.AppendText(text));
         }
 
         public void Clear()

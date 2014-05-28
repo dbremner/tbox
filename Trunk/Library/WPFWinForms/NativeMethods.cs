@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Mnk.Library.WPFWinForms
+namespace Mnk.Library.WpfWinForms
 {
 	static class NativeMethods
 	{

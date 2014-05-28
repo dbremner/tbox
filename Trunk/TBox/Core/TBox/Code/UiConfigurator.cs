@@ -16,9 +16,9 @@ using Mnk.TBox.Core.Application.Code.Managers;
 using Mnk.TBox.Core.Application.Code.Menu;
 using Mnk.TBox.Core.Application.Code.Objects;
 using Mnk.TBox.Core.Application.Forms;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Components.ButtonsView;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Components.ButtonsView;
+using Mnk.Library.WpfWinForms;
 using Button = System.Windows.Controls.Button;
 
 namespace Mnk.TBox.Core.Application.Code

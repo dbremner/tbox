@@ -2,7 +2,7 @@
 using System.Linq;
 using Mnk.Library.Common.Tools;
 
-namespace Mnk.Library.WPFControls.Code.EditPanel
+namespace Mnk.Library.WpfControls.Code.EditPanel
 {
     public sealed class Controller
     {

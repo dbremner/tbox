@@ -2,10 +2,10 @@
 using System.Windows;
 using System.Windows.Shell;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Components.Updater
+namespace Mnk.Library.WpfControls.Components.Updater
 {
     class SimpleUpdater<T> : IUpdater
         where T : SimpleProgress

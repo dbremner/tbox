@@ -3,12 +3,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Mnk.Library.WPFWinForms.Communication
+namespace Mnk.Library.WpfWinForms
 {
-	public sealed class Server : NativeWindow, IDisposable
+	public sealed class CopyDataServer : NativeWindow, IDisposable
 	{
 		public event Action<object, string> MessageReceived;
-		public Server()
+		public CopyDataServer()
 		{
 			CreateHandle(new CreateParams());
 		}

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Mnk.Library.Common.Models;
 
-namespace Mnk.Library.WPFControls.Components.CheckableTreeView
+namespace Mnk.Library.WpfControls.Components.CheckableTreeView
 {
 
     public class Node : INotifyPropertyChanged

@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400"
-             xmlns:my1="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
-             xmlns:captioned2="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
+             xmlns:my1="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
+             xmlns:captioned2="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
     <DockPanel>
         <captioned2:CaptionedComboBox Name="cbType" Caption="Type:" IsEditable="False" Margin="5" DockPanel.Dock="Top"/>
         <captioned2:CaptionedComboBox Name="cbAuthor" Caption="Author:" IsEditable="False" Margin="5" DockPanel.Dock="Top"/>

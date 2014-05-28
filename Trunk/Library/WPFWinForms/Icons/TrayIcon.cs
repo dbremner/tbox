@@ -4,11 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using Mnk.Library.WPFWinForms.Icons;
 using MouseEventArgs = System.Windows.Forms.MouseEventArgs;
 
-namespace Mnk.Library.WPFWinForms
+namespace Mnk.Library.WpfWinForms.Icons
 {
 	public sealed class TrayIcon : IDisposable
 	{
@@ -80,9 +78,9 @@ namespace Mnk.Library.WPFWinForms
 			}
 		}
 
-		public void ShowBalloonTip(int timeOut, string title, string text, TipIcon icon)
+		public void ShowBalloonTip(int timeout, string title, string text, TipIcon icon)
 		{
-			notifyIcon.ShowBalloonTip(timeOut, title, text, GetIcon(icon));
+			notifyIcon.ShowBalloonTip(timeout, title, text, GetIcon(icon));
 		}
 
 		public string HoverText

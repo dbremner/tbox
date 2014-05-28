@@ -5,9 +5,9 @@ using Mnk.Library.Common.MT;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
 using Mnk.TBox.Plugins.Searcher.Components;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
 
 namespace Mnk.TBox.Plugins.Searcher.Code
 {

@@ -5,9 +5,9 @@ using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
-using Mnk.Library.WPFSyntaxHighlighter;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.Searcher
 {

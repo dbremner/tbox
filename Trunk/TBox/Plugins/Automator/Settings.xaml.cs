@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
-using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WpfControls.Code;
 using Mnk.TBox.Plugins.Automator.Code.Settings;
 
 namespace Mnk.TBox.Plugins.Automator

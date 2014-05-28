@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.TBox.Core.Interface;
 
 namespace Mnk.TBox.Plugins.PasswordsStorage.Code.Settings

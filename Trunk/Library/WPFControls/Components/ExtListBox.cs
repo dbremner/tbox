@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Mnk.Library.WPFControls.Components
+namespace Mnk.Library.WpfControls.Components
 {
     public class ExtListBox : ListBox
     {

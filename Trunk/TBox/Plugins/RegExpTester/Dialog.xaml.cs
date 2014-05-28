@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Plugins.RegExpTester
 {
@@ -44,7 +44,7 @@ namespace Mnk.TBox.Plugins.RegExpTester
 			if (!CanUseRegExp()) return;
 			sw.Restart();
 			ExceptionsHelper.HandleException(
-				() => PrintResult(new Regex(RegExp.Text, options), Text.Value),
+				() => PrintResult(new Regex(RegExp.Text, options), Text.Text),
 				(ex) =>
 					{
 						sbError.Content = ex.Message;
@@ -57,7 +57,7 @@ namespace Mnk.TBox.Plugins.RegExpTester
 		{
 			return 
 				!string.IsNullOrWhiteSpace(RegExp.Text) && 
-				!string.IsNullOrWhiteSpace(Text.Value);
+				!string.IsNullOrWhiteSpace(Text.Text);
 		}
 
 		private void PrintResult(Regex regex, string text)

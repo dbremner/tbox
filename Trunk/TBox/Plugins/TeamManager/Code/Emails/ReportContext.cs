@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Mnk.Library.Common.Communications;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
 using Mnk.TBox.Plugins.TeamManager.Code.Settings;

@@ -15,8 +15,8 @@ using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Plugins.SkyNet
 {

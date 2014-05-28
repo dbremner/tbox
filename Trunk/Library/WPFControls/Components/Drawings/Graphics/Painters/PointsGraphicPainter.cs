@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.Graphics.Painters
+namespace Mnk.Library.WpfControls.Components.Drawings.Graphics.Painters
 {
 	public class PointsGraphicPainter : IGraphicPainter
 	{

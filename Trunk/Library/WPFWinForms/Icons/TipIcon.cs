@@ -1,4 +1,4 @@
-﻿namespace Mnk.Library.WPFWinForms
+﻿namespace Mnk.Library.WpfWinForms.Icons
 {
 	public enum TipIcon
 	{

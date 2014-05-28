@@ -11,8 +11,8 @@ using Mnk.TBox.Core.Application.Code.Managers;
 using Mnk.TBox.Core.Application.Code.Menu;
 using Mnk.TBox.Core.Application.Code.Objects;
 using Mnk.TBox.Core.Application.Forms;
-using Mnk.Library.WPFControls.Code.Log;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code.Log;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application.Code
 {

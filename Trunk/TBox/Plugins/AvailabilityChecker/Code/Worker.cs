@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using Mnk.Library.Common.MT;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Locales.Localization.Plugins.AvailabilityChecker;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Plugins.AvailabilityChecker.Code
 {

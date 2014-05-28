@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Mnk.Library.WPFControls.Dialogs.PerfomanceCounters
+namespace Mnk.Library.WpfControls.Dialogs.PerfomanceCounters
 {
 	public class Entity
 	{

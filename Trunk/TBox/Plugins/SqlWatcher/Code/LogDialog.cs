@@ -2,8 +2,8 @@
 using System.Windows.Media;
 using Mnk.TBox.Locales.Localization.Plugins.SqlWatcher;
 using Mnk.TBox.Core.PluginsShared.Watcher;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfSyntaxHighlighter;
 
 namespace Mnk.TBox.Plugins.SqlWatcher.Code
 {

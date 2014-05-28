@@ -2,18 +2,18 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Mnk.Library.WPFWinForms.Communication
+namespace Mnk.Library.WpfWinForms
 {
 	[Serializable]
-	public sealed class Client
+	public sealed class CopyDataClient
 	{
 		private readonly int windowId;
-		public Client(int windowId)
+		public CopyDataClient(int windowId)
 		{
 			this.windowId = windowId;
 		}
 
-		public IntPtr Send(string message, uint timeOut = 30000)
+		public IntPtr Send(string message, int timeout = 30000)
 		{
 			IntPtr dummy;
 			var data = CreateMessage(message);
@@ -24,7 +24,7 @@ namespace Mnk.Library.WPFWinForms.Communication
 										 (long)IntPtr.Zero,
 										 ref data,
 										 NativeMethods.SendMessageTimeoutFlags.SMTO_ABORTIFHUNG,
-										 timeOut,
+										 (uint)timeout,
 										 out dummy);
 			}
 			finally

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 
-namespace Mnk.Library.WPFWinForms.Icons
+namespace Mnk.Library.WpfWinForms.Icons
 {
 	public sealed class IconsExtractor
 	{
@@ -22,7 +21,7 @@ namespace Mnk.Library.WPFWinForms.Icons
 			}
 			catch (Exception ex)
 			{
-				throw new ApplicationException("Could not extract icon", ex);
+				throw new ArgumentException("Could not extract icon", ex);
 			}
 			finally
 			{

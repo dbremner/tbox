@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Mnk.Library.WPFControls.Components.Captioned
+namespace Mnk.Library.WpfControls.Components.Captioned
 {
 	public sealed class CaptionedTextBox : CaptionedControl
 	{

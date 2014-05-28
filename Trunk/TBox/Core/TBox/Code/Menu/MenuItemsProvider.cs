@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFControls.Dialogs.Menu;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Dialogs.Menu;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application.Code.Menu
 {

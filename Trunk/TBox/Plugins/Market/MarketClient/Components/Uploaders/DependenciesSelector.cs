@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WPFControls.Code.Dialogs;
+using Mnk.Library.WpfControls.Code.Dialogs;
 
 namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 {

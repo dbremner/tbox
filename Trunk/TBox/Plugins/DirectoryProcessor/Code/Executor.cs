@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Plugins.DirectoryProcessor.Code
 {

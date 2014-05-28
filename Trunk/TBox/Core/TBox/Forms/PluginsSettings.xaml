@@ -5,12 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             xmlns:my="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
-             xmlns:units="clr-namespace:Mnk.Library.WPFControls.Components.Units;assembly=Mnk.Library.WPFControls"
+             xmlns:my="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
+             xmlns:units="clr-namespace:Mnk.Library.WpfControls.Components.Units;assembly=Mnk.Library.WPFControls"
              xmlns:objects="clr-namespace:Mnk.TBox.Core.Application.Code.Objects" 
              xmlns:settings2="clr-namespace:Mnk.TBox.Core.Application.Code.Shelduler.Settings"
              xmlns:settings="clr-namespace:Mnk.TBox.Core.Application.Code.FastStart.Settings" xmlns:TBox="clr-namespace:Mnk.TBox.Core.Application.Properties"
-             xmlns:captioned2="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
+             xmlns:captioned2="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
              xmlns:autoUpdate="clr-namespace:Mnk.Library.Common.AutoUpdate;assembly=Mnk.Library.Common"
              d:DesignHeight="400" d:DesignWidth="500">
     <TabControl >
@@ -103,7 +103,7 @@
                                 <DockPanel HorizontalAlignment="Stretch" Margin="1">
                                     <my:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="ScheldulerCheckChanged" VerticalAlignment="Center"/>
                                     <Button Content="x" Click="ButtonClearHotkeyClick" Margin="2" Padding="2 0" DockPanel.Dock="Right" IsEnabled="{Binding IsChecked}" VerticalAlignment="Center"/>
-                                    <my:HotKeyBox HotKey="{Binding HotKey}" Width="128" Margin="2" Padding="2" DockPanel.Dock="Right" IsEnabled="{Binding IsChecked}" VerticalAlignment="Center"/>
+                                    <my:HotKeyBox GlobalHotkey="{Binding HotKey}" Width="128" Margin="2" Padding="2" DockPanel.Dock="Right" IsEnabled="{Binding IsChecked}" VerticalAlignment="Center"/>
                                     <TextBlock Text="{Binding}" FontWeight="Bold" Padding="0" Margin="2" VerticalAlignment="Center" />
                                 </DockPanel>
                             </StackPanel>

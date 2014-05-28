@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics;
 
 namespace Mnk.TBox.Plugins.LeaksInterceptor.Code
 {

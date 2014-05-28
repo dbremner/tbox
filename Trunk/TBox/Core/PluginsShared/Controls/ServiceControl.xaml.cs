@@ -6,7 +6,7 @@ using System.Threading;
 using System.Windows;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFControls.Components;
+using Mnk.Library.WpfControls.Components;
 
 namespace Mnk.TBox.Core.PluginsShared.Controls
 {

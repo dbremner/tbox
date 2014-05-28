@@ -1,13 +1,13 @@
 ﻿using System;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.WPFWinForms.GlobalHotKeys;
+using Mnk.Library.WpfWinForms.GlobalHotkeys;
 
 namespace Mnk.TBox.Core.Application.Code.HotKeys.Settings
 {
 	[Serializable]
 	public class HotKeyTask : CheckableData
 	{
-		public HotKey HotKey { get; set; }
+		public GlobalHotkey GlobalHotkey { get; set; }
 
 		public override object Clone()
 		{
@@ -15,8 +15,8 @@ namespace Mnk.TBox.Core.Application.Code.HotKeys.Settings
 				{
 					Key = Key,
 					IsChecked = IsChecked,
-					HotKey = (HotKey == null) ? 
-								null : new HotKey(HotKey.Modifier, HotKey.Key)
+					GlobalHotkey = (GlobalHotkey == null) ? 
+								null : new GlobalHotkey(GlobalHotkey.Modifier, GlobalHotkey.Key)
 				};
 		}
 

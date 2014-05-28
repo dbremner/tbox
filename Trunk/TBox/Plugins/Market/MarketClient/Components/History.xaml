@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
-             xmlns:captioned1="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
+             xmlns:captioned1="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
     <DockPanel>
         <captioned1:CaptionedNumericUpDown Name="nupMaxItemsInHistory" Caption="Max items in history:" Value="50" Margin="5" DockPanel.Dock="Bottom"/>
         <TreeView Name="tvHistory" />

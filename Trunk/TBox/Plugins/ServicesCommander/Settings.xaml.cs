@@ -3,7 +3,7 @@ using System.ServiceProcess;
 using System.Windows;
 using System.Windows.Controls;
 using Mnk.TBox.Core.Interface;
-using Mnk.Library.WPFControls.Code.Dialogs;
+using Mnk.Library.WpfControls.Code.Dialogs;
 
 namespace Mnk.TBox.Plugins.ServicesCommander
 {

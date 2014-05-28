@@ -1,4 +1,4 @@
-﻿using Mnk.Library.WPFControls.Code.Log;
+﻿using Mnk.Library.WpfControls.Code.Log;
 
 namespace Mnk.TBox.Core.PluginsShared.Watcher
 {

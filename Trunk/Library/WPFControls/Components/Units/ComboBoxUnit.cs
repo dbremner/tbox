@@ -3,11 +3,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.WPFControls.Components.EditButtons;
-using Mnk.Library.WPFControls.Components.Units.Properties;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Components.EditButtons;
+using Mnk.Library.WpfControls.Components.Units.Properties;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Components.Units
+namespace Mnk.Library.WpfControls.Components.Units
 {
 	public sealed class ComboBoxUnit : BaseCollectionUnit
 	{

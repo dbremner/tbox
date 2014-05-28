@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using Mnk.Library.Common.MT;
 
-namespace Mnk.Library.WPFControls.Components.Updater
+namespace Mnk.Library.WpfControls.Components.Updater
 {
     /// <summary>
     /// Interaction logic for SimpleProgress.xaml

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using Mnk.Library.Common.Network;
 using Mnk.Library.Common.UI.ModelsContainers;
 using Mnk.TBox.Core.Interface;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
 
 namespace Mnk.TBox.Plugins.Requestor.Code.Settings
 {

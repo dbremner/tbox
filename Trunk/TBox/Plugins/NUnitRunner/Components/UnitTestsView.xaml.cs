@@ -43,7 +43,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 ti.Items.Add(new TreeViewItem {Header = item.Message});
                 TestsNotRun.Items.Add(ti);
             }
-            TextOutput.Value = string.Join(string.Empty, tmc.All.Select(x => x.Output));
+            TextOutput.Text = string.Join(string.Empty, tmc.All.Select(x => x.Output));
         }
 
         private void SelectedTestChanged(object sender, RoutedPropertyChangedEventArgs<object> routedPropertyChangedEventArgs)
@@ -51,10 +51,10 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             var selected = results.SelectedValue as Result;
             if (selected == null)
             {
-                Description.Value = string.Empty;
+                Description.Text = string.Empty;
                 return;
             }
-            Description.Value =
+            Description.Text =
                 selected.Time + Environment.NewLine +
                 selected.Description + Environment.NewLine +
                 selected.Message + Environment.NewLine +

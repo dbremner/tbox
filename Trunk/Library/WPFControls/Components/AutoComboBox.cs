@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Mnk.Library.Common.Tools;
 
-namespace Mnk.Library.WPFControls.Components
+namespace Mnk.Library.WpfControls.Components
 {
 	public class AutoComboBox : ComboBox
 	{

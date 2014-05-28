@@ -4,8 +4,8 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.FileWatcher;
 using Mnk.TBox.Core.PluginsShared.Watcher;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Plugins.FileWatcher.Code;
 
 namespace Mnk.TBox.Plugins.FileWatcher

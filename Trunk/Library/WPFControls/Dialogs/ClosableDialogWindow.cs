@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Dialogs
+namespace Mnk.Library.WpfControls.Dialogs
 {
 	public class DialogWindow : Window, IDisposable
 	{

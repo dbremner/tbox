@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:Units="clr-namespace:Mnk.Library.WPFControls.Components.Units;assembly=Mnk.Library.WPFControls"
+             xmlns:Units="clr-namespace:Mnk.Library.WpfControls.Components.Units;assembly=Mnk.Library.WPFControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel>

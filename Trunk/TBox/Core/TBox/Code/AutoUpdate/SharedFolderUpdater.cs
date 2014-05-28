@@ -5,7 +5,7 @@ using System.Reflection;
 using Mnk.Library.Common.AutoUpdate;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WpfControls.Code.OS;
 
 namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {

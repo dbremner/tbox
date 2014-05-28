@@ -6,8 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" 
-             xmlns:Units="clr-namespace:Mnk.Library.WPFControls.Components.Units;assembly=Mnk.Library.WPFControls"
-             xmlns:captioned1="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
+             xmlns:Units="clr-namespace:Mnk.Library.WpfControls.Components.Units;assembly=Mnk.Library.WPFControls"
+             xmlns:captioned1="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls">
     <TabControl>
         <TabItem Header="{loc:Tr ConfigureSolutionsFolders}">
             <Units:CheckableFileListBoxUnit ItemsSource="{Binding Dirs}" UnitType="FolderPath" Title="{loc:Tr ConfigureProjectsDirectories}" PathGetterType="Folder"/>

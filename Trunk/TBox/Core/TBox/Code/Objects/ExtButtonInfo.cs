@@ -1,4 +1,4 @@
-﻿using Mnk.Library.WPFControls.Components.ButtonsView;
+﻿using Mnk.Library.WpfControls.Components.ButtonsView;
 
 namespace Mnk.TBox.Core.Application.Code.Objects
 {

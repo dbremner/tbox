@@ -2,9 +2,9 @@
 using System.Windows;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WpfControls.Code.OS;
 
-namespace Mnk.Library.WPFControls.Components.Updater
+namespace Mnk.Library.WpfControls.Components.Updater
 {
     public class IntegratedProgress : Progress
     {

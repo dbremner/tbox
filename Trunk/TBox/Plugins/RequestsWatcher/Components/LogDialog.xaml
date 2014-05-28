@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                                     xmlns:dialogs="clr-namespace:Mnk.Library.WPFControls.Dialogs;assembly=Mnk.Library.WPFControls"
+                                     xmlns:dialogs="clr-namespace:Mnk.Library.WpfControls.Dialogs;assembly=Mnk.Library.WPFControls"
                       xmlns:controls="clr-namespace:Mnk.TBox.Core.PluginsShared.Controls;assembly=Mnk.TBox.Core.PluginsShared"
                       mc:Ignorable="d"
              ShowInTaskbar="True"

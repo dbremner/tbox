@@ -6,8 +6,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Mnk.TBox.Plugins.Requestor.Code;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Plugins.Requestor.Components
 {

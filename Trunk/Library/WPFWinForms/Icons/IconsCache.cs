@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace Mnk.Library.WPFWinForms.Icons
+namespace Mnk.Library.WpfWinForms.Icons
 {
 	public sealed class IconsCache : IDisposable
 	{

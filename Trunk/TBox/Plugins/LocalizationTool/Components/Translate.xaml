@@ -4,8 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:Dialogs="clr-namespace:Mnk.Library.WPFControls.Dialogs;assembly=Mnk.Library.WPFControls"
-             xmlns:WPFSyntaxHighlighter="clr-namespace:Mnk.Library.WPFSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
+             xmlns:Dialogs="clr-namespace:Mnk.Library.WpfControls.Dialogs;assembly=Mnk.Library.WPFControls"
+             xmlns:WPFSyntaxHighlighter="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
              mc:Ignorable="d" 
              ShowInTaskbar="True" Title="{loc:Tr PluginName}"
              FocusManager.FocusedElement="{Binding ElementName=Source}"
@@ -32,7 +32,7 @@
                         <Label Content="{loc:Tr TranslateFrom}" DockPanel.Dock="Left" Grid.Row="1" Grid.Column="0"/>
                         <ComboBox Margin="2" IsReadOnly="True" IsEnabled="True" ItemsSource="{Binding Languages}" SelectedIndex="{Binding SelectedLanguageFrom}" Grid.Row="1" Grid.Column="1" SelectionChanged="SelectionChanged"/>
                     </Grid>
-                    <WPFSyntaxHighlighter:SyntaxHighlighter Format="js" Name="Source" Value="{Binding Source}"/>
+                    <WPFSyntaxHighlighter:SyntaxHighlighter Format="js" Name="Source" Text="{Binding Source}"/>
                 </DockPanel>
             </TabItem>
             <TabItem Header="{loc:Tr TranslatedTemplates}">

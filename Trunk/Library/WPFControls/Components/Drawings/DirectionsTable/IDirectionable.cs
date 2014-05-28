@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.DirectionsTable
+namespace Mnk.Library.WpfControls.Components.Drawings.DirectionsTable
 {
 	public interface IDirectionable : ICloneable
 	{

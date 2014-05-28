@@ -2,9 +2,9 @@
 using System.Windows;
 using System.Windows.Media;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WPFControls.Components.Updater;
+using Mnk.Library.WpfControls.Components.Updater;
 
-namespace Mnk.Library.WPFControls.Dialogs
+namespace Mnk.Library.WpfControls.Dialogs
 {
     class ProgressDialog : ClosableDialogWindow, IDialog
     {

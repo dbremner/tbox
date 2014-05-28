@@ -8,8 +8,8 @@ using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Locales.Localization.Plugins.FileWatcher;
 using Mnk.TBox.Core.PluginsShared.Watcher;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfControls.Tools;
 using Mnk.TBox.Plugins.FileWatcher.Components;
 
 namespace Mnk.TBox.Plugins.FileWatcher.Code

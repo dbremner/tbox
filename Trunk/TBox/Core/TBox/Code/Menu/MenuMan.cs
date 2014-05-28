@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Media;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Core.Application.Code.Menu
 {

@@ -4,7 +4,7 @@ using System.Windows;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Application.Code;
 using Mnk.TBox.Core.Application.Code.FastStart;
-using Mnk.Library.WPFControls.Components.ButtonsView;
+using Mnk.Library.WpfControls.Components.ButtonsView;
 
 namespace Mnk.TBox.Core.Application.Forms
 {

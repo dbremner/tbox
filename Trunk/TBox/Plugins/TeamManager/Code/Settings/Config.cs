@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Mnk.TBox.Core.Interface;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
 
 namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
 {

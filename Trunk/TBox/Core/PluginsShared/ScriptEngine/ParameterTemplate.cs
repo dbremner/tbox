@@ -8,14 +8,14 @@ using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
 using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.Library.ScriptEngine.Core.Params;
-using Mnk.Library.WPFControls.Code.DataManagers;
-using Mnk.Library.WPFControls.Code.Dialogs;
-using Mnk.Library.WPFControls.Components;
-using Mnk.Library.WPFControls.Components.Captioned;
-using Mnk.Library.WPFControls.Components.DropDown;
-using Mnk.Library.WPFControls.Components.FilesAndFolders;
-using Mnk.Library.WPFControls.Components.Units;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code.DataManagers;
+using Mnk.Library.WpfControls.Code.Dialogs;
+using Mnk.Library.WpfControls.Components;
+using Mnk.Library.WpfControls.Components.Captioned;
+using Mnk.Library.WpfControls.Components.DropDown;
+using Mnk.Library.WpfControls.Components.FilesAndFolders;
+using Mnk.Library.WpfControls.Components.Units;
+using Mnk.Library.WpfControls.Tools;
 using ScriptEngine.Core.Params;
 
 namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
@@ -94,7 +94,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
         {
             var el = new CheckableListBoxUnit { CustomDataManager = new StringValueDataManager<CheckableData<string>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
-            el.ConfigureInputText(PluginsSharedLang.ConfigureString, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureString, p.Values, Mnk.Library.WpfControls.Code.Dialogs.Templates.Default, x => ParametersValidator.ValidateValue(p, x) && p.Values.All(y => !y.Value.EqualsIgnoreCase(x)), Instance);
             return el;
         }
 
@@ -103,7 +103,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
             var el = new CheckableListBoxUnit { CustomDataManager = new GuidValueDataManager<CheckableData<Guid>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
             Guid tmp;
-            el.ConfigureInputText(PluginsSharedLang.ConfigureGuid, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => Guid.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureGuid, p.Values, Mnk.Library.WpfControls.Code.Dialogs.Templates.Default, x => Guid.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
             return el;
         }
 
@@ -112,7 +112,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
             var el = new CheckableListBoxUnit { CustomDataManager = new IntValueDataManager<CheckableData<int>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
             int tmp;
-            el.ConfigureInputText(PluginsSharedLang.ConfigureInt, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => int.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureInt, p.Values, Mnk.Library.WpfControls.Code.Dialogs.Templates.Default, x => int.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
             return el;
         }
 
@@ -121,7 +121,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
             var el = new CheckableListBoxUnit { CustomDataManager = new DoubleValueDataManager<CheckableData<double>>(), Focusable = false };
             PrepareListBoxItemTemplate(el, p);
             double tmp;
-            el.ConfigureInputText(PluginsSharedLang.ConfigureDouble, p.Values, Mnk.Library.WPFControls.Code.Dialogs.Templates.Default, x => double.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
+            el.ConfigureInputText(PluginsSharedLang.ConfigureDouble, p.Values, Mnk.Library.WpfControls.Code.Dialogs.Templates.Default, x => double.TryParse(x, out tmp) && ParametersValidator.ValidateValue(p, tmp) && p.Values.All(y => y.Value != tmp), Instance);
             return el;
         }
 

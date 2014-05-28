@@ -1,4 +1,4 @@
-﻿namespace Mnk.Library.WPFControls.Components.FilesAndFolders
+﻿namespace Mnk.Library.WpfControls.Components.FilesAndFolders
 {
 	public enum PathGetterType
 	{

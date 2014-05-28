@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Mnk.Library.WPFControls.Components.FilesAndFolders;
+using Mnk.Library.WpfControls.Components.FilesAndFolders;
 
-namespace Mnk.Library.WPFControls.Components.Captioned
+namespace Mnk.Library.WpfControls.Components.Captioned
 {
     public sealed class CaptionedEditPath : CaptionedControl
     {

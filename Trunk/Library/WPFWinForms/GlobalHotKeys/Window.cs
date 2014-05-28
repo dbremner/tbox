@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace Mnk.Library.WPFWinForms.GlobalHotKeys
+namespace Mnk.Library.WpfWinForms.GlobalHotkeys
 {
 	internal sealed class Window : NativeWindow, IDisposable
 	{
@@ -25,7 +25,7 @@ namespace Mnk.Library.WPFWinForms.GlobalHotKeys
 			var modifier = (ModifierKeys)((int)m.LParam & 0xFFFF);
 
 			if (KeyPressed != null)
-				KeyPressed(this, new KeyPressedEventArgs(new HotKey(modifier, key)));
+				KeyPressed(this, new KeyPressedEventArgs(new GlobalHotkey(modifier, key)));
 		}
 
 		public void Dispose()

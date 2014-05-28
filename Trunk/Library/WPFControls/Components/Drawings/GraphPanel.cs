@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Mnk.Library.WPFControls.Components.Drawings.Background;
+using Mnk.Library.WpfControls.Components.Drawings.Background;
 
-namespace Mnk.Library.WPFControls.Components.Drawings
+namespace Mnk.Library.WpfControls.Components.Drawings
 {
 	public abstract class GraphPanel : UserControl
 	{

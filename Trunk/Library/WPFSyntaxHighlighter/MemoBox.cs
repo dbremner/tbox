@@ -2,10 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Localization.WPFSyntaxHighlighter;
-using Mnk.Library.WPFControls.Code.Log;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Code.Log;
+using Mnk.Library.WpfControls.Dialogs;
 
-namespace Mnk.Library.WPFSyntaxHighlighter
+namespace Mnk.Library.WpfSyntaxHighlighter
 {
 	/// <summary>
 	/// Interaction logic for MemoBox.xaml
@@ -62,7 +62,7 @@ namespace Mnk.Library.WPFSyntaxHighlighter
 
 		private void btnToClipboard_Click(object sender, RoutedEventArgs e)
 		{
-			Clipboard.SetText(shText.Value);
+			Clipboard.SetText(shText.Text);
 		}
 
 		private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -74,7 +74,7 @@ namespace Mnk.Library.WPFSyntaxHighlighter
 		{
 			Owner = owner ?? Application.Current.MainWindow;
 			Title = caption;
-			shText.Value = text;
+			shText.Text = text;
 			if (!string.IsNullOrEmpty(format))
 			{
 				shText.Format = format;

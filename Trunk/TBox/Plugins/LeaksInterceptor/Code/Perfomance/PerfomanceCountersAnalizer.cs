@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Mnk.Library.Common.Log;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics;
-using Mnk.Library.WPFControls.Dialogs.PerfomanceCounters;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics;
+using Mnk.Library.WpfControls.Dialogs.PerfomanceCounters;
 using Mnk.TBox.Plugins.LeaksInterceptor.Code.Standart;
 
 namespace Mnk.TBox.Plugins.LeaksInterceptor.Code.Perfomance

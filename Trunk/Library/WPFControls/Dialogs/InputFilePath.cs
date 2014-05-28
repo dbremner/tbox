@@ -2,7 +2,7 @@
 using System.Windows;
 using Microsoft.Win32;
 
-namespace Mnk.Library.WPFControls.Dialogs
+namespace Mnk.Library.WpfControls.Dialogs
 {
 	class InputFilePath : IDialog
 	{

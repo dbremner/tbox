@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics.Painters;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics.Painters;
 
 namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
 {

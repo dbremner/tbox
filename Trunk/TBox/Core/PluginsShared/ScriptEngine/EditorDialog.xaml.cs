@@ -10,9 +10,9 @@ using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.Library.ScriptEngine.Core;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
@@ -61,7 +61,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 
         private void BuildClick(object sender, RoutedEventArgs e)
         {
-            var text = Source.Value;
+            var text = Source.Text;
             DialogsCache.ShowProgress(u => Build(text), PluginsSharedLang.Building, this);
         }
 
@@ -89,7 +89,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
         {
             var path = Path.Combine(Context.DataProvider.ReadOnlyDataPath, Files.Text);
             ExceptionsHelper.HandleException(
-                () => File.WriteAllText(path, Source.Value, Encoding.UTF8),
+                () => File.WriteAllText(path, Source.Text, Encoding.UTF8),
                 () => "Can't save file:" + path,
                 Log);
             UpdateTitle();

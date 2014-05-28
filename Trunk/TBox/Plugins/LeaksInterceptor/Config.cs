@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
 using Mnk.TBox.Core.Interface;
-using Mnk.Library.WPFControls.Dialogs.PerfomanceCounters;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WpfControls.Dialogs.PerfomanceCounters;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
 
 namespace Mnk.TBox.Plugins.LeaksInterceptor
 {

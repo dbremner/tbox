@@ -1,5 +1,5 @@
 ﻿using Mnk.TBox.Locales.Localization.TBox;
-using Mnk.Library.WPFControls.Localization;
+using Mnk.Library.WpfControls.Localization;
 
 namespace Mnk.TBox.Core.Application.Code.Localization
 {

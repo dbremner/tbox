@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics.Painters;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics.Painters;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.Graphics
+namespace Mnk.Library.WpfControls.Components.Drawings.Graphics
 {
 	public sealed class Graphic : IGraphic
 	{

@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Components.FilesAndFolders
+namespace Mnk.Library.WpfControls.Components.FilesAndFolders
 {
     public class EditPath : UserControl
     {

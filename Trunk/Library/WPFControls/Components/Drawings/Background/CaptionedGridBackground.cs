@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Media;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.Background
+namespace Mnk.Library.WpfControls.Components.Drawings.Background
 {
 	public class CaptionedGridBackground : GridBackground
 	{

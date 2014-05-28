@@ -4,8 +4,8 @@ using System.Windows;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Plugins.Market.Client.Code;
 
 namespace Mnk.TBox.Plugins.Market.Client.Components.Installers

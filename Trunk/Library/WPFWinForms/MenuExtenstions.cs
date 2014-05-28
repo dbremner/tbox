@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Mnk.Library.Common.Log;
 
-namespace Mnk.Library.WPFWinForms
+namespace Mnk.Library.WpfWinForms
 {
 	public static class MenuExtenstions
 	{
@@ -35,10 +35,10 @@ namespace Mnk.Library.WPFWinForms
 						menu.Image = item.Icon.ToBitmap();
 						menu.ImageScaling = ToolStripItemImageScaling.SizeToFit;
 					}
-					if (item.HotKey != null)
+					if (item.Hotkey != null)
 					{
 						menu.ShowShortcutKeys = true;
-						menu.ShortcutKeyDisplayString = item.HotKey;
+						menu.ShortcutKeyDisplayString = item.Hotkey;
 					}
 					menu.Enabled = item.IsEnabled;
 					items[i] = menu;
@@ -79,9 +79,9 @@ namespace Mnk.Library.WPFWinForms
 				else
 				{
 					var menu = new MenuItem(item.Header);
-					if (item.HotKey != null)
+					if (item.Hotkey != null)
 					{
-						menu.Text += '\t' + item.HotKey;
+						menu.Text += '\t' + item.Hotkey;
 					}
 					if (item.Items.Any())
 					{

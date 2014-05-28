@@ -1,25 +1,26 @@
 ﻿using System;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
-namespace Mnk.Library.WPFControls.Code.Log
+namespace Mnk.Library.WpfControls.Code.Log
 {
 	public sealed class TrayLog : CaptionedLog, ICaptionedLog
 	{
 		private readonly TrayIcon notifyIcon;
-		private readonly int timeOut;
+		private readonly int timeout;
 		private readonly TipIcon icon;
 
 		public TrayLog(TrayIcon notifyNotifyIcon,
-			int timeOut = 1000, TipIcon icon = TipIcon.Info)
+			int timeout = 1000, TipIcon icon = TipIcon.Info)
 		{
 			notifyIcon = notifyNotifyIcon;
-			this.timeOut = timeOut;
+			this.timeout = timeout;
 			this.icon = icon;
 		}
 
 		protected override void ShowMessage(string caption, string value)
 		{
-			notifyIcon.ShowBalloonTip(timeOut, caption, value, icon);
+			notifyIcon.ShowBalloonTip(timeout, caption, value, icon);
 		}
 
 		public string HoverText

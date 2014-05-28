@@ -6,8 +6,8 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.Menu;
 using Mnk.TBox.Core.Application.Code.Shelduler.Settings;
-using Mnk.Library.WPFControls.Components.Units;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Components.Units;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Core.Application.Code.Shelduler
 {

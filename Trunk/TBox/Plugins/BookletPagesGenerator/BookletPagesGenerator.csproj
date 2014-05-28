@@ -66,9 +66,9 @@
       <Name>Mnk.Library.Common</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>Mnk.Library.WPFControls</Name>
+      <Name>Mnk.Library.WpfControls</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">

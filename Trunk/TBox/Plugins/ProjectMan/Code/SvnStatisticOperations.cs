@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Plugins.ProjectMan.Code
 {

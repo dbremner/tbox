@@ -9,11 +9,11 @@ using System.Windows.Controls;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Components;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Components;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Dialogs.PerfomanceCounters
+namespace Mnk.Library.WpfControls.Dialogs.PerfomanceCounters
 {
 	/// <summary>
 	/// Interaction logic for SelectPerfomanceCounters.xaml

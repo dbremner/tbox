@@ -2,7 +2,7 @@
 using System.Windows;
 using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.Library.ScriptEngine;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {

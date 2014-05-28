@@ -4,8 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:Units="clr-namespace:Mnk.Library.WPFControls.Components.Units;assembly=Mnk.Library.WPFControls"
-             xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WPFSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
+             xmlns:Units="clr-namespace:Mnk.Library.WpfControls.Components.Units;assembly=Mnk.Library.WPFControls"
+             xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
@@ -19,7 +19,7 @@
             <DockPanel>
                 <Units:ComboBoxUnit Name="Templates" ItemsSource="{Binding Templates}" SelectedIndex="{Binding SelectedTemplate}" UnitType="Text" Title="{loc:Tr ConfigureTemplates}" ValueCaption="{loc:Tr Template}"  DockPanel.Dock="Top"/>
                 <GroupBox DataContext="{Binding ElementName=Templates, Path=SelectedValue}" IsEnabled="{Binding ElementName=Templates, Path=IsSelected}">
-                    <wpfSyntaxHighlighter:SyntaxHighlighter Format="js" Value="{Binding Value}" />
+                    <wpfSyntaxHighlighter:SyntaxHighlighter Format="js" Text="{Binding Value}" />
                 </GroupBox>
             </DockPanel>
         </TabItem>

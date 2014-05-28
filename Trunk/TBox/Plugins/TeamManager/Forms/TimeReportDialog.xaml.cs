@@ -19,8 +19,8 @@ using Mnk.TBox.Plugins.TeamManager.Code.Modifiers;
 using Mnk.TBox.Plugins.TeamManager.Code.Reports;
 using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
 using Mnk.TBox.Plugins.TeamManager.Code.Settings;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
 
 namespace Mnk.TBox.Plugins.TeamManager.Forms
 {

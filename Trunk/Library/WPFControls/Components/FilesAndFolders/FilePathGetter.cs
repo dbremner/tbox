@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Windows;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs;
 
-namespace Mnk.Library.WPFControls.Components.FilesAndFolders
+namespace Mnk.Library.WpfControls.Components.FilesAndFolders
 {
 	public class FilePathGetter : IPathGetter
 	{

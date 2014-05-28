@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using Mnk.Library.WPFControls.Components.DropDown;
+using Mnk.Library.WpfControls.Components.DropDown;
 
-namespace Mnk.Library.WPFControls.Components.Captioned
+namespace Mnk.Library.WpfControls.Components.Captioned
 {
 	public sealed class CaptionedNumericUpDown : CaptionedControl
 	{

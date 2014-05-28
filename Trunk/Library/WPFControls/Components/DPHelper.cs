@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Mnk.Library.WPFControls.Components
+namespace Mnk.Library.WpfControls.Components
 {
 	public static class DpHelper
 	{

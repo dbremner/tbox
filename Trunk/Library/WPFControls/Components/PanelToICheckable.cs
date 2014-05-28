@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using Mnk.Library.Common.UI.ModelsContainers;
 using Mnk.Library.Localization.WPFControls;
 
-namespace Mnk.Library.WPFControls.Components
+namespace Mnk.Library.WpfControls.Components
 {
 	public class PanelToICheckable : UserControl
 	{

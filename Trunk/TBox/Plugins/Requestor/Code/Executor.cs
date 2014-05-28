@@ -6,10 +6,10 @@ using Mnk.Library.Common.Network;
 using Mnk.TBox.Locales.Localization.Plugins.Requestor;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
 using Mnk.TBox.Plugins.Requestor.Components;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.Requestor.Code
 {

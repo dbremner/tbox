@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WPFControls.Code.EditPanel;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code.EditPanel;
+using Mnk.Library.WpfControls.Tools;
 
 
-namespace Mnk.Library.WPFControls.Components.EditButtons
+namespace Mnk.Library.WpfControls.Components.EditButtons
 {
 	public class EditButtonsPanel : UserControl
 	{

@@ -1,5 +1,5 @@
 ﻿using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
-using Mnk.Library.WPFControls.Localization;
+using Mnk.Library.WpfControls.Localization;
 
 namespace Mnk.TBox.Plugins.SkyNet.Code.Localization
 {

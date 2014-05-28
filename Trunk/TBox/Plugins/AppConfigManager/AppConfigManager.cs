@@ -5,7 +5,7 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.AppConfigManager;
 using Mnk.TBox.Core.PluginsShared.Tools;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Plugins.AppConfigManager
 {

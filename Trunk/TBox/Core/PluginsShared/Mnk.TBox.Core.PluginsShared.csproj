@@ -148,18 +148,18 @@
       <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>
       <Name>Mnk.Library.ScriptEngine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>Mnk.Library.WPFControls</Name>
+      <Name>Mnk.Library.WpfControls</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\Mnk.Library.WPFSyntaxHighlighter.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\Mnk.Library.WpfSyntaxHighlighter.csproj">
       <Project>{8A2CF1DC-BCD6-4A63-8CF7-B9EA4F297ACD}</Project>
-      <Name>Mnk.Library.WPFSyntaxHighlighter</Name>
+      <Name>Mnk.Library.WpfSyntaxHighlighter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
+    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WpfWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>Mnk.Library.WPFWinForms</Name>
+      <Name>Mnk.Library.WpfWinForms</Name>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">
@@ -169,7 +169,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Interface\Mnk.TBox.Core.Interface.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
-      <Name>Interface</Name>
+      <Name>Mnk.TBox.Core.Interface</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

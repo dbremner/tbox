@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mnk.Library.WPFWinForms
+namespace Mnk.Library.WpfWinForms
 {
 	public static class FormsStyles
 	{

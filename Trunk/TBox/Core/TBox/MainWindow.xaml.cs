@@ -17,12 +17,12 @@ using Mnk.TBox.Core.Application.Code.FastStart;
 using Mnk.TBox.Core.Application.Code.Menu;
 using Mnk.TBox.Core.Application.Code.Objects;
 using Mnk.TBox.Core.Application.Forms;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfWinForms;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application
 {

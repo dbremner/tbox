@@ -126,13 +126,13 @@
       <Project>{D1313F72-4F78-4CD1-852C-2ED0929A1AF7}</Project>
       <Name>Mnk.Library.ScriptEngine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Library\WPFControls\Mnk.Library.WPFControls.csproj">
+    <ProjectReference Include="..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>Mnk.Library.WPFControls</Name>
+      <Name>Mnk.Library.WpfControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Library\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
+    <ProjectReference Include="..\..\Library\WPFWinForms\Mnk.Library.WpfWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>Mnk.Library.WPFWinForms</Name>
+      <Name>Mnk.Library.WpfWinForms</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Empty\Mnk.TBox.Core.Empty.csproj">
       <Project>{C7ED2917-A1DA-4A17-9748-8E7FDCFC4923}</Project>

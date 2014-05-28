@@ -7,11 +7,11 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.WPFControls.Code.Dialogs;
-using Mnk.Library.WPFControls.Components.Units;
-using Mnk.Library.WPFControls.Dialogs.Menu;
+using Mnk.Library.WpfControls.Code.Dialogs;
+using Mnk.Library.WpfControls.Components.Units;
+using Mnk.Library.WpfControls.Dialogs.Menu;
 
-namespace Mnk.Library.WPFControls.Tools
+namespace Mnk.Library.WpfControls.Tools
 {
     public static class SelectorExtensions
     {

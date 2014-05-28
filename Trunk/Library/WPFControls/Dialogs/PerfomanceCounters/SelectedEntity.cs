@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.WPFControls.Dialogs.PerfomanceCounters
+namespace Mnk.Library.WpfControls.Dialogs.PerfomanceCounters
 {
 	[Serializable]
 	public class SelectedEntity

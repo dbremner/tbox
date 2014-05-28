@@ -8,9 +8,9 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.DevServerRunner;
 using Mnk.TBox.Core.PluginsShared.Tools;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Plugins.DevServerRunner.Code.Settings;
 
 namespace Mnk.TBox.Plugins.DevServerRunner

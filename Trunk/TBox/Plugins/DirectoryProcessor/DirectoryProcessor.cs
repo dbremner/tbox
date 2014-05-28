@@ -3,7 +3,7 @@ using System.Linq;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.DirectoryProcessor;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
 using Mnk.TBox.Plugins.DirectoryProcessor.Code;
 
 namespace Mnk.TBox.Plugins.DirectoryProcessor

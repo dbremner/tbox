@@ -5,11 +5,11 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
-using Mnk.Library.WPFControls.Components.Drawings.Background;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics.Painters;
+using Mnk.Library.WpfControls.Components.Drawings.Background;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics.Painters;
 
-namespace Mnk.Library.WPFControls.Components.Units
+namespace Mnk.Library.WpfControls.Components.Units
 {
 	/// <summary>
 	/// Interaction logic for GraphUnit.xaml

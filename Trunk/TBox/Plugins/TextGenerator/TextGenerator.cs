@@ -7,8 +7,8 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.TextGenerator;
 using Mnk.TBox.Plugins.TextGenerator.Code;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Plugins.TextGenerator
 {

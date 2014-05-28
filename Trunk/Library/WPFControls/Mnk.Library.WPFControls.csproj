@@ -8,8 +8,8 @@
     <ProjectGuid>{6C4F391F-69BD-44B0-BC18-99414493A885}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mnk.Library.WPFControls</RootNamespace>
-    <AssemblyName>Mnk.Library.WPFControls</AssemblyName>
+    <RootNamespace>Mnk.Library.WpfControls</RootNamespace>
+    <AssemblyName>Mnk.Library.WpfControls</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -217,9 +217,9 @@
       <Name>Mnk.Library.Localization</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\WPFWinForms\Mnk.Library.WPFWinForms.csproj">
+    <ProjectReference Include="..\WPFWinForms\Mnk.Library.WpfWinForms.csproj">
       <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>Mnk.Library.WPFWinForms</Name>
+      <Name>Mnk.Library.WpfWinForms</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

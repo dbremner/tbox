@@ -24,8 +24,8 @@ namespace Mnk.TBox.Plugins.Encoder.Components
 
 		private void BtnClearClick(object sender, RoutedEventArgs e)
 		{
-			Source.Value = string.Empty;
-			Result.Value = string.Empty;
+			Source.Text = string.Empty;
+			Result.Text = string.Empty;
 		}
 
 		private void BtnToClipboardClick(object sender, RoutedEventArgs e)
@@ -34,7 +34,7 @@ namespace Mnk.TBox.Plugins.Encoder.Components
 			{
 				RunLastCommand();
 			}
-			Clipboard.SetText(Result.Value);
+			Clipboard.SetText(Result.Text);
 		}
 
 		protected override void OnShow()
@@ -61,15 +61,15 @@ namespace Mnk.TBox.Plugins.Encoder.Components
 				last = KnownEncoders[i];
 				break;
 			}
-			Source.Value = source;
+			Source.Text = source;
 			RunLastCommand();
 		}
 
 		private void ButtonSwapClick(object sender, RoutedEventArgs e)
 		{
-			var tmp = Source.Value;
-			Source.Value = Result.Value;
-			Result.Value = tmp;
+			var tmp = Source.Text;
+			Source.Text = Result.Text;
+			Result.Text = tmp;
 			Source_OnTextChanged(this, null);
 		}
 
@@ -96,12 +96,12 @@ namespace Mnk.TBox.Plugins.Encoder.Components
 				{
 					Result.Format = last.Format;
 				}
-				Result.Value = last.Work(Source.Value);
+				Result.Text = last.Work(Source.Text);
 			}
 			catch (Exception ex)
 			{
 				if (e != null) e.Handled = true;
-				Result.Value = EncoderLang.PluginName + ". " + EncoderLang.UnexpectedException +
+				Result.Text = EncoderLang.PluginName + ". " + EncoderLang.UnexpectedException +
 					Environment.NewLine + ex.Message;
 			}
 		}

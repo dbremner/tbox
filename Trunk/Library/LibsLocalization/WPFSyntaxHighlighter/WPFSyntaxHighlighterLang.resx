@@ -132,7 +132,7 @@
   <data name="ToClipboard" xml:space="preserve">
     <value>To clipboard</value>
   </data>
-  <data name="Whitespaces" xml:space="preserve">
+  <data name="WhiteSpaces" xml:space="preserve">
     <value>Whitespaces</value>
   </data>
   <data name="WordWrap" xml:space="preserve">

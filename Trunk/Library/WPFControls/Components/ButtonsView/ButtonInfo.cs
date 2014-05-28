@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Components.ButtonsView
+namespace Mnk.Library.WpfControls.Components.ButtonsView
 {
 	public interface IButtonInfo
 	{

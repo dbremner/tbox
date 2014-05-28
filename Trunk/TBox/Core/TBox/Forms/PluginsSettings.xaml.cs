@@ -18,8 +18,8 @@ using Mnk.TBox.Core.Application.Code.Menu;
 using Mnk.TBox.Core.Application.Code.Objects;
 using Mnk.TBox.Core.Application.Code.Shelduler;
 using Mnk.TBox.Core.Application.Code.Themes;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Components;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Components;
 
 namespace Mnk.TBox.Core.Application.Forms
 {
@@ -109,7 +109,7 @@ namespace Mnk.TBox.Core.Application.Forms
 
 		private void ButtonClearHotkeyClick(object sender, RoutedEventArgs e)
 		{
-			((HotKeyBox) ((DockPanel) ((Button) sender).Parent).Children[2]).HotKey = null;
+			((HotKeyBox) ((DockPanel) ((Button) sender).Parent).Children[2]).GlobalHotkey = null;
 		}
 
 		private void ThemeChanged(object sender, RoutedEventArgs e)

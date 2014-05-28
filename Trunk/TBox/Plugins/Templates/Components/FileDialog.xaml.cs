@@ -6,7 +6,7 @@ using Mnk.Library.Common.UI.Model;
 using Mnk.TBox.Locales.Localization.Plugins.Templates;
 using Mnk.TBox.Core.PluginsShared.Templates;
 using Mnk.TBox.Plugins.Templates.Code.Settings;
-using Mnk.Library.WPFControls.Components.FilesAndFolders;
+using Mnk.Library.WpfControls.Components.FilesAndFolders;
 
 namespace Mnk.TBox.Plugins.Templates.Components
 {

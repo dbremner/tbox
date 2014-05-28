@@ -1,9 +1,9 @@
 ﻿using System;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Interface
 {

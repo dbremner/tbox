@@ -2,7 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Components.ButtonsView
+namespace Mnk.Library.WpfControls.Components.ButtonsView
 {
     public class RowColorConverter : IValueConverter
     {

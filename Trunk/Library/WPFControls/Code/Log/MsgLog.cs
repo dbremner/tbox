@@ -4,7 +4,7 @@ using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Localization.WPFControls;
 
-namespace Mnk.Library.WPFControls.Code.Log
+namespace Mnk.Library.WpfControls.Code.Log
 {
 	public class MsgLog : AbstractLog
 	{

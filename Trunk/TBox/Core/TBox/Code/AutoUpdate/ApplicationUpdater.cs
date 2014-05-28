@@ -3,7 +3,7 @@ using System.Windows;
 using Mnk.Library.Common.AutoUpdate;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Interface;
-using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WpfControls.Code.OS;
 
 namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {

@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Mnk.Library.WPFControls.Code
+namespace Mnk.Library.WpfControls.Code
 {
 	public static class Base
 	{

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFControls.Code.Log;
+using Mnk.Library.WpfControls.Code.Log;
 
 namespace Mnk.TBox.Core.PluginsShared.Watcher
 {

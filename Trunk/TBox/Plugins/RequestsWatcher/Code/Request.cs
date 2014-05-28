@@ -1,5 +1,5 @@
 ﻿using System;
-using Mnk.Library.WPFControls.Components.Drawings.DirectionsTable;
+using Mnk.Library.WpfControls.Components.Drawings.DirectionsTable;
 
 namespace Mnk.TBox.Plugins.RequestsWatcher.Code
 {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Components.Units.Properties
+namespace Mnk.Library.WpfControls.Components.Units.Properties
 {
 	public sealed class UnitConfigurator
 	{

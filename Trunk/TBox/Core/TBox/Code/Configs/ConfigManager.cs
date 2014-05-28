@@ -4,7 +4,7 @@ using System.IO;
 using Mnk.Library.Common.SaveLoad;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Application.Code.AutoUpdate;
-using Mnk.Library.WPFControls.Localization;
+using Mnk.Library.WpfControls.Localization;
 
 namespace Mnk.TBox.Core.Application.Code.Configs
 {

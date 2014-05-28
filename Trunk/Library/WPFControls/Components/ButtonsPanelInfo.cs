@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.WPFControls.Components
+namespace Mnk.Library.WpfControls.Components
 {
 	public class ButtonsPanelInfo
 	{

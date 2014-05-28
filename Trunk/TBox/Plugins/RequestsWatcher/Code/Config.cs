@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mnk.Library.Common.UI.ModelsContainers;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.PluginsShared.Watcher;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
 
 namespace Mnk.TBox.Plugins.RequestsWatcher.Code
 {

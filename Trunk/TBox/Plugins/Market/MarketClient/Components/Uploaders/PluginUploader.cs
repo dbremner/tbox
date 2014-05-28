@@ -6,7 +6,7 @@ using System.Windows;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.SaveLoad;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Plugins.Market.Client.Code;
 
 namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders

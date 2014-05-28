@@ -6,7 +6,7 @@ using Mnk.TBox.Core.Application.Code.ErrorsSender;
 using Mnk.TBox.Core.Application.Code.FastStart.Settings;
 using Mnk.TBox.Core.Application.Code.HotKeys.Settings;
 using Mnk.TBox.Core.Application.Code.Shelduler.Settings;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
 
 namespace Mnk.TBox.Core.Application.Code
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.WPFControls.Components.Updater
+namespace Mnk.Library.WpfControls.Components.Updater
 {
 	class Updater : SimpleUpdater<Progress>
 	{

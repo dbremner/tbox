@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Mnk.Library.ScriptEngine;
 using ServiceStack.Text;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
 namespace TBox.Data.TeamManager
 {

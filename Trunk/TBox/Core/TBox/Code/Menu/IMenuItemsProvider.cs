@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mnk.Library.WPFControls.Dialogs.Menu;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Dialogs.Menu;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Core.Application.Code.Menu
 {

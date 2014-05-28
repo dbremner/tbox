@@ -8,8 +8,8 @@ using Mnk.TBox.Core.PluginsShared.Watcher;
 using Mnk.TBox.Plugins.RequestsWatcher.Code;
 using Mnk.TBox.Plugins.RequestsWatcher.Code.Parser;
 using Mnk.TBox.Plugins.RequestsWatcher.Components;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.RequestsWatcher
 {

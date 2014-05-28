@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Windows;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFSyntaxHighlighter;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.Notes;

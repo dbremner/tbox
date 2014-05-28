@@ -3,10 +3,10 @@ using System.Windows;
 using System.Windows.Media;
 using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFSyntaxHighlighter;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfSyntaxHighlighter;
 
 namespace Mnk.TBox.Plugins.SqlRunner.Code
 {

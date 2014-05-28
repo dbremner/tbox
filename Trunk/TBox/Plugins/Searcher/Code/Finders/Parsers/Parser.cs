@@ -14,7 +14,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
         private readonly ILog log = LogManager.GetLogger<Parser>();
         private readonly IAdder adder;
         private readonly IndexSettings settings;
-        private readonly char[] whitespaces = { ' ', '\t', '\r', '\n' };
+        private readonly char[] whiteSpaces = { ' ', '\t', '\r', '\n' };
         private readonly ISet<char> words;
 
         private static bool IsSpace(char ch)
@@ -73,7 +73,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
             do
             {
                 var prevId = id;
-                id = word.IndexOfAny(whitespaces, id);
+                id = word.IndexOfAny(whiteSpaces, id);
                 if (id < 0)
                     id = word.Length;
                 if (prevId == id)

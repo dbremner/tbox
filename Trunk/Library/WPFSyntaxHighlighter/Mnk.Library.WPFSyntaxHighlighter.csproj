@@ -8,8 +8,8 @@
     <ProjectGuid>{8A2CF1DC-BCD6-4A63-8CF7-B9EA4F297ACD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mnk.Library.WPFSyntaxHighlighter</RootNamespace>
-    <AssemblyName>Mnk.Library.WPFSyntaxHighlighter</AssemblyName>
+    <RootNamespace>Mnk.Library.WpfSyntaxHighlighter</RootNamespace>
+    <AssemblyName>Mnk.Library.WpfSyntaxHighlighter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -69,9 +69,9 @@
       <Name>Mnk.Library.Localization</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\WPFControls\Mnk.Library.WPFControls.csproj">
+    <ProjectReference Include="..\WPFControls\Mnk.Library.WpfControls.csproj">
       <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>Mnk.Library.WPFControls</Name>
+      <Name>Mnk.Library.WpfControls</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>

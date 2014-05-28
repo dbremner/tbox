@@ -7,9 +7,9 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Components
+namespace Mnk.Library.WpfControls.Components
 {
 	public class CheckableListBox : ExtListBox, ICheckableItemsView
 	{

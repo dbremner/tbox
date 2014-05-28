@@ -4,9 +4,9 @@ using System.Windows.Controls;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfControls.Tools;
 using Mnk.TBox.Plugins.LocalizationTool.Code;
 using Mnk.TBox.Plugins.LocalizationTool.Code.Settings;
 
@@ -45,7 +45,7 @@ namespace Mnk.TBox.Plugins.LocalizationTool.Components
             var inputFormat = GetFormat(config, config.SelectedInputFormat);
             var outputFormat = GetFormat(config, config.SelectedOutputFormat);
             var template = config.Templates[config.SelectedTemplate].Value;
-            var value = Source.Value;
+            var value = Source.Text;
             DialogsCache.ShowProgress(
                 u => TranslateSource(translateFrom, languages, inputFormat, outputFormat, template, value, u), 
                 Title, this, icon:Icon);
@@ -63,7 +63,7 @@ namespace Mnk.TBox.Plugins.LocalizationTool.Components
             ExceptionsHelper.HandleException(
                 () => translation = worker.Translate(translateFrom, languages, inputFormat, outputFormat, template, source, u), 
                 ex=>log.Write(ex, "Internal error"));
-            Mt.Do(this, ()=>Translation.Value = translation);
+            Mt.Do(this, ()=>Translation.Text = translation);
         }
 
         private void CloseClick(object sender, RoutedEventArgs e)

@@ -8,11 +8,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
 using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
-using Mnk.Library.WPFControls.Tools;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Tools;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 {

@@ -3,8 +3,8 @@ using System.Linq;
 using System.Windows;
 using Mnk.Library.Common.MT;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Plugins.Market.Client.Code;
 
 namespace Mnk.TBox.Plugins.Market.Client.Components.Installers

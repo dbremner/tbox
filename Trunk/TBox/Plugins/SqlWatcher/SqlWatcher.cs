@@ -6,9 +6,9 @@ using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.SqlWatcher;
 using Mnk.TBox.Core.PluginsShared.Watcher;
 using Mnk.TBox.Plugins.SqlWatcher.Code;
-using Mnk.Library.WPFSyntaxHighlighter;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.SqlWatcher
 {

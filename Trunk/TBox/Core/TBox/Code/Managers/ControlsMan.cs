@@ -7,9 +7,9 @@ using System.Windows.Data;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.Objects;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Components.ButtonsView;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Components.ButtonsView;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application.Code.Managers
 {

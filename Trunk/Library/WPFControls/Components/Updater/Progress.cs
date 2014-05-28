@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.MT;
 
-namespace Mnk.Library.WPFControls.Components.Updater
+namespace Mnk.Library.WpfControls.Components.Updater
 {
     public class Progress : SimpleProgress
     {

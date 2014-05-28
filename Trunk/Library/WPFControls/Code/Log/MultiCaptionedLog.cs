@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.WPFControls.Code.Log
+namespace Mnk.Library.WpfControls.Code.Log
 {
 	public class MultiCaptionedLog : ICaptionedLog
 	{

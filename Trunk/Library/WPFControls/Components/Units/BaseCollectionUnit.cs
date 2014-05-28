@@ -6,12 +6,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.WPFControls.Code.Dialogs;
-using Mnk.Library.WPFControls.Components.EditButtons;
-using Mnk.Library.WPFControls.Components.Units.Properties;
-using Mnk.Library.WPFControls.Code.EditPanel;
+using Mnk.Library.WpfControls.Code.Dialogs;
+using Mnk.Library.WpfControls.Components.EditButtons;
+using Mnk.Library.WpfControls.Code.EditPanel;
+using Mnk.Library.WpfControls.Components.Units.Properties;
 
-namespace Mnk.Library.WPFControls.Components.Units
+namespace Mnk.Library.WpfControls.Components.Units
 {
     public abstract class BaseCollectionUnit : UserControl, IUnit
     {

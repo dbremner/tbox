@@ -9,11 +9,11 @@ using Mnk.TBox.Core.PluginsShared.Ddos.Components;
 using Mnk.TBox.Plugins.Requestor.Code;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
 using Mnk.TBox.Plugins.Requestor.Components;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFSyntaxHighlighter;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.Requestor
 {

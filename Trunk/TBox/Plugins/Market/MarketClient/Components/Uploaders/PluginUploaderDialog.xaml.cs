@@ -9,9 +9,9 @@ using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WPFControls.Code.Dialogs;
-using Mnk.Library.WPFControls.Code.EditPanel;
-using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WpfControls.Code.Dialogs;
+using Mnk.Library.WpfControls.Code.EditPanel;
+using Mnk.Library.WpfControls.Code.OS;
 using Mnk.TBox.Plugins.Market.Client.Code;
 
 namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders

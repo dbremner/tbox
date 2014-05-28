@@ -4,7 +4,7 @@ using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Mnk.Library.WPFControls.Tools
+namespace Mnk.Library.WpfControls.Tools
 {
     public static class SecureStringExtensions
     {

@@ -12,8 +12,8 @@ using System.Windows.Input;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Core.PluginsShared.LongPaths;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code;
@@ -21,7 +21,7 @@ using Mnk.TBox.Plugins.Searcher.Code.Checkers;
 using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
 using Mnk.TBox.Plugins.Searcher.Code.Finders.Search;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 using ZetaLongPaths;
 
 namespace Mnk.TBox.Plugins.Searcher.Components
@@ -160,7 +160,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             catch (Exception ex)
             {
                 Log.Write(ex, "Internal error.");
-                edText.Value = SearcherLang.ErrorLoadingFile;
+                edText.Text = SearcherLang.ErrorLoadingFile;
                 edText.Format = string.Empty;
                 sbiLoadFileTime.Content = string.Empty;
             }
@@ -219,7 +219,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             sw.Restart();
             var searchText = SearchText.Text.Trim();
             Title = "Searcher";
-            edText.Value = string.Empty;
+            edText.Text = string.Empty;
             sbiFiles.Content = string.Empty;
             sbiSearchTime.Content = string.Empty;
             sbiFillResultsTime.Content = string.Empty;

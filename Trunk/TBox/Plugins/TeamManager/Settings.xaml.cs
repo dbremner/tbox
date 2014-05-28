@@ -6,14 +6,14 @@ using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Plugins.TeamManager.Code.Settings;
-using Mnk.Library.WPFControls.Code;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Plugins.TeamManager
 {

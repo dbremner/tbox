@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Data;
 
-namespace Mnk.Library.WPFControls.Tools
+namespace Mnk.Library.WpfControls.Tools
 {
     public class BoolInverterConverter : IValueConverter
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WPFControls.Components.Drawings.Graphics;
+using Mnk.Library.WpfControls.Components.Drawings.Graphics;
 
 namespace Mnk.TBox.Plugins.LeaksInterceptor.Code
 {

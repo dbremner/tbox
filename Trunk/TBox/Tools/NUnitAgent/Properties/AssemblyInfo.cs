@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
@@ -10,3 +11,4 @@ using System.Resources;
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: Guid("e141477d-262f-4b7d-b748-0ed83837eb35")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: CLSCompliant(true)]

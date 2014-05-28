@@ -8,14 +8,14 @@ using System.Threading;
 using System.Windows;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Plugins.NUnitRunner.Code;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
 using Mnk.Library.ParallelNUnit.Infrastructure;
 using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
 using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Dialogs;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {

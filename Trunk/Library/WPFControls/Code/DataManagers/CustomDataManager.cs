@@ -2,7 +2,7 @@
 using System.Globalization;
 using Mnk.Library.Common.UI.Model;
 
-namespace Mnk.Library.WPFControls.Code.DataManagers
+namespace Mnk.Library.WpfControls.Code.DataManagers
 {
 	public sealed class StringValueDataManager<T> : IDataManager
 		where T : CheckableData<string>, ICloneable, new()

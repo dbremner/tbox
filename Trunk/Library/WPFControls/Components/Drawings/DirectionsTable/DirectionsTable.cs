@@ -4,10 +4,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFControls.Components.Drawings.Background;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Components.Drawings.Background;
+using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.DirectionsTable
+namespace Mnk.Library.WpfControls.Components.Drawings.DirectionsTable
 {
 	public sealed class DirectionsTable : GraphPanel
 	{

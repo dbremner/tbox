@@ -7,9 +7,9 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.Encoder;
 using Mnk.TBox.Core.PluginsShared.Encoders;
-using Mnk.Library.WPFControls.Dialogs.StateSaver;
-using Mnk.Library.WPFSyntaxHighlighter;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.Library.WpfWinForms;
 using Mnk.TBox.Plugins.Encoder.Code;
 using Mnk.TBox.Plugins.Encoder.Components;
 

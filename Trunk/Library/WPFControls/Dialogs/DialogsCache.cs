@@ -6,9 +6,9 @@ using System.Windows;
 using System.Windows.Media;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.WPFControls.Dialogs.Menu;
+using Mnk.Library.WpfControls.Dialogs.Menu;
 
-namespace Mnk.Library.WPFControls.Dialogs
+namespace Mnk.Library.WpfControls.Dialogs
 {
     public static class DialogsCache
     {

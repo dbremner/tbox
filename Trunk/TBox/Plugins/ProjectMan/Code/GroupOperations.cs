@@ -6,8 +6,8 @@ using System.Windows.Media;
 using Mnk.Library.Common.MT;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Plugins.ProjectMan.Code
 {

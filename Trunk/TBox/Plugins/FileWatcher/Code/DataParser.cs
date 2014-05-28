@@ -1,5 +1,5 @@
 ﻿using Mnk.TBox.Core.PluginsShared.Watcher;
-using Mnk.Library.WPFControls.Code.Log;
+using Mnk.Library.WpfControls.Code.Log;
 
 namespace Mnk.TBox.Plugins.FileWatcher.Code
 {

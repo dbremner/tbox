@@ -5,7 +5,7 @@ using System.Windows;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.Plugins.BookletPagesGenerator;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
 
 namespace Mnk.TBox.Plugins.BookletPagesGenerator

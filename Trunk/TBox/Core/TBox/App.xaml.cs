@@ -10,9 +10,9 @@ using System.Windows.Threading;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.TBox;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Localization;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Localization;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Core.Application
 {

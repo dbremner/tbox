@@ -5,15 +5,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:Dialogs="clr-namespace:Mnk.Library.WPFControls.Dialogs;assembly=Mnk.Library.WPFControls"
-    xmlns:sh="clr-namespace:Mnk.Library.WPFSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
-             xmlns:Units="clr-namespace:Mnk.Library.WPFControls.Components.Units;assembly=Mnk.Library.WPFControls"
+             xmlns:Dialogs="clr-namespace:Mnk.Library.WpfControls.Dialogs;assembly=Mnk.Library.WPFControls"
+    xmlns:sh="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
+             xmlns:Units="clr-namespace:Mnk.Library.WpfControls.Components.Units;assembly=Mnk.Library.WPFControls"
              xmlns:Settings="clr-namespace:Mnk.TBox.Plugins.Requestor.Code.Settings"
              xmlns:Components="clr-namespace:Mnk.TBox.Plugins.Requestor.Components"
              xmlns:network="clr-namespace:Mnk.Library.Common.Network;assembly=Mnk.Library.Common"
     xmlns:controls="clr-namespace:Mnk.TBox.Core.PluginsShared.Controls;assembly=Mnk.TBox.Core.PluginsShared"
-    xmlns:captioned2="clr-namespace:Mnk.Library.WPFControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
-    xmlns:components="clr-namespace:Mnk.Library.WPFControls.Components;assembly=Mnk.Library.WPFControls"
+    xmlns:captioned2="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
+    xmlns:components="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
     mc:Ignorable="d" 
              Width="500" Height="600" MinWidth="500" MinHeight="500"
              Title="{Binding Key}"
@@ -53,7 +53,7 @@
                     <GridSplitter Grid.Row="2" ResizeDirection="Rows" HorizontalAlignment="Stretch"/>
                     <DockPanel Grid.Row="3">
                         <Label Content="{loc:Tr Body}" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-                        <sh:SyntaxHighlighter Value="{Binding Request.Body}"/>
+                        <sh:SyntaxHighlighter Text="{Binding Request.Body}"/>
                     </DockPanel>
                 </Grid>
             </TabItem>

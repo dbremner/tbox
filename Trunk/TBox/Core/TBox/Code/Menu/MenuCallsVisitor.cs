@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Mnk.Library.Common.Log;
-using Mnk.Library.WPFWinForms;
+using Mnk.Library.WpfWinForms;
 
 namespace Mnk.TBox.Core.Application.Code.Menu
 {

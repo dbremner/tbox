@@ -2,7 +2,7 @@
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Locales.Localization.Plugins.HtmlPad;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Plugins.HtmlPad
 {
@@ -22,10 +22,10 @@ namespace Mnk.TBox.Plugins.HtmlPad
 
 		private void EditorOnTextChanged(object sender, EventArgs e)
 		{
-			if (!string.IsNullOrWhiteSpace(Editor.Value))
+			if (!string.IsNullOrWhiteSpace(Editor.Text))
 			{
 				ExceptionsHelper.HandleException(
-					() => Html.NavigateToString(Editor.Value),
+					() => Html.NavigateToString(Editor.Text),
 					() => "Can't set html body",
 					Log
 					);

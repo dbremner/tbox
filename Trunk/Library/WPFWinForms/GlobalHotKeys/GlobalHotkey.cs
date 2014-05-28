@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Mnk.Library.WPFWinForms.GlobalHotKeys
+namespace Mnk.Library.WpfWinForms.GlobalHotkeys
 {
 	[Serializable]
-	public class HotKey
+	public class GlobalHotkey
 	{
 		public ModifierKeys Modifier { get; set; }
 		public Key Key { get; set; }
-		public HotKey(ModifierKeys modifier, Key key)
+		public GlobalHotkey(ModifierKeys modifier, Key key)
 		{
 			Modifier = modifier;
 			Key = key;
 		}
-		public HotKey(){}
+		public GlobalHotkey(){}
 		public override string ToString()
 		{
 			var key = GetKeyText(Key);

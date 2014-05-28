@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WPFControls.Code.OS;
+using Mnk.Library.WpfControls.Code.OS;
 using Mnk.TBox.Plugins.Market.Client.Code;
 using Mnk.TBox.Plugins.Market.Client.Components.Installers;
 

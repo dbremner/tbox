@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace Mnk.Library.WPFControls.Components.Drawings.Graphics
+namespace Mnk.Library.WpfControls.Components.Drawings.Graphics
 {
 	public interface IGraphic
 	{

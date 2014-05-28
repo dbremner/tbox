@@ -6,7 +6,7 @@ using System.Windows;
 using ICSharpCode.SharpZipLib.Zip;
 using Mnk.TBox.Core.PluginsShared.Automator;
 using Mnk.Library.ScriptEngine;
-using Mnk.Library.WPFControls.Dialogs;
+using Mnk.Library.WpfControls.Dialogs;
 
 namespace Solution.Scripts
 {

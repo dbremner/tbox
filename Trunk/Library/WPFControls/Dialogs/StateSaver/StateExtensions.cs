@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Windows;
 using Mnk.Library.Common.Tools;
-using Mnk.Library.WPFControls.Code;
+using Mnk.Library.WpfControls.Code;
 
-namespace Mnk.Library.WPFControls.Dialogs.StateSaver
+namespace Mnk.Library.WpfControls.Dialogs.StateSaver
 {
     public static class StateExtensions
     {

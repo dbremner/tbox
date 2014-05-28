@@ -9,7 +9,7 @@ using System.Windows.Markup;
 using Mnk.Library.Common.Models;
 using Mnk.Library.Common.UI.ModelsContainers;
 
-namespace Mnk.Library.WPFControls.Components.CheckableTreeView
+namespace Mnk.Library.WpfControls.Components.CheckableTreeView
 {
     /// <summary>
     /// Interaction logic for CheckableTreeView.xaml

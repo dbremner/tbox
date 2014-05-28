@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.WPFControls.Components.EditButtons
+namespace Mnk.Library.WpfControls.Components.EditButtons
 {
 	[Serializable]
 	public sealed class PanelException : Exception

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Threading;
 
-namespace Mnk.Library.WPFControls.Localization
+namespace Mnk.Library.WpfControls.Localization
 {
 	public static class Translator
 	{

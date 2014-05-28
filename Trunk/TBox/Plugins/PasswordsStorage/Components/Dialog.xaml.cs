@@ -5,8 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Mnk.Library.Common.Log;
-using Mnk.Library.WPFControls.Components.Captioned;
-using Mnk.Library.WPFControls.Tools;
+using Mnk.Library.WpfControls.Components.Captioned;
+using Mnk.Library.WpfControls.Tools;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Plugins.PasswordsStorage.Code.Settings;
 

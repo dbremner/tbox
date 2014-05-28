@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace Mnk.Library.WPFControls.Code.Dialogs
+namespace Mnk.Library.WpfControls.Code.Dialogs
 {
 	public abstract class BaseDialog
 	{

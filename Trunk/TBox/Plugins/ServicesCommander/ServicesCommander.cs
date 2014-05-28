@@ -5,9 +5,9 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.ServicesCommander;
 using Mnk.TBox.Plugins.ServicesCommander.Code;
-using Mnk.Library.WPFControls.Dialogs;
-using Mnk.Library.WPFWinForms;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Dialogs;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.ServicesCommander
 {

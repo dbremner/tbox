@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using Mnk.Library.Localization.WPFControls;
 
-namespace Mnk.Library.WPFControls.Dialogs.Menu
+namespace Mnk.Library.WpfControls.Dialogs.Menu
 {
 	/// <summary>
 	/// Interaction logic for MenuDialog.xaml

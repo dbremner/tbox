@@ -16,9 +16,9 @@ using Mnk.TBox.Core.Application.Code.AutoUpdate;
 using Mnk.TBox.Core.Application.Code.Configs;
 using Mnk.TBox.Core.Application.Code.Managers;
 using Mnk.TBox.Core.Application.Code.Objects;
-using Mnk.Library.WPFControls.Code.OS;
-using Mnk.Library.WPFControls.Localization;
-using Mnk.Library.WPFWinForms.Icons;
+using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls.Localization;
+using Mnk.Library.WpfWinForms.Icons;
 using IUpdater = Mnk.Library.Common.MT.IUpdater;
 
 namespace Mnk.TBox.Core.Application.Code

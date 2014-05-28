@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace Mnk.Library.WPFControls.Components.ButtonsView
+namespace Mnk.Library.WpfControls.Components.ButtonsView
 {
 	/// <summary>
 	/// Interaction logic for GroupedList.xaml
