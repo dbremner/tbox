@@ -21,23 +21,23 @@
   <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
  </ProjectOptions>
  <Targets>
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.Library.Common.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.Library.ParallelNUnit.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.Library.WpfControls.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.Library.WpfSyntaxHighlighter.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.Library.WpfWinForms.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.TBox.Core.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.TBox.Core.Empty.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.TBox.Core.PluginsShared.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Libraries/Mnk.TBox.Tools.SkyNet.Common.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Localization/Mnk.Library.Localization.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Localization/Mnk.TBox.Locales.Localization.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Tools/ConsoleScriptRunner.exe" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Tools/ConsoleUnitTestsRunner.exe" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Tools/Mnk.TBox.Tools.FeedbackService.exe" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Tools/Mnk.TBox.Tools.SkyNet.Agent.exe" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Tools/Mnk.TBox.Tools.SkyNet.Server.exe" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Trunk/TBox/bin/Release/Tools/NUnitAgent.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.Library.Common.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.Library.ParallelNUnit.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.Library.WpfControls.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.Library.WpfSyntaxHighlighter.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.Library.WpfWinForms.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.TBox.Core.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.TBox.Core.Empty.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.TBox.Core.PluginsShared.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Libraries/Mnk.TBox.Tools.SkyNet.Common.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Localization/Mnk.Library.Localization.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Localization/Mnk.TBox.Locales.Localization.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Tools/ConsoleScriptRunner.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Tools/ConsoleUnitTestsRunner.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Tools/Mnk.TBox.Tools.FeedbackService.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Tools/Mnk.TBox.Tools.SkyNet.Agent.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Tools/Mnk.TBox.Tools.SkyNet.Server.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/TBox/bin/Release/Tools/NUnitAgent.exe" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>
   <RuleFiles>
