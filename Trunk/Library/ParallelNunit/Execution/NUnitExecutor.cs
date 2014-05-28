@@ -33,7 +33,7 @@ namespace Mnk.Library.ParallelNUnit.Execution
                 var config = JsonSerializer.DeserializeFromString<TestRunConfig>(str);
                 Parallel.For(0, config.TestsToRun.Count, i =>
                     {
-                        var path = config.DllPathes[i];
+                        var path = config.DllPaths[i];
                         var items = config.TestsToRun[i].ToArray();
                         if (i > 0 && config.StartDelay > 0)
                         {

@@ -14,7 +14,7 @@ namespace Mnk.TBox.Core.Application.Code.Themes
 	{
 		private string lastLoaded = string.Empty;
 		private static readonly ILog Log = LogManager.GetLogger<ThemesManager>();
-		private static readonly string ThemesPath = Path.Combine(Environment.CurrentDirectory, "Themes");
+		private static readonly string ThemesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Themes");
 		public ThemesManager()
 		{
 			AvailableThemes = new List<string>();

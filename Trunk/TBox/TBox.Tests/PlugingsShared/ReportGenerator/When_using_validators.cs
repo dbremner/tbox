@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Mnk.TBox.Tests.Common;
 using NUnit.Framework;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 using Mnk.Library.ScriptEngine.Core;
@@ -7,7 +8,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ReportGenerator
 {
     [TestFixture]
     [Category("Integration")]
-    class When_using_validators
+    class When_using_validators : ScriptsFixture
     {
         public static string[] Files
         {

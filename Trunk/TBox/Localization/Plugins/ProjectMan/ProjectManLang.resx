@@ -129,7 +129,7 @@
   <data name="Build" xml:space="preserve">
     <value>Build:</value>
   </data>
-  <data name="BuildToolsPathes" xml:space="preserve">
+  <data name="BuildToolsPaths" xml:space="preserve">
     <value>Build tools paths</value>
   </data>
   <data name="CleanUp" xml:space="preserve">

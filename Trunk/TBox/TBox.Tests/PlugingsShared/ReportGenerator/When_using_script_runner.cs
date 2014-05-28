@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Mnk.TBox.Tests.Common;
 using NUnit.Framework;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 using Mnk.Library.ScriptEngine.Core;
-using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
 namespace Mnk.TBox.Tests.PlugingsShared.ReportGenerator
 {
     [TestFixture]
     [Category("Integration")]
-    class When_using_report_script_runner
+    class When_using_report_script_runner : ScriptsFixture
     {
         public static string[] Files
         {

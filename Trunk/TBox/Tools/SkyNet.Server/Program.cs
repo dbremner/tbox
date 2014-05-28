@@ -21,17 +21,22 @@ namespace Mnk.TBox.Tools.SkyNet.Server
             var provider = new ConfigProvider<ServerConfig>(Path.Combine(Folders.UserToolsFolder, "SkyNet.Sever.config"));
             using (new InterprocessServer<IConfigProvider<ServerConfig>>(provider, "TBox.SkyNet.Server"))
             {
-                var service = new SkyNetServerService(provider.Config);
-                if (Environment.UserInteractive)
+                using (var container = new ServicesRegistrator().Register(provider.Config))
                 {
-                    service.StartService();
-                    Console.WriteLine("Press any key to stop program");
-                    Console.ReadKey();
-                    service.StopService();
-                }
-                else
-                {
-                    ServiceBase.Run(new ServiceBase[] { service });
+                    using (var service = new SkyNetServerService(provider.Config, container))
+                    {
+                        if (Environment.UserInteractive)
+                        {
+                            service.StartService();
+                            Console.WriteLine("Press any key to stop program");
+                            Console.ReadKey();
+                            service.StopService();
+                        }
+                        else
+                        {
+                            ServiceBase.Run(new ServiceBase[] { service });
+                        }
+                    }
                 }
             }
         }

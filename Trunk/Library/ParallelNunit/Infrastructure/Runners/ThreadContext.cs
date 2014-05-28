@@ -5,11 +5,11 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     public sealed class ThreadContext : IContext
     {
-        private readonly Thread t;
+        private readonly Thread thread;
 
-        public ThreadContext(Thread t)
+        public ThreadContext(Thread thread)
         {
-            this.t = t;
+            this.thread = thread;
         }
 
         public void Dispose()
@@ -18,7 +18,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 
         public void WaitForExit()
         {
-            t.Join();
+            thread.Join();
         }
 
         public void Kill()

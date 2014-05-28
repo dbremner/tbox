@@ -35,7 +35,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
         public override void OnRebuildMenu()
         {
             base.OnRebuildMenu();
-            Menu = Config.DllPathes.CheckedItems
+            Menu = Config.DllPaths.CheckedItems
                          .Select(x => new UMenuItem
                          {
                              Header = Path.GetFileName(x.Key),
@@ -46,8 +46,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
 
         private void Run(TestConfig config)
         {
-            runner.LoadState(Config.States);
-            runner.Value.ShowDialog(config);
+            runner.Do(Context.DoSync, x => x.ShowDialog(config), Config.States);
         }
 
         private string NUnitAgentPath

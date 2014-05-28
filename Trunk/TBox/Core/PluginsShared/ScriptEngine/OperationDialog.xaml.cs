@@ -16,11 +16,11 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 			InitializeComponent();
 		}
 
-		public void ShowDialog(IList<string> pathes, MultiFileOperation operation)
+		public void ShowDialog(IList<string> paths, MultiFileOperation operation)
 		{
 			Owner = Application.Current.MainWindow;
 			DataContext = operation;
-			Pathes.ConfigureInputSelect(PluginsSharedLang.SelectSctipt, operation.Pathes, pathes);
+			Paths.ConfigureInputSelect(PluginsSharedLang.SelectSctipt, operation.Paths, paths);
 			SafeShowDialog();
 		}
 	}

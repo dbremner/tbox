@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ServiceProcess;
+using LightInject;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
-using Mnk.TBox.Tools.SkyNet.Server.Code.Services;
+using Mnk.TBox.Tools.SkyNet.Common.Modules;
+using Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces;
 
 namespace Mnk.TBox.Tools.SkyNet.Server
 {
@@ -11,20 +13,23 @@ namespace Mnk.TBox.Tools.SkyNet.Server
     {
         private readonly ILog log = LogManager.GetLogger<SkyNetServerService>();
         private readonly ServerConfig config;
+        private readonly IServiceContainer container;
+        private IDisposable server;
 
-        public SkyNetServerService(ServerConfig config)
+        public SkyNetServerService(ServerConfig config, IServiceContainer container)
         {
             this.config = config;
+            this.container = container;
             InitializeComponent();
         }
 
-        private IDisposable server;
-
         protected override void OnStart(string[] args)
         {
+            OnStop();
             try
             {
-                server = new NetworkServer<ISkyNetCommon>(new SkyNetServer(config), config.Port);
+                server = new NetworkServer<ISkyNetCommon>(container.GetInstance<ISkyNetCommon>(), config.Port);
+                container.GetInstance<IModulesRunner>().Start();
             }
             catch (Exception ex)
             {
@@ -37,6 +42,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server
         {
             try
             {
+                container.GetInstance<IModulesRunner>().Stop();
                 StopService(ref server);
             }
             catch (Exception ex)

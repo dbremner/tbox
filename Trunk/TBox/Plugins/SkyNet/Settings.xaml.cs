@@ -11,9 +11,10 @@ using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Plugins.SkyNet.Code;
+using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
+using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
-using Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent;
 using Mnk.Library.WPFControls.Code;
 using Mnk.Library.WPFControls.Tools;
 
@@ -26,7 +27,8 @@ namespace Mnk.TBox.Plugins.SkyNet
     {
         private readonly ILog log = LogManager.GetLogger<Settings>();
         public LazyDialog<ScriptsConfigurator> ScriptConfiguratorDialog { get; set; }
-        public ServicesFacade ServicesFacade { get; set; }
+        public IServicesBuilder ServicesBuilder { get; set; }
+        public IConfigsFacade ConfigsFacade { get; set; }
 
         public Settings()
         {
@@ -35,21 +37,21 @@ namespace Mnk.TBox.Plugins.SkyNet
 
         public void Init(IPluginContext context)
         {
-            AgentService.ServiceName = ServicesFacade.AgentServiceName;
+            AgentService.ServiceName = Constants.AgentServiceName;
             AgentService.ServicePath = Path.Combine(context.DataProvider.ToolsPath, "Mnk.TBox.Tools.SkyNet.Agent.exe");
-            ServerService.ServiceName = ServicesFacade.ServerServiceName;
+            ServerService.ServiceName = Constants.ServerServiceName;
             ServerService.ServicePath = Path.Combine(context.DataProvider.ToolsPath, "Mnk.TBox.Tools.SkyNet.Server.exe");
             AgentSettingsNeedRefresh(null, new DependencyPropertyChangedEventArgs());
             ServerSettingsNeedRefresh(null, new DependencyPropertyChangedEventArgs());
         }
 
-        public IList<string> FilePathes { get; set; }
+        public IList<string> FilePaths { get; set; }
         internal IScriptConfigurator ScriptConfigurator { get; set; }
         public UserControl Control { get { return this; } }
 
         private void ChangeAgentSettingsClick(object sender, RoutedEventArgs e)
         {
-            ServicesFacade.SetAgentConfig((AgentConfig)AgentConfiguration.DataContext);
+            ConfigsFacade.SetAgentConfig((AgentConfig)AgentConfiguration.DataContext);
         }
 
         private void AgentSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -59,12 +61,12 @@ namespace Mnk.TBox.Plugins.SkyNet
                 AgentConfiguration.DataContext = null;
                 return;
             }
-            AgentConfiguration.DataContext = ServicesFacade.GetAgentConfig();
+            AgentConfiguration.DataContext = ConfigsFacade.GetAgentConfig();
         }
 
         private void ChangeServerSettingsClick(object sender, RoutedEventArgs e)
         {
-            ServicesFacade.SetServerConfig((ServerConfig)ServerConfiguration.DataContext);
+            ConfigsFacade.SetServerConfig((ServerConfig)ServerConfiguration.DataContext);
         }
 
         private void ServerSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -74,7 +76,7 @@ namespace Mnk.TBox.Plugins.SkyNet
                 ServerConfiguration.DataContext = null;
                 return;
             }
-            ServerConfiguration.DataContext = ServicesFacade.GetServerConfig();
+            ServerConfiguration.DataContext = ConfigsFacade.GetServerConfig();
         }
 
         private void RefreshInfoClick(object sender, RoutedEventArgs e)
@@ -87,15 +89,19 @@ namespace Mnk.TBox.Plugins.SkyNet
                 {
                     AgentInfo.DataContext = agentClient.Instance.GetCurrentTask();
 
-                    using (var serverClient = ServicesFacade.CreateServerClient(config))
+                    using (var serverClient = ServicesBuilder.CreateServerAgentsClient(config))
                     {
                         ConnectedAgents.ItemsSource =
                             serverClient.Instance.GetAgents()
                                 .Select(x => string.Format("{0}\t{1}\t{2}", x.Endpoint, x.State, x.TotalCores));
+                    }
+                    using (var serverClient = ServicesBuilder.CreateServerTasksClient(config))
+                    {
                         ExistTasks.ItemsSource =
                             serverClient.Instance.GetTasks()
                                 .Select(x => string.Format("{0}\t{1}\t{2}", x.Owner, x.Progress, x.CreatedTime));
                     }
+
                 }
             }
             catch (Exception ex)

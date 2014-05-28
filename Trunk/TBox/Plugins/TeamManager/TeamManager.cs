@@ -103,28 +103,31 @@ namespace Mnk.TBox.Plugins.TeamManager
 
         private void OpenProvidersEditor(object o)
         {
-            dataProvidersEditorDialog.LoadState(Config.States);
-            dataProvidersEditorDialog.Value.ShowDialog(GetPathes(DataProvidersFolder), reportScriptRunner);
+            dataProvidersEditorDialog.Do(Context.DoSync,
+                x=>x.ShowDialog(GetPaths(DataProvidersFolder), reportScriptRunner),
+                Config.States);
         }
 
         private void OpenValidatorsEditor(object o)
         {
-            dataProvidersEditorDialog.LoadState(Config.States);
-            dataProvidersEditorDialog.Value.ShowDialog(GetPathes(ValidatorsFolder), validatorScriptConfigurator);
+            dataProvidersEditorDialog.Do(Context.DoSync,
+                x=>x.ShowDialog(GetPaths(ValidatorsFolder), validatorScriptConfigurator),
+                Config.States
+                );
         }
 
         protected override Settings CreateSettings()
         {
             var imageSource = Icon.ToImageSource();
             var s = base.CreateSettings();
-            s.FilePathes = GetPathes(DataProvidersFolder);
+            s.FilePaths = GetPaths(DataProvidersFolder);
             s.ScriptConfigurator = reportScriptRunner;
             s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
                 () => new SingleFileScriptConfigurator { Context = Context, Icon = imageSource }, "scripts configurator");
             return s;
         }
 
-        private IList<string> GetPathes(string directoryName)
+        private IList<string> GetPaths(string directoryName)
         {
             var dir = new DirectoryInfo(Context.DataProvider.ReadOnlyDataPath);
             if (!dir.Exists) return new string[0];

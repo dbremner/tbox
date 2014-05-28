@@ -9,23 +9,23 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
 {
     public class GroupUpdater : IProgressStatus
     {
-        private readonly IUpdater u;
+        private readonly IUpdater updater;
         private int passedCount = 0;
         private int failedCount = 0;
-        private readonly int overalCount;
+        private readonly int overallCount;
         private readonly object locker = new object();
 
-        public GroupUpdater(IUpdater u, int overalCount)
+        public GroupUpdater(IUpdater updater, int overallCount)
         {
-            this.u = u;
-            this.overalCount = overalCount;
+            this.updater = updater;
+            this.overallCount = overallCount;
         }
 
         public void Update(string text)
         {
         }
 
-        public bool UserPressClose { get { return u.UserPressClose; } }
+        public bool UserPressClose { get { return updater.UserPressClose; } }
 
         public void Update(int allCount, Result[] items, int failed)
         {
@@ -34,8 +34,8 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
                 passedCount += items.Length;
                 failedCount += failed;
             }
-            var caption = string.Format(CultureInfo.InvariantCulture, "Tested: {0}/{1}, failed: {2}", passedCount, overalCount, failedCount);
-            u.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, overalCount);
+            var caption = string.Format(CultureInfo.InvariantCulture, "Tested: {0}/{1}, failed: {2}", passedCount, overallCount, failedCount);
+            updater.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, overallCount);
         }
     }
 }

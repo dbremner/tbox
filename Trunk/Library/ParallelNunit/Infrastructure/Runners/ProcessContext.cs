@@ -4,25 +4,25 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
 {
     public sealed class ProcessContext : IContext
     {
-        private readonly Process p;
-        public ProcessContext(Process p)
+        private readonly Process process;
+        public ProcessContext(Process process)
         {
-            this.p = p;
+            this.process = process;
         }
 
         public void Dispose()
         {
-            p.Dispose();
+            process.Dispose();
         }
 
         public void WaitForExit()
         {
-            p.WaitForExit();
+            process.WaitForExit();
         }
 
         public void Kill()
         {
-            p.Kill();
+            process.Kill();
         }
     }
 }

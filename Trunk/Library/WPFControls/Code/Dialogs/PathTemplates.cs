@@ -20,7 +20,7 @@ namespace Mnk.Library.WPFControls.Code.Dialogs
 			clone: WPFControlsLang.ClonePath,
 			edit: WPFControlsLang.EditPath,
 			del: WPFControlsLang.DelPath,
-			clear: WPFControlsLang.ClearAllPathes,
+			clear: WPFControlsLang.ClearAllPaths,
 			invalidPath: WPFControlsLang.InvalidPath
 			);
 		}

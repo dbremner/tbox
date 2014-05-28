@@ -36,12 +36,12 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
             }
         }
 
-        public override void DoRun(Action<IPackage> onReceive, IList<Result> allTests, IList<IList<Result>> packages, bool copyToSeparateFolders, string[] copyMasks, bool needSynchronizationForTests, int startDelay, Synchronizer synchronizer, IProgressStatus u, bool needOutput)
+        public override void DoRun(Action<IPackage> onReceive, IList<Result> allTests, IList<IList<Result>> packages, bool copyToSeparateFolders, string[] copyMasks, bool needSynchronizationForTests, int startDelay, Synchronizer synchronizer, IProgressStatus updater, bool needOutput)
         {
             try
             {
                 var runner = new ThreadTestsRunner(loadFromSameFolder);
-                runner.Run(FilePath, allTests, packages, Server, copyToSeparateFolders, copyMasks, needSynchronizationForTests, DirToCloneTests, CommandToExecuteBeforeTests, startDelay, synchronizer, u, needOutput, RuntimeFramework);
+                runner.Run(FilePath, allTests, packages, Server, copyToSeparateFolders, copyMasks, needSynchronizationForTests, DirToCloneTests, CommandToExecuteBeforeTests, startDelay, synchronizer, updater, needOutput, RuntimeFramework);
                 onReceive(this);
             }
             catch (Exception ex)

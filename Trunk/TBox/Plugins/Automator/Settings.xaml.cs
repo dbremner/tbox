@@ -28,14 +28,14 @@ namespace Mnk.TBox.Plugins.Automator
 		}
 
 		public UserControl Control { get { return this; } }
-		public Func<IList<string>> FilePathesGetter { get; set; }
+		public Func<IList<string>> FilePathsGetter { get; set; }
 
 		private void BtnEditClick(object sender, RoutedEventArgs e)
 		{
 			var selectedKey = ((TextBlock)((DockPanel)((Button)sender).Parent).Children[1]).Text;
 			var profile = (Profile)Profile.SelectedValue;
 			var id = profile.Operations.GetExistIndexByKeyIgnoreCase(selectedKey);
-			operationsDialog.Value.ShowDialog(FilePathesGetter(), profile.Operations[id]);
+			operationsDialog.Value.ShowDialog(FilePathsGetter(), profile.Operations[id]);
 		}
 	}
 }

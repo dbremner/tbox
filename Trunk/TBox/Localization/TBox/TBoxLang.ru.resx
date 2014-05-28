@@ -285,7 +285,7 @@
   <data name="ScheldulerIsEnabled" xml:space="preserve">
     <value>Планировщик включен</value>
   </data>
-  <data name="ScriptsPathes" xml:space="preserve">
+  <data name="ScriptsPaths" xml:space="preserve">
     <value>Пути к скриптам</value>
   </data>
   <data name="SelectMenuActions" xml:space="preserve">

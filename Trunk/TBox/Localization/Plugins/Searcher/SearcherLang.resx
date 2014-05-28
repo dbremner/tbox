@@ -267,4 +267,7 @@
   <data name="TextDontContainSearchableSymbols" xml:space="preserve">
     <value>Text don't contain searchable symbols</value>
   </data>
+  <data name="SearchableSymbols" xml:space="preserve">
+    <value>Searchable symbols</value>
+  </data>
 </root>

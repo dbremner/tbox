@@ -36,10 +36,9 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Runners
                 }
                 if (u.UserPressClose) return;
                 s.PrepareToRun(synchronizer, u,
-                    new TestRunConfig
+                    new TestRunConfig(dllPaths)
                         {
                             StartDelay = startDelay * 1000,
-                            DllPathes = dllPaths
                         },
                     packages, allTests,
                     Run(path, needSynchronizationForTests, handle, needOutput, runtimeFramework)

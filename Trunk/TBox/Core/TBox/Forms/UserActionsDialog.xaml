@@ -14,6 +14,6 @@
              Title="{Binding Key}">
     <DockPanel>
         <Button Content="{loc:Tr BtnClose}" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Padding="5,0" Margin="10" IsCancel="True" IsDefault="True"/>
-        <Units:CheckableListBoxUnit Name="Pathes" />
+        <Units:CheckableListBoxUnit Name="Paths" />
     </DockPanel>
 </dialogs:DialogWindow>

@@ -178,11 +178,11 @@ namespace Mnk.Library.Localization.WPFControls {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you want clear all pathes?.
+        ///   Looks up a localized string similar to Are you want clear all paths?.
         /// </summary>
-        public static string ClearAllPathes {
+        public static string ClearAllPaths {
             get {
-                return ResourceManager.GetString("ClearAllPathes", resourceCulture);
+                return ResourceManager.GetString("ClearAllPaths", resourceCulture);
             }
         }
         

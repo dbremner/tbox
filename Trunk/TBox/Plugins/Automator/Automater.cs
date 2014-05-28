@@ -96,12 +96,12 @@ namespace Mnk.TBox.Plugins.Automator
         private void RunAll(IUpdater u, IList<MultiFileOperation> operations)
         {
             var i = 0;
-            var count = operations.Sum(x => x.Pathes.CheckedItems.Count());
+            var count = operations.Sum(x => x.Paths.CheckedItems.Count());
             var folder = Context.DataProvider.ReadOnlyDataPath;
             foreach (var op in operations)
             {
                 var r = new ScriptRunner();
-                foreach (var path in op.Pathes.CheckedItems)
+                foreach (var path in op.Paths.CheckedItems)
                 {
                     if (u.UserPressClose) return;
                     u.Update(path.Key, i++ / (float)count);
@@ -134,7 +134,7 @@ namespace Mnk.TBox.Plugins.Automator
 
         private void ShowIde(object o)
         {
-            editorDialog.Do(Context.DoSync, x => x.ShowDialog(GetPathes(), scriptRunner), Config.States);
+            editorDialog.Do(Context.DoSync, x => x.ShowDialog(GetPaths(), scriptRunner), Config.States);
         }
 
         private void DoWork(MultiFileOperation operation, object context)
@@ -145,8 +145,7 @@ namespace Mnk.TBox.Plugins.Automator
             }
             else
             {
-                runnerDialog.LoadState(Config.States);
-                runnerDialog.Value.ShowDialog(operation, scriptRunner, null);
+                runnerDialog.Do(Context.DoSync, x => x.ShowDialog(operation, scriptRunner, null), Config.States);
             }
         }
 
@@ -161,11 +160,11 @@ namespace Mnk.TBox.Plugins.Automator
         protected override Settings CreateSettings()
         {
             var s = base.CreateSettings();
-            s.FilePathesGetter = GetPathes;
+            s.FilePathsGetter = GetPaths;
             return s;
         }
 
-        private IList<string> GetPathes()
+        private IList<string> GetPaths()
         {
             var dir = new DirectoryInfo(Context.DataProvider.ReadOnlyDataPath);
             if (!dir.Exists) return new string[0];

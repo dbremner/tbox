@@ -16,7 +16,7 @@ namespace Mnk.Library.Common.Communications
         {
             Port = port;
             Owner = owner;
-            Endpoint = string.Format(CultureInfo.InvariantCulture, "http://{0}:{1}", Environment.MachineName, port);
+            Endpoint = BuildEndpoint(port);
             server = new ServiceHost(owner);
             var ep = server.AddServiceEndpoint(typeof(T),
                 new WebHttpBinding { 
@@ -27,6 +27,11 @@ namespace Mnk.Library.Common.Communications
                 Endpoint);
             ep.Behaviors.Add(new WebHttpBehavior());
             server.Open();
+        }
+
+        public static string BuildEndpoint(int port)
+        {
+            return string.Format(CultureInfo.InvariantCulture, "http://{0}:{1}", Environment.MachineName, port);
         }
 
         public void Dispose()

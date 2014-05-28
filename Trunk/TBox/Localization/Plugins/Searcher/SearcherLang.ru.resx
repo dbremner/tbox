@@ -267,4 +267,7 @@
   <data name="TextDontContainSearchableSymbols" xml:space="preserve">
     <value>В тексте нет символов по которым возможен поиск</value>
   </data>
+  <data name="SearchableSymbols" xml:space="preserve">
+    <value>Символы, по которым возможен поиск</value>
+  </data>
 </root>

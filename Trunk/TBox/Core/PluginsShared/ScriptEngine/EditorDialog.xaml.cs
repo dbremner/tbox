@@ -29,12 +29,12 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
             InitializeComponent();
         }
 
-        public void ShowDialog(IList<string> pathes, IScriptConfigurator c)
+        public void ShowDialog(IList<string> paths, IScriptConfigurator c)
         {
             if (!IsVisible)
             {
                 configurator = c;
-                Files.ItemsSource = pathes;
+                Files.ItemsSource = paths;
                 Files.IsEnabled = Files.Items.Count > 0;
                 if (Files.IsEnabled && Files.SelectedIndex == -1) Files.SelectedIndex = 0;
             }

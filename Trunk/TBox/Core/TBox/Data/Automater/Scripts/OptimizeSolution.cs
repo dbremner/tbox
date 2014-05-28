@@ -19,7 +19,7 @@ namespace Solution.Scripts
 		public string[] Solutions { get; set; }
 
         [StringList("..\\Lib", "..\\packages")]
-        public string[] PathesToLibs { get; set; }
+        public string[] PathsToLibs { get; set; }
 
         [StringList("Content", "None" )]
         public string[] SectionToPreserveNewestNames { get; set; }
@@ -63,7 +63,7 @@ namespace Solution.Scripts
             IntPtr lpSecurityAttributes
         );
 
-        private static IEnumerable<string> GetOutputPathes(XElement root, string rootDirPath)
+        private static IEnumerable<string> GetOutputPaths(XElement root, string rootDirPath)
         {
             return root.Elements()
                        .Where(x => x.Name.LocalName.EqualsIgnoreCase("PropertyGroup"))
@@ -76,10 +76,10 @@ namespace Solution.Scripts
 
         private bool ProccessProject(XElement root, string rootDirPath)
 	    {
-            var outputPathes = GetOutputPathes(root, rootDirPath).Distinct().ToArray();
-            var pathToLibs = PathesToLibs.Select(x => Path.GetFullPath(Path.Combine(rootDirPath, x))).ToArray();
+            var outputPaths = GetOutputPaths(root, rootDirPath).Distinct().ToArray();
+            var pathToLibs = PathsToLibs.Select(x => Path.GetFullPath(Path.Combine(rootDirPath, x))).ToArray();
             var finded = false;
-	        foreach (var s in outputPathes)
+	        foreach (var s in outputPaths)
 	        {
 		        if(Directory.Exists(s))Directory.Delete(s, true);
 	        }
@@ -88,7 +88,7 @@ namespace Solution.Scripts
                 .SelectMany(x => x.Elements().Where(y => y.Name.LocalName.EqualsIgnoreCase("Reference")))
                 )
             {
-                finded = ProcessLib(root, rootDirPath, node, pathToLibs, outputPathes) || finded;
+                finded = ProcessLib(root, rootDirPath, node, pathToLibs, outputPaths) || finded;
             }
             finded = DisableResourcesCopy(root) || finded;
             finded = TasksToRemove.Aggregate(false, (current, task) => RemoveTask(root, task) || current) || finded;
@@ -99,7 +99,7 @@ namespace Solution.Scripts
             return finded;
 	    }
 
-	    private static bool ProcessLib(XElement root, string rootDirPath, XElement node, string[] pathToLibs, string[] outputPathes)
+	    private static bool ProcessLib(XElement root, string rootDirPath, XElement node, string[] pathToLibs, string[] outputPaths)
 	    {
 	        var name = node.Attribute("Include").Value.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).First();
 	        var hintPathEl = GetElement(node, "HintPath");
@@ -114,7 +114,7 @@ namespace Solution.Scripts
 	        var target = node.Elements()
 	                         .FirstOrDefault(x => x.Name.LocalName.EqualsIgnoreCase("Private"));
 	        var canRemove = false;
-	        foreach (var s in outputPathes)
+	        foreach (var s in outputPaths)
 	        {
 	            var targetPath = Path.Combine(s, name + Path.GetExtension(hintPath));
 	            if (!Directory.Exists(s)) Directory.CreateDirectory(s);

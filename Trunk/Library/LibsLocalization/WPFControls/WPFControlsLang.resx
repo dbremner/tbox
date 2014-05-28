@@ -153,8 +153,8 @@
   <data name="ClearAllItems" xml:space="preserve">
     <value>Are you want clear all items?</value>
   </data>
-  <data name="ClearAllPathes" xml:space="preserve">
-    <value>Are you want clear all pathes?</value>
+  <data name="ClearAllPaths" xml:space="preserve">
+    <value>Are you want clear all paths?</value>
   </data>
   <data name="Clone" xml:space="preserve">
     <value>Clone</value>

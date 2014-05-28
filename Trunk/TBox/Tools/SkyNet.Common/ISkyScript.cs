@@ -1,24 +1,25 @@
 ﻿using System.Collections.Generic;
-using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
+using Mnk.TBox.Tools.SkyNet.Common.Scripts;
 
 namespace Mnk.TBox.Tools.SkyNet.Common
 {
     public interface ISkyScript
     {
-        string DataFolder { get; set; }
-        string[] CopyMasks { get; set; }
+        string DataFolderPath { get; set; }
+        string[] PathMasksToInclude { get; set; }
 
-        // this part will be executed on the each server
+        // this part will be executed on the server
         #region Server
-        string[] ServerDivideTasks(ServerAgent[] agents, ISkyContext context);
-        //this method should return report
-        string ServerBuildResult(IDictionary<string,string> results);
+        //this method should return  agentsData for the each agent
+        IList<SkyAgentWork> ServerBuildAgentsData(IList<ServerAgent> agents, ISkyContext context);
+        //this method should return report by agentData and agentReport for the each agent
+        string ServerBuildResultByAgentResults(IList<SkyAgentWork> results);
         #endregion Server
 
         // this part will be executed on the each agent
         #region Agent
         //this method should return report
-        string AgentExecute(string data, ISkyContext context);
+        string AgentExecute(string workingDirectory, string agentData, ISkyContext context);
         #endregion Agent
     }
 }

@@ -46,7 +46,7 @@ namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 		private readonly PathTemplates pluginsTemplates = new PathTemplates(
 			add: Properties.Resources.AddPath,
 			del: Properties.Resources.DelPath,
-			clear: Properties.Resources.ClearAllPathes,
+			clear: Properties.Resources.ClearAllPaths,
 			invalidPath: Properties.Resources.InvalidPath
 		);
 

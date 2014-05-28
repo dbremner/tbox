@@ -9,7 +9,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     class NUnitLabelsUpdater : SimpleUpdater
     {
-        public NUnitLabelsUpdater(IUpdater u, Synchronizer synchronizer) : base(u, synchronizer){}
+        public NUnitLabelsUpdater(IUpdater updater, Synchronizer synchronizer) : base(updater, synchronizer){}
         public override void Update(string text)
         {
         }

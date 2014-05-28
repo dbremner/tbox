@@ -15,10 +15,10 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
 {
     public abstract class BasePackage : IPackage
     {
-        protected readonly InterprocessServer<INunitRunnerClient> Server;
-        protected string DirToCloneTests;
-        protected string CommandToExecuteBeforeTests;
-        protected static readonly ILog Log = LogManager.GetLogger<BasePackage>();
+        protected InterprocessServer<INunitRunnerClient> Server { get; private set; }
+        protected string DirToCloneTests { get; private set; }
+        protected string CommandToExecuteBeforeTests { get; private set; }
+        protected ILog Log { get; private set; }
         private IList<Result> collected;
 
         public IUnitTestsView Results { get; private set; }
@@ -49,6 +49,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
             Items = new Result[0];
             Results = view;
             prefetchManager = new PrefetchManager();
+            Log = LogManager.GetLogger<BasePackage>();
         }
 
         public bool EnsurePathIsValid()
@@ -127,7 +128,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
         public abstract void DoRefresh(Action<IPackage> onReceive, Action<IPackage> onError);
         public abstract void DoRun(Action<IPackage> onReceive, IList<Result> allTests, IList<IList<Result>> packages,
                                    bool copyToSeparateFolders, string[] copyMasks, bool needSynchronizationForTests,
-                                   int startDelay, Synchronizer synchronizer, IProgressStatus u, bool needOutput);
+                                   int startDelay, Synchronizer synchronizer, IProgressStatus updater, bool needOutput);
 
         public void ApplyResults(bool usePrefetch)
         {

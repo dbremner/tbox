@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Mnk.Library.Common.Tools
 {
-    public class CopyDirGenerator
+    public class CopyDirGenerator : ICopyDirGenerator
     {
         private const string Divider = "\\";
 

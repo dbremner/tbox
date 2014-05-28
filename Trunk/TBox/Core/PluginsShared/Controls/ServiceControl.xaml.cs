@@ -150,7 +150,7 @@ namespace Mnk.TBox.Core.PluginsShared.Controls
                 {
                     Arguments = string.Format("/c {0} {1}", executable, operation),
                     FileName = "cmd.exe",
-                    UseShellExecute = false,
+                    UseShellExecute = true,
                     CreateNoWindow = false,
                     Verb = "runas"
                 };

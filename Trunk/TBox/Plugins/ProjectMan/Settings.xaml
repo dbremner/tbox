@@ -12,7 +12,7 @@
         <TabItem Header="{loc:Tr ConfigureSolutionsFolders}">
             <Units:CheckableFileListBoxUnit ItemsSource="{Binding Dirs}" UnitType="FolderPath" Title="{loc:Tr ConfigureProjectsDirectories}" PathGetterType="Folder"/>
         </TabItem>
-        <TabItem Header="{loc:Tr BuildToolsPathes}">
+        <TabItem Header="{loc:Tr BuildToolsPaths}">
             <StackPanel>
                 <captioned1:CaptionedEditPath Value="{Binding PathToSvn}" Caption="{loc:Tr PathToSvn}" PathGetterType="File" Margin="5"/>
                 <captioned1:CaptionedEditPath Value="{Binding PathToMsBuild}" Caption="{loc:Tr PathToMSBuild}" PathGetterType="File" Margin="5"/>

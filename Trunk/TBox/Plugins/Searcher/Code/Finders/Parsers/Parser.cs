@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Mnk.Library.Common.Log;
@@ -10,10 +11,11 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
 {
     sealed class Parser : IParser
     {
-        private ILog log = LogManager.GetLogger<Parser>();
+        private readonly ILog log = LogManager.GetLogger<Parser>();
         private readonly IAdder adder;
         private readonly IndexSettings settings;
-        public char[] Whitespaces = { ' ', '\t', '\r', '\n' };
+        private readonly char[] whitespaces = { ' ', '\t', '\r', '\n' };
+        private readonly ISet<char> words;
 
         private static bool IsSpace(char ch)
         {
@@ -71,7 +73,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
             do
             {
                 var prevId = id;
-                id = word.IndexOfAny(Whitespaces, id);
+                id = word.IndexOfAny(whitespaces, id);
                 if (id < 0)
                     id = word.Length;
                 if (prevId == id)
@@ -98,14 +100,9 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
             return false;
         }
 
-        private static bool IsWord(char ch)
+        private bool IsWord(char ch)
         {
-            return (ch >= 'a' && ch <= 'z') ||
-                    (ch >= 'A' && ch <= 'Z') ||
-                    (ch >= 'а' && ch <= 'я') || ch == 'ё' ||
-                    (ch >= 'А' && ch <= 'Я') || ch == 'Ё' ||
-                    (ch >= '0' && ch <= '9') ||
-                    (ch == '_');
+            return words.Contains(ch);
         }
 
         private bool ExtractWord(string file, int fileId, ref int i)
@@ -122,6 +119,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers
         {
             this.adder = adder;
             this.settings = settings;
+            words = new HashSet<char>(settings.SearchableCharacters);
         }
 
         public bool Parse(AddInfo info)

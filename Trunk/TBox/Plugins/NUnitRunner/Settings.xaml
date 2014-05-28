@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
         <TabItem Header="{loc:Tr ConfigureLibrariesWithUnitTests}">
-            <Units:CheckableFileListBoxUnit ItemsSource="{Binding DllPathes}" UnitType="FilePath" Title="{loc:Tr ConfigureNunitTestDlls}" PathGetterType="File"/>
+            <Units:CheckableFileListBoxUnit ItemsSource="{Binding DllPaths}" UnitType="FilePath" Title="{loc:Tr ConfigureNunitTestDlls}" PathGetterType="File"/>
         </TabItem>
     </TabControl>
 </UserControl>

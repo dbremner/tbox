@@ -13,7 +13,7 @@ namespace Solution
                         {
                             @"d:\",
                         },
-                    PathesToLibs = new[] { "..\\Libraries", "..\\packages" },
+                    PathsToLibs = new[] { "..\\Libraries", "..\\packages" },
                     SectionToPreserveNewestNames = new[] { "Content", "None" },
                     TasksToRemove = new[]{"AjaxMin"},
                     DisableBuildEvents = true,

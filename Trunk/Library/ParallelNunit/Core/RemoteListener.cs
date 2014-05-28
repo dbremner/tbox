@@ -15,7 +15,7 @@ namespace Mnk.Library.ParallelNUnit.Core
     [Serializable]
     public sealed class RemoteListener : EventListener
     {
-        public readonly StringBuilder Output = new StringBuilder();
+        public StringBuilder Output { get; private set; }
         public static bool ShouldStop = false;
         public string Handle { get; set; }
         public bool Fast { get; set; }
@@ -25,6 +25,11 @@ namespace Mnk.Library.ParallelNUnit.Core
         private InterprocessClient<INunitRunnerClient> client;
         private readonly IList<Result> items = new List<Result>();
         private int expectedTestCount;
+
+        public RemoteListener()
+        {
+            Output = new StringBuilder();
+        }
 
         private InterprocessClient<INunitRunnerClient> GetClient()
         {

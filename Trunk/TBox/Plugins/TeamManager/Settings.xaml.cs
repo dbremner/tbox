@@ -30,7 +30,7 @@ namespace Mnk.TBox.Plugins.TeamManager
         }
 
         public UserControl Control { get { return this; } }
-        public IList<string> FilePathes { get; set; }
+        public IList<string> FilePaths { get; set; }
         internal IScriptConfigurator ScriptConfigurator { get; set; }
         internal Config Config { get { return ((Config)DataContext); } }
 

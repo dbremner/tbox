@@ -3,12 +3,19 @@ using System.Linq;
 using Ionic.Zip;
 using Ionic.Zlib;
 using Mnk.Library.Common.Tools;
+using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 
 namespace Mnk.TBox.Plugins.SkyNet.Code
 {
-    class DataPacker
+    class DataPacker : IDataPacker
     {
-        private readonly CopyDirGenerator copyDirGenerator = new CopyDirGenerator();
+        private readonly ICopyDirGenerator copyDirGenerator;
+
+        public DataPacker(ICopyDirGenerator copyDirGenerator)
+        {
+            this.copyDirGenerator = copyDirGenerator;
+        }
+
         public string Pack(string path, string[] copyMasks, out string name)
         {
             var outputPath = Path.GetTempFileName();

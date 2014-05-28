@@ -19,10 +19,10 @@ namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 			this.creator = creator;
 		}
 
-		private PluginUploadContract CreateContract(Plugin item, IList<string> pathes, bool allowNoExistFile)
+		private PluginUploadContract CreateContract(Plugin item, IList<string> paths, bool allowNoExistFile)
 		{
 			var ret = new PluginUploadContract { Item = item };
-			foreach (var path in pathes.Where(path => string.IsNullOrWhiteSpace(path) || !File.Exists(path)))
+			foreach (var path in paths.Where(path => string.IsNullOrWhiteSpace(path) || !File.Exists(path)))
 			{
 				if (!allowNoExistFile)
 				{
@@ -31,7 +31,7 @@ namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 				return ret;
 			}
 			Stream stream;
-			ret.Length = ExtFile.LoadDirectoryFiles(pathes, out ret.Descriptions, out stream);
+			ret.Length = ExtFile.LoadDirectoryFiles(paths, out ret.Descriptions, out stream);
 			var streamWithProgress = new StreamWithProgress(stream);
 			streamWithProgress.ProgressChanged += ProgressChanged;
 			ret.FileByteStream = streamWithProgress;
@@ -66,13 +66,13 @@ namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 			}, caption, null);
 		}
 
-		public void Upload(string name, string[] pathes)
+		public void Upload(string name, string[] paths)
 		{
 			var ret = new UploadContract();
 			DoWithProgress(
 				string.Format("Uploading plugin: '{0}'", name),
 				() => Synchronizer.Do(service =>
-									 ret = service.Plugin_Upload(CreateContract(creator(), pathes, false))));
+									 ret = service.Plugin_Upload(CreateContract(creator(), paths, false))));
 			if (!ret.Success)
 			{
 				ShowError(string.Format("Can't upload: '{0}'. {1}",
@@ -81,13 +81,13 @@ namespace Mnk.TBox.Plugins.Market.Client.Components.Uploaders
 			}
 		}
 
-		public void Upgrade(string name, string[] pathes)
+		public void Upgrade(string name, string[] paths)
 		{
 			var ret = new UploadContract();
 			DoWithProgress(
 							string.Format("Upgrading plugin: '{0}'", name),
 							() => Synchronizer.Do(service =>
-												 ret = service.Plugin_Upgrade(CreateContract(creator(), pathes, true))));
+												 ret = service.Plugin_Upgrade(CreateContract(creator(), paths, true))));
 			if (!ret.Success)
 			{
 				ShowError(string.Format("Can't upgrade: '{0}'. {1}",

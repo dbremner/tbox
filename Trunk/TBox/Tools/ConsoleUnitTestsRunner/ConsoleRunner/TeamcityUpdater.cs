@@ -15,7 +15,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         private int ignored = 0;
         private int failed = 0;
         private readonly object locker = new object();
-        public TeamcityUpdater(IUpdater u, Synchronizer synchronizer) : base(u, synchronizer)
+        public TeamcityUpdater(IUpdater updater, Synchronizer synchronizer) : base(updater, synchronizer)
         {
         }
 

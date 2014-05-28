@@ -20,7 +20,7 @@ namespace Mnk.TBox.Core.Application.Forms
 		{
 			Owner = System.Windows.Application.Current.MainWindow;
 			DataContext = operation;
-			Pathes.ConfigureInputMenuItem(TBoxLang.SelectMenuActions, 
+			Paths.ConfigureInputMenuItem(TBoxLang.SelectMenuActions, 
 				operation.MenuItems, 
 				menuItemsProvider.GetDialogItems());
 			SafeShowDialog();

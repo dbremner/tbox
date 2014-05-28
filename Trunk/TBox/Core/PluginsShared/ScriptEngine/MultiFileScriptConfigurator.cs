@@ -7,9 +7,9 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 {
     public class MultiFileScriptConfigurator : ScriptsConfigurator
     {
-        protected override IEnumerable<string> GetPathes()
+        protected override IEnumerable<string> GetPaths()
         {
-            return ((MultiFileOperation)Config).Pathes
+            return ((MultiFileOperation)Config).Paths
                 .CheckedItems
                 .Select(x => Path.Combine(Context.DataProvider.ReadOnlyDataPath, x.Key))
                 .ToArray();

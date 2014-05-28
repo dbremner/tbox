@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using LightInject;
 using Mnk.TBox.Core.Interface;
 using Mnk.TBox.Core.Interface.Atrributes;
 using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.TBox.Plugins.SkyNet.Code;
+using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.TBox.Tools.SkyNet.Common.Scripts;
 using Mnk.Library.WPFControls.Code;
@@ -16,18 +19,18 @@ using Mnk.Library.WPFWinForms.Icons;
 namespace Mnk.TBox.Plugins.SkyNet
 {
     [PluginInfo(typeof(SkyNetLang), 18, PluginGroup.Development)]
-    public class SkyNet : ConfigurablePlugin<Settings, Config>
+    public class SkyNet : ConfigurablePlugin<Settings, Config>, IDisposable
     {
+        private readonly IServiceContainer container;
         private readonly SkyNetScriptConfigurator scriptConfigurator = new SkyNetScriptConfigurator();
         private readonly LazyDialog<EditorDialog> editorDialog;
-        private readonly TaskExecutor taskExecutor;
-        private readonly ServicesFacade servicesFacade;
+        private readonly ITaskExecutor taskExecutor;
 
         public SkyNet()
         {
-            servicesFacade = new ServicesFacade();
+            container = new ServicesRegistrator().Register();
             editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
-            taskExecutor = new TaskExecutor(servicesFacade);
+            taskExecutor = container.GetInstance<ITaskExecutor>();
         }
 
         private EditorDialog CreateEditor()
@@ -58,23 +61,23 @@ namespace Mnk.TBox.Plugins.SkyNet
 
         private void OpenEditor(object o)
         {
-            editorDialog.LoadState(Config.States);
-            editorDialog.Value.ShowDialog(GetPathes(), scriptConfigurator);
+            editorDialog.Do(Context.DoSync, x=>x.ShowDialog(GetPaths(), scriptConfigurator),Config.States);
         }
 
         protected override Settings CreateSettings()
         {
             var s = base.CreateSettings();
-            s.FilePathes = GetPathes();
+            s.FilePaths = GetPaths();
             s.ScriptConfigurator = scriptConfigurator;
             s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
                 ()=>new SingleFileScriptConfigurator{Context = Context, Icon = Icon.ToImageSource()}, "script configurator" );
-            s.ServicesFacade = servicesFacade;
+            s.ServicesBuilder = container.GetInstance<IServicesBuilder>();
+            s.ConfigsFacade = container.GetInstance<IConfigsFacade>();
             s.Init(Context);
             return s;
         }
 
-        private IList<string> GetPathes()
+        private IList<string> GetPaths()
         {
             var dir = new DirectoryInfo(Context.DataProvider.ReadOnlyDataPath);
             if (!dir.Exists) return new string[0];
@@ -83,6 +86,11 @@ namespace Mnk.TBox.Plugins.SkyNet
                 .EnumerateFiles("*.cs", SearchOption.AllDirectories)
                 .Select(x => x.FullName.Substring(length))
                 .ToArray();
+        }
+
+        public void Dispose()
+        {
+            container.Dispose();
         }
     }
 

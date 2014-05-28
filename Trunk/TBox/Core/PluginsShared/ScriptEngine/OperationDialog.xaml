@@ -13,6 +13,6 @@
              WindowStyle="ToolWindow" Title="{Binding Key}">
     <DockPanel>
         <Button Content="{loc:Tr Close}" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Padding="5" Margin="10" IsCancel="True" IsDefault="True"/>
-        <Units:CheckableListBoxUnit Name="Pathes" />
+        <Units:CheckableListBoxUnit Name="Paths" />
     </DockPanel>
 </dialogs:DialogWindow>

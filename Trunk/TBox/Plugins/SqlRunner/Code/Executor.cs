@@ -23,14 +23,15 @@ namespace Mnk.TBox.Plugins.SqlRunner.Code
 
         private void Finish(DatabaseInfo response, Window owner, string name, Config config, Action onEnd)
         {
-            Mt.Do(owner,
-                  () => {
-                      message.LoadState(config.States);
-                      message.Value.ShowDialog(
-                          string.Format(SqlRunnerLang.RequestResultsTemplate, name, response.Time / 1000.0),
-                          BuildMessage(response), string.Empty, owner);
-                      if (onEnd != null) onEnd();
-                  });
+            message.Do(x=>Mt.Do(owner,x),
+                x=>x.ShowDialog(string.Format(SqlRunnerLang.RequestResultsTemplate, name, response.Time / 1000.0),
+                BuildMessage(response), string.Empty, owner),
+                config.States
+                );
+            if (onEnd != null)
+            {
+                Mt.Do(owner,onEnd);
+            }
         }
 
         private static string BuildMessage(DatabaseInfo response)

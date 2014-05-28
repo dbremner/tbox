@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Mnk.Library.Common.MT;
+using Mnk.Library.ParallelNUnit.Core;
+using NUnit.Core;
 using NUnit.Framework;
 using Mnk.Library.ParallelNUnit.Infrastructure;
 using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
@@ -14,12 +18,19 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
     [Category("Integration")]
     class When_running_unit_test
     {
+	    private TestsMetricsCalculator calculator = null;
         private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Mnk.TBox.Tests.dll");
         private const string ToolsPath = "../../../bin/Release/Tools";
         private static readonly string NUnitAgentPath = Path.Combine(ToolsPath, "NUnitAgent.exe");
         private static readonly string RunAsx86Path = Path.Combine(ToolsPath, "RunAsx86.exe");
         public static readonly bool[] Bools = {true,false};
         public static readonly string[] Frameworks = { "net-4.0" };
+
+        [SetUp]
+        public void SetUp()
+        {
+            calculator = null;
+        }
 
         [Test]
         public void When_check_invalid_path([ValueSource("Bools")]bool x86)
@@ -97,6 +108,9 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
         {
             //Arrange
             var view = MockRepository.GenerateMock<IUnitTestsView>();
+			view.Stub(x => x.SetItems(Arg<IList<Result>>.Is.Anything, 
+                Arg<TestsMetricsCalculator>.Matches(m => CheckCalc(m))));
+
             using (var p = new ProcessPackage(TestsDllPath, NUnitAgentPath, x86, false, Path.GetTempPath(), string.Empty, view, RunAsx86Path, framework))
             {
                 p.EnsurePathIsValid();
@@ -108,10 +122,27 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
                 var synchronizer = new Synchronizer(ncores);
 
                 //Act
-                p.DoRun(x => x.ApplyResults(prefetch), p.Items, packages, copy, new []{"*.dll"}, sync, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer), needOutput);
+                p.DoRun(x => x.ApplyResults(prefetch), p.Items, packages, copy, new []{"*.dll;*.exe"}, sync, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer), needOutput);
                 Assert.Greater(p.Count, 200);
-                Assert.AreEqual(0, p.FailedCount);
+                Assert.AreEqual(0, p.FailedCount, CollectFailed());
             }
         }
+		
+        private bool CheckCalc(TestsMetricsCalculator testsMetricsCalculator)
+        {
+            calculator = testsMetricsCalculator;
+            return true;
+        }
+
+        private string CollectFailed()
+        {
+            return string.Join(Environment.NewLine,
+                calculator.All
+                    .Where(x => x.IsTest && x.Executed &&
+                            (x.State == ResultState.Error || x.State == ResultState.Failure))
+                    .Select(x => x.Key + " ------ " + x.Message + " ------ " + x.StackTrace)
+                );
+        }
+
     }
 }

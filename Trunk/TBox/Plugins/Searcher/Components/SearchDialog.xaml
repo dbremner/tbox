@@ -32,7 +32,7 @@
         </StatusBar>
         <DockPanel DockPanel.Dock="Top">
             <Label Content="{loc:Tr Word}" Width="50" />
-            <Button Content="{loc:Tr Go}" Name="btnSearch" IsEnabled="false" DockPanel.Dock="Right" Margin="5" Width="50" Click="SearchClick"/>
+            <Button Content="{loc:Tr Go}" Name="btnSearch" IsEnabled="false" DockPanel.Dock="Right" Margin="5"  Click="SearchClick"/>
             <Components:AutoComboBox Name="SearchText" IsEditable="True"  Margin="5" KeyUp="CbSearchTextKeyUp" Text="{Binding Search.SearchText}" ItemsSource="{Binding Search.LastSearchValues}" SelectionChanged="SelectedTextChanged"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top">

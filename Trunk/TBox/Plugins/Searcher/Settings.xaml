@@ -49,6 +49,9 @@
                             <captioned1:CaptionedEditPath Caption="{loc:Tr ExecutablePath}" Value="{Binding Result.OpenWith}" PathGetterType="File" />
                         </StackPanel>
                     </GroupBox>
+                    <GroupBox Header="{loc:Tr SearchableSymbols}" Margin="5">
+                        <TextBox Text="{Binding Index.SearchableCharacters}" MinLines="3"  Margin="5" TextWrapping="WrapWithOverflow"/>
+                    </GroupBox>
                 </StackPanel>
             </TabItem>
         </TabControl>

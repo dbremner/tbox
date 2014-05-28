@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>tbox.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -50,6 +56,8 @@
     <Compile Include="AutoUpdate\IUpdater.cs" />
     <Compile Include="AutoUpdate\Merger.cs" />
     <Compile Include="AutoUpdate\UpdateInterval.cs" />
+    <Compile Include="Communications\HttpContextHelper.cs" />
+    <Compile Include="Communications\IHttpContextHelper.cs" />
     <Compile Include="ExceptionsHelper.cs" />
     <Compile Include="Log\ConsoleLog.cs" />
     <Compile Include="Log\IBaseLog.cs" />
@@ -106,6 +114,7 @@
     <Compile Include="SaveLoad\ConfigurationSerializer.cs" />
     <Compile Include="Tools\DirectoryExtensions.cs" />
     <Compile Include="Tools\FileExtensions.cs" />
+    <Compile Include="Tools\ICopyDirGenerator.cs" />
     <Compile Include="Tools\StringArray.cs" />
     <Compile Include="Tools\StringExtensions.cs" />
     <Compile Include="Tools\StringTemplate.cs" />
@@ -121,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="tbox.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

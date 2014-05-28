@@ -9,24 +9,24 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
 {
     public class SimpleUpdater : IProgressStatus
     {
-        private readonly IUpdater u;
+        private readonly IUpdater updater;
         private readonly Synchronizer synchronizer;
         private int passedCount = 0;
         private int failedCount = 0;
         private readonly object locker = new object();
 
-        public SimpleUpdater(IUpdater u, Synchronizer synchronizer)
+        public SimpleUpdater(IUpdater updater, Synchronizer synchronizer)
         {
-            this.u = u;
+            this.updater = updater;
             this.synchronizer = synchronizer;
         }
 
         public virtual void Update(string text)
         {
-            u.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", text, i.FormatTimeInSec()), 0, 1);
+            updater.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", text, i.FormatTimeInSec()), 0, 1);
         }
 
-        public bool UserPressClose { get { return u.UserPressClose; } }
+        public bool UserPressClose { get { return updater.UserPressClose; } }
 
         public void Update(int allCount, Result[] items, int failed)
         {
@@ -44,7 +44,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Updater
                                         passedCount,
                                         allCount, failedCount,
                                         synchronizer.Finished, synchronizer.Count);
-            u.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, allCount);
+            updater.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, allCount);
         }
     }
 }

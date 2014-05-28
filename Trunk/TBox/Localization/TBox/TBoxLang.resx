@@ -288,7 +288,7 @@
   <data name="ScheldulerIsEnabled" xml:space="preserve">
     <value>Scheduler is enabled</value>
   </data>
-  <data name="ScriptsPathes" xml:space="preserve">
+  <data name="ScriptsPaths" xml:space="preserve">
     <value>Scripts paths</value>
   </data>
   <data name="SelectMenuActions" xml:space="preserve">

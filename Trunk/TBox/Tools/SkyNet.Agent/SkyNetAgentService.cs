@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ServiceProcess;
+using LightInject;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
+using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
-using Mnk.TBox.Tools.SkyNet.Common.Contracts.Agent;
-using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
+using Mnk.TBox.Tools.SkyNet.Common.Modules;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent
 {
@@ -12,10 +13,12 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
     {
         private readonly ILog log = LogManager.GetLogger<SkyNetAgentService>();
         private readonly AgentConfig config;
+        private readonly IServiceContainer container;
 
-        public SkyNetAgentService(AgentConfig config)
+        public SkyNetAgentService(AgentConfig config, IServiceContainer container)
         {
             this.config = config;
+            this.container = container;
             InitializeComponent();
         }
 
@@ -23,40 +26,33 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
 
         protected override void OnStart(string[] args)
         {
-            server = new NetworkServer<ISkyNetAgentService>(new SkyNetAgent(config), config.Port);
+            OnStop();
             try
             {
-                using (var cl = new NetworkClient<ISkyNetServerService>(new Uri(config.ServerEndpoint)))
-                {
-                    cl.Instance.ConnectAgent(new ServerAgent
-                    {
-                        TotalCores = config.TotalCores,
-                        Endpoint = server.Endpoint
-                    });
-                }
+                server = new NetworkServer<ISkyNetAgentService>(container.GetInstance<ISkyNetAgentService>(), config.Port);
+                container.GetInstance<IModulesRunner>().Start();
             }
             catch (Exception ex)
             {
-                log.Write(ex, "Can't connect to server");
+                log.Write(ex, "Can't start");
+                throw;
             }
         }
 
         protected override void OnStop()
         {
-            if (server == null) return;
             try
             {
-                using (var cl = new NetworkClient<ISkyNetServerService>(new Uri(config.ServerEndpoint)))
-                {
-                    cl.Instance.DisconnectAgent(server.Endpoint);
-                }
+                container.GetInstance<IModulesRunner>().Stop();
+                if (server == null) return;
+                server.Dispose();
+                server = null;
             }
             catch (Exception ex)
             {
-                log.Write(ex, "Can't disconnect fro server");
+                log.Write(ex, "Can't stop");
+                throw;
             }
-            server.Dispose();
-            server = null;
         }
 
         public void StartService()
@@ -66,7 +62,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
 
         public void StopService()
         {
-            OnStop();
+            Stop();
         }
     }
 }

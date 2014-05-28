@@ -44,25 +44,26 @@
     <Compile Include="Configurations\ConfigProvider.cs" />
     <Compile Include="Configurations\ServerConfig.cs" />
     <Compile Include="Configurations\AgentConfig.cs" />
-    <Compile Include="Contracts\Agent\AgentTask.cs" />
-    <Compile Include="Contracts\Agent\ISkyNetAgentService.cs" />
+    <Compile Include="AgentTask.cs" />
+    <Compile Include="ISkyNetAgentService.cs" />
     <Compile Include="Configurations\IConfigProvider.cs" />
-    <Compile Include="Contracts\Files\ISkyNetFileService.cs" />
-    <Compile Include="Contracts\Server\ServerAgentState.cs" />
-    <Compile Include="Contracts\Server\ServerTask.cs" />
-    <Compile Include="Contracts\Server\ISkyNetServerService.cs" />
+    <Compile Include="ISkyNetFileService.cs" />
+    <Compile Include="AgentState.cs" />
+    <Compile Include="ISkyNetServerAgentsService.cs" />
+    <Compile Include="Modules\IModule.cs" />
+    <Compile Include="Modules\IModulesRunner.cs" />
+    <Compile Include="Modules\ModulesRunner.cs" />
+    <Compile Include="SkyAgentWork.cs" />
+    <Compile Include="TaskState.cs" />
+    <Compile Include="ServerTask.cs" />
+    <Compile Include="ISkyNetServerTasksService.cs" />
     <Compile Include="ISkyContext.cs" />
-    <Compile Include="NUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Contracts\Server\ServerAgent.cs" />
+    <Compile Include="ServerAgent.cs" />
     <Compile Include="Scripts\SkyNetScriptConfigurator.cs" />
     <Compile Include="ISkyScript.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -72,11 +73,6 @@
     <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
       <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
       <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
-      <Project>{EDFB8B45-08B4-4EA4-906A-2EC50B3CF582}</Project>
-      <Name>Mnk.Library.ParallelNunit</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">

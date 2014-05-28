@@ -124,10 +124,10 @@
     <value>Please enter new path:</value>
   </data>
   <data name="ClearAllDependencies" xml:space="preserve">
-    <value>Are you want clear all pathes?</value>
+    <value>Are you want clear all paths?</value>
   </data>
-  <data name="ClearAllPathes" xml:space="preserve">
-    <value>Are you want clear all pathes?</value>
+  <data name="ClearAllPaths" xml:space="preserve">
+    <value>Are you want clear all paths?</value>
   </data>
   <data name="DelDependency" xml:space="preserve">
     <value>Are you want to delete: '{0}'</value>

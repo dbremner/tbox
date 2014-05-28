@@ -367,6 +367,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.Searcher {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Searchable symbols.
+        /// </summary>
+        public static string SearchableSymbols {
+            get {
+                return ResourceManager.GetString("SearchableSymbols", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search count:.
         /// </summary>
         public static string SearchCount {

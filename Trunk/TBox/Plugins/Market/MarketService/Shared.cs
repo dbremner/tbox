@@ -7,7 +7,7 @@ namespace Mnk.TBox.Plugins.Market.Service
 	static class Shared
 	{
 		public const string Plugins = "Plugins";
-		public static readonly string FolderName = Path.Combine(Environment.CurrentDirectory, "Data");
+		public static readonly string FolderName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
 		private static int lineNo = 0;
 		public static void Do(string description, Action action, ILog log)
 		{

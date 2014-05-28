@@ -129,7 +129,7 @@
   <data name="Build" xml:space="preserve">
     <value>Построить</value>
   </data>
-  <data name="BuildToolsPathes" xml:space="preserve">
+  <data name="BuildToolsPaths" xml:space="preserve">
     <value>Пути утилит для сборки</value>
   </data>
   <data name="CleanUp" xml:space="preserve">

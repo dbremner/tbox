@@ -16,7 +16,7 @@ namespace Mnk.Library.ParallelNUnit.Infrastructure.Packages
         void DoRefresh(Action<IPackage> onReceive, Action<IPackage> onError);
         void DoRun(Action<IPackage> onReceive, IList<Result> allTests, IList<IList<Result>> packages, bool copyToSeparateFolders,
                           string[] copyMasks, bool needSynchronizationForTests, int startDelay,
-                          Synchronizer synchronizer, IProgressStatus u, bool needOutput);
+                          Synchronizer synchronizer, IProgressStatus updater, bool needOutput);
         void ApplyResults(bool usePrefetch);
     }
 }

@@ -65,7 +65,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
             Hide();
         }
 
-        protected abstract IEnumerable<string> GetPathes();
+        protected abstract IEnumerable<string> GetPaths();
 
         private void ReloadClick(object sender, RoutedEventArgs e)
         {
@@ -77,7 +77,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
         {
             try
             {
-                ScriptsPackages = GetPathes().Select(x => configurator.GetParameters(File.ReadAllText(x))).ToArray();
+                ScriptsPackages = GetPaths().Select(x => configurator.GetParameters(File.ReadAllText(x))).ToArray();
                 IList<Parameter> parameters = new List<Parameter>();
                 parameters = ScriptsPackages.Aggregate(parameters, (current, x) => parametersMerger.Merge(current, x.Parameters));
                 Mt.Do(this, () =>
