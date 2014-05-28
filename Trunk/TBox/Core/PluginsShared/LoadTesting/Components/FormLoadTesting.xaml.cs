@@ -9,25 +9,22 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Mnk.Library.WpfWinForms.Icons;
+using Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic;
 using Mnk.TBox.Locales.Localization.PluginsShared;
-using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
-using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
-using Mnk.Library.WpfControls.Tools;
-using Mnk.Library.WpfWinForms;
 
-namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
+namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Components
 {
 	/// <summary>
-	/// Interaction logic for FormDdos.xaml
+	/// Interaction logic for FormLoadTesting.xaml
 	/// </summary>
-	sealed partial class FormDdos 
+	sealed partial class FormLoadTesting 
 	{
-		private IDdoser ddoser;
-		private Analizer analizer;
+		private ILoadTester loadTester;
+		private Analyzer analyzer;
 		private readonly TrayIcon trayIcon = new TrayIcon();
 		private readonly DispatcherTimer viewTimer;
 
-		public FormDdos()
+		public FormLoadTesting()
 		{
 			InitializeComponent();
 			SetGraphic(null);
@@ -41,7 +38,7 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 
 		public override void Dispose()
 		{
-			ddoser.Stop();
+			loadTester.Stop();
 			trayIcon.Dispose();
 			base.Dispose();
 		}
@@ -57,7 +54,7 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 
 		private void OnViewTimer(object sender, EventArgs eventArgs)
 		{
-			if (!viewTimer.IsEnabled || !ddoser.IsWorks) return;
+			if (!viewTimer.IsEnabled || !loadTester.IsWorks) return;
 			switch (Tabs.SelectedIndex)
 			{
 				case 1:
@@ -82,17 +79,17 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 			ShowAndActivate();
 		}
 
-		public void Init(ImageSource icon, Icon nativeIcon, IDdoser ddoser)
+		public void Init(ImageSource icon, Icon nativeIcon, ILoadTester loadTester)
 		{
 			Icon = icon;
 			trayIcon.Icon = nativeIcon;
-			this.ddoser = ddoser;
+			this.loadTester = loadTester;
 		}
 
 		private void FillComboBoxes(ComboBox cb)
 		{
 			cb.Items.Clear();
-			foreach (var key in analizer.Keys)
+			foreach (var key in analyzer.Keys)
 			{
 				cb.Items.Add(key);
 			}
@@ -111,9 +108,9 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 
 		public void ShowDialog(IProfile p)
 		{
-			if(IsVisible || ddoser.IsWorks)return;
+			if(IsVisible || loadTester.IsWorks)return;
 			Title = PluginsSharedLang.Ddos + " - [" + p.Key + "]";
-			analizer = null;
+			analyzer = null;
 			Statistic.Items.Clear();
 			Graphics.Items.Clear();
 			SetGraphic(null);
@@ -127,13 +124,13 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 		{
 			Operations.OnCheckChangedEvent(sender, e);
 			btnStartStop.IsEnabled = ((IProfile) DataContext).GetOperations().Any();
-			btnCopy.IsEnabled = (analizer!=null) && btnStartStop.IsEnabled;
+			btnCopy.IsEnabled = (analyzer!=null) && btnStartStop.IsEnabled;
 		}
 
 		private void BtnStartClick(object sender, RoutedEventArgs e)
 		{
 			btnStartStop.IsEnabled = false;
-			if (ddoser.IsWorks)
+			if (loadTester.IsWorks)
 			{
 				Stop();
 			}
@@ -153,11 +150,11 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 			trayIcon.HoverText = Title;
 			trayIcon.IsVisible = true;
 			var ops = p.GetOperations().ToArray();
-			analizer = new Analizer(ops.Select(x => x.Key));
-			SetGraphic(analizer.GetGraphic(string.Empty));
+			analyzer = new Analyzer(ops.Select(x => x.Key));
+			SetGraphic(analyzer.GetGraphic(string.Empty));
 			FillComboBoxes(Statistic);
 			FillComboBoxes(Graphics);
-			ddoser.Start(ops, analizer);
+			loadTester.Start(ops, analyzer);
 			Graph.StartTime = DateTime.Now;
 			Graph.EndTime = DateTime.MinValue;
 		}
@@ -170,7 +167,7 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 		public void Stop()
 		{
 			Graph.EndTime = DateTime.Now;
-			ddoser.Stop();
+			loadTester.Stop();
 			btnStartStop.Content = PluginsSharedLang.Start;
 			trayIcon.IsVisible = false;
 			EnableControls(true);
@@ -183,8 +180,8 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 
 		private void ShowStatistic(string key)
 		{
-			if (analizer == null) return;
-			var s = analizer.GetStatistic(key);
+			if (analyzer == null) return;
+			var s = analyzer.GetStatistic(key);
 			var sb = new StringBuilder();
 			AppendResult(sb, PluginsSharedLang.Count, s.Count);
 			AppendResult(sb, PluginsSharedLang.Time, s.Time/1000.0);
@@ -207,16 +204,16 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 
 		private void DrawGraphic(string key)
 		{
-			if (analizer == null) return;
-			SetGraphic(analizer.GetGraphic(key));
+			if (analyzer == null) return;
+			SetGraphic(analyzer.GetGraphic(key));
 			RedrawGraphic();
 		}
 
 		private void BtnCopyClick(object sender, RoutedEventArgs e)
 		{
-			if (analizer == null) return;
+			if (analyzer == null) return;
 			var sb = new StringBuilder();
-			foreach (var key in new[]{""}.Concat(analizer.Keys))
+			foreach (var key in new[]{""}.Concat(analyzer.Keys))
 			{
 				AppendValues(sb, key, "Count", x => x.Count);
 				AppendValues(sb, key, "Min", x => x.MinTime);
@@ -231,7 +228,7 @@ namespace Mnk.TBox.Core.PluginsShared.Ddos.Components
 		{
 			const char divider = '\t';
 			sb.Append(key).Append(divider).Append(prefix).Append(divider);
-			foreach (var s in analizer.GetValues(key))
+			foreach (var s in analyzer.GetValues(key))
 			{
 				if (s.Count <= 0)
 				{

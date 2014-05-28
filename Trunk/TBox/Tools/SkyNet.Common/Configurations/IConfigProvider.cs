@@ -6,9 +6,9 @@ namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
     public interface IConfigProvider<T>
     {
         [OperationContract]
-        T Get();
+        T ReceiveConfig();
 
         [OperationContract]
-        void Set(T config);
+        void UpdateConfig(T config);
     }
 }

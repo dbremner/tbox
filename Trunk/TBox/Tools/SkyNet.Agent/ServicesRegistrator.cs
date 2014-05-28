@@ -11,9 +11,9 @@ using Mnk.TBox.Tools.SkyNet.Common.Modules;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent
 {
-    class ServicesRegistrator
+    static class ServicesRegistrator
     {
-        public IServiceContainer Register(AgentConfig agentConfig)
+        public static IServiceContainer Register(AgentConfig agentConfig)
         {
             var container = new ServiceContainer();
             container.Register<ISkyContext, SkyContext>(new PerContainerLifetime());

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
+namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 {
-	public sealed class InfoCollector
+	public sealed class StatisticsCollector
 	{
 		public string Key { get; private set; }
 		private readonly IList<StatisticInfo> infoList = new List<StatisticInfo>();
 
-		public InfoCollector(string key)
+		public StatisticsCollector(string key)
 		{
 			Key = key;
 		}

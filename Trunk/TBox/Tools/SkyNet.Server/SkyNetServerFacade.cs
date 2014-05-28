@@ -84,10 +84,10 @@ namespace Mnk.TBox.Tools.SkyNet.Server
             serverAgentsLogic.PingIsAlive();
         }
 
-        public string Upload(Stream s)
+        public string Upload(Stream stream)
         {
             var result = string.Empty;
-            ExecuteNoLock(() => result = fileServiceLogic.Upload(s));
+            ExecuteNoLock(() => result = fileServiceLogic.Upload(stream));
             return result;
         }
 

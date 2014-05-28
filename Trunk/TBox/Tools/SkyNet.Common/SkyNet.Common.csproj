@@ -60,7 +60,7 @@
     <Compile Include="ISkyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerAgent.cs" />
-    <Compile Include="Scripts\SkyNetScriptConfigurator.cs" />
+    <Compile Include="SkyNetScriptConfigurator.cs" />
     <Compile Include="ISkyScript.cs" />
   </ItemGroup>
   <ItemGroup>

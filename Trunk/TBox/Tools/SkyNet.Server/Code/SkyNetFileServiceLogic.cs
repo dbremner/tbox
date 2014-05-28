@@ -16,9 +16,9 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
             if (!Directory.Exists(rootFolder)) Directory.CreateDirectory(rootFolder);
         }
 
-        public string Upload(Stream s)
+        public string Upload(Stream stream)
         {
-            using (s)
+            using (stream)
             {
                 var id = Guid.NewGuid().ToString();
                 var path = GetFilePath(id);
@@ -28,7 +28,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
                     var fileInfo = new FileInfo(tmpPath);
                     using (var f = fileInfo.Create())
                     {
-                        s.CopyTo(f);
+                        stream.CopyTo(f);
                     }
                     fileInfo.MoveTo(path);
                     return id;

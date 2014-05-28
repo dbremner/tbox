@@ -1,6 +1,6 @@
 ﻿using System;
 using Mnk.Library.Common.UI.Model;
-using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
+using Mnk.TBox.Core.PluginsShared.LoadTesting;
 
 namespace Mnk.TBox.Plugins.SqlRunner.Code.Settings
 {

@@ -21,12 +21,12 @@ namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
             Config = serializer.Load(new T());
         }
 
-        public T Get()
+        public T ReceiveConfig()
         {
             return Config;
         }
 
-        public void Set(T config)
+        public void UpdateConfig(T config)
         {
             try
             {

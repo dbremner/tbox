@@ -1,4 +1,4 @@
-﻿using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+﻿using Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic;
 
 namespace Mnk.TBox.Plugins.SqlRunner.Code
 {

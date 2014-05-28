@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Mnk.TBox.Tools.SkyNet.Common.Scripts;
 
 namespace Mnk.TBox.Tools.SkyNet.Common
 {

@@ -9,7 +9,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
     class DataPacker : IDataPacker
     {
         private readonly ILog log = LogManager.GetLogger<DataPacker>();
-        public string Unpack(Stream s)
+        public string Unpack(Stream stream)
         {
             var zipPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             var folderPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -17,7 +17,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
             {
                 using (var fs = File.Create(zipPath))
                 {
-                    s.CopyTo(fs);
+                    stream.CopyTo(fs);
                 }
                 using (var zs = new ZipFile(zipPath))
                 {

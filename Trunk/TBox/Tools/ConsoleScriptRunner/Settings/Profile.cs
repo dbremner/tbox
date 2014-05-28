@@ -9,7 +9,7 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner.Settings
 	[Serializable]
 	public sealed class Profile : Data
 	{
-		public ObservableCollection<MultiFileOperation> Operations { get; set; }
+		public ObservableCollection<MultiFileOperation> Operations { get; private set; }
 
 		public Profile()
 		{

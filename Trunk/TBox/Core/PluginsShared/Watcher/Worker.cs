@@ -50,7 +50,7 @@ namespace Mnk.TBox.Core.PluginsShared.Watcher
 		{
 			iconWithText.Create(Log.EntriesCount.ToString(CultureInfo.InvariantCulture));
 			trayIcon.Icon = iconWithText.Icon;
-            trayIcon.HoverText = string.Format(PluginsSharedLang.EntriesCountTemplate, workerId, Log.EntriesCount);
+            trayIcon.HoverText = string.Format(CultureInfo.InvariantCulture, PluginsSharedLang.EntriesCountTemplate, workerId, Log.EntriesCount);
 			var log = trayLog;
 			if (log != null && text!=null)
 			{
@@ -63,14 +63,14 @@ namespace Mnk.TBox.Core.PluginsShared.Watcher
 			watcher.CheckFiles();
 		}
 
-		public void Start(int rescanTime, int toolTipsTimeOut, IEnumerable<DirInfo> dirs, bool toolTipsEnabled )
+		public void Start(int rescanTime, int toolTipsTimeout, IEnumerable<DirInfo> directories, bool toolTipsEnabled )
 		{
 			Stop();
 			if(toolTipsEnabled)
 			{
-				trayLog = new TrayLog(trayIcon, toolTipsTimeOut);
+				trayLog = new TrayLog(trayIcon, toolTipsTimeout);
 			}
-			watcher.Start(dirs, new MultiCaptionedLog(new ICaptionedLog[] { logCache }));
+			watcher.Start(directories, new MultiCaptionedLog(new ICaptionedLog[] { logCache }));
 			trayIcon.IsVisible = true;
 			logCache.Start();
 			timer.Start(rescanTime);

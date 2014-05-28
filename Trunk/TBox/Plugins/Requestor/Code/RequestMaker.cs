@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
 using System.Threading;
 using Mnk.Library.Common.Network;
-using Mnk.TBox.Core.PluginsShared.Ddos;
-using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Core.PluginsShared.LoadTesting;
+using Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
 
 namespace Mnk.TBox.Plugins.Requestor.Code
@@ -12,9 +12,9 @@ namespace Mnk.TBox.Plugins.Requestor.Code
 		private readonly Op op;
 		private readonly int delay;
 		private bool mustTeminateThread = false;
-		private readonly InfoCollector collector;
+		private readonly StatisticsCollector collector;
 
-		public RequestMaker(Op op, int delay, InfoCollector collector)
+		public RequestMaker(Op op, int delay, StatisticsCollector collector)
 		{
 			this.op = op;
 			this.delay = delay*1000;

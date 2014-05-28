@@ -5,8 +5,8 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Settings
 {
     public class Config
     {
-        public IList<ServerAgent> Agents { get; set; }
-        public IList<ServerTask> Tasks { get; set; }
+        public IList<ServerAgent> Agents { get; private set; }
+        public IList<ServerTask> Tasks { get; private set; }
 
         public Config()
         {

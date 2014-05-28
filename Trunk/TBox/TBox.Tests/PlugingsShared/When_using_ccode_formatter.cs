@@ -33,7 +33,7 @@ namespace Mnk.TBox.Tests.PlugingsShared
 		[TestCase("{;;};;;;;", "{\r\n\t;;\r\n};;;;;")]
 		public void Should_format_string_by_brackets(string value, string expected)
 		{
-			var bf = new CCodeFormatter();
+			var bf = new CppCodeFormatter();
 			Assert.AreEqual(expected, bf.Format(value));
 		}
 	}

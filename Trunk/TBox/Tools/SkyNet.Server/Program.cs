@@ -21,7 +21,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server
             var provider = new ConfigProvider<ServerConfig>(Path.Combine(Folders.UserToolsFolder, "SkyNet.Sever.config"));
             using (new InterprocessServer<IConfigProvider<ServerConfig>>(provider, "TBox.SkyNet.Server"))
             {
-                using (var container = new ServicesRegistrator().Register(provider.Config))
+                using (var container = ServicesRegistrator.Register(provider.Config))
                 {
                     using (var service = new SkyNetServerService(provider.Config, container))
                     {

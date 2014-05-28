@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
+namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 {
 	class AnalizeInfo
 	{
-		public IList<OperationStatistic> Values { get; set; }
+		public IList<OperationStatistic> Values { get; private set; }
 		public GraphicsInfo Graphics { get; set; }
 		public OperationStatistic Result { get; set; }  
 

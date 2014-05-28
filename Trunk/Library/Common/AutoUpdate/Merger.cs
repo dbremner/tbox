@@ -21,7 +21,7 @@ namespace Mnk.Library.Common.AutoUpdate
 					return true;
 				case UpdateInterval.Never:
 					return false;
-				case UpdateInterval.Dayly:
+				case UpdateInterval.Daily:
 					if (range.Days < 1) return false;
 					break;
 				case UpdateInterval.Weekly:

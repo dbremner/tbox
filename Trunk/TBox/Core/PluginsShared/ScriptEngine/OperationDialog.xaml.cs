@@ -9,7 +9,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 	/// <summary>
 	/// Interaction logic for OperationDialog.xaml
 	/// </summary>
-	public partial class OperationDialog 
+	public sealed partial class OperationDialog 
 	{
 		public OperationDialog()
 		{

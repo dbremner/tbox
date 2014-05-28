@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
-using Mnk.TBox.Core.PluginsShared.Ddos.Settings;
+using Mnk.TBox.Core.PluginsShared.LoadTesting;
 
 namespace Mnk.TBox.Plugins.SqlRunner.Code.Settings
 {

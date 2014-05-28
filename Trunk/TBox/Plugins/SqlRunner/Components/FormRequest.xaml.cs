@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Mnk.Library.Common.Network;
-using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic;
 using Mnk.TBox.Plugins.SqlRunner.Code;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 using Mnk.Library.WpfControls.Code.OS;

@@ -1,4 +1,4 @@
-﻿namespace Mnk.TBox.Core.PluginsShared.Ddos
+﻿namespace Mnk.TBox.Core.PluginsShared.LoadTesting
 {
 	public interface IOperationRunner
 	{

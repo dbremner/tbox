@@ -7,7 +7,7 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner.Settings
 	public sealed class Config
 	{
 		public string SelectedProfile { get; set; }
-		public ObservableCollection<Profile> Profiles { get; set; }
+		public ObservableCollection<Profile> Profiles { get; private set; }
 
 		public Config()
 		{

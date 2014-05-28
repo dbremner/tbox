@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
@@ -19,7 +20,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
         {
             Name = Environment.MachineName;
             Port = 30001;
-            ServerEndpoint = string.Format("http://localhost:{0}/", 30000);
+            ServerEndpoint = string.Format(CultureInfo.InvariantCulture, "http://localhost:{0}/", 30000);
             TotalCores = Environment.ProcessorCount;
         }
     }

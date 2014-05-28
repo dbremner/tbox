@@ -9,7 +9,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common
     {
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "files", ResponseFormat = WebMessageFormat.Json)]
-        string Upload(Stream info);
+        string Upload(Stream stream);
 
         [OperationContract]
         [WebGet(UriTemplate = "files/{id}", RequestFormat = WebMessageFormat.Json)]

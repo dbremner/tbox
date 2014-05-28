@@ -12,9 +12,9 @@ using Mnk.TBox.Tools.SkyNet.Server.Code.Processing;
 
 namespace Mnk.TBox.Tools.SkyNet.Server
 {
-    class ServicesRegistrator
+    static class ServicesRegistrator
     {
-        public IServiceContainer Register(ServerConfig config)
+        public static IServiceContainer Register(ServerConfig config)
         {
             var container = new ServiceContainer();
             container.Register<IStorage, Storage>(new PerContainerLifetime());

@@ -2,13 +2,13 @@
 
 namespace Mnk.Library.Common.AutoUpdate
 {
-	[Serializable]
-	public enum UpdateInterval
-	{
-		Startup,
-		Dayly,
-		Weekly,
-		Monthly,
-		Never
-	}
+    [Serializable]
+    public enum UpdateInterval
+    {
+        Startup,
+        Daily,
+        Weekly,
+        Monthly,
+        Never
+    }
 }

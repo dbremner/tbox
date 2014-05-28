@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
+namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 {
-	public sealed class Analizer
+	public sealed class Analyzer
 	{
 		private readonly object locker = new object();
 		private readonly IDictionary<string, AnalizeInfo> statistics;
 		public IEnumerable<string> Keys{get { return statistics.Keys; }}
 
-		public Analizer(IEnumerable<string> names)
+		public Analyzer(IEnumerable<string> names)
 		{
 			statistics = new Dictionary<string, AnalizeInfo>(new[] { string.Empty }.Concat(names).ToDictionary(x => x, x => new AnalizeInfo()));
 		}

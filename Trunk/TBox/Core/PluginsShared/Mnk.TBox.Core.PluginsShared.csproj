@@ -64,23 +64,23 @@
     <Compile Include="Controls\ServiceControl.xaml.cs">
       <DependentUpon>ServiceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ddos\Components\FormDdos.xaml.cs">
-      <DependentUpon>FormDdos.xaml</DependentUpon>
+    <Compile Include="LoadTesting\Components\FormLoadTesting.xaml.cs">
+      <DependentUpon>FormLoadTesting.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ddos\Ddoser.cs" />
-    <Compile Include="Ddos\IDdoser.cs" />
-    <Compile Include="Ddos\IOperationRunner.cs" />
-    <Compile Include="Ddos\Settings\IOperation.cs" />
-    <Compile Include="Ddos\Settings\IProfile.cs" />
-    <Compile Include="Ddos\Statistic\AnalizeInfo.cs" />
-    <Compile Include="Ddos\Statistic\Analizer.cs" />
-    <Compile Include="Ddos\Statistic\GraphicsInfo.cs" />
-    <Compile Include="Ddos\Statistic\StatisticInfo.cs" />
-    <Compile Include="Ddos\Statistic\InfoCollector.cs" />
-    <Compile Include="Ddos\Statistic\OperationStatistic.cs" />
+    <Compile Include="LoadTesting\LoadTester.cs" />
+    <Compile Include="LoadTesting\ILoadTester.cs" />
+    <Compile Include="LoadTesting\IOperationRunner.cs" />
+    <Compile Include="LoadTesting\IOperation.cs" />
+    <Compile Include="LoadTesting\IProfile.cs" />
+    <Compile Include="LoadTesting\Statistic\AnalizeInfo.cs" />
+    <Compile Include="LoadTesting\Statistic\Analyzer.cs" />
+    <Compile Include="LoadTesting\Statistic\GraphicsInfo.cs" />
+    <Compile Include="LoadTesting\Statistic\StatisticInfo.cs" />
+    <Compile Include="LoadTesting\Statistic\StatisticsCollector.cs" />
+    <Compile Include="LoadTesting\Statistic\OperationStatistic.cs" />
     <Compile Include="Encoders\Base64Encode.cs" />
     <Compile Include="Encoders\BracketsFormatter.cs" />
-    <Compile Include="Encoders\CCodeFormatter.cs" />
+    <Compile Include="Encoders\CppCodeFormatter.cs" />
     <Compile Include="Encoders\HtmlParser.cs" />
     <Compile Include="Encoders\JsonParser.cs" />
     <Compile Include="Encoders\SQLParser.cs" />
@@ -174,7 +174,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Encoders\CStringFinder.cs" />
+    <Compile Include="Encoders\CppStringFinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\ResponseBox.xaml">
@@ -185,7 +185,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Ddos\Components\FormDdos.xaml">
+    <Page Include="LoadTesting\Components\FormLoadTesting.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\BaseExecutor.cs" />
-    <Compile Include="Code\Ddoser.cs" />
+    <Compile Include="Code\LoadTester.cs" />
     <Compile Include="Code\Executor.cs" />
     <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\Settings\Header.cs" />

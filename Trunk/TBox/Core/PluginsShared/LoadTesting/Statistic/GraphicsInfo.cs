@@ -2,7 +2,7 @@
 using Mnk.Library.WpfControls.Components.Drawings.Graphics;
 using Mnk.Library.WpfControls.Components.Drawings.Graphics.Painters;
 
-namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
+namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 {
 	public class GraphicsInfo
 	{

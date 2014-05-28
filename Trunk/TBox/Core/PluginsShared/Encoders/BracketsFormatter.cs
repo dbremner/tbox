@@ -14,20 +14,20 @@ namespace Mnk.TBox.Core.PluginsShared.Encoders
 			this.end = end;
 		}
 
-		public string Format(string s)
+		public string Format(string text)
 		{
 			var sb = new StringBuilder();
 			var pos = 0;
 			while (true)
 			{
-				var start = s.FindFirstNotString(begin, pos);
+				var start = text.FindFirstNotString(begin, pos);
 				if (start != -1)
 				{
-					var last = s.FindFirstNotString(end, start + 1, new KeyValuePair<char, char>(begin, end));
+					var last = text.FindFirstNotString(end, start + 1, new KeyValuePair<char, char>(begin, end));
 					if (last != -1)
 					{
-						var block = s.Substring(start + 1, last - start - 1);
-						AppendText(sb, s.Substring(pos, start - pos));
+						var block = text.Substring(start + 1, last - start - 1);
+						AppendText(sb, text.Substring(pos, start - pos));
 						sb.AppendIndent(0).Append(begin);
 						sb.AppendIndentedText(Format(block), 1);
 						sb.AppendIndent(0).Append(end);
@@ -35,17 +35,17 @@ namespace Mnk.TBox.Core.PluginsShared.Encoders
 						continue;
 					}
 				}
-				AppendText(sb, s.Substring(pos, s.Length - pos));
+				AppendText(sb, text.Substring(pos, text.Length - pos));
 				break;
 			}
 			return sb.ToString();
 		}
 
-		protected virtual void AppendText(StringBuilder sb, string s)
+		protected virtual void AppendText(StringBuilder sb, string text)
 		{
-			s = s.Trim();
-			if(string.IsNullOrWhiteSpace(s))return;
-			sb.AppendIndent(0).Append(s);
+			text = text.Trim();
+			if(string.IsNullOrWhiteSpace(text))return;
+			sb.AppendIndent(0).Append(text);
 		}
 	}
 }

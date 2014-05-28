@@ -1,6 +1,6 @@
 ﻿using System.Threading;
-using Mnk.TBox.Core.PluginsShared.Ddos;
-using Mnk.TBox.Core.PluginsShared.Ddos.Statistic;
+using Mnk.TBox.Core.PluginsShared.LoadTesting;
+using Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 
 namespace Mnk.TBox.Plugins.SqlRunner.Code
@@ -11,9 +11,9 @@ namespace Mnk.TBox.Plugins.SqlRunner.Code
 		private readonly Op operation;
 		private readonly int delay;
 		private bool mustTeminateThread = false;
-		private readonly InfoCollector collector;
+		private readonly StatisticsCollector collector;
 
-		public RequestMaker(string connectionString, Op operation, int delay, InfoCollector collector)
+		public RequestMaker(string connectionString, Op operation, int delay, StatisticsCollector collector)
 		{
 			this.connectionString = connectionString;
 			this.operation = operation;

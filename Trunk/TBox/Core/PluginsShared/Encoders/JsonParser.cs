@@ -1,6 +1,6 @@
 ﻿namespace Mnk.TBox.Core.PluginsShared.Encoders
 {
-	public class JsonParser : CCodeFormatter
+	public class JsonParser : CppCodeFormatter
 	{
 		public JsonParser(): base('{', '}', ',')
 		{

@@ -26,7 +26,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             if (config == null) return;
             try
             {
-                cl.Instance.Set((T)config);
+                cl.Instance.UpdateConfig((T)config);
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
         {
             try
             {
-                return cl.Instance.Get();
+                return cl.Instance.ReceiveConfig();
             }
             catch (Exception ex)
             {

@@ -47,7 +47,7 @@ namespace Mnk.TBox.Plugins.Encoder
 			yield return new Operation { Header = EncoderLang.FormatSQL, Work = x => new SqlParser().Parse(x), Format = "mssql" };
 			yield return new Operation { Header = EncoderLang.FormatHtml, Work = x => new HtmlParser().Parse(x), Format = "html" };
 			yield return new Operation { Header = EncoderLang.FormatJSON, Work = x => new JsonParser().Format(x), Format = "js" };
-			yield return new Operation { Header = EncoderLang.FormatClikeCode, Work = x => new CCodeFormatter().Format(x), Format = "js" };
+			yield return new Operation { Header = EncoderLang.FormatClikeCode, Work = x => new CppCodeFormatter().Format(x), Format = "js" };
 			yield return new Operation { Header = EncoderLang.MinimizeToLine, Work = x => CommonEncoders.Minimize(x) };
 		}
 

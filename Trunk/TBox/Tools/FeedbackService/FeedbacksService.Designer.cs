@@ -1,6 +1,6 @@
 ﻿namespace Mnk.TBox.Tools.FeedbackService
 {
-	partial class FeedbackService
+	partial class FeedbacksService
 	{
 		/// <summary> 
 		/// Required designer variable.

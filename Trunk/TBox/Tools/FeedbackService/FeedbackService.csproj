@@ -72,11 +72,11 @@
   <ItemGroup>
     <Compile Include="FeedbackServer.cs" />
     <Compile Include="IFeedbackServer.cs" />
-    <Compile Include="FeedbackService.cs">
+    <Compile Include="FeedbacksService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FeedbackService.Designer.cs">
-      <DependentUpon>FeedbackService.cs</DependentUpon>
+    <Compile Include="FeedbacksService.Designer.cs">
+      <DependentUpon>FeedbacksService.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,8 +101,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FeedbackService.resx">
-      <DependentUpon>FeedbackService.cs</DependentUpon>
+    <EmbeddedResource Include="FeedbacksService.resx">
+      <DependentUpon>FeedbacksService.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

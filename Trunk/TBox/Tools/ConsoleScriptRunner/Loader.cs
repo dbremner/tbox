@@ -7,7 +7,7 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
 {
 	class Loader
 	{
-		private static readonly ILog Log = LogManager.GetLogger<Loader>();
+		private readonly ILog log = LogManager.GetLogger<Loader>();
 		private const string LibraryPath = "Libraries";
 
 		public void Load(string rootPath)
@@ -17,22 +17,21 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
 			{
 				System.Threading.Tasks.Parallel.ForEach(
 					Directory.GetFiles(dir, "*.dll", SearchOption.TopDirectoryOnly),
-					file => LoadAssembly(file)
+					LoadAssembly
 					);
 			}
 		}
 
-		private static Assembly LoadAssembly(string filePath)
+		private void LoadAssembly(string filePath)
 		{
 			try
 			{
-				return AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(filePath));
+				AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(filePath));
 			}
 			catch (Exception ex)
 			{
-				Log.Write(ex, "Error loading library from: '{0}'", filePath);
+				log.Write(ex, "Error loading library from: '{0}'", filePath);
 			}
-			return null;
 		}
 	}
 }

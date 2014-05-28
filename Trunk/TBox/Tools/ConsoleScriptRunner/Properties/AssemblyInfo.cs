@@ -11,3 +11,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
 [assembly: Guid("b964880f-03ec-41c4-8e94-0f8ead7ccb9f")]
+[assembly: CLSCompliant(true)]

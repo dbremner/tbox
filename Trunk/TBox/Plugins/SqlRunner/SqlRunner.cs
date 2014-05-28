@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Windows;
 using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Core.PluginsShared.LoadTesting.Components;
 using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
-using Mnk.TBox.Core.PluginsShared.Ddos.Components;
 using Mnk.TBox.Plugins.SqlRunner.Code;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 using Mnk.TBox.Plugins.SqlRunner.Components;
@@ -19,23 +19,23 @@ namespace Mnk.TBox.Plugins.SqlRunner
     [PluginInfo(typeof(SqlRunnerLang), 8, PluginGroup.Database)]
     public sealed class SqlRunner : ConfigurablePlugin<Settings, Config>, IDisposable
     {
-        private Ddoser ddoser;
-        private readonly LazyDialog<FormDdos> formDdos;
+        private LoadTester loadTester;
+        private readonly LazyDialog<FormLoadTesting> formDdos;
         private readonly LazyDialog<FormBatch> formBatch;
         private readonly Lazy<Executor> executor;
 
         public SqlRunner()
         {
-            formDdos = new LazyDialog<FormDdos>(CreateDdosForm, "ddos");
+            formDdos = new LazyDialog<FormLoadTesting>(CreateDdosForm, "ddos");
             formBatch = new LazyDialog<FormBatch>(CreateBatchForm, "batch");
             executor = new Lazy<Executor>(() => new Executor());
         }
 
-        private FormDdos CreateDdosForm()
+        private FormLoadTesting CreateDdosForm()
         {
-            var dialog = new FormDdos();
-            dialog.Init(Icon.ToImageSource(), Icon, ddoser = new Ddoser());
-            ddoser.OnConfigUpdated(Config);
+            var dialog = new FormLoadTesting();
+            dialog.Init(Icon.ToImageSource(), Icon, loadTester = new LoadTester());
+            loadTester.OnConfigUpdated(Config);
             return dialog;
         }
 
@@ -49,7 +49,7 @@ namespace Mnk.TBox.Plugins.SqlRunner
             base.OnRebuildMenu();
             if (formDdos.IsValueCreated)
             {
-                ddoser.OnConfigUpdated(Config);
+                loadTester.OnConfigUpdated(Config);
             }
             Menu = Config.Profiles
                 .Select(p => new UMenuItem

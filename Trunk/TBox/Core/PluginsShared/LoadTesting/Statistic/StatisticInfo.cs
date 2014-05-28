@@ -1,4 +1,4 @@
-﻿namespace Mnk.TBox.Core.PluginsShared.Ddos.Statistic
+﻿namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 {
 	public class StatisticInfo
 	{

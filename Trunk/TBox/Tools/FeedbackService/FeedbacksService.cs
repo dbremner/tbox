@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,12 +11,12 @@ using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Tools.FeedbackService
 {
-    public partial class FeedbackService : ServiceBase
+    public sealed partial class FeedbacksService : ServiceBase
     {
         static void Main(string[] args)
         {
             LogManager.Init(new MultiplyLog(new IBaseLog[] { new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "TBox.Feedback.Service.log")) }));
-            var service = new FeedbackService();
+            var service = new FeedbacksService();
             if (Environment.UserInteractive)
             {
                 service.OnStart(args);
@@ -31,7 +32,7 @@ namespace Mnk.TBox.Tools.FeedbackService
 
         private NetworkServer<IFeedbackServer> server;
 
-        public FeedbackService()
+        public FeedbacksService()
         {
             InitializeComponent();
         }
@@ -41,11 +42,11 @@ namespace Mnk.TBox.Tools.FeedbackService
             server = new NetworkServer<IFeedbackServer>(
                 new FeedbackServer(
                     ConfigurationManager.AppSettings["smtpServer"],
-                    int.Parse(ConfigurationManager.AppSettings["smtpServerPort"]),
+                    int.Parse(ConfigurationManager.AppSettings["smtpServerPort"], CultureInfo.InvariantCulture),
                     ConfigurationManager.AppSettings["Login"],
                     ConfigurationManager.AppSettings["Password"],
                     ConfigurationManager.AppSettings["ToAddress"]
-                    ), int.Parse(ConfigurationManager.AppSettings["FeedbackPort"]));
+                    ), int.Parse(ConfigurationManager.AppSettings["FeedbackPort"], CultureInfo.InvariantCulture));
         }
 
         protected override void OnStop()
@@ -55,7 +56,7 @@ namespace Mnk.TBox.Tools.FeedbackService
             server = null;
         }
 
-        static FeedbackService()
+        static FeedbacksService()
         {
             AppDomain.CurrentDomain.AssemblyResolve += LoadFromSameFolder;
         }

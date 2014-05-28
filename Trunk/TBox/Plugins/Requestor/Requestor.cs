@@ -3,8 +3,8 @@ using System.Linq;
 using System.Windows;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Core.PluginsShared.LoadTesting.Components;
 using Mnk.TBox.Locales.Localization.Plugins.Requestor;
-using Mnk.TBox.Core.PluginsShared.Ddos.Components;
 using Mnk.TBox.Plugins.Requestor.Code;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
 using Mnk.TBox.Plugins.Requestor.Components;
@@ -19,19 +19,19 @@ namespace Mnk.TBox.Plugins.Requestor
 	[PluginInfo(typeof(RequestorLang), 13, PluginGroup.Web)]
 	public sealed class Requestor : ConfigurablePlugin<Settings, Config>, IDisposable
 	{
-		private readonly LazyDialog<FormDdos> formDdos;
+		private readonly LazyDialog<FormLoadTesting> formDdos;
 		private readonly Lazy<Executor> executor;
 
 		public Requestor()
 		{
-			formDdos = new LazyDialog<FormDdos>(CreateForm, "ddos");
+			formDdos = new LazyDialog<FormLoadTesting>(CreateForm, "ddos");
 			executor = new Lazy<Executor>(() => new Executor());
 		}
 
-		private FormDdos CreateForm()
+		private FormLoadTesting CreateForm()
 		{
-			var dialog = new FormDdos();
-			dialog.Init(Icon.ToImageSource(), Icon, new Ddoser());
+			var dialog = new FormLoadTesting();
+			dialog.Init(Icon.ToImageSource(), Icon, new LoadTester());
 			return dialog;
 		}
 
