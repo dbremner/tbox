@@ -15,11 +15,11 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Background
 			OyCaption = oy;
 		}
 
-		public override void Draw(DrawingContext dc, Rect r)
+		public override void Draw(DrawingContext dc, Rect rect)
 		{
-			base.Draw(dc, r);
-			DrawHorizontalFormattedText(dc, OxCaption, new Point(r.Width / 2, r.Height - 5));
-			DrawVerticalFormattedText(dc, OyCaption, new Point(0, r.Height/2));
+			base.Draw(dc, rect);
+			DrawHorizontalFormattedText(dc, OxCaption, new Point(rect.Width / 2, rect.Height - 5));
+			DrawVerticalFormattedText(dc, OyCaption, new Point(0, rect.Height/2));
 		}
 
 		private static void DrawHorizontalFormattedText(DrawingContext dc, string text, Point p)

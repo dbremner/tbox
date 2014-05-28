@@ -103,8 +103,8 @@
     <Compile Include="Components\Units\ICheckableUnit.cs" />
     <Compile Include="Components\Units\IUnit.cs" />
     <Compile Include="Components\Units\ListBoxUnit.cs" />
-    <Compile Include="Components\Units\Properties\UnitConfigurator.cs" />
-    <Compile Include="Components\Units\Properties\UnitTypes.cs" />
+    <Compile Include="Components\Units\UnitConfigurator.cs" />
+    <Compile Include="Components\Units\UnitType.cs" />
     <Compile Include="Components\Updater\IntegratedProgress.cs" />
     <Compile Include="Components\Updater\Progress.cs" />
     <Compile Include="Components\Updater\SimpleUpdater.cs" />
@@ -173,7 +173,7 @@
       <DependentUpon>SelectPerfomanceCounters.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ProgressDialog.cs" />
-    <Compile Include="Code\Log\MsgLog.cs" />
+    <Compile Include="Code\Log\MessageBoxLog.cs" />
     <Compile Include="Code\OS\DispatcherHelper.cs" />
     <Compile Include="Code\OS\MT.cs" />
     <Compile Include="Code\OS\OneInstance.cs" />

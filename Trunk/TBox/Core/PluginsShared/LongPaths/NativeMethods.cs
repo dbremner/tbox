@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using Microsoft.Win32.SafeHandles;
 
 namespace Mnk.TBox.Core.PluginsShared.LongPaths
 {
-    public static class NativeMethods
+    static class NativeMethods
     {
         [Flags]
         public enum EFileAccess : uint

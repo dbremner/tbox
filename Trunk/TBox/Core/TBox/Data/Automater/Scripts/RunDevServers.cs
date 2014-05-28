@@ -32,7 +32,7 @@ namespace Solution.Scripts
 		private void Work(KeyValuePair<string, int> project)
 		{
 			Console.WriteLine("Start dev server: " + project.Key);
-			new CassiniRunner("").Run(project.Key, project.Value, "/", false, PathToDevServer, "", false);
+			new CassiniRunner().Run(project.Key, project.Value, "/", false, PathToDevServer, "", false);
 			Console.WriteLine("Open page: " + project.Key);
 			var r = new Request().GetResult("http://localhost:" + project.Value, timeout: TimeOut*1000);
 			Console.WriteLine("Page '{0}' time: {1}", project.Key, r.Time);

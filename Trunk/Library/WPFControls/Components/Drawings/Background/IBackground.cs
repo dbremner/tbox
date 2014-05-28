@@ -5,6 +5,6 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Background
 {
 	public interface IBackground
 	{
-		void Draw(DrawingContext dc, Rect r);
+		void Draw(DrawingContext dc, Rect rect);
 	}
 }

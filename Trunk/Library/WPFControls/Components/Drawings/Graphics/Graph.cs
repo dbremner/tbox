@@ -25,29 +25,29 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Graphics
 			Redraw();
 		}
 
-		public void Add(IGraphic gr)
+		public void Add(IGraphic graphic)
 		{
 			Counts = new int[graphics.Count+1];
-			graphics.Add(gr);
+			graphics.Add(graphic);
 		}
 
-		protected override void Update(Rect r)
+		protected override void Update(Rect rect)
 		{
 			Counts = graphics.Select(x => x.Count).ToArray();
 			for (var i = 0; i < graphics.Count; ++i)
 			{
-				graphics[i].RecalcParams(Counts[i], r, PointsDistance);
+				graphics[i].CalcParameters(Counts[i], rect, PointsDistance);
 			}
 			Min = graphics.Min(x => x.Min);
 			Max = graphics.Max(x => x.Max);
 		}
 
-		protected override void Render(DrawingContext dc, Rect r)
+		protected override void Render(DrawingContext dc, Rect rect)
 		{
 			if (Counts.Min() < 2) return;
 			for (var i = 0; i < graphics.Count; ++i)
 			{
-				graphics[i].Paint(dc, r, Min, Max, Counts[i]);
+				graphics[i].Paint(dc, rect, Min, Max, Counts[i]);
 			}
 		}
 

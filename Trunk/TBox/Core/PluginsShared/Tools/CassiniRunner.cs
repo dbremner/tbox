@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Mnk.Library.Common;
@@ -10,19 +11,14 @@ namespace Mnk.TBox.Core.PluginsShared.Tools
 {
 	public class CassiniRunner
 	{
-		private static readonly ILog Log = LogManager.GetLogger<CassiniRunner>();
-		private readonly string dataRootPath;
-		public CassiniRunner(string dataRootPath)
-		{
-			this.dataRootPath = dataRootPath;
-		}
+		private readonly ILog log = LogManager.GetLogger<CassiniRunner>();
 
 		public void Run( string path, int port, string vpath, bool asAdmin, string pathToDevServer, string pathToBrowser, bool runBrowser)
 		{
 			if(!ExceptionsHelper.HandleException(
 				() => RunServer(path, port, vpath, asAdmin, pathToDevServer),
 				() => "Can't run dev server: " + pathToDevServer,
-				Log
+				log
 				))
 			{
 				if (runBrowser)
@@ -30,7 +26,7 @@ namespace Mnk.TBox.Core.PluginsShared.Tools
 					ExceptionsHelper.HandleException(
 					() => RunBrowser(port, vpath, pathToBrowser),
 					() => "Can't run browser: " + pathToBrowser,
-					Log
+					log
 					);
 				}
 			}
@@ -43,7 +39,7 @@ namespace Mnk.TBox.Core.PluginsShared.Tools
 
 		private void RunServer(string path, int port, string vpath, bool asAdmin, string pathToDevServer)
 		{
-			var args = string.Format("/path:\"{0}\" /port:{1} /vpath:{2}", path, port, vpath);
+			var args = string.Format(CultureInfo.InvariantCulture, "/path:\"{0}\" /port:{1} /vpath:{2}", path, port, vpath);
 		    var pi = new ProcessStartInfo
 		        {
 		            Arguments = args,
@@ -68,7 +64,7 @@ namespace Mnk.TBox.Core.PluginsShared.Tools
 			ProcessProcesses(pathToDevServer, p=>p.Kill());
 		}
 
-		private static void ProcessProcesses(string pathToDevServer, Action<Process> worker )
+		private void ProcessProcesses(string pathToDevServer, Action<Process> worker )
 		{
 			var name = Path.GetFileNameWithoutExtension(pathToDevServer);
 			foreach (var p in Process.GetProcesses().Where(x => x.ProcessName.EqualsIgnoreCase(name)))
@@ -79,7 +75,7 @@ namespace Mnk.TBox.Core.PluginsShared.Tools
 				}
 				catch (Exception ex)
 				{
-					Log.Write(ex, "Can't process: " + p.ProcessName);
+					log.Write(ex, "Can't process: " + p.ProcessName);
 					return;
 				}
 			}

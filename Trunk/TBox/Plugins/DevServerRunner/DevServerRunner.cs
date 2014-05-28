@@ -23,7 +23,7 @@ namespace Mnk.TBox.Plugins.DevServerRunner
 		{
 			base.OnRebuildMenu();
 			if(runner==null)
-				runner = new CassiniRunner(Context.DataProvider.ToolsPath);
+				runner = new CassiniRunner();
 			var selected = Config.ServerInfos.CheckedItems.ToArray();
 			Menu = selected.Select(
 				x=>new UMenuItem

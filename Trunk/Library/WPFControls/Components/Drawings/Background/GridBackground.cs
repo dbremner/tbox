@@ -17,11 +17,11 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Background
 		{
 		}
 
-		public override void Draw(DrawingContext dc, Rect r)
+		public override void Draw(DrawingContext dc, Rect rect)
 		{
-			base.Draw(dc, r);
-			DrawGrid(dc, r);
-			DrawOsi(dc, r);
+			base.Draw(dc, rect);
+			DrawGrid(dc, rect);
+			DrawOsi(dc, rect);
 		}
 
 		private void DrawGrid(DrawingContext dc, Rect r)

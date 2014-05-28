@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,8 +50,8 @@ namespace Mnk.Library.WpfControls.Components.Units
 		{
 			var p = e.GetPosition(GraphPlot);
 			var position = (float)(p.X / GraphPlot.ActualWidth);
-			var line = string.Format("{0:0.##}%", 100 * position) + Environment.NewLine +
-				string.Join(Environment.NewLine, GraphPlot.GetValues(position).Select(x => string.Format("{0:0.##}", x)));
+            var line = string.Format(CultureInfo.InvariantCulture, "{0:0.##}%", 100 * position) + Environment.NewLine +
+                string.Join(Environment.NewLine, GraphPlot.GetValues(position).Select(x => string.Format(CultureInfo.InvariantCulture, "{0:0.##}", x)));
 			if (StartTime != DateTime.MinValue)
 			{
 				var end = EndTime;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Mnk.Library.WpfControls.Dialogs.PerfomanceCounters
 {
@@ -11,7 +12,7 @@ namespace Mnk.Library.WpfControls.Dialogs.PerfomanceCounters
 
 		public override string ToString()
 		{
-			return string.Format("{0}\t{1}\t{2}", Category, Name, Instance);
+			return string.Format(CultureInfo.InvariantCulture, "{0}\t{1}\t{2}", Category, Name, Instance);
 		}
 	}
 }

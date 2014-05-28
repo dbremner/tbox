@@ -18,9 +18,9 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Background
 		{
 		}
 
-		public virtual void Draw(DrawingContext dc, Rect r)
+		public virtual void Draw(DrawingContext dc, Rect rect)
 		{
-			dc.DrawRectangle(Brush, Pen, r);
+			dc.DrawRectangle(Brush, Pen, rect);
 		}
 	}
 }

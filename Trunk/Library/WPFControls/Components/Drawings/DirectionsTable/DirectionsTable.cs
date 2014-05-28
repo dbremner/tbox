@@ -84,7 +84,7 @@ namespace Mnk.Library.WpfControls.Components.Drawings.DirectionsTable
 			get { lock (locker){return items.Count;} }
 		}
 
-		protected override void Update(Rect r)
+		protected override void Update(Rect rect)
 		{
 			lock (locker)
 			{
@@ -109,14 +109,14 @@ namespace Mnk.Library.WpfControls.Components.Drawings.DirectionsTable
 			Redraw();
 		}
 
-		protected override void Render(DrawingContext dc, Rect r)
+		protected override void Render(DrawingContext dc, Rect rect)
 		{
 			lock (locker)
 			{
-				var cx = (int)(r.Width / columns.Count);
+				var cx = (int)(rect.Width / columns.Count);
 				RenderColumns(dc, cx);
 				RenderRows(dc, cx);
-				RenderSelected(dc, r, selected);
+				RenderSelected(dc, rect, selected);
 			}
 		}
 

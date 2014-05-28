@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 
 namespace Mnk.Library.WpfControls.Code.Dialogs
@@ -35,7 +36,7 @@ namespace Mnk.Library.WpfControls.Code.Dialogs
 
 		public virtual bool Del(string[] names)
 		{
-			return MessageBox.Show(string.Format(Buttons.Del, string.Join(Environment.NewLine, names)), Caption,
+			return MessageBox.Show(string.Format(CultureInfo.InvariantCulture, Buttons.Del, string.Join(Environment.NewLine, names)), Caption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
 		}
 

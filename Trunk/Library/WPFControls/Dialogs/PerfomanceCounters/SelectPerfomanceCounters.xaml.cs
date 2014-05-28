@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -189,7 +190,7 @@ namespace Mnk.Library.WpfControls.Dialogs.PerfomanceCounters
 
 		public string GenerateName(Entity e, string instanceName)
 		{
-			return string.Format("{0}\t{1}\t{2}", e.Parent.Title, e.Title, instanceName);
+			return string.Format(CultureInfo.InvariantCulture, "{0}\t{1}\t{2}", e.Parent.Title, e.Title, instanceName);
 		}
 
 		private void RemoveClick(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using Mnk.Library.Common.Tools;
@@ -27,7 +28,7 @@ namespace Mnk.Library.WpfControls.Code.Dialogs
 				isOk = true;
 				foreach (var name in result.Value.Where(name => !Validator(name)))
 				{
-					MessageBox.Show(string.Format(invalidPathTemplate, name), Caption,
+                    MessageBox.Show(string.Format(CultureInfo.InvariantCulture, invalidPathTemplate, name), Caption,
 									MessageBoxButton.OK, MessageBoxImage.Hand);
 					isOk = false;
 					break;
@@ -48,7 +49,7 @@ namespace Mnk.Library.WpfControls.Code.Dialogs
 					newName = selected;
 					return true;
 				}
-				MessageBox.Show(string.Format(invalidPathTemplate, selected), Caption,
+                MessageBox.Show(string.Format(CultureInfo.InvariantCulture, invalidPathTemplate, selected), Caption,
 						MessageBoxButton.OK, MessageBoxImage.Hand);
 			}
 			newName = string.Empty;

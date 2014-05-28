@@ -49,18 +49,18 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Graphics
 			return painter.GetValue(position, list, count);
 		}
 
-		public void Paint(DrawingContext gr, Rect r, float min, float max, int count)
+		public void Paint(DrawingContext dc, Rect rect, float min, float max, int count)
 		{
 			var list = values;
 			if (list.Count < count) return;
-			painter.Paint(gr, r, Math.Min(min, Min), Math.Max(max, Max), list, count, pen);
+			painter.Paint(dc, rect, Math.Min(min, Min), Math.Max(max, Max), list, count, pen);
 		}
 
-		public void RecalcParams(int count, Rect r, int pointsDistance)
+		public void CalcParameters(int count, Rect rect, int pointsDistance)
 		{
 			var list = values;
 			if (list.Count < count) return;
-			painter.RecalcCache(values, count, r, pointsDistance);
+			painter.RecalcCache(values, count, rect, pointsDistance);
 			if (lastRecalculatedCount == -1)
 			{
 				summ = Last = Min = Max = Average = list[0];

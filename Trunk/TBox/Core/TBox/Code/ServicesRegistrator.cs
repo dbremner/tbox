@@ -25,7 +25,7 @@ namespace Mnk.TBox.Core.Application.Code
         {
             if (!Directory.Exists(LogsFolder)) Directory.CreateDirectory(LogsFolder);
             LogManager.Init(new MultiplyLog(new IBaseLog[]{
-					new FileLog(ErrorsLogsPath), new MsgLog()
+					new FileLog(ErrorsLogsPath), new MessageBoxLog()
 				}),
                 new FileLog(Path.Combine(LogsFolder, "TBox.Info.log")));
         }

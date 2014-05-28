@@ -15,19 +15,19 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Graphics.Painters
 		private float[] maxValues = new float[0];
 
 		private readonly PolilynesDrawler drawler = new PolilynesDrawler();
-		public void Paint(DrawingContext dc, Rect r, float min, float max, IList<float> values, int count, Pen pen)
+		public void Paint(DrawingContext dc, Rect rect, float min, float max, IList<float> values, int count, Pen pen)
 		{
-			var scaleY = r.Height / (max - min);
-			var scaleX = r.Width / (count-1);
-			drawler.Reset(CalcPoint(0, values[0], scaleX, scaleY, r, min));
+			var scaleY = rect.Height / (max - min);
+			var scaleX = rect.Width / (count-1);
+			drawler.Reset(CalcPoint(0, values[0], scaleX, scaleY, rect, min));
 			if (ident == 1)
 			{
-				DrawSimple(values, count, scaleX, scaleY, r, min);
+				DrawSimple(values, count, scaleX, scaleY, rect, min);
 			}
 			else
 			{
 				drawler.SetBrush(pen.Brush);
-				DrawComplicated(count, scaleX, scaleY, r, min);
+				DrawComplicated(count, scaleX, scaleY, rect, min);
 			}
 			drawler.Draw(dc, pen);
 		}
@@ -62,9 +62,9 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Graphics.Painters
 			}
 		}
 
-		public void RecalcCache(IList<float> values, int count, Rect r, int pointsDistance)
+		public void RecalcCache(IList<float> values, int count, Rect rect, int pointsDistance)
 		{
-			ident = CalcIdent(r, count, pointsDistance);
+			ident = CalcIdent(rect, count, pointsDistance);
 			if (ident == 1)
 			{
 				if (lastIdent != -1) ClearCache();

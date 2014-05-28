@@ -11,7 +11,7 @@ namespace Solution.Scripts
 
 		public void Run(IScriptContext context)
 		{
-			new CassiniRunner("").StopAll(PathToDevServer);
+			new CassiniRunner().StopAll(PathToDevServer);
 		}
 	}
 }

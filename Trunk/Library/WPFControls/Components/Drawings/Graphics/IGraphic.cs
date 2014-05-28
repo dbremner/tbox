@@ -6,7 +6,7 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Graphics
 {
 	public interface IGraphic
 	{
-		void Paint(DrawingContext gr, Rect r, float min, float max, int count);
+		void Paint(DrawingContext dc, Rect rect, float min, float max, int count);
 		int Count { get; }
 		float Min { get; }
 		float Max { get; }
@@ -15,8 +15,8 @@ namespace Mnk.Library.WpfControls.Components.Drawings.Graphics
 		bool Any { get; }
 		IEnumerable<float> Values { get; }
 		void Clear();
-		void Add(float f);
+		void Add(float value);
 		float GetValue(float position, int count);
-		void RecalcParams(int count, Rect r, int pointsDistance);
+		void CalcParameters(int count, Rect rect, int pointsDistance);
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -106,16 +107,16 @@ namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Components
 			sb.AppendFormat("{0}: \t {1}", property, value).AppendLine();
 		}
 
-		public void ShowDialog(IProfile p)
+		public void ShowDialog(IProfile profile)
 		{
 			if(IsVisible || loadTester.IsWorks)return;
-			Title = PluginsSharedLang.Ddos + " - [" + p.Key + "]";
+			Title = PluginsSharedLang.Ddos + " - [" + profile.Key + "]";
 			analyzer = null;
 			Statistic.Items.Clear();
 			Graphics.Items.Clear();
 			SetGraphic(null);
 			Results.Text = string.Empty;
-			DataContext = p;
+			DataContext = profile;
 			CheckBoxChecked(Operations, null);
 			ShowAndActivate();
 		}
@@ -192,7 +193,7 @@ namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Components
 			foreach (var status in s.Statutes)
 			{
 				AppendResult(sb, status.Key,
-				             string.Format("{0}  ( {1:0.##} )%", status.Value, 100*status.Value/(float) s.Count));
+				             string.Format(CultureInfo.InvariantCulture, "{0}  ( {1:0.##} )%", status.Value, 100*status.Value/(float) s.Count));
 			}
 			Results.Text = sb.ToString();
 		}

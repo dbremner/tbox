@@ -1,6 +1,6 @@
-﻿namespace Mnk.Library.WpfControls.Components.Units.Properties
+﻿namespace Mnk.Library.WpfControls.Components.Units
 {
-	public enum UnitTypes
+	public enum UnitType
 	{
 		Unknown,
 		Text,

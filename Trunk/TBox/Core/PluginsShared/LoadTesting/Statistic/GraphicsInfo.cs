@@ -24,12 +24,12 @@ namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 			MaxTime.Clear();
 		}
 
-		public void Draw(OperationStatistic s)
+		public void Draw(OperationStatistic statistic)
 		{
-			if (s.Count == 0) return;
-			AverageTime.Add(s.Time / (float)s.Count);
-			MinTime.Add(s.MinTime);
-			MaxTime.Add(s.MaxTime);
+			if (statistic.Count == 0) return;
+			AverageTime.Add(statistic.Time / (float)statistic.Count);
+			MinTime.Add(statistic.MinTime);
+			MaxTime.Add(statistic.MaxTime);
 		}
 	}
 }

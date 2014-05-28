@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -16,7 +17,7 @@ namespace Mnk.Library.WpfControls.Code.OS
 
 			public static int RegisterWindowMessage( string format, params object[] args )
 			{
-				var message = String.Format( format, args );
+				var message = String.Format(CultureInfo.InvariantCulture, format, args );
 				return RegisterWindowMessage( message );
 			}
 
@@ -103,7 +104,7 @@ namespace Mnk.Library.WpfControls.Code.OS
 			[STAThread]
 			public static void Init(Application app)
 			{
-				var mutexName = String.Format("Global\\{0}", ProgramInfo.AssemblyGuid);
+				var mutexName = String.Format(CultureInfo.InvariantCulture, "Global\\{0}", ProgramInfo.AssemblyGuid);
 				mutex = new Mutex(true, mutexName, out createdNew);
 				if (!createdNew)
 				{

@@ -2,14 +2,14 @@
 using System.Collections;
 using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WpfControls.Components.Units.Properties
+namespace Mnk.Library.WpfControls.Components.Units
 {
 	public sealed class UnitConfigurator
 	{
 		private bool isConfigured = false;
 		private string title;
 		private ICollection collection;
-		private UnitTypes unitType;
+		private UnitType unitType;
 		private readonly IUnit owner;
 		private readonly Action configureAction;
 
@@ -31,7 +31,7 @@ namespace Mnk.Library.WpfControls.Components.Units.Properties
 			Configure();
 		}
 
-		public void SetUnitType(UnitTypes value)
+		public void SetUnitType(UnitType value)
 		{
 			unitType = value; 
 			Configure();
@@ -39,7 +39,7 @@ namespace Mnk.Library.WpfControls.Components.Units.Properties
 
 		private void Configure()
 		{
-			if (string.IsNullOrEmpty(title) || collection == null || unitType == default(UnitTypes))
+			if (string.IsNullOrEmpty(title) || collection == null || unitType == default(UnitType))
 			{
 				if (isConfigured)
 				{
@@ -51,22 +51,22 @@ namespace Mnk.Library.WpfControls.Components.Units.Properties
 			dynamic c = collection;
 			switch (unitType)
 			{
-				case UnitTypes.Text:
+				case UnitType.Text:
 					SelectorExtensions.ConfigureInputText(owner, title, c);
 					break;
-				case UnitTypes.ComboBox:
+				case UnitType.ComboBox:
 					SelectorExtensions.ConfigureInputTextList(owner, title, c);
 					break;
-				case UnitTypes.DropDownList:
+				case UnitType.DropDownList:
 					SelectorExtensions.ConfigureInputSelect(owner, title, c);
 					break;
-				case UnitTypes.FilePath:
+				case UnitType.FilePath:
 					SelectorExtensions.ConfigureInputFilePath(owner, title, c);
 					break;
-				case UnitTypes.FolderPath:
+				case UnitType.FolderPath:
 					SelectorExtensions.ConfigureInputFolderPath(owner, title, c);
 					break;
-                case UnitTypes.Date:
+                case UnitType.Date:
                     SelectorExtensions.ConfigureInputDate(owner, title, c);
                     break;
 				default:

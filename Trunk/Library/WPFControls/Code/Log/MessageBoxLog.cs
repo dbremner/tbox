@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
@@ -6,7 +7,7 @@ using Mnk.Library.Localization.WPFControls;
 
 namespace Mnk.Library.WpfControls.Code.Log
 {
-	public class MsgLog : AbstractLog
+	public class MessageBoxLog : AbstractLog
 	{
 		public override void Write(string value)
 		{
@@ -15,7 +16,7 @@ namespace Mnk.Library.WpfControls.Code.Log
 
 		public override void Write(Exception ex, string value)
 		{
-			Write(string.Format(WPFControlsLang.ExceptionsTemplate,
+            Write(string.Format(CultureInfo.InvariantCulture, WPFControlsLang.ExceptionsTemplate,
 				value, Environment.NewLine, ExceptionsHelper.ExpandOnlyMessages(ex)));
 		}
 

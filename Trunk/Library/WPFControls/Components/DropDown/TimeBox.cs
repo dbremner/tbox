@@ -72,7 +72,7 @@ namespace Mnk.Library.WpfControls.Components.DropDown
 		private void SaveValueToText()
 		{
 			var start = ValueText.SelectionStart;
-			ValueText.Text = string.Format("{0:"+TimeFormat+"}", valueNumber);
+			ValueText.Text = string.Format(CultureInfo.InvariantCulture, "{0:"+TimeFormat+"}", valueNumber);
 			ValueText.SelectionStart = Math.Min(start, ValueText.Text.Length);
 		}
 

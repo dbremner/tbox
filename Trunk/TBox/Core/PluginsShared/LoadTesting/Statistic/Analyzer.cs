@@ -6,20 +6,20 @@ namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 	public sealed class Analyzer
 	{
 		private readonly object locker = new object();
-		private readonly IDictionary<string, AnalizeInfo> statistics;
+		private readonly IDictionary<string, AnalyzeInfo> statistics;
 		public IEnumerable<string> Keys{get { return statistics.Keys; }}
 
 		public Analyzer(IEnumerable<string> names)
 		{
-			statistics = new Dictionary<string, AnalizeInfo>(new[] { string.Empty }.Concat(names).ToDictionary(x => x, x => new AnalizeInfo()));
+			statistics = new Dictionary<string, AnalyzeInfo>(new[] { string.Empty }.Concat(names).ToDictionary(x => x, x => new AnalyzeInfo()));
 		}
 
-		public void Calc(IDictionary<string, IEnumerable<StatisticInfo>> infos)
+		public void Calc(IDictionary<string, IEnumerable<StatisticInfo>> statistic)
 		{
 			lock (locker)
 			{
 				var s = CalcGlobal(
-					infos.Select(info => CalForOperation(info.Key, info.Value)));
+					statistic.Select(info => CalForOperation(info.Key, info.Value)));
 				AddStatistic(statistics[string.Empty], s);
 			}
 		}
@@ -73,7 +73,7 @@ namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 			}
 		}
 
-		private static void AddStatistic(AnalizeInfo info, OperationStatistic s)
+		private static void AddStatistic(AnalyzeInfo info, OperationStatistic s)
 		{
 			info.Values.Add(s);
 			info.Graphics.Draw(s);

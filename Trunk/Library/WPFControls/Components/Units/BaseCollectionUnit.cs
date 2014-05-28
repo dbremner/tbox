@@ -9,7 +9,6 @@ using Mnk.Library.Common.UI.Model;
 using Mnk.Library.WpfControls.Code.Dialogs;
 using Mnk.Library.WpfControls.Components.EditButtons;
 using Mnk.Library.WpfControls.Code.EditPanel;
-using Mnk.Library.WpfControls.Components.Units.Properties;
 
 namespace Mnk.Library.WpfControls.Components.Units
 {
@@ -111,10 +110,10 @@ namespace Mnk.Library.WpfControls.Components.Units
         }
 
         public static readonly DependencyProperty UnitTypeProperty =
-            DpHelper.Create<BaseCollectionUnit, UnitTypes>("UnitType", (s, v) => s.UnitType = v);
-        public UnitTypes UnitType
+            DpHelper.Create<BaseCollectionUnit, UnitType>("UnitType", (s, v) => s.UnitType = v);
+        public UnitType UnitType
         {
-            get { return (UnitTypes)GetValue(UnitTypeProperty); }
+            get { return (UnitType)GetValue(UnitTypeProperty); }
             set
             {
                 SetValue(UnitTypeProperty, value);

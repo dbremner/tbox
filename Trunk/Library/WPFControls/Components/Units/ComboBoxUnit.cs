@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.WpfControls.Components.EditButtons;
-using Mnk.Library.WpfControls.Components.Units.Properties;
 using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.Library.WpfControls.Components.Units

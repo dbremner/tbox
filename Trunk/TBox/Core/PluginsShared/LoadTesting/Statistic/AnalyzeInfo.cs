@@ -2,13 +2,13 @@
 
 namespace Mnk.TBox.Core.PluginsShared.LoadTesting.Statistic
 {
-	class AnalizeInfo
+	class AnalyzeInfo
 	{
 		public IList<OperationStatistic> Values { get; private set; }
 		public GraphicsInfo Graphics { get; set; }
 		public OperationStatistic Result { get; set; }  
 
-		public AnalizeInfo()
+		public AnalyzeInfo()
 		{
 			Values = new List<OperationStatistic>();
 			Graphics = new GraphicsInfo();

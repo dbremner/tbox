@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.WpfControls.Dialogs;
@@ -27,7 +28,7 @@ namespace Mnk.Library.WpfControls.Code.Dialogs
 					newNames = new[] { result.Value };
 					return true;
 				}
-				MessageBox.Show(string.Format(invalidPathTemplate, result.Value), Caption,
+                MessageBox.Show(string.Format(CultureInfo.InvariantCulture, invalidPathTemplate, result.Value), Caption,
 								MessageBoxButton.OK, MessageBoxImage.Hand);
 			}
 			newNames = new string[0];
@@ -44,7 +45,7 @@ namespace Mnk.Library.WpfControls.Code.Dialogs
 					newName = result.Value;
 					return true;
 				}
-				MessageBox.Show(string.Format(invalidPathTemplate, result.Value), Caption,
+                MessageBox.Show(string.Format(CultureInfo.InvariantCulture, invalidPathTemplate, result.Value), Caption,
 								MessageBoxButton.OK, MessageBoxImage.Hand);
 			}
 			newName = string.Empty;
@@ -61,7 +62,7 @@ namespace Mnk.Library.WpfControls.Code.Dialogs
 					newName = result.Value;
 					return true;
 				}
-				MessageBox.Show(string.Format(invalidPathTemplate, result.Value), Caption,
+                MessageBox.Show(string.Format(CultureInfo.InvariantCulture, invalidPathTemplate, result.Value), Caption,
 								MessageBoxButton.OK, MessageBoxImage.Hand);
 			}
 			newName = string.Empty;

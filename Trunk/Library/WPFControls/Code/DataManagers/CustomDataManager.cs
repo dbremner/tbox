@@ -59,7 +59,7 @@ namespace Mnk.Library.WpfControls.Code.DataManagers
 	{
 		public object Create(string key)
 		{
-			return new T { Value = int.Parse(key) };
+            return new T { Value = int.Parse(key, CultureInfo.InvariantCulture) };
 		}
 
 		public object Clone(object sample, string key)
@@ -69,7 +69,7 @@ namespace Mnk.Library.WpfControls.Code.DataManagers
 
 		public object ChangeKey(object target, string newKey)
 		{
-			((T)target).Value = int.Parse(newKey);
+			((T)target).Value = int.Parse(newKey, CultureInfo.InvariantCulture);
 			return target;
 		}
 
@@ -94,7 +94,7 @@ namespace Mnk.Library.WpfControls.Code.DataManagers
 
 		public object ChangeKey(object target, string newKey)
 		{
-			((T)target).Value = double.Parse(newKey);
+		    ((T) target).Value = double.Parse(newKey, CultureInfo.InvariantCulture);
 			return target;
 		}
 

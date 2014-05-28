@@ -72,7 +72,7 @@
     <Compile Include="LoadTesting\IOperationRunner.cs" />
     <Compile Include="LoadTesting\IOperation.cs" />
     <Compile Include="LoadTesting\IProfile.cs" />
-    <Compile Include="LoadTesting\Statistic\AnalizeInfo.cs" />
+    <Compile Include="LoadTesting\Statistic\AnalyzeInfo.cs" />
     <Compile Include="LoadTesting\Statistic\Analyzer.cs" />
     <Compile Include="LoadTesting\Statistic\GraphicsInfo.cs" />
     <Compile Include="LoadTesting\Statistic\StatisticInfo.cs" />
