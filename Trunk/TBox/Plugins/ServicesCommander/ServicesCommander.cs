@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Mnk.Library.Common.MT;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.ServicesCommander;
 using Mnk.TBox.Plugins.ServicesCommander.Code;
 using Mnk.Library.WpfControls.Dialogs;

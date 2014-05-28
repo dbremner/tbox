@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Mnk.Library.Common.UI.ModelsContainers;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 

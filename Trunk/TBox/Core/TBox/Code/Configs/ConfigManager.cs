@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.IO;
 using Mnk.Library.Common.SaveLoad;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.Application.Code.AutoUpdate;
 using Mnk.Library.WpfControls.Localization;
 

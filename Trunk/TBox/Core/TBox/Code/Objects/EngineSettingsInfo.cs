@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Controls;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Core.Application.Code.Objects
 {

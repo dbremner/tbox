@@ -1,6 +1,5 @@
 ﻿using System;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.AvailabilityChecker;
 using Mnk.Library.WpfWinForms;
 using Mnk.TBox.Plugins.AvailabilityChecker.Code;

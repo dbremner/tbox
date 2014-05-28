@@ -138,9 +138,9 @@
       <Project>{C7ED2917-A1DA-4A17-9748-8E7FDCFC4923}</Project>
       <Name>Mnk.TBox.Core.Empty</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
+    <ProjectReference Include="..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
-      <Name>Mnk.TBox.Core.Interface</Name>
+      <Name>Mnk.TBox.Core.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
       <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>

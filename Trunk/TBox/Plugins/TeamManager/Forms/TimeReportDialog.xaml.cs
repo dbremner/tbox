@@ -7,7 +7,7 @@ using System.Windows;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Microsoft.Win32;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;

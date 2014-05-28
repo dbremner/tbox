@@ -3,8 +3,9 @@ using System.Drawing;
 using System.Reflection;
 using System.Resources;
 
-namespace Mnk.TBox.Core.Interface.Atrributes
+namespace Mnk.TBox.Core.Contracts
 {
+    [AttributeUsage(AttributeTargets.Class)]
 	public sealed class PluginInfoAttribute : Attribute
 	{
 		private readonly ResourceManager textsResMan;

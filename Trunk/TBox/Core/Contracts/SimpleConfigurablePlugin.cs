@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace Mnk.TBox.Core.Interface
+namespace Mnk.TBox.Core.Contracts
 {
 	public class SimpleConfigurablePlugin<TConfig> : SimplePlugin, IConfigurablePlugin
         where TConfig: new()

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mnk.Library.Common.UI.ModelsContainers;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.Watcher;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 

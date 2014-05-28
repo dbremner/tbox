@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Mnk.Library.Common.AutoUpdate;
 using Mnk.Library.Common.Log;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using LightInject;
 using Mnk.TBox.Core.Application.Code.AutoUpdate;
 using Mnk.TBox.Core.Application.Code.Configs;

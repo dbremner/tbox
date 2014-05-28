@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Mnk.Library.Common.Plugins;
 
-namespace Mnk.TBox.Core.Interface
+namespace Mnk.TBox.Core.Contracts
 {
 	public interface IConfigurablePlugin : IPlugin, IConfigurable
 	{

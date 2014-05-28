@@ -5,7 +5,7 @@ using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
 
-namespace Mnk.TBox.Core.Interface
+namespace Mnk.TBox.Core.Contracts
 {
 	public abstract class SingleDialogConfigurablePlugin<TSettings, TConfig, TDialog> : ConfigurablePlugin<TSettings, TConfig>, IDisposable
 		where TSettings: ISettings, new()

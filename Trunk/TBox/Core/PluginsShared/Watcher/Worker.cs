@@ -6,7 +6,7 @@ using System.Windows.Input;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.WpfWinForms.Icons;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.Library.WpfControls.Code.Log;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;

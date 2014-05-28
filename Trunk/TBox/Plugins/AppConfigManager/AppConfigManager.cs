@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.AppConfigManager;
 using Mnk.TBox.Core.PluginsShared.Tools;
 using Mnk.Library.WpfWinForms;

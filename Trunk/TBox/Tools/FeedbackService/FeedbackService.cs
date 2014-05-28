@@ -6,7 +6,7 @@ using System.Reflection;
 using System.ServiceProcess;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Communications;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Tools.FeedbackService
 {

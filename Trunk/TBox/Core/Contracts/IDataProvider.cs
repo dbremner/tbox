@@ -1,4 +1,4 @@
-﻿namespace Mnk.TBox.Core.Interface
+﻿namespace Mnk.TBox.Core.Contracts
 {
 	public interface IDataProvider
 	{

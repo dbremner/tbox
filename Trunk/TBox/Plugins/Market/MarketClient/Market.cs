@@ -1,5 +1,4 @@
-﻿using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+﻿using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.Market;
 using Mnk.TBox.Plugins.Market.Client.Code;
 

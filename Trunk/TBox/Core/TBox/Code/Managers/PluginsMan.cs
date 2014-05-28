@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Mnk.Library.Common.Plugins;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Core.Application.Code.Managers
 {

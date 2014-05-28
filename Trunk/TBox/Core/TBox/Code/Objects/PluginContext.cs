@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Core.Application.Code.Objects
 {
@@ -22,9 +22,9 @@ namespace Mnk.TBox.Core.Application.Code.Objects
 			pluginsContextShared.DoSync(action);
 		}
 
-		public void AddTypeToWarmingUp(Type t)
+		public void AddTypeToWarmingUp(Type type)
 		{
-			pluginsContextShared.AddTypeToWarmingUp(t);
+			pluginsContextShared.AddTypeToWarmingUp(type);
 		}
 
 		public void RebuildMenu()

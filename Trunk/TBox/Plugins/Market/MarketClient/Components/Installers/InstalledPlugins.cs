@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
 using Mnk.TBox.Plugins.Market.Client.Code;
 

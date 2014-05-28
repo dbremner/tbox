@@ -2,8 +2,7 @@
 using System.IO;
 using System.Linq;
 using Mnk.Library.Common.Log;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
 using Mnk.TBox.Core.PluginsShared.Tools;
 using Mnk.TBox.Plugins.ProjectMan.Code;

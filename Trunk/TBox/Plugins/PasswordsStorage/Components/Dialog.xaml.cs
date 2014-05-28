@@ -7,7 +7,7 @@ using System.Windows.Input;
 using Mnk.Library.Common.Log;
 using Mnk.Library.WpfControls.Components.Captioned;
 using Mnk.Library.WpfControls.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Plugins.PasswordsStorage.Code.Settings;
 
 namespace Mnk.TBox.Plugins.PasswordsStorage.Components

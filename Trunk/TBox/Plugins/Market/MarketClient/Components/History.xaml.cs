@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
 using Mnk.TBox.Plugins.Market.Client.Code;
 

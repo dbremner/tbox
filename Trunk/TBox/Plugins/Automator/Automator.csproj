@@ -85,9 +85,9 @@
       <Name>Mnk.Library.WpfWinForms</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Interface\Mnk.TBox.Core.Interface.csproj">
+    <ProjectReference Include="..\..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
-      <Name>Mnk.TBox.Core.Interface</Name>
+      <Name>Mnk.TBox.Core.Contracts</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">

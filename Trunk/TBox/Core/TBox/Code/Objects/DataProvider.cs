@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Core.Application.Code.Objects
 {

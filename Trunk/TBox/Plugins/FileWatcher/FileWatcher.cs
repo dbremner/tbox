@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.FileWatcher;
 using Mnk.TBox.Core.PluginsShared.Watcher;
 using Mnk.Library.WpfWinForms;

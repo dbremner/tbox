@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media;
 using Mnk.Library.Common.MT;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfWinForms;

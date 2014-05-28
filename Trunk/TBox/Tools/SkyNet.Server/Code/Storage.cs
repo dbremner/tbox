@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using Mnk.Library.Common.SaveLoad;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Settings;
 

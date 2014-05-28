@@ -6,7 +6,7 @@ using System.ServiceProcess;
 using System.Threading;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Plugins.ServicesCommander.Code
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Plugins.Market.Client.Code;
 

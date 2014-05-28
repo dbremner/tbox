@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
 using Mnk.TBox.Core.PluginsShared.Ddos.Components;
 using Mnk.TBox.Plugins.SqlRunner.Code;

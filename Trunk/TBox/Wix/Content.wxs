@@ -76,7 +76,7 @@
           <File Name='EPPlus.dll'/>
           <File Name='Mnk.Library.ParallelNUnit.dll'/>
           <File Name='ICSharpCode.SharpZipLib.dll'/>
-          <File Name='Mnk.TBox.Core.Interface.dll'/>
+          <File Name='Mnk.TBox.Core.Contracts.dll'/>
           <File Name='LightInject.dll'/>
           <File Name='Microsoft.Exchange.WebServices.dll'/>
           <File Name='Microsoft.Windows.Shell.dll'/>

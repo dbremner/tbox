@@ -6,7 +6,7 @@ using System.Linq;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Models;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.ProjectMan;
 using Mnk.TBox.Plugins.ProjectMan.Code.Settings;
 using Mnk.Library.WpfControls.Dialogs;

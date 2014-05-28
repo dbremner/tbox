@@ -5,7 +5,7 @@ using System.Reflection;
 using System.ServiceProcess;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Tools.SkyNet.Common.Configurations;
 
 namespace Mnk.TBox.Tools.SkyNet.Server

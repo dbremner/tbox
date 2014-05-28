@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Mnk.TBox.Core.Interface
+namespace Mnk.TBox.Core.Contracts
 {
 	public interface IPluginContext
 	{
@@ -10,6 +10,6 @@ namespace Mnk.TBox.Core.Interface
 		Icon GetIcon(string path, int id);
 		Icon GetSystemIcon(int id);
 		void DoSync(Action action);
-		void AddTypeToWarmingUp(Type t);
+		void AddTypeToWarmingUp(Type type);
 	}
 }

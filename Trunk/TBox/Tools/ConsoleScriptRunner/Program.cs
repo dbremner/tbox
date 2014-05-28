@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Mnk.Library.Common.Log;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.Library.ScriptEngine.Core;
 
 namespace Mnk.TBox.Tools.ConsoleScriptRunner

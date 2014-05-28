@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Plugins.AppConfigManager.Code;
 using Mnk.TBox.Plugins.AppConfigManager.Components;
 

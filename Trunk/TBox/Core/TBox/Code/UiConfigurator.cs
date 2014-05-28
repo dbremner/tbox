@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using LightInject;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.AutoUpdate;

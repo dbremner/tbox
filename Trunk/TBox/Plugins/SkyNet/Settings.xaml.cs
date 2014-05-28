@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Plugins.SkyNet.Code;

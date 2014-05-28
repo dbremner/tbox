@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
 using Mnk.TBox.Plugins.Requestor.Components;
 

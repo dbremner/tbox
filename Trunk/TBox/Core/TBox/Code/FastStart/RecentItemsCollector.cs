@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.UI.WebControls;
 using Mnk.Library.Common.Models;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.FastStart.Settings;
 using Mnk.TBox.Core.Application.Code.Menu;

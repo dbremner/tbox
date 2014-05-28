@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Mnk.Library.Common.UI.Model;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
 

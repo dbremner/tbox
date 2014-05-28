@@ -58,7 +58,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBox", "Core\TBox\TBox.cspr
 		{7974D4FB-1BBE-480D-8848-443AA99BA323} = {7974D4FB-1BBE-480D-8848-443AA99BA323}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mnk.TBox.Core.Interface", "Core\Interface\Mnk.TBox.Core.Interface.csproj", "{17848BF1-7A98-4F7F-B124-8B6C99A4712C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mnk.TBox.Core.Contracts", "Core\Contracts\Mnk.TBox.Core.Contracts.csproj", "{17848BF1-7A98-4F7F-B124-8B6C99A4712C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{B241ED9D-A7CE-47BB-97EA-D019802D2DE7}"
 EndProject

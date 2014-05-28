@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
 using Mnk.TBox.Plugins.NUnitRunner.Components;

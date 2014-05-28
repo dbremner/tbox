@@ -1,6 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.BookletPagesGenerator;
 using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
 

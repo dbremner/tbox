@@ -8,8 +8,8 @@
     <ProjectGuid>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mnk.TBox.Core.Interface</RootNamespace>
-    <AssemblyName>Mnk.TBox.Core.Interface</AssemblyName>
+    <RootNamespace>Mnk.TBox.Core.Contracts</RootNamespace>
+    <AssemblyName>Mnk.TBox.Core.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,12 +42,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Atrributes\PluginInfoAttribute.cs" />
+    <Compile Include="PluginInfoAttribute.cs" />
     <Compile Include="ConfigManager.cs" />
     <Compile Include="Folders.cs" />
     <Compile Include="IConfigWithDialogStates.cs" />
     <Compile Include="NonUserRunContext.cs" />
-    <Compile Include="Atrributes\PluginGroup.cs" />
+    <Compile Include="PluginGroup.cs" />
     <Compile Include="SingleDialogConfigurablePlugin.cs" />
     <Compile Include="SingleDialogPlugin.cs" />
     <Compile Include="SimpleConfigurablePlugin.cs" />

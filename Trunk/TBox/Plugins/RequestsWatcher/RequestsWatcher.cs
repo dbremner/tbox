@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.RequestsWatcher;
 using Mnk.TBox.Core.PluginsShared.Watcher;
 using Mnk.TBox.Plugins.RequestsWatcher.Code;

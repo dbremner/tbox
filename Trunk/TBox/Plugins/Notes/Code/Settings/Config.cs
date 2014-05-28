@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Plugins.Notes.Code.Settings
 {

@@ -8,7 +8,7 @@ using System.Windows.Media;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using LightInject;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code;

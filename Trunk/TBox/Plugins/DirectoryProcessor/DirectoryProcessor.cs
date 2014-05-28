@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
-using Mnk.TBox.Core.Interface;
-using Mnk.TBox.Core.Interface.Atrributes;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.DirectoryProcessor;
 using Mnk.Library.WpfWinForms;
 using Mnk.TBox.Plugins.DirectoryProcessor.Code;

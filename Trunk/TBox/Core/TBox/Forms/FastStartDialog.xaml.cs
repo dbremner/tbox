@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using Mnk.TBox.Core.Interface;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.Application.Code;
 using Mnk.TBox.Core.Application.Code.FastStart;
 using Mnk.Library.WpfControls.Components.ButtonsView;
