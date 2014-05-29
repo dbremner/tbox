@@ -32,7 +32,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             var script = compiler.Compile(scriptContent, operation.Parameters);
             var task = new ServerTask
             {
-                Owner = config.Name + ":" + config.Port,
+                Owner = config.Name,
                 Script = scriptContent,
                 ScriptParameters = JsonSerializer.SerializeToString(operation.Parameters),
                 ZipPackageId = PackData(script, config)

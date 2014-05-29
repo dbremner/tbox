@@ -29,7 +29,7 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
             serverAgents = new[] { new ServerAgent { } };
             serverTask = new ServerTask
             {
-                ScriptParameters = "",
+                ScriptParameters = "[]",
                 Script = "Script",
                 ZipPackageId = "ZipPackageId"
             };

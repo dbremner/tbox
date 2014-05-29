@@ -19,8 +19,14 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
     class When_running_unit_test
     {
 	    private TestsMetricsCalculator calculator = null;
-        private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Mnk.TBox.Tests.dll");
-        private const string ToolsPath = "../../../bin/Release/Tools";
+        private const string CompileMode = 
+#if DEBUG
+            "DEBUG";
+#else
+            "Release";
+#endif
+        private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../Library/Library.Tests/bin/" + CompileMode + "/", "Mnk.Library.Tests.dll");
+        private const string ToolsPath = "../../../bin/" + CompileMode + "/Tools";
         private static readonly string NUnitAgentPath = Path.Combine(ToolsPath, "NUnitAgent.exe");
         private static readonly string RunAsx86Path = Path.Combine(ToolsPath, "RunAsx86.exe");
         public static readonly bool[] Bools = {true,false};
@@ -90,7 +96,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
                 p.DoRefresh(x => { count = x.Count; }, x => { });
 
                 //Assert
-                Assert.Greater(count, 200);
+                Assert.Greater(count, 20);
             }
         }
 
@@ -123,7 +129,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
 
                 //Act
                 p.DoRun(x => x.ApplyResults(prefetch), p.Items, packages, copy, new []{"*.dll;*.exe"}, sync, startDelay, synchronizer, new SimpleUpdater(updater, synchronizer), needOutput);
-                Assert.Greater(p.Count, 200);
+                Assert.Greater(p.Count, 20);
                 Assert.AreEqual(0, p.FailedCount, CollectFailed());
             }
         }
