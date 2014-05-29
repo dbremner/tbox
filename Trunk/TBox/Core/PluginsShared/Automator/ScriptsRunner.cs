@@ -5,7 +5,6 @@ using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine.Core;
-using Mnk.Library.ScriptEngine.Core.Params;
 using Mnk.Library.WpfControls.Dialogs;
 using ScriptEngine.Core.Params;
 

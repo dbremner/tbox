@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;

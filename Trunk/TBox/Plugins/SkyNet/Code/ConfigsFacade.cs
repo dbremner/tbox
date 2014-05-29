@@ -2,13 +2,13 @@
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
-using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.TBox.Tools.SkyNet.Common;
 
 namespace Mnk.TBox.Plugins.SkyNet.Code
 {
     class ConfigsFacade : IConfigsFacade
     {
-        private readonly ILog log = LogManager.GetLogger<ServicesBuilder>();
+        private readonly ILog log = LogManager.GetLogger<ConfigsFacade>();
 
         private static InterprocessClient<IConfigProvider<AgentConfig>> CreateAgentConfigProvider()
         {
@@ -48,35 +48,39 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             return null;
         }
 
-        public AgentConfig GetAgentConfig()
+        public AgentConfig AgentConfig
         {
-            using (var cl = CreateAgentConfigProvider())
+            get
             {
-                return GetConfig(cl);
+                using (var cl = CreateAgentConfigProvider())
+                {
+                    return GetConfig(cl);
+                }
+            }
+            set
+            {
+                using (var cl = CreateAgentConfigProvider())
+                {
+                    SetConfig(cl, value);
+                }
             }
         }
 
-        public void SetAgentConfig(AgentConfig config)
+        public ServerConfig ServerConfig
         {
-            using (var cl = CreateAgentConfigProvider())
+            get
             {
-                SetConfig(cl, config);
+                using (var cl = CreateServerConfigProvider())
+                {
+                    return GetConfig(cl);
+                }
             }
-        }
-
-        public ServerConfig GetServerConfig()
-        {
-            using (var cl = CreateServerConfigProvider())
+            set
             {
-                return GetConfig(cl);
-            }
-        }
-
-        public void SetServerConfig(ServerConfig config)
-        {
-            using (var cl = CreateServerConfigProvider())
-            {
-                SetConfig(cl, config);
+                using (var cl = CreateServerConfigProvider())
+                {
+                    SetConfig(cl, value);
+                }
             }
         }
     }

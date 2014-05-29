@@ -41,12 +41,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Configurations\ConfigProvider.cs" />
-    <Compile Include="Configurations\ServerConfig.cs" />
-    <Compile Include="Configurations\AgentConfig.cs" />
+    <Compile Include="ConfigProvider.cs" />
+    <Compile Include="ServerConfig.cs" />
+    <Compile Include="AgentConfig.cs" />
     <Compile Include="AgentTask.cs" />
     <Compile Include="ISkyNetAgentService.cs" />
-    <Compile Include="Configurations\IConfigProvider.cs" />
+    <Compile Include="IConfigProvider.cs" />
     <Compile Include="ISkyNetFileService.cs" />
     <Compile Include="AgentState.cs" />
     <Compile Include="ISkyNetServerAgentsService.cs" />
@@ -64,6 +64,11 @@
     <Compile Include="ISkyScript.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />

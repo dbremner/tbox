@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Mnk.Library.ScriptEngine.Core;
-using Mnk.TBox.Core.PluginsShared.Automator;
 using Mnk.TBox.Tests.Common;
 using Mnk.TBox.Tools.SkyNet.Common;
 using NUnit.Framework;

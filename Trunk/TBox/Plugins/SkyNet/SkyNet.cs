@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using LightInject;
+using Mnk.Library.Common.Log;
+using Mnk.Library.ScriptEngine;
 using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
@@ -10,7 +13,6 @@ using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.TBox.Plugins.SkyNet.Code;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
-using Mnk.Library.WpfControls.Code;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
@@ -21,15 +23,21 @@ namespace Mnk.TBox.Plugins.SkyNet
     [PluginInfo(typeof(SkyNetLang), 18, PluginGroup.Development)]
     public class SkyNet : ConfigurablePlugin<Settings, Config>, IDisposable
     {
-        private readonly IServiceContainer container;
+        private readonly ILog log = LogManager.GetLogger<SkyNet>();
         private readonly SkyNetScriptConfigurator scriptConfigurator = new SkyNetScriptConfigurator();
         private readonly LazyDialog<EditorDialog> editorDialog;
-        private readonly ITaskExecutor taskExecutor;
+        private ITaskExecutor taskExecutor;
+        private IServiceContainer container;
 
         public SkyNet()
         {
-            container = new ServicesRegistrator().Register();
             editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
+        }
+
+        public override void Init(IPluginContext context)
+        {
+            base.Init(context);
+            container = ServicesRegistrator.Register(context);
             taskExecutor = container.GetInstance<ITaskExecutor>();
         }
 
@@ -44,7 +52,7 @@ namespace Mnk.TBox.Plugins.SkyNet
                 x => new UMenuItem
                 {
                     Header = x.Key,
-                    OnClick = o => taskExecutor.Execute(x)
+                    OnClick = o => DoExecute(x)
                 })
                 .Concat(
                     new[]
@@ -59,6 +67,19 @@ namespace Mnk.TBox.Plugins.SkyNet
                 .ToArray();
         }
 
+        private void DoExecute(SingleFileOperation x)
+        {
+            try
+            {
+                var id = taskExecutor.Execute(x);
+                MessageBox.Show(id);
+            }
+            catch (Exception ex)
+            {
+                log.Write(ex, "Unexpected error");
+            }
+        }
+
         private void OpenEditor(object o)
         {
             editorDialog.Do(Context.DoSync, x=>x.ShowDialog(GetPaths(), scriptConfigurator),Config.States);
@@ -71,8 +92,7 @@ namespace Mnk.TBox.Plugins.SkyNet
             s.ScriptConfigurator = scriptConfigurator;
             s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
                 ()=>new SingleFileScriptConfigurator{Context = Context, Icon = Icon.ToImageSource()}, "script configurator" );
-            s.ServicesBuilder = container.GetInstance<IServicesBuilder>();
-            s.ConfigsFacade = container.GetInstance<IConfigsFacade>();
+            s.SettingsLogic = container.GetInstance<ISettingsLogic>();
             s.Init(Context);
             return s;
         }

@@ -4,7 +4,6 @@ using LightInject;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Tools.SkyNet.Common;
-using Mnk.TBox.Tools.SkyNet.Common.Configurations;
 using Mnk.TBox.Tools.SkyNet.Common.Modules;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent

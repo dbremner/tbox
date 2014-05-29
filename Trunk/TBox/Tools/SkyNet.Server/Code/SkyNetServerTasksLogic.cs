@@ -26,7 +26,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
         public string AddTask(ServerTask task)
         {
             task.Id = Guid.NewGuid().ToString();
-            if (string.IsNullOrEmpty(task.Config) || string.IsNullOrEmpty(task.Script))
+            if (task.ScriptParameters==null || string.IsNullOrEmpty(task.Script))
             {
                 contextHelper.SetStatusCode(HttpStatusCode.ExpectationFailed);
                 return string.Empty;
@@ -35,7 +35,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
             {
                 Id = task.Id,
                 State = TaskState.Idle,
-                Config = task.Config,
+                ScriptParameters = task.ScriptParameters,
                 Script = task.Script,
                 Owner = task.Owner,
                 CreatedTime = DateTime.UtcNow,

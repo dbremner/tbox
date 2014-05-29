@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
 namespace Mnk.Library.ScriptEngine

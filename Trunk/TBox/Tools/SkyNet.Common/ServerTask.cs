@@ -16,7 +16,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         public string Owner { get; set; }
 
         [DataMember]
-        public string Config { get; set; }
+        public string ScriptParameters { get; set; }
 
         [DataMember]
         public string ZipPackageId { get; set; }
@@ -35,5 +35,10 @@ namespace Mnk.TBox.Tools.SkyNet.Common
 
         [DataMember]
         public DateTime CreatedTime { get; set; }
+
+        public ServerTask()
+        {
+            CreatedTime = DateTime.UtcNow;
+        }
     }
 }

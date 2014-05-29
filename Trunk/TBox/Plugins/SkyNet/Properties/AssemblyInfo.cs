@@ -10,3 +10,4 @@ using System.Resources;
 [assembly: AssemblyVersion("1.0.*")]
 [assembly: Guid("18561bd6-cf70-4176-b5cb-427f97f8fcf2")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: InternalsVisibleTo("Mnk.TBox.Tests")]

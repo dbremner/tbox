@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Linq;
 using System.Reflection;
 using Mnk.Library.ScriptEngine.Core.Interfaces;

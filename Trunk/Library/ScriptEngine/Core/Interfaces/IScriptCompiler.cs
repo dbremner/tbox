@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
 namespace Mnk.Library.ScriptEngine.Core.Interfaces

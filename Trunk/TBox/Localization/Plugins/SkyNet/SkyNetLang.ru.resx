@@ -153,11 +153,14 @@
   <data name="Operations" xml:space="preserve">
     <value>Операции</value>
   </data>
+  <data name="PleaseSpecifyScriptPath" xml:space="preserve">
+    <value>Пожалуйста, укажите путь к скрипту</value>
+  </data>
   <data name="PluginDescription" xml:space="preserve">
     <value>Плагин для выполнения распределённых операций. Например он может запускать модульные тесты на нескольких компьютерах параллельно.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>Небесная сеть</value>
+    <value>Распределённые вычисления</value>
   </data>
   <data name="Port" xml:space="preserve">
     <value>Порт</value>

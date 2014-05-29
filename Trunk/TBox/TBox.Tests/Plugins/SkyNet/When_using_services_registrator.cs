@@ -1,11 +1,11 @@
 ﻿using LightInject;
-using Mnk.TBox.Tools.SkyNet.Common;
-using Mnk.TBox.Tools.SkyNet.Common.Modules;
-using Mnk.TBox.Tools.SkyNet.Server;
-using Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces;
+using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Plugins.SkyNet.Code;
+using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using NUnit.Framework;
+using Rhino.Mocks;
 
-namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
+namespace Mnk.TBox.Tests.Plugins.SkyNet
 {
     [TestFixture]
     class When_using_services_registrator
@@ -15,7 +15,7 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         [SetUp]
         public void SetUp()
         {
-            container = ServicesRegistrator.Register(new ServerConfig());
+            container = ServicesRegistrator.Register(MockRepository.GenerateMock<IPluginContext>());
         }
 
         [TearDown]
@@ -25,23 +25,24 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         }
 
         [Test]
-        public void Should_register_service()
+        public void Should_register_settings_logic()
         {
             //Act
-            var s = container.GetInstance<ISkyNetCommon>();
+            var s = container.GetInstance<ISettingsLogic>();
 
             //Assert
             Assert.IsNotNull(s);
         }
 
         [Test]
-        public void Should_register_modules_runner()
+        public void Should_register_executor()
         {
             //Act
-            var s = container.GetInstance<IModulesRunner>();
+            var s = container.GetInstance<ITaskExecutor>();
 
             //Assert
             Assert.IsNotNull(s);
         }
+
     }
 }

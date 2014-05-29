@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mnk.Library.Common.MT;
-using Mnk.Library.ScriptEngine.Core.Params;
 using ScriptEngine.Core.Params;
 
 namespace Mnk.TBox.Core.PluginsShared.ScriptEngine

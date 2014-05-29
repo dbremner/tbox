@@ -20,7 +20,7 @@
                         <DockPanel>
                             <components:ExtCheckBox IsChecked="{Binding IsChecked}" VerticalAlignment="Center"  ValueChanged="OnCheckChangedEvent" DockPanel.Dock="Left"/>
                             <DockPanel IsEnabled="{Binding IsChecked}">
-                                <Button Content="{loc:Tr SetParameters}" VerticalAlignment="Center" Margin="1" Click="BtnSetOperationParametersClick" DockPanel.Dock="Right" DataContext="{Binding Key}"/>
+                                <Button Content="{loc:Tr SetParameters}" VerticalAlignment="Center" Margin="1" Click="BtnSetOperationParametersClick" DockPanel.Dock="Right" DataContext="{Binding Key}" />
                                 <ComboBox VerticalAlignment="Center" Margin="3" DockPanel.Dock="Right" SelectedValue="{Binding Path}"  ItemsSource ="{Binding FilePaths, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type teamManager:Settings}}}" Width="168"/>
                                 <TextBlock Text="{loc:Tr SetScript}" VerticalAlignment="Center" Margin="3" DockPanel.Dock="Right"/>
                                 <TextBlock Text="{Binding Key}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />

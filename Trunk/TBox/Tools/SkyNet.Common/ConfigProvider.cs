@@ -5,7 +5,7 @@ using System.ServiceModel.Web;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.SaveLoad;
 
-namespace Mnk.TBox.Tools.SkyNet.Common.Configurations
+namespace Mnk.TBox.Tools.SkyNet.Common
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = false)]
     public class ConfigProvider<T> : IConfigProvider<T>

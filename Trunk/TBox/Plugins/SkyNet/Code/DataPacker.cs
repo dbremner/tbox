@@ -16,13 +16,14 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             this.copyDirGenerator = copyDirGenerator;
         }
 
-        public string Pack(string path, string[] copyMasks, out string name)
+        public string Pack(string path, string[] copyMasks)
         {
             var outputPath = Path.GetTempFileName();
             using (var zipFile = new ZipFile())
             {
                 zipFile.CompressionLevel = CompressionLevel.BestCompression;
                 string source;
+                string name;
                 foreach (var dir in copyDirGenerator.GetFiles(path, copyMasks, out name, out source))
                 {
                     var folder = dir.Key;

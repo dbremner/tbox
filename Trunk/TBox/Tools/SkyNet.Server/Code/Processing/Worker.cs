@@ -4,6 +4,8 @@ using System.Threading;
 using Mnk.Library.ScriptEngine.Core.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces;
+using ScriptEngine.Core.Params;
+using ServiceStack.Text;
 
 namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
 {
@@ -22,7 +24,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
 
         public void ProcessTask(ServerTask task, IList<ServerAgent> agents)
         {
-            var script = compiler.Compile(task.Script);
+            var script = compiler.Compile(task.Script, JsonSerializer.DeserializeFromString<IList<Parameter>>(task.ScriptParameters));
             var items = StartAgents(task, script, agents);
 
             WaitAgents(items);

@@ -6,7 +6,7 @@ using System.ServiceProcess;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
 using Mnk.TBox.Core.Contracts;
-using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.TBox.Tools.SkyNet.Common;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent
 {

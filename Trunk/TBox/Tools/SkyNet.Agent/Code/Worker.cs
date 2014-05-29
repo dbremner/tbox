@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Mnk.Library.Common.Log;
 using Mnk.Library.ScriptEngine.Core.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
+using ScriptEngine.Core.Params;
+using ServiceStack.Text;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent.Code
 {
@@ -66,7 +69,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
             try
             {
                 var path = filesDownloader.DownloadAndUnpackFiles(task.ZipPackageId);
-                var script = compiler.Compile(task.Script);
+                var script = compiler.Compile(task.Script, JsonSerializer.DeserializeFromString<IList<Parameter>>(task.ScriptParameters));
                 task.Report = script.AgentExecute(path, task.Config, context);
             }
             catch (Exception ex)

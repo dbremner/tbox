@@ -4,6 +4,6 @@ namespace Mnk.TBox.Plugins.SkyNet.Code.Interfaces
 {
     internal interface ITaskExecutor
     {
-        void Execute(SingleFileOperation op);
+        string Execute(SingleFileOperation operation);
     }
 }

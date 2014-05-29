@@ -153,6 +153,9 @@
   <data name="Operations" xml:space="preserve">
     <value>Operations</value>
   </data>
+  <data name="PleaseSpecifyScriptPath" xml:space="preserve">
+    <value>Please, specify script path</value>
+  </data>
   <data name="PluginDescription" xml:space="preserve">
     <value>Plugin to do different distibuted calculations. For example, run Nunit tests on the set of PC.</value>
   </data>

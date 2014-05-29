@@ -28,5 +28,8 @@ namespace Mnk.TBox.Tools.SkyNet.Common
 
         [DataMember]
         public bool IsCanceled { get; set; }
+
+        [DataMember]
+        public string ScriptParameters { get; set; }
     }
 }

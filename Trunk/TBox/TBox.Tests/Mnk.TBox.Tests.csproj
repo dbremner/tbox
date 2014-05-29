@@ -93,6 +93,7 @@
     <Compile Include="PlugingsShared\When_using_ccode_formatter.cs" />
     <Compile Include="PlugingsShared\When_using_common_ops.cs" />
     <Compile Include="Plugins\LocalizationTool\Code\When_using_key_value_parser.cs" />
+    <Compile Include="Plugins\SkyNet\When_using_services_registrator.cs" />
     <Compile Include="Plugins\TeamManager\Code\Email\When_send_emails.cs" />
     <Compile Include="Plugins\TeamManager\Code\Email\When_work_with_report_context.cs" />
     <Compile Include="Plugins\Templates\Code\When_using_string_filler.cs" />
@@ -159,6 +160,10 @@
     <ProjectReference Include="..\Plugins\LocalizationTool\LocalizationTool.csproj">
       <Project>{E63C7BEF-B60F-4D4A-9D4C-A8DADEB14ACA}</Project>
       <Name>LocalizationTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Plugins\SkyNet\SkyNet.csproj">
+      <Project>{01da69f1-6a61-4cdf-8217-619894ac38ff}</Project>
+      <Name>SkyNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\Plugins\TeamManager\TeamManager.csproj">
       <Project>{548CA550-22C0-4CF3-A473-8C52AD6A5B5E}</Project>

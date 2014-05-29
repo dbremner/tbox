@@ -4,19 +4,18 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.WpfControls;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine;
+using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
 using Mnk.TBox.Plugins.SkyNet.Code;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.TBox.Tools.SkyNet.Common;
-using Mnk.TBox.Tools.SkyNet.Common.Configurations;
-using Mnk.Library.WpfControls.Code;
 using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.TBox.Plugins.SkyNet
@@ -28,8 +27,7 @@ namespace Mnk.TBox.Plugins.SkyNet
     {
         private readonly ILog log = LogManager.GetLogger<Settings>();
         public LazyDialog<ScriptsConfigurator> ScriptConfiguratorDialog { get; set; }
-        public IServicesBuilder ServicesBuilder { get; set; }
-        public IConfigsFacade ConfigsFacade { get; set; }
+        public ISettingsLogic SettingsLogic {get;set;}
 
         public Settings()
         {
@@ -52,7 +50,7 @@ namespace Mnk.TBox.Plugins.SkyNet
 
         private void ChangeAgentSettingsClick(object sender, RoutedEventArgs e)
         {
-            ConfigsFacade.SetAgentConfig((AgentConfig)AgentConfiguration.DataContext);
+            SettingsLogic.AgentConfig = (AgentConfig)AgentConfiguration.DataContext;
         }
 
         private void AgentSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -62,12 +60,12 @@ namespace Mnk.TBox.Plugins.SkyNet
                 AgentConfiguration.DataContext = null;
                 return;
             }
-            AgentConfiguration.DataContext = ConfigsFacade.GetAgentConfig();
+            AgentConfiguration.DataContext = SettingsLogic.AgentConfig;
         }
 
         private void ChangeServerSettingsClick(object sender, RoutedEventArgs e)
         {
-            ConfigsFacade.SetServerConfig((ServerConfig)ServerConfiguration.DataContext);
+            SettingsLogic.ServerConfig = (ServerConfig)ServerConfiguration.DataContext;
         }
 
         private void ServerSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -77,33 +75,30 @@ namespace Mnk.TBox.Plugins.SkyNet
                 ServerConfiguration.DataContext = null;
                 return;
             }
-            ServerConfiguration.DataContext = ConfigsFacade.GetServerConfig();
+            ServerConfiguration.DataContext = SettingsLogic.ServerConfig;
         }
 
         private void RefreshInfoClick(object sender, RoutedEventArgs e)
         {
             var config = AgentConfiguration.DataContext as AgentConfig;
             if (config == null) return;
+            DialogsCache.ShowProgress(u => DoRefresh(config), 
+                SkyNetLang.PluginName, this.GetParentWindow());
+        }
+
+        private void DoRefresh(AgentConfig config)
+        {
             try
             {
-                using (var agentClient = new NetworkClient<ISkyNetAgentService>(Environment.MachineName, config.Port))
+                var status = SettingsLogic.GetStatus(config);
+                Mt.Do(this, () =>
                 {
-                    AgentInfo.DataContext = agentClient.Instance.GetCurrentTask();
-
-                    using (var serverClient = ServicesBuilder.CreateServerAgentsClient(config))
-                    {
-                        ConnectedAgents.ItemsSource =
-                            serverClient.Instance.GetAgents()
-                                .Select(x => string.Format("{0}\t{1}\t{2}", x.Endpoint, x.State, x.TotalCores));
-                    }
-                    using (var serverClient = ServicesBuilder.CreateServerTasksClient(config))
-                    {
-                        ExistTasks.ItemsSource =
-                            serverClient.Instance.GetTasks()
-                                .Select(x => string.Format("{0}\t{1}\t{2}", x.Owner, x.Progress, x.CreatedTime));
-                    }
-
-                }
+                    ExistTasks.ItemsSource = status.Tasks
+                        .Select(x => string.Format("{0}\t {1}\t {2}\t {3}", x.Owner, x.State, x.Progress, x.CreatedTime));
+                    ConnectedAgents.ItemsSource = status.Agents
+                        .Select(x => string.Format("{0}\t {1}\t {2}", x.Endpoint, x.State, x.TotalCores));
+                    AgentInfo.DataContext = status.Task;
+                });
             }
             catch (Exception ex)
             {
@@ -116,7 +111,7 @@ namespace Mnk.TBox.Plugins.SkyNet
             var op = GetSelectedOperation(sender);
             if (string.IsNullOrEmpty(op.Path))
             {
-                MessageBox.Show("{PleaseSpecifyScriptPath}");
+                MessageBox.Show(SkyNetLang.PleaseSpecifyScriptPath);
                 return;
             }
             ScriptConfiguratorDialog.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());

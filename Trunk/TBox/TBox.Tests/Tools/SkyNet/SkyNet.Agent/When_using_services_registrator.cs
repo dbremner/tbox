@@ -5,7 +5,6 @@ using System.Text;
 using LightInject;
 using Mnk.TBox.Tools.SkyNet.Agent;
 using Mnk.TBox.Tools.SkyNet.Common;
-using Mnk.TBox.Tools.SkyNet.Common.Configurations;
 using NUnit.Framework;
 
 namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Agent

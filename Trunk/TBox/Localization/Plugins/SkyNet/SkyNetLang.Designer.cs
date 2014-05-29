@@ -169,6 +169,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.SkyNet {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, specify script path.
+        /// </summary>
+        public static string PleaseSpecifyScriptPath {
+            get {
+                return ResourceManager.GetString("PleaseSpecifyScriptPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plugin to do different distibuted calculations. For example, run Nunit tests on the set of PC..
         /// </summary>
         public static string PluginDescription {

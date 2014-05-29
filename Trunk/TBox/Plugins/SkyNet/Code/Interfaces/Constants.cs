@@ -1,4 +1,4 @@
-﻿namespace Mnk.TBox.Plugins.SkyNet.Code
+﻿namespace Mnk.TBox.Plugins.SkyNet.Code.Interfaces
 {
     class Constants
     {

@@ -42,6 +42,10 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -56,14 +60,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\ConfigsFacade.cs" />
-    <Compile Include="Code\Constants.cs" />
+    <Compile Include="Code\Interfaces\Constants.cs" />
     <Compile Include="Code\DataPacker.cs" />
     <Compile Include="Code\Interfaces\IConfigsFacade.cs" />
     <Compile Include="Code\Interfaces\IDataPacker.cs" />
+    <Compile Include="Code\Interfaces\IServicesFacade.cs" />
+    <Compile Include="Code\Interfaces\ISettingsLogic.cs" />
     <Compile Include="Code\Interfaces\ITaskExecutor.cs" />
-    <Compile Include="Code\Interfaces\IServicesBuilder.cs" />
+    <Compile Include="Code\Interfaces\SkyNetStatus.cs" />
     <Compile Include="Code\Localization\TrExtension.cs" />
-    <Compile Include="Code\ServicesBuilder.cs" />
+    <Compile Include="Code\ServicesFacade.cs" />
+    <Compile Include="Code\SettingsLogic.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\TaskExecutor.cs" />
     <Compile Include="Code\ServicesRegistrator.cs" />

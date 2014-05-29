@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Mnk.TBox.Tools.SkyNet.Agent.Code;
 using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
-using Mnk.TBox.Tools.SkyNet.Common.Configurations;
+using Mnk.TBox.Tools.SkyNet.Common;
 using NUnit.Framework;
 using Rhino.Mocks;
 

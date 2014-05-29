@@ -19,6 +19,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
         {
             var agentTask = new AgentTask
             {
+                ScriptParameters = task.ScriptParameters,
                 Config = agentData,
                 Script = task.Script,
                 ZipPackageId = task.ZipPackageId

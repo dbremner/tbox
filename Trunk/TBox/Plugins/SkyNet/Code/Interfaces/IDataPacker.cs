@@ -2,6 +2,6 @@
 {
     internal interface IDataPacker
     {
-        string Pack(string path, string[] copyMasks, out string name);
+        string Pack(string path, string[] copyMasks);
     }
 }

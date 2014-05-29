@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Mnk.Library.ScriptEngine.Core.Interfaces;
+﻿using Mnk.Library.ScriptEngine.Core.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Processing;
 using NUnit.Framework;
 using Rhino.Mocks;
+using ScriptEngine.Core.Params;
 
 namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
 {
@@ -29,12 +29,12 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
             serverAgents = new[] { new ServerAgent { } };
             serverTask = new ServerTask
             {
-                Config = "CONFIG",
+                ScriptParameters = "",
                 Script = "Script",
                 ZipPackageId = "ZipPackageId"
             };
             script = MockRepository.GenerateMock<ISkyScript>();
-            compiler.Stub(x => x.Compile(serverTask.Script)).Return(script);
+            compiler.Stub(x => x.Compile(serverTask.Script, new Parameter[0])).Return(script);
         }
 
         [TearDown]
