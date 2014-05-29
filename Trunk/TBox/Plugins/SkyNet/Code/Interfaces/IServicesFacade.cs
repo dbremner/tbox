@@ -13,6 +13,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Code.Interfaces
         string StartTask(ServerTask task);
         void Cancel(string id);
         void Terminate(string id);
-        void DeleteTask(string id);
+        string DeleteTask(string id);
+        ServerTask GetTask(string id);
     }
 }

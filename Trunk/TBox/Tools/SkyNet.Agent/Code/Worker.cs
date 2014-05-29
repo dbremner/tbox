@@ -75,10 +75,11 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
             catch (Exception ex)
             {
                 log.Write(ex, "Can't execute task: " + task.Id);
-                task.Report = ex.ToString();
+                task.Report = "Agent failed: " +  Environment.MachineName + Environment.NewLine + ex.ToString();
             }
             finally
             {
+                task.IsDone = true;
                 lock (locker)
                 {
                     thread = null;

@@ -24,6 +24,10 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         void TerminateTask(string id);
 
         [OperationContract]
+        [WebGet(UriTemplate = "task/{id}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        ServerTask GetTask(string id);
+
+        [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "task/{id}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
         string DeleteTask(string id);
     }

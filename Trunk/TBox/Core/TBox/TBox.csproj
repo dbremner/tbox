@@ -216,6 +216,9 @@
     <None Include="Data\SkyNet\NUnitTests.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\SkyNet\Factorial.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="Forms\ChangesLogDialog.xaml.cs">
       <DependentUpon>ChangesLogDialog.xaml</DependentUpon>
     </Compile>

@@ -26,7 +26,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
             };
             try
             {
-                task.Id = cache.Get(agent).AddTask(agentTask);
+                agentTask.Id = cache.Get(agent).AddTask(agentTask);
                 return new WorkerTask
                 {
                     Agent = agent,

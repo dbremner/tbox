@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Mnk.Library.Common.Communications;
-using Mnk.Library.Common.Tools;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 
@@ -89,11 +88,19 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             }
         }
 
-        public void DeleteTask(string id)
+        public string DeleteTask(string id)
         {
             using (var cl = CreateServerTasksClient())
             {
-                cl.Instance.DeleteTask(id);
+                return cl.Instance.DeleteTask(id);
+            }
+        }
+
+        public ServerTask GetTask(string id)
+        {
+            using (var cl = CreateServerTasksClient())
+            {
+                return cl.Instance.GetTask(id);
             }
         }
 

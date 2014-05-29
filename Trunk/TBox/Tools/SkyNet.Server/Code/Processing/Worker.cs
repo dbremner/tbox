@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Mnk.Library.ScriptEngine.Core.Interfaces;
@@ -26,6 +27,10 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
         {
             var script = compiler.Compile(task.Script, JsonSerializer.DeserializeFromString<IList<Parameter>>(task.ScriptParameters));
             var items = StartAgents(task, script, agents);
+            if (!items.Any())
+            {
+                throw new ArgumentException("Please divide tasks, 0 agents is not applicable.");
+            }
 
             WaitAgents(items);
 

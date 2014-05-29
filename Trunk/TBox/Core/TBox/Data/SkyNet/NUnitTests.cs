@@ -19,10 +19,10 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         private const string RunAsx86Path = "RunAsx86.exe";
         [Directory]
         public string DataFolderPath { get; set; }
-        [File]
-        public string TestDllPath { get; set; }
         [StringList("*.dll", "*.config", CanBeEmpty = false)]
         public string[] PathMasksToInclude { get; set; }
+        [File]
+        public string TestDllPath { get; set; }
         [String(CanBeEmpty = true)]
         public string CommandBeforeTestsRun { get; set; }
         [Bool(true)]

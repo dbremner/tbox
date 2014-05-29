@@ -44,8 +44,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
                 MessageBox.Show(SkyNetLang.PleaseSpecifyScriptPath);
                 return;
             }
-            scriptConfiguratorDialog.Value.ShowDialog(operation, scriptConfigurator, Application.Current.MainWindow);
-
+            scriptConfiguratorDialog.Do(context.DoSync, x => x.ShowDialog(operation, scriptConfigurator, Application.Current.MainWindow));
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Mnk.Library.ScriptEngine.Core
                 try
                 {
                     var attribute = p.GetCustomAttributes(true).OfType<ParameterAttribute>().SingleOrDefault();
+                    if(attribute is IgnoreAttribute)continue;
                     var el = factory.Create(attribute, p.Name, p.PropertyType);
                     parameters.Add(el);
                 }

@@ -15,6 +15,12 @@ namespace Mnk.Library.ScriptEngine
         public abstract Type GetTypeForAttribute();
     }
 
+    public sealed class IgnoreAttribute : ParameterAttribute
+    {
+        public override Parameter CreateParameter() { return null; }
+        public override Type GetTypeForAttribute() { return typeof(void); }
+    }
+
     public sealed class BoolAttribute : ParameterAttribute
     {
         public bool Value { get; set; }

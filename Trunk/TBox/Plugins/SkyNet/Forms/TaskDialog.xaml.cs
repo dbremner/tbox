@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -9,7 +11,9 @@ using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.WpfControls;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 
@@ -54,6 +58,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
         {
             if (!IsVisible)
             {
+                Title = string.Format("{0} - [ {1} ]", SkyNetLang.PluginName, operation.Key);
                 timer.Start();
                 DataContext = operation;
             }
@@ -73,10 +78,32 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
 
         private void StartClick(object sender, RoutedEventArgs e)
         {
-            ExceptionsHelper.HandleException(
-                () => taskExecutor.Execute((SingleFileOperation) DataContext),
-                ()=>"Can't start task", log
-                );
+            var operation = (SingleFileOperation) DataContext;
+            DialogsCache.ShowProgress(u=>DoStart(u,operation), Title, this);
+        }
+
+        private void DoStart(IUpdater updater, SingleFileOperation operation)
+        {
+            try
+            {
+                var id = taskExecutor.Execute(operation);
+                do
+                {
+                    var task = servicesFacade.GetTask(id);
+                    if (task.State == TaskState.Done) break;
+                    Thread.Sleep(5000);
+                } while (!updater.UserPressClose);
+                if (updater.UserPressClose)
+                {
+                    servicesFacade.Terminate(id);
+                }
+                var report = servicesFacade.DeleteTask(id);
+                Mt.Do(this, ()=>Report.Text = report);
+            }
+            catch (Exception ex)
+            {
+                log.Write(ex, "Error executing task");
+            }
         }
 
         private void CancelTask(object sender, RoutedEventArgs e)

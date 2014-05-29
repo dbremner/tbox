@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.TBox.Tools.SkyNet.Common.Modules;
@@ -31,6 +32,10 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
             try
             {
                 worker.ProcessTask(task, agents);
+            }
+            catch (Exception ex)
+            {
+                task.Report = "Server failed" + Environment.NewLine + ex;
             }
             finally
             {

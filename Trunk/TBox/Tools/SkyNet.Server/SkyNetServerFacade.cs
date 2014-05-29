@@ -71,6 +71,12 @@ namespace Mnk.TBox.Tools.SkyNet.Server
             Execute(() => serverTasksLogic.TerminateTask(id));
         }
 
+        public ServerTask GetTask(string id)
+        {
+            ServerTask result = null;
+            Execute(() => result = serverTasksLogic.GetTask(id));
+            return result;
+        }
 
         public string DeleteTask(string id)
         {

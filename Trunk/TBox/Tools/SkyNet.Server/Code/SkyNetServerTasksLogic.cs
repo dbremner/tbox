@@ -73,14 +73,21 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
                 agent => skyAgentLogic.TerminateTask(agent, id));
         }
 
-        public string DeleteTask(string id)
+        public ServerTask GetTask(string id)
         {
             var task = serverContext.Config.Tasks.FirstOrDefault(x => x.Id.EqualsIgnoreCase(id));
             if (task == null)
             {
                 contextHelper.SetStatusCode(HttpStatusCode.NotFound);
-                return string.Empty;
+                return null;
             }
+            return task;
+        }
+
+        public string DeleteTask(string id)
+        {
+            var task = GetTask(id);
+            if (task == null) return string.Empty;
             if (task.State == TaskState.InProgress)
             {
                 contextHelper.SetStatusCode(HttpStatusCode.Conflict);
