@@ -44,16 +44,14 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
             return task;
         }
 
-        public void CancelCurrentTask()
+        public void CancelTask(string id)
         {
-            Execute(() => agentLogic.CancelCurrentTask());
+            Execute(() => agentLogic.CancelTask(id));
         }
 
-        public string TerminateCurrentTask()
+        public void TerminateTask(string id)
         {
-            var result = string.Empty;
-            Execute(() => result = agentLogic.TerminateCurrentTask());
-            return result;
+            Execute(() => agentLogic.TerminateTask(id));
         }
 
         public string DeleteTask(string id)

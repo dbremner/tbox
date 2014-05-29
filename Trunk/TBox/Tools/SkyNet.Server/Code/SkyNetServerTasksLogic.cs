@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Tools.SkyNet.Common;
@@ -13,13 +14,13 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
     {
         private readonly IHttpContextHelper contextHelper;
         private readonly IStorage storage;
-        private readonly ISkyContext context;
+        private readonly ISkyAgentLogic skyAgentLogic;
 
-        public SkyNetServerTasksLogic(IHttpContextHelper contextHelper, IStorage storage, ISkyContext context)
+        public SkyNetServerTasksLogic(IHttpContextHelper contextHelper, IStorage storage, ISkyAgentLogic skyAgentLogic)
         {
             this.contextHelper = contextHelper;
             this.storage = storage;
-            this.context = context;
+            this.skyAgentLogic = skyAgentLogic;
         }
 
         public string AddTask(ServerTask task)
@@ -62,12 +63,14 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
 
         public void CancelTask(string id)
         {
-
+            Parallel.ForEach(storage.Config.Agents, 
+                agent => skyAgentLogic.CancelTask(agent, id));
         }
 
         public void TerminateTask(string id)
         {
-            
+            Parallel.ForEach(storage.Config.Agents,
+                agent => skyAgentLogic.TerminateTask(agent, id));
         }
 
         public string DeleteTask(string id)

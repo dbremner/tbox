@@ -62,19 +62,27 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
         {
             cache.Clear();
             context.Reset();
-            task.State = TaskState.InProgress;
-            foreach (var agent in agents)
+            lock (storage)
             {
-                agent.State = AgentState.InProgress;
+                task.State = TaskState.InProgress;
+                foreach (var agent in agents)
+                {
+                    agent.State = AgentState.InProgress;
+                }
+                storage.Save();
             }
         }
 
         private void PrepareToEnd(ServerTask task, IEnumerable<ServerAgent> agents)
         {
-            task.State = TaskState.Done;
-            foreach (var agent in agents)
+            lock (storage)
             {
-                agent.State = AgentState.Idle;
+                task.State = TaskState.Done;
+                foreach (var agent in agents)
+                {
+                    agent.State = AgentState.Idle;
+                }
+                storage.Save();
             }
         }
 

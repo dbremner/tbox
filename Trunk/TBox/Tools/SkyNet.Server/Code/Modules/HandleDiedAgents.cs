@@ -32,9 +32,17 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
             var nonIdleAgents = agents.Where(x => x.State != AgentState.Idle).ToArray();
             Parallel.ForEach(nonIdleAgents, agent =>
             {
-                var id = agentLogic.TerminateCurrentTask(agent);
-                agentLogic.DeleteTask(agent, id);
-                agent.State = AgentState.Idle;
+                var task = agentLogic.GetCurrentTask(agent);
+                if (task != null)
+                {
+                    agentLogic.TerminateTask(agent, task.Id);
+                    agentLogic.DeleteTask(agent, task.Id);
+                }
+                lock (storage)
+                {
+                    agent.State = AgentState.Idle;
+                    storage.Save();
+                }
             });
         }
 
@@ -60,6 +68,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
                 {
                     storage.Config.Agents.Remove(agent);
                 }
+                storage.Save();
             }
         }
 

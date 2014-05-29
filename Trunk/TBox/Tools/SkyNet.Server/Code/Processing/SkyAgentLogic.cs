@@ -87,16 +87,26 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
             return result;
         }
 
-        public string TerminateCurrentTask(ServerAgent agent)
+        public AgentTask GetCurrentTask(ServerAgent agent)
         {
-            var result = string.Empty;
-            Execute(agent, s => result = s.TerminateCurrentTask());
-            return result;
+            AgentTask task = null;
+            Execute(agent, s => task = s.GetCurrentTask());
+            return task;
         }
 
         public void DeleteTask(ServerAgent agent, string id)
         {
             Execute(agent, s=>s.DeleteTask(id));
+        }
+
+        public void TerminateTask(ServerAgent agent, string id)
+        {
+            Execute(agent, s => s.TerminateTask(id));
+        }
+
+        public void CancelTask(ServerAgent agent, string id)
+        {
+            Execute(agent, s => s.CancelTask(id));
         }
 
         private void Execute(ServerAgent agent, Action<ISkyNetAgentService> op)

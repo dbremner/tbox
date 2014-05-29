@@ -9,7 +9,9 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces
         bool IsDone(WorkerTask task);
         SkyAgentWork BuildReport(WorkerTask task);
         bool IsAlive(ServerAgent arg);
-        string TerminateCurrentTask(ServerAgent agent);
+        AgentTask GetCurrentTask(ServerAgent agent);
         void DeleteTask(ServerAgent agent, string id);
+        void TerminateTask(ServerAgent agent, string id);
+        void CancelTask(ServerAgent agent, string id);
     }
 }

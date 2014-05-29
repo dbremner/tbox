@@ -19,12 +19,12 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         AgentTask GetCurrentTask();
 
         [OperationContract]
-        [WebInvoke(Method="POST", UriTemplate = "task/current/cancel", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        void CancelCurrentTask();
+        [WebInvoke(Method="POST", UriTemplate = "task/{id}/cancel", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        void CancelTask(string id);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "task/current/terminate", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
-        string TerminateCurrentTask();
+        [WebInvoke(Method = "POST", UriTemplate = "task/{id}/terminate", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        void TerminateTask(string id);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "task/{id}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]

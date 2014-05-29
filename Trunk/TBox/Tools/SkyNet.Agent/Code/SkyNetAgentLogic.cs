@@ -51,24 +51,24 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
             if (currentTask == null) return null;
             return new AgentTask
             {
+                Id = currentTask.Id,
                 Progress = currentTask.Progress,
                 IsDone = worker.IsDone || currentTask.IsCanceled,
             };
         }
 
-        public void CancelCurrentTask()
+        public void CancelTask(string id)
         {
-            if (currentTask == null) return;
+            if (currentTask == null || !string.Equals(currentTask.Id, id)) return;
             currentTask.IsCanceled = true;
             worker.Cancel();
         }
 
-        public string TerminateCurrentTask()
+        public void TerminateTask(string id)
         {
-            if (currentTask == null) return string.Empty;
+            if (currentTask == null || !string.Equals(currentTask.Id,id)) return;
             currentTask.IsCanceled = true;
             worker.Terminate();
-            return currentTask.Id;
         }
 
         public string DeleteTask(string id)
