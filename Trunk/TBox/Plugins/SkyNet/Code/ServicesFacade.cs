@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Tools;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
@@ -10,33 +11,52 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
 {
     class ServicesFacade : IServicesFacade
     {
-        public IList<ServerTask> GetServiceTasks(AgentConfig config)
+        private readonly IConfigsFacade configsFacade;
+
+        public ServicesFacade(IConfigsFacade configsFacade)
         {
-            using (var serverClient = CreateServerTasksClient(config))
+            this.configsFacade = configsFacade;
+        }
+
+        public IList<ServerTask> GetServiceTasks()
+        {
+            using (var serverClient = CreateServerTasksClient())
             {
                 return serverClient.Instance.GetTasks();
             }
         }
 
-        public IList<ServerAgent> GetServiceAgents(AgentConfig config)
+        public IList<ServerAgent> GetServiceAgents()
         {
-            using (var serverClient = CreateServerAgentsClient(config))
+            using (var serverClient = CreateServerAgentsClient())
             {
                 return serverClient.Instance.GetAgents();
             }
         }
 
-        public AgentTask GetAgentCurrentTask(AgentConfig config)
+        public AgentTask GetAgentCurrentTask()
         {
-            using (var agentClient = CreateAgentServerClient(config))
+            using (var agentClient = CreateAgentServerClient())
             {
                 return agentClient.Instance.GetCurrentTask();
             }
         }
 
-        public string UploadFile(AgentConfig config, string path)
+        public SkyNetStatus GetStatus()
         {
-            using (var cl = CreateFileServerClient(config))
+            var status = new SkyNetStatus();
+            Parallel.Invoke(
+                () => status.Task = GetAgentCurrentTask(),
+                () => status.Agents = GetServiceAgents(),
+                () => status.Tasks = GetServiceTasks()
+                );
+            return status;
+        }
+
+
+        public string UploadFile(string path)
+        {
+            using (var cl = CreateFileServerClient())
             {
                 using (var f = File.OpenRead(path))
                 {
@@ -45,32 +65,62 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             }
         }
 
-        public string StartTask(AgentConfig config, ServerTask task)
+        public string StartTask(ServerTask task)
         {
-            using (var cl = CreateServerTasksClient(config))
+            using (var cl = CreateServerTasksClient())
             {
                 return cl.Instance.AddTask(task);
             }
         }
 
-        private NetworkClient<ISkyNetServerAgentsService> CreateServerAgentsClient(AgentConfig config)
+        public void Cancel(string id)
         {
-            return new NetworkClient<ISkyNetServerAgentsService>(new Uri(config.ServerEndpoint));
+            using (var cl = CreateServerTasksClient())
+            {
+                cl.Instance.CancelTask(id);
+            }
         }
 
-        private NetworkClient<ISkyNetServerTasksService> CreateServerTasksClient(AgentConfig config)
+        public void Terminate(string id)
         {
-            return new NetworkClient<ISkyNetServerTasksService>(new Uri(config.ServerEndpoint));
+            using (var cl = CreateServerTasksClient())
+            {
+                cl.Instance.TerminateTask(id);
+            }
         }
 
-        private NetworkClient<ISkyNetFileService> CreateFileServerClient(AgentConfig config)
+        public void DeleteTask(string id)
         {
-            return new NetworkClient<ISkyNetFileService>(new Uri(config.ServerEndpoint));
+            using (var cl = CreateServerTasksClient())
+            {
+                cl.Instance.DeleteTask(id);
+            }
         }
 
-        private NetworkClient<ISkyNetAgentService> CreateAgentServerClient(AgentConfig config)
+        private NetworkClient<ISkyNetServerAgentsService> CreateServerAgentsClient()
         {
-            return new NetworkClient<ISkyNetAgentService>(Environment.MachineName, config.Port);
+            return new NetworkClient<ISkyNetServerAgentsService>(ServerUri);
         }
+
+        private NetworkClient<ISkyNetServerTasksService> CreateServerTasksClient()
+        {
+            return new NetworkClient<ISkyNetServerTasksService>(ServerUri);
+        }
+
+        private NetworkClient<ISkyNetFileService> CreateFileServerClient()
+        {
+            return new NetworkClient<ISkyNetFileService>(ServerUri);
+        }
+
+        private NetworkClient<ISkyNetAgentService> CreateAgentServerClient()
+        {
+            return new NetworkClient<ISkyNetAgentService>(Environment.MachineName, configsFacade.AgentConfig.Port);
+        }
+
+        private Uri ServerUri
+        {
+            get { return new Uri(configsFacade.AgentConfig.ServerEndpoint); }
+        }
+
     }
 }

@@ -86,7 +86,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             ShowAndActivate();
             btnSearch.IsEnabled = SearchText.Text.Length > 0;
             disableSearch = false;
-            if (btnSearch.IsEnabled)
+            if (btnSearch.IsEnabled && !config.Search.FullTextSearch)
             {
                 DoSearch();
             }
@@ -349,7 +349,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
 
         private void DoSearch()
         {
-            if (!IsVisible) return;
+            if (!IsVisible || config.Search.FullTextSearch) return;
             SearchClick(null, null);
         }
 

@@ -126,8 +126,14 @@
   <data name="AvailableCpuCores" xml:space="preserve">
     <value>Доступно ядер ЦПУ</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
   <data name="Change" xml:space="preserve">
     <value>Изменить</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Конфигурация</value>
@@ -137,6 +143,12 @@
   </data>
   <data name="CurrentAgentTask" xml:space="preserve">
     <value>Текущая задача агента</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Executing" xml:space="preserve">
+    <value>Выполнение</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Информация</value>
@@ -189,7 +201,13 @@
   <data name="SetScript" xml:space="preserve">
     <value>Скрипт</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Старт</value>
+  </data>
   <data name="Tasks" xml:space="preserve">
     <value>Задачи</value>
+  </data>
+  <data name="Terminate" xml:space="preserve">
+    <value>Прервать</value>
   </data>
 </root>

@@ -126,8 +126,14 @@
   <data name="AvailableCpuCores" xml:space="preserve">
     <value>Available Cpu cores</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Change" xml:space="preserve">
     <value>Change</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="Configuration" xml:space="preserve">
     <value>Configuration</value>
@@ -137,6 +143,12 @@
   </data>
   <data name="CurrentAgentTask" xml:space="preserve">
     <value>Current agent task</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Executing" xml:space="preserve">
+    <value>Executing</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
@@ -189,7 +201,13 @@
   <data name="SetScript" xml:space="preserve">
     <value>Script</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="Tasks" xml:space="preserve">
     <value>Tasks</value>
+  </data>
+  <data name="Terminate" xml:space="preserve">
+    <value>Terminate</value>
   </data>
 </root>

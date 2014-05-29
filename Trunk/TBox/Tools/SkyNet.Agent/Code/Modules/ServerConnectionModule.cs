@@ -43,6 +43,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code.Modules
 
         public void Dispose()
         {
+            /*
             try
             {
                 using (var cl = new NetworkClient<ISkyNetServerAgentsService>(new Uri(config.ServerEndpoint)))
@@ -54,7 +55,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code.Modules
             {
                 log.Write(ex, "Can't disconnect from server");
             }
-
+            */
         }
     }
 }

@@ -88,10 +88,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <GroupBox Header="{loc:Tr Agents}" Grid.Row="0">
-                        <ListBox Name="ConnectedAgents" Margin="5"/>
+                        <components:ExtListBox Name="ConnectedAgents" Margin="5"/>
                     </GroupBox>
                     <GroupBox Header="{loc:Tr Tasks}" Grid.Row="1">
-                        <ListBox Name="ExistTasks" Margin="5"/>
+                        <components:ExtListBox Name="ExistTasks" Margin="5"/>
                     </GroupBox>
                 </Grid>
             </DockPanel>

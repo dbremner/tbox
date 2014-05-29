@@ -9,6 +9,46 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
     class ConfigsFacade : IConfigsFacade
     {
         private readonly ILog log = LogManager.GetLogger<ConfigsFacade>();
+        private AgentConfig agentConfig = null;
+        private ServerConfig serverConfig = null;
+
+        public AgentConfig AgentConfig
+        {
+            get
+            {
+                if (agentConfig != null) return agentConfig;
+                using (var cl = CreateAgentConfigProvider())
+                {
+                    return GetConfig(cl.Instance);
+                }
+            }
+            set
+            {
+                using (var cl = CreateAgentConfigProvider())
+                {
+                    SetConfig(cl.Instance, agentConfig = value);
+                }
+            }
+        }
+
+        public ServerConfig ServerConfig
+        {
+            get
+            {
+                if (serverConfig != null) return serverConfig;
+                using (var cl = CreateServerConfigProvider())
+                {
+                    return GetConfig(cl.Instance);
+                }
+            }
+            set
+            {
+                using (var cl = CreateServerConfigProvider())
+                {
+                    SetConfig(cl.Instance, serverConfig=value);
+                }
+            }
+        }
 
         private static InterprocessClient<IConfigProvider<AgentConfig>> CreateAgentConfigProvider()
         {
@@ -20,13 +60,13 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             return new InterprocessClient<IConfigProvider<ServerConfig>>(Constants.ServerServiceName);
         }
 
-        private void SetConfig<T>(InterprocessClient<IConfigProvider<T>> cl, object config)
+        private void SetConfig<T>(IConfigProvider<T> cl, object config)
             where T : class
         {
             if (config == null) return;
             try
             {
-                cl.Instance.UpdateConfig((T)config);
+                cl.UpdateConfig((T)config);
             }
             catch (Exception ex)
             {
@@ -34,12 +74,12 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             }
         }
 
-        private T GetConfig<T>(InterprocessClient<IConfigProvider<T>> cl)
+        private T GetConfig<T>(IConfigProvider<T> cl)
             where T : class
         {
             try
             {
-                return cl.Instance.ReceiveConfig();
+                return cl.ReceiveConfig();
             }
             catch (Exception ex)
             {
@@ -48,40 +88,5 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             return null;
         }
 
-        public AgentConfig AgentConfig
-        {
-            get
-            {
-                using (var cl = CreateAgentConfigProvider())
-                {
-                    return GetConfig(cl);
-                }
-            }
-            set
-            {
-                using (var cl = CreateAgentConfigProvider())
-                {
-                    SetConfig(cl, value);
-                }
-            }
-        }
-
-        public ServerConfig ServerConfig
-        {
-            get
-            {
-                using (var cl = CreateServerConfigProvider())
-                {
-                    return GetConfig(cl);
-                }
-            }
-            set
-            {
-                using (var cl = CreateServerConfigProvider())
-                {
-                    SetConfig(cl, value);
-                }
-            }
-        }
     }
 }

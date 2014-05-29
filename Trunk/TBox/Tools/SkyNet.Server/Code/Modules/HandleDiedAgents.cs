@@ -9,12 +9,12 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
 {
     class HandleDiedAgents : IModule
     {
-        private readonly IStorage storage;
+        private readonly IServerContext serverContext;
         private readonly ISkyAgentLogic agentLogic;
 
-        public HandleDiedAgents(IStorage storage, ISkyAgentLogic agentLogic)
+        public HandleDiedAgents(IServerContext serverContext, ISkyAgentLogic agentLogic)
         {
-            this.storage = storage;
+            this.serverContext = serverContext;
             this.agentLogic = agentLogic;
         }
 
@@ -38,10 +38,9 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
                     agentLogic.TerminateTask(agent, task.Id);
                     agentLogic.DeleteTask(agent, task.Id);
                 }
-                lock (storage)
+                lock (serverContext)
                 {
                     agent.State = AgentState.Idle;
-                    storage.Save();
                 }
             });
         }
@@ -62,21 +61,20 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
 
         private void RemoveAgents(IEnumerable<ServerAgent> toRemove)
         {
-            lock (storage)
+            lock (serverContext)
             {
                 foreach (var agent in toRemove)
                 {
-                    storage.Config.Agents.Remove(agent);
+                    serverContext.Config.Agents.Remove(agent);
                 }
-                storage.Save();
             }
         }
 
         private IList<ServerAgent> GetAgents()
         {
-            lock (storage)
+            lock (serverContext)
             {
-                return storage.Config.Agents.ToArray();
+                return serverContext.Config.Agents.ToArray();
             }
         }
 

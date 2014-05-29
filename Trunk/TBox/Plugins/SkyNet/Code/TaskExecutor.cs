@@ -35,16 +35,16 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
                 Owner = config.Name,
                 Script = scriptContent,
                 ScriptParameters = JsonSerializer.SerializeToString(operation.Parameters),
-                ZipPackageId = PackData(script, config)
+                ZipPackageId = PackData(script)
             };
-            return servicesFacade.StartTask(config, task);
+            return servicesFacade.StartTask(task);
         }
 
-        private string PackData(ISkyScript script, AgentConfig config)
+        private string PackData(ISkyScript script)
         {
             if (string.IsNullOrEmpty(script.DataFolderPath)) return string.Empty;
             var path = dataPacker.Pack(script.DataFolderPath, script.PathMasksToInclude);
-            var zipPackageId = servicesFacade.UploadFile(config, path);
+            var zipPackageId = servicesFacade.UploadFile(path);
             File.Delete(path);
             return zipPackageId;
         }

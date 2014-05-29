@@ -16,7 +16,7 @@ namespace Mnk.TBox.Plugins.Requestor.Code
     public sealed class Executor : BaseExecutor, IDisposable
     {
         private readonly LazyDialog<RequestDialog> message = new LazyDialog<RequestDialog>(
-            () => new RequestDialog(), "message");
+            () => new RequestDialog());
 
         public void Execute(Window owner, Op operation, Config config, Action onEnd, ImageSource icon)
         {

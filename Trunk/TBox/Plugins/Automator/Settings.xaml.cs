@@ -17,7 +17,7 @@ namespace Mnk.TBox.Plugins.Automator
 	public sealed partial class Settings : ISettings, IDisposable
 	{
 		private readonly LazyDialog<OperationDialog> operationsDialog = 
-			new LazyDialog<OperationDialog>(()=>new OperationDialog(), "operation");
+			new LazyDialog<OperationDialog>(()=>new OperationDialog());
 		public Settings()
 		{
 			InitializeComponent();

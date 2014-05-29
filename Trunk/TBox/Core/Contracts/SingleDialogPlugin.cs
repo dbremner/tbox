@@ -16,7 +16,7 @@ namespace Mnk.TBox.Core.Contracts
 		protected SingleDialogPlugin(string menuItemName)
 		{
 			Menu = new[] { new UMenuItem { Header = menuItemName, OnClick = o=>ShowDialog() } };
-			Dialog = new LazyDialog<TDialog>(CreateDialog, "default");
+			Dialog = new LazyDialog<TDialog>(CreateDialog);
 		}
 
 		protected virtual TDialog CreateDialog()

@@ -2,9 +2,8 @@
 
 namespace Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces
 {
-    public interface IStorage
+    public interface IServerContext
     {
-        void Save();
         Config Config { get; }
     }
 }

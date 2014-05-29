@@ -19,7 +19,7 @@ namespace Mnk.TBox.Plugins.PasswordsStorage
 
         public PasswordsStorage()
         {
-            dialog = new LazyDialog<Dialog>(CreateDialog, "passwords-dialog");
+            dialog = new LazyDialog<Dialog>(CreateDialog);
         }
 
         private Dialog CreateDialog()

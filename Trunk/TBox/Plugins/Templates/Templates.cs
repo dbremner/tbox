@@ -27,8 +27,8 @@ namespace Mnk.TBox.Plugins.Templates
 
 		public Templates()
 		{
-			fileDialog = new LazyDialog<FileDialog>(CreateDialog<FileDialog>, "templates");
-			stringDialog = new LazyDialog<StringDialog>(CreateDialog<StringDialog>, "strings");
+			fileDialog = new LazyDialog<FileDialog>(CreateDialog<FileDialog>);
+			stringDialog = new LazyDialog<StringDialog>(CreateDialog<StringDialog>);
 		}
 
 		private T CreateDialog<T>()

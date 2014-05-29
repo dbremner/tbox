@@ -30,8 +30,8 @@ namespace Mnk.TBox.Plugins.TeamManager
 
         public TeamManager()
         {
-            timeReportDialog = new LazyDialog<TimeReportDialog>(() => new TimeReportDialog(receiver) { Icon = Icon.ToImageSource() }, "timeReportDialog");
-            dataProvidersEditorDialog = new LazyDialog<EditorDialog>(CreateEditor, "dataProvidersEditorDialog");
+            timeReportDialog = new LazyDialog<TimeReportDialog>(() => new TimeReportDialog(receiver) { Icon = Icon.ToImageSource() });
+            dataProvidersEditorDialog = new LazyDialog<EditorDialog>(CreateEditor);
         }
 
         public void Dispose()
@@ -123,7 +123,7 @@ namespace Mnk.TBox.Plugins.TeamManager
             s.FilePaths = GetPaths(DataProvidersFolder);
             s.ScriptConfigurator = reportScriptRunner;
             s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
-                () => new SingleFileScriptConfigurator { Context = Context, Icon = imageSource }, "scripts configurator");
+                () => new SingleFileScriptConfigurator { Context = Context, Icon = imageSource });
             return s;
         }
 

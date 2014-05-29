@@ -25,7 +25,7 @@ namespace Mnk.TBox.Plugins.Requestor
 
 		public Requestor()
 		{
-			formDdos = new LazyDialog<FormLoadTesting>(CreateForm, "ddos");
+			formDdos = new LazyDialog<FormLoadTesting>(CreateForm);
 			executor = new Lazy<Executor>(() => new Executor());
 		}
 

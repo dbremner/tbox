@@ -21,7 +21,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
 
         public NUnitRunner()
         {
-            runner = new LazyDialog<Dialog>(CreateDialog, "simple");
+            runner = new LazyDialog<Dialog>(CreateDialog);
         }
 
         private Dialog CreateDialog()

@@ -32,7 +32,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code
 				var dialog = new SearchDialog();
 				dialog.Load(mainConfig);
 				return dialog;
-			}, "search");
+			});
 		}
 
 		public void InitFolders(string path)

@@ -3,37 +3,42 @@ using System.Windows.Controls;
 
 namespace Mnk.TBox.Core.Contracts
 {
-	public abstract class ConfigurablePlugin<TSettings, TConfig> : SimpleConfigurablePlugin<TConfig>, IConfigurablePlugin
-		where TSettings: ISettings, new()
-		where TConfig: new()
-	{
-		protected Lazy<TSettings> Settings { get; set; }
+    public abstract class ConfigurablePlugin<TSettings, TConfig> : SimpleConfigurablePlugin<TConfig>, IConfigurablePlugin
+        where TSettings : ISettings, new()
+        where TConfig : new()
+    {
+        protected Lazy<TSettings> Settings { get; set; }
 
-		protected ConfigurablePlugin()
-		{
-			Settings = new Lazy<TSettings>(CreateSettings);
-		}
+        protected ConfigurablePlugin()
+        {
+            Settings = new Lazy<TSettings>(CreateSettings);
+        }
 
-		protected virtual TSettings CreateSettings()
-		{
-			var s = new TSettings();
+        protected virtual TSettings CreateSettings()
+        {
+            var s = CreateSettingsInstance();
             s.Control.DataContext = ConfigManager.Config;
-			return s;
-		}
+            return s;
+        }
 
-		public override void Load()
-		{
-			if (Settings.IsValueCreated)
+        protected virtual TSettings CreateSettingsInstance()
+        {
+            return new TSettings();
+        }
+
+        public override void Load()
+        {
+            if (Settings.IsValueCreated)
                 Settings.Value.Control.DataContext = ConfigManager.Config;
-			base.Load();
-		}
+            base.Load();
+        }
 
-		public override Func<Control> SettingsGetter
-		{
-			get
-			{
-				return () => Settings.Value.Control;
-			}
-		}
-	}
+        public override Func<Control> SettingsGetter
+        {
+            get
+            {
+                return () => Settings.Value.Control;
+            }
+        }
+    }
 }

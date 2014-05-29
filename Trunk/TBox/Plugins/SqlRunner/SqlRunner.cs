@@ -26,8 +26,8 @@ namespace Mnk.TBox.Plugins.SqlRunner
 
         public SqlRunner()
         {
-            formDdos = new LazyDialog<FormLoadTesting>(CreateDdosForm, "ddos");
-            formBatch = new LazyDialog<FormBatch>(CreateBatchForm, "batch");
+            formDdos = new LazyDialog<FormLoadTesting>(CreateDdosForm);
+            formBatch = new LazyDialog<FormBatch>(CreateBatchForm);
             executor = new Lazy<Executor>(() => new Executor());
         }
 

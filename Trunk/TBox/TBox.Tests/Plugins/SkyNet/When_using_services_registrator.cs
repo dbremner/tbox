@@ -15,7 +15,7 @@ namespace Mnk.TBox.Tests.Plugins.SkyNet
         [SetUp]
         public void SetUp()
         {
-            container = ServicesRegistrator.Register(MockRepository.GenerateMock<IPluginContext>());
+            container = ServicesRegistrator.Register(MockRepository.GenerateMock<IPluginContext>(), ()=>null);
         }
 
         [TearDown]
@@ -25,20 +25,20 @@ namespace Mnk.TBox.Tests.Plugins.SkyNet
         }
 
         [Test]
-        public void Should_register_settings_logic()
+        public void Should_register_executor()
         {
             //Act
-            var s = container.GetInstance<ISettingsLogic>();
+            var s = container.GetInstance<ITaskExecutor>();
 
             //Assert
             Assert.IsNotNull(s);
         }
 
         [Test]
-        public void Should_register_executor()
+        public void Should_register_configs_facade()
         {
             //Act
-            var s = container.GetInstance<ITaskExecutor>();
+            var s = container.GetInstance<IConfigsFacade>();
 
             //Assert
             Assert.IsNotNull(s);

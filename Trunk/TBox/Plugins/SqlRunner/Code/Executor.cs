@@ -12,7 +12,7 @@ namespace Mnk.TBox.Plugins.SqlRunner.Code
 {
     sealed class Executor : BaseExecutor, IDisposable
     {
-        private readonly LazyDialog<MemoBox> message = new LazyDialog<MemoBox>(() => new MemoBox(), "message");
+        private readonly LazyDialog<MemoBox> message = new LazyDialog<MemoBox>(() => new MemoBox());
 
         public void Execute(Window owner, Op operation, string connectionString, Config config, Action onEnd, ImageSource icon)
         {

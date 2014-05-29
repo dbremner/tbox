@@ -20,7 +20,7 @@ namespace Mnk.TBox.Plugins.Notes
 
         public Notes()
         {
-            dialog = new LazyDialog<Dialog>(CreateDialog, "notes-dialog");
+            dialog = new LazyDialog<Dialog>(CreateDialog);
         }
 
         private Dialog CreateDialog()

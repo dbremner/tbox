@@ -12,7 +12,6 @@ using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
-using Mnk.TBox.Plugins.SkyNet.Code;
 using Mnk.TBox.Plugins.SkyNet.Code.Interfaces;
 using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.TBox.Tools.SkyNet.Common;
@@ -25,17 +24,25 @@ namespace Mnk.TBox.Plugins.SkyNet
     /// </summary>
     public partial class Settings : ISettings
     {
+        private readonly IScriptConfigurator scriptConfigurator;
+        private readonly IServicesFacade servicesFacade;
+        private readonly IConfigsFacade configsFacade;
+        private readonly IScriptsHelper scriptsHelper;
         private readonly ILog log = LogManager.GetLogger<Settings>();
-        public LazyDialog<ScriptsConfigurator> ScriptConfiguratorDialog { get; set; }
-        public ISettingsLogic SettingsLogic {get;set;}
 
         public Settings()
         {
             InitializeComponent();
         }
 
-        public void Init(IPluginContext context)
+        public Settings(IPluginContext context, IScriptConfigurator scriptConfigurator, IServicesFacade servicesFacade, IConfigsFacade configsFacade, IScriptsHelper scriptsHelper)
+            : this()
         {
+            this.scriptConfigurator = scriptConfigurator;
+            this.servicesFacade = servicesFacade;
+            this.configsFacade = configsFacade;
+            this.scriptsHelper = scriptsHelper;
+            FilePaths = scriptsHelper.GetPaths();
             AgentService.ServiceName = Constants.AgentServiceName;
             AgentService.ServicePath = Path.Combine(context.DataProvider.ToolsPath, "Mnk.TBox.Tools.SkyNet.Agent.exe");
             ServerService.ServiceName = Constants.ServerServiceName;
@@ -44,13 +51,12 @@ namespace Mnk.TBox.Plugins.SkyNet
             ServerSettingsNeedRefresh(null, new DependencyPropertyChangedEventArgs());
         }
 
-        public IList<string> FilePaths { get; set; }
-        internal IScriptConfigurator ScriptConfigurator { get; set; }
+        public IList<string> FilePaths { get; private set; } 
         public UserControl Control { get { return this; } }
 
         private void ChangeAgentSettingsClick(object sender, RoutedEventArgs e)
         {
-            SettingsLogic.AgentConfig = (AgentConfig)AgentConfiguration.DataContext;
+            configsFacade.AgentConfig = (AgentConfig)AgentConfiguration.DataContext;
         }
 
         private void AgentSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -60,12 +66,12 @@ namespace Mnk.TBox.Plugins.SkyNet
                 AgentConfiguration.DataContext = null;
                 return;
             }
-            AgentConfiguration.DataContext = SettingsLogic.AgentConfig;
+            AgentConfiguration.DataContext = configsFacade.AgentConfig;
         }
 
         private void ChangeServerSettingsClick(object sender, RoutedEventArgs e)
         {
-            SettingsLogic.ServerConfig = (ServerConfig)ServerConfiguration.DataContext;
+            configsFacade.ServerConfig = (ServerConfig)ServerConfiguration.DataContext;
         }
 
         private void ServerSettingsNeedRefresh(object sender, DependencyPropertyChangedEventArgs e)
@@ -75,22 +81,20 @@ namespace Mnk.TBox.Plugins.SkyNet
                 ServerConfiguration.DataContext = null;
                 return;
             }
-            ServerConfiguration.DataContext = SettingsLogic.ServerConfig;
+            ServerConfiguration.DataContext = configsFacade.ServerConfig;
         }
 
         private void RefreshInfoClick(object sender, RoutedEventArgs e)
         {
-            var config = AgentConfiguration.DataContext as AgentConfig;
-            if (config == null) return;
-            DialogsCache.ShowProgress(u => DoRefresh(config), 
+            DialogsCache.ShowProgress(u => DoRefresh(), 
                 SkyNetLang.PluginName, this.GetParentWindow());
         }
 
-        private void DoRefresh(AgentConfig config)
+        private void DoRefresh()
         {
             try
             {
-                var status = SettingsLogic.GetStatus(config);
+                var status = servicesFacade.GetStatus();
                 Mt.Do(this, () =>
                 {
                     ExistTasks.ItemsSource = status.Tasks
@@ -108,13 +112,7 @@ namespace Mnk.TBox.Plugins.SkyNet
 
         private void BtnSetOperationParametersClick(object sender, RoutedEventArgs e)
         {
-            var op = GetSelectedOperation(sender);
-            if (string.IsNullOrEmpty(op.Path))
-            {
-                MessageBox.Show(SkyNetLang.PleaseSpecifyScriptPath);
-                return;
-            }
-            ScriptConfiguratorDialog.Value.ShowDialog(op, ScriptConfigurator, this.GetParentWindow());
+            scriptsHelper.ShowParameters(GetSelectedOperation(sender));
         }
 
         private SingleFileOperation GetSelectedOperation(object sender)
@@ -125,14 +123,10 @@ namespace Mnk.TBox.Plugins.SkyNet
             return cfg.Operations[id];
         }
 
-        public void Dispose()
-        {
-            ScriptConfiguratorDialog.Dispose();
-        }
-
         private void OnCheckChangedEvent(object sender, RoutedEventArgs e)
         {
             Ops.OnCheckChangedEvent(sender, e);
         }
+
     }
 }

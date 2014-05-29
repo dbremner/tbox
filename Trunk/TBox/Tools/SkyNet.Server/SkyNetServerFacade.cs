@@ -17,17 +17,17 @@ namespace Mnk.TBox.Tools.SkyNet.Server
         private readonly ISkyNetServerTasksLogic serverTasksLogic;
         private readonly ISkyNetFileServiceLogic fileServiceLogic;
         private readonly IHttpContextHelper contextHelper;
-        private readonly IStorage storage;
+        private readonly IServerContext serverContext;
         private readonly ILog log = LogManager.GetLogger<SkyNetServerFacade>();
 
 
-        public SkyNetServerFacade(ISkyNetServerAgentsLogic serverAgentsLogic, ISkyNetServerTasksLogic serverTasksLogic, ISkyNetFileServiceLogic fileServiceLogic, IHttpContextHelper contextHelper, IStorage storage)
+        public SkyNetServerFacade(ISkyNetServerAgentsLogic serverAgentsLogic, ISkyNetServerTasksLogic serverTasksLogic, ISkyNetFileServiceLogic fileServiceLogic, IHttpContextHelper contextHelper, IServerContext serverContext)
         {
             this.serverAgentsLogic = serverAgentsLogic;
             this.serverTasksLogic = serverTasksLogic;
             this.fileServiceLogic = fileServiceLogic;
             this.contextHelper = contextHelper;
-            this.storage = storage;
+            this.serverContext = serverContext;
         }
 
         public IList<ServerAgent> GetAgents()
@@ -105,7 +105,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server
 
         private void Execute(Action op)
         {
-            lock (storage)
+            lock (serverContext)
             {
                 ExecuteNoLock(op);
             }

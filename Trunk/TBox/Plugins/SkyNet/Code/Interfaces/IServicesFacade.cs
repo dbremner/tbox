@@ -3,12 +3,16 @@ using Mnk.TBox.Tools.SkyNet.Common;
 
 namespace Mnk.TBox.Plugins.SkyNet.Code.Interfaces
 {
-    interface IServicesFacade
+    public interface IServicesFacade
     {
-        IList<ServerTask> GetServiceTasks(AgentConfig config);
-        IList<ServerAgent> GetServiceAgents(AgentConfig config);
-        AgentTask GetAgentCurrentTask(AgentConfig config);
-        string UploadFile(AgentConfig config, string path);
-        string StartTask(AgentConfig config, ServerTask task);
+        IList<ServerTask> GetServiceTasks();
+        IList<ServerAgent> GetServiceAgents();
+        AgentTask GetAgentCurrentTask();
+        SkyNetStatus GetStatus();
+        string UploadFile(string path);
+        string StartTask(ServerTask task);
+        void Cancel(string id);
+        void Terminate(string id);
+        void DeleteTask(string id);
     }
 }

@@ -85,7 +85,7 @@
     <Compile Include="Code\Interfaces\ISkyNetFileServiceLogic.cs" />
     <Compile Include="Code\Interfaces\ISkyNetServerAgentsLogic.cs" />
     <Compile Include="Code\Interfaces\ISkyNetServerTasksLogic.cs" />
-    <Compile Include="Code\Interfaces\IStorage.cs" />
+    <Compile Include="Code\Interfaces\IServerContext.cs" />
     <Compile Include="Code\Interfaces\IWorker.cs" />
     <Compile Include="Code\AgentsCache.cs" />
     <Compile Include="Code\Modules\HandleDiedAgents.cs" />
@@ -97,7 +97,7 @@
     <Compile Include="Code\SkyNetFileServiceLogic.cs" />
     <Compile Include="Code\SkyNetServerAgentsLogic.cs" />
     <Compile Include="Code\SkyNetServerTasksLogic.cs" />
-    <Compile Include="Code\Storage.cs" />
+    <Compile Include="Code\ServerContext.cs" />
     <Compile Include="Code\Processing\Worker.cs" />
     <Compile Include="ServicesRegistrator.cs" />
     <Compile Include="SkyNetServerService.cs">

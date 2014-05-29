@@ -13,13 +13,13 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
     class SkyNetServerTasksLogic : ISkyNetServerTasksLogic
     {
         private readonly IHttpContextHelper contextHelper;
-        private readonly IStorage storage;
+        private readonly IServerContext serverContext;
         private readonly ISkyAgentLogic skyAgentLogic;
 
-        public SkyNetServerTasksLogic(IHttpContextHelper contextHelper, IStorage storage, ISkyAgentLogic skyAgentLogic)
+        public SkyNetServerTasksLogic(IHttpContextHelper contextHelper, IServerContext serverContext, ISkyAgentLogic skyAgentLogic)
         {
             this.contextHelper = contextHelper;
-            this.storage = storage;
+            this.serverContext = serverContext;
             this.skyAgentLogic = skyAgentLogic;
         }
 
@@ -31,7 +31,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
                 contextHelper.SetStatusCode(HttpStatusCode.ExpectationFailed);
                 return string.Empty;
             }
-            storage.Config.Tasks.Add(new ServerTask
+            serverContext.Config.Tasks.Add(new ServerTask
             {
                 Id = task.Id,
                 State = TaskState.Idle,
@@ -43,15 +43,15 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
                 Progress = 0,
                 Report = string.Empty
             });
-            storage.Save();
             return task.Id;
         }
 
         public IList<ServerTask> GetTasks()
         {
-            return storage.Config.Tasks
+            return serverContext.Config.Tasks
                         .Select(x => new ServerTask
                         {
+                            Id = x.Id,
                             State = x.State,
                             Progress = x.Progress,
                             IsDone = x.IsDone,
@@ -63,19 +63,19 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
 
         public void CancelTask(string id)
         {
-            Parallel.ForEach(storage.Config.Agents, 
+            Parallel.ForEach(serverContext.Config.Agents, 
                 agent => skyAgentLogic.CancelTask(agent, id));
         }
 
         public void TerminateTask(string id)
         {
-            Parallel.ForEach(storage.Config.Agents,
+            Parallel.ForEach(serverContext.Config.Agents,
                 agent => skyAgentLogic.TerminateTask(agent, id));
         }
 
         public string DeleteTask(string id)
         {
-            var task = storage.Config.Tasks.FirstOrDefault(x => x.Id.EqualsIgnoreCase(id));
+            var task = serverContext.Config.Tasks.FirstOrDefault(x => x.Id.EqualsIgnoreCase(id));
             if (task == null)
             {
                 contextHelper.SetStatusCode(HttpStatusCode.NotFound);
@@ -86,8 +86,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
                 contextHelper.SetStatusCode(HttpStatusCode.Conflict);
                 return string.Empty;
             }
-            storage.Config.Tasks.Remove(task);
-            storage.Save();
+            serverContext.Config.Tasks.Remove(task);
             return task.Report;
         }
     }

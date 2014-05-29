@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows;
 using LightInject;
-using Mnk.Library.Common.Log;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
@@ -16,34 +14,19 @@ using Mnk.TBox.Plugins.SkyNet.Code.Settings;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
-using Mnk.TBox.Tools.SkyNet.Common;
+using Mnk.TBox.Plugins.SkyNet.Forms;
 
 namespace Mnk.TBox.Plugins.SkyNet
 {
     [PluginInfo(typeof(SkyNetLang), 18, PluginGroup.Development)]
     public class SkyNet : ConfigurablePlugin<Settings, Config>, IDisposable
     {
-        private readonly ILog log = LogManager.GetLogger<SkyNet>();
-        private readonly SkyNetScriptConfigurator scriptConfigurator = new SkyNetScriptConfigurator();
-        private readonly LazyDialog<EditorDialog> editorDialog;
-        private ITaskExecutor taskExecutor;
         private IServiceContainer container;
-
-        public SkyNet()
-        {
-            editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
-        }
 
         public override void Init(IPluginContext context)
         {
             base.Init(context);
-            container = ServicesRegistrator.Register(context);
-            taskExecutor = container.GetInstance<ITaskExecutor>();
-        }
-
-        private EditorDialog CreateEditor()
-        {
-            return new EditorDialog { Context = Context, Icon = Icon.ToImageSource() };
+            container = ServicesRegistrator.Register(context, ()=>Icon.ToImageSource());
         }
 
         public override void OnRebuildMenu()
@@ -51,6 +34,7 @@ namespace Mnk.TBox.Plugins.SkyNet
             Menu = Config.Operations.CheckedItems.Select(
                 x => new UMenuItem
                 {
+                    IsEnabled = !string.IsNullOrEmpty(x.Path),
                     Header = x.Key,
                     OnClick = o => DoExecute(x)
                 })
@@ -67,45 +51,24 @@ namespace Mnk.TBox.Plugins.SkyNet
                 .ToArray();
         }
 
-        private void DoExecute(SingleFileOperation x)
+        private void DoExecute(SingleFileOperation operation)
         {
-            try
-            {
-                var id = taskExecutor.Execute(x);
-                MessageBox.Show(id);
-            }
-            catch (Exception ex)
-            {
-                log.Write(ex, "Unexpected error");
-            }
+            container.GetInstance<LazyDialog<TaskDialog>>()
+                .Do(Context.DoSync, x => x.ShowDialog(operation), Config.States);
         }
 
         private void OpenEditor(object o)
         {
-            editorDialog.Do(Context.DoSync, x=>x.ShowDialog(GetPaths(), scriptConfigurator),Config.States);
+            container.GetInstance<LazyDialog<EditorDialog>>()
+                .Do(Context.DoSync, x => x.ShowDialog(
+                    container.GetInstance<IScriptsHelper>().GetPaths(), 
+                    container.GetInstance<IScriptConfigurator>()), 
+                    Config.States);
         }
 
-        protected override Settings CreateSettings()
+        protected override Settings CreateSettingsInstance()
         {
-            var s = base.CreateSettings();
-            s.FilePaths = GetPaths();
-            s.ScriptConfigurator = scriptConfigurator;
-            s.ScriptConfiguratorDialog = new LazyDialog<ScriptsConfigurator>(
-                ()=>new SingleFileScriptConfigurator{Context = Context, Icon = Icon.ToImageSource()}, "script configurator" );
-            s.SettingsLogic = container.GetInstance<ISettingsLogic>();
-            s.Init(Context);
-            return s;
-        }
-
-        private IList<string> GetPaths()
-        {
-            var dir = new DirectoryInfo(Context.DataProvider.ReadOnlyDataPath);
-            if (!dir.Exists) return new string[0];
-            var length = dir.FullName.Length + 1;
-            return dir
-                .EnumerateFiles("*.cs", SearchOption.AllDirectories)
-                .Select(x => x.FullName.Substring(length))
-                .ToArray();
+            return (Settings)container.GetInstance<ISettings>();
         }
 
         public void Dispose()

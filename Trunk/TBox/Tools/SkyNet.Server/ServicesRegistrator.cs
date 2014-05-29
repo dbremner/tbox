@@ -16,7 +16,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server
         public static IServiceContainer Register(ServerConfig config)
         {
             var container = new ServiceContainer();
-            container.Register<IStorage, Storage>(new PerContainerLifetime());
+            container.Register<IServerContext, ServerContext>(new PerContainerLifetime());
             container.Register<ISkyContext, SkyContext>(new PerContainerLifetime());
             container.Register<IWorker, Worker>(new PerContainerLifetime());
             container.Register<ISkyAgentLogic, SkyAgentLogic>(new PerContainerLifetime());

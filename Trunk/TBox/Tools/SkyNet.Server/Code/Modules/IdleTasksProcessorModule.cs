@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.TBox.Tools.SkyNet.Common.Modules;
@@ -11,14 +9,14 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
     class IdleTasksProcessorModule : IModule
     {
         private readonly IAgentsCache cache;
-        private readonly IStorage storage;
+        private readonly IServerContext serverContext;
         private readonly IWorker worker;
         private readonly ISkyContext context;
 
-        public IdleTasksProcessorModule(IAgentsCache cache, IStorage storage, IWorker worker, ISkyContext context)
+        public IdleTasksProcessorModule(IAgentsCache cache, IServerContext serverContext, IWorker worker, ISkyContext context)
         {
             this.cache = cache;
-            this.storage = storage;
+            this.serverContext = serverContext;
             this.worker = worker;
             this.context = context;
         }
@@ -42,17 +40,17 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
 
         private ServerTask GetNextTask()
         {
-            lock (storage)
+            lock (serverContext)
             {
-                return storage.Config.Tasks.FirstOrDefault(x => x.State == TaskState.Idle);
+                return serverContext.Config.Tasks.FirstOrDefault(x => x.State == TaskState.Idle);
             }
         }
 
         private IList<ServerAgent> GetAgents()
         {
-            lock (storage)
+            lock (serverContext)
             {
-                return storage.Config.Agents
+                return serverContext.Config.Agents
                     .Where(x => x.State == AgentState.Idle)
                     .ToArray();
             }
@@ -62,27 +60,25 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
         {
             cache.Clear();
             context.Reset();
-            lock (storage)
+            lock (serverContext)
             {
                 task.State = TaskState.InProgress;
                 foreach (var agent in agents)
                 {
                     agent.State = AgentState.InProgress;
                 }
-                storage.Save();
             }
         }
 
         private void PrepareToEnd(ServerTask task, IEnumerable<ServerAgent> agents)
         {
-            lock (storage)
+            lock (serverContext)
             {
                 task.State = TaskState.Done;
                 foreach (var agent in agents)
                 {
                     agent.State = AgentState.Idle;
                 }
-                storage.Save();
             }
         }
 

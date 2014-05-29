@@ -9,9 +9,9 @@ namespace Mnk.Library.WpfControls
 		where TDialog : Window, IDisposable
 	{
 		public string Id { get; private set; }
-		public LazyDialog(Func<TDialog> creator, string id) : base(creator)
+		public LazyDialog(Func<TDialog> creator) : base(creator)
 		{
-			Id = id;
+			Id = typeof(TDialog).FullName;
 		}
 
 		public bool IsVisible

@@ -12,17 +12,17 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
     class SkyNetServerAgentsLogic : ISkyNetServerAgentsLogic
     {
         private readonly IHttpContextHelper contextHelper;
-        private readonly IStorage storage;
+        private readonly IServerContext serverContext;
 
-        public SkyNetServerAgentsLogic(IHttpContextHelper contextHelper, IStorage storage)
+        public SkyNetServerAgentsLogic(IHttpContextHelper contextHelper, IServerContext serverContext)
         {
             this.contextHelper = contextHelper;
-            this.storage = storage;
+            this.serverContext = serverContext;
         }
 
         public IList<ServerAgent> GetAgents()
         {
-            return storage.Config.Agents;
+            return serverContext.Config.Agents;
         }
 
         public void ConnectAgent(ServerAgent agent)
@@ -32,7 +32,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
                 contextHelper.SetStatusCode(HttpStatusCode.ExpectationFailed);
                 return;
             }
-            var exist = storage.Config.Agents.FirstOrDefault(x => x.Endpoint.EqualsIgnoreCase(agent.Endpoint));
+            var exist = serverContext.Config.Agents.FirstOrDefault(x => x.Endpoint.EqualsIgnoreCase(agent.Endpoint));
             if (exist != null)
             {
                 if(exist.TotalCores == agent.TotalCores)return;
@@ -40,26 +40,24 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
             }
             else
             {
-                storage.Config.Agents.Add(new ServerAgent
+                serverContext.Config.Agents.Add(new ServerAgent
                 {
                     Endpoint = agent.Endpoint,
                     TotalCores = agent.TotalCores,
                     State = AgentState.Idle
                 });
             }
-            storage.Save();
         }
 
         public void DisconnectAgent(string endpoint)
         {
-            var agent = storage.Config.Agents.FirstOrDefault(x => x.Endpoint.EqualsIgnoreCase(endpoint));
+            var agent = serverContext.Config.Agents.FirstOrDefault(x => x.Endpoint.EqualsIgnoreCase(endpoint));
             if (agent == null)
             {
                 contextHelper.SetStatusCode(HttpStatusCode.NotFound);
                 return;
             }
-            storage.Config.Agents.Remove(agent);
-            storage.Save();
+            serverContext.Config.Agents.Remove(agent);
         }
 
         public void PingIsAlive()

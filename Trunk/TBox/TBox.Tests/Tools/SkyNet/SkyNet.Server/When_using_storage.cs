@@ -10,20 +10,10 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         public void Should_read_config()
         {
             //Arrange
-            var storage = new Storage();
+            var storage = new ServerContext();
 
             //Act & Assert
             Assert.IsNotNull(storage.Config);
-        }
-
-        [Test]
-        public void Should_save_config()
-        {
-            //Arrange
-            var storage = new Storage();
-
-            //Act & Assert
-            storage.Save();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Mnk.TBox.Plugins.SqlRunner.Components
 	{
 		private Profile profile;
 		private Config config;
-		private readonly LazyDialog<MemoBox> memobox = new LazyDialog<MemoBox>(()=>new MemoBox(), "message");
+		private readonly LazyDialog<MemoBox> memobox = new LazyDialog<MemoBox>(()=>new MemoBox());
 		public FormBatch()
 		{
 			InitializeComponent();

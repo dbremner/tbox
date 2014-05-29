@@ -64,16 +64,19 @@
     <Compile Include="Code\DataPacker.cs" />
     <Compile Include="Code\Interfaces\IConfigsFacade.cs" />
     <Compile Include="Code\Interfaces\IDataPacker.cs" />
+    <Compile Include="Code\Interfaces\IScriptsHelper.cs" />
     <Compile Include="Code\Interfaces\IServicesFacade.cs" />
-    <Compile Include="Code\Interfaces\ISettingsLogic.cs" />
     <Compile Include="Code\Interfaces\ITaskExecutor.cs" />
     <Compile Include="Code\Interfaces\SkyNetStatus.cs" />
     <Compile Include="Code\Localization\TrExtension.cs" />
+    <Compile Include="Code\ScriptsHelper.cs" />
     <Compile Include="Code\ServicesFacade.cs" />
-    <Compile Include="Code\SettingsLogic.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\TaskExecutor.cs" />
     <Compile Include="Code\ServicesRegistrator.cs" />
+    <Compile Include="Forms\TaskDialog.xaml.cs">
+      <DependentUpon>TaskDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -128,14 +131,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Forms\TaskDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -31,8 +31,8 @@ namespace Mnk.TBox.Plugins.Automator
         private static readonly ILog Log = LogManager.GetLogger<Automater>();
         public Automater()
         {
-            editorDialog = new LazyDialog<EditorDialog>(CreateEditor, "editorDialog");
-            runnerDialog = new LazyDialog<ScriptsRunner>(CreateRunner, "runnerDialog");
+            editorDialog = new LazyDialog<EditorDialog>(CreateEditor);
+            runnerDialog = new LazyDialog<ScriptsRunner>(CreateRunner);
         }
 
         public void Dispose()

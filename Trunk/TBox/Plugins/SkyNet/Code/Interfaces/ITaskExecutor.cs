@@ -2,7 +2,7 @@
 
 namespace Mnk.TBox.Plugins.SkyNet.Code.Interfaces
 {
-    internal interface ITaskExecutor
+    public interface ITaskExecutor
     {
         string Execute(SingleFileOperation operation);
     }
