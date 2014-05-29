@@ -82,6 +82,7 @@
     <Compile Include="PlugingsShared\Automator\When_using_script_runner.cs" />
     <Compile Include="PlugingsShared\ReportGenerator\When_using_validators.cs" />
     <Compile Include="PlugingsShared\ReportGenerator\When_using_script_runner.cs" />
+    <Compile Include="PlugingsShared\SkyNet\When_using_script_runner.cs" />
     <Compile Include="PlugingsShared\UnitTestsRunner\When_running_unit_test.cs" />
     <Compile Include="Plugins\BookletPagesGenerator\Utils\FakeBook.cs" />
     <Compile Include="Plugins\BookletPagesGenerator\Utils\Page.cs" />

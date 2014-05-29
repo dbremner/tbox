@@ -213,9 +213,9 @@
     <None Include="Data\TeamManager\Validators\Default.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="Data\SkyNet\NUnitTests.cs">
+    <None Include="Data\SkyNet\NUnitTests.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Compile Include="Forms\ChangesLogDialog.xaml.cs">
       <DependentUpon>ChangesLogDialog.xaml</DependentUpon>
     </Compile>

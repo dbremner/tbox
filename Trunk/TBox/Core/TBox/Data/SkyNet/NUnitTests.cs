@@ -8,7 +8,7 @@ using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
 using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
 using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
 using Mnk.Library.ScriptEngine;
-using Mnk.TBox.Tools.SkyNet.Common.Contracts.Server;
+using Mnk.TBox.Tools.SkyNet.Common;
 using ServiceStack.Text;
 
 namespace Mnk.TBox.Tools.SkyNet.Common
@@ -18,15 +18,17 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         private const string NunitAgentPath = "NUnitAgent.exe";
         private const string RunAsx86Path = "RunAsx86.exe";
         [Directory]
-        public string DataFolder { get; set; }
+        public string DataFolderPath { get; set; }
         [File]
         public string TestDllPath { get; set; }
         [StringList("*.dll", "*.config", CanBeEmpty = false)]
-        public string[] CopyMasks { get; set; }
+        public string[] PathMasksToInclude { get; set; }
         [String]
         public string CommandBeforeTestsRun { get; set; }
         [Bool(true)]
         public bool RunAsx86 { get; set; }
+        [String]
+        public string Framework { get; set; }
         [Bool]
         public bool IncludeCategories { get; set; }
         [StringList(CanBeEmpty=true)]
@@ -38,22 +40,27 @@ namespace Mnk.TBox.Tools.SkyNet.Common
             public void Clear(){}
         }
 
-        public string[] ServerDivideTasks(ServerAgent[] agents, ISkyContext context)
+        public IList<SkyAgentWork> ServerBuildAgentsData(IList<ServerAgent> agents, ISkyContext context)
         {
-            using (var p = CreatePackage(context))
+            using (var p = CreatePackage(DataFolderPath, context))
             {
-                return p.PrepareToRun(agents.Length, Categories, Categories.Length>0 ? (bool?)IncludeCategories : null, false)
-                    .Select(JsonSerializer.SerializeToString)
+                var i = 0;
+                return p.PrepareToRun(agents.Count, Categories, Categories.Length>0 ? (bool?)IncludeCategories : null, false)
+                    .Select(x => new SkyAgentWork
+                    {
+                        Agent = agents[i++],
+                        Config = JsonSerializer.SerializeToString(x)
+                    })
                     .ToArray();
             }
         }
 
-        private ProcessPackage CreatePackage(ISkyContext context)
+        private ProcessPackage CreatePackage(string folder, ISkyContext context)
         {
-            var p = new ProcessPackage(Path.Combine(context.TargetFolder, TestDllPath), 
+            var p = new ProcessPackage(Path.Combine(folder, GetTestDllRelativePath()), 
                 NunitAgentPath, RunAsx86, false,
                 Path.GetTempPath(),
-                CommandBeforeTestsRun, new ScriptView(), RunAsx86Path);
+                CommandBeforeTestsRun, new ScriptView(), RunAsx86Path, Framework);
             if (!p.EnsurePathIsValid())
             {
                 throw new ArgumentException("Incorrect path: " + context);
@@ -62,15 +69,22 @@ namespace Mnk.TBox.Tools.SkyNet.Common
             return p;
         }
 
-        public string ServerBuildResult(IDictionary<string, string> results)
+        private string GetTestDllRelativePath()
         {
-            return JsonSerializer.SerializeToString(results);
+            var fullDataPath = Path.GetFullPath(DataFolderPath);
+            var fullTestDllPath = Path.GetFullPath(TestDllPath);
+            return fullTestDllPath.Substring(fullDataPath.Length);
         }
 
-        public string AgentExecute(string data, ISkyContext context)
+        public string ServerBuildResultByAgentResults(IList<SkyAgentWork> results)
         {
-            var packages = JsonSerializer.DeserializeFromString<IList<Result>>(data);
-            using (var p = CreatePackage(context))
+            return JsonSerializer.SerializeToString(results.Select(x=>x.Report));
+        }
+
+        public string AgentExecute(string workingDirectory, string agentData, ISkyContext context)
+        {
+            var packages = JsonSerializer.DeserializeFromString<IList<Result>>(agentData);
+            using (var p = CreatePackage(workingDirectory, context))
             {
                 var synchronizer = new Synchronizer(1);
                 p.DoRun(o => { }, p.Items, new[] {packages}, false, new string[0], false, 0, synchronizer,
