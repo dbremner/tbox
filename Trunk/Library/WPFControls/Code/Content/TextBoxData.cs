@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace Mnk.Library.WpfControls.Code.ControlsDataLoader.Data
+namespace Mnk.Library.WpfControls.Code.Content
 {
 	public class TextBoxData : BaseData<TextBox>
 	{

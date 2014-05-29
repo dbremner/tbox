@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WpfControls.Code.EditPanel;
+using Mnk.Library.WpfControls.Code;
 using Mnk.Library.WpfControls.Tools;
 
 

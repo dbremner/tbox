@@ -3,7 +3,7 @@ using System.Windows;
 using Mnk.Library.Localization.WPFControls;
 using Mnk.Library.WpfControls.Dialogs;
 
-namespace Mnk.Library.WpfControls.Code
+namespace Mnk.Library.WpfControls
 {
 	public sealed class LazyDialog<TDialog> : Lazy<TDialog>, IDisposable
 		where TDialog : Window, IDisposable

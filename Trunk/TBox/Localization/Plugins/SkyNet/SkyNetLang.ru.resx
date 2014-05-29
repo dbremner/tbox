@@ -117,10 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Agent" xml:space="preserve">
+    <value>Агент</value>
+  </data>
+  <data name="Agents" xml:space="preserve">
+    <value>Агенты</value>
+  </data>
+  <data name="AvailableCpuCores" xml:space="preserve">
+    <value>Доступно ядер ЦПУ</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Конфигурация</value>
+  </data>
+  <data name="ConfigureOperation" xml:space="preserve">
+    <value>Настроить операцию</value>
+  </data>
+  <data name="CurrentAgentTask" xml:space="preserve">
+    <value>Текущая задача агента</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="IsDone" xml:space="preserve">
+    <value>Выполнено</value>
+  </data>
+  <data name="MaximumTaskExecutionTime" xml:space="preserve">
+    <value>Максимальное время выполнения задачи</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Операции</value>
+  </data>
   <data name="PluginDescription" xml:space="preserve">
     <value>Плагин для выполнения распределённых операций. Например он может запускать модульные тесты на нескольких компьютерах параллельно.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
-    <value>Эльбрус</value>
+    <value>Небесная сеть</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="Progress" xml:space="preserve">
+    <value>Прогресс</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="ScriptEditor" xml:space="preserve">
+    <value>Редактор скриптов</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="ServerEndpoint" xml:space="preserve">
+    <value>Адресс сервера</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Сервис</value>
+  </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="SetScript" xml:space="preserve">
+    <value>Скрипт</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Задачи</value>
   </data>
 </root>

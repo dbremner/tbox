@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using Mnk.Library.Common.Tools;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.LoadTesting.Components;
 using Mnk.TBox.Locales.Localization.Plugins.Requestor;

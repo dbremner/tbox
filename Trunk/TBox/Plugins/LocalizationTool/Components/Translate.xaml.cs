@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfControls.Tools;
 using Mnk.TBox.Plugins.LocalizationTool.Code;

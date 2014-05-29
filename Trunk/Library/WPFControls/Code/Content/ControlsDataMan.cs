@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mnk.Library.WpfControls.Code.ControlsDataLoader.Data;
 
-namespace Mnk.Library.WpfControls.Code.ControlsDataLoader
+namespace Mnk.Library.WpfControls.Code.Content
 {
 	public class ControlsDataMan : IData
 	{

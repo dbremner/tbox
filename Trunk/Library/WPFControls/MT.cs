@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace Mnk.Library.WpfControls.Code.OS
+namespace Mnk.Library.WpfControls
 {
 	public static class Mt
 	{

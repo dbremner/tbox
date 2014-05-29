@@ -117,10 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Agent" xml:space="preserve">
+    <value>Agent</value>
+  </data>
+  <data name="Agents" xml:space="preserve">
+    <value>Agents</value>
+  </data>
+  <data name="AvailableCpuCores" xml:space="preserve">
+    <value>Available Cpu cores</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="ConfigureOperation" xml:space="preserve">
+    <value>Configure operation</value>
+  </data>
+  <data name="CurrentAgentTask" xml:space="preserve">
+    <value>Current agent task</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="IsDone" xml:space="preserve">
+    <value>Is done</value>
+  </data>
+  <data name="MaximumTaskExecutionTime" xml:space="preserve">
+    <value>Maximum task execution time</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Operations</value>
+  </data>
   <data name="PluginDescription" xml:space="preserve">
     <value>Plugin to do different distibuted calculations. For example, run Nunit tests on the set of PC.</value>
   </data>
   <data name="PluginName" xml:space="preserve">
     <value>Sky Net</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Progress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="ScriptEditor" xml:space="preserve">
+    <value>Script editor</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="ServerEndpoint" xml:space="preserve">
+    <value>Server endpoint</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="SetParameters" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="SetScript" xml:space="preserve">
+    <value>Script</value>
+  </data>
+  <data name="Tasks" xml:space="preserve">
+    <value>Tasks</value>
   </data>
 </root>

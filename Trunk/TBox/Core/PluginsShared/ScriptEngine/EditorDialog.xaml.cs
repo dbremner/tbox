@@ -7,10 +7,10 @@ using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.Library.ScriptEngine.Core;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfControls.Tools;
 

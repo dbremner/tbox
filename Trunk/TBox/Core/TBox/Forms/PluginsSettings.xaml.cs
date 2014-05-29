@@ -9,6 +9,7 @@ using System.Windows.Media;
 using Mnk.Library.Common.OS;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code;
 using Mnk.TBox.Core.Application.Code.AutoUpdate;
@@ -18,7 +19,6 @@ using Mnk.TBox.Core.Application.Code.Menu;
 using Mnk.TBox.Core.Application.Code.Objects;
 using Mnk.TBox.Core.Application.Code.Shelduler;
 using Mnk.TBox.Core.Application.Code.Themes;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Components;
 
 namespace Mnk.TBox.Core.Application.Forms

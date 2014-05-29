@@ -1,7 +1,7 @@
 ﻿using System;
 using Mnk.Library.Common.UI.Model;
 
-namespace Mnk.Library.WpfControls.Code.DataManagers
+namespace Mnk.Library.WpfControls.Code.Content
 {
 	public sealed class DataItemManager<T> : IDataManager
 		where T : Data, ICloneable, new()

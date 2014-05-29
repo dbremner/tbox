@@ -23,13 +23,13 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         public string TestDllPath { get; set; }
         [StringList("*.dll", "*.config", CanBeEmpty = false)]
         public string[] PathMasksToInclude { get; set; }
-        [String]
+        [String(CanBeEmpty = true)]
         public string CommandBeforeTestsRun { get; set; }
         [Bool(true)]
         public bool RunAsx86 { get; set; }
-        [String]
+        [String(CanBeEmpty = true)]
         public string Framework { get; set; }
-        [Bool]
+        [Bool(false)]
         public bool IncludeCategories { get; set; }
         [StringList(CanBeEmpty=true)]
         public string[] Categories { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Library.WpfControls.Code.ControlsDataLoader.Data
+namespace Mnk.Library.WpfControls.Code.Content
 {
 	public abstract class BaseData<TControl> : IData
 	{

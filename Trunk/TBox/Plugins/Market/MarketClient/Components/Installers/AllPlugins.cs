@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Windows;
 using Mnk.Library.Common.MT;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Plugins.Market.Client.Code;
 

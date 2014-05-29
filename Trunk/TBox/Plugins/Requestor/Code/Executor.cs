@@ -3,11 +3,11 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
 using Mnk.Library.Common.Network;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.Plugins.Requestor;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
 using Mnk.TBox.Plugins.Requestor.Components;
 using Mnk.Library.WpfControls.Code;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms.Icons;
 

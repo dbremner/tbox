@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace Mnk.Library.WpfControls.Code.OS
+namespace Mnk.Library.WpfControls
 {
 	public static class OneInstance
 	{

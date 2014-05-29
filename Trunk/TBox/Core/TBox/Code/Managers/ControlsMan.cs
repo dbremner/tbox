@@ -5,9 +5,9 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Mnk.Library.Common.Log;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code.Objects;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Components.ButtonsView;
 using Mnk.Library.WpfWinForms.Icons;
 

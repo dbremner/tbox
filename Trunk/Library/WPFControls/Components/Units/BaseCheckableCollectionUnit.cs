@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using Mnk.Library.WpfControls.Code.DataManagers;
+using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls.Code.Content;
 using Mnk.Library.WpfControls.Code.Dialogs;
-using Mnk.Library.WpfControls.Code.EditPanel;
 
 namespace Mnk.Library.WpfControls.Components.Units
 {

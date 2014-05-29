@@ -2,7 +2,6 @@
 using System.Windows;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WpfControls.Code.OS;
 
 namespace Mnk.Library.WpfControls.Components.Updater
 {

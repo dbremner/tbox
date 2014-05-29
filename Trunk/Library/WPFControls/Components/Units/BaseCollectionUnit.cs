@@ -6,9 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WpfControls.Code;
 using Mnk.Library.WpfControls.Code.Dialogs;
 using Mnk.Library.WpfControls.Components.EditButtons;
-using Mnk.Library.WpfControls.Code.EditPanel;
 
 namespace Mnk.Library.WpfControls.Components.Units
 {

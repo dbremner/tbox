@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.Templates;
 using Mnk.TBox.Plugins.Templates.Code.Settings;

@@ -9,8 +9,8 @@ using System.Windows;
 using System.Windows.Threading;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.TBox;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Localization;
 using Mnk.Library.WpfWinForms;
 

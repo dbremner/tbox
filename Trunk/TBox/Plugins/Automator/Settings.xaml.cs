@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.Tools;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.WpfControls.Code;

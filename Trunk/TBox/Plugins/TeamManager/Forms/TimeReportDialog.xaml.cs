@@ -7,6 +7,7 @@ using System.Windows;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Microsoft.Win32;
@@ -19,7 +20,6 @@ using Mnk.TBox.Plugins.TeamManager.Code.Modifiers;
 using Mnk.TBox.Plugins.TeamManager.Code.Reports;
 using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
 using Mnk.TBox.Plugins.TeamManager.Code.Settings;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Dialogs;
 
 namespace Mnk.TBox.Plugins.TeamManager.Forms

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Media;
 using Mnk.Library.Common.MT;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
 using Mnk.TBox.Plugins.Searcher.Components;

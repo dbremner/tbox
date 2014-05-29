@@ -5,7 +5,7 @@ using System.Windows;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
 
-namespace Mnk.Library.WpfControls.Code.OS
+namespace Mnk.Library.WpfControls
 {
 	public sealed class NotifyIconMan : IDisposable
 	{

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Windows;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Plugins.Market.Client.ServiceReference;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Plugins.Market.Client.Code;
 

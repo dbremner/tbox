@@ -10,7 +10,6 @@ using System.Windows.Controls;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Localization.WPFControls;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Components;
 using Mnk.Library.WpfControls.Tools;
 

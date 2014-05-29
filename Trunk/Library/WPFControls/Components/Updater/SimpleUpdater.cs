@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Shell;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Tools;
 
 namespace Mnk.Library.WpfControls.Components.Updater

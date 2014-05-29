@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Windows.Controls;
 using Mnk.Library.Common.Log;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Application.Code.Managers;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application.Code.Objects

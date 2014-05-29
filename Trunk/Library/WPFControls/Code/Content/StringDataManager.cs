@@ -1,4 +1,4 @@
-﻿namespace Mnk.Library.WpfControls.Code.DataManagers
+﻿namespace Mnk.Library.WpfControls.Code.Content
 {
 	public sealed class StringDataManager : IDataManager
 	{

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.LoadTesting.Components;
 using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
@@ -8,7 +9,6 @@ using Mnk.TBox.Plugins.SqlRunner.Code;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 using Mnk.TBox.Plugins.SqlRunner.Components;
 using Mnk.Library.WpfControls.Code;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfSyntaxHighlighter;
 using Mnk.Library.WpfWinForms;

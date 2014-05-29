@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LightInject;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.SkyNet;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
@@ -51,7 +52,7 @@ namespace Mnk.TBox.Plugins.SkyNet
                         new USeparator(), 
 				        new UMenuItem
 				        {
-					        Header = "{ScriptEditor}",
+					        Header = SkyNetLang.ScriptEditor,
 					        OnClick = OpenEditor
 				        }
 			        })

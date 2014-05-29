@@ -198,6 +198,9 @@
   <data name="Headers" xml:space="preserve">
     <value>Headers:</value>
   </data>
+  <data name="Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
   <data name="MaxTime" xml:space="preserve">
     <value>Max time</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="NoErrors" xml:space="preserve">
     <value>No errors</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Reload</value>
@@ -260,5 +266,8 @@
   </data>
   <data name="Timeout" xml:space="preserve">
     <value>Timeout:</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Uninstall</value>
   </data>
 </root>

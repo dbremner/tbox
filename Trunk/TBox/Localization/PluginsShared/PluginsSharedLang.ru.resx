@@ -195,6 +195,9 @@
   <data name="Headers" xml:space="preserve">
     <value>Заголовки:</value>
   </data>
+  <data name="Install" xml:space="preserve">
+    <value>Установить</value>
+  </data>
   <data name="MaxTime" xml:space="preserve">
     <value>Макс.Время</value>
   </data>
@@ -203,6 +206,9 @@
   </data>
   <data name="NoErrors" xml:space="preserve">
     <value>Без ошибок</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
   </data>
   <data name="Reload" xml:space="preserve">
     <value>Перезагрузить</value>
@@ -257,5 +263,8 @@
   </data>
   <data name="Timeout" xml:space="preserve">
     <value>Задержка:</value>
+  </data>
+  <data name="Uninstall" xml:space="preserve">
+    <value>Удалить</value>
   </data>
 </root>

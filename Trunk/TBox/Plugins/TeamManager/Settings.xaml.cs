@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
+using Mnk.Library.WpfControls;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.TeamManager;

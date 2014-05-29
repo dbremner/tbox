@@ -12,7 +12,7 @@ using System.Windows.Input;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WpfControls.Code.OS;
+using Mnk.Library.WpfControls;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Core.PluginsShared.LongPaths;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;

@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Mnk.Library.Common.UI.Model;
-using Mnk.Library.WpfControls.Code.DataManagers;
+using Mnk.Library.WpfControls.Code.Content;
 using Mnk.Library.WpfControls.Code.Dialogs;
 using Mnk.Library.WpfControls.Components.EditButtons;
 using Mnk.Library.WpfControls.Tools;
 
-namespace Mnk.Library.WpfControls.Code.EditPanel
+namespace Mnk.Library.WpfControls.Code
 {
     public static class ControllerExtensions
     {

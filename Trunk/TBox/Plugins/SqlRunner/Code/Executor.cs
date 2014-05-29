@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 using Mnk.Library.WpfControls.Code;
-using Mnk.Library.WpfControls.Code.OS;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfSyntaxHighlighter;
 

@@ -50,25 +50,25 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\Base.cs" />
-    <Compile Include="Code\ControlsDataLoader\ControlsDataMan.cs" />
-    <Compile Include="Code\ControlsDataLoader\Data\BaseData.cs" />
-    <Compile Include="Code\ControlsDataLoader\Data\IData.cs" />
-    <Compile Include="Code\ControlsDataLoader\Data\TextBoxData.cs" />
-    <Compile Include="Code\DataManagers\CustomDataManager.cs" />
+    <Compile Include="Tools\MenuExtensions.cs" />
+    <Compile Include="Code\Content\ControlsDataMan.cs" />
+    <Compile Include="Code\Content\BaseData.cs" />
+    <Compile Include="Code\Content\IData.cs" />
+    <Compile Include="Code\Content\TextBoxData.cs" />
+    <Compile Include="Code\Content\CustomDataManager.cs" />
     <Compile Include="Code\Dialogs\InputDate.cs" />
     <Compile Include="Code\Dialogs\InputSelect.cs" />
     <Compile Include="Code\Dialogs\PathTemplates.cs" />
     <Compile Include="Code\Dialogs\Templates.cs" />
-    <Compile Include="Code\LazyDialog.cs" />
+    <Compile Include="LazyDialog.cs" />
     <Compile Include="Code\Log\LogCache.cs" />
     <Compile Include="Code\Log\ICaptionedLog.cs" />
     <Compile Include="Code\Log\MultiCaptionedLog.cs" />
-    <Compile Include="Code\EditPanel\Controller.cs" />
-    <Compile Include="Code\DataManagers\DataItemManager.cs" />
-    <Compile Include="Code\DataManagers\StringDataManager.cs" />
+    <Compile Include="Code\Controller.cs" />
+    <Compile Include="Code\Content\DataItemManager.cs" />
+    <Compile Include="Code\Content\StringDataManager.cs" />
     <Compile Include="Code\Dialogs\InputFilePath.cs" />
-    <Compile Include="Code\EditPanel\ControllerExtensions.cs" />
+    <Compile Include="Code\ControllerExtensions.cs" />
     <Compile Include="Code\Log\CaptionedLog.cs" />
     <Compile Include="Code\Log\TrayLog.cs" />
     <Compile Include="Components\ButtonsPanelInfo.cs" />
@@ -93,8 +93,8 @@
     <Compile Include="Components\Units\BaseCollectionUnit.cs" />
     <Compile Include="Components\Units\CheckableFileListBoxUnit.cs" />
     <Compile Include="Components\Units\CheckableListBoxUnit.cs" />
-    <Compile Include="Code\EditPanel\Configuration.cs" />
-    <Compile Include="Code\DataManagers\IDataManager.cs" />
+    <Compile Include="Code\Configuration.cs" />
+    <Compile Include="Code\Content\IDataManager.cs" />
     <Compile Include="Components\Units\ComboBoxUnit.cs" />
     <Compile Include="Components\ICheckableItemsView.cs" />
     <Compile Include="Components\Units\GraphUnit.xaml.cs">
@@ -174,10 +174,10 @@
     </Compile>
     <Compile Include="Dialogs\ProgressDialog.cs" />
     <Compile Include="Code\Log\MessageBoxLog.cs" />
-    <Compile Include="Code\OS\DispatcherHelper.cs" />
-    <Compile Include="Code\OS\MT.cs" />
-    <Compile Include="Code\OS\OneInstance.cs" />
-    <Compile Include="Code\OS\NotifyIconMan.cs" />
+    <Compile Include="DispatcherHelper.cs" />
+    <Compile Include="MT.cs" />
+    <Compile Include="OneInstance.cs" />
+    <Compile Include="NotifyIconMan.cs" />
     <Compile Include="Dialogs\InputSelect.xaml.cs">
       <DependentUpon>InputSelect.xaml</DependentUpon>
     </Compile>
