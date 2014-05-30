@@ -104,6 +104,14 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             }
         }
 
+        public void DeleteFile(string zipPackageId)
+        {
+            using (var cl = CreateFileServerClient())
+            {
+                cl.Instance.Delete(zipPackageId);
+            }
+        }
+
         private NetworkClient<ISkyNetServerAgentsService> CreateServerAgentsClient()
         {
             return new NetworkClient<ISkyNetServerAgentsService>(ServerUri);

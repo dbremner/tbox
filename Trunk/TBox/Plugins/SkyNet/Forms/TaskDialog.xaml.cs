@@ -59,6 +59,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
             if (!IsVisible)
             {
                 Title = string.Format("{0} - [ {1} ]", SkyNetLang.PluginName, operation.Key);
+                Report.Text = string.Empty;
                 timer.Start();
                 DataContext = operation;
             }
@@ -81,26 +82,27 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
             Report.Text = string.Empty;
             timer.Stop();
             var operation = (SingleFileOperation) DataContext;
-            DialogsCache.ShowProgress(u=>DoStart(u,operation), Title, this);
+            DialogsCache.ShowProgress(u=>DoStart(u,operation), Title, this, topmost:false);
         }
 
         private void DoStart(IUpdater updater, SingleFileOperation operation)
         {
             try
             {
-                var id = taskExecutor.Execute(operation);
+                var info = taskExecutor.Execute(operation);
                 do
                 {
-                    var task = servicesFacade.GetTask(id);
+                    var task = servicesFacade.GetTask(info.Id);
                     if (task.State == TaskState.Done) break;
                     updater.Update(task.Progress / 100.0f);
                     Thread.Sleep(5000);
                 } while (!updater.UserPressClose);
                 if (updater.UserPressClose)
                 {
-                    servicesFacade.Terminate(id);
+                    servicesFacade.Terminate(info.Id);
                 }
-                var report = servicesFacade.DeleteTask(id);
+                var report = servicesFacade.DeleteTask(info.Id);
+                if (!string.IsNullOrEmpty(info.ZipPackageId)) servicesFacade.DeleteFile(info.ZipPackageId);
                 Mt.Do(this, () => Report.Text = report);
             }
             catch (Exception ex)

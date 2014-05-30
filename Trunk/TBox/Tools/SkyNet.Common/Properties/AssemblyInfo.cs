@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
 
@@ -11,3 +12,4 @@ using System.Resources;
 [assembly: Guid("DC503631-D451-4609-BD2D-2AD51DA3D8B5")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
 [assembly: CLSCompliant(true)]
+[assembly: InternalsVisibleTo("Mnk.TBox.Tests")]

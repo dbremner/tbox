@@ -1,7 +1,7 @@
 ﻿using System;
 using Mnk.Library.Common.Communications;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
+using Mnk.TBox.Tools.SkyNet.Common.Modules;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent.Code
 {

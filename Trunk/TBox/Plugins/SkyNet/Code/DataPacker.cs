@@ -18,12 +18,16 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
 
         public string Pack(string path, string[] copyMasks)
         {
+            path = path.Trim();
             var outputPath = Path.GetTempFileName();
             using (var zipFile = new ZipFile())
             {
                 zipFile.CompressionLevel = CompressionLevel.BestCompression;
                 string source;
                 string name;
+                path = path.Replace("/", "\\");
+                if (!path.EndsWith("\\")) path += "\\";
+                if (!path.EndsWith("\\\\")) path += "\\";
                 foreach (var dir in copyDirGenerator.GetFiles(path, copyMasks, out name, out source))
                 {
                     var folder = dir.Key;

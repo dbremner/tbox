@@ -46,10 +46,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\..\..\Libs\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="LightInject">
       <HintPath>..\..\..\Libs\LightInject.3.0.1.6\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
@@ -65,14 +61,12 @@
     <Reference Include="System.ServiceProcess" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\DataPacker.cs" />
     <Compile Include="Code\FilesDownloader.cs" />
-    <Compile Include="Code\Interfaces\IDataPacker.cs" />
-    <Compile Include="Code\Interfaces\IFilesDownloader.cs" />
-    <Compile Include="Code\Interfaces\ISkyNetAgentLogic.cs" />
+    <Compile Include="Code\IFilesDownloader.cs" />
+    <Compile Include="Code\ISkyNetAgentLogic.cs" />
     <Compile Include="Code\Modules\ServerConnectionModule.cs" />
     <Compile Include="Code\SkyNetAgentLogic.cs" />
-    <Compile Include="Code\Interfaces\IWorker.cs" />
+    <Compile Include="Code\IWorker.cs" />
     <Compile Include="ServicesRegistrator.cs" />
     <Compile Include="Code\SkyContext.cs" />
     <Compile Include="Code\Worker.cs" />

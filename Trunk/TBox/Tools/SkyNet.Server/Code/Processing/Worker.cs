@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using Mnk.Library.ScriptEngine.Core.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
+using Mnk.TBox.Tools.SkyNet.Common.Modules;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces;
 using ScriptEngine.Core.Params;
 using ServiceStack.Text;
@@ -14,11 +16,15 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
     {
         private readonly IScriptCompiler<ISkyScript> compiler;
         private readonly ISkyAgentLogic agentLogic;
+        private readonly IDataPacker dataPacker;
+        private readonly ISkyNetFileServiceLogic skyNetFileService;
 
-        public Worker(IScriptCompiler<ISkyScript> compiler, ISkyAgentLogic agentLogic)
+        public Worker(IScriptCompiler<ISkyScript> compiler, ISkyAgentLogic agentLogic, IDataPacker dataPacker, ISkyNetFileServiceLogic skyNetFileService)
         {
             this.compiler = compiler;
             this.agentLogic = agentLogic;
+            this.dataPacker = dataPacker;
+            this.skyNetFileService = skyNetFileService;
         }
 
         public void ProcessTask(ServerTask task, IList<ServerAgent> agents)
@@ -37,11 +43,26 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
 
         private WorkerTask[] StartAgents(ServerTask task, ISkyScript script, IList<ServerAgent> agents)
         {
-            var items = script.ServerBuildAgentsData(agents)
-                .AsParallel()
-                .Select(item => agentLogic.CreateWorkerTask(item.Agent, item.Config, task))
-                .ToArray();
-            return items;
+            var path = string.Empty;
+            if (!string.IsNullOrEmpty(task.ZipPackageId))
+            {
+                using (var s = skyNetFileService.Download(task.ZipPackageId))
+                {
+                    path = dataPacker.Unpack(s);
+                }
+            }
+            try
+            {
+                var items = script.ServerBuildAgentsData(path, agents)
+                    .AsParallel()
+                    .Select(item => agentLogic.CreateWorkerTask(item.Agent, item.Config, task))
+                    .ToArray();
+                return items;
+            }
+            finally
+            {
+                if(!string.IsNullOrEmpty(path))Directory.Delete(path,true);
+            }
         }
 
         private void WaitAgents(ServerTask task, IList<WorkerTask> items)

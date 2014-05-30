@@ -2,7 +2,6 @@
 using System.Net;
 using Mnk.Library.Common.Communications;
 using Mnk.TBox.Tools.SkyNet.Agent.Code;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 using NUnit.Framework;
 using Rhino.Mocks;

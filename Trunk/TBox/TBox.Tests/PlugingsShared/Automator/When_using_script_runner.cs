@@ -14,7 +14,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.Automator
     {
         public static string[] Files
         {
-            get { return Directory.GetFiles("../../../bin/Release/Data/Automater/Scripts/", "*.cs", SearchOption.TopDirectoryOnly); }
+            get { return Directory.GetFiles("../../../bin/"+Shared.CompileMode+"/Data/Automater/Scripts/", "*.cs", SearchOption.TopDirectoryOnly); }
         }
 
         [Test]

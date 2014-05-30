@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using Mnk.Library.ScriptEngine.Core.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Agent.Code;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -11,7 +10,7 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Agent
     [TestFixture]
     class When_using_worker
     {
-        [Test,Timeout(10000)]
+        [Test,Timeout(50000)]
         public void Should_execute_script()
         {
             //Arrange

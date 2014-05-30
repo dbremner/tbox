@@ -3,7 +3,7 @@ using System.Net;
 using System.ServiceModel;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
+using Mnk.TBox.Tools.SkyNet.Agent.Code;
 using Mnk.TBox.Tools.SkyNet.Common;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent

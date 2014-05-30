@@ -25,7 +25,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
             this.context = context;
         }
 
-        public string Execute(SingleFileOperation operation)
+        public TaskInfo Execute(SingleFileOperation operation)
         {
             var config = configsFacade.AgentConfig;
             var scriptContent = File.ReadAllText(Path.Combine(context.DataProvider.ReadOnlyDataPath, operation.Path));
@@ -37,7 +37,11 @@ namespace Mnk.TBox.Plugins.SkyNet.Code
                 ScriptParameters = JsonSerializer.SerializeToString(operation.Parameters),
                 ZipPackageId = PackData(script)
             };
-            return servicesFacade.StartTask(task);
+            return new TaskInfo
+            {
+                Id = servicesFacade.StartTask(task),
+                ZipPackageId = task.ZipPackageId
+            };
         }
 
         private string PackData(ISkyScript script)

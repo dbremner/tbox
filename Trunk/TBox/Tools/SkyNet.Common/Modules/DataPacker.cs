@@ -2,11 +2,10 @@
 using System.IO;
 using Ionic.Zip;
 using Mnk.Library.Common.Log;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 
-namespace Mnk.TBox.Tools.SkyNet.Agent.Code
+namespace Mnk.TBox.Tools.SkyNet.Common.Modules
 {
-    class DataPacker : IDataPacker
+    public class DataPacker : IDataPacker
     {
         private readonly ILog log = LogManager.GetLogger<DataPacker>();
         public string Unpack(Stream stream)

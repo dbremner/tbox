@@ -1,5 +1,8 @@
-﻿using Mnk.Library.ScriptEngine.Core.Interfaces;
+﻿using System.IO;
+using Mnk.Library.Common.UI.Model;
+using Mnk.Library.ScriptEngine.Core.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
+using Mnk.TBox.Tools.SkyNet.Common.Modules;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Server.Code.Processing;
 using NUnit.Framework;
@@ -13,6 +16,8 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
     {
         private IScriptCompiler<ISkyScript> compiler;
         private ISkyAgentLogic agentLogic;
+        private IDataPacker dataPacker;
+        private ISkyNetFileServiceLogic skyNetFileService;
         private IWorker worker;
         private ServerAgent[] serverAgents;
         private ServerTask serverTask;
@@ -23,7 +28,9 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         {
             compiler = MockRepository.GenerateStrictMock<IScriptCompiler<ISkyScript>>();
             agentLogic = MockRepository.GenerateStrictMock<ISkyAgentLogic>();
-            worker = new Worker(compiler,agentLogic);
+            dataPacker = MockRepository.GenerateStrictMock<IDataPacker>();
+            skyNetFileService = MockRepository.GenerateStrictMock<ISkyNetFileServiceLogic>();
+            worker = new Worker(compiler,agentLogic, dataPacker, skyNetFileService);
             serverAgents = new[] { new ServerAgent { } };
             serverTask = new ServerTask
             {
@@ -40,6 +47,8 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         {
             compiler.VerifyAllExpectations();
             agentLogic.VerifyAllExpectations();
+            dataPacker.VerifyAllExpectations();
+            skyNetFileService.VerifyAllExpectations();
         }
 
         [Test]
@@ -54,7 +63,11 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
                 Config = "AGENTCONFIG", 
                 Report = "REPORT"
             }};
-            script.Stub(x => x.ServerBuildAgentsData(serverAgents))
+            var path = "";
+            var s = new MemoryStream();
+            skyNetFileService.Stub(x => x.Download(serverTask.ZipPackageId)).Return(s);
+            dataPacker.Stub(x => x.Unpack(s)).Return(path);
+            script.Stub(x => x.ServerBuildAgentsData(path,serverAgents))
                 .Return(saw);
             var wt = new WorkerTask
             {

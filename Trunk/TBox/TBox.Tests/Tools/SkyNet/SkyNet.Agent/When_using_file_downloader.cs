@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Mnk.TBox.Tools.SkyNet.Agent.Code;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
+using Mnk.TBox.Tools.SkyNet.Common.Modules;
 using NUnit.Framework;
 using Rhino.Mocks;
 

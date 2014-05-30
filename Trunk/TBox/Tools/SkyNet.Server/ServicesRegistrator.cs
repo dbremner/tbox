@@ -27,8 +27,9 @@ namespace Mnk.TBox.Tools.SkyNet.Server
             container.Register<IScriptCompiler<ISkyScript>, ScriptCompiler<ISkyScript>>(new PerContainerLifetime());
             container.Register<IAgentsCache, AgentsCache>(new PerContainerLifetime());
             container.Register<IModulesRunner, ModulesRunner>(new PerContainerLifetime());
-            container.Register<IModule, HandleDiedAgents>(new PerContainerLifetime());
-            container.Register<IModule, IdleTasksProcessorModule>(new PerContainerLifetime());
+            container.Register<IModule, HandleDiedAgents>("HandleDiedAgents", new PerContainerLifetime());
+            container.Register<IModule, IdleTasksProcessorModule>("IdleTasksProcessorModule", new PerContainerLifetime());
+            container.Register<IDataPacker, DataPacker>(new PerContainerLifetime());
 
             container.RegisterInstance(config);
 

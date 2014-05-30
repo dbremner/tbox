@@ -42,6 +42,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ConfigProvider.cs" />
+    <Compile Include="Modules\DataPacker.cs" />
+    <Compile Include="Modules\IDataPacker.cs" />
     <Compile Include="ServerConfig.cs" />
     <Compile Include="AgentConfig.cs" />
     <Compile Include="AgentTask.cs" />
@@ -64,6 +66,10 @@
     <Compile Include="ISkyScript.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\..\Libs\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>

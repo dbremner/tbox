@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using Mnk.Library.Common.Log;
 using Mnk.Library.ScriptEngine.Core.Interfaces;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 using ScriptEngine.Core.Params;
 using ServiceStack.Text;
@@ -29,7 +29,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
         {
             lock (locker)
             {
-                context.Reset();
+                context.Reset(task);
                 Abort();
                 thread = new Thread(o => ProcessTask(task));
                 thread.Start();
@@ -66,9 +66,10 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
 
         private void ProcessTask(AgentTask task)
         {
+            var path = string.Empty;
             try
             {
-                var path = filesDownloader.DownloadAndUnpackFiles(task.ZipPackageId);
+                path = filesDownloader.DownloadAndUnpackFiles(task.ZipPackageId);
                 var script = compiler.Compile(task.Script, JsonSerializer.DeserializeFromString<IList<Parameter>>(task.ScriptParameters));
                 task.Report = script.AgentExecute(path, task.Config, context);
             }
@@ -84,6 +85,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent.Code
                 {
                     thread = null;
                 }
+                if (Directory.Exists(path)) Directory.Delete(path, true);
             }
         }
 

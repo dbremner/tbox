@@ -2,7 +2,6 @@
 using System.Net;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Tools;
-using Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces;
 using Mnk.TBox.Tools.SkyNet.Common;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent.Code

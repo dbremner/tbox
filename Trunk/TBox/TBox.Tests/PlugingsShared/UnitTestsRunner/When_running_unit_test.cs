@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit.Core;
+using Mnk.TBox.Tests.Common;
 using NUnit.Core;
 using NUnit.Framework;
 using Mnk.Library.ParallelNUnit.Infrastructure;
@@ -19,14 +20,8 @@ namespace Mnk.TBox.Tests.PlugingsShared.UnitTestsRunner
     class When_running_unit_test
     {
 	    private TestsMetricsCalculator calculator = null;
-        private const string CompileMode = 
-#if DEBUG
-            "DEBUG";
-#else
-            "Release";
-#endif
-        private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../Library/Library.Tests/bin/" + CompileMode + "/", "Mnk.Library.Tests.dll");
-        private const string ToolsPath = "../../../bin/" + CompileMode + "/Tools";
+        private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../Library/Library.Tests/bin/" + Shared.CompileMode + "/", "Mnk.Library.Tests.dll");
+        private const string ToolsPath = "../../../bin/" + Shared.CompileMode + "/Tools";
         private static readonly string NUnitAgentPath = Path.Combine(ToolsPath, "NUnitAgent.exe");
         private static readonly string RunAsx86Path = Path.Combine(ToolsPath, "RunAsx86.exe");
         public static readonly bool[] Bools = {true,false};

@@ -15,5 +15,6 @@ namespace Mnk.TBox.Plugins.SkyNet.Code.Interfaces
         void Terminate(string id);
         string DeleteTask(string id);
         ServerTask GetTask(string id);
+        void DeleteFile(string zipPackageId);
     }
 }

@@ -72,6 +72,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
             }
             return new SkyAgentWork
             {
+                IsFailed = task.IsFailed,
                 Config = task.Config,
                 Agent = task.Agent,
                 Report = report

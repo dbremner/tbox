@@ -15,7 +15,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.SkyNet
     {
         public static string[] Files
         {
-            get { return Directory.GetFiles("../../../bin/Release/Data/SkyNet/", "*.cs", SearchOption.TopDirectoryOnly); }
+            get { return Directory.GetFiles("../../../bin/"+Shared.CompileMode+"/Data/SkyNet/", "*.cs", SearchOption.TopDirectoryOnly); }
         }
 
         [Test]

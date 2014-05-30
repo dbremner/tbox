@@ -15,8 +15,8 @@ namespace Mnk.TBox.Tools.SkyNet.Common.Modules
             this.modules = modules.ToArray();
             timer = new Timer
             {
-                Interval = 15000, 
-                AutoReset = true
+                Interval = 5000, 
+                AutoReset = false
             };
             timer.Elapsed += (o,e)=>TimerEvent();
         }

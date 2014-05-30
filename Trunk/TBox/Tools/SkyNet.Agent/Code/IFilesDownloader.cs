@@ -1,4 +1,4 @@
-﻿namespace Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces
+﻿namespace Mnk.TBox.Tools.SkyNet.Agent.Code
 {
     public interface IFilesDownloader
     {

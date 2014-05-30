@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Mnk.TBox.Tools.SkyNet.Agent.Code.Interfaces
+namespace Mnk.TBox.Tools.SkyNet.Common.Modules
 {
     public interface IDataPacker
     {

@@ -38,6 +38,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code
                 ScriptParameters = task.ScriptParameters,
                 Script = task.Script,
                 Owner = task.Owner,
+                ZipPackageId = task.ZipPackageId,
                 CreatedTime = DateTime.UtcNow,
                 IsDone = false,
                 Progress = 0,

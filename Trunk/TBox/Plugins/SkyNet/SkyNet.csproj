@@ -68,6 +68,7 @@
     <Compile Include="Code\Interfaces\IServicesFacade.cs" />
     <Compile Include="Code\Interfaces\ITaskExecutor.cs" />
     <Compile Include="Code\Interfaces\SkyNetStatus.cs" />
+    <Compile Include="Code\Interfaces\TaskInfo.cs" />
     <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\ScriptsHelper.cs" />
     <Compile Include="Code\ServicesFacade.cs" />

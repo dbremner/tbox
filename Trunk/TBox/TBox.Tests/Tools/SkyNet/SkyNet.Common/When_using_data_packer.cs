@@ -3,10 +3,10 @@ using System.IO;
 using System.Linq;
 using Ionic.Zip;
 using Ionic.Zlib;
-using Mnk.TBox.Tools.SkyNet.Agent.Code;
+using Mnk.TBox.Tools.SkyNet.Common.Modules;
 using NUnit.Framework;
 
-namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Agent
+namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Common
 {
     [TestFixture]
     [Category("Integration")]
