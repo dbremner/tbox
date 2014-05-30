@@ -61,7 +61,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
             }
             finally
             {
-                if(!string.IsNullOrEmpty(path))Directory.Delete(path,true);
+                if(Directory.Exists(path))Directory.Delete(path,true);
             }
         }
 

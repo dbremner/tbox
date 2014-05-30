@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using ICSharpCode.SharpZipLib.Zip;
+using Ionic.Zip;
 using Mnk.TBox.Core.PluginsShared.Automator;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.WpfControls.Dialogs;
@@ -72,32 +71,22 @@ namespace Solution.Scripts
         private bool UnpackPackage(FileInfo package)
         {
             var count = 0;
-            using (var f = package.Open(FileMode.Open))
+            using (var zf = ZipFile.Read(package.FullName))
             {
-                using (var zf = new ZipFile(f))
+                foreach (var entry in zf)
                 {
-                    foreach (var entry in zf.Cast<ZipEntry>())
-                    {
-                        var directory = Path.GetDirectoryName(entry.Name);
-                        if (string.IsNullOrEmpty(directory)) continue;
-                        var alias = Aliases.FirstOrDefault(x => directory.StartsWith(x.Key));
-                        if (string.IsNullOrEmpty(alias.Key)) continue;
-                        using (var zs = zf.GetInputStream(entry))
-                        {
-                            using (var ms = new MemoryStream())
-                            {
-                                ++count;
-                                zs.CopyTo(ms);
-                                Save(ms, alias.Value + entry.Name.Substring(alias.Key.Length));
-                            }
-                        }
-                    }
+                    var directory = Path.GetDirectoryName(entry.FileName);
+                    if (string.IsNullOrEmpty(directory)) continue;
+                    var alias = Aliases.FirstOrDefault(x => directory.StartsWith(x.Key));
+                    if (string.IsNullOrEmpty(alias.Key)) continue;
+                    ++count;
+                    Save(entry, alias.Value + entry.FileName.Substring(alias.Key.Length));
                 }
             }
             return count > 0;
         }
 
-        private void Save(Stream s, string name)
+        private void Save(ZipEntry entry, string name)
         {
             foreach (var path in TargetPathes)
             {
@@ -106,11 +95,7 @@ namespace Solution.Scripts
                 if (!Directory.Exists(targetDir)) Directory.CreateDirectory(targetDir);
                 var targetPath = Path.GetFullPath(Path.Combine(targetDir, Path.GetFileName(name)));
                 if (File.Exists(targetPath)) File.Delete(targetPath);
-                using (var f = File.OpenWrite(targetPath))
-                {
-                    s.Position = 0;
-                    s.CopyTo(f);
-                }
+                entry.Extract(targetDir);
             }
         }
     }

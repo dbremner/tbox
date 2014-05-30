@@ -1,22 +1,21 @@
-﻿using Mnk.TBox.Core.PluginsShared.Automator;
-using Mnk.Library.Solution.Scripts;
+﻿using System;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Solution.Scripts;
 
 namespace Solution
 {
     static class Runner
     {
+        [STAThread]
         public static void Main()
         {
-            new OptimizeSolution
+            new PutObjects()
                 {
-                    Solutions = new[]
-                        {
-                            @"d:\",
-                        },
-                    PathsToLibs = new[] { "..\\Libraries", "..\\packages" },
-                    SectionToPreserveNewestNames = new[] { "Content", "None" },
-                    TasksToRemove = new[]{"AjaxMin"},
-                    DisableBuildEvents = true,
+                    FilesMasks = new[] { "*.exe", "*.pdb" },
+                    PackageMask = "Package*.zip",
+                    PathToDirectoryWithPackage = "D:/os",
+                    RemoveAfterUnpack = false,
+                    TargetPathes = new[] { "D:/os" }
                 }.Run(new ScriptContext());
         }
     }

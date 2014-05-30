@@ -40,6 +40,7 @@
       <ComponentRef Id="Automater" />
       <ComponentRef Id="AutomaterMsc" />
       <ComponentRef Id="ProjectMan" />
+      <ComponentRef Id="SkyNet" />
       <ComponentRef Id="Templates" />
       <ComponentRef Id="TemplatesSample" />
       <ComponentRef Id="TeamManagerDataProviders" />

@@ -72,8 +72,9 @@ public class Factorial : ISkyScript
                 while (++i + o.Left <= o.Right)
                 {
                     result *= i + o.Left;
+                    context.Update(i / size);
+                    if (context.UserPressClose) break;
                 }
-                context.Update(i/ size);
             }
             else
             {

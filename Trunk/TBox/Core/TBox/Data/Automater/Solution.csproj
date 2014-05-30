@@ -33,24 +33,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common">
-      <HintPath>..\..\Libraries\Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\..\Libraries\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\Libraries\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Mnk.Library.Common">
+      <HintPath>..\..\Libraries\Mnk.Library.Common.dll</HintPath>
     </Reference>
-    <Reference Include="PluginsShared">
-      <HintPath>..\..\Libraries\PluginsShared.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Mnk.Library.Localization">
+      <HintPath>..\..\Localization\Mnk.Library.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.ScriptEngine">
+      <HintPath>..\..\Libraries\Mnk.Library.ScriptEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfControls">
+      <HintPath>..\..\Libraries\Mnk.Library.WpfControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.TBox.Core.PluginsShared">
+      <HintPath>..\..\Libraries\Mnk.TBox.Core.PluginsShared.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.TBox.Locales.Localization">
+      <HintPath>..\..\Localization\Mnk.TBox.Locales.Localization.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="ScriptEngine">
-      <HintPath>..\..\Libraries\ScriptEngine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -61,10 +66,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="WPFControls">
-      <HintPath>..\..\Libraries\WPFControls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scripts\AddTracing.cs" />

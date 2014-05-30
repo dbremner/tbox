@@ -1,4 +1,6 @@
-﻿17/05/2014 Add LocalizationTool plugin. Fix some issues.
+﻿30/05/2014 Add beta version of the SkyNet. Now ConsoleNunitRunner support multiply assemblies, thanks to DanielRose. Add ability to specify characters to the Searcher.
+
+17/05/2014 Add LocalizationTool plugin. Fix some issues.
 
 30/03/2014 Add Notes and Passwords Storage plugins. Fix validation
 
