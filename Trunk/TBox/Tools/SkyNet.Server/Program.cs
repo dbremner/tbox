@@ -17,7 +17,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server
         /// </summary>
         static void Main()
         {
-            LogManager.Init(new MultiplyLog(new IBaseLog[] { new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "SkyNet.Server.log")) }));
+            LogManager.Init(new MultiplyLog(new ConsoleLog(), new FileLog(Path.Combine(Folders.UserLogsFolder, "SkyNet.Server.log")) ));
             var provider = new ConfigProvider<ServerConfig>(Path.Combine(Folders.UserToolsFolder, "SkyNet.Sever.config"));
             using (new InterprocessServer<IConfigProvider<ServerConfig>>(provider, "TBox.SkyNet.Server"))
             {

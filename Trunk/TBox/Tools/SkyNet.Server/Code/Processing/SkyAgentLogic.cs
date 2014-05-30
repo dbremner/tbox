@@ -43,12 +43,12 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Processing
             }
         }
 
-        public bool IsDone(WorkerTask task)
+        public AgentTask GetTask(WorkerTask workerTask)
         {
-            if (task.IsFailed) return true;
-            var result = true;
-            Execute(task.Agent, s => result = s.GetTask(task.Task.Id).IsDone);
-            return result;
+            if (workerTask.IsFailed) return null;
+            AgentTask task = null;
+            Execute(workerTask.Agent, s =>task = s.GetTask(workerTask.Task.Id));
+            return task;
         }
 
         public SkyAgentWork BuildReport(WorkerTask task)

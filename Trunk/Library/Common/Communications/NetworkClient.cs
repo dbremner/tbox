@@ -16,14 +16,18 @@ namespace Mnk.Library.Common.Communications
 
         public NetworkClient(Uri uri)
         {
-            var factory = new ChannelFactory<T>(
-                new WebHttpBinding
+            var binding = new WebHttpBinding
+            {
+                Security = new WebHttpSecurity {Mode = WebHttpSecurityMode.None},
+                TransferMode = TransferMode.Streamed,
+                MaxReceivedMessageSize = int.MaxValue,
+                ReaderQuotas =
                 {
-                    Security = new WebHttpSecurity { Mode = WebHttpSecurityMode.None },
-                    TransferMode = TransferMode.Streamed,
-                    MaxReceivedMessageSize = int.MaxValue
-                },
-                new EndpointAddress(uri));
+                    MaxArrayLength = int.MaxValue, 
+                    MaxStringContentLength = int.MaxValue,
+                }
+            };
+            var factory = new ChannelFactory<T>( binding, new EndpointAddress(uri));
             factory.Endpoint.Behaviors.Add(new WebHttpBehavior());
             Instance = factory.CreateChannel();
         }

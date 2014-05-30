@@ -5,6 +5,7 @@ using System.Linq;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Tools.SkyNet.Common;
 using ServiceStack.Text;
+using System.Numerics;
 
 namespace Mnk.TBox.Tools.SkyNet.Common
 {
@@ -23,7 +24,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common
             public int Right { get; set; }
         }
 
-        public IList<SkyAgentWork> ServerBuildAgentsData(IList<ServerAgent> agents, ISkyContext context)
+        public IList<SkyAgentWork> ServerBuildAgentsData(IList<ServerAgent> agents)
         {
             if (N <= 0) throw new ArgumentException("Please specify positive number");
             var delta = N / agents.Count - 1;
@@ -47,10 +48,10 @@ namespace Mnk.TBox.Tools.SkyNet.Common
 
         public string ServerBuildResultByAgentResults(IList<SkyAgentWork> results)
         {
-            var result = 1;
+            BigInteger result = 1;
             foreach (var x in results)
             {
-                var value = int.Parse(x.Report);
+                var value = BigInteger.Parse(x.Report);
                 if (value == 0) return x.Report;
                 checked
                 {
@@ -65,14 +66,20 @@ namespace Mnk.TBox.Tools.SkyNet.Common
             var o = JsonSerializer.DeserializeFromString<Operation>(agentData);
             checked
             {
-                return Fact(o.Left, o.Right).ToString();
+                BigInteger result = o.Left;
+                if (o.Left <= o.Right)
+                {
+                    while (++o.Left <= o.Right)
+                    {
+                        result *= o.Left;
+                    }
+                }
+                else
+                {
+                    result = 1;
+                }
+                return result.ToString();
             }
-        }
-
-        private int Fact(int left, int right)
-        {
-            if (left > right) return 1;
-            return left * Fact(left + 1, right);
         }
 
     }

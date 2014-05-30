@@ -18,13 +18,18 @@ namespace Mnk.Library.Common.Communications
             Owner = owner;
             Endpoint = BuildEndpoint(port);
             server = new ServiceHost(owner);
-            var ep = server.AddServiceEndpoint(typeof(T),
-                new WebHttpBinding { 
-                    Security = new WebHttpSecurity { Mode = WebHttpSecurityMode.None }, 
-                    TransferMode = TransferMode.Streamed,
-                    MaxReceivedMessageSize = int.MaxValue
-                },
-                Endpoint);
+            var binding = new WebHttpBinding
+            {
+                Security = new WebHttpSecurity { Mode = WebHttpSecurityMode.None },
+                TransferMode = TransferMode.Streamed,
+                MaxReceivedMessageSize = int.MaxValue,
+                ReaderQuotas =
+                {
+                    MaxArrayLength = int.MaxValue,
+                    MaxStringContentLength = int.MaxValue,
+                }
+            };
+            var ep = server.AddServiceEndpoint(typeof(T), binding, Endpoint);
             ep.Behaviors.Add(new WebHttpBehavior());
             server.Open();
         }

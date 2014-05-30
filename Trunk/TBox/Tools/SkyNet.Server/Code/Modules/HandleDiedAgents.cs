@@ -29,7 +29,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
 
         private void ResetNonIdle(IEnumerable<ServerAgent> agents)
         {
-            var nonIdleAgents = agents.Where(x => x.State != AgentState.Idle).ToArray();
+            var nonIdleAgents = agents.ToArray();
             Parallel.ForEach(nonIdleAgents, agent =>
             {
                 var task = agentLogic.GetCurrentTask(agent);

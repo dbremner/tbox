@@ -83,7 +83,7 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         }
 
         [Test]
-        public void Should_check_is_done()
+        public void Should_get_task()
         {
             //Arrange
             var wt = new WorkerTask{Task = agentTask, Agent = agent};
@@ -91,14 +91,14 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
                 .Return(agentTask);
 
             //Act
-            var actual = agentLogic.IsDone(wt);
+            var actual = agentLogic.GetTask(wt);
 
             //Assert
-            Assert.IsFalse(actual);
+            Assert.AreEqual(agentTask, actual);
         }
 
         [Test]
-        public void Should_check_is_done_if_failed()
+        public void Should_handle_get_task_if_failed()
         {
             //Arrange
             var wt = new WorkerTask { Task = agentTask, Agent = agent, Exception = new Exception() };
@@ -106,14 +106,14 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
                 .Return(agentTask);
 
             //Act
-            var actual = agentLogic.IsDone(wt);
+            var actual = agentLogic.GetTask(wt);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.IsNull(actual);
         }
 
         [Test]
-        public void Should_handle_error_on_check_is_done()
+        public void Should_handle_error_on_check_get_task()
         {
             //Arrange
             var ex = new Exception();
@@ -122,10 +122,10 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
                 .Throw(ex);
 
             //Act
-            var actual = agentLogic.IsDone(wt);
+            var actual = agentLogic.GetTask(wt);
 
             //Assert
-            Assert.IsTrue(actual);
+            Assert.IsNull(actual);
         }
 
         [Test]

@@ -44,8 +44,8 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
         {
             try
             {
-                var tasks = servicesFacade.GetServiceTasks();
-                ExistTasks.ItemsSource = tasks;
+                ExistTasks.ItemsSource = servicesFacade.GetServiceTasks();
+                ConnectedAgents.ItemsSource = servicesFacade.GetServiceAgents();
             }
             catch (Exception ex)
             {
@@ -78,6 +78,8 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
 
         private void StartClick(object sender, RoutedEventArgs e)
         {
+            Report.Text = string.Empty;
+            timer.Stop();
             var operation = (SingleFileOperation) DataContext;
             DialogsCache.ShowProgress(u=>DoStart(u,operation), Title, this);
         }
@@ -91,6 +93,7 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
                 {
                     var task = servicesFacade.GetTask(id);
                     if (task.State == TaskState.Done) break;
+                    updater.Update(task.Progress / 100.0f);
                     Thread.Sleep(5000);
                 } while (!updater.UserPressClose);
                 if (updater.UserPressClose)
@@ -98,11 +101,15 @@ namespace Mnk.TBox.Plugins.SkyNet.Forms
                     servicesFacade.Terminate(id);
                 }
                 var report = servicesFacade.DeleteTask(id);
-                Mt.Do(this, ()=>Report.Text = report);
+                Mt.Do(this, () => Report.Text = report);
             }
             catch (Exception ex)
             {
                 log.Write(ex, "Error executing task");
+            }
+            finally
+            {
+                Mt.Do(this, timer.Start);
             }
         }
 

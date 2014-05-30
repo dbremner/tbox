@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System.Core">
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>

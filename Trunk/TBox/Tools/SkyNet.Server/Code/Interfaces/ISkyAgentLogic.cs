@@ -6,7 +6,7 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Interfaces
     public interface ISkyAgentLogic
     {
         WorkerTask CreateWorkerTask(ServerAgent agent, string agentData, ServerTask task);
-        bool IsDone(WorkerTask task);
+        AgentTask GetTask(WorkerTask task);
         SkyAgentWork BuildReport(WorkerTask task);
         bool IsAlive(ServerAgent arg);
         AgentTask GetCurrentTask(ServerAgent agent);

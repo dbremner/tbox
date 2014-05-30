@@ -30,20 +30,41 @@
                 </DockPanel>
             </TabItem>
             <TabItem Header="{loc:Tr Tasks}">
-                <components:ExtListBox Name="ExistTasks" Margin="5">
-                    <ListBox.ItemTemplate >
-                        <DataTemplate DataType="common:ServerTask">
-                            <DockPanel>
-                                <Button Content="{loc:Tr Delete}"  DockPanel.Dock="Right" Click="DeleteTask" />
-                                <Button Content="{loc:Tr Terminate}"  DockPanel.Dock="Right" Click="TerminateTask" />
-                                <Button Content="{loc:Tr Cancel}"  DockPanel.Dock="Right" Click="CancelTask"/>
-                                <TextBlock Text="{Binding CreatedTime}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5 0"/>
-                                <TextBlock Text="{Binding State}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5 0"/>
-                                <TextBlock Text="{Binding Owner}" VerticalAlignment="Center" Margin="5 0"/>
-                            </DockPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </components:ExtListBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="{loc:Tr Agents}" Grid.Row="0">
+                        <components:ExtListBox Name="ConnectedAgents" Margin="5">
+                            <ListBox.ItemTemplate >
+                                <DataTemplate DataType="common:ServerAgent">
+                                    <DockPanel>
+                                        <TextBlock Text="{Binding TotalCores}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5 0"/>
+                                        <TextBlock Text="{Binding State}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5 0"/>
+                                        <TextBlock Text="{Binding Endpoint}" VerticalAlignment="Center" Margin="5 0"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </components:ExtListBox>
+                    </GroupBox>
+                    <GroupBox Header="{loc:Tr Tasks}" Grid.Row="1">
+                        <components:ExtListBox Name="ExistTasks" Margin="5">
+                            <ListBox.ItemTemplate >
+                                <DataTemplate DataType="common:ServerTask">
+                                    <DockPanel>
+                                        <Button Content="{loc:Tr Delete}"  DockPanel.Dock="Right" Click="DeleteTask" />
+                                        <Button Content="{loc:Tr Terminate}"  DockPanel.Dock="Right" Click="TerminateTask" />
+                                        <Button Content="{loc:Tr Cancel}"  DockPanel.Dock="Right" Click="CancelTask"/>
+                                        <TextBlock Text="{Binding CreatedTime}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5 0"/>
+                                        <TextBlock Text="{Binding State}" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5 0"/>
+                                        <TextBlock Text="{Binding Owner}" VerticalAlignment="Center" Margin="5 0"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </components:ExtListBox>
+                    </GroupBox>
+                </Grid>
             </TabItem>
         </TabControl>
     </DockPanel>

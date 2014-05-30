@@ -12,7 +12,6 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
     class When_using_worker
     {
         private IScriptCompiler<ISkyScript> compiler;
-        private ISkyContext context;
         private ISkyAgentLogic agentLogic;
         private IWorker worker;
         private ServerAgent[] serverAgents;
@@ -23,9 +22,8 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         public void SetUp()
         {
             compiler = MockRepository.GenerateStrictMock<IScriptCompiler<ISkyScript>>();
-            context = MockRepository.GenerateStrictMock<ISkyContext>();
             agentLogic = MockRepository.GenerateStrictMock<ISkyAgentLogic>();
-            worker = new Worker(compiler,context,agentLogic);
+            worker = new Worker(compiler,agentLogic);
             serverAgents = new[] { new ServerAgent { } };
             serverTask = new ServerTask
             {
@@ -41,7 +39,6 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         public void TearDown()
         {
             compiler.VerifyAllExpectations();
-            context.VerifyAllExpectations();
             agentLogic.VerifyAllExpectations();
         }
 
@@ -57,7 +54,7 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
                 Config = "AGENTCONFIG", 
                 Report = "REPORT"
             }};
-            script.Stub(x => x.ServerBuildAgentsData(serverAgents, context))
+            script.Stub(x => x.ServerBuildAgentsData(serverAgents))
                 .Return(saw);
             var wt = new WorkerTask
             {
@@ -72,8 +69,9 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
             agentLogic.Stub(x => x.CreateWorkerTask(serverAgents[0], saw[0].Config, serverTask ))
                 .Return(wt);
 
-            agentLogic.Stub(x => x.IsDone(wt))
-                .Return(true);
+            var task = new AgentTask{IsDone = true};
+            agentLogic.Stub(x => x.GetTask(wt))
+                .Return(task);
 
             agentLogic.Stub(x => x.BuildReport(wt))
                 .Return(saw[0]);

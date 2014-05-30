@@ -12,14 +12,12 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
         private readonly IAgentsCache cache;
         private readonly IServerContext serverContext;
         private readonly IWorker worker;
-        private readonly ISkyContext context;
 
-        public IdleTasksProcessorModule(IAgentsCache cache, IServerContext serverContext, IWorker worker, ISkyContext context)
+        public IdleTasksProcessorModule(IAgentsCache cache, IServerContext serverContext, IWorker worker)
         {
             this.cache = cache;
             this.serverContext = serverContext;
             this.worker = worker;
-            this.context = context;
         }
 
         public void Process()
@@ -64,7 +62,6 @@ namespace Mnk.TBox.Tools.SkyNet.Server.Code.Modules
         private void PrepareToStart(ServerTask task, IEnumerable<ServerAgent> agents)
         {
             cache.Clear();
-            context.Reset();
             lock (serverContext)
             {
                 task.State = TaskState.InProgress;

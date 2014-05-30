@@ -40,9 +40,9 @@ namespace Mnk.TBox.Tools.SkyNet.Common
             public void Clear(){}
         }
 
-        public IList<SkyAgentWork> ServerBuildAgentsData(IList<ServerAgent> agents, ISkyContext context)
+        public IList<SkyAgentWork> ServerBuildAgentsData(IList<ServerAgent> agents)
         {
-            using (var p = CreatePackage(DataFolderPath, context))
+            using (var p = CreatePackage(DataFolderPath))
             {
                 var i = 0;
                 return p.PrepareToRun(agents.Count, Categories, Categories.Length>0 ? (bool?)IncludeCategories : null, false)
@@ -55,7 +55,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common
             }
         }
 
-        private ProcessPackage CreatePackage(string folder, ISkyContext context)
+        private ProcessPackage CreatePackage(string folder)
         {
             var p = new ProcessPackage(Path.Combine(folder, GetTestDllRelativePath()), 
                 NunitAgentPath, RunAsx86, false,
@@ -63,7 +63,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common
                 CommandBeforeTestsRun, new ScriptView(), RunAsx86Path, Framework);
             if (!p.EnsurePathIsValid())
             {
-                throw new ArgumentException("Incorrect path: " + context);
+                throw new ArgumentException("Incorrect path: " + DataFolderPath);
             }
             p.DoRefresh(x => { }, x => { throw new ArgumentException("Can't receive tests list"); });
             return p;
@@ -84,7 +84,7 @@ namespace Mnk.TBox.Tools.SkyNet.Common
         public string AgentExecute(string workingDirectory, string agentData, ISkyContext context)
         {
             var packages = JsonSerializer.DeserializeFromString<IList<Result>>(agentData);
-            using (var p = CreatePackage(workingDirectory, context))
+            using (var p = CreatePackage(workingDirectory))
             {
                 var synchronizer = new Synchronizer(1);
                 p.DoRun(o => { }, p.Items, new[] {packages}, false, new string[0], false, 0, synchronizer,

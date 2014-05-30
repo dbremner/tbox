@@ -93,7 +93,6 @@
     <Compile Include="Code\Processing\SkyAgentLogic.cs" />
     <Compile Include="Code\Processing\WorkerTask.cs" />
     <Compile Include="Code\Settings\Config.cs" />
-    <Compile Include="Code\SkyContext.cs" />
     <Compile Include="Code\SkyNetFileServiceLogic.cs" />
     <Compile Include="Code\SkyNetServerAgentsLogic.cs" />
     <Compile Include="Code\SkyNetServerTasksLogic.cs" />
