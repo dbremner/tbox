@@ -16,27 +16,27 @@ using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application.Code
 {
-    class ServicesRegistrator
+    static class ServicesRegistrator
     {
         private static readonly string LogsFolder = Path.Combine(Folders.UserRootFolder, "Logs");
         private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder, "TBox.Errors.log");
 
-        public ServicesRegistrator()
+        static ServicesRegistrator()
         {
             if (!Directory.Exists(LogsFolder)) Directory.CreateDirectory(LogsFolder);
-            LogManager.Init(new MultiplyLog(new IBaseLog[]{
-					new FileLog(ErrorsLogsPath), new MessageBoxLog()
-				}),
-                new FileLog(Path.Combine(LogsFolder, "TBox.Info.log")));
+            LogManager.Init(
+                new MultiplyLog(new FileLog(ErrorsLogsPath), new MessageBoxLog()),
+                new FileLog(Path.Combine(LogsFolder, "TBox.Info.log"))
+                );
         }
 
-        public IServiceContainer Register()
+        public static IServiceContainer Register()
         {
             var container = new ServiceContainer();
-            container.Register(f=>new LogsSender(ErrorsLogsPath), new SingletonLifetime());
+            container.Register(f => new LogsSender(ErrorsLogsPath), new SingletonLifetime());
             var cm = new ConfigManager();
-            container.Register<IConfigManager<Config>>(f=>cm, new SingletonLifetime());
-            container.Register<IConfigsManager>(f=>cm, new SingletonLifetime());
+            container.Register<IConfigManager<Config>>(f => cm, new SingletonLifetime());
+            container.Register<IConfigsManager>(f => cm, new SingletonLifetime());
             container.Register<IMenuItemsProvider, MenuItemsProvider>(new SingletonLifetime());
             container.Register<MenuCallsVisitor>(new SingletonLifetime());
             container.Register<RecentItemsCollector>(new SingletonLifetime());

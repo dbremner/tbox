@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mnk.Library.ParallelNUnit;
+using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
-using Mnk.Library.ParallelNUnit.Infrastructure;
-using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
+using Mnk.Library.ParallelNUnit.Packages.Common;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     using System.Globalization;
     using System.Linq;
 
-    internal class ConsoleView : IUnitTestsView
+    internal class ConsoleView : ITestsView
     {
         private List<TestResults> Results { get; set; }
 
@@ -25,7 +26,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             this.CurrentAssemblyStartTime = DateTime.Now;
         }
 
-        public void SetItems(IList<Result> items, TestsMetricsCalculator metrics)
+        public void SetItems(IList<Result> items, ITestsMetricsCalculator metrics)
         {
             var elapsedTime = DateTime.Now - this.CurrentAssemblyStartTime;
             var currentAssemblyResults = new TestResults(items, metrics, elapsedTime);
@@ -105,7 +106,8 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         public TestResults CreateTotalResult()
         {
             var totalResults = this.Results.SelectMany(results => results.Result).ToList();
-            var totalMetrics = new TestsMetricsCalculator(totalResults);
+            var totalMetrics = new TestsMetricsCalculator();
+            totalMetrics.Refresh(totalResults);
             var elapsedTime = this.Results.Aggregate(TimeSpan.Zero, (current, result) => current + result.ElapsedTime);
 
             return new TestResults(totalResults, totalMetrics, elapsedTime);
@@ -126,11 +128,11 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         {
             public IList<Result> Result { get; private set; }
 
-            public TestsMetricsCalculator Metrics { get; private set; }
+            public ITestsMetricsCalculator Metrics { get; private set; }
 
             public TimeSpan ElapsedTime { get; private set; }
 
-            public TestResults(IList<Result> result, TestsMetricsCalculator metrics, TimeSpan elapsedTime)
+            public TestResults(IList<Result> result, ITestsMetricsCalculator metrics, TimeSpan elapsedTime)
             {
                 this.Result = result;
                 this.Metrics = metrics;

@@ -1,0 +1,111 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using Mnk.Library.Common.Log;
+using Mnk.Library.Common.Tools;
+using Mnk.Library.ParallelNUnit.Contracts;
+
+namespace Mnk.Library.ParallelNUnit.Packages.Common
+{
+    class DirectoriesManipulator : IDirectoriesManipulator
+    {
+        private readonly ITestsConfig config;
+        private readonly ICopyDirGenerator copyDirGenerator;
+        private readonly ITestsUpdater updater;
+        private static readonly ILog Log = LogManager.GetLogger<DirectoriesManipulator>();
+
+        public DirectoriesManipulator(ITestsConfig config, ICopyDirGenerator copyDirGenerator, ITestsUpdater updater)
+        {
+            this.config = config;
+            this.copyDirGenerator = copyDirGenerator;
+            this.updater = updater;
+        }
+
+        public IList<string> GenerateFolders(int count)
+        {
+            var dllPaths = new List<string>();
+            if (config.CopyToSeparateFolders)
+            {
+                updater.Update("Start cloning of the unit tests folder");
+                CopyToLocalFolders(count, dllPaths);
+                updater.Update("Cloning of the unit tests folder finished");
+            }
+            else
+            {
+                for (var i = 0; i < count; i++)
+                {
+                    dllPaths.Add(config.TestDllPath);
+                }
+            }
+            return dllPaths;
+        }
+
+        private void CopyToLocalFolders(int count, List<string> dllPaths)
+        {
+            string name;
+            string sourceDir;
+            var files = copyDirGenerator.GetFiles(config.TestDllPath, config.CopyMasks, out name, out sourceDir);
+            foreach (var folder in GenerateFolders(count, config.DirToCloneTests))
+            {
+                updater.Update("Copy files to: " + folder);
+                foreach (var item in files)
+                {
+                    if(updater.UserPressClose)break;
+                    var target = Path.Combine(folder, item.Key);
+                    if (!Directory.Exists(target)) Directory.CreateDirectory(target);
+                    foreach (var file in item.Value)
+                    {
+                        File.Copy(Path.Combine(sourceDir, item.Key, file), Path.Combine(target, file));
+                    }
+                }
+                if (updater.UserPressClose) break;
+                dllPaths.Add(Path.Combine(folder, name));
+            }
+        }
+
+        private static IEnumerable<string> GenerateFolders(int count, string dirToCloneTests)
+        {
+            var folders = new List<string>(count);
+            var fileId = 0;
+            for (var i = 0; i < count; ++i)
+            {
+                string folder;
+                while (true)
+                {
+                    folder = Path.Combine(dirToCloneTests, (++fileId).ToString(CultureInfo.InvariantCulture));
+                    if (!File.Exists(folder) && !Directory.Exists(folder)) break;
+                }
+                folders.Add(folder);
+            }
+            return folders;
+        }
+
+        public void ClearFolders(IList<string> dllPaths)
+        {
+            if (!config.CopyToSeparateFolders) return;
+            var copyDeep = copyDirGenerator.CalcCopyDeep(copyDirGenerator.NormalizePaths(config.CopyMasks));
+            foreach (var t in dllPaths)
+            {
+                try
+                {
+                    var name = Path.GetDirectoryName(t);
+                    for (var j = 1; j < copyDeep; ++j)
+                    {
+                        name = Path.GetDirectoryName(name);
+                    }
+                    name = name ?? string.Empty;
+                    if (Directory.Exists(name))
+                    {
+                        Directory.Delete(name, true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Write(ex, "Can't delete folder: " + t);
+                }
+            }
+        }
+
+    }
+}

@@ -5,15 +5,15 @@ using System.Linq;
 using System.Threading;
 using System.Xml;
 using Mnk.Library.Common.Models;
+using Mnk.Library.ParallelNUnit.Contracts;
 using NUnit.Core;
 using Mnk.Library.ParallelNUnit.Core;
-using Mnk.Library.ParallelNUnit.Infrastructure;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     internal static class ReportBuilder
     {
-       public static void GenerateReport(string path, string xmlReport, TestsMetricsCalculator tmc, IEnumerable<Result> testResults )
+       public static void GenerateReport(string path, string xmlReport, ITestsMetricsCalculator tmc, IEnumerable<Result> testResults )
        {
            var doc = new XmlDocument();
            doc.AppendChild(doc.CreateXmlDeclaration("1.0", "utf-8", "no"));

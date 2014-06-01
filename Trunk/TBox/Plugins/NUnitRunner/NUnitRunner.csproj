@@ -36,6 +36,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LightInject">
+      <HintPath>..\..\..\Libs\LightInject.3.0.1.6\lib\net40\LightInject.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.core.interfaces">
       <HintPath>..\..\..\Libs\NUnit.2.6.3\lib\nunit.core.interfaces.dll</HintPath>
       <Private>False</Private>
@@ -58,8 +62,8 @@
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ResultStateToIconConverter.cs" />
-    <Compile Include="Components\UnitTestsView.xaml.cs">
-      <DependentUpon>UnitTestsView.xaml</DependentUpon>
+    <Compile Include="Components\TestsView.xaml.cs">
+      <DependentUpon>TestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NUnitRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,7 +81,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\UnitTestsView.xaml">
+    <Page Include="Components\TestsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -135,6 +139,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\failure.ico" />
   </ItemGroup>
   <ItemGroup>

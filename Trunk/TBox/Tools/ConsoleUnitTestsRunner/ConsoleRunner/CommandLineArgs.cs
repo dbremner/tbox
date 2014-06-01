@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
-    class CommandLineArgs
+    class CommandLineArgs 
     {
         public IList<string> Paths { get; set; }
         public int ProcessCount { get; set; }

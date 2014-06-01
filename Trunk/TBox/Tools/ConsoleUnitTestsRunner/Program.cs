@@ -53,7 +53,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
                 Console.WriteLine("ProcessModel: Default\tDomainUseage: Single");
                 Console.WriteLine("Execution Runtime: Default\tCPUCount: " + Environment.ProcessorCount);
 
-                ret = TestsRunner.Run(cmdArgs);
+                ret = new TestsRunner().Run(cmdArgs);
             }
             catch (Exception ex)
             {

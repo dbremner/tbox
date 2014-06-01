@@ -33,6 +33,10 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LightInject">
+      <HintPath>..\..\Libs\LightInject.3.0.1.6\lib\net40\LightInject.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\..\Libs\NUnit.2.6.3\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -55,39 +59,54 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDirectoriesManipulator.cs" />
+    <Compile Include="Contracts\IPrefetchManager.cs" />
+    <Compile Include="Contracts\IProcessCreator.cs" />
+    <Compile Include="Contracts\IThreadTestsExecutor.cs" />
+    <Compile Include="Contracts\ISynchronizer.cs" />
+    <Compile Include="Contracts\IProcessTestConfig.cs" />
+    <Compile Include="Contracts\IThreadTestConfig.cs" />
     <Compile Include="Core\NUnitTestStarter.cs" />
     <Compile Include="Core\NUnitBase.cs" />
-    <Compile Include="Execution\NUnitExecutor.cs" />
-    <Compile Include="Infrastructure\PrefetchManager.cs" />
-    <Compile Include="Infrastructure\Runners\AgentProcessCreator.cs" />
-    <Compile Include="Infrastructure\Runners\Calculator.cs" />
-    <Compile Include="Infrastructure\Communication\NunitRunnerClient.cs" />
-    <Compile Include="Infrastructure\DirectoriesManipulator.cs" />
-    <Compile Include="Infrastructure\Interfaces\IProgressStatus.cs" />
-    <Compile Include="Infrastructure\Interfaces\IUnitTestsView.cs" />
-    <Compile Include="Infrastructure\Packages\BasePackage.cs" />
-    <Compile Include="Infrastructure\Packages\ThreadPackage.cs" />
-    <Compile Include="Infrastructure\Packages\IPackage.cs" />
-    <Compile Include="Infrastructure\Runners\Commands.cs" />
-    <Compile Include="Infrastructure\Runners\ThreadTestsRunner.cs" />
-    <Compile Include="Infrastructure\Runners\ProcessTestsRunner.cs" />
-    <Compile Include="Infrastructure\Runners\ThreadContext.cs" />
-    <Compile Include="Infrastructure\Runners\IContext.cs" />
-    <Compile Include="Infrastructure\Runners\ProcessContext.cs" />
-    <Compile Include="Execution\TestRunConfig.cs" />
-    <Compile Include="Infrastructure\Runners\TestsRunner.cs" />
+    <Compile Include="Contracts\ITestsMetricsCalculator.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Contracts\IThreadTestsRunner.cs" />
+    <Compile Include="Packages\Excecution\ThreadTestsExecutor.cs" />
+    <Compile Include="Packages\Common\PrefetchManager.cs" />
+    <Compile Include="Contracts\IProcessTestsRunner.cs" />
+    <Compile Include="Packages\Excecution\ProcessCreator.cs" />
+    <Compile Include="Packages\Excecution\ProcessCalculator.cs" />
+    <Compile Include="Core\NunitRunnerClient.cs" />
+    <Compile Include="Packages\Common\DirectoriesManipulator.cs" />
+    <Compile Include="Contracts\ITestsUpdater.cs" />
+    <Compile Include="Contracts\ITestsConfig.cs" />
+    <Compile Include="Contracts\ITestsView.cs" />
+    <Compile Include="Packages\BasePackage.cs" />
+    <Compile Include="Packages\ThreadPackage.cs" />
+    <Compile Include="Contracts\IPackage.cs" />
+    <Compile Include="Contracts\Commands.cs" />
+    <Compile Include="Contracts\IProcessCalculator.cs" />
+    <Compile Include="Packages\Excecution\ThreadTestsRunner.cs" />
+    <Compile Include="Packages\Excecution\ProcessTestsRunner.cs" />
+    <Compile Include="Packages\Excecution\ThreadRunnerContext.cs" />
+    <Compile Include="Contracts\IRunnerContext.cs" />
+    <Compile Include="Packages\Excecution\ProcessRunnerContext.cs" />
+    <Compile Include="Contracts\TestRunConfig.cs" />
+    <Compile Include="Packages\Common\TestsRunner.cs" />
     <Compile Include="Core\Result.cs" />
-    <Compile Include="Infrastructure\Synchronizer.cs" />
-    <Compile Include="Infrastructure\Packages\ProcessPackage.cs" />
-    <Compile Include="Infrastructure\TestsMetricsCalculator.cs" />
-    <Compile Include="Infrastructure\Updater\GroupUpdater.cs" />
-    <Compile Include="Infrastructure\Updater\SimpleUpdater.cs" />
-    <Compile Include="Interfaces\INunitRunnerClient.cs" />
+    <Compile Include="Packages\Common\Synchronizer.cs" />
+    <Compile Include="Packages\ProcessPackage.cs" />
+    <Compile Include="Packages\Common\TestsMetricsCalculator.cs" />
+    <Compile Include="ProcessTestConfig.cs" />
+    <Compile Include="SimpleUpdater.cs" />
+    <Compile Include="Contracts\INunitRunnerClient.cs" />
     <Compile Include="Core\Filter.cs" />
-    <Compile Include="Interfaces\INunitRunnerServer.cs" />
-    <Compile Include="Execution\NUnitRunnerServer.cs" />
+    <Compile Include="Contracts\INunitRunnerServer.cs" />
+    <Compile Include="Core\NUnitRunnerServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\RemoteListener.cs" />
+    <Compile Include="ServicesRegistrator.cs" />
+    <Compile Include="ThreadTestConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Mnk.Library.Common.csproj">
@@ -99,6 +118,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

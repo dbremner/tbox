@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using Mnk.Library.Common.MT;
+using Mnk.Library.ParallelNUnit;
+using Mnk.Library.ParallelNUnit.Contracts;
 using NUnit.Core;
 using Mnk.Library.ParallelNUnit.Core;
-using Mnk.Library.ParallelNUnit.Infrastructure;
-using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
@@ -15,7 +14,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         private int ignored = 0;
         private int failed = 0;
         private readonly object locker = new object();
-        public TeamcityUpdater(IUpdater updater, Synchronizer synchronizer) : base(updater, synchronizer)
+        public TeamcityUpdater(IUpdater updater) : base(updater)
         {
         }
 
@@ -23,7 +22,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         {
         }
 
-        protected override void ProcessResults(int allCount, Result[] items)
+        protected override void ProcessResults(int allCount, Result[] items, ISynchronizer synchronizer)
         {
             lock (locker)
             {

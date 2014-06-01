@@ -4,10 +4,10 @@ using System.Linq;
 using System.Reflection;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.Common.Log;
+using Mnk.Library.ParallelNUnit;
+using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
-using Mnk.Library.ParallelNUnit.Execution;
-using Mnk.Library.ParallelNUnit.Infrastructure.Runners;
-using Mnk.Library.ParallelNUnit.Interfaces;
+using Mnk.Library.ParallelNUnit.Packages.Excecution;
 using Mnk.TBox.Core.Contracts;
 using ServiceStack.Text;
 
@@ -36,14 +36,20 @@ namespace Mnk.TBox.Tools.NUnitAgent
             var framework = args.Length == 4 ? args[3] : null;
             try
             {
-                var w = new NUnitExecutor(LoadFromSameFolder);
+                var w = new ThreadTestsExecutor(
+                    new ThreadTestConfig
+                    {
+                        TestDllPath = path,
+                        RuntimeFramework = framework,
+                        ResolveEventHandler = LoadFromSameFolder
+                    });
                 switch (args[2])
                 {
                     case TestsCommands.Collect:
                         Result list = null;
                         try
                         {
-                            list = w.CollectTests(path, framework);
+                            list = w.CollectTests();
                             return 1;
                         }
                         finally
@@ -54,9 +60,9 @@ namespace Mnk.TBox.Tools.NUnitAgent
                             }
                         }
                     case TestsCommands.FastTest:
-                        return w.RunTests(handle, true, true, framework);
+                        return w.RunTests(handle);
                     case TestsCommands.Test:
-                        return w.RunTests(handle, false, true, framework);
+                        return w.RunTests(handle);
                     default:
                         log.Write("Unknown command: " + args[2]);
                         break;

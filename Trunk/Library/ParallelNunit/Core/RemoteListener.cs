@@ -5,8 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Mnk.Library.Common.Communications;
-using Mnk.Library.ParallelNUnit.Execution;
-using Mnk.Library.ParallelNUnit.Interfaces;
+using Mnk.Library.ParallelNUnit.Contracts;
 using NUnit.Core;
 using ServiceStack.Text;
 

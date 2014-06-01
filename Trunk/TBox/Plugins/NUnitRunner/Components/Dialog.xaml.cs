@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using LightInject;
+using Mnk.Library.Common.MT;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ParallelNUnit;
+using Mnk.Library.ParallelNUnit.Contracts;
+using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.WpfControls;
 using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Plugins.NUnitRunner.Code;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
-using Mnk.Library.ParallelNUnit.Infrastructure;
-using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
-using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
 using Mnk.Library.WpfControls.Dialogs;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
@@ -26,9 +29,11 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
     {
         private readonly string nunitAgentPath;
         private readonly string runAsx86Path;
-        private ProcessPackage package;
+        private IServiceContainer container;
+        private ProcessTestConfig packageConfig;
+        private IPackage<IProcessTestConfig> package;
         private TestConfig config;
-        private readonly UnitTestsView view = new UnitTestsView();
+        private readonly TestsView view = new TestsView();
         public Dialog(string nunitAgentPath, string runAsx86Path)
         {
             this.nunitAgentPath = nunitAgentPath;
@@ -53,28 +58,47 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 return;
             }
             config = cfg;
-            RecreatePackage();
             DataContext = config;
-            Title = Path.GetFileName(package.FilePath);
+            Title = Path.GetFileName(config.Key);
             ShowAndActivate();
-            RefreshClick(this, null);
+            Dispatcher.BeginInvoke(new Action(() => RefreshClick(this, null)));
         }
 
-        private void RecreatePackage()
+        private void RecreatePackage(IUpdater u)
         {
             var items = (package == null)?null : package.Items;
             DisposePackage();
-            package = new ProcessPackage(config.Key, nunitAgentPath, config.RunAsx86, config.RunAsAdmin,
-                                         config.DirToCloneTests,
-                                         config.CommandBeforeTestsRun, view, runAsx86Path, config.Framework);
+            packageConfig = new ProcessTestConfig
+            {
+                NunitAgentPath = nunitAgentPath,
+                RunAsx86Path = runAsx86Path,
+                TestDllPath = config.Key,
+                RunAsx86 = config.RunAsx86,
+                RunAsAdmin = config.RunAsAdmin,
+                DirToCloneTests = config.DirToCloneTests,
+                CommandBeforeTestsRun = config.CommandBeforeTestsRun,
+                RuntimeFramework = config.RuntimeFramework,
+                ProcessCount = config.ProcessCount,
+                UsePrefetch = config.UsePrefetch,
+                IncludeCategories = config.UseCategories ? (bool?)config.IncludeCategories : null,
+                CopyToSeparateFolders = config.CopyToSeparateFolders,
+                CopyMasks = config.CopyMasks.CheckedItems.Select(x => x.Key).ToArray(),
+                NeedSynchronizationForTests = config.NeedSynchronizationForTests && config.ProcessCount > 1,
+                StartDelay = config.StartDelay,
+                NeedOutput = true
+            };
+            container = ServicesRegistrator.Register(packageConfig, view, new SimpleUpdater(u));
+            package = container.GetInstance<IPackage<IProcessTestConfig>>();
             if (items != null) package.Items = items;
         }
 
         private void DisposePackage()
         {
-            if (package != null)
+            if (container != null)
             {
-                package.Dispose();
+                container.Dispose();
+                container = null;
+                package = null;
             }
         }
 
@@ -85,29 +109,43 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void RefreshClick(object sender, RoutedEventArgs e)
         {
-            if (!package.EnsurePathIsValid())
+            if (package!=null && !package.EnsurePathIsValid())
             {
                 Close();
                 return;
             }
             var time = Environment.TickCount;
             view.Clear();
-            RecreatePackage();
             var caption = Path.GetFileName(config.Key);
-            DialogsCache.ShowProgress(
-                u => package.DoRefresh(o=>DoRefresh(time), o => Mt.Do(this, Close)),
-                caption, this, false);
+            DialogsCache.ShowProgress(u => DoRefresh(time, u), caption, this, false);
         }
 
-        private void DoRefresh(int time)
+        private void DoRefresh(int time, IUpdater updater)
         {
-            Mt.Do(this, () =>
+            Mt.Do(this, () => RecreatePackage(updater));
+            package.RefreshErrorEvent += o => Mt.Do(this, Close);
+            package.RefreshSuccessEvent += o => Mt.Do(this, () =>
             {
-                package.ApplyResults(false);
-                Categories.ItemsSource = package.Categories;
-                view.Refresh((Environment.TickCount - time) / 1000);
+                package.Tmc.Refresh(package.Items);
+                view.SetItems(package.Items, package.Tmc);
+                Categories.ItemsSource = GetCategories();
+                RefreshView(time);
             });
+
+            package.Refresh();
         }
+
+        public CheckableDataCollection<CheckableData> GetCategories()
+        {
+            return new CheckableDataCollection<CheckableData>(
+                package.Tmc.Tests
+                .SelectMany(x => x.Categories)
+                .Distinct()
+                .OrderBy(x => x)
+                .Select(x => new CheckableData { Key = x })
+                );
+        }
+
 
         private void StartClick(object sender, RoutedEventArgs e)
         {
@@ -116,17 +154,32 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 return;
             }
             PrepareUiToRun(false);
-            RecreatePackage();
-            var categories =
-                ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
-                    .CheckedItems.Select(x => x.Key)
-                    .ToArray();
-            var packages = package.PrepareToRun(config.ProcessCount, categories, config.UseCategories ? (bool?)config.IncludeCategories : null, config.UsePrefetch, view.GetCheckedTests());
             var time = Environment.TickCount;
-            var synchronizer = new Synchronizer(config.ProcessCount);
             Progress.Start(
-                u => package.DoRun(o => OnRunEnd(time), package.Items, packages, config.CopyToSeparateFolders, config.CopyMasks.CheckedItems.Select(x => x.Key).ToArray(), config.NeedSynchronizationForTests && config.ProcessCount > 1, config.StartDelay, synchronizer, new SimpleUpdater(u, synchronizer), true)
+                u => DoStart(time, u)
                 );
+        }
+
+        private void DoStart(int time, IUpdater updater)
+        {
+            IList<Result> items = null;
+            Mt.Do(this, ()=>
+            {
+                RecreatePackage(updater);
+                items = view.GetCheckedTests();
+                packageConfig.Categories =
+                    ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
+                        .CheckedItems.Select(x => x.Key)
+                        .ToArray();
+            });
+            package.TestsFinishedEvent += o => Mt.Do(this, () =>
+                {
+                    RefreshView(time);
+                    PrepareUiToRun(true);
+                }
+            );
+
+            package.Run(items);
         }
 
         private void PrepareUiToRun(bool enable)
@@ -137,22 +190,15 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             btnRefresh.IsEnabled = enable;
         }
 
+        private void RefreshView(int time)
+        {
+            view.Refresh((Environment.TickCount - time) / 1000);
+        }
+
         protected override void OnClosing(CancelEventArgs e)
         {
             if (!btnRefresh.IsEnabled) e.Cancel = true;
             else base.OnClosing(e);
-        }
-
-        private void OnRunEnd(int time)
-        {
-            Mt.Do(this,
-                  () =>
-                  {
-                      package.ApplyResults(config.UsePrefetch);
-                      view.Refresh((Environment.TickCount - time) / 1000);
-                      PrepareUiToRun(true);
-                  }
-                );
         }
 
         public override void Dispose()

@@ -1,94 +1,98 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using LightInject;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
-using Mnk.Library.ParallelNUnit.Infrastructure;
-using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
-using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
+using Mnk.Library.ParallelNUnit;
+using Mnk.Library.ParallelNUnit.Contracts;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 {
     internal class TestsRunner
     {
-        private static readonly ILog Log = LogManager.GetLogger<TestsRunner>();
+        private readonly ILog log = LogManager.GetLogger<TestsRunner>();
 
-        public static int Run(CommandLineArgs args)
+        public int Run(CommandLineArgs args)
         {
-            var view = new ConsoleView();
-            var dir = Environment.CurrentDirectory;
-
             var retValue = 0;
 
-            foreach (var path in args.Paths)
+            var view = new ConsoleView();
+            
+            using (var updater = new ConsoleUpdater())
             {
-                using (
-                    var p = new ThreadPackage(
-                        path,
-                        args.DirToCloneTests,
-                        args.CommandBeforeTestsRun,
-                        view,
-                        Program.LoadFromSameFolder,
-                        args.RuntimeFramework))
+                foreach (var path in args.Paths)
                 {
-                    view.NotifyNewAssemblyStartTest();
-
-                    Console.WriteLine("Running tests for {0}.", path);
-                    if (args.Logo) Console.WriteLine("Calculating tests.");
-                    if (!p.EnsurePathIsValid())
+                    using (var container = ServicesRegistrator.Register(CreateConfig(args, path), view, BuildUpdater(args.Labels, args.Teamcity, updater)))
                     {
-                        Log.Write("Incorrect path: " + path);
-                        retValue = -3;
-                        continue;
-                    }
-
-                    var error = false;
-                    p.DoRefresh(x => { }, x => error = true);
-                    if (args.Logo) Console.WriteLine("{0} tests found.", p.Count);
-                    if (error)
-                    {
-                        Log.Write("Can't calculate tests count");
-                        retValue = -3;
-                        continue;
-                    }
-
-                    if (args.Logo) Console.WriteLine("Running tests.");
-                    var packages = p.PrepareToRun(
-                        args.ProcessCount,
-                        args.Include ?? args.Exclude,
-                        args.Include != null && args.Exclude != null,
-                        args.Prefetch);
-                    using (var updater = new ConsoleUpdater())
-                    {
-                        var synchronizer = new Synchronizer(args.ProcessCount);
-                        p.DoRun(
-                            package => package.ApplyResults(args.Prefetch),
-                            p.Items,
-                            packages,
-                            args.Clone,
-                            args.CopyMasks,
-                            args.Sync,
-                            args.StartDelay,
-                            synchronizer,
-                            BuildUpdater(args.Labels, args.Teamcity, updater, synchronizer),
-                            !string.IsNullOrEmpty(args.OutputReport));
-                        if (p.FailedCount > 0) retValue = -2;
+                        retValue = Math.Min(retValue, RunTest(args, path, container, view));
                     }
                 }
             }
 
             view.PrintTotalResults();
-            PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), dir);
+            PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), Environment.CurrentDirectory);
             
             return retValue;
         }
 
-        private static SimpleUpdater BuildUpdater(bool labels, bool teamcity, IUpdater updater, Synchronizer synchronizer)
+        private int RunTest(CommandLineArgs args, string path, IServiceContainer container, ConsoleView view)
         {
-            if(teamcity)return new TeamcityUpdater(updater, synchronizer);
+            var p = container.GetInstance<IPackage<IThreadTestConfig>>();
+
+            view.NotifyNewAssemblyStartTest();
+
+            Console.WriteLine("Running tests for {0}.", path);
+            if (args.Logo) Console.WriteLine("Calculating tests.");
+            if (!p.EnsurePathIsValid())
+            {
+                log.Write("Incorrect path: " + path);
+                return -3;
+            }
+
+            var error = false;
+            p.RefreshErrorEvent += x => error = true;
+            p.Refresh();
+            if (args.Logo) Console.WriteLine("{0} tests found.", p.Tmc.Total);
+            if (error)
+            {
+                log.Write("Can't calculate tests count");
+                return -3;
+            }
+
+            if (args.Logo) Console.WriteLine("Running tests.");
+            p.Run();
+            if (p.Tmc.FailedCount > 0) return -2;
+            return 0;
+        }
+
+        private static IThreadTestConfig CreateConfig(CommandLineArgs args, string path)
+        {
+            return new ThreadTestConfig
+            {
+                CopyMasks = args.CopyMasks,
+                CommandBeforeTestsRun = args.CommandBeforeTestsRun,
+                CopyToSeparateFolders = args.Clone,
+                DirToCloneTests = args.DirToCloneTests,
+                NeedOutput = !string.IsNullOrEmpty(args.OutputReport),
+                NeedSynchronizationForTests = args.Sync,
+                ProcessCount = args.ProcessCount,
+                ResolveEventHandler = Program.LoadFromSameFolder,
+                RuntimeFramework = args.RuntimeFramework,
+                StartDelay = args.StartDelay,
+                TestDllPath = path,
+                UsePrefetch = args.Prefetch,
+                Categories = args.Include ?? args.Exclude,
+                IncludeCategories = args.Include != null && args.Exclude != null
+            };
+        }
+
+        private static SimpleUpdater BuildUpdater(bool labels, bool teamcity, IUpdater updater)
+        {
+            if(teamcity)return new TeamcityUpdater(updater);
             return labels ? 
-                new NUnitLabelsUpdater(updater, synchronizer) : 
-                new SimpleUpdater(updater, synchronizer);
+                new NUnitLabelsUpdater(updater) : 
+                new SimpleUpdater(updater);
         }
 
         private static void PrintTotalInfo(ConsoleView view, string xmlReport, string outputReport, string path, string dir)

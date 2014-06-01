@@ -22,7 +22,6 @@ using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application
 {
@@ -46,7 +45,7 @@ namespace Mnk.TBox.Core.Application
         {
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             if (!OneInstance.MainWindow.Init(this)) return;
-            container = new ServicesRegistrator().Register();
+            container = ServicesRegistrator.Register();
             InitializeComponent();
             configManager = container.GetInstance<IConfigManager<Config>>();
             RecentItemsCollector = container.GetInstance<RecentItemsCollector>();
@@ -172,6 +171,7 @@ namespace Mnk.TBox.Core.Application
                 Mt.Do(this, () => engine.Dispose());
             }
             Close();
+            container.Dispose();
         }
 
         private void CreateEngine(IUpdater updater)
