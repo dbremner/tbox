@@ -67,14 +67,14 @@ public class NUnitTests : ISkyScript
         {
             throw new ArgumentException("Incorrect path: " + path);
         }
-        p.RefreshErrorEvent += x => { throw new ArgumentException("Can't receive tests list from:" + path); };
+        p.RefreshErrorEventHandler += x => { throw new ArgumentException("Can't receive tests list from:" + path); };
         p.Refresh();
         return p;
     }
 
     private static IServiceContainer CreateContainer(IProcessTestConfig config, IUpdater updater)
     {
-        return ServicesRegistrator.Register(config, new ScriptView(), new SimpleUpdater(updater));
+        return ServicesRegistrar.Register(config, new ScriptView(), new SimpleUpdater(updater));
     }
 
     private IProcessTestConfig CreateConfig(int agentsCount)
@@ -84,7 +84,7 @@ public class NUnitTests : ISkyScript
             CopyMasks = PathMasksToInclude,
             CommandBeforeTestsRun = CommandBeforeTestsRun,
             DirToCloneTests = Path.GetTempPath(),
-            UsePrefetch = false,
+            OptimizeOrder = false,
             NeedOutput = false,
             NeedSynchronizationForTests = false,
             ProcessCount = agentsCount,

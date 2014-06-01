@@ -15,7 +15,7 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Server
         [SetUp]
         public void SetUp()
         {
-            container = ServicesRegistrator.Register(new ServerConfig());
+            container = ServicesRegistrar.Register(new ServerConfig());
         }
 
         [TearDown]

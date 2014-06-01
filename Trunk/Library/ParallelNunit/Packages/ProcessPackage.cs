@@ -10,8 +10,8 @@ namespace Mnk.Library.ParallelNUnit.Packages
         private readonly IProcessTestsRunner testsRunner;
         private readonly IProcessCalculator calculator;
 
-        public ProcessPackage(IProcessTestConfig config, ITestsMetricsCalculator tmc, IPrefetchManager prefetchManager, ITestsView view, IProcessCalculator calculator, IProcessTestsRunner testsRunner)
-            : base(config, tmc, prefetchManager, view)
+        public ProcessPackage(IProcessTestConfig config, ITestsMetricsCalculator metrics, IOrderOptimizationManager orderOptimizationManager, ITestsView view, IProcessCalculator calculator, IProcessTestsRunner testsRunner)
+            : base(config, metrics, orderOptimizationManager, view)
         {
             this.calculator = calculator;
             this.testsRunner = testsRunner;

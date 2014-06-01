@@ -79,7 +79,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 CommandBeforeTestsRun = config.CommandBeforeTestsRun,
                 RuntimeFramework = config.RuntimeFramework,
                 ProcessCount = config.ProcessCount,
-                UsePrefetch = config.UsePrefetch,
+                OptimizeOrder = config.UsePrefetch,
                 IncludeCategories = config.UseCategories ? (bool?)config.IncludeCategories : null,
                 CopyToSeparateFolders = config.CopyToSeparateFolders,
                 CopyMasks = config.CopyMasks.CheckedItems.Select(x => x.Key).ToArray(),
@@ -87,7 +87,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 StartDelay = config.StartDelay,
                 NeedOutput = true
             };
-            container = ServicesRegistrator.Register(packageConfig, view, new SimpleUpdater(u));
+            container = ServicesRegistrar.Register(packageConfig, view, new SimpleUpdater(u));
             package = container.GetInstance<IPackage<IProcessTestConfig>>();
             if (items != null) package.Items = items;
         }
@@ -123,11 +123,11 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private void DoRefresh(int time, IUpdater updater)
         {
             Mt.Do(this, () => RecreatePackage(updater));
-            package.RefreshErrorEvent += o => Mt.Do(this, Close);
-            package.RefreshSuccessEvent += o => Mt.Do(this, () =>
+            package.RefreshErrorEventHandler += o => Mt.Do(this, Close);
+            package.RefreshSuccessEventHandler += o => Mt.Do(this, () =>
             {
-                package.Tmc.Refresh(package.Items);
-                view.SetItems(package.Items, package.Tmc);
+                package.Metrics.Refresh(package.Items);
+                view.SetItems(package.Items, package.Metrics);
                 Categories.ItemsSource = GetCategories();
                 RefreshView(time);
             });
@@ -138,7 +138,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         public CheckableDataCollection<CheckableData> GetCategories()
         {
             return new CheckableDataCollection<CheckableData>(
-                package.Tmc.Tests
+                package.Metrics.Tests
                 .SelectMany(x => x.Categories)
                 .Distinct()
                 .OrderBy(x => x)
@@ -172,7 +172,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                         .CheckedItems.Select(x => x.Key)
                         .ToArray();
             });
-            package.TestsFinishedEvent += o => Mt.Do(this, () =>
+            package.TestsFinishedEventHandler += o => Mt.Do(this, () =>
                 {
                     RefreshView(time);
                     PrepareUiToRun(true);

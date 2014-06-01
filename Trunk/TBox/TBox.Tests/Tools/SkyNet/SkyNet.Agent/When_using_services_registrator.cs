@@ -17,7 +17,7 @@ namespace Mnk.TBox.Tests.Tools.SkyNet.SkyNet.Agent
         [SetUp]
         public void SetUp()
         {
-            container = ServicesRegistrator.Register(new AgentConfig());
+            container = ServicesRegistrar.Register(new AgentConfig());
         }
 
         [TearDown]

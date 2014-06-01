@@ -9,7 +9,7 @@ using Mnk.TBox.Tools.SkyNet.Common.Modules;
 
 namespace Mnk.TBox.Tools.SkyNet.Agent
 {
-    static class ServicesRegistrator
+    static class ServicesRegistrar
     {
         public static IServiceContainer Register(AgentConfig agentConfig)
         {

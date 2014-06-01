@@ -21,7 +21,7 @@ namespace Mnk.TBox.Tools.SkyNet.Agent
             var provider = new ConfigProvider<AgentConfig>(Path.Combine(Folders.UserToolsFolder, "SkyNet.Agent.config"));
             using (new InterprocessServer<IConfigProvider<AgentConfig>>(provider, "TBox.SkyNet.Agent"))
             {
-                using (var container = ServicesRegistrator.Register(provider.Config))
+                using (var container = ServicesRegistrar.Register(provider.Config))
                 {
                     using (var service = new SkyNetAgentService(provider.Config, container))
                     {

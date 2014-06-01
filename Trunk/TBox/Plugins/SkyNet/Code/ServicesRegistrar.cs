@@ -13,7 +13,7 @@ using Mnk.TBox.Tools.SkyNet.Common;
 
 namespace Mnk.TBox.Plugins.SkyNet.Code
 {
-    static class ServicesRegistrator
+    static class ServicesRegistrar
     {
         public static IServiceContainer Register(IPluginContext context, Func<ImageSource> iconGetter)
         {

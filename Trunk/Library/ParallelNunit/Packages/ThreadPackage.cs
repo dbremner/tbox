@@ -10,8 +10,8 @@ namespace Mnk.Library.ParallelNUnit.Packages
         private readonly IThreadTestsExecutor testsExecutor;
         private readonly IThreadTestsRunner testsRunner;
 
-        public ThreadPackage(IThreadTestConfig config, ITestsMetricsCalculator tmc, IPrefetchManager prefetchManager, ITestsView view, IThreadTestsExecutor testsExecutor, IThreadTestsRunner testsRunner)
-            : base(config, tmc, prefetchManager, view)
+        public ThreadPackage(IThreadTestConfig config, ITestsMetricsCalculator metrics, IOrderOptimizationManager orderOptimizationManager, ITestsView view, IThreadTestsExecutor testsExecutor, IThreadTestsRunner testsRunner)
+            : base(config, metrics, orderOptimizationManager, view)
         {
             this.testsExecutor = testsExecutor;
             this.testsRunner = testsRunner;

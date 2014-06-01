@@ -11,7 +11,7 @@ using Mnk.TBox.Tools.SkyNet.Server.Code.Processing;
 
 namespace Mnk.TBox.Tools.SkyNet.Server
 {
-    static class ServicesRegistrator
+    static class ServicesRegistrar
     {
         public static IServiceContainer Register(ServerConfig config)
         {

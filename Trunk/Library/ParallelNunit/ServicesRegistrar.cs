@@ -7,7 +7,7 @@ using Mnk.Library.ParallelNUnit.Packages.Excecution;
 
 namespace Mnk.Library.ParallelNUnit
 {
-    public static class ServicesRegistrator
+    public static class ServicesRegistrar
     {
         public static IServiceContainer Register(IThreadTestConfig config, ITestsView view, ITestsUpdater updater)
         {
@@ -33,7 +33,7 @@ namespace Mnk.Library.ParallelNUnit
             container.Register<ICopyDirGenerator, CopyDirGenerator>(new PerContainerLifetime());
             container.Register<ITestsMetricsCalculator, TestsMetricsCalculator>(new PerContainerLifetime());
             container.Register<IDirectoriesManipulator, DirectoriesManipulator>(new PerContainerLifetime());
-            container.Register<IPrefetchManager, PrefetchManager>(new PerContainerLifetime());
+            container.Register<IOrderOptimizationManager, OrderOptimizationManager>(new PerContainerLifetime());
             container.Register<ISynchronizer, Synchronizer>(new PerContainerLifetime());
 
             container.Register<IProcessCreator, ProcessCreator>(new PerContainerLifetime());

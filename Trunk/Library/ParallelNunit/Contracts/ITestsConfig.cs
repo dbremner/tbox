@@ -11,7 +11,7 @@
         bool NeedSynchronizationForTests { get; }
         int StartDelay { get; }
         bool NeedOutput { get; }
-        bool UsePrefetch { get; }
+        bool OptimizeOrder { get; }
         int ProcessCount { get; }
         string[] Categories { get; }
         bool? IncludeCategories { get; }

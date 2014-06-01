@@ -98,7 +98,7 @@
     <Compile Include="Code\SkyNetServerTasksLogic.cs" />
     <Compile Include="Code\ServerContext.cs" />
     <Compile Include="Code\Processing\Worker.cs" />
-    <Compile Include="ServicesRegistrator.cs" />
+    <Compile Include="ServicesRegistrar.cs" />
     <Compile Include="SkyNetServerService.cs">
       <SubType>Component</SubType>
     </Compile>

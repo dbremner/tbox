@@ -16,12 +16,12 @@ using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Core.Application.Code
 {
-    static class ServicesRegistrator
+    static class ServicesRegistrar
     {
         private static readonly string LogsFolder = Path.Combine(Folders.UserRootFolder, "Logs");
         private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder, "TBox.Errors.log");
 
-        static ServicesRegistrator()
+        static ServicesRegistrar()
         {
             if (!Directory.Exists(LogsFolder)) Directory.CreateDirectory(LogsFolder);
             LogManager.Init(

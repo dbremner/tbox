@@ -26,7 +26,7 @@ namespace Mnk.TBox.Plugins.SkyNet
         public override void Init(IPluginContext context)
         {
             base.Init(context);
-            container = ServicesRegistrator.Register(context, ()=>Icon.ToImageSource());
+            container = ServicesRegistrar.Register(context, ()=>Icon.ToImageSource());
         }
 
         public override void OnRebuildMenu()

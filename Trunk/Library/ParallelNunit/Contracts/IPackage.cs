@@ -8,11 +8,11 @@ namespace Mnk.Library.ParallelNUnit.Contracts
         where TConfig: ITestsConfig
     {
         TConfig Config { get; }
-        ITestsMetricsCalculator Tmc { get; }
+        ITestsMetricsCalculator Metrics { get; }
         IList<Result> Items { get; set; }
-        event Action<IPackage<TConfig>> RefreshSuccessEvent;
-        event Action<IPackage<TConfig>> RefreshErrorEvent;
-        event Action<IPackage<TConfig>> TestsFinishedEvent;
+        event Action<IPackage<TConfig>> RefreshSuccessEventHandler;
+        event Action<IPackage<TConfig>> RefreshErrorEventHandler;
+        event Action<IPackage<TConfig>> TestsFinishedEventHandler;
 
         bool EnsurePathIsValid();
         void Refresh();

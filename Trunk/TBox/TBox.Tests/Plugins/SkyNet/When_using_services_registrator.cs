@@ -15,7 +15,7 @@ namespace Mnk.TBox.Tests.Plugins.SkyNet
         [SetUp]
         public void SetUp()
         {
-            container = ServicesRegistrator.Register(MockRepository.GenerateMock<IPluginContext>(), ()=>null);
+            container = ServicesRegistrar.Register(MockRepository.GenerateMock<IPluginContext>(), ()=>null);
         }
 
         [TearDown]

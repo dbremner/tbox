@@ -45,7 +45,7 @@ namespace Mnk.TBox.Core.Application
         {
             RenderOptions.ProcessRenderMode = RenderMode.SoftwareOnly;
             if (!OneInstance.MainWindow.Init(this)) return;
-            container = ServicesRegistrator.Register();
+            container = ServicesRegistrar.Register();
             InitializeComponent();
             configManager = container.GetInstance<IConfigManager<Config>>();
             RecentItemsCollector = container.GetInstance<RecentItemsCollector>();

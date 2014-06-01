@@ -23,7 +23,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             {
                 foreach (var path in args.Paths)
                 {
-                    using (var container = ServicesRegistrator.Register(CreateConfig(args, path), view, BuildUpdater(args.Labels, args.Teamcity, updater)))
+                    using (var container = ServicesRegistrar.Register(CreateConfig(args, path), view, BuildUpdater(args.Labels, args.Teamcity, updater)))
                     {
                         retValue = Math.Min(retValue, RunTest(args, path, container, view));
                     }
@@ -51,9 +51,9 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             }
 
             var error = false;
-            p.RefreshErrorEvent += x => error = true;
+            p.RefreshErrorEventHandler += x => error = true;
             p.Refresh();
-            if (args.Logo) Console.WriteLine("{0} tests found.", p.Tmc.Total);
+            if (args.Logo) Console.WriteLine("{0} tests found.", p.Metrics.Total);
             if (error)
             {
                 log.Write("Can't calculate tests count");
@@ -62,7 +62,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
             if (args.Logo) Console.WriteLine("Running tests.");
             p.Run();
-            if (p.Tmc.FailedCount > 0) return -2;
+            if (p.Metrics.FailedCount > 0) return -2;
             return 0;
         }
 
@@ -81,7 +81,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
                 RuntimeFramework = args.RuntimeFramework,
                 StartDelay = args.StartDelay,
                 TestDllPath = path,
-                UsePrefetch = args.Prefetch,
+                OptimizeOrder = args.Prefetch,
                 Categories = args.Include ?? args.Exclude,
                 IncludeCategories = args.Include != null && args.Exclude != null
             };

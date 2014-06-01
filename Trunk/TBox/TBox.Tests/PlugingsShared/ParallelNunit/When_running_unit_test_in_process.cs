@@ -44,7 +44,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             };
             view = MockRepository.GenerateStub<ITestsView>();
             updater = new SimpleUpdater(new ConsoleUpdater());
-            container = ServicesRegistrator.Register(config, view, updater);
+            container = ServicesRegistrar.Register(config, view, updater);
             package = container.GetInstance<IPackage<IProcessTestConfig>>();
 
         }
@@ -87,7 +87,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
 
             //Act
             var error = false;
-            package.RefreshErrorEvent += x => error = true;
+            package.RefreshErrorEventHandler += x => error = true;
             package.Refresh();
 
             //Assert
@@ -104,7 +104,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
 
             //Act
             var count = 0;
-            package.RefreshSuccessEvent += x => { count = x.Tmc.Total; };
+            package.RefreshSuccessEventHandler += x => { count = x.Metrics.Total; };
             package.Refresh();
 
             //Assert
@@ -130,7 +130,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             config.ProcessCount = ncores;
             config.Categories = new[] {"Integration"};
             config.IncludeCategories = false;
-            config.UsePrefetch = prefetch;
+            config.OptimizeOrder = prefetch;
             config.CopyToSeparateFolders = copy;
             config.CopyMasks = new[] {"*.dll;*.exe"};
             config.StartDelay = startDelay;
@@ -144,14 +144,14 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             package.Run();
 
             //Assert
-            Assert.Greater(package.Tmc.Total, 20);
-            Assert.AreEqual(0, package.Tmc.FailedCount, CollectFailed());
+            Assert.Greater(package.Metrics.Total, 20);
+            Assert.AreEqual(0, package.Metrics.FailedCount, CollectFailed());
         }
 		
         private string CollectFailed()
         {
             return string.Join(Environment.NewLine,
-                package.Tmc.All
+                package.Metrics.All
                     .Where(x => x.IsTest && x.Executed &&
                             (x.State == ResultState.Error || x.State == ResultState.Failure))
                     .Select(x => x.Key + " ------ " + x.Message + " ------ " + x.StackTrace)

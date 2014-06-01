@@ -9,10 +9,10 @@ using ServiceStack.Text;
 
 namespace Mnk.Library.ParallelNUnit.Packages.Common
 {
-    class PrefetchManager : IPrefetchManager
+    class OrderOptimizationManager : IOrderOptimizationManager
     {
         private readonly static string PrefetchFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox", "Tools", "NUnitRunner");
-        private readonly ILog log = LogManager.GetLogger<PrefetchManager>();
+        private readonly ILog log = LogManager.GetLogger<OrderOptimizationManager>();
 
         public IList<Result> Optimize(string path, IList<Result> tests)
         {

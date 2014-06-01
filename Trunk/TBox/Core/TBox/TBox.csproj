@@ -145,7 +145,7 @@
     <Compile Include="Code\HotKeys\HotKeysManager.cs" />
     <Compile Include="Code\Objects\EngineSettingsInfo.cs" />
     <Compile Include="Code\Objects\ExtButtonInfo.cs" />
-    <Compile Include="Code\ServicesRegistrator.cs" />
+    <Compile Include="Code\ServicesRegistrar.cs" />
     <Compile Include="Code\Shelduler\SchedulerManager.cs" />
     <Compile Include="Code\SingletonLifetime.cs" />
     <Compile Include="Code\Themes\ThemesManager.cs" />

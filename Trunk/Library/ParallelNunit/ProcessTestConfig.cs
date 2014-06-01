@@ -17,7 +17,7 @@ namespace Mnk.Library.ParallelNUnit
         public bool NeedSynchronizationForTests { get; set; }
         public int StartDelay { get; set; }
         public bool NeedOutput { get; set; }
-        public bool UsePrefetch { get; set; }
+        public bool OptimizeOrder { get; set; }
         public int ProcessCount { get; set; }
         public string[] Categories { get; set; }
         public bool? IncludeCategories { get; set; }

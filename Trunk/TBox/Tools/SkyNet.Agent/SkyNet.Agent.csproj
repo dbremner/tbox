@@ -67,7 +67,7 @@
     <Compile Include="Code\Modules\ServerConnectionModule.cs" />
     <Compile Include="Code\SkyNetAgentLogic.cs" />
     <Compile Include="Code\IWorker.cs" />
-    <Compile Include="ServicesRegistrator.cs" />
+    <Compile Include="ServicesRegistrar.cs" />
     <Compile Include="Code\SkyContext.cs" />
     <Compile Include="Code\Worker.cs" />
     <Compile Include="SkyNetAgentService.cs">

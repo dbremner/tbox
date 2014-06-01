@@ -74,7 +74,7 @@
     <Compile Include="Code\ServicesFacade.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\TaskExecutor.cs" />
-    <Compile Include="Code\ServicesRegistrator.cs" />
+    <Compile Include="Code\ServicesRegistrar.cs" />
     <Compile Include="Forms\TaskDialog.xaml.cs">
       <DependentUpon>TaskDialog.xaml</DependentUpon>
     </Compile>
