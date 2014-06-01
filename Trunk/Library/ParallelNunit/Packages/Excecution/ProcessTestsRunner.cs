@@ -12,7 +12,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             this.processCreator = processCreator;
         }
 
-        protected override IRunnerContext Run(string handle)
+        protected override IRunnerContext DoRun(string handle)
         {
             return processCreator.Create(handle, Config.NeedSynchronizationForTests ? TestsCommands.Test : TestsCommands.FastTest);
         }

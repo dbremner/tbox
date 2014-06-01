@@ -51,7 +51,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
                             StartDelay = Config.StartDelay * 1000,
                         },
                     packages, allTests,
-                    Run(handle),
+                    DoRun(handle),
                     metricsCalculator
                     );
             }
@@ -63,6 +63,6 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
             }
         }
 
-        protected abstract IRunnerContext Run(string handle);
+        protected abstract IRunnerContext DoRun(string handle);
     }
 }

@@ -17,5 +17,6 @@ namespace Mnk.Library.ParallelNUnit.Contracts
         bool EnsurePathIsValid();
         void Refresh();
         void Run(IList<Result> checkedTests = null);
+        IList<IList<Result>> DivideTests(IList<Result> checkedTests = null);
     }
 }

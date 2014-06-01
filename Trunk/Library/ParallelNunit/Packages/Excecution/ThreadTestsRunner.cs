@@ -14,7 +14,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             this.testsExecutor = testsExecutor;
         }
 
-        protected override IRunnerContext Run(string handle)
+        protected override IRunnerContext DoRun(string handle)
         {
             var t = new Thread(o => testsExecutor.RunTests(handle));
             t.Start();

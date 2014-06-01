@@ -62,7 +62,7 @@ namespace Mnk.Library.ParallelNUnit.Packages
             return r.Categories.All(o => !values.Any(x => x.EqualsIgnoreCase(o)));
         }
 
-        public IList<IList<Result>> PrepareToRun(IList<Result> checkedTests=null)
+        public IList<IList<Result>> DivideTests(IList<Result> checkedTests=null)
         {
             ResetTests(checkedTests);
             var items = checkedTests ?? Tmc.Tests;
@@ -96,7 +96,7 @@ namespace Mnk.Library.ParallelNUnit.Packages
             return r => ExcludeFilter(r, categories);
         }
 
-        public IEnumerable<IList<Result>> DivideTestsToRun(IList<Result> tests, int threadCount, bool usePrefetch)
+        private IEnumerable<IList<Result>> DivideTestsToRun(IList<Result> tests, int threadCount, bool usePrefetch)
         {
             if (usePrefetch && threadCount > 1)
             {
@@ -135,7 +135,7 @@ namespace Mnk.Library.ParallelNUnit.Packages
         {
             try
             {
-                DoRun(PrepareToRun(checkedTests));
+                DoRun(DivideTests(checkedTests));
                 ApplyResults();
                 if (TestsFinishedEvent!=null) TestsFinishedEvent(this);
             }

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
+using LightInject;
+using Mnk.Library.Common.MT;
+using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Core;
-using Mnk.Library.ParallelNUnit.Infrastructure;
-using Mnk.Library.ParallelNUnit.Infrastructure.Interfaces;
-using Mnk.Library.ParallelNUnit.Infrastructure.Packages;
-using Mnk.Library.ParallelNUnit.Infrastructure.Updater;
+using Mnk.Library.ParallelNUnit.Contracts;
+using Mnk.Library.ParallelNUnit.Packages.Common;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Tools.SkyNet.Common;
 using ServiceStack.Text;
@@ -29,46 +29,74 @@ public class NUnitTests : ISkyScript
     public bool RunAsx86 { get; set; }
     [String(CanBeEmpty = true)]
     public string Framework { get; set; }
-    [Bool(false)]
+    [Bool]
     public bool IncludeCategories { get; set; }
     [StringList(CanBeEmpty = true)]
     public string[] Categories { get; set; }
 
-    private class ScriptView : IUnitTestsView
+    private class ScriptView : ITestsView
     {
-        public void SetItems(IList<Result> items, TestsMetricsCalculator metrics) { }
+        public void SetItems(IList<Result> items, ITestsMetricsCalculator metrics) { }
         public void Clear() { }
     }
 
     public IList<SkyAgentWork> ServerBuildAgentsData(string workingDirectory, IList<ServerAgent> agents)
     {
-        using (var p = CreatePackage(workingDirectory))
+        using (var container = CreateContainer(CreateConfig(agents.Count), new NullUpdater()))
         {
-            var i = 0;
-            return p.PrepareToRun(agents.Count, Categories, Categories.Length > 0 ? (bool?)IncludeCategories : null, false)
-                .Select(x => new SkyAgentWork
-                {
-                    Agent = agents[i++],
-                    Config = JsonSerializer.SerializeToString(x)
-                })
-                .ToArray();
+            using (var p = CreatePackage(workingDirectory, container))
+            {
+                var i = 0;
+                return p.DivideTests()
+                    .Select(x => new SkyAgentWork
+                    {
+                        Agent = agents[i++],
+                        Config = JsonSerializer.SerializeToString(x)
+                    })
+                    .ToArray();
+            }
         }
     }
 
-    private ProcessPackage CreatePackage(string folder)
+    private IPackage<IProcessTestConfig> CreatePackage(string folder, IServiceContainer container)
     {
         Console.WriteLine("Folder: " + folder);
         var path = Path.Combine(folder, GetTestDllRelativePath());
-        var p = new ProcessPackage(path,
-            NunitAgentPath, RunAsx86, false,
-            Path.GetTempPath(),
-            CommandBeforeTestsRun, new ScriptView(), RunAsx86Path, Framework);
+        var p = container.GetInstance<IPackage<IProcessTestConfig>>();
         if (!p.EnsurePathIsValid())
         {
             throw new ArgumentException("Incorrect path: " + path);
         }
-        p.DoRefresh(x => { }, x => { throw new ArgumentException("Can't receive tests list from:" + path); });
+        p.RefreshErrorEvent += x => { throw new ArgumentException("Can't receive tests list from:" + path); };
+        p.Refresh();
         return p;
+    }
+
+    private static IServiceContainer CreateContainer(IProcessTestConfig config, IUpdater updater)
+    {
+        return ServicesRegistrator.Register(config, new ScriptView(), new SimpleUpdater(updater));
+    }
+
+    private IProcessTestConfig CreateConfig(int agentsCount)
+    {
+        return new ProcessTestConfig
+        {
+            CopyMasks = PathMasksToInclude,
+            CommandBeforeTestsRun = CommandBeforeTestsRun,
+            DirToCloneTests = Path.GetTempPath(),
+            UsePrefetch = false,
+            NeedOutput = false,
+            NeedSynchronizationForTests = false,
+            ProcessCount = agentsCount,
+            RuntimeFramework = Framework,
+            TestDllPath = TestDllPath,
+            Categories = Categories,
+            IncludeCategories = Categories.Length > 0 ? (bool?)IncludeCategories : null,
+            RunAsx86 = RunAsx86,
+            RunAsx86Path = RunAsx86Path,
+            NunitAgentPath = NunitAgentPath,
+            RunAsAdmin = false,
+        };
     }
 
     private string GetTestDllRelativePath()
@@ -86,7 +114,8 @@ public class NUnitTests : ISkyScript
         var sb = new StringBuilder();
         if (all.Any())
         {
-            var tmc = new TestsMetricsCalculator(all);
+            var tmc = new TestsMetricsCalculator();
+            tmc.Refresh(all);
             sb.AppendFormat(
                 "Tests run: {0}, Errors: {1}, Failures: {2}, Inconclusive: {3}, Not run: {4}, Invalid: {5}, Ignored: {6}, Skipped: {7}",
                 tmc.Passed,
@@ -101,7 +130,7 @@ public class NUnitTests : ISkyScript
             PrintArray("Errors and Failures:", tmc.Failed, true, sb);
             PrintArray("Tests Not Run:", tmc.NotRun, false, sb);
         }
-        var failed = results.Where(x => x.IsFailed);
+        var failed = results.Where(x => x.IsFailed).ToArray();
         if (failed.Any())
         {
             sb.AppendLine("Agents exceptions:");
@@ -129,12 +158,13 @@ public class NUnitTests : ISkyScript
     public string AgentExecute(string workingDirectory, string agentData, ISkyContext context)
     {
         var packages = JsonSerializer.DeserializeFromString<IList<Result>>(agentData);
-        using (var p = CreatePackage(workingDirectory))
+        using (var container = CreateContainer(CreateConfig(1), context))
         {
-            var synchronizer = new Synchronizer(1);
-            p.DoRun(o => { }, p.Items, new[] { packages }, false, new string[0], false, 0, synchronizer,
-                new SimpleUpdater(context, synchronizer), true);
-            return JsonSerializer.SerializeToString(p.Items);
+            using (var p = CreatePackage(workingDirectory, container))
+            {
+                p.Run(packages);
+                return JsonSerializer.SerializeToString(p.Items);
+            }
         }
     }
 
