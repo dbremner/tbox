@@ -91,7 +91,7 @@ namespace Mnk.Library.WpfControls.Components.CheckableTreeView
             {
                 foreach (var item in items)
                 {
-                    nodes.Add(BuildTree(item));
+                    nodes.Add(BuildTree(item, false));
                 }
             }
             treeView.Items.Refresh();
@@ -115,9 +115,9 @@ namespace Mnk.Library.WpfControls.Components.CheckableTreeView
             }
         }
 
-        private static Node BuildTree(IHasChildren item, params Node[] parents)
+        private static Node BuildTree(IHasChildren item, bool childrensFinded, params Node[] parents)
         {
-            var node = new Node { Data = item };
+            var node = new Node { Data = item , IsExpanded = !childrensFinded};
             var r = item as IRefreshable;
             if (r != null) r.OnRefresh += node.RefreshData;
             foreach (var parent in parents)
@@ -126,7 +126,7 @@ namespace Mnk.Library.WpfControls.Components.CheckableTreeView
             }
             foreach (var ch in item.Children)
             {
-                node.Children.Add(BuildTree(ch, node));
+                node.Children.Add(BuildTree(ch, childrensFinded || item.Children.Count > 1, node));
             }
             return node;
         }

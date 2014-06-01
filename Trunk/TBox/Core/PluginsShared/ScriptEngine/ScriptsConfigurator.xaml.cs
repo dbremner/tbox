@@ -40,7 +40,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
             DataContext = Config = o;
             configurator = c;
             ShowAndActivate();
-            ReloadClick(null, null);
+            Dispatcher.BeginInvoke(new Action(() => ReloadClick(null, null)));
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
