@@ -10,24 +10,24 @@ namespace Mnk.Library.ParallelNUnit.Packages
         private readonly IProcessTestsRunner testsRunner;
         private readonly IProcessCalculator calculator;
 
-        public ProcessPackage(IProcessTestConfig config, ITestsMetricsCalculator metrics, IOrderOptimizationManager orderOptimizationManager, ITestsView view, IProcessCalculator calculator, IProcessTestsRunner testsRunner)
-            : base(config, metrics, orderOptimizationManager, view)
+        public ProcessPackage(IOrderOptimizationManager orderOptimizationManager, IProcessCalculator calculator, IProcessTestsRunner testsRunner)
+            : base(orderOptimizationManager)
         {
             this.calculator = calculator;
             this.testsRunner = testsRunner;
         }
 
-        protected override void DoRefresh()
+        protected override TestsResults DoRefresh(IProcessTestConfig config)
         {
             var client = ((NunitRunnerClient) Server.Owner);
             client.PrepareToCalc();
-            calculator.CollectTests(Config.TestDllPath, Server.Handle);
-            Items = client.Collection;
+            calculator.CollectTests(config, config.TestDllPath, Server.Handle);
+            return new TestsResults(client.Collection);
         }
 
-        protected override void DoRun(IList<IList<Result>> packages)
+        protected override TestsResults DoRun(IProcessTestConfig config, ITestsMetricsCalculator metrics, IList<Result> allTests, IList<IList<Result>> packages, ITestsUpdater updater)
         {
-            testsRunner.Run(Items, packages, Server);
+            return testsRunner.Run(config, metrics, allTests, packages, Server, updater);
         }
     }
 }

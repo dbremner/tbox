@@ -25,22 +25,22 @@ namespace Mnk.Library.ParallelNUnit
 
         public bool UserPressClose { get { return updater.UserPressClose; } }
 
-        public void Update(int allCount, Result[] items, int failed, ISynchronizer synchronizer)
+        public void Update(int allCount, Result[] items, int failed, ISynchronizer synchronizer, ITestsConfig config)
         {
             lock (locker)
             {
                 passedCount += items.Length;
                 failedCount += failed;
             }
-            ProcessResults(allCount, items, synchronizer);
+            ProcessResults(allCount, items, synchronizer, config);
         }
 
-        protected virtual void ProcessResults(int allCount, Result[] items, ISynchronizer synchronizer)
+        protected virtual void ProcessResults(int allCount, Result[] items, ISynchronizer synchronizer, ITestsConfig config)
         {
             var caption = string.Format(CultureInfo.InvariantCulture, "Tested: {0}/{1}, failed: {2}, finished = {3}/{4}",
                                         passedCount,
                                         allCount, failedCount,
-                                        synchronizer.Finished, synchronizer.Count);
+                                        synchronizer.Finished, config.ProcessCount);
             updater.Update(i => string.Format(CultureInfo.InvariantCulture, "{0}, time: {1}", caption, i.FormatTimeInSec()), passedCount, allCount);
         }
     }

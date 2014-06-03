@@ -8,61 +8,56 @@ using Mnk.Library.ParallelNUnit.Core;
 
 namespace Mnk.Library.ParallelNUnit.Packages.Common
 {
-    abstract class TestsRunner
+    abstract class TestsRunner<TConfig>
+        where TConfig : ITestsConfig
     {
         private readonly IDirectoriesManipulator directoriesManipulator;
-        protected readonly ITestsConfig Config;
-        private readonly ITestsUpdater updater;
-        private readonly ISynchronizer synchronizer;
-        private readonly ITestsMetricsCalculator metricsCalculator;
-        private readonly ILog log = LogManager.GetLogger<TestsRunner>();
+        private readonly ILog log = LogManager.GetLogger<TestsRunner<TConfig>>();
 
-        protected TestsRunner(IDirectoriesManipulator directoriesManipulator, ITestsConfig config, ITestsUpdater updater, ISynchronizer synchronizer, ITestsMetricsCalculator metricsCalculator)
+        protected TestsRunner(IDirectoriesManipulator directoriesManipulator)
         {
             this.directoriesManipulator = directoriesManipulator;
-            this.Config = config;
-            this.updater = updater;
-            this.synchronizer = synchronizer;
-            this.metricsCalculator = metricsCalculator;
         }
 
-        public void Run(IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server)
+        public TestsResults Run(TConfig config, ITestsMetricsCalculator metrics, IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, ITestsUpdater updater)
         {
-            var dllPaths = directoriesManipulator.GenerateFolders(packages.Count);
+            var dllPaths = directoriesManipulator.GenerateFolders(config, updater, packages.Count);
             var s = (NunitRunnerClient)server.Owner;
             try
             {
-                if (updater.UserPressClose) return;
+                if (updater.UserPressClose) return new TestsResults();
                 var handle = server.Handle;
-                if (!string.IsNullOrEmpty(Config.CommandBeforeTestsRun))
+                if (!string.IsNullOrEmpty(config.CommandBeforeTestsRun))
                 {
                     foreach (var folder in dllPaths)
                     {
-                        Cmd.Start(Config.CommandBeforeTestsRun, log,
+                        Cmd.Start(config.CommandBeforeTestsRun, log,
                             directory: Path.GetDirectoryName(folder),
                             waitEnd: true,
                             noWindow: true);
+                        if (updater.UserPressClose) return new TestsResults();
                     }
                 }
-                if (updater.UserPressClose) return;
-                s.PrepareToRun(synchronizer, updater,
-                    new TestRunConfig(dllPaths)
+                if (updater.UserPressClose) return new TestsResults();
+                s.PrepareToRun(new Synchronizer(), updater,
+                    new TestRunConfig(dllPaths, config)
                         {
-                            StartDelay = Config.StartDelay * 1000,
+                            StartDelay = config.StartDelay * 1000,
                         },
                     packages, allTests,
-                    DoRun(handle),
-                    metricsCalculator
+                    DoRun(config, handle),
+                    metrics
                     );
             }
             finally
             {
                 s.TestsRunnerContext.WaitForExit();
                 s.TestsRunnerContext.Dispose();
-                directoriesManipulator.ClearFolders(dllPaths);
+                directoriesManipulator.ClearFolders(config, dllPaths);
             }
+            return new TestsResults(allTests);
         }
 
-        protected abstract IRunnerContext DoRun(string handle);
+        protected abstract IRunnerContext DoRun(TConfig config, string handle);
     }
 }

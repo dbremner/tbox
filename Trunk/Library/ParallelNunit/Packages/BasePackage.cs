@@ -15,40 +15,19 @@ namespace Mnk.Library.ParallelNUnit.Packages
         where TConfig: ITestsConfig
     {
         private readonly IOrderOptimizationManager orderOptimizationManager;
-        private readonly ITestsView view;
         protected InterprocessServer<INunitRunnerClient> Server { get; private set; }
         private readonly ILog log = LogManager.GetLogger<BasePackage<TConfig>>();
-        private IList<Result> collected;
 
-        public TConfig Config { get; private set; }
-        public ITestsMetricsCalculator Metrics { get; private set; }
-        public IList<Result> Items
-        {
-            get { return collected; }
-            set
-            {
-                collected = value;
-                Metrics.Refresh(value);
-            }
-        }
-        public event Action<IPackage<TConfig>> RefreshSuccessEventHandler;
-        public event Action<IPackage<TConfig>> RefreshErrorEventHandler;
-        public event Action<IPackage<TConfig>> TestsFinishedEventHandler;
-
-        protected BasePackage(TConfig config, ITestsMetricsCalculator metrics, IOrderOptimizationManager orderOptimizationManager, ITestsView view)
+        protected BasePackage(IOrderOptimizationManager orderOptimizationManager)
         {
             this.orderOptimizationManager = orderOptimizationManager;
-            this.view = view;
-            Config = config;
-            Metrics = metrics;
             Server = new InterprocessServer<INunitRunnerClient>(new NunitRunnerClient());
-            Items = new Result[0];
         }
 
-        public bool EnsurePathIsValid()
+        public bool EnsurePathIsValid(TConfig config)
         {
-            if (File.Exists(Config.TestDllPath)) return true;
-            log.Write("Can't load dll: " + Config.TestDllPath);
+            if (File.Exists(config.TestDllPath)) return true;
+            log.Write("Can't load dll: " + config.TestDllPath);
             return false;
         }
 
@@ -62,19 +41,19 @@ namespace Mnk.Library.ParallelNUnit.Packages
             return r.Categories.All(o => !values.Any(x => x.EqualsIgnoreCase(o)));
         }
 
-        public IList<IList<Result>> DivideTests(IList<Result> checkedTests=null)
+        public IList<IList<Result>> DivideTests(TConfig config, ITestsMetricsCalculator metrics, IList<Result> checkedTests = null)
         {
-            ResetTests(checkedTests);
-            var items = checkedTests ?? Metrics.Tests;
-            var filter = GetFilter(Config.Categories, Config.IncludeCategories);
-            return (Config.ProcessCount > 1)
-                                ? DivideTestsToRun(items.Where(filter).ToArray(), Config.ProcessCount, Config.OptimizeOrder).ToArray()
+            ResetTests(metrics, checkedTests);
+            var items = checkedTests ?? metrics.Tests;
+            var filter = GetFilter(config.Categories, config.IncludeCategories);
+            return (config.ProcessCount > 1)
+                                ? DivideTestsToRun(config, items.Where(filter).ToArray()).ToArray()
                                 : new IList<Result>[] { items.Where(filter).ToArray() };
         }
 
-        private void ResetTests(IList<Result> checkedTests)
+        private static void ResetTests(ITestsMetricsCalculator metrics, IList<Result> checkedTests)
         {
-            var items = checkedTests ?? Metrics.All;
+            var items = checkedTests ?? metrics.All;
             foreach (var i in items)
             {
                 i.State = ResultState.NotRunnable;
@@ -96,20 +75,20 @@ namespace Mnk.Library.ParallelNUnit.Packages
             return r => ExcludeFilter(r, categories);
         }
 
-        private IEnumerable<IList<Result>> DivideTestsToRun(IList<Result> tests, int threadCount, bool optimizeOrder)
+        private IEnumerable<IList<Result>> DivideTestsToRun(TConfig config, IList<Result> tests)
         {
-            if (optimizeOrder && threadCount > 1)
+            if (config.OptimizeOrder && config.ProcessCount > 1)
             {
-                tests = orderOptimizationManager.Optimize(Config.TestDllPath, tests);
+                tests = orderOptimizationManager.Optimize(config.TestDllPath, tests);
             }
             var result = new List<IList<Result>>();
-            for (var j = 0; j < threadCount; ++j)
+            for (var j = 0; j < config.ProcessCount; ++j)
             {
-                result.Add(new List<Result>(tests.Count / threadCount));
+                result.Add(new List<Result>(tests.Count / config.ProcessCount));
             }
             for (var i = 0; i < tests.Count; )
             {
-                for (var j = 0; j < threadCount && i < tests.Count; ++j)
+                for (var j = 0; j < config.ProcessCount && i < tests.Count; ++j)
                 {
                     result[j].Add(tests[i++]);
                 }
@@ -117,47 +96,39 @@ namespace Mnk.Library.ParallelNUnit.Packages
             return result;
         }
 
-        public void Refresh()
+        public TestsResults Refresh(TConfig config)
         {
             try
             {
-                DoRefresh();
-                if (RefreshSuccessEventHandler!=null) RefreshSuccessEventHandler(this);
+                return DoRefresh(config);
             }
             catch (Exception ex)
             {
-                log.Write(ex, "Can't refresh tests from dll: " + Config.TestDllPath);
-                if (RefreshErrorEventHandler!=null) RefreshErrorEventHandler(this);
+                log.Write(ex, "Can't refresh tests from dll: " + config.TestDllPath);
+                return new TestsResults();
             }
         }
 
-        public void Run(IList<Result> checkedTests = null)
+        public TestsResults Run(TConfig config, TestsResults tests, ITestsUpdater updater, IList<Result> checkedTests = null)
         {
             try
             {
-                DoRun(DivideTests(checkedTests));
-                ApplyResults();
-                if (TestsFinishedEventHandler!=null) TestsFinishedEventHandler(this);
+                var r = DoRun(config, tests.Metrics, tests.Items, DivideTests(config, tests.Metrics, checkedTests), updater);
+                if (config.OptimizeOrder)
+                {
+                    orderOptimizationManager.SaveStatistic(config.TestDllPath, r.Metrics.Tests);
+                }
+                return r;
             }
             catch (Exception ex)
             {
-                log.Write(ex, "Can't run test, from dll: " + Config.TestDllPath);
+                log.Write(ex, "Can't run test, from dll: " + config.TestDllPath);
+                return new TestsResults();
             }
         }
 
-
-        protected abstract void DoRefresh();
-        protected abstract void DoRun(IList<IList<Result>> packages);
-
-        private void ApplyResults()
-        {
-            Metrics.Refresh(Items);
-            view.SetItems(Items, Metrics);
-            if (Config.OptimizeOrder)
-            {
-                orderOptimizationManager.SaveStatistic(Config.TestDllPath, Metrics.Tests);
-            }
-        }
+        protected abstract TestsResults DoRefresh(TConfig config);
+        protected abstract TestsResults DoRun(TConfig config, ITestsMetricsCalculator metrics, IList<Result> allTests, IList<IList<Result>> packages, ITestsUpdater updater);
 
         public void Dispose()
         {

@@ -10,25 +10,21 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
 {
     class DirectoriesManipulator : IDirectoriesManipulator
     {
-        private readonly ITestsConfig config;
         private readonly ICopyDirGenerator copyDirGenerator;
-        private readonly ITestsUpdater updater;
         private static readonly ILog Log = LogManager.GetLogger<DirectoriesManipulator>();
 
-        public DirectoriesManipulator(ITestsConfig config, ICopyDirGenerator copyDirGenerator, ITestsUpdater updater)
+        public DirectoriesManipulator(ICopyDirGenerator copyDirGenerator)
         {
-            this.config = config;
             this.copyDirGenerator = copyDirGenerator;
-            this.updater = updater;
         }
 
-        public IList<string> GenerateFolders(int count)
+        public IList<string> GenerateFolders(ITestsConfig config, ITestsUpdater updater, int count)
         {
             var dllPaths = new List<string>();
             if (config.CopyToSeparateFolders)
             {
                 updater.Update("Start cloning of the unit tests folder");
-                CopyToLocalFolders(count, dllPaths);
+                CopyToLocalFolders(config, updater, count, dllPaths);
                 updater.Update("Cloning of the unit tests folder finished");
             }
             else
@@ -41,7 +37,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
             return dllPaths;
         }
 
-        private void CopyToLocalFolders(int count, List<string> dllPaths)
+        private void CopyToLocalFolders(ITestsConfig config, ITestsUpdater updater, int count, List<string> dllPaths)
         {
             string name;
             string sourceDir;
@@ -81,7 +77,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
             return folders;
         }
 
-        public void ClearFolders(IList<string> dllPaths)
+        public void ClearFolders(ITestsConfig config, IList<string> dllPaths)
         {
             if (!config.CopyToSeparateFolders) return;
             var copyDeep = copyDirGenerator.CalcCopyDeep(copyDirGenerator.NormalizePaths(config.CopyMasks));

@@ -10,24 +10,24 @@ namespace Mnk.Library.ParallelNUnit.Packages
         private readonly IThreadTestsExecutor testsExecutor;
         private readonly IThreadTestsRunner testsRunner;
 
-        public ThreadPackage(IThreadTestConfig config, ITestsMetricsCalculator metrics, IOrderOptimizationManager orderOptimizationManager, ITestsView view, IThreadTestsExecutor testsExecutor, IThreadTestsRunner testsRunner)
-            : base(config, metrics, orderOptimizationManager, view)
+        public ThreadPackage(IOrderOptimizationManager orderOptimizationManager, IThreadTestsExecutor testsExecutor, IThreadTestsRunner testsRunner)
+            : base(orderOptimizationManager)
         {
             this.testsExecutor = testsExecutor;
             this.testsRunner = testsRunner;
         }
 
-        protected override void DoRefresh()
+        protected override TestsResults DoRefresh(IThreadTestConfig config)
         {
-            var results = testsExecutor.CollectTests();
+            var results = testsExecutor.CollectTests(config);
             if(results == null)
-                throw new ArgumentException("Can't collect tests in: " + Config.TestDllPath);
-            Items = new[]{results};
+                throw new ArgumentException("Can't collect tests in: " + config.TestDllPath);
+            return new TestsResults(new[]{results});
         }
 
-        protected override void DoRun(IList<IList<Result>> packages)
+        protected override TestsResults DoRun(IThreadTestConfig config, ITestsMetricsCalculator metrics, IList<Result> allTests, IList<IList<Result>> packages, ITestsUpdater updater)
         {
-            testsRunner.Run(Items, packages, Server);
+            return testsRunner.Run(config, metrics, allTests, packages, Server, updater);
         }
     }
 }

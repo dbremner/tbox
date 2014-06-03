@@ -8,21 +8,14 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
 {
     public class Synchronizer : ISynchronizer
     {
-        private readonly ITestsConfig config;
         private readonly IList<Pair<string, bool>> finishedAgents = new List<Pair<string, bool>>();
 
-        public int Count { get { return config.ProcessCount; } }
         public int Finished { get { return finishedAgents.Count; } }
 
-        public Synchronizer(ITestsConfig config)
-        {
-            this.config = config;
-        }
-
-        public void ProcessNextAgent(string handle)
+        public void ProcessNextAgent(ITestsConfig config, string handle)
         {
             finishedAgents.Add(new Pair<string, bool>(handle, false));
-            if (Finished != Count) return;
+            if (Finished != config.ProcessCount) return;
             foreach (var agent in finishedAgents)
             {
                 if (agent.Value) continue;

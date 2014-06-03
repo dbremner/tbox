@@ -66,6 +66,7 @@
     <Compile Include="Contracts\ISynchronizer.cs" />
     <Compile Include="Contracts\IProcessTestConfig.cs" />
     <Compile Include="Contracts\IThreadTestConfig.cs" />
+    <Compile Include="Contracts\TestsResults.cs" />
     <Compile Include="Core\NUnitTestStarter.cs" />
     <Compile Include="Core\NUnitBase.cs" />
     <Compile Include="Contracts\ITestsMetricsCalculator.cs" />

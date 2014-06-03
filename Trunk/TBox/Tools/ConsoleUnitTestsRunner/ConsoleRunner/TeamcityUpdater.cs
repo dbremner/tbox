@@ -22,7 +22,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         {
         }
 
-        protected override void ProcessResults(int allCount, Result[] items, ISynchronizer synchronizer)
+        protected override void ProcessResults(int allCount, Result[] items, ISynchronizer synchronizer, ITestsConfig config)
         {
             lock (locker)
             {

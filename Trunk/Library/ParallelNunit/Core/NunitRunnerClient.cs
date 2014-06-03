@@ -105,7 +105,7 @@ namespace Mnk.Library.ParallelNUnit.Core
                     }
                 }
             }
-            progress.Update(allTestsCount, items.Where(x => x.IsTest).ToArray(), failed, synchronizer);
+            progress.Update(allTestsCount, items.Where(x => x.IsTest).ToArray(), failed, synchronizer, runConfig.Config);
             return progress.UserPressClose;
         }
 
@@ -128,7 +128,7 @@ namespace Mnk.Library.ParallelNUnit.Core
 
         public void CanFinish(string handle)
         {
-            synchronizer.ProcessNextAgent(handle);
+            synchronizer.ProcessNextAgent(runConfig.Config, handle);
         }
     }
 }

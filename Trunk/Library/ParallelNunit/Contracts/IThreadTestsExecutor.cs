@@ -4,7 +4,7 @@ namespace Mnk.Library.ParallelNUnit.Contracts
 {
     public interface IThreadTestsExecutor
     {
-        Result CollectTests();
-        int RunTests(string handle);
+        Result CollectTests(IThreadTestConfig config);
+        int RunTests(IThreadTestConfig config, string handle);
     }
 }

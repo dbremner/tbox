@@ -32,6 +32,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private IServiceContainer container;
         private ProcessTestConfig packageConfig;
         private IPackage<IProcessTestConfig> package;
+        private TestsResults results;
         private TestConfig config;
         private readonly TestsView view = new TestsView();
         public Dialog(string nunitAgentPath, string runAsx86Path)
@@ -64,9 +65,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             Dispatcher.BeginInvoke(new Action(() => RefreshClick(this, null)));
         }
 
-        private void RecreatePackage(IUpdater u)
+        private void RecreatePackage()
         {
-            var items = (package == null)?null : package.Items;
+            var items = (results == null) ? null : results.Items;
             DisposePackage();
             packageConfig = new ProcessTestConfig
             {
@@ -87,9 +88,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 StartDelay = config.StartDelay,
                 NeedOutput = true
             };
-            container = ServicesRegistrar.Register(packageConfig, view, new SimpleUpdater(u));
+            container = ServicesRegistrar.Register();
             package = container.GetInstance<IPackage<IProcessTestConfig>>();
-            if (items != null) package.Items = items;
+            if (items != null) results = new TestsResults(items);
         }
 
         private void DisposePackage()
@@ -109,7 +110,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void RefreshClick(object sender, RoutedEventArgs e)
         {
-            if (package!=null && !package.EnsurePathIsValid())
+            if (package!=null && !package.EnsurePathIsValid(packageConfig))
             {
                 Close();
                 return;
@@ -122,23 +123,28 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void DoRefresh(int time, IUpdater updater)
         {
-            Mt.Do(this, () => RecreatePackage(updater));
-            package.RefreshErrorEventHandler += o => Mt.Do(this, Close);
-            package.RefreshSuccessEventHandler += o => Mt.Do(this, () =>
-            {
-                package.Metrics.Refresh(package.Items);
-                view.SetItems(package.Items, package.Metrics);
-                Categories.ItemsSource = GetCategories();
-                RefreshView(time);
-            });
+            Mt.Do(this, RecreatePackage);
 
-            package.Refresh();
+            results = package.Refresh(packageConfig);
+            if (results.IsFailed)
+            {
+                Mt.Do(this, Close);
+            }
+            else
+            {
+                Mt.Do(this, () =>
+                {
+                    view.SetItems(results.Items, results.Metrics);
+                    Categories.ItemsSource = GetCategories();
+                    RefreshView(time);
+                });
+            }
         }
 
         public CheckableDataCollection<CheckableData> GetCategories()
         {
             return new CheckableDataCollection<CheckableData>(
-                package.Metrics.Tests
+                results.Metrics.Tests
                 .SelectMany(x => x.Categories)
                 .Distinct()
                 .OrderBy(x => x)
@@ -149,7 +155,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void StartClick(object sender, RoutedEventArgs e)
         {
-            if (!package.EnsurePathIsValid())
+            if (!package.EnsurePathIsValid(packageConfig))
             {
                 return;
             }
@@ -165,21 +171,21 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             IList<Result> items = null;
             Mt.Do(this, ()=>
             {
-                RecreatePackage(updater);
+                RecreatePackage();
                 items = view.GetCheckedTests();
                 packageConfig.Categories =
                     ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
                         .CheckedItems.Select(x => x.Key)
                         .ToArray();
             });
-            package.TestsFinishedEventHandler += o => Mt.Do(this, () =>
+            results = package.Run(packageConfig, results, new SimpleUpdater(updater), items);
+            view.SetItems(results.Items, results.Metrics);
+            Mt.Do(this, () =>
                 {
                     RefreshView(time);
                     PrepareUiToRun(true);
                 }
             );
-
-            package.Run(items);
         }
 
         private void PrepareUiToRun(bool enable)

@@ -4,7 +4,7 @@ namespace Mnk.Library.ParallelNUnit.Contracts
 {
     internal interface IDirectoriesManipulator
     {
-        IList<string> GenerateFolders(int count);
-        void ClearFolders(IList<string> dllPaths);
+        IList<string> GenerateFolders(ITestsConfig config, ITestsUpdater updater, int count);
+        void ClearFolders(ITestsConfig config, IList<string> dllPaths);
     }
 }

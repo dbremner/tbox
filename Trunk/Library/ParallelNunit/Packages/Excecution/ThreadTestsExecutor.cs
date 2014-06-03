@@ -11,20 +11,14 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
 {
     public class ThreadTestsExecutor : IThreadTestsExecutor
     {
-        private readonly IThreadTestConfig config;
         private readonly ILog log = LogManager.GetLogger<ThreadTestsExecutor>();
 
-        public ThreadTestsExecutor(IThreadTestConfig config)
-        {
-            this.config = config;
-        }
-
-        public Result CollectTests()
+        public Result CollectTests(IThreadTestConfig config)
         {
             return new NUnitTestStarter().CollectTests(config.TestDllPath, config.RuntimeFramework);
         }
 
-        public int RunTests(string handle)
+        public int RunTests(IThreadTestConfig config, string handle)
         {
             using (var cl = new InterprocessClient<INunitRunnerClient>(handle))
             {
@@ -38,13 +32,13 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
                         {
                             Thread.Sleep(i*cfg.StartDelay);
                         }
-                        ProcessMessage(s => s.Run(handle, path, items, !config.NeedSynchronizationForTests, config.NeedOutput, config.RuntimeFramework));
+                        ProcessMessage(config, s => s.Run(handle, path, items, !config.NeedSynchronizationForTests, config.NeedOutput, config.RuntimeFramework));
                     });
             }
             return 1;
         }
 
-        private void ProcessMessage<T>(Func<NUnitTestStarter, T> action)
+        private void ProcessMessage<T>(IThreadTestConfig config, Func<NUnitTestStarter, T> action)
         {
             var domain = AppDomain.CreateDomain(Guid.NewGuid().ToString());
             domain.AssemblyResolve += config.ResolveEventHandler;

@@ -2,6 +2,6 @@ namespace Mnk.Library.ParallelNUnit.Contracts
 {
     public interface IProcessCalculator
     {
-        void CollectTests(string path, string handle);
+        void CollectTests(IProcessTestConfig config, string path, string handle);
     }
 }

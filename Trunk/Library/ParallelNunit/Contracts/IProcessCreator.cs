@@ -2,7 +2,7 @@
 {
     public interface IProcessCreator
     {
-        IRunnerContext Create(string handle, string command);
+        IRunnerContext Create(IProcessTestConfig config, string handle, string command);
     }
 
 }

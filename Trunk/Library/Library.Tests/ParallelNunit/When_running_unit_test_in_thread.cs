@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LightInject;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
-using Mnk.Library.ParallelNUnit.Core;
-using Mnk.Library.ParallelNUnit.Packages.Common;
 using NUnit.Core;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -36,7 +33,7 @@ namespace Mnk.Library.Tests.ParallelNunit
             };
             view = MockRepository.GenerateStub<ITestsView>();
             updater = new SimpleUpdater(new ConsoleUpdater());
-            container = ServicesRegistrar.Register(config, view, updater);
+            container = ServicesRegistrar.Register();
             package = container.GetInstance<IPackage<IThreadTestConfig>>();
 
         }
@@ -54,7 +51,7 @@ namespace Mnk.Library.Tests.ParallelNunit
             config.TestDllPath = "Wrong path";
 
             //Assert
-            Assert.IsFalse(package.EnsurePathIsValid());
+            Assert.IsFalse(package.EnsurePathIsValid(config));
         }
 
         [Test]
@@ -64,7 +61,7 @@ namespace Mnk.Library.Tests.ParallelNunit
             config.TestDllPath = TestsDllPath;
 
             //Assert
-            Assert.IsTrue(package.EnsurePathIsValid());
+            Assert.IsTrue(package.EnsurePathIsValid(config));
         }
 
         [Test]
@@ -72,15 +69,13 @@ namespace Mnk.Library.Tests.ParallelNunit
         {
             //Arrange
             config.TestDllPath = TestsDllPath;
-            package.EnsurePathIsValid();
+            package.EnsurePathIsValid(config);
 
             //Act
-            var error = false;
-            package.RefreshErrorEventHandler += x => error = true;
-            package.Refresh();
+            var results = package.Refresh(config);
 
             //Assert
-            Assert.IsFalse(error);
+            Assert.IsFalse(results.IsFailed);
         }
 
         [Test]
@@ -88,15 +83,13 @@ namespace Mnk.Library.Tests.ParallelNunit
         {
             //Arrange
             config.TestDllPath = TestsDllPath;
-            package.EnsurePathIsValid();
+            package.EnsurePathIsValid(config);
 
             //Act
-            var count = 0;
-            package.RefreshSuccessEventHandler +=x => { count = x.Metrics.Total; };
-            package.Refresh();
+            var results = package.Refresh(config);
 
             //Assert
-            Assert.Greater(count, 20);
+            Assert.Greater(results.Metrics.Total, 20);
         }
 
         [Test]
@@ -123,21 +116,21 @@ namespace Mnk.Library.Tests.ParallelNunit
             config.NeedSynchronizationForTests = sync;
             config.NeedOutput = needOutput;
 
-            package.EnsurePathIsValid();
-            package.Refresh();
+            package.EnsurePathIsValid(config);
+            var results = package.Refresh(config);
 
             //Act
-            package.Run();
+            results = package.Run(config, results, updater);
 
             //Assert
-            Assert.Greater(package.Metrics.Total, 20);
-            Assert.AreEqual(0, package.Metrics.FailedCount, CollectFailed());
+            Assert.Greater(results.Metrics.Total, 20);
+            Assert.AreEqual(0, results.Metrics.FailedCount, CollectFailed(results));
         }
-		
-        private string CollectFailed()
+
+        private string CollectFailed(TestsResults results)
         {
             return string.Join(Environment.NewLine,
-                package.Metrics.All
+                results.Metrics.All
                     .Where(x => x.IsTest && x.Executed &&
                             (x.State == ResultState.Error || x.State == ResultState.Failure))
                     .Select(x => x.Key + " ------ " + x.Message + " ------ " + x.StackTrace)

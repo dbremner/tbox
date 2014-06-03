@@ -6,6 +6,6 @@ namespace Mnk.Library.ParallelNUnit.Contracts
 {
     public interface IThreadTestsRunner
     {
-        void Run(IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server);
+        TestsResults Run(IThreadTestConfig config, ITestsMetricsCalculator metrics, IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, ITestsUpdater updater);
     }
 }

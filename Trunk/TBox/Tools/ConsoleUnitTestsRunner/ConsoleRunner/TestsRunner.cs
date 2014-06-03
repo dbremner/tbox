@@ -15,28 +15,33 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
         public int Run(CommandLineArgs args)
         {
-            var retValue = 0;
+            using (var container = ServicesRegistrar.Register())
+            {
+                return Execute(args, container);
+            }
+        }
 
+        private int Execute(CommandLineArgs args,  IServiceContainer container)
+        {
+            int retValue = 0;
             var view = new ConsoleView();
-            
             using (var updater = new ConsoleUpdater())
             {
+                var testsUpdater = BuildUpdater(args.Labels, args.Teamcity, updater);
                 foreach (var path in args.Paths)
                 {
-                    using (var container = ServicesRegistrar.Register(CreateConfig(args, path), view, BuildUpdater(args.Labels, args.Teamcity, updater)))
-                    {
-                        retValue = Math.Min(retValue, RunTest(args, path, container, view));
-                    }
+                    var config = CreateConfig(args, path);
+                    retValue = Math.Min(retValue, RunTest(args, path, container, view, config, testsUpdater));
                 }
             }
 
             view.PrintTotalResults();
-            PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), Environment.CurrentDirectory);
-            
+            PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(),
+                Environment.CurrentDirectory);
             return retValue;
         }
 
-        private int RunTest(CommandLineArgs args, string path, IServiceContainer container, ConsoleView view)
+        private int RunTest(CommandLineArgs args, string path, IServiceContainer container, ConsoleView view, IThreadTestConfig config, ITestsUpdater testsUpdater)
         {
             var p = container.GetInstance<IPackage<IThreadTestConfig>>();
 
@@ -44,25 +49,24 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
             Console.WriteLine("Running tests for {0}.", path);
             if (args.Logo) Console.WriteLine("Calculating tests.");
-            if (!p.EnsurePathIsValid())
+            if (!p.EnsurePathIsValid(config))
             {
                 log.Write("Incorrect path: " + path);
                 return -3;
             }
 
-            var error = false;
-            p.RefreshErrorEventHandler += x => error = true;
-            p.Refresh();
-            if (args.Logo) Console.WriteLine("{0} tests found.", p.Metrics.Total);
-            if (error)
+            var results = p.Refresh(config);
+            if (args.Logo) Console.WriteLine("{0} tests found.", results.Metrics.Total);
+            if (results.IsFailed)
             {
                 log.Write("Can't calculate tests count");
                 return -3;
             }
 
             if (args.Logo) Console.WriteLine("Running tests.");
-            p.Run();
-            if (p.Metrics.FailedCount > 0) return -2;
+            results = p.Run(config, results, testsUpdater);
+            view.SetItems(results.Items, results.Metrics);
+            if (results.Metrics.FailedCount > 0) return -2;
             return 0;
         }
 

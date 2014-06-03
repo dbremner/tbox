@@ -8,14 +8,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
 {
     class ProcessCreator : IProcessCreator
     {
-        private readonly IProcessTestConfig config;
-
-        public ProcessCreator(IProcessTestConfig config)
-        {
-            this.config = config;
-        }
-
-        public IRunnerContext Create(string handle, string command)
+        public IRunnerContext Create(IProcessTestConfig config, string handle, string command)
         {
             var fileName = config.NunitAgentPath;
             var args = string.Format(CultureInfo.InvariantCulture, "{0} \"{1}\" {2} {3}", handle, config.TestDllPath, command, config.RuntimeFramework ?? string.Empty);

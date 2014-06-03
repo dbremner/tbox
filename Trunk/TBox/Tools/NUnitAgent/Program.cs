@@ -36,20 +36,20 @@ namespace Mnk.TBox.Tools.NUnitAgent
             var framework = args.Length == 4 ? args[3] : null;
             try
             {
-                var executor = new ThreadTestsExecutor(
-                    new ThreadTestConfig
-                    {
-                        TestDllPath = path,
-                        RuntimeFramework = framework,
-                        ResolveEventHandler = LoadFromSameFolder
-                    });
+                var config = new ThreadTestConfig
+                {
+                    TestDllPath = path,
+                    RuntimeFramework = framework,
+                    ResolveEventHandler = LoadFromSameFolder
+                };
+                var executor = new ThreadTestsExecutor();
                 switch (args[2])
                 {
                     case TestsCommands.Collect:
                         Result list = null;
                         try
                         {
-                            list = executor.CollectTests();
+                            list = executor.CollectTests(config);
                             return 1;
                         }
                         finally
@@ -60,9 +60,9 @@ namespace Mnk.TBox.Tools.NUnitAgent
                             }
                         }
                     case TestsCommands.FastTest:
-                        return executor.RunTests(handle);
+                        return executor.RunTests(config, handle);
                     case TestsCommands.Test:
-                        return executor.RunTests(handle);
+                        return executor.RunTests(config, handle);
                     default:
                         log.Write("Unknown command: " + args[2]);
                         break;

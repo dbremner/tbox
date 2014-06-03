@@ -10,12 +10,12 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             this.processCreator = processCreator;
         }
 
-        public void CollectTests(string path, string handle)
+        public void CollectTests(IProcessTestConfig config, string path, string handle)
         {
             IRunnerContext p = null;
             try
             {
-                p = processCreator.Create(handle, TestsCommands.Collect);
+                p = processCreator.Create(config, handle, TestsCommands.Collect);
             }
             finally
             {

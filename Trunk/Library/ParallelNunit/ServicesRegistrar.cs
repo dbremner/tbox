@@ -9,32 +9,14 @@ namespace Mnk.Library.ParallelNUnit
 {
     public static class ServicesRegistrar
     {
-        public static IServiceContainer Register(IThreadTestConfig config, ITestsView view, ITestsUpdater updater)
-        {
-            return RegisterComponents(config, view, updater);
-        }
-
-        public static IServiceContainer Register(IProcessTestConfig config, ITestsView view, ITestsUpdater updater)
-        {
-            return RegisterComponents(config, view, updater);
-        }
-
-        private static IServiceContainer RegisterComponents<TConfig>(TConfig config, ITestsView view, ITestsUpdater updater)
-            where TConfig: ITestsConfig
+        public static IServiceContainer Register()
         {
             var container = new ServiceContainer();
-
-            container.RegisterInstance(config);
-            container.RegisterInstance((ITestsConfig)config);
-            container.RegisterInstance(view);
-            container.RegisterInstance(updater);
-
 
             container.Register<ICopyDirGenerator, CopyDirGenerator>(new PerContainerLifetime());
             container.Register<ITestsMetricsCalculator, TestsMetricsCalculator>(new PerContainerLifetime());
             container.Register<IDirectoriesManipulator, DirectoriesManipulator>(new PerContainerLifetime());
             container.Register<IOrderOptimizationManager, OrderOptimizationManager>(new PerContainerLifetime());
-            container.Register<ISynchronizer, Synchronizer>(new PerContainerLifetime());
 
             container.Register<IProcessCreator, ProcessCreator>(new PerContainerLifetime());
             container.Register<IProcessCalculator, ProcessCalculator>(new PerContainerLifetime());

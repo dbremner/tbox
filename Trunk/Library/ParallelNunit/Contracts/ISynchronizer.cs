@@ -2,8 +2,7 @@
 {
     public interface ISynchronizer
     {
-        int Count { get; }
         int Finished { get; }
-        void ProcessNextAgent(string handle);
+        void ProcessNextAgent(ITestsConfig config, string handle);
     }
 }
