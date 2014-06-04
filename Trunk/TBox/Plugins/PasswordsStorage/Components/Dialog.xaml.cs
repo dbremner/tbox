@@ -28,13 +28,10 @@ namespace Mnk.TBox.Plugins.PasswordsStorage.Components
         {
             this.cm = cm;
             Title = p.Key;
+            DataContext = null;
             DataContext = p;
             Owner = owner;
-            if (owner != null)
-            {
-                SafeShowDialog();
-            }
-            else ShowAndActivate();
+            ShowAndActivate();
         }
 
         private void CloseClick(object sender, RoutedEventArgs e)

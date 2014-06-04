@@ -141,8 +141,8 @@
     <Compile Include="Code\Menu\MenuCallsVisitor.cs" />
     <Compile Include="Code\Managers\WarmingUpManager.cs" />
     <Compile Include="Code\Objects\EnginePluginInfo.cs" />
-    <Compile Include="Code\HotKeys\HotKeyAction.cs" />
-    <Compile Include="Code\HotKeys\HotKeysManager.cs" />
+    <Compile Include="Code\Hotkeys\HotkeyAction.cs" />
+    <Compile Include="Code\Hotkeys\HotkeysManager.cs" />
     <Compile Include="Code\Objects\EngineSettingsInfo.cs" />
     <Compile Include="Code\Objects\ExtButtonInfo.cs" />
     <Compile Include="Code\ServicesRegistrar.cs" />
@@ -153,13 +153,13 @@
     <Compile Include="Code\Objects\PluginContext.cs" />
     <Compile Include="Code\Objects\PluginMenuUpdater.cs" />
     <Compile Include="Code\Objects\PluginsContextShared.cs" />
-    <Compile Include="Code\HotKeys\Settings\HotKeyTask.cs" />
+    <Compile Include="Code\Hotkeys\Settings\HotkeyTask.cs" />
     <Compile Include="Code\Config.cs" />
     <Compile Include="Code\Engine.cs" />
     <Compile Include="Code\Menu\MenuMan.cs" />
     <Compile Include="Code\Managers\PluginsMan.cs" />
     <Compile Include="Code\Managers\ControlsMan.cs" />
-    <Compile Include="Code\HotKeys\Settings\HotKeyTasks.cs" />
+    <Compile Include="Code\Hotkeys\Settings\HotkeyTasks.cs" />
     <Compile Include="Code\Shelduler\Settings\SchedulerTask.cs" />
     <Compile Include="Code\Shelduler\Settings\SchedulerTasks.cs" />
     <Compile Include="Code\Shelduler\Settings\ShortDayOfWeek.cs" />

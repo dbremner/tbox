@@ -7,7 +7,7 @@ using Mnk.Library.WpfWinForms.GlobalHotkeys;
 
 namespace Mnk.Library.WpfControls.Components
 {
-	public class HotKeyBox : TextBox
+	public class HotkeyBox : TextBox
 	{
 		private readonly Microsoft.VisualBasic.Devices.Keyboard userKeyboard = new Microsoft.VisualBasic.Devices.Keyboard();
 		private readonly Key[] keysToSkip = new[]{
@@ -18,18 +18,18 @@ namespace Mnk.Library.WpfControls.Components
 			                           };
 		private bool isWinPressed = false;
 
-		public HotKeyBox()
+		public HotkeyBox()
 		{
 			IsReadOnly = true;
 		}
 
 		public static readonly DependencyProperty GlobalHotkeyProperty =
 			DependencyProperty.Register("GlobalHotkey", typeof(GlobalHotkey),
-			typeof(HotKeyBox), new FrameworkPropertyMetadata(new GlobalHotkey(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCurrentValuePropertyChanged)
+			typeof(HotkeyBox), new FrameworkPropertyMetadata(new GlobalHotkey(), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnCurrentValuePropertyChanged)
 			);
 		private static void OnCurrentValuePropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
 		{
-			((HotKeyBox)source).GlobalHotkey = (GlobalHotkey)e.NewValue;
+			((HotkeyBox)source).GlobalHotkey = (GlobalHotkey)e.NewValue;
 		}
 
 		private GlobalHotkey globalHotkey;

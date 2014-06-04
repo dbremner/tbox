@@ -22,7 +22,7 @@ namespace Mnk.TBox.Core.Application.Code
 		public string Language { get; set; }
 
 		public Update Update { get; set; }
-		public HotKeyTasks HotKeys { get; set; }
+		public HotkeyTasks HotKeys { get; set; }
 		public SchedulerTasks SchedulerTasks { get; set; }
 		public List<string> DisabledItems { get; set; }
 		public ErrorReports ErrorReports { get; set; }
@@ -40,7 +40,7 @@ namespace Mnk.TBox.Core.Application.Code
 			HideOnCancel = false;
 			StartHidden = false;
 			Update = new Update();
-			HotKeys = new HotKeyTasks();
+			HotKeys = new HotkeyTasks();
 			SchedulerTasks  = new SchedulerTasks();
 			DisabledItems = new List<string>();
 			ErrorReports = new ErrorReports();

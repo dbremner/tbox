@@ -5,18 +5,18 @@ using Mnk.Library.WpfWinForms.GlobalHotkeys;
 namespace Mnk.TBox.Core.Application.Code.HotKeys.Settings
 {
 	[Serializable]
-	public class HotKeyTask : CheckableData
+	public class HotkeyTask : CheckableData
 	{
-		public GlobalHotkey GlobalHotkey { get; set; }
+		public GlobalHotkey HotKey { get; set; }
 
 		public override object Clone()
 		{
-			return new HotKeyTask
+			return new HotkeyTask
 				{
 					Key = Key,
 					IsChecked = IsChecked,
-					GlobalHotkey = (GlobalHotkey == null) ? 
-								null : new GlobalHotkey(GlobalHotkey.Modifier, GlobalHotkey.Key)
+					HotKey = (HotKey == null) ? 
+								null : new GlobalHotkey(HotKey.Modifier, HotKey.Key)
 				};
 		}
 

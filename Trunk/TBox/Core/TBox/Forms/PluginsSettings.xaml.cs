@@ -33,7 +33,7 @@ namespace Mnk.TBox.Core.Application.Forms
 		private IAutoUpdater appUpdater;
 		private readonly ThemesManager themesManager = new ThemesManager();
 		public event EventHandler EnableHotKeys;
-		private readonly HotKeysManager hotKeysManager;
+		private readonly HotkeysManager hotkeysManager;
 		private readonly SchedulerManager schedulerManager;
 		private readonly UserActionsManager userActionsManager;
 
@@ -42,7 +42,7 @@ namespace Mnk.TBox.Core.Application.Forms
 			InitializeComponent();
 			Panel.ItemsSource = Collection = new CheckableDataCollection<EnginePluginInfo>();
 			PanelButtons.View = Panel;
-			hotKeysManager = new HotKeysManager(HotKeysView, menuItemsProvider);
+			hotkeysManager = new HotkeysManager(HotKeysView, menuItemsProvider);
 			schedulerManager = new SchedulerManager(ScheldulerView, menuItemsProvider);
 			userActionsManager = new UserActionsManager(UserActionsView, menuItemsProvider);
 			Themes.ItemsSource = themesManager.AvailableThemes;
@@ -68,7 +68,7 @@ namespace Mnk.TBox.Core.Application.Forms
 		private void OnConfigUpdated(Config cfg)
 		{
             Mt.Do(this, Panel.Refresh);
-			hotKeysManager.OnConfigUpdated(cfg.HotKeys);
+			hotkeysManager.OnConfigUpdated(cfg.HotKeys);
 			schedulerManager.OnConfigUpdated(cfg.SchedulerTasks);
 			userActionsManager.OnConfigUpdated(cfg.FastStartConfig);
 			RenderOptions.ProcessRenderMode = cfg.EnableGPUAccelerationForUi
@@ -97,7 +97,7 @@ namespace Mnk.TBox.Core.Application.Forms
 				MessageBox.Show(TBoxLang.MessageNoUpdatesFound, TBoxLang.Caption, MessageBoxButton.OK, MessageBoxImage.Asterisk);
 		}
 
-		private void HotKeysEnabledChecked(object sender, RoutedEventArgs e)
+		private void HotkeysEnabledChecked(object sender, RoutedEventArgs e)
 		{
 			if (EnableHotKeys != null ) EnableHotKeys(sender, e);
 		}
@@ -109,7 +109,7 @@ namespace Mnk.TBox.Core.Application.Forms
 
 		private void ButtonClearHotkeyClick(object sender, RoutedEventArgs e)
 		{
-			((HotKeyBox) ((DockPanel) ((Button) sender).Parent).Children[2]).GlobalHotkey = null;
+			((HotkeyBox) ((DockPanel) ((Button) sender).Parent).Children[2]).GlobalHotkey = null;
 		}
 
 		private void ThemeChanged(object sender, RoutedEventArgs e)
@@ -119,7 +119,7 @@ namespace Mnk.TBox.Core.Application.Forms
 		
 		public void Dispose()
 		{
-			hotKeysManager.Dispose();
+			hotkeysManager.Dispose();
 			schedulerManager.Dispose();
 		}
 

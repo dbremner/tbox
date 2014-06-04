@@ -5,20 +5,20 @@ using Mnk.Library.Common.UI.ModelsContainers;
 namespace Mnk.TBox.Core.Application.Code.HotKeys.Settings
 {
 	[Serializable]
-	public class HotKeyTasks
+	public class HotkeyTasks
 	{
 		public bool IsEnabled { get; set; }
-		public CheckableDataCollection<HotKeyTask> Tasks { get; set; }
+		public CheckableDataCollection<HotkeyTask> Tasks { get; set; }
 
-		public HotKeyTasks()
+		public HotkeyTasks()
 		{
 			IsEnabled = false;
-			Tasks = new CheckableDataCollection<HotKeyTask>();
+			Tasks = new CheckableDataCollection<HotkeyTask>();
 		}
 
-		public HotKeyTasks Clone()
+		public HotkeyTasks Clone()
 		{
-			return new HotKeyTasks
+			return new HotkeyTasks
 				{
 					IsEnabled = IsEnabled,
 					Tasks = Tasks.Clone()

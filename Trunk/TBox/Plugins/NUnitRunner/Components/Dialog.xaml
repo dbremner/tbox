@@ -52,7 +52,7 @@
                                     <StackPanel DockPanel.Dock="Left" >
                                         <components:ExtCheckBox Content="{loc:Tr RunAsx86}" IsChecked="{Binding RunAsx86}" Margin="5"/>
                                         <components:ExtCheckBox Content="{loc:Tr RunAsAdmin}" IsChecked="{Binding RunAsAdmin}" Margin="5"/>
-                                        <captioned1:CaptionedComboBox Caption="{loc:Tr Framework}" Value="{Binding Framework}" Margin="5" IsEditable="True" Name="Framework"/>
+                                        <captioned1:CaptionedComboBox Caption="{loc:Tr Framework}" Value="{Binding RuntimeFramework}" Margin="5" IsEditable="True" Name="Framework"/>
                                     </StackPanel>
                                     <GroupBox Margin="5" Header="{loc:Tr Multithreading}">
                                         <StackPanel>

@@ -11,14 +11,14 @@ using Mnk.Library.WpfWinForms.GlobalHotkeys;
 
 namespace Mnk.TBox.Core.Application.Code.HotKeys
 {
-	sealed class HotKeysManager : IDisposable
+	sealed class HotkeysManager : IDisposable
 	{
 		private GlobalHotkeysManager globalHotkeysManager = null;
 		private readonly CheckableListBoxUnit view;
 		private readonly IMenuItemsProvider menuItemsProvider;
-		private HotKeyTasks config;
-		private HotKeyTasks originalConfig;
-		public HotKeysManager(CheckableListBoxUnit view, IMenuItemsProvider menuItemsProvider )
+		private HotkeyTasks config;
+		private HotkeyTasks originalConfig;
+		public HotkeysManager(CheckableListBoxUnit view, IMenuItemsProvider menuItemsProvider )
 		{
 			this.view = view;
 			this.menuItemsProvider = menuItemsProvider;
@@ -64,15 +64,15 @@ namespace Mnk.TBox.Core.Application.Code.HotKeys
 			}
 		}
 
-		private void UpdateMenu(HotKeyTask item)
+		private void UpdateMenu(HotkeyTask item)
 		{
 			var menu = menuItemsProvider.Get(item.Key);
-			if (menu == null || menu.Items.Count > 0 || item.GlobalHotkey == null) return;
-			menu.Hotkey = item.GlobalHotkey.ToString();
-			globalHotkeysManager.RegisterHotkey(item.GlobalHotkey, ()=>menu.OnClick(null));
+			if (menu == null || menu.Items.Count > 0 || item.HotKey == null) return;
+			menu.Hotkey = item.HotKey.ToString();
+			globalHotkeysManager.RegisterHotkey(item.HotKey, ()=>menu.OnClick(null));
 		}
 
-		public void OnConfigUpdated(HotKeyTasks cfg)
+		public void OnConfigUpdated(HotkeyTasks cfg)
 		{
 			originalConfig = cfg;
 			config = cfg.Clone();
