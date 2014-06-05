@@ -145,7 +145,7 @@
     <value>Settings</value>
   </data>
   <data name="Caption" xml:space="preserve">
-    <value>TBox - Settings</value>
+    <value>TBox</value>
   </data>
   <data name="ChangeLogTitle" xml:space="preserve">
     <value>TBox was updated, the latest changes:</value>

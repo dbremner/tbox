@@ -169,7 +169,7 @@ namespace Mnk.TBox.Locales.Localization.TBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TBox - Settings.
+        ///   Looks up a localized string similar to TBox.
         /// </summary>
         public static string Caption {
             get {

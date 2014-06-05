@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
@@ -131,15 +132,23 @@ namespace Mnk.TBox.Core.Application
             cfg.LastChanglogPosition = file.Length;
         }
 
+        private static string GetCaption()
+        {
+            var ver = Assembly.GetExecutingAssembly().GetName().Version;
+            return string.Format("{0} {1}.{2} - {3}",
+                TBoxLang.Caption, ver.Major, ver.Minor, TBoxLang.Settings);
+        }
+
         private void OnPluginChanged(EnginePluginInfo info)
         {
+
             if (string.Equals(info.Name, TBoxLang.Caption))
             {
-                Title = TBoxLang.Caption;
+                Title = GetCaption();
             }
             else
             {
-                Title = TBoxLang.Caption + " - [" + info.Name + "]";
+                Title = GetCaption() + " - [" + info.Name + "]";
             }
             Description.Text = info.Description;
         }
@@ -226,7 +235,7 @@ namespace Mnk.TBox.Core.Application
         {
             PluginsBack.Content = View;
             Description.Text = TBoxLang.DefaultMainViewDescription;
-            Title = TBoxLang.Caption;
+            Title = GetCaption();
             BtnBack.IsEnabled = false;
         }
 

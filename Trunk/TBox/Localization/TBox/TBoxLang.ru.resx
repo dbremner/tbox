@@ -145,7 +145,7 @@
     <value>Настройки</value>
   </data>
   <data name="Caption" xml:space="preserve">
-    <value>TBox - Настройки</value>
+    <value>TBox</value>
   </data>
   <data name="ChangeLogTitle" xml:space="preserve">
     <value>TBox был обновлён, последние изменения:</value>
@@ -379,7 +379,7 @@
     <value>Плагины: другие</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Общие настройки</value>
+    <value>Настройки</value>
   </data>
   <data name="Web" xml:space="preserve">
     <value>Плагины: вэб</value>
