@@ -18,6 +18,5 @@ namespace Mnk.Library.ParallelNUnit.Contracts
         IList<Result> Tests { get; }
         IList<Result> All { get; }
         int FailedCount { get; }
-        void Refresh(IEnumerable<Result> items);
     }
 }

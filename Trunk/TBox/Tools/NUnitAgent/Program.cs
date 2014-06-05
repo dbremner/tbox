@@ -17,7 +17,7 @@ namespace Mnk.TBox.Tools.NUnitAgent
     {
         static Program()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += LoadFromSameFolder;
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveEventHandler;
         }
 
         [STAThread]
@@ -38,18 +38,19 @@ namespace Mnk.TBox.Tools.NUnitAgent
             {
                 var config = new ThreadTestConfig
                 {
+                    
                     TestDllPath = path,
                     RuntimeFramework = framework,
-                    ResolveEventHandler = LoadFromSameFolder
+                    ResolveEventHandler = ResolveEventHandler,
+                    NeedOutput = true
                 };
-                var executor = new ThreadTestsExecutor();
                 switch (args[2])
                 {
                     case TestsCommands.Collect:
                         Result list = null;
                         try
                         {
-                            list = executor.CollectTests(config);
+                            list = new NUnitTestStarter().CollectTests(config.TestDllPath, config.RuntimeFramework);
                             return 1;
                         }
                         finally
@@ -60,9 +61,11 @@ namespace Mnk.TBox.Tools.NUnitAgent
                             }
                         }
                     case TestsCommands.FastTest:
-                        return executor.RunTests(config, handle);
+                        config.NeedSynchronizationForTests = false;
+                        return new ThreadTestsExecutor().RunTests(config, handle);
                     case TestsCommands.Test:
-                        return executor.RunTests(config, handle);
+                        config.NeedSynchronizationForTests = true;
+                        return new ThreadTestsExecutor().RunTests(config, handle);
                     default:
                         log.Write("Unknown command: " + args[2]);
                         break;
@@ -79,7 +82,7 @@ namespace Mnk.TBox.Tools.NUnitAgent
             return -1;
         }
 
-        static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)
+        static Assembly ResolveEventHandler(object sender, ResolveEventArgs args)
         {
             return (from dir in new[] { "Libraries", "Localization" } 
                     select Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\" + dir + "\\", new AssemblyName(args.Name).Name + ".dll")) 

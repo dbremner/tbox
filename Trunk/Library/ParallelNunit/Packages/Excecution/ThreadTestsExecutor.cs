@@ -13,11 +13,6 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
     {
         private readonly ILog log = LogManager.GetLogger<ThreadTestsExecutor>();
 
-        public Result CollectTests(IThreadTestConfig config)
-        {
-            return new NUnitTestStarter().CollectTests(config.TestDllPath, config.RuntimeFramework);
-        }
-
         public int RunTests(IThreadTestConfig config, string handle)
         {
             using (var cl = new InterprocessClient<INunitRunnerClient>(handle))
@@ -25,15 +20,15 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
                 var str = cl.Instance.GiveMeConfig();
                 var cfg = JsonSerializer.DeserializeFromString<TestRunConfig>(str);
                 Parallel.For(0, cfg.TestsToRun.Count, i =>
+                {
+                    var path = cfg.DllPaths[i];
+                    var items = cfg.TestsToRun[i].ToArray();
+                    if (i > 0 && cfg.StartDelay > 0)
                     {
-                        var path = cfg.DllPaths[i];
-                        var items = cfg.TestsToRun[i].ToArray();
-                        if (i > 0 && cfg.StartDelay > 0)
-                        {
-                            Thread.Sleep(i*cfg.StartDelay);
-                        }
-                        ProcessMessage(config, s => s.Run(handle, path, items, !config.NeedSynchronizationForTests, config.NeedOutput, config.RuntimeFramework));
-                    });
+                        Thread.Sleep(i * cfg.StartDelay);
+                    }
+                    ProcessMessage(config, s => s.Run(handle, path, items, !config.NeedSynchronizationForTests, config.NeedOutput, config.RuntimeFramework));
+                });
             }
             return 1;
         }

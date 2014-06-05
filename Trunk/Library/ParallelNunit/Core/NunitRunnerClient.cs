@@ -19,6 +19,7 @@ namespace Mnk.Library.ParallelNUnit.Core
         private TestRunConfig runConfig;
         private ISynchronizer synchronizer;
         private ITestsUpdater progress;
+        private ITestsConfig testsConfig;
 
         public NunitRunnerClient()
         {
@@ -32,8 +33,9 @@ namespace Mnk.Library.ParallelNUnit.Core
             Collection = new Result[0];
         }
 
-        public void PrepareToRun(ISynchronizer sync, ITestsUpdater u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , IRunnerContext runnerContext, ITestsMetricsCalculator metricsCalculator)
+        public void PrepareToRun(ISynchronizer sync, ITestsUpdater u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , IRunnerContext runnerContext, ITestsMetricsCalculator metricsCalculator, ITestsConfig testConfig)
         {
+            this.testsConfig = testConfig;
             runConfig = config;
             allTestsCount = metricsCalculator.Total;
             allTestsResults.Clear();
@@ -77,6 +79,12 @@ namespace Mnk.Library.ParallelNUnit.Core
 
         public bool SendTestsResults(string itemsText)
         {
+            DoSendResults(itemsText);
+            return progress.UserPressClose;
+        }
+
+        private void DoSendResults(string itemsText)
+        {
             var items = JsonSerializer.DeserializeFromString<Result[]>(itemsText);
             var failed = 0;
             lock (allTestsResults)
@@ -84,7 +92,7 @@ namespace Mnk.Library.ParallelNUnit.Core
                 foreach (var i in items)
                 {
                     Result item;
-                    if(!allTestsResults.TryGetValue(i.Id, out item))continue;
+                    if (!allTestsResults.TryGetValue(i.Id, out item)) continue;
                     item.Key = i.Key;
                     item.Time = Math.Max(item.Time, i.Time);
 
@@ -105,8 +113,7 @@ namespace Mnk.Library.ParallelNUnit.Core
                     }
                 }
             }
-            progress.Update(allTestsCount, items.Where(x => x.IsTest).ToArray(), failed, synchronizer, runConfig.Config);
-            return progress.UserPressClose;
+            progress.Update(allTestsCount, items.Where(x => x.IsTest).ToArray(), failed, synchronizer, testsConfig);
         }
 
         private static void Map(Result item, Result i)
@@ -128,7 +135,7 @@ namespace Mnk.Library.ParallelNUnit.Core
 
         public void CanFinish(string handle)
         {
-            synchronizer.ProcessNextAgent(runConfig.Config, handle);
+            synchronizer.ProcessNextAgent(testsConfig, handle);
         }
     }
 }

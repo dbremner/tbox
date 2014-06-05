@@ -106,8 +106,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
         public TestResults CreateTotalResult()
         {
             var totalResults = this.Results.SelectMany(results => results.Result).ToList();
-            var totalMetrics = new TestsMetricsCalculator();
-            totalMetrics.Refresh(totalResults);
+            var totalMetrics = new TestsMetricsCalculator(totalResults);
             var elapsedTime = this.Results.Aggregate(TimeSpan.Zero, (current, result) => current + result.ElapsedTime);
 
             return new TestResults(totalResults, totalMetrics, elapsedTime);

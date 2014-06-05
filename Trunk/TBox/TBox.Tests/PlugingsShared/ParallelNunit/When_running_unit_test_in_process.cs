@@ -16,7 +16,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
     [Category("Integration")]
     class When_running_unit_test_in_process
     {
-        private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../../Library/Library.Tests/bin/" + Shared.CompileMode + "/", "Mnk.Library.Tests.dll");
+        private static readonly string TestsDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Mnk.TBox.Tests.dll");
         private const string ToolsPath = "../../../bin/" + Shared.CompileMode + "/Tools";
         private static readonly string NUnitAgentPath = Path.Combine(ToolsPath, "NUnitAgent.exe");
         private static readonly string RunAsx86Path = Path.Combine(ToolsPath, "RunAsx86.exe");

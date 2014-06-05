@@ -14,8 +14,7 @@ namespace Mnk.Library.ParallelNUnit.Contracts
        
         public TestsResults(IList<Result> items, Exception ex = null)
         {
-            Metrics = new TestsMetricsCalculator();
-            Metrics.Refresh(items);
+            Metrics = new TestsMetricsCalculator(items);
             Items = items;
             Exception = ex;
         }

@@ -8,16 +8,18 @@ using Mnk.Library.ParallelNUnit.Core;
 
 namespace Mnk.Library.ParallelNUnit.Packages.Common
 {
-    abstract class TestsRunner<TConfig>
+    abstract class TestsRunner<TConfig> : ITestsRunner<TConfig>
         where TConfig : ITestsConfig
     {
         private readonly IDirectoriesManipulator directoriesManipulator;
-        private readonly ILog log = LogManager.GetLogger<TestsRunner<TConfig>>();
+        protected readonly ILog Log = LogManager.GetLogger<TestsRunner<TConfig>>();
 
         protected TestsRunner(IDirectoriesManipulator directoriesManipulator)
         {
             this.directoriesManipulator = directoriesManipulator;
         }
+
+        public abstract TestsResults CollectTests(TConfig config, InterprocessServer<INunitRunnerClient> server);
 
         public TestsResults Run(TConfig config, ITestsMetricsCalculator metrics, IList<Result> allTests, IList<IList<Result>> packages, InterprocessServer<INunitRunnerClient> server, ITestsUpdater updater)
         {
@@ -31,7 +33,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
                 {
                     foreach (var folder in dllPaths)
                     {
-                        Cmd.Start(config.CommandBeforeTestsRun, log,
+                        Cmd.Start(config.CommandBeforeTestsRun, Log,
                             directory: Path.GetDirectoryName(folder),
                             waitEnd: true,
                             noWindow: true);
@@ -40,13 +42,13 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
                 }
                 if (updater.UserPressClose) return new TestsResults();
                 s.PrepareToRun(new Synchronizer(), updater,
-                    new TestRunConfig(dllPaths, config)
+                    new TestRunConfig(dllPaths)
                         {
                             StartDelay = config.StartDelay * 1000,
                         },
                     packages, allTests,
                     DoRun(config, handle),
-                    metrics
+                    metrics, config
                     );
             }
             finally

@@ -17,10 +17,12 @@ namespace Mnk.Library.ParallelNUnit.Packages
         private readonly IOrderOptimizationManager orderOptimizationManager;
         protected InterprocessServer<INunitRunnerClient> Server { get; private set; }
         private readonly ILog log = LogManager.GetLogger<BasePackage<TConfig>>();
+        private readonly ITestsRunner<TConfig> testsRunner;
 
-        protected BasePackage(IOrderOptimizationManager orderOptimizationManager)
+        protected BasePackage(IOrderOptimizationManager orderOptimizationManager, ITestsRunner<TConfig> testsRunner)
         {
             this.orderOptimizationManager = orderOptimizationManager;
+            this.testsRunner = testsRunner;
             Server = new InterprocessServer<INunitRunnerClient>(new NunitRunnerClient());
         }
 
@@ -100,7 +102,9 @@ namespace Mnk.Library.ParallelNUnit.Packages
         {
             try
             {
-                return DoRefresh(config);
+                var client = ((NunitRunnerClient)Server.Owner);
+                client.PrepareToCalc();
+                return testsRunner.CollectTests(config, Server);
             }
             catch (Exception ex)
             {
@@ -113,7 +117,7 @@ namespace Mnk.Library.ParallelNUnit.Packages
         {
             try
             {
-                var r = DoRun(config, tests.Metrics, tests.Items, DivideTests(config, tests.Metrics, checkedTests), updater);
+                var r = testsRunner.Run(config, tests.Metrics, tests.Items, DivideTests(config, tests.Metrics, checkedTests), Server, updater);
                 if (config.OptimizeOrder)
                 {
                     orderOptimizationManager.SaveStatistic(config.TestDllPath, r.Metrics.Tests);
@@ -126,9 +130,6 @@ namespace Mnk.Library.ParallelNUnit.Packages
                 return new TestsResults();
             }
         }
-
-        protected abstract TestsResults DoRefresh(TConfig config);
-        protected abstract TestsResults DoRun(TConfig config, ITestsMetricsCalculator metrics, IList<Result> allTests, IList<IList<Result>> packages, ITestsUpdater updater);
 
         public void Dispose()
         {

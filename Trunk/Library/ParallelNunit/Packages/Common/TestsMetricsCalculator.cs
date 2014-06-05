@@ -22,7 +22,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
         public IList<Result> All { get; private set; }
         public int FailedCount { get { return Failed.Length; } }
 
-        public void Refresh(IEnumerable<Result> items)
+        public TestsMetricsCalculator(IEnumerable<Result> items)
         {
             All = items.SelectMany(x=>x.Collect()).ToArray();
             Tests = All.Where(x=>x.IsTest).ToArray();

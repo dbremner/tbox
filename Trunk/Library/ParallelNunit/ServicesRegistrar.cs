@@ -17,13 +17,10 @@ namespace Mnk.Library.ParallelNUnit
             container.Register<ITestsMetricsCalculator, TestsMetricsCalculator>(new PerContainerLifetime());
             container.Register<IDirectoriesManipulator, DirectoriesManipulator>(new PerContainerLifetime());
             container.Register<IOrderOptimizationManager, OrderOptimizationManager>(new PerContainerLifetime());
-
-            container.Register<IProcessCreator, ProcessCreator>(new PerContainerLifetime());
-            container.Register<IProcessCalculator, ProcessCalculator>(new PerContainerLifetime());
-            container.Register<IProcessTestsRunner, ProcessTestsRunner>(new PerContainerLifetime());
-
-            container.Register<IThreadTestsRunner, ThreadTestsRunner>(new PerContainerLifetime());
             container.Register<IThreadTestsExecutor, ThreadTestsExecutor>(new PerContainerLifetime());
+
+            container.Register<ITestsRunner<IThreadTestConfig>, ThreadTestsRunner>(new PerContainerLifetime());
+            container.Register<ITestsRunner<IProcessTestConfig>, ProcessTestsRunner>(new PerContainerLifetime());
 
             container.Register<IPackage<IThreadTestConfig>, ThreadPackage>(new PerContainerLifetime());
             container.Register<IPackage<IProcessTestConfig>, ProcessPackage>(new PerContainerLifetime());

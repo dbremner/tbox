@@ -104,8 +104,7 @@ public class NUnitTests : ISkyScript
         var sb = new StringBuilder();
         if (all.Any())
         {
-            var tmc = new TestsMetricsCalculator();
-            tmc.Refresh(all);
+            var tmc = new TestsMetricsCalculator(all);
             sb.AppendFormat(
                 "Tests run: {0}, Errors: {1}, Failures: {2}, Inconclusive: {3}, Not run: {4}, Invalid: {5}, Ignored: {6}, Skipped: {7}",
                 tmc.Passed,
