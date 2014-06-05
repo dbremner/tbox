@@ -27,9 +27,9 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             var view = new ConsoleView();
             using (var updater = new ConsoleUpdater())
             {
-                var testsUpdater = BuildUpdater(args.Labels, args.Teamcity, updater);
                 foreach (var path in args.Paths)
                 {
+                    var testsUpdater = BuildUpdater(args.Labels, args.Teamcity, updater);
                     var config = CreateConfig(args, path);
                     retValue = Math.Min(retValue, RunTest(args, path, container, view, config, testsUpdater));
                 }
