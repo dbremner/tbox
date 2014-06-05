@@ -27,12 +27,15 @@ namespace Mnk.TBox.Plugins.Requestor.Code
 
         private void Finish(ResponseInfo response, Window owner, string name, Config config, Action onEnd)
         {
-            if (onEnd != null) onEnd();
-            message.Do(
-                    x => Mt.Do(owner, x),
-                    x => x.ShowDialog(string.Format(RequestorLang.RequestTemplate, name, response.Time / 1000.0), response, owner),
-                    config.States
-                    );
+            Mt.Do(owner, () =>
+            {
+                if (onEnd != null) onEnd();
+                message.Do(
+                        x => Mt.Do(owner, x),
+                        x => x.ShowDialog(string.Format(RequestorLang.RequestTemplate, name, response.Time / 1000.0), response, owner),
+                        config.States
+                        );
+            });
         }
 
         public void Save(Config config)
