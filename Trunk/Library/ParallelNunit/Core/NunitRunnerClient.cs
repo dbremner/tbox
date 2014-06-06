@@ -15,7 +15,6 @@ namespace Mnk.Library.ParallelNUnit.Core
         public Result[] Collection { get; private set; }
         private readonly IDictionary<int, Result> allTestsResults;
         private int allTestsCount;
-        public IRunnerContext TestsRunnerContext { get; private set; }
         private TestRunConfig runConfig;
         private ISynchronizer synchronizer;
         private ITestsUpdater progress;
@@ -25,7 +24,6 @@ namespace Mnk.Library.ParallelNUnit.Core
         {
             Collection = new Result[0];
             allTestsResults = new Dictionary<int, Result>();
-            TestsRunnerContext = null;
         }
 
         public void PrepareToCalc()
@@ -33,7 +31,7 @@ namespace Mnk.Library.ParallelNUnit.Core
             Collection = new Result[0];
         }
 
-        public void PrepareToRun(ISynchronizer sync, ITestsUpdater u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , IRunnerContext runnerContext, ITestsMetricsCalculator metricsCalculator, ITestsConfig testConfig)
+        public void PrepareToRun(ISynchronizer sync, ITestsUpdater u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , ITestsMetricsCalculator metricsCalculator, ITestsConfig testConfig)
         {
             this.testsConfig = testConfig;
             runConfig = config;
@@ -46,7 +44,6 @@ namespace Mnk.Library.ParallelNUnit.Core
                 runConfig.TestsToRun.Add(package.Select(x => x.Id).ToArray());
             }
             FillAllTests(allTests);
-            TestsRunnerContext = runnerContext;
         }
 
         private void FillAllTests(IEnumerable<Result> allTests)
@@ -67,13 +64,11 @@ namespace Mnk.Library.ParallelNUnit.Core
         {
             lock (locker)
             {
-                if (runConfig!=null)
-                {
-                    var ret = JsonSerializer.SerializeToString(runConfig);
-                    runConfig = null;
-                    return ret;
-                }
-                return null;
+                if (runConfig == null)
+                    throw new ArgumentNullException("TestRunConfig can't be null. Did you forget to execute PrepareToRun?");
+                var ret = JsonSerializer.SerializeToString(runConfig);
+                runConfig = null;
+                return ret;
             }
         }
 

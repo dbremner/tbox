@@ -25,6 +25,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
         {
             var dllPaths = directoriesManipulator.GenerateFolders(config, updater, packages.Count);
             var s = (NunitRunnerClient)server.Owner;
+            IRunnerContext context = null;
             try
             {
                 if (updater.UserPressClose) return new TestsResults();
@@ -47,14 +48,17 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
                             StartDelay = config.StartDelay * 1000,
                         },
                     packages, allTests,
-                    DoRun(config, handle),
                     metrics, config
                     );
+                context = DoRun(config, handle);
             }
             finally
             {
-                s.TestsRunnerContext.WaitForExit();
-                s.TestsRunnerContext.Dispose();
+                if (context != null)
+                {
+                    context.WaitForExit();
+                    context.Dispose();
+                }
                 directoriesManipulator.ClearFolders(config, dllPaths);
             }
             return new TestsResults(allTests);

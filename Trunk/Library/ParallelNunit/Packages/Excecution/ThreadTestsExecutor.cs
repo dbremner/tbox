@@ -19,6 +19,8 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             {
                 var str = cl.Instance.GiveMeConfig();
                 var cfg = JsonSerializer.DeserializeFromString<TestRunConfig>(str);
+                if(cfg == null)
+                    throw new ArgumentNullException("Can't deserialize config: " + str);
                 Parallel.For(0, cfg.TestsToRun.Count, i =>
                 {
                     var path = cfg.DllPaths[i];
