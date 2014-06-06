@@ -159,6 +159,9 @@
   <data name="CopyToSeparateFolders" xml:space="preserve">
     <value>Копировать в отдельные папки</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
   <data name="Displayed" xml:space="preserve">
     <value>Отображающиеся:</value>
   </data>
@@ -201,11 +204,17 @@
   <data name="Invalid" xml:space="preserve">
     <value>Недействительных:</value>
   </data>
+  <data name="Message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
   <data name="Multithreading" xml:space="preserve">
     <value>Многопоточность</value>
   </data>
   <data name="NunitDllsToRun" xml:space="preserve">
     <value>Тестовые библиотеки для запуска</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Вывод</value>
   </data>
   <data name="Passed" xml:space="preserve">
     <value>Прошло:</value>
@@ -252,6 +261,12 @@
   <data name="StartDelay" xml:space="preserve">
     <value>Задержка запуска (сек)</value>
   </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Информация</value>
+  </data>
   <data name="SynchronizeTestsAgents" xml:space="preserve">
     <value>Синхронизация тестовых агентов</value>
   </data>
@@ -266,6 +281,9 @@
   </data>
   <data name="TestsStateTemplate" xml:space="preserve">
     <value>{0} - тестов: [ {1} ], непрошедших = [ {2} ], время: {3}</value>
+  </data>
+  <data name="TestTime" xml:space="preserve">
+    <value>Время теста</value>
   </data>
   <data name="TextOutput" xml:space="preserve">
     <value>Вывод</value>

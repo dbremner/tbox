@@ -28,7 +28,8 @@
             <updater:IntegratedProgress Margin="0" Name="Progress" VerticalAlignment="Stretch"/>
         </DockPanel>
         <TabControl DockPanel.Dock="Top" Name="Tabs">
-            <TabItem Header="{loc:Tr Tests}" Name="Panel">
+            <TabItem Header="{loc:Tr Tests}">
+                <components1:TestsView x:Name="View"/>
             </TabItem>
             <TabItem Header="{loc:Tr Settings}" Name="Settings">
                 <Grid >
@@ -79,6 +80,9 @@
                         </GroupBox>
                     </DockPanel>
                 </Grid>
+            </TabItem>
+            <TabItem Header="{loc:Tr Statistics}" >
+                <components1:TestsStatistics x:Name="Statistics"/>
             </TabItem>
         </TabControl>
     </DockPanel>

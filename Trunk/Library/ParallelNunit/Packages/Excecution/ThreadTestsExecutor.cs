@@ -39,7 +39,9 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             domain.AssemblyResolve += config.ResolveEventHandler;
             try
             {
-                var cl = (NUnitTestStarter)domain.CreateInstanceAndUnwrap("Mnk.Library.ParallelNunit", "Mnk.Library.ParallelNUnit.Core.NUnitTestStarter");
+                var type = typeof (NUnitTestStarter);
+                var cl = (NUnitTestStarter)domain.CreateInstanceAndUnwrap(
+                    type.Assembly.FullName, type.FullName);
                 action(cl);
             }
             catch (Exception ex)

@@ -34,14 +34,12 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private IPackage<IProcessTestConfig> package;
         private TestsResults results;
         private TestConfig config;
-        private readonly TestsView view = new TestsView();
         public Dialog(string nunitAgentPath, string runAsx86Path)
         {
             this.nunitAgentPath = nunitAgentPath;
             this.runAsx86Path = runAsx86Path;
             InitializeComponent();
             Framework.ItemsSource = new[] {"net-2.0", "net-4.0"};
-            Panel.Content = view;
             Progress.OnStartClick += StartClick;
             //load icons
             foreach (DictionaryEntry res in Properties.Resources.ResourceManager.GetResourceSet(Thread.CurrentThread.CurrentUICulture, true, true))
@@ -116,7 +114,8 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 return;
             }
             var time = Environment.TickCount;
-            view.Clear();
+            View.Clear();
+            Statistics.Clear();
             var caption = Path.GetFileName(config.Key);
             DialogsCache.ShowProgress(u => DoRefresh(time, u), caption, this, false);
         }
@@ -134,7 +133,8 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             {
                 Mt.Do(this, () =>
                 {
-                    view.SetItems(results.Items, results.Metrics);
+                    View.SetItems(results);
+                    Statistics.SetItems(results);
                     Categories.ItemsSource = GetCategories();
                     RefreshView(time);
                 });
@@ -172,16 +172,17 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             Mt.Do(this, ()=>
             {
                 RecreatePackage();
-                items = view.GetCheckedTests();
+                items = View.GetCheckedTests();
                 packageConfig.Categories =
                     ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
                         .CheckedItems.Select(x => x.Key)
                         .ToArray();
             });
             results = package.Run(packageConfig, results, new SimpleUpdater(updater), items);
-            view.SetItems(results.Items, results.Metrics);
             Mt.Do(this, () =>
                 {
+                    View.SetItems(results);
+                    Statistics.SetItems(results);
                     RefreshView(time);
                     PrepareUiToRun(true);
                 }
@@ -198,7 +199,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void RefreshView(int time)
         {
-            view.Refresh((Environment.TickCount - time) / 1000);
+            View.Refresh((Environment.TickCount - time) / 1000);
         }
 
         protected override void OnClosing(CancelEventArgs e)

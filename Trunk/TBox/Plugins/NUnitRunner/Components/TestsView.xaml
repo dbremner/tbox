@@ -56,36 +56,12 @@
                 </local:CheckableTreeView.TreeViewResources>
             </local:CheckableTreeView>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeDirection="Columns"/>
-            <TabControl Grid.Column="2" TabStripPlacement="Bottom" >
-                <TabItem Header="{loc:Tr SelectedItemInfo}">
-                    <wpfSyntaxHighlighter:SyntaxHighlighter Name="Description" IsReadOnly="True"  />
-                </TabItem>
-                <TabItem Header="{loc:Tr ErrorsAndFailures}">
-                    <components1:ExtListBox Name="ErrorsAndFailures" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
-                        <components1:ExtListBox.ItemTemplate>
-                            <DataTemplate DataType="core:Result">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding FullName}" FontWeight="Bold"/>
-                                    <TextBox Text="{Binding Message}" Padding="0" IsReadOnly="True" IsReadOnlyCaretVisible="True" TextWrapping="Wrap"/>
-                                    <Expander IsExpanded="false" Header="{loc:Tr TextOutput}" Background="Azure">
-                                        <TextBox Text="{Binding Output}" Padding="0" IsReadOnly="True" IsReadOnlyCaretVisible="True" TextWrapping="Wrap"/>
-                                    </Expander>
-                                    <Expander IsExpanded="false" Header="{loc:Tr StackTrace}" Background="Azure">
-                                        <TextBox Text="{Binding StackTrace}" Padding="0" IsReadOnly="True" IsReadOnlyCaretVisible="True" TextWrapping="Wrap"/>
-                                    </Expander>
-                                    <Rectangle HorizontalAlignment="Stretch" Fill="Black" Height="2"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </components1:ExtListBox.ItemTemplate>
-                    </components1:ExtListBox>
-                </TabItem>
-                <TabItem Header="{loc:Tr TestsNotRun}">
-                    <TreeView Name="TestsNotRun" />
-                </TabItem>
-                <TabItem Header="{loc:Tr TextOutput}" >
-                    <wpfSyntaxHighlighter:SyntaxHighlighter Name="TextOutput" IsReadOnly="True"/>
-                </TabItem>
-            </TabControl>
+            <GroupBox Header="{loc:Tr Summary}" Grid.Column="2" >
+                <DockPanel>
+                    <TextBlock Name="TestTime" Text="{loc:Tr TestTime}" VerticalAlignment="Center" DockPanel.Dock="Top" Margin="5"/>
+                    <TextBox Name="Description" IsReadOnly="True" Margin="5" TextWrapping="Wrap" IsReadOnlyCaretVisible="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+                </DockPanel>
+            </GroupBox>
         </Grid>
     </DockPanel>
 </UserControl>

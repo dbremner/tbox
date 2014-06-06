@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.WpfControls;
+using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
@@ -35,46 +37,39 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             Ignored.Content = tmc.Ignored;
             Skipped.Content = tmc.Skipped;
             Time.Content = time.FormatTimeInSec();
-            ErrorsAndFailures.ItemsSource = tmc.Failed;
-            TestsNotRun.Items.Clear();
-            foreach (var item in tmc.NotRun)
-            {
-                var ti = new TreeViewItem {Header = item.FullName};
-                ti.Items.Add(new TreeViewItem {Header = item.Message});
-                TestsNotRun.Items.Add(ti);
-            }
-            TextOutput.Text = string.Join(string.Empty, tmc.All.Select(x => x.Output));
         }
 
         private void SelectedTestChanged(object sender, RoutedPropertyChangedEventArgs<object> routedPropertyChangedEventArgs)
         {
             var selected = results.SelectedValue as Result;
-            if (selected == null)
+            if (selected == null || results.IsEmpty)
             {
+                TestTime.Text = NUnitRunnerLang.TestTime;
                 Description.Text = string.Empty;
                 return;
             }
-            Description.Text =
-                selected.Time + Environment.NewLine +
+            TestTime.Text = string.Format(CultureInfo.InvariantCulture, "{0}: {1}", NUnitRunnerLang.TestTime, selected.Time);
+            Description.Text = (
                 selected.Description + Environment.NewLine +
-                selected.Message + Environment.NewLine +
                 selected.Output + Environment.NewLine +
-                selected.StackTrace;
+                selected.Message + Environment.NewLine +
+                selected.StackTrace).Trim();
         }
 
-        public void SetItems(IList<Result> items, ITestsMetricsCalculator metrics)
+        public void SetItems(TestsResults r)
         {
             if (results.IsEmpty)
             {
-                results.SetItems(items);
+                results.SetItems(r.Items);
             }
             Mt.Do(this, () => SelectedTestChanged(null, null));
-            tmc = metrics;
+            tmc = r.Metrics;
         }
 
         public void Clear()
         {
             results.SetItems(null);
+            SelectedTestChanged(null, null);
         }
 
         public IList<Result> GetCheckedTests()

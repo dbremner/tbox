@@ -62,6 +62,9 @@
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ResultStateToIconConverter.cs" />
+    <Compile Include="Components\TestsStatistics.xaml.cs">
+      <DependentUpon>TestsStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\TestsView.xaml.cs">
       <DependentUpon>TestsView.xaml</DependentUpon>
     </Compile>
@@ -78,6 +81,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Components\Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\TestsStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -65,7 +65,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
             if (args.Logo) Console.WriteLine("Running tests.");
             results = p.Run(config, results, testsUpdater);
-            view.SetItems(results.Items, results.Metrics);
+            view.SetItems(results);
             if (results.Metrics.FailedCount > 0) return -2;
             return 0;
         }

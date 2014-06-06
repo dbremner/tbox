@@ -26,7 +26,7 @@
                         <TextBlock Text="{loc:Tr SetScript}" Margin="5 0" DockPanel.Dock="Left" VerticalAlignment="Center"/>
                         <TextBlock Text="{Binding Path}" Margin="5 0" VerticalAlignment="Center"/>
                     </DockPanel>
-                    <wpfSyntaxHighlighter:SyntaxHighlighter Name="Report" Margin="5" Format="js"/>
+                    <wpfSyntaxHighlighter:SyntaxHighlighter Name="Report" Margin="5" Format="js" IsReadOnly="True" IsWordWrap="True"/>
                 </DockPanel>
             </TabItem>
             <TabItem Header="{loc:Tr Tasks}">

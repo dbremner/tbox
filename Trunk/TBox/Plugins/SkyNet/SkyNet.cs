@@ -71,6 +71,15 @@ namespace Mnk.TBox.Plugins.SkyNet
             return (Settings)container.GetInstance<ISettings>();
         }
 
+        public override void Save(bool autoSaveOnExit)
+        {
+            base.Save(autoSaveOnExit);
+            if (!autoSaveOnExit) return;
+            container.GetInstance<LazyDialog<EditorDialog>>().SaveState(ConfigManager.Config.States);
+            container.GetInstance<LazyDialog<TaskDialog>>().SaveState(ConfigManager.Config.States);
+        }
+
+
         public void Dispose()
         {
             container.Dispose();

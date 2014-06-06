@@ -26,10 +26,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             this.CurrentAssemblyStartTime = DateTime.Now;
         }
 
-        public void SetItems(IList<Result> items, ITestsMetricsCalculator metrics)
+        public void SetItems(TestsResults results)
         {
             var elapsedTime = DateTime.Now - this.CurrentAssemblyStartTime;
-            var currentAssemblyResults = new TestResults(items, metrics, elapsedTime);
+            var currentAssemblyResults = new TestResults(results.Items, results.Metrics, elapsedTime);
 
             this.Results.Add(currentAssemblyResults);
 

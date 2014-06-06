@@ -187,6 +187,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Displayed:.
         /// </summary>
         public static string Displayed {
@@ -313,6 +322,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multithreading.
         /// </summary>
         public static string Multithreading {
@@ -327,6 +345,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         public static string NunitDllsToRun {
             get {
                 return ResourceManager.GetString("NunitDllsToRun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string Output {
+            get {
+                return ResourceManager.GetString("Output", resourceCulture);
             }
         }
         
@@ -466,6 +493,24 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string Statistics {
+            get {
+                return ResourceManager.GetString("Statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string Summary {
+            get {
+                return ResourceManager.GetString("Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Synchronize tests agents.
         /// </summary>
         public static string SynchronizeTestsAgents {
@@ -507,6 +552,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         public static string TestsStateTemplate {
             get {
                 return ResourceManager.GetString("TestsStateTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test time.
+        /// </summary>
+        public static string TestTime {
+            get {
+                return ResourceManager.GetString("TestTime", resourceCulture);
             }
         }
         
