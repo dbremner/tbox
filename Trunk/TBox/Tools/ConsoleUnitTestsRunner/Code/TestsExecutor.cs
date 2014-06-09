@@ -66,7 +66,11 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 
         private static ExecutionContext[] CollectTests(IEnumerable<string> paths, CommandLineArgs args)
         {
-            return paths.AsParallel().Select(x => Collect(x, args)).ToArray();
+            return ((args.AssembliesInParallel>1) ? 
+                paths.AsParallel().Select(x => Collect(x, args)) :
+                paths.Select(x => Collect(x, args))
+                ).ToArray()
+                ;
         }
 
         private static ExecutionContext Collect(string path, CommandLineArgs args)
