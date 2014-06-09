@@ -1,6 +1,5 @@
 ﻿using LightInject;
 using Mnk.Library.Common.MT;
-using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
@@ -11,12 +10,11 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         {
             var container = new ServiceContainer();
             Library.ParallelNUnit.ServicesRegistrar.Register(container);
-            container.Register<IInfoView, InfoView>();
-            container.Register<IUpdater, ConsoleUpdater>();
-            container.Register<IReportBuilder, ReportBuilder>();
-            container.Register<ITestsExecutor, TestsExecutor>();
-            container.Register<ITestsView, ConsoleView>();
-            container.Register<IExecutor, Executor>();
+            container.Register<IInfoView, InfoView>(new PerContainerLifetime());
+            container.Register<IUpdater, ConsoleUpdater>(new PerContainerLifetime());
+            container.Register<IReportBuilder, ReportBuilder>(new PerContainerLifetime());
+            container.Register<ITestsExecutor, TestsExecutor>(new PerContainerLifetime());
+            container.Register<IExecutor, Executor>(new PerContainerLifetime());
             return container;
         }
     }

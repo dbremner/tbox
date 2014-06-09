@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit;
@@ -14,7 +16,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         private readonly IReportBuilder reportBuilder;
         private readonly IPackage<IThreadTestConfig> package;
         private readonly IUpdater updater;
-        private readonly ILog log = LogManager.GetLogger<TestsExecutor>();
+        private readonly static ILog Log = LogManager.GetLogger<TestsExecutor>();
 
         public TestsExecutor(IReportBuilder reportBuilder, IPackage<IThreadTestConfig> package, IUpdater updater)
         {
@@ -26,45 +28,91 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         public int Run(CommandLineArgs args)
         {
             var workingDirectory = Environment.CurrentDirectory;
-            int retValue = 0;
             var view = new ConsoleView(reportBuilder);
-            foreach (var path in args.Paths)
-            {
-                var testsUpdater = BuildUpdater(args.Labels, args.Teamcity, updater);
-                var config = CreateConfig(args, path);
-                retValue = Math.Min(retValue, RunTest(args, path, view, config, testsUpdater));
-            }
 
-            view.PrintTotalResults();
-            PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), workingDirectory);
-            return retValue;
+            if (args.Logo) Console.WriteLine("Calculating tests.");
+            var assemblies = CollectTests(args.Paths, args);
+            if (assemblies.All(x => x.Value.RetValue == 0))
+            {
+                var totalResults = new TestsResults(assemblies.SelectMany(x => x.Value.Results.Items).ToArray());
+                if (args.Logo)
+                {
+                    Console.WriteLine("{0} tests found.", totalResults.Metrics.Total);
+                    Console.WriteLine("Running tests.");
+                }
+                var testsUpdater = BuildUpdater(args, updater, totalResults.Metrics.Total);
+
+                if (args.AssembliesInParallel > 1)
+                {
+                    Parallel.ForEach(assemblies, 
+                        new ParallelOptions{MaxDegreeOfParallelism = args.AssembliesInParallel},
+                        assembly =>
+                        {
+                            using (var c = Library.ParallelNUnit.ServicesRegistrar.Register())
+                            {
+                                RunTest(assembly.Value, view, testsUpdater, c.GetInstance<IPackage<IThreadTestConfig>>());
+                            }
+                        });
+                }
+                else
+                {
+                    foreach (var assembly in assemblies)
+                    {
+                        RunTest(assembly.Value, view, testsUpdater,package);
+                    }
+                }
+
+                view.PrintTotalResults();
+                PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), workingDirectory);
+            }
+            return assemblies.Min(x=>x.Value.RetValue);
         }
 
-        private int RunTest(CommandLineArgs args, string path, ConsoleView view, IThreadTestConfig config, ITestsUpdater testsUpdater)
+        private IDictionary<string, ExecutionContext> CollectTests(IList<string> paths, CommandLineArgs args)
         {
-            view.NotifyNewAssemblyStartTest();
+            return paths.Count == 1 ? 
+                new Dictionary<string, ExecutionContext> { { paths[0], Collect(paths[0], args, package) } } : 
+                paths.AsParallel().ToDictionary(x => x, x =>
+                {
+                    using (var c = Library.ParallelNUnit.ServicesRegistrar.Register())
+                    {
+                        return Collect(x, args, c.GetInstance<IPackage<IThreadTestConfig>>());
+                    }
+                });
+        }
 
-            Console.WriteLine("Running tests for {0}.", path);
-            if (args.Logo) Console.WriteLine("Calculating tests.");
-            if (!package.EnsurePathIsValid(config))
+        private static ExecutionContext Collect(string path, CommandLineArgs args, IPackage<IThreadTestConfig> package)
+        {
+            var context = new ExecutionContext
             {
-                log.Write("Incorrect path: " + path);
-                return -3;
-            }
-
-            var results = package.Refresh(config);
-            if (args.Logo) Console.WriteLine("{0} tests found.", results.Metrics.Total);
-            if (results.IsFailed)
+                Config = CreateConfig(args, path),
+                RetValue = 0
+            };
+            if (!package.EnsurePathIsValid(context.Config))
             {
-                log.Write("Can't calculate tests count");
-                return -3;
+                Log.Write("Incorrect path: " + path);
+                context.RetValue = -3;
             }
+            else
+            {
+                context.Results = package.Refresh(context.Config);
+                if (context.Results.IsFailed)
+                {
+                    Log.Write("Can't calculate tests count");
+                    context.RetValue = -3;
+                }
+            }
+            return context;
+        }
 
-            if (args.Logo) Console.WriteLine("Running tests.");
-            results = package.Run(config, results, testsUpdater);
-            view.SetItems(results);
-            if (results.Metrics.FailedCount > 0) return -2;
-            return 0;
+        private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater, IPackage<IThreadTestConfig> package )
+        {
+            context.Results = package.Run(context.Config, context.Results, testsUpdater);
+            view.SetItems(context.Results);
+            if (context.Results.Metrics.FailedCount > 0)
+            {
+                context.RetValue = -2;
+            }
         }
 
         private static IThreadTestConfig CreateConfig(CommandLineArgs args, string path)
@@ -88,12 +136,12 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             };
         }
 
-        private static SimpleUpdater BuildUpdater(bool labels, bool teamcity, IUpdater updater)
+        private static ITestsUpdater BuildUpdater(CommandLineArgs args, IUpdater updater, int totalCount)
         {
-            if(teamcity)return new TeamcityUpdater(updater);
-            return labels ? 
-                new NUnitLabelsUpdater(updater) : 
-                new SimpleUpdater(updater);
+            if(args.Teamcity)return new TeamcityUpdater(updater, totalCount);
+            return args.Labels ?
+                new NUnitLabelsUpdater(updater, totalCount) :
+                new GroupUpdater(updater, totalCount);
         }
 
         private static void PrintTotalInfo(ConsoleView view, string xmlReport, string outputReport, string path, string dir)
@@ -102,7 +150,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             if (!string.IsNullOrEmpty(xmlReport)) view.GenerateReport(path, xmlReport);
             if (!string.IsNullOrEmpty(outputReport))
             {
-                var totalResult = view.CreateTotalResult();
+                var totalResult = view.TotalResult;
                 File.WriteAllText(
                     Path.Combine(Environment.CurrentDirectory, outputReport),
                     string.Join(string.Empty, totalResult.Metrics.All.Select(x => x.Output)));

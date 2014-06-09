@@ -153,6 +153,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleScriptRunner", "Tools\ConsoleScriptRunner\ConsoleScriptRunner.csproj", "{CE3336CF-AB03-409B-8091-774EA9802862}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUnitTestsRunner", "Tools\ConsoleUnitTestsRunner\ConsoleUnitTestsRunner.csproj", "{DD07582B-45F8-4257-A5B2-031F2E10BCB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C7ED2917-A1DA-4A17-9748-8E7FDCFC4923} = {C7ED2917-A1DA-4A17-9748-8E7FDCFC4923}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbackService", "Tools\FeedbackService\FeedbackService.csproj", "{251F304A-B83A-4B7B-B801-2F111D858504}"
 EndProject

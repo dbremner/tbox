@@ -8,13 +8,14 @@ using NUnit.Core;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
-    class TeamcityUpdater : SimpleUpdater
+    class TeamcityUpdater : GroupUpdater
     {
         private int passed = 0;
         private int ignored = 0;
         private int failed = 0;
         private readonly object locker = new object();
-        public TeamcityUpdater(IUpdater updater) : base(updater)
+        public TeamcityUpdater(IUpdater updater, int totalCount)
+            : base(updater, totalCount)
         {
         }
 

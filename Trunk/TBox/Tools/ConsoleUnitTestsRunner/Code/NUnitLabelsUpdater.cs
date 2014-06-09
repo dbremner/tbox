@@ -7,9 +7,9 @@ using Mnk.Library.ParallelNUnit.Core;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
-    class NUnitLabelsUpdater : SimpleUpdater
+    class NUnitLabelsUpdater : GroupUpdater
     {
-        public NUnitLabelsUpdater(IUpdater updater) : base(updater){}
+        public NUnitLabelsUpdater(IUpdater updater, int totalCount) : base(updater, totalCount){}
         public override void Update(string text)
         {
         }

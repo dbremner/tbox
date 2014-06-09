@@ -94,6 +94,7 @@
     <Compile Include="Packages\ProcessPackage.cs" />
     <Compile Include="Packages\Common\TestsMetricsCalculator.cs" />
     <Compile Include="ProcessTestConfig.cs" />
+    <Compile Include="GroupUpdater.cs" />
     <Compile Include="SimpleUpdater.cs" />
     <Compile Include="Contracts\INunitRunnerClient.cs" />
     <Compile Include="Core\Filter.cs" />
