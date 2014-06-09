@@ -108,6 +108,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void RefreshClick(object sender, RoutedEventArgs e)
         {
+            RecreatePackage();
             if (package!=null && !package.EnsurePathIsValid(packageConfig))
             {
                 Close();
@@ -122,8 +123,6 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void DoRefresh(int time, IUpdater updater)
         {
-            Mt.Do(this, RecreatePackage);
-
             results = package.Refresh(packageConfig);
             if (results.IsFailed)
             {
@@ -155,6 +154,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void StartClick(object sender, RoutedEventArgs e)
         {
+            RecreatePackage();
             if (!package.EnsurePathIsValid(packageConfig))
             {
                 return;
@@ -171,7 +171,6 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             IList<Result> items = null;
             Mt.Do(this, ()=>
             {
-                RecreatePackage();
                 items = View.GetCheckedTests();
                 packageConfig.Categories =
                     ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
