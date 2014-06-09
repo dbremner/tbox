@@ -96,12 +96,12 @@ namespace Mnk.TBox.Plugins.Automator
         private void RunAll(IUpdater u, IList<MultiFileOperation> operations)
         {
             var i = 0;
-            var count = operations.Sum(x => x.Paths.CheckedItems.Count());
+            var count = operations.Sum(x => x.Pathes.CheckedItems.Count());
             var folder = Context.DataProvider.ReadOnlyDataPath;
             foreach (var op in operations)
             {
                 var r = new ScriptRunner();
-                foreach (var path in op.Paths.CheckedItems)
+                foreach (var path in op.Pathes.CheckedItems)
                 {
                     if (u.UserPressClose) return;
                     u.Update(path.Key, i++ / (float)count);

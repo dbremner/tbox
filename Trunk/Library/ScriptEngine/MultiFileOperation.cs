@@ -8,18 +8,18 @@ namespace Mnk.Library.ScriptEngine
 	[Serializable]
     public sealed class MultiFileOperation : Operation
 	{
-		public CheckableDataCollection<CheckableData> Paths { get; set; }
+		public CheckableDataCollection<CheckableData> Pathes { get; set; }
 
 		public MultiFileOperation()
 		{
-			Paths = new CheckableDataCollection<CheckableData>();
+			Pathes = new CheckableDataCollection<CheckableData>();
 		}
 
 		public override object Clone()
 		{
 			return new MultiFileOperation
 			{
-				Paths = Paths.Clone(),
+				Pathes = Pathes.Clone(),
 				Parameters = Parameters.Clone(),
 				Key = Key,
                 IsChecked = IsChecked

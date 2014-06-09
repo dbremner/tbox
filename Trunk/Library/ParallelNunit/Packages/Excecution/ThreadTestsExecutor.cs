@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Mnk.Library.Common.Communications;
@@ -29,31 +31,11 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
                     {
                         Thread.Sleep(i * cfg.StartDelay);
                     }
-                    ProcessMessage(config, s => s.Run(handle, path, items, !config.NeedSynchronizationForTests, config.NeedOutput, config.RuntimeFramework));
+                    new NUnitTestStarter().Run(handle, path, items, !config.NeedSynchronizationForTests,
+                        config.NeedOutput, config.RuntimeFramework);
                 });
             }
             return 1;
-        }
-
-        private void ProcessMessage<T>(IThreadTestConfig config, Func<NUnitTestStarter, T> action)
-        {
-            var domain = AppDomain.CreateDomain(Guid.NewGuid().ToString());
-            domain.AssemblyResolve += config.ResolveEventHandler;
-            try
-            {
-                var type = typeof (NUnitTestStarter);
-                var cl = (NUnitTestStarter)domain.CreateInstanceAndUnwrap(
-                    type.Assembly.FullName, type.FullName);
-                action(cl);
-            }
-            catch (Exception ex)
-            {
-                log.Write(ex, "Unexpected exception");
-            }
-            finally
-            {
-                AppDomain.Unload(domain);
-            }
         }
 
     }

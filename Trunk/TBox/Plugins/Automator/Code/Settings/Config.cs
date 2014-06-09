@@ -29,7 +29,7 @@ namespace Mnk.TBox.Plugins.Automator.Code.Settings
 									new MultiFileOperation
 									{
 										Key = "simple script package",
-										Paths = new CheckableDataCollection<CheckableData>{new CheckableData{Key = "Scripts\\params.cs"}} 
+										Pathes = new CheckableDataCollection<CheckableData>{new CheckableData{Key = "Scripts\\params.cs"}} 
 									}
 								}
 						}

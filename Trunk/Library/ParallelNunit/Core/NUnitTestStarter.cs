@@ -10,43 +10,49 @@ namespace Mnk.Library.ParallelNUnit.Core
 {
     public sealed class NUnitTestStarter : MarshalByRefObject
     {
+        private static readonly object Sync = new object();
         private readonly ILog log = LogManager.GetLogger<NUnitTestStarter>();
 
         public int Run(string handle, string path, int[] items, bool fast, bool needOutput, string runtimeFramework)
         {
-            var p = NUnitBase.CreatePackage(path, runtimeFramework);
-            using (var runner = new TestDomain())
-            {
-                if (!runner.Load(p))
-                {
-                    log.Write("Can't load: " + path);
-                    return -1;
-                }
-                try
+            var result = -1;
+            Execute(path, runtimeFramework,
+                runner =>
                 {
                     runner.Run(new RemoteListener { Handle = handle, Fast = fast, Needoutput = needOutput },
                                 new Filter { Items = new HashSet<int>(items) },
                                 false,
                                 LoggingThreshold.Off
                         );
-                    return items.Length;
-                }
-                finally
-                {
-                    runner.Unload();
-                }
-            }
+                    result = items.Length;
+                });
+            return result;
         }
 
         public Result CollectTests(string path, string runtimeFramework)
         {
-            using (var runner = new TestDomain())
+            Result result = null;
+            Execute(path, runtimeFramework,
+                runner => result = CollectResults(runner.Test, new string[0]));
+            return result;
+        }
+
+        private void Execute(string path, string runtimeFramework, Action<TestRunner> action)
+        {
+            var p = NUnitBase.CreatePackage(path, runtimeFramework);
+            using (var runner = new DefaultTestRunnerFactory().MakeTestRunner(p))
             {
-                var p = NUnitBase.CreatePackage(path, runtimeFramework);
-                if (!runner.Load(p)) return null;
+                lock (Sync)
+                {
+                    if (!runner.Load(p))
+                    {
+                        log.Write("Can't load: " + path);
+                        return;
+                    }
+                }
                 try
                 {
-                    return CollectResults(runner.Test, new string[0]);
+                    action(runner);
                 }
                 finally
                 {

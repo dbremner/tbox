@@ -20,7 +20,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 		{
 			Owner = Application.Current.MainWindow;
 			DataContext = operation;
-			Paths.ConfigureInputSelect(PluginsSharedLang.SelectSctipt, operation.Paths, paths);
+			Paths.ConfigureInputSelect(PluginsSharedLang.SelectSctipt, operation.Pathes, paths);
 			SafeShowDialog();
 		}
 	}

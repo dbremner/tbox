@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
+using System.Threading;
 using System.Threading.Tasks;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
+using ExecutionContext = Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts.ExecutionContext;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
@@ -42,9 +45,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 
                 if (args.AssembliesInParallel > 1)
                 {
-                    Parallel.ForEach(assemblies, 
-                        new ParallelOptions{MaxDegreeOfParallelism = args.AssembliesInParallel},
-                        assembly => RunTest(assembly,  view, testsUpdater));
+                    Parallel.ForEach(assemblies,
+                        new ParallelOptions {MaxDegreeOfParallelism = args.AssembliesInParallel}, 
+                        assembly => RunTest(assembly, view, testsUpdater)
+                        );
                 }
                 else
                 {

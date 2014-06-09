@@ -36,7 +36,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
 
         public static Assembly LoadFromSameFolder(object sender, ResolveEventArgs args)
         {
-            return (from dir in new[] { "Libraries", "Localization" } select Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\" + dir + "\\", new AssemblyName(args.Name).Name + ".dll")) into assemblyPath where File.Exists(assemblyPath) select Assembly.LoadFrom(assemblyPath)).FirstOrDefault();
+            return (from dir in new[] { "Libraries", "Localization" } 
+                    select Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\" + dir + "\\", new AssemblyName(args.Name).Name + ".dll")) into assemblyPath 
+                    where File.Exists(assemblyPath) 
+                    select Assembly.LoadFrom(assemblyPath)).FirstOrDefault();
         }
     }
 }

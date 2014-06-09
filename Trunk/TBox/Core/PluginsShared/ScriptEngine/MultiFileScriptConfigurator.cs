@@ -9,7 +9,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
     {
         protected override IEnumerable<string> GetPaths()
         {
-            return ((MultiFileOperation)Config).Paths
+            return ((MultiFileOperation)Config).Pathes
                 .CheckedItems
                 .Select(x => Path.Combine(Context.DataProvider.ReadOnlyDataPath, x.Key))
                 .ToArray();

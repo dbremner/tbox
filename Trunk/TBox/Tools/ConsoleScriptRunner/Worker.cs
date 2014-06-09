@@ -42,7 +42,7 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
 
 			foreach (var op in profile.Operations)
 			{
-				foreach (var path in op.Paths.CheckedItems)
+				foreach (var path in op.Pathes.CheckedItems)
 				{
 					var s = compiler.Compile(
 						File.ReadAllText(Path.Combine(rootPath, "Data/Automater/", path.Key)), 
