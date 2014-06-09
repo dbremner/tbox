@@ -13,14 +13,22 @@ namespace Mnk.Library.WpfControls.Components.Captioned
             child.PasswordChanged += OnValueChanged;
             child.PasswordChanged += (o, e) => SetValue(ValueProperty, SecurePassword);
             child.GotFocus += OnGotFocus;
+            child.MouseUp += OnClick;
             Panel.Children.Add(child);
         }
 
         public new event RoutedEventHandler GotFocus;
+        public event RoutedEventHandler Click;
 
         private void OnGotFocus(object sender, RoutedEventArgs e)
         {
             var handler = GotFocus;
+            if (handler != null) handler(this, e);
+        }
+
+        private void OnClick(object sender, RoutedEventArgs e)
+        {
+            var handler = Click;
             if (handler != null) handler(this, e);
         }
 
