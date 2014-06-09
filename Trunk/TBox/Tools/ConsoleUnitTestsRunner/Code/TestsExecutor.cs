@@ -14,14 +14,12 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
     internal class TestsExecutor : ITestsExecutor
     {
         private readonly IReportBuilder reportBuilder;
-        private readonly IPackage<IThreadTestConfig> package;
         private readonly IUpdater updater;
         private readonly static ILog Log = LogManager.GetLogger<TestsExecutor>();
 
-        public TestsExecutor(IReportBuilder reportBuilder, IPackage<IThreadTestConfig> package, IUpdater updater)
+        public TestsExecutor(IReportBuilder reportBuilder, IUpdater updater)
         {
             this.reportBuilder = reportBuilder;
-            this.package = package;
             this.updater = updater;
         }
 
@@ -32,9 +30,9 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 
             if (args.Logo) Console.WriteLine("Calculating tests.");
             var assemblies = CollectTests(args.Paths, args);
-            if (assemblies.All(x => x.Value.RetValue == 0))
+            if (assemblies.All(x => x.RetValue == 0))
             {
-                var totalResults = new TestsResults(assemblies.SelectMany(x => x.Value.Results.Items).ToArray());
+                var totalResults = new TestsResults(assemblies.SelectMany(x => x.Results.Items).ToArray());
                 if (args.Logo)
                 {
                     Console.WriteLine("{0} tests found.", totalResults.Metrics.Total);
@@ -46,56 +44,49 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                 {
                     Parallel.ForEach(assemblies, 
                         new ParallelOptions{MaxDegreeOfParallelism = args.AssembliesInParallel},
-                        assembly =>
-                        {
-                            using (var c = Library.ParallelNUnit.ServicesRegistrar.Register())
-                            {
-                                RunTest(assembly.Value, view, testsUpdater, c.GetInstance<IPackage<IThreadTestConfig>>());
-                            }
-                        });
+                        assembly => RunTest(assembly,  view, testsUpdater));
                 }
                 else
                 {
                     foreach (var assembly in assemblies)
                     {
-                        RunTest(assembly.Value, view, testsUpdater,package);
+                        RunTest(assembly,  view, testsUpdater);
                     }
                 }
 
                 view.PrintTotalResults();
                 PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), workingDirectory);
             }
-            return assemblies.Min(x=>x.Value.RetValue);
+            foreach (var assembly in assemblies)
+            {
+                assembly.Container.Dispose();
+            }
+            return assemblies.Min(x=>x.RetValue);
         }
 
-        private IDictionary<string, ExecutionContext> CollectTests(IList<string> paths, CommandLineArgs args)
+        private static ExecutionContext[] CollectTests(IEnumerable<string> paths, CommandLineArgs args)
         {
-            return paths.Count == 1 ? 
-                new Dictionary<string, ExecutionContext> { { paths[0], Collect(paths[0], args, package) } } : 
-                paths.AsParallel().ToDictionary(x => x, x =>
-                {
-                    using (var c = Library.ParallelNUnit.ServicesRegistrar.Register())
-                    {
-                        return Collect(x, args, c.GetInstance<IPackage<IThreadTestConfig>>());
-                    }
-                });
+            return paths.AsParallel().Select(x => Collect(x, args)).ToArray();
         }
 
-        private static ExecutionContext Collect(string path, CommandLineArgs args, IPackage<IThreadTestConfig> package)
+        private static ExecutionContext Collect(string path, CommandLineArgs args)
         {
             var context = new ExecutionContext
             {
+                Path = path,
                 Config = CreateConfig(args, path),
-                RetValue = 0
+                RetValue = 0,
+                Container = Library.ParallelNUnit.ServicesRegistrar.Register(),
             };
-            if (!package.EnsurePathIsValid(context.Config))
+            context.Package = context.Container.GetInstance<IPackage<IThreadTestConfig>>();
+            if (!context.Package.EnsurePathIsValid(context.Config))
             {
                 Log.Write("Incorrect path: " + path);
                 context.RetValue = -3;
             }
             else
             {
-                context.Results = package.Refresh(context.Config);
+                context.Results = context.Package.Refresh(context.Config);
                 if (context.Results.IsFailed)
                 {
                     Log.Write("Can't calculate tests count");
@@ -105,14 +96,16 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             return context;
         }
 
-        private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater, IPackage<IThreadTestConfig> package )
+        private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater)
         {
-            context.Results = package.Run(context.Config, context.Results, testsUpdater);
+            var time = Environment.TickCount;
+            context.Results = context.Package.Run(context.Config, context.Results, testsUpdater);
             view.SetItems(context.Results);
             if (context.Results.Metrics.FailedCount > 0)
             {
                 context.RetValue = -2;
             }
+            Console.WriteLine(Path.GetFileName(context.Path) + " is done, time: " + (Environment.TickCount - time) / 1000);
         }
 
         private static IThreadTestConfig CreateConfig(CommandLineArgs args, string path)

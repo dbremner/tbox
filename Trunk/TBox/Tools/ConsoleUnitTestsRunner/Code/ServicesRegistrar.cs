@@ -9,7 +9,6 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         public static IServiceContainer Register()
         {
             var container = new ServiceContainer();
-            Library.ParallelNUnit.ServicesRegistrar.Register(container);
             container.Register<IInfoView, InfoView>(new PerContainerLifetime());
             container.Register<IUpdater, ConsoleUpdater>(new PerContainerLifetime());
             container.Register<IReportBuilder, ReportBuilder>(new PerContainerLifetime());

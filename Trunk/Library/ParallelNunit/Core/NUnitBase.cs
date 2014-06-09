@@ -25,7 +25,7 @@ namespace Mnk.Library.ParallelNUnit.Core
         {
             var p = new TestPackage(Path.GetFullPath(path));
             p.Settings["ProcessModel"] = ProcessModel.Single;
-            p.Settings["DomainUsage"] = DomainUsage.None;
+            p.Settings["DomainUsage"] = DomainUsage.Multiple;
             p.Settings["ShadowCopyFiles"] = false;
             if (!string.IsNullOrEmpty(runtimeFramework))
                 p.Settings["RuntimeFramework"] = RuntimeFramework.Parse(runtimeFramework);

@@ -109,7 +109,7 @@ namespace Mnk.Library.ParallelNUnit.Packages
             catch (Exception ex)
             {
                 log.Write(ex, "Can't refresh tests from dll: " + config.TestDllPath);
-                return new TestsResults();
+                return new TestsResults(ex);
             }
         }
 

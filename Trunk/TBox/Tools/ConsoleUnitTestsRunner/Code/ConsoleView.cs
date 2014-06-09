@@ -14,6 +14,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         private readonly IReportBuilder reportBuilder;
         public TestsResults TotalResult { get; private set; }
         private readonly List<TestsResults> results;
+        private readonly object sync = new object();
 
         public ConsoleView(IReportBuilder reportBuilder)
         {
@@ -23,7 +24,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 
         public void SetItems(TestsResults result)
         {
-            results.Add(result);
+            lock (sync)
+            {
+                results.Add(result);
+            }
         }
 
         public void PrintTotalResults()
