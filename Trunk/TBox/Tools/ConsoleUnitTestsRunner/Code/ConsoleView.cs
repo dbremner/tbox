@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mnk.Library.ParallelNUnit;
+using System.Globalization;
+using System.Linq;
 using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Packages.Common;
+using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
 
-namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
-    using System.Globalization;
-    using System.Linq;
-
     internal class ConsoleView : ITestsView
     {
+        private readonly IReportBuilder reportBuilder;
         private List<TestResults> Results { get; set; }
 
         private DateTime CurrentAssemblyStartTime { get; set; }
         
-        public ConsoleView()
+        public ConsoleView(IReportBuilder reportBuilder)
         {
+            this.reportBuilder = reportBuilder;
             this.Results = new List<TestResults>();
         }
 
@@ -120,7 +121,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             }
 
             var totalResult = this.CreateTotalResult();
-            ReportBuilder.GenerateReport(path, xmlReport, totalResult.Metrics, totalResult.Result);
+            reportBuilder.GenerateReport(path, xmlReport, totalResult.Metrics, totalResult.Result);
         }
 
         internal class TestResults

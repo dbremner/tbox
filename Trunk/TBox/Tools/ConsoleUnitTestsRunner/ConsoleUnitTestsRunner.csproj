@@ -48,15 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleRunner\CommandLineConstants.cs" />
-    <Compile Include="ConsoleRunner\ConsoleView.cs" />
-    <Compile Include="ConsoleRunner\CommandLineArgs.cs" />
-    <Compile Include="ConsoleRunner\TeamcityUpdater.cs" />
-    <Compile Include="ConsoleRunner\NUnitLabelsUpdater.cs" />
-    <Compile Include="ConsoleRunner\ReportBuilder.cs" />
+    <Compile Include="Code\Contracts\CommandLineConstants.cs" />
+    <Compile Include="Code\ConsoleView.cs" />
+    <Compile Include="Code\Contracts\CommandLineArgs.cs" />
+    <Compile Include="Code\Contracts\IExecutor.cs" />
+    <Compile Include="Code\Contracts\IInfoView.cs" />
+    <Compile Include="Code\Contracts\IReportBuilder.cs" />
+    <Compile Include="Code\Contracts\ITestsExecutor.cs" />
+    <Compile Include="Code\Executor.cs" />
+    <Compile Include="Code\InfoView.cs" />
+    <Compile Include="Code\ServicesRegistrar.cs" />
+    <Compile Include="Code\TeamcityUpdater.cs" />
+    <Compile Include="Code\NUnitLabelsUpdater.cs" />
+    <Compile Include="Code\ReportBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConsoleRunner\TestsRunner.cs" />
+    <Compile Include="Code\TestsExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">

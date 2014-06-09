@@ -5,7 +5,7 @@ using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
 
-namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
     class NUnitLabelsUpdater : SimpleUpdater
     {

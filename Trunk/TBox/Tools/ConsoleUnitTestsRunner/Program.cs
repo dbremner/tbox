@@ -3,134 +3,30 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Mnk.Library.Common.Log;
-using Mnk.Library.ParallelNUnit.Core;
-using Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner;
+using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code;
+using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner
 {
     class Program
     {
-        private static ILog log;
-
         [STAThread]
         static int Main(string[] args)
         {
-            var logsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox", "Logs");
+            Init();
+            using (var container = ServicesRegistrar.Register())
+            {
+                return container.GetInstance<IExecutor>().Execute(args);
+            }
+        }
+
+        private static void Init()
+        {
+            var logsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TBox",
+                "Logs");
             if (!Directory.Exists(logsFolder)) Directory.CreateDirectory(logsFolder);
-            LogManager.Init(new MultiplyLog(new ConsoleLog(), new FileLog(Path.Combine(logsFolder, "ConsoleUnitTestsRunner.log"))));
-            log = LogManager.GetLogger<Program>();
-
-            if (args.Length <= 0 || string.Equals(args[0], "/?") || string.Equals(args[0], "/help", StringComparison.OrdinalIgnoreCase))
-            {
-                ShowHelp();
-                return -1;
-            }
-
-            int ret = -1;
-            var wait = false;
-            try
-            {
-                var cmdArgs = new CommandLineArgs();
-                cmdArgs.Parse(args);
-                wait = cmdArgs.Wait;
-                if (cmdArgs.Logo)
-                {
-                    ShowLogo();
-                    ShowArgs(cmdArgs);
-                }
-                if (!cmdArgs.Paths.Any())
-                {
-                    ShowHelp();
-                    return -1;
-                }
-                var notExist = cmdArgs.Paths.Where(x => !File.Exists(x)).ToArray();
-                if (notExist.Any())
-                {
-                    log.Write("Can't find files: " + string.Join(" ", notExist));
-                    return -2;
-                }
-
-                Console.WriteLine("ProcessModel: Default\tDomainUseage: Single");
-                Console.WriteLine("Execution Runtime: Default\tCPUCount: " + Environment.ProcessorCount);
-
-                ret = new TestsRunner().Run(cmdArgs);
-            }
-            catch (Exception ex)
-            {
-                log.Write(ex, "Internal error");
-                ShowHelp();
-            }
-            finally
-            {
-                NUnitBase.Dispose();
-            }
-
-            if (wait) Console.ReadKey();
-            return ret;
-        }
-
-        private static void ShowArgs(CommandLineArgs cmd)
-        {
-            Console.WriteLine("Start with arguments: {0} -p={1}{2}{3}{4}{5}{6}{7} -dirToCloneTests='{8}' -commandBeforeTestsRun='{9}'{10}{11} -startDelay={12}{13}{14}{15}{16}{17}",
-                string.Join(" ", cmd.Paths),
-                cmd.ProcessCount, AddIfTrue(" /wait ", cmd.Wait),
-                AddIfTrue(" -clone ", cmd.Clone), Format(" -copyMasks=", cmd.CopyMasks),
-                AddIfTrue(" -sync ", cmd.Sync), Format(" /xml=", cmd.XmlReport), Format(" /framework=", cmd.RuntimeFramework),
-                cmd.DirToCloneTests, cmd.CommandBeforeTestsRun,
-                Format(" /include=", cmd.Include), Format(" /exclude=", cmd.Exclude),
-                cmd.StartDelay, 
-                AddIfTrue("/nologo", !cmd.Logo), AddIfTrue("/labels", cmd.Labels),
-                Format(" /output:", cmd.OutputReport), AddIfTrue(" -prefetch ", cmd.Prefetch), AddIfTrue(" -teamcity ", cmd.Teamcity));
-        }
-
-        private static string AddIfTrue(string str, bool value)
-        {
-            return value ? str : string.Empty;
-        }
-
-        private static string Format(string prefix, params string[] items)
-        {
-            if (items == null) return string.Empty;
-            return prefix + string.Join(";", items);
-        }
-
-        private static void ShowLogo()
-        {
-            Console.WriteLine("TBox.ConsoleUnitTestsRunner version " + Assembly.GetCallingAssembly().GetName().Version);
-            Console.WriteLine("Source: http://tbox.codeplex.com");
-            Console.WriteLine("Copyright (C) 2010-2013 Aliaksandr Hrynko (Mnk).");
-            Console.WriteLine("All Rights Reserved");
-            Console.WriteLine();
-            Console.WriteLine("Runtime Environment - ");
-            Console.WriteLine("   OS Version: " + Environment.OSVersion);
-            Console.WriteLine("  CLR Version: " + Environment.Version);
-            Console.WriteLine();
-        }
-
-        private static void ShowHelp()
-        {
-            Console.WriteLine("You should specify at least 1 parameter: path to unit tests (multiple separated by space).");
-            Console.WriteLine("Other parameters:");
-            Console.WriteLine("-p=N             - specify process count, by default N = cpu cores count");
-            Console.WriteLine("-clone           - clone unit tests folder, by default false");
-            Console.WriteLine("-copyMasks=a[;b] - file masks to copy, by default =*.dll;*.config");
-            Console.WriteLine("-sync            - enable sync for unit tests, by default false");
-            Console.WriteLine("-dirToCloneTests=path - folder to clone tests, by default %temp%");
-            Console.WriteLine("-commandBeforeTestsRun=exePath - command to run before execute tests, but after it clone , by default empty");
-            Console.WriteLine("-startDelay=N    - delay before test starts, by default 0");
-            Console.WriteLine("-prefetch        - use test run time statistic to optimize tests separation, by default false");
-            Console.WriteLine("-teamcity        - teamcity inteagration: will show test progress, by default false");
-            Console.WriteLine("NUnit compatible arguments:");
-            Console.WriteLine("/include=a1[;a2] - include only tests with specified categories");
-            Console.WriteLine("/exclude=a1[;a2] - exclude all tests with specified categories");
-            Console.WriteLine("/xml=[path]        path for xml report, by default empty");
-            Console.WriteLine("/framework=[v]     framework version to use, by default empty");
-            Console.WriteLine("/output:[path]     path for tests output, by default empty");
-            Console.WriteLine("/labels            Label each test in stdOut, by default false");
-            Console.WriteLine("/noshadow          Do nothing (for now)");
-            Console.WriteLine("/nologo            Do not display the logo, by default false");
-            Console.WriteLine("/help              Display this page");
-            Console.WriteLine("/wait              wait for input key after at the end, by default false");
+            LogManager.Init(new MultiplyLog(new ConsoleLog(),
+                new FileLog(Path.Combine(logsFolder, "ConsoleUnitTestsRunner.log"))));
         }
 
         static Program()

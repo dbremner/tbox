@@ -9,10 +9,8 @@ namespace Mnk.Library.ParallelNUnit
 {
     public static class ServicesRegistrar
     {
-        public static IServiceContainer Register()
+        public static void Register(IServiceContainer container)
         {
-            var container = new ServiceContainer();
-
             container.Register<ICopyDirGenerator, CopyDirGenerator>(new PerContainerLifetime());
             container.Register<ITestsMetricsCalculator, TestsMetricsCalculator>(new PerContainerLifetime());
             container.Register<IDirectoriesManipulator, DirectoriesManipulator>(new PerContainerLifetime());
@@ -24,6 +22,13 @@ namespace Mnk.Library.ParallelNUnit
 
             container.Register<IPackage<IThreadTestConfig>, ThreadPackage>(new PerContainerLifetime());
             container.Register<IPackage<IProcessTestConfig>, ProcessPackage>(new PerContainerLifetime());
+        }
+
+        public static IServiceContainer Register()
+        {
+            var container = new ServiceContainer();
+
+            Register(container);
 
             return container;
         }

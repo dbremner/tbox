@@ -3,10 +3,10 @@ using System.Linq;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
-using NUnit.Core;
 using Mnk.Library.ParallelNUnit.Core;
+using NUnit.Core;
 
-namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
     class TeamcityUpdater : SimpleUpdater
     {

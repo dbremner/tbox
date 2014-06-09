@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
 {
-    class CommandLineArgs 
+    public class CommandLineArgs 
     {
         public IList<string> Paths { get; set; }
-        public int ProcessCount { get; set; }
+        public int TestsInParallel { get; set; }
+        public int AssembliesInParallel { get; set; }
         public bool Prefetch { get; set; }
         public bool Clone { get; set; }
         public string[] CopyMasks { get; set; }
@@ -29,7 +30,8 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
         public CommandLineArgs()
         {
-            ProcessCount = Environment.ProcessorCount;
+            TestsInParallel = Environment.ProcessorCount;
+            AssembliesInParallel = 1;
             Prefetch = false;
             Clone = false;
             CopyMasks = new[] { "*.dll", "*.config" };
@@ -45,7 +47,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             Paths = new List<string>();
         }
 
-        public void Parse(string[] args)
+        public CommandLineArgs(IEnumerable<string> args) : this()
         {
             foreach (var s in args)
             {
@@ -55,9 +57,14 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
 
         private void ParseArgument(string arg)
         {
-            if (Starts(arg, CommandLineConstants.ProcessCount))
+            if (Starts(arg, CommandLineConstants.TestsInParallel))
             {
-                ProcessCount = int.Parse(arg.Substring(CommandLineConstants.ProcessCount.Length), CultureInfo.InvariantCulture);
+                TestsInParallel = int.Parse(arg.Substring(CommandLineConstants.TestsInParallel.Length), CultureInfo.InvariantCulture);
+            }
+            else if (Starts(arg, CommandLineConstants.AssembliesInParallel))
+            {
+                AssembliesInParallel = int.Parse(arg.Substring(CommandLineConstants.AssembliesInParallel.Length), CultureInfo.InvariantCulture);
+                if (AssembliesInParallel == 0) AssembliesInParallel = Environment.ProcessorCount;
             }
             else if (Starts(arg, CommandLineConstants.StartDelay))
             {

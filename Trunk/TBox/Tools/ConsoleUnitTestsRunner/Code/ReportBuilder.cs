@@ -6,14 +6,15 @@ using System.Threading;
 using System.Xml;
 using Mnk.Library.Common.Models;
 using Mnk.Library.ParallelNUnit.Contracts;
-using NUnit.Core;
 using Mnk.Library.ParallelNUnit.Core;
+using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
+using NUnit.Core;
 
-namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
-    internal static class ReportBuilder
+    internal class ReportBuilder : IReportBuilder
     {
-       public static void GenerateReport(string path, string xmlReport, ITestsMetricsCalculator tmc, IEnumerable<Result> testResults )
+       public void GenerateReport(string path, string xmlReport, ITestsMetricsCalculator tmc, IEnumerable<Result> testResults )
        {
            var doc = new XmlDocument();
            doc.AppendChild(doc.CreateXmlDeclaration("1.0", "utf-8", "no"));

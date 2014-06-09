@@ -1,61 +1,58 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using LightInject;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
+using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
 
-namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
+namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
-    internal class TestsRunner
+    internal class TestsExecutor : ITestsExecutor
     {
-        private readonly ILog log = LogManager.GetLogger<TestsRunner>();
+        private readonly IReportBuilder reportBuilder;
+        private readonly IPackage<IThreadTestConfig> package;
+        private readonly IUpdater updater;
+        private readonly ILog log = LogManager.GetLogger<TestsExecutor>();
+
+        public TestsExecutor(IReportBuilder reportBuilder, IPackage<IThreadTestConfig> package, IUpdater updater)
+        {
+            this.reportBuilder = reportBuilder;
+            this.package = package;
+            this.updater = updater;
+        }
 
         public int Run(CommandLineArgs args)
         {
-            using (var container = ServicesRegistrar.Register())
-            {
-                return Execute(args, container);
-            }
-        }
-
-        private int Execute(CommandLineArgs args,  IServiceContainer container)
-        {
+            var workingDirectory = Environment.CurrentDirectory;
             int retValue = 0;
-            var view = new ConsoleView();
-            using (var updater = new ConsoleUpdater())
+            var view = new ConsoleView(reportBuilder);
+            foreach (var path in args.Paths)
             {
-                foreach (var path in args.Paths)
-                {
-                    var testsUpdater = BuildUpdater(args.Labels, args.Teamcity, updater);
-                    var config = CreateConfig(args, path);
-                    retValue = Math.Min(retValue, RunTest(args, path, container, view, config, testsUpdater));
-                }
+                var testsUpdater = BuildUpdater(args.Labels, args.Teamcity, updater);
+                var config = CreateConfig(args, path);
+                retValue = Math.Min(retValue, RunTest(args, path, view, config, testsUpdater));
             }
 
             view.PrintTotalResults();
-            PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(),
-                Environment.CurrentDirectory);
+            PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), workingDirectory);
             return retValue;
         }
 
-        private int RunTest(CommandLineArgs args, string path, IServiceContainer container, ConsoleView view, IThreadTestConfig config, ITestsUpdater testsUpdater)
+        private int RunTest(CommandLineArgs args, string path, ConsoleView view, IThreadTestConfig config, ITestsUpdater testsUpdater)
         {
-            var p = container.GetInstance<IPackage<IThreadTestConfig>>();
-
             view.NotifyNewAssemblyStartTest();
 
             Console.WriteLine("Running tests for {0}.", path);
             if (args.Logo) Console.WriteLine("Calculating tests.");
-            if (!p.EnsurePathIsValid(config))
+            if (!package.EnsurePathIsValid(config))
             {
                 log.Write("Incorrect path: " + path);
                 return -3;
             }
 
-            var results = p.Refresh(config);
+            var results = package.Refresh(config);
             if (args.Logo) Console.WriteLine("{0} tests found.", results.Metrics.Total);
             if (results.IsFailed)
             {
@@ -64,7 +61,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
             }
 
             if (args.Logo) Console.WriteLine("Running tests.");
-            results = p.Run(config, results, testsUpdater);
+            results = package.Run(config, results, testsUpdater);
             view.SetItems(results);
             if (results.Metrics.FailedCount > 0) return -2;
             return 0;
@@ -80,7 +77,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
                 DirToCloneTests = args.DirToCloneTests,
                 NeedOutput = !string.IsNullOrEmpty(args.OutputReport),
                 NeedSynchronizationForTests = args.Sync,
-                ProcessCount = args.ProcessCount,
+                ProcessCount = args.TestsInParallel,
                 ResolveEventHandler = Program.LoadFromSameFolder,
                 RuntimeFramework = args.RuntimeFramework,
                 StartDelay = args.StartDelay,

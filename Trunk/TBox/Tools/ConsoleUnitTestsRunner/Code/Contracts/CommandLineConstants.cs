@@ -1,8 +1,8 @@
-﻿namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.ConsoleRunner
+﻿namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
 {
     static class CommandLineConstants
     {
-        public const string ProcessCount = "-p=";
+        public const string TestsInParallel = "-p=";
         public const string StartDelay = "-startDelay=";
         public const string Clone = "-clone";
         public const string CopyMasks = "-copyMasks=";
@@ -11,6 +11,7 @@
         public const string Sync = "-sync";
         public const string Prefetch = "-prefetch";
         public const string Teamcity = "-teamcity";
+        public const string AssembliesInParallel = "-ap=";
 
         public const string Include = "/include=";
         public const string Exclude = "/exclude=";
