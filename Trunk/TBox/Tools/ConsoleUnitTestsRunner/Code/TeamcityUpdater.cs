@@ -44,7 +44,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                     }
                 }
             }
-            Console.Write("##teamcity[progressMessage 'Tests: {0}", passed);
+            Console.Write("##teamcity[progressMessage 'Tests passed: {0}", passed);
             if (failed > 0) Console.Write(", failed: {0}", failed);
             if (ignored > 0) Console.Write(", ignored: {0}", ignored);
             Console.WriteLine("']");
