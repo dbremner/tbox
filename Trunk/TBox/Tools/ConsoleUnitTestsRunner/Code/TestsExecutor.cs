@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Principal;
@@ -47,14 +48,14 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                 {
                     Parallel.ForEach(assemblies,
                         new ParallelOptions {MaxDegreeOfParallelism = args.AssembliesInParallel}, 
-                        assembly => RunTest(assembly, view, testsUpdater)
+                        assembly => RunTest(assembly, view, testsUpdater, args)
                         );
                 }
                 else
                 {
                     foreach (var assembly in assemblies)
                     {
-                        RunTest(assembly,  view, testsUpdater);
+                        RunTest(assembly,  view, testsUpdater, args);
                     }
                 }
 
@@ -104,16 +105,19 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             return context;
         }
 
-        private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater)
+        private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater, CommandLineArgs args)
         {
-            var time = Environment.TickCount;
+            var startTime = DateTime.UtcNow;
             context.Results = context.Package.Run(context.Config, context.Results, testsUpdater);
             view.SetItems(context.Results);
             if (context.Results.Metrics.FailedCount > 0)
             {
                 context.RetValue = -2;
             }
-            Console.WriteLine(Path.GetFileName(context.Path) + " is done, time: " + (Environment.TickCount - time) / 1000);
+            if (args.Logo && !args.Labels)
+            {
+                Console.WriteLine("'{0}' is done, time: {1}", Path.GetFileName(context.Path), (DateTime.UtcNow - startTime).TotalSeconds.ToString("F2", CultureInfo.InvariantCulture));
+            }
         }
 
         private static IThreadTestConfig CreateConfig(CommandLineArgs args, string path)

@@ -8,7 +8,7 @@ using NUnit.Util;
 
 namespace Mnk.Library.ParallelNUnit.Core
 {
-    public sealed class NUnitTestStarter : MarshalByRefObject
+    public sealed class NUnitTestStarter 
     {
         private static readonly object Sync = new object();
         private readonly ILog log = LogManager.GetLogger<NUnitTestStarter>();
