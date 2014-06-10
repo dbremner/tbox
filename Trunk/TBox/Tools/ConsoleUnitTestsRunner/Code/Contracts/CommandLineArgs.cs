@@ -60,11 +60,12 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
             if (Starts(arg, CommandLineConstants.TestsInParallel))
             {
                 TestsInParallel = int.Parse(arg.Substring(CommandLineConstants.TestsInParallel.Length), CultureInfo.InvariantCulture);
+                if (TestsInParallel <= 0) TestsInParallel = Environment.ProcessorCount;
             }
             else if (Starts(arg, CommandLineConstants.AssembliesInParallel))
             {
                 AssembliesInParallel = int.Parse(arg.Substring(CommandLineConstants.AssembliesInParallel.Length), CultureInfo.InvariantCulture);
-                if (AssembliesInParallel == 0) AssembliesInParallel = Environment.ProcessorCount;
+                if (AssembliesInParallel <= 0) AssembliesInParallel = Environment.ProcessorCount;
             }
             else if (Starts(arg, CommandLineConstants.StartDelay))
             {

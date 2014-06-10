@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
+using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
@@ -107,7 +108,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 
         private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater, CommandLineArgs args)
         {
-            var startTime = DateTime.UtcNow;
+            var time = Environment.TickCount;
             context.Results = context.Package.Run(context.Config, context.Results, testsUpdater);
             view.SetItems(context.Results);
             if (context.Results.Metrics.FailedCount > 0)
@@ -116,7 +117,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             }
             if (args.Logo && !args.Labels)
             {
-                Console.WriteLine("'{0}' is done, time: {1}", Path.GetFileName(context.Path), (DateTime.UtcNow - startTime).TotalSeconds.ToString("F2", CultureInfo.InvariantCulture));
+                Console.WriteLine("'{0}' is done, time: {1}", Path.GetFileName(context.Path), ((Environment.TickCount - time)/1000).FormatTimeInSec());
             }
         }
 
