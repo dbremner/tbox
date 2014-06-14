@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
-using Mnk.Library.ParallelNUnit.Contracts;
 
 namespace Mnk.Library.ParallelNUnit.Packages.Excecution
 {
-    public sealed class ProcessRunnerContext : IRunnerContext
+    public sealed class ProcessRunnerContext 
     {
         private readonly Process process;
         public ProcessRunnerContext(Process process)

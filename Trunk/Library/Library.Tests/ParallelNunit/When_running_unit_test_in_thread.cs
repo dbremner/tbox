@@ -30,7 +30,7 @@ namespace Mnk.Library.Tests.ParallelNunit
             config = new TestsConfig
             {
                 DirToCloneTests = Path.GetTempPath(),
-                Type = TestsRunnerType.Thread
+                Type = TestsRunnerType.Internal
             };
             view = MockRepository.GenerateStub<ITestsView>();
             updater = new SimpleUpdater(new ConsoleUpdater());

@@ -30,7 +30,6 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
         {
             var dllPaths = directoriesManipulator.GenerateFolders(config, updater, packages.Count);
             var s = (NunitRunnerClient)server.Owner;
-            IRunnerContext context = null;
             try
             {
                 if (updater.UserPressClose) return new TestsResults();
@@ -55,15 +54,10 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
                     packages, allTests,
                     metrics, config
                     );
-                context = GetFacade(config).Run(config, handle);
+                GetFacade(config).Run(config, handle);
             }
             finally
             {
-                if (context != null)
-                {
-                    context.WaitForExit();
-                    context.Dispose();
-                }
                 directoriesManipulator.ClearFolders(config, dllPaths);
             }
             return new TestsResults(allTests);

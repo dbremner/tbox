@@ -82,10 +82,8 @@
     <Compile Include="Packages\Common\TestsDivider.cs" />
     <Compile Include="Contracts\ITestsFixture.cs" />
     <Compile Include="Contracts\Commands.cs" />
-    <Compile Include="Packages\Excecution\ThreadTestsExecutionFacade.cs" />
+    <Compile Include="Packages\Excecution\InternalTestsExecutionFacade.cs" />
     <Compile Include="Packages\Excecution\ProcessTestsExecutionFacade.cs" />
-    <Compile Include="Packages\Excecution\ThreadRunnerContext.cs" />
-    <Compile Include="Contracts\IRunnerContext.cs" />
     <Compile Include="Packages\Excecution\ProcessRunnerContext.cs" />
     <Compile Include="Core\TestRunConfig.cs" />
     <Compile Include="Packages\Common\TestsExecutor.cs" />

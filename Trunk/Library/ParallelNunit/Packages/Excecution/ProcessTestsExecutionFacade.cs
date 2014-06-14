@@ -13,30 +13,33 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
         public TestsResults CollectTests(ITestsConfig config, InterprocessServer<INunitRunnerClient> server)
         {
             var client = ((NunitRunnerClient)server.Owner);
-            IRunnerContext p = null;
+            Execute(() => Create(config, server.Handle, TestsCommands.Collect));
+            return new TestsResults(client.Collection);
+        }
+
+        public void Run(ITestsConfig config, string handle)
+        {
+            Execute(()=>Create(config, handle, config.NeedSynchronizationForTests ? TestsCommands.Test : TestsCommands.FastTest));
+        }
+
+        private static void Execute(Func<ProcessRunnerContext> operation)
+        {
+            ProcessRunnerContext context = null;
             try
             {
-                p = Create(config, server.Handle, TestsCommands.Collect);
+                context = operation();
             }
             finally
             {
-                if (p != null)
+                if (context != null)
                 {
-                    p.WaitForExit();
-                    p.Dispose();
+                    context.WaitForExit();
+                    context.Dispose();
                 }
             }
-
-            return new TestsResults(client.Collection);
-
         }
 
-        public IRunnerContext Run(ITestsConfig config, string handle)
-        {
-            return Create(config, handle, config.NeedSynchronizationForTests ? TestsCommands.Test : TestsCommands.FastTest);
-        }
-
-        private static IRunnerContext Create(ITestsConfig config, string handle, string command)
+        private static ProcessRunnerContext Create(ITestsConfig config, string handle, string command)
         {
             var fileName = config.NunitAgentPath;
             var args = string.Format(CultureInfo.InvariantCulture, "{0} \"{1}\" {2} {3}", handle, config.TestDllPath, command, config.RuntimeFramework ?? string.Empty);

@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Threading;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.ParallelNUnit.Contracts;
 
 namespace Mnk.Library.ParallelNUnit.Packages.Excecution
 {
-    class ThreadTestsExecutionFacade : ITestsExecutionFacade
+    class InternalTestsExecutionFacade : ITestsExecutionFacade
     {
         private readonly INUnitTestFacade executor;
 
-        public ThreadTestsExecutionFacade(INUnitTestFacade executor)
+        public InternalTestsExecutionFacade(INUnitTestFacade executor)
         {
             this.executor = executor;
         }
@@ -22,11 +21,9 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             return new TestsResults(new[] { results });
         }
 
-        public IRunnerContext Run(ITestsConfig config, string handle)
+        public void Run(ITestsConfig config, string handle)
         {
-            var t = new Thread(o => executor.RunTests(config, handle));
-            t.Start();
-            return new ThreadRunnerContext(t);
+            executor.RunTests(config, handle);
         }
     }
 }
