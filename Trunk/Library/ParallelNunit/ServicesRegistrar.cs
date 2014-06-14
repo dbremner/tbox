@@ -1,6 +1,8 @@
-﻿using LightInject;
+﻿using System;
+using LightInject;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit.Contracts;
+using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Packages;
 using Mnk.Library.ParallelNUnit.Packages.Common;
 using Mnk.Library.ParallelNUnit.Packages.Excecution;
@@ -11,17 +13,21 @@ namespace Mnk.Library.ParallelNUnit
     {
         public static void Register(IServiceContainer container)
         {
+            container.Register<INUnitTestFacade, NUnitTestFacade>(new PerContainerLifetime());
             container.Register<ICopyDirGenerator, CopyDirGenerator>(new PerContainerLifetime());
+            container.Register<ITestsDivider, TestsDivider>(new PerContainerLifetime());
+            container.Register<ITestsExecutor, TestsExecutor>(new PerContainerLifetime());
             container.Register<ITestsMetricsCalculator, TestsMetricsCalculator>(new PerContainerLifetime());
             container.Register<IDirectoriesManipulator, DirectoriesManipulator>(new PerContainerLifetime());
             container.Register<IOrderOptimizationManager, OrderOptimizationManager>(new PerContainerLifetime());
-            container.Register<IThreadTestsExecutor, ThreadTestsExecutor>(new PerContainerLifetime());
 
-            container.Register<ITestsRunner<IThreadTestConfig>, ThreadTestsRunner>(new PerContainerLifetime());
-            container.Register<ITestsRunner<IProcessTestConfig>, ProcessTestsRunner>(new PerContainerLifetime());
+            container.Register<ITestsExecutionFacade, ThreadTestsExecutionFacade>(TestsRunnerType.Thread, new PerContainerLifetime());
+            container.Register<ITestsExecutionFacade, ProcessTestsExecutionFacade>(TestsRunnerType.Process, new PerContainerLifetime());
+            
+            container.RegisterInstance(typeof(Func<string, ITestsExecutionFacade>), 
+                new Func<string, ITestsExecutionFacade>( container.GetInstance<ITestsExecutionFacade>));
 
-            container.Register<IPackage<IThreadTestConfig>, ThreadPackage>(new PerContainerLifetime());
-            container.Register<IPackage<IProcessTestConfig>, ProcessPackage>(new PerContainerLifetime());
+            container.Register<ITestsFixture, TestsFixture>(new PerContainerLifetime());
         }
 
         public static IServiceContainer Register()

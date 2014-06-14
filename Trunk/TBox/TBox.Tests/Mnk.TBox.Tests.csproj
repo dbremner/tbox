@@ -39,8 +39,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\..\Libs\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="LightInject">
-      <HintPath>..\..\Libs\LightInject.3.0.1.6\lib\net40\LightInject.dll</HintPath>
+    <Reference Include="LightInject, Version=3.0.1.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.core">

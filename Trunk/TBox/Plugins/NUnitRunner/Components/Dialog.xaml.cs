@@ -30,8 +30,8 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private readonly string nunitAgentPath;
         private readonly string runAsx86Path;
         private IServiceContainer container;
-        private ProcessTestConfig packageConfig;
-        private IPackage<IProcessTestConfig> package;
+        private TestsConfig packageConfig;
+        private ITestsFixture testsFixture;
         private TestsResults results;
         private TestConfig config;
         public Dialog(string nunitAgentPath, string runAsx86Path)
@@ -67,7 +67,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         {
             var items = (results == null) ? null : results.Items;
             DisposePackage();
-            packageConfig = new ProcessTestConfig
+            packageConfig = new TestsConfig
             {
                 NunitAgentPath = nunitAgentPath,
                 RunAsx86Path = runAsx86Path,
@@ -84,10 +84,11 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 CopyMasks = config.CopyMasks.CheckedItems.Select(x => x.Key).ToArray(),
                 NeedSynchronizationForTests = config.NeedSynchronizationForTests && config.ProcessCount > 1,
                 StartDelay = config.StartDelay,
-                NeedOutput = true
+                NeedOutput = true,
+                Type = TestsRunnerType.Process
             };
             container = ServicesRegistrar.Register();
-            package = container.GetInstance<IPackage<IProcessTestConfig>>();
+            testsFixture = container.GetInstance<ITestsFixture>();
             if (items != null) results = new TestsResults(items);
         }
 
@@ -97,7 +98,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             {
                 container.Dispose();
                 container = null;
-                package = null;
+                testsFixture = null;
             }
         }
 
@@ -109,7 +110,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private void RefreshClick(object sender, RoutedEventArgs e)
         {
             RecreatePackage();
-            if (package!=null && !package.EnsurePathIsValid(packageConfig))
+            if (testsFixture!=null && !testsFixture.EnsurePathIsValid(packageConfig))
             {
                 Close();
                 return;
@@ -118,26 +119,27 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             View.Clear();
             Statistics.Clear();
             var caption = Path.GetFileName(config.Key);
-            DialogsCache.ShowProgress(u => DoRefresh(time, u), caption, this, false);
+            DialogsCache.ShowProgress(u => DoRefresh(time), caption, this, false);
         }
 
-        private void DoRefresh(int time, IUpdater updater)
+        private void DoRefresh(int time)
         {
-            results = package.Refresh(packageConfig);
-            if (results.IsFailed)
+            results = testsFixture.Refresh(packageConfig);
+            
+            Mt.Do(this, () =>
             {
-                Mt.Do(this, Close);
-            }
-            else
-            {
-                Mt.Do(this, () =>
+                if (results.IsFailed)
+                {
+                    Close();
+                }
+                else
                 {
                     View.SetItems(results);
                     Statistics.SetItems(results);
                     Categories.ItemsSource = GetCategories();
                     RefreshView(time);
-                });
-            }
+                }
+            });
         }
 
         public CheckableDataCollection<CheckableData> GetCategories()
@@ -155,7 +157,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private void StartClick(object sender, RoutedEventArgs e)
         {
             RecreatePackage();
-            if (!package.EnsurePathIsValid(packageConfig))
+            if (!testsFixture.EnsurePathIsValid(packageConfig))
             {
                 return;
             }
@@ -177,7 +179,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                         .CheckedItems.Select(x => x.Key)
                         .ToArray();
             });
-            results = package.Run(packageConfig, results, new SimpleUpdater(updater), items);
+            results = testsFixture.Run(packageConfig, results, new SimpleUpdater(updater), items);
             Mt.Do(this, () =>
                 {
                     View.SetItems(results);

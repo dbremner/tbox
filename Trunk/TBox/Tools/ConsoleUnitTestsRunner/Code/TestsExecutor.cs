@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Principal;
-using System.Threading;
 using System.Threading.Tasks;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
@@ -88,15 +85,15 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                 RetValue = 0,
                 Container = Library.ParallelNUnit.ServicesRegistrar.Register(),
             };
-            context.Package = context.Container.GetInstance<IPackage<IThreadTestConfig>>();
-            if (!context.Package.EnsurePathIsValid(context.Config))
+            context.TestsFixture = context.Container.GetInstance<ITestsFixture>();
+            if (!context.TestsFixture.EnsurePathIsValid(context.Config))
             {
                 Log.Write("Incorrect path: " + path);
                 context.RetValue = -3;
             }
             else
             {
-                context.Results = context.Package.Refresh(context.Config);
+                context.Results = context.TestsFixture.Refresh(context.Config);
                 if (context.Results.IsFailed)
                 {
                     Log.Write("Can't calculate tests count");
@@ -109,7 +106,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater, CommandLineArgs args)
         {
             var time = Environment.TickCount;
-            context.Results = context.Package.Run(context.Config, context.Results, testsUpdater);
+            context.Results = context.TestsFixture.Run(context.Config, context.Results, testsUpdater);
             view.SetItems(context.Results);
             if (context.Results.Metrics.FailedCount > 0)
             {
@@ -121,9 +118,9 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             }
         }
 
-        private static IThreadTestConfig CreateConfig(CommandLineArgs args, string path)
+        private static ITestsConfig CreateConfig(CommandLineArgs args, string path)
         {
-            return new ThreadTestConfig
+            return new TestsConfig
             {
                 CopyMasks = args.CopyMasks,
                 CommandBeforeTestsRun = args.CommandBeforeTestsRun,
@@ -132,12 +129,12 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                 NeedOutput = !string.IsNullOrEmpty(args.OutputReport),
                 NeedSynchronizationForTests = args.Sync,
                 ProcessCount = args.TestsInParallel,
-                ResolveEventHandler = Program.LoadFromSameFolder,
                 RuntimeFramework = args.RuntimeFramework,
                 StartDelay = args.StartDelay,
                 TestDllPath = path,
                 OptimizeOrder = args.Prefetch,
                 Categories = args.Include ?? args.Exclude,
+                Type = TestsRunnerType.Thread,
                 IncludeCategories = args.Include != null && args.Exclude != null
             };
         }

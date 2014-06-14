@@ -23,25 +23,26 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
         public static readonly bool[] Bools = {true,false};
         public static readonly string[] Frameworks = { "net-4.0" };
         private IServiceContainer container;
-        private ProcessTestConfig config;
+        private TestsConfig config;
         private ITestsView view;
         private ITestsUpdater updater;
-        private IPackage<IProcessTestConfig> package;
+        private ITestsFixture testsFixture;
 
         [SetUp]
         public void SetUp()
         {
-            config = new ProcessTestConfig
+            config = new TestsConfig
             {
                 NunitAgentPath = NUnitAgentPath,
                 RunAsx86Path = RunAsx86Path,
                 DirToCloneTests = Path.GetTempPath(),
                 RunAsAdmin = false,
+                Type = TestsRunnerType.Process
             };
             view = MockRepository.GenerateStub<ITestsView>();
             updater = new SimpleUpdater(new ConsoleUpdater());
             container = ServicesRegistrar.Register();
-            package = container.GetInstance<IPackage<IProcessTestConfig>>();
+            testsFixture = container.GetInstance<ITestsFixture>();
 
         }
 
@@ -59,7 +60,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             config.RunAsx86 = x86;
 
             //Assert
-            Assert.IsFalse(package.EnsurePathIsValid(config));
+            Assert.IsFalse(testsFixture.EnsurePathIsValid(config));
         }
 
         [Test]
@@ -70,7 +71,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             config.RunAsx86 = x86;
 
             //Assert
-            Assert.IsTrue(package.EnsurePathIsValid(config));
+            Assert.IsTrue(testsFixture.EnsurePathIsValid(config));
         }
 
         [Test]
@@ -79,10 +80,10 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             //Arrange
             config.TestDllPath = TestsDllPath;
             config.RunAsx86 = x86;
-            package.EnsurePathIsValid(config);
+            testsFixture.EnsurePathIsValid(config);
 
             //Act
-            var results = package.Refresh(config);
+            var results = testsFixture.Refresh(config);
 
             //Assert
             Assert.IsFalse(results.IsFailed);
@@ -94,10 +95,10 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             //Arrange
             config.TestDllPath = TestsDllPath;
             config.RunAsx86 = x86;
-            package.EnsurePathIsValid(config);
+            testsFixture.EnsurePathIsValid(config);
 
             //Act
-            var results = package.Refresh(config);
+            var results = testsFixture.Refresh(config);
 
             //Assert
             Assert.Greater(results.Metrics.Total, 20);
@@ -129,11 +130,11 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
             config.NeedSynchronizationForTests = sync;
             config.NeedOutput = needOutput;
 
-            package.EnsurePathIsValid(config);
-            var results = package.Refresh(config);
+            testsFixture.EnsurePathIsValid(config);
+            var results = testsFixture.Refresh(config);
 
             //Act
-            results = package.Run(config, results, updater);
+            results = testsFixture.Run(config, results, updater);
 
             //Assert
             Assert.Greater(results.Metrics.Total, 20);

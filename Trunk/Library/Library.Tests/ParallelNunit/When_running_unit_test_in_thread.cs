@@ -19,22 +19,23 @@ namespace Mnk.Library.Tests.ParallelNunit
         public static readonly bool[] Bools = {true,false};
         public static readonly string[] Frameworks = { "net-4.0" };
         private IServiceContainer container;
-        private ThreadTestConfig config;
+        private TestsConfig config;
         private ITestsView view;
         private ITestsUpdater updater;
-        private IPackage<IThreadTestConfig> package;
+        private ITestsFixture testsFixture;
 
         [SetUp]
         public void SetUp()
         {
-            config = new ThreadTestConfig
+            config = new TestsConfig
             {
                 DirToCloneTests = Path.GetTempPath(),
+                Type = TestsRunnerType.Thread
             };
             view = MockRepository.GenerateStub<ITestsView>();
             updater = new SimpleUpdater(new ConsoleUpdater());
             container = ServicesRegistrar.Register();
-            package = container.GetInstance<IPackage<IThreadTestConfig>>();
+            testsFixture = container.GetInstance<ITestsFixture>();
 
         }
 
@@ -51,7 +52,7 @@ namespace Mnk.Library.Tests.ParallelNunit
             config.TestDllPath = "Wrong path";
 
             //Assert
-            Assert.IsFalse(package.EnsurePathIsValid(config));
+            Assert.IsFalse(testsFixture.EnsurePathIsValid(config));
         }
 
         [Test]
@@ -61,7 +62,7 @@ namespace Mnk.Library.Tests.ParallelNunit
             config.TestDllPath = TestsDllPath;
 
             //Assert
-            Assert.IsTrue(package.EnsurePathIsValid(config));
+            Assert.IsTrue(testsFixture.EnsurePathIsValid(config));
         }
 
         [Test]
@@ -69,10 +70,10 @@ namespace Mnk.Library.Tests.ParallelNunit
         {
             //Arrange
             config.TestDllPath = TestsDllPath;
-            package.EnsurePathIsValid(config);
+            testsFixture.EnsurePathIsValid(config);
 
             //Act
-            var results = package.Refresh(config);
+            var results = testsFixture.Refresh(config);
 
             //Assert
             Assert.IsFalse(results.IsFailed);
@@ -83,10 +84,10 @@ namespace Mnk.Library.Tests.ParallelNunit
         {
             //Arrange
             config.TestDllPath = TestsDllPath;
-            package.EnsurePathIsValid(config);
+            testsFixture.EnsurePathIsValid(config);
 
             //Act
-            var results = package.Refresh(config);
+            var results = testsFixture.Refresh(config);
 
             //Assert
             Assert.Greater(results.Metrics.Total, 20);
@@ -116,11 +117,11 @@ namespace Mnk.Library.Tests.ParallelNunit
             config.NeedSynchronizationForTests = sync;
             config.NeedOutput = needOutput;
 
-            package.EnsurePathIsValid(config);
-            var results = package.Refresh(config);
+            testsFixture.EnsurePathIsValid(config);
+            var results = testsFixture.Refresh(config);
 
             //Act
-            results = package.Run(config, results, updater);
+            results = testsFixture.Run(config, results, updater);
 
             //Assert
             Assert.Greater(results.Metrics.Total, 20);

@@ -40,10 +40,11 @@ public class NUnitTests : ISkyScript
         var config = CreateConfig(agents.Count);
         using (var container = ServicesRegistrar.Register())
         {
-            var p = container.GetInstance<IPackage<IProcessTestConfig>>();
+            var p = container.GetInstance<ITestsFixture>();
             var results = CollectInfo(workingDirectory, config, p);
             var i = 0;
-            return p.DivideTests(config, results.Metrics)
+            return container.GetInstance<ITestsDivider>()
+                .Divide(config, results.Metrics, null)
                 .Select(x => new SkyAgentWork
                 {
                     Agent = agents[i++],
@@ -53,7 +54,7 @@ public class NUnitTests : ISkyScript
         }
     }
 
-    private TestsResults CollectInfo(string folder, IProcessTestConfig config, IPackage<IProcessTestConfig> p)
+    private TestsResults CollectInfo(string folder, ITestsConfig config, ITestsFixture p)
     {
         Console.WriteLine("Folder: " + folder);
         var path = Path.Combine(folder, GetTestDllRelativePath());
@@ -67,9 +68,9 @@ public class NUnitTests : ISkyScript
         return results;
     }
 
-    private IProcessTestConfig CreateConfig(int agentsCount)
+    private ITestsConfig CreateConfig(int agentsCount)
     {
-        return new ProcessTestConfig
+        return new TestsConfig
         {
             CopyMasks = PathMasksToInclude,
             CommandBeforeTestsRun = CommandBeforeTestsRun,
@@ -86,6 +87,7 @@ public class NUnitTests : ISkyScript
             RunAsx86Path = RunAsx86Path,
             NunitAgentPath = NunitAgentPath,
             RunAsAdmin = false,
+            Type = TestsRunnerType.Thread,
         };
     }
 
@@ -123,7 +125,7 @@ public class NUnitTests : ISkyScript
         if (failed.Any())
         {
             sb.AppendLine("Agents exceptions:");
-            sb.AppendLine(string.Join(Environment.NewLine + Environment.NewLine, failed.Select(x => x.Report)));
+            sb.AppendLine(string.Join(Environment.NewLine, failed.Select(x => x.Report)));
         }
         return sb.ToString();
     }
@@ -136,6 +138,7 @@ public class NUnitTests : ISkyScript
         var i = 0;
         foreach (var r in items)
         {
+            sb.AppendLine();
             sb.AppendFormat("{0}) {1} : {2}{3}{4}", ++i, r.State, r.FullName,
             string.IsNullOrEmpty(r.Message) ? string.Empty : ("\n   " + r.Message),
             stackTrace ? ("\n" + r.StackTrace + "\n") : string.Empty
@@ -150,7 +153,7 @@ public class NUnitTests : ISkyScript
         var config = CreateConfig(1);
         using (var container = ServicesRegistrar.Register())
         {
-            var p = container.GetInstance<IPackage<IProcessTestConfig>>();
+            var p = container.GetInstance<ITestsFixture>();
             var results = CollectInfo(workingDirectory, config, p);
             results = p.Run(config, results, new SimpleUpdater(context), packages);
             return JsonSerializer.SerializeToString(results.Items);

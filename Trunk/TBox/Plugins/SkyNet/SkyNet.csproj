@@ -37,7 +37,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.1.6\lib\net40\LightInject.dll</HintPath>
+      <HintPath>..\..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />

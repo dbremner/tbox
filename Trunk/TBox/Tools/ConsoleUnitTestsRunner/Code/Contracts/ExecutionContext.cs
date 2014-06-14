@@ -7,9 +7,9 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
     {
         public string Path { get; set; }
         public int RetValue { get; set; }
-        public IThreadTestConfig Config { get; set; }
+        public ITestsConfig Config { get; set; }
         public TestsResults Results { get; set; }
-        public IPackage<IThreadTestConfig> Package { get; set; }
+        public ITestsFixture TestsFixture { get; set; }
         public IServiceContainer Container { get; set; }
 
         public ExecutionContext()

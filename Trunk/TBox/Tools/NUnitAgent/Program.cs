@@ -7,7 +7,6 @@ using Mnk.Library.Common.Log;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
-using Mnk.Library.ParallelNUnit.Packages.Excecution;
 using Mnk.TBox.Core.Contracts;
 using ServiceStack.Text;
 
@@ -36,21 +35,21 @@ namespace Mnk.TBox.Tools.NUnitAgent
             var framework = args.Length == 4 ? args[3] : null;
             try
             {
-                var config = new ThreadTestConfig
+                var config = new TestsConfig
                 {
                     
                     TestDllPath = path,
                     RuntimeFramework = framework,
-                    ResolveEventHandler = ResolveEventHandler,
                     NeedOutput = true
                 };
+                var facade = new NUnitTestFacade();
                 switch (args[2])
                 {
                     case TestsCommands.Collect:
                         Result list = null;
                         try
                         {
-                            list = new NUnitTestStarter().CollectTests(config.TestDllPath, config.RuntimeFramework);
+                            list = facade.CollectTests(config.TestDllPath, config.RuntimeFramework);
                             return 1;
                         }
                         finally
@@ -62,10 +61,10 @@ namespace Mnk.TBox.Tools.NUnitAgent
                         }
                     case TestsCommands.FastTest:
                         config.NeedSynchronizationForTests = false;
-                        return new ThreadTestsExecutor().RunTests(config, handle);
+                        return facade.RunTests(config, handle);
                     case TestsCommands.Test:
                         config.NeedSynchronizationForTests = true;
-                        return new ThreadTestsExecutor().RunTests(config, handle);
+                        return facade.RunTests(config, handle);
                     default:
                         log.Write("Unknown command: " + args[2]);
                         break;

@@ -15,5 +15,12 @@
         int ProcessCount { get; }
         string[] Categories { get; }
         bool? IncludeCategories { get; }
+        string Type { get; }
+
+        string NunitAgentPath { get; }
+        string RunAsx86Path { get; }
+        bool RunAsx86 { get; }
+        bool RunAsAdmin { get; }
+
     }
 }
