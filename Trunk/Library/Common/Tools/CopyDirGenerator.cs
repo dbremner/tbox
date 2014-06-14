@@ -35,7 +35,7 @@ namespace Mnk.Library.Common.Tools
                 .Select(x => NormalizePath(x, deep, maximumPaths))
                 .Select(
                     x =>
-                        new Regex(x.Replace(".", "[.]").Replace("*", ".*").Replace("?", ".").Replace("\\", "\\\\"),
+                        new Regex("^" + Regex.Escape(x).Replace(";", "|").Replace(@"\*", ".*").Replace(@"\?", ".") + "$",
                             RegexOptions.Compiled | RegexOptions.IgnoreCase))
                 .ToArray();
             copyDeep = deep;
