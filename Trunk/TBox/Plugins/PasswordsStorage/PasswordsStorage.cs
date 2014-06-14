@@ -40,8 +40,8 @@ namespace Mnk.TBox.Plugins.PasswordsStorage
          
         private void ShowDialog(Profile p, Window owner)
         {
-            dialog.Do(Context.DoSync, 
-                d => d.ShowDialog(ConfigManager, p, owner), 
+            dialog.Do(Context.DoSync,
+                d => d.ShowDialog(ConfigManager, p, Context, owner), 
                 ConfigManager.Config.States);
         }
 

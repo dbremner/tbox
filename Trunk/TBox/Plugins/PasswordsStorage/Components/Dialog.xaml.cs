@@ -17,25 +17,28 @@ namespace Mnk.TBox.Plugins.PasswordsStorage.Components
     /// </summary>
     public partial class Dialog
     {
-        private ILog log = LogManager.GetLogger<Dialog>();
+        private readonly ILog log = LogManager.GetLogger<Dialog>();
+        private IPluginContext pluginContext;
         private IConfigManager<Config> cm;
         public Dialog()
         {
             InitializeComponent();
         }
 
-        public void ShowDialog(IConfigManager<Config> cm, Profile p, Window owner)
+        public void ShowDialog(IConfigManager<Config> cm, Profile p, IPluginContext context, Window owner)
         {
             this.cm = cm;
             Title = p.Key;
             DataContext = null;
             DataContext = p;
             Owner = owner;
+            pluginContext = context;
             ShowAndActivate();
         }
 
-        private void CloseClick(object sender, RoutedEventArgs e)
+        private void SaveClick(object sender, RoutedEventArgs e)
         {
+            pluginContext.SaveConfig();
             Close();
         }
 

@@ -19,7 +19,7 @@
         <DockPanel DockPanel.Dock="Bottom" >
             <Button Content="{loc:Tr CopySelected}" Click="CopyAll" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
             <Button Content="{loc:Tr NewPassword}" Click="NewPassword" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
-            <Button Content="Close" IsDefault="True" IsCancel="True" Margin="20 10" Click="CloseClick" DockPanel.Dock="Right" />
+            <Button Content="Save" IsDefault="True" IsCancel="True" Margin="20 10" Click="SaveClick" DockPanel.Dock="Right" />
             <Label/>
         </DockPanel>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Margin="55 0 5 0">

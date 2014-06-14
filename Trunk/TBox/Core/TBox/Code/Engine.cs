@@ -129,7 +129,8 @@ namespace Mnk.TBox.Core.Application.Code
                 new PluginContext(
                     new DataProvider(toolsDataFolder, Path.Combine(pluginsReadOnlyDataFolder, name), Path.Combine(pluginsStoreDataFolder, name)),
                     pmu.Do,
-                    pluginsContextShared));
+                    pluginsContextShared,
+                    ()=>SaveConfig(name)));
             var ui = InitPlugin(name, plg);
             if (ui != null)
             {
@@ -199,6 +200,11 @@ namespace Mnk.TBox.Core.Application.Code
             updater.Update(TBoxLang.Save, 1.0f);
             uiConfigurator.Save(configManager.Config);
             configManager.Save();
+        }
+
+        private void SaveConfig(string name)
+        {
+            plugMan.SaveItem(name);
         }
 
         public EnginePluginInfo InitPlugin(string key, IPlugin plugin)

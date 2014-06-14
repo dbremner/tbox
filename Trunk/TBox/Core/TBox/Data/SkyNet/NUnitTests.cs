@@ -123,7 +123,7 @@ public class NUnitTests : ISkyScript
         if (failed.Any())
         {
             sb.AppendLine("Agents exceptions:");
-            sb.AppendLine(string.Join(Environment.NewLine, failed.Select(x => x.Report)));
+            sb.AppendLine(string.Join(Environment.NewLine + Environment.NewLine, failed.Select(x => x.Report)));
         }
         return sb.ToString();
     }
