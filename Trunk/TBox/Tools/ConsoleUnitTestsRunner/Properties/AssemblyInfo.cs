@@ -12,3 +12,4 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguageAttribute("en")]
 [assembly: Guid("b964880f-0300-41c4-8e94-0f8ead7ccb9f")]
 [assembly: CLSCompliant(true)]
+[assembly: InternalsVisibleTo("Mnk.TBox.Tests")]

@@ -1,6 +1,6 @@
 ﻿namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
 {
-    public interface IExecutor
+    interface IExecutor
     {
         int Execute(string[] args);
     }

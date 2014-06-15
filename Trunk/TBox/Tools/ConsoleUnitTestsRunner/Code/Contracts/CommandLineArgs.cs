@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
 {
-    public class CommandLineArgs 
+    class CommandLineArgs 
     {
-        public IList<string> Paths { get; set; }
-        public int TestsInParallel { get; set; }
-        public int AssembliesInParallel { get; set; }
-        public bool Prefetch { get; set; }
-        public bool Clone { get; set; }
-        public string[] CopyMasks { get; set; }
-        public bool Sync { get; set; }
-        public bool Teamcity { get; set; }
-        public string DirToCloneTests { get; set; }
-        public string CommandBeforeTestsRun { get; set; }
-        public int StartDelay { get; set; }
-        public string Mode { get; set; }
+        public IList<string> Paths { get; private set; }
+        public int TestsInParallel { get; private set; }
+        public int AssembliesInParallel { get; private set; }
+        public bool Prefetch { get; private set; }
+        public bool Clone { get; private set; }
+        public string[] CopyMasks { get; private set; }
+        public bool Sync { get; private set; }
+        public bool Teamcity { get; private set; }
+        public string DirToCloneTests { get; private set; }
+        public string CommandBeforeTestsRun { get; private set; }
+        public int StartDelay { get; private set; }
+        public string Mode { get; private set; }
+        public bool ReturnSuccess { get; private set; }
 
         //NUnit
-        public string[] Include { get; set; }
-        public string[] Exclude { get; set; }
-        public bool Logo { get; set; }
-        public bool Labels { get; set; }
-        public string XmlReport { get; set; }
-        public string OutputReport { get; set; }
-        public bool Wait { get; set; }
-        public string RuntimeFramework { get; set; }
+        public string[] Include { get; private set; }
+        public string[] Exclude { get; private set; }
+        public bool Logo { get; private set; }
+        public bool Labels { get; private set; }
+        public string XmlReport { get; private set; }
+        public string OutputReport { get; private set; }
+        public bool Wait { get; private set; }
+        public string RuntimeFramework { get; private set; }
 
         public CommandLineArgs()
         {
@@ -48,9 +51,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
             Teamcity = false;
             Paths = new List<string>();
             Mode = TestsRunnerMode.Internal;
+            ReturnSuccess = false;
         }
 
-        public CommandLineArgs(IEnumerable<string> args) : this()
+        public CommandLineArgs(params string[] args) : this()
         {
             foreach (var s in args)
             {
@@ -106,6 +110,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
             {
                 Mode = arg.Substring(CommandLineConstants.Mode.Length);
             }
+            else if (Equals(arg, CommandLineConstants.ReturnSuccess)) 
+            { 
+                ReturnSuccess = true; 
+            }
             //NUnit arguments
             else if (Starts(arg, CommandLineConstants.Include))
             {
@@ -149,6 +157,32 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
                 Paths.Add(arg);
             }
         }
+
+        public ITestsConfig ToTestsConfig(string path)
+        {
+            return new TestsConfig
+            {
+                RunAsAdmin = false,
+                RunAsx86 = !Environment.Is64BitProcess,
+                RunAsx86Path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RunAsx86.exe"),
+                NunitAgentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NUnitAgent.exe"),
+                CopyMasks = CopyMasks,
+                CommandBeforeTestsRun = CommandBeforeTestsRun,
+                CopyToSeparateFolders = Clone,
+                DirToCloneTests = DirToCloneTests,
+                NeedOutput = !string.IsNullOrEmpty(OutputReport),
+                NeedSynchronizationForTests = Sync,
+                ProcessCount = TestsInParallel,
+                RuntimeFramework = RuntimeFramework,
+                StartDelay = StartDelay,
+                TestDllPath = path,
+                OptimizeOrder = Prefetch,
+                Categories = Include ?? Exclude,
+                Mode = Mode,
+                IncludeCategories = (Include != null || Exclude != null) ? Include != null : (bool?)null
+            };
+        }
+
 
         private static bool Equals(string arg, string str)
         {

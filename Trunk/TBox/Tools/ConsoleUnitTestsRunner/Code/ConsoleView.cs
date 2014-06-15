@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Mnk.Library.ParallelNUnit.Contracts;
-using Mnk.Library.ParallelNUnit.Core;
 using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code

@@ -1,6 +1,6 @@
 ﻿namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
 {
-    public interface IInfoView
+    interface IInfoView
     {
         void ShowArgs(CommandLineArgs cmd);
         void ShowLogo();

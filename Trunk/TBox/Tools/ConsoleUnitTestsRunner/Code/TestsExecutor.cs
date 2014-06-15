@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit;
@@ -26,12 +25,13 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         {
             var workingDirectory = Environment.CurrentDirectory;
             using (var fixture = new MultiTestsFixture(
-                args.Paths.Select(p => CreateConfig(args, p)).ToArray(),
+                args.Paths.Select(args.ToTestsConfig).ToArray(),
                 args.AssembliesInParallel))
             {
                 if (args.Logo) Console.WriteLine("Calculating tests.");
                 var contexts = fixture.Refresh();
-                if (contexts.All(x => x.RetValue == 0))
+                var retValue = contexts.Min(x => x.RetValue);
+                if (retValue == 0)
                 {
                     var totalResults = new TestsResults(contexts.SelectMany(x => x.Results.Items).ToArray());
                     if (args.Logo)
@@ -46,12 +46,9 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 
                     view.PrintTotalResults();
                     PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), workingDirectory);
+                    return args.ReturnSuccess ? 0 : contexts.Min(x => x.RetValue);
                 }
-                foreach (var assembly in contexts)
-                {
-                    assembly.Container.Dispose();
-                }
-                return contexts.Min(x => x.RetValue);
+                return retValue;
             }
         }
 
@@ -62,31 +59,6 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             {
                 Console.WriteLine("'{0}' is done, time: {1}", Path.GetFileName(context.Path), ((Environment.TickCount - context.StartTime) / 1000).FormatTimeInSec());
             }
-        }
-
-        private static ITestsConfig CreateConfig(CommandLineArgs args, string path)
-        {
-            return new TestsConfig
-            {
-                RunAsAdmin = false,
-                RunAsx86 = !Environment.Is64BitProcess,
-                RunAsx86Path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RunAsx86.exe"),
-                NunitAgentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NUnitAgent.exe"),
-                CopyMasks = args.CopyMasks,
-                CommandBeforeTestsRun = args.CommandBeforeTestsRun,
-                CopyToSeparateFolders = args.Clone,
-                DirToCloneTests = args.DirToCloneTests,
-                NeedOutput = !string.IsNullOrEmpty(args.OutputReport),
-                NeedSynchronizationForTests = args.Sync,
-                ProcessCount = args.TestsInParallel,
-                RuntimeFramework = args.RuntimeFramework,
-                StartDelay = args.StartDelay,
-                TestDllPath = path,
-                OptimizeOrder = args.Prefetch,
-                Categories = args.Include ?? args.Exclude,
-                Mode = args.Mode,
-                IncludeCategories = args.Include != null && args.Exclude != null
-            };
         }
 
         private static ITestsUpdater BuildUpdater(CommandLineArgs args, IUpdater updater, int totalCount)
