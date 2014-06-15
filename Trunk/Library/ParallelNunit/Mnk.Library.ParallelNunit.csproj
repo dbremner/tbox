@@ -85,7 +85,6 @@
     <Compile Include="Contracts\Commands.cs" />
     <Compile Include="Packages\Excecution\InternalTestsExecutionFacade.cs" />
     <Compile Include="Packages\Excecution\ProcessTestsExecutionFacade.cs" />
-    <Compile Include="Packages\Excecution\ProcessRunnerContext.cs" />
     <Compile Include="Core\TestRunConfig.cs" />
     <Compile Include="Packages\Common\TestsExecutor.cs" />
     <Compile Include="Core\Result.cs" />

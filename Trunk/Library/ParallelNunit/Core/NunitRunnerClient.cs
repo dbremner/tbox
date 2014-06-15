@@ -12,7 +12,7 @@ namespace Mnk.Library.ParallelNUnit.Core
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     class NunitRunnerClient : INunitRunnerClient
     {
-        private readonly object locker = new object();
+        private readonly object sync = new object();
         public Result[] Collection { get; private set; }
         private readonly IDictionary<int, Result> allTestsResults;
         private int allTestsCount;
@@ -34,7 +34,7 @@ namespace Mnk.Library.ParallelNUnit.Core
 
         public void PrepareToRun(ISynchronizer sync, ITestsUpdater u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , ITestsMetricsCalculator metricsCalculator, ITestsConfig testConfig)
         {
-            this.testsConfig = testConfig;
+            testsConfig = testConfig;
             runConfig = config;
             allTestsCount = metricsCalculator.Total;
             allTestsResults.Clear();
@@ -63,7 +63,7 @@ namespace Mnk.Library.ParallelNUnit.Core
 
         public string GiveMeConfig()
         {
-            lock (locker)
+            lock (sync)
             {
                 if (runConfig == null)
                     throw new ArgumentNullException("TestRunConfig can't be null. Did you forget to execute PrepareToRun?");

@@ -122,7 +122,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             return new TestsConfig
             {
                 RunAsAdmin = false,
-                RunAsx86 = true,
+                RunAsx86 = !Environment.Is64BitProcess,
                 RunAsx86Path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RunAsx86.exe"),
                 NunitAgentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NUnitAgent.exe"),
                 CopyMasks = args.CopyMasks,

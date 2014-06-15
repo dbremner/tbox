@@ -22,9 +22,9 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             Execute(()=>Create(config, handle, config.NeedSynchronizationForTests ? TestsCommands.Test : TestsCommands.FastTest));
         }
 
-        private static void Execute(Func<ProcessRunnerContext> operation)
+        private static void Execute(Func<Process> operation)
         {
-            ProcessRunnerContext context = null;
+            Process context = null;
             try
             {
                 context = operation();
@@ -39,7 +39,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             }
         }
 
-        private static ProcessRunnerContext Create(ITestsConfig config, string handle, string command)
+        private static Process Create(ITestsConfig config, string handle, string command)
         {
             var fileName = config.NunitAgentPath;
             var args = string.Format(CultureInfo.InvariantCulture, "{0} \"{1}\" {2} {3}", handle, config.TestDllPath, command, config.RuntimeFramework ?? string.Empty);
@@ -53,7 +53,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
                 UseShellExecute = config.RunAsAdmin,
             };
             if (config.RunAsAdmin && !string.Equals(command, TestsCommands.Collect, StringComparison.OrdinalIgnoreCase)) pi.Verb = "runas";
-            return new ProcessRunnerContext(Process.Start(pi));
+            return Process.Start(pi);
         }
 
         private static void ApplyCommand(string command, ref string args, ref string fileName)
