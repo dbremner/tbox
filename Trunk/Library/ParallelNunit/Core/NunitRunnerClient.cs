@@ -67,7 +67,7 @@ namespace Mnk.Library.ParallelNUnit.Core
             {
                 if (runConfig == null)
                     throw new ArgumentNullException("TestRunConfig can't be null. Did you forget to execute PrepareToRun?");
-                if (string.Equals(testsConfig.Type, TestsRunnerType.MultiProcess))
+                if (string.Equals(testsConfig.Mode, TestsRunnerMode.MultiProcess))
                 {
                     if (runConfig.DllPaths.Count > 1)
                     {

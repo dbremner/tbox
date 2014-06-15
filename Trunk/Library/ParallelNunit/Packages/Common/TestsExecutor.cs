@@ -65,7 +65,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
 
         private ITestsExecutionFacade GetFacade(ITestsConfig config)
         {
-            return factory(config.Type);
+            return factory(config.Mode);
         }
 
     }

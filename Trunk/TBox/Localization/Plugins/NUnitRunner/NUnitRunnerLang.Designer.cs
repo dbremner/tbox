@@ -394,6 +394,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Process mode.
+        /// </summary>
+        public static string ProcessMode {
+            get {
+                return ResourceManager.GetString("ProcessMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Refresh {

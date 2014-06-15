@@ -89,7 +89,7 @@ public class NUnitTests : ISkyScript
             RunAsx86Path = RunAsx86Path,
             NunitAgentPath = NunitAgentPath,
             RunAsAdmin = false,
-            Type = TestsRunnerType.Process,
+            Mode = TestsRunnerMode.Process,
         };
     }
 

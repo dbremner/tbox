@@ -40,6 +40,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             this.runAsx86Path = runAsx86Path;
             InitializeComponent();
             Framework.ItemsSource = new[] {"net-2.0", "net-4.0"};
+            Mode.ItemsSource = new[] { TestsRunnerMode.Process, TestsRunnerMode.MultiProcess };
             Progress.OnStartClick += StartClick;
             //load icons
             foreach (DictionaryEntry res in Properties.Resources.ResourceManager.GetResourceSet(Thread.CurrentThread.CurrentUICulture, true, true))
@@ -85,7 +86,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 NeedSynchronizationForTests = config.NeedSynchronizationForTests && config.ProcessCount > 1,
                 StartDelay = config.StartDelay,
                 NeedOutput = true,
-                Type = TestsRunnerType.Process
+                Mode = config.Mode
             };
             container = ServicesRegistrar.Register();
             testsFixture = container.GetInstance<ITestsFixture>();

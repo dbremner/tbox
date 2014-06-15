@@ -29,7 +29,7 @@ namespace Mnk.Library.Tests.ParallelNunit
             config = new TestsConfig
             {
                 DirToCloneTests = Path.GetTempPath(),
-                Type = TestsRunnerType.Internal
+                Mode = TestsRunnerMode.Internal
             };
             updater = new SimpleUpdater(new ConsoleUpdater());
             container = ServicesRegistrar.Register();

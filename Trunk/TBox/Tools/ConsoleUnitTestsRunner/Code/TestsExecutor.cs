@@ -137,7 +137,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                 TestDllPath = path,
                 OptimizeOrder = args.Prefetch,
                 Categories = args.Include ?? args.Exclude,
-                Type = args.Mode,
+                Mode = args.Mode,
                 IncludeCategories = args.Include != null && args.Exclude != null
             };
         }

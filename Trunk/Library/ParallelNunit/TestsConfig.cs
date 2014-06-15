@@ -19,7 +19,7 @@ namespace Mnk.Library.ParallelNUnit
         public string[] Categories { get; set; }
         public bool? IncludeCategories { get; set; }
 
-        public string Type { get; set; }
+        public string Mode { get; set; }
 
         public string NunitAgentPath { get; set; }
         public string RunAsx86Path { get; set; }

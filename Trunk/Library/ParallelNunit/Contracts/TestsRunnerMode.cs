@@ -1,6 +1,6 @@
 ﻿namespace Mnk.Library.ParallelNUnit.Contracts
 {
-    public static class TestsRunnerType
+    public static class TestsRunnerMode
     {
         public static readonly string Internal = "Internal";
         public static readonly string Process = "Process";

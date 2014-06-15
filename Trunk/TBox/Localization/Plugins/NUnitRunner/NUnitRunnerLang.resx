@@ -306,4 +306,7 @@
   <data name="View" xml:space="preserve">
     <value>View</value>
   </data>
+  <data name="ProcessMode" xml:space="preserve">
+    <value>Process mode</value>
+  </data>
 </root>

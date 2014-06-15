@@ -47,7 +47,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
             Wait = false;
             Teamcity = false;
             Paths = new List<string>();
-            Mode = TestsRunnerType.Internal;
+            Mode = TestsRunnerMode.Internal;
         }
 
         public CommandLineArgs(IEnumerable<string> args) : this()

@@ -3,6 +3,7 @@ using System.IO;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
+using Mnk.Library.ParallelNUnit.Contracts;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
 {
@@ -23,6 +24,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
         public bool UsePrefetch { get; set; }
         public int StartDelay { get; set; }
         public string RuntimeFramework { get; set; }
+        public string Mode { get; set; }
 
         public TestConfig()
         {
@@ -43,6 +45,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
             StartDelay = 0;
             UsePrefetch = false;
             RuntimeFramework = "net-4.0";
+            Mode = TestsRunnerMode.Process;
         }
 
         public override object Clone()

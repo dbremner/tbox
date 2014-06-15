@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -17,13 +18,42 @@ namespace Mnk.Library.ScriptEngine.Core.Assemblies
 			var result = new ConcurrentDictionary<string, IList<string>>();
 			var knownLibs = new HashSet<string>();
 			Parallel.ForEach(
-				GetAssemblies(AppDomain.CurrentDomain.GetAssemblies().Where(x => !x.IsDynamic), knownLibs), 
+				GetAssemblies(GetAssemblies().Where(x => !x.IsDynamic), knownLibs), 
 				info => AddAssembly(result, info));
 			InfoLog.Write("Collect assemblies time: {0}", Environment.TickCount - time);
-			return result;
+			return result.ToDictionary(x=>x.Key, x=>x.Value);
 		}
 
-		private static IEnumerable<AssemblyInfo> GetAssemblies(IEnumerable<Assembly> assemblies, ISet<string> knownLibs)
+	    private static IEnumerable<Assembly> GetAssemblies()
+	    {
+            foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                yield return a;
+            }
+	        var path = AppDomain.CurrentDomain.BaseDirectory;
+            if (!Directory.Exists(Path.Combine(path, "Libraries")))
+	        {
+	            path = Path.GetFullPath(path + "/..");
+	        }
+            foreach (var dir in new[] { "Libraries", "Localization" })
+	        {
+	            foreach (var file in Directory.EnumerateFiles(Path.Combine(path, dir),"*.dll"))
+	            {
+	                Assembly a;
+	                try
+	                {
+	                    a = Assembly.LoadFile(file);
+	                }
+	                catch (Exception)
+	                {
+	                    continue;
+	                }
+	                yield return a;
+	            }
+	        }
+	    }
+
+	    private static IEnumerable<AssemblyInfo> GetAssemblies(IEnumerable<Assembly> assemblies, ISet<string> knownLibs)
 		{
 			foreach (var asm in assemblies)
 			{

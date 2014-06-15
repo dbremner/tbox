@@ -36,7 +36,7 @@ namespace Mnk.TBox.Tests.PlugingsShared.ParallelNunit
                 RunAsx86Path = RunAsx86Path,
                 DirToCloneTests = Path.GetTempPath(),
                 RunAsAdmin = false,
-                Type = TestsRunnerType.Process
+                Mode = TestsRunnerMode.Process
             };
             updater = new SimpleUpdater(new ConsoleUpdater());
             container = ServicesRegistrar.Register();

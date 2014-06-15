@@ -65,7 +65,7 @@
     <Compile Include="Contracts\ITestsDivider.cs" />
     <Compile Include="Contracts\ITestsSummaryBuilder.cs" />
     <Compile Include="Contracts\TestsResults.cs" />
-    <Compile Include="Contracts\TestsRunnerType.cs" />
+    <Compile Include="Contracts\TestsRunnerMode.cs" />
     <Compile Include="Contracts\INUnitTestFacade.cs" />
     <Compile Include="Core\NUnitTestFacade.cs" />
     <Compile Include="Core\NUnitBase.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Contracts\ITestsUpdater.cs" />
     <Compile Include="Contracts\ITestsConfig.cs" />
     <Compile Include="Packages\Excecution\MultiProcessTestsExecutionFacade.cs" />
+    <Compile Include="Packages\MultiTestsFixture.cs" />
     <Compile Include="Packages\TestsFixture.cs" />
     <Compile Include="Packages\Common\TestsDivider.cs" />
     <Compile Include="Contracts\ITestsFixture.cs" />
