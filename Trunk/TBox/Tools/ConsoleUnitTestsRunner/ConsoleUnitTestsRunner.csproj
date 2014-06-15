@@ -51,7 +51,6 @@
     <Compile Include="Code\Contracts\CommandLineConstants.cs" />
     <Compile Include="Code\ConsoleView.cs" />
     <Compile Include="Code\Contracts\CommandLineArgs.cs" />
-    <Compile Include="Code\Contracts\ExecutionContext.cs" />
     <Compile Include="Code\Contracts\IExecutor.cs" />
     <Compile Include="Code\Contracts\IInfoView.cs" />
     <Compile Include="Code\Contracts\IReportBuilder.cs" />

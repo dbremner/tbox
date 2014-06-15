@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
+using Mnk.Library.ParallelNUnit.Packages;
 using Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts;
-using ExecutionContext = Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts.ExecutionContext;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
@@ -17,7 +15,6 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
     {
         private readonly IConsoleView view;
         private readonly IUpdater updater;
-        private readonly static ILog Log = LogManager.GetLogger<TestsExecutor>();
 
         public TestsExecutor(IConsoleView view, IUpdater updater)
         {
@@ -28,92 +25,42 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         public int Run(CommandLineArgs args)
         {
             var workingDirectory = Environment.CurrentDirectory;
-
-            if (args.Logo) Console.WriteLine("Calculating tests.");
-            var assemblies = CollectTests(args.Paths, args);
-            if (assemblies.All(x => x.RetValue == 0))
+            using (var fixture = new MultiTestsFixture(
+                args.Paths.Select(p => CreateConfig(args, p)).ToArray(),
+                args.AssembliesInParallel))
             {
-                var totalResults = new TestsResults(assemblies.SelectMany(x => x.Results.Items).ToArray());
-                if (args.Logo)
+                if (args.Logo) Console.WriteLine("Calculating tests.");
+                var contexts = fixture.Refresh();
+                if (contexts.All(x => x.RetValue == 0))
                 {
-                    Console.WriteLine("{0} tests found.", totalResults.Metrics.Total);
-                    Console.WriteLine("Running tests.");
-                }
-                var testsUpdater = BuildUpdater(args, updater, totalResults.Metrics.Total);
-
-                if (args.AssembliesInParallel > 1)
-                {
-                    Parallel.ForEach(assemblies,
-                        new ParallelOptions {MaxDegreeOfParallelism = args.AssembliesInParallel}, 
-                        assembly => RunTest(assembly, view, testsUpdater, args)
-                        );
-                }
-                else
-                {
-                    foreach (var assembly in assemblies)
+                    var totalResults = new TestsResults(contexts.SelectMany(x => x.Results.Items).ToArray());
+                    if (args.Logo)
                     {
-                        RunTest(assembly,  view, testsUpdater, args);
+                        Console.WriteLine("{0} tests found.", totalResults.Metrics.Total);
+                        Console.WriteLine("Running tests.");
                     }
+
+                    fixture.Run(
+                        BuildUpdater(args, updater, totalResults.Metrics.Total), 
+                        c => OnTestEnd(c, args));
+
+                    view.PrintTotalResults();
+                    PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), workingDirectory);
                 }
-
-                view.PrintTotalResults();
-                PrintTotalInfo(view, args.XmlReport, args.OutputReport, args.Paths.FirstOrDefault(), workingDirectory);
-            }
-            foreach (var assembly in assemblies)
-            {
-                assembly.Container.Dispose();
-            }
-            return assemblies.Min(x=>x.RetValue);
-        }
-
-        private static ExecutionContext[] CollectTests(IEnumerable<string> paths, CommandLineArgs args)
-        {
-            return ((args.AssembliesInParallel>1) ? 
-                paths.AsParallel().Select(x => Collect(x, args)) :
-                paths.Select(x => Collect(x, args))
-                ).ToArray()
-                ;
-        }
-
-        private static ExecutionContext Collect(string path, CommandLineArgs args)
-        {
-            var context = new ExecutionContext
-            {
-                Path = path,
-                Config = CreateConfig(args, path),
-                RetValue = 0,
-                Container = Library.ParallelNUnit.ServicesRegistrar.Register(),
-            };
-            context.TestsFixture = context.Container.GetInstance<ITestsFixture>();
-            if (!context.TestsFixture.EnsurePathIsValid(context.Config))
-            {
-                Log.Write("Incorrect path: " + path);
-                context.RetValue = -3;
-            }
-            else
-            {
-                context.Results = context.TestsFixture.Refresh(context.Config);
-                if (context.Results.IsFailed)
+                foreach (var assembly in contexts)
                 {
-                    Log.Write("Can't calculate tests count");
-                    context.RetValue = -3;
+                    assembly.Container.Dispose();
                 }
+                return contexts.Min(x => x.RetValue);
             }
-            return context;
         }
 
-        private static void RunTest(ExecutionContext context, IConsoleView view, ITestsUpdater testsUpdater, CommandLineArgs args)
+        private void OnTestEnd(ExecutionContext context, CommandLineArgs args)
         {
-            var time = Environment.TickCount;
-            context.Results = context.TestsFixture.Run(context.Config, context.Results, testsUpdater);
             view.SetItems(context.Results);
-            if (context.Results.Metrics.FailedCount > 0)
-            {
-                context.RetValue = -2;
-            }
             if (args.Logo && !args.Labels && args.Paths.Count > 1)
             {
-                Console.WriteLine("'{0}' is done, time: {1}", Path.GetFileName(context.Path), ((Environment.TickCount - time)/1000).FormatTimeInSec());
+                Console.WriteLine("'{0}' is done, time: {1}", Path.GetFileName(context.Path), ((Environment.TickCount - context.StartTime) / 1000).FormatTimeInSec());
             }
         }
 
