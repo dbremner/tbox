@@ -15,20 +15,19 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
 {
     internal class TestsExecutor : ITestsExecutor
     {
-        private readonly IReportBuilder reportBuilder;
+        private readonly IConsoleView view;
         private readonly IUpdater updater;
         private readonly static ILog Log = LogManager.GetLogger<TestsExecutor>();
 
-        public TestsExecutor(IReportBuilder reportBuilder, IUpdater updater)
+        public TestsExecutor(IConsoleView view, IUpdater updater)
         {
-            this.reportBuilder = reportBuilder;
+            this.view = view;
             this.updater = updater;
         }
 
         public int Run(CommandLineArgs args)
         {
             var workingDirectory = Environment.CurrentDirectory;
-            var view = new ConsoleView(reportBuilder);
 
             if (args.Logo) Console.WriteLine("Calculating tests.");
             var assemblies = CollectTests(args.Paths, args);
@@ -103,7 +102,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             return context;
         }
 
-        private static void RunTest(ExecutionContext context, ConsoleView view, ITestsUpdater testsUpdater, CommandLineArgs args)
+        private static void RunTest(ExecutionContext context, IConsoleView view, ITestsUpdater testsUpdater, CommandLineArgs args)
         {
             var time = Environment.TickCount;
             context.Results = context.TestsFixture.Run(context.Config, context.Results, testsUpdater);
@@ -112,7 +111,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             {
                 context.RetValue = -2;
             }
-            if (args.Logo && !args.Labels)
+            if (args.Logo && !args.Labels && args.Paths.Count > 1)
             {
                 Console.WriteLine("'{0}' is done, time: {1}", Path.GetFileName(context.Path), ((Environment.TickCount - time)/1000).FormatTimeInSec());
             }
@@ -122,6 +121,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         {
             return new TestsConfig
             {
+                RunAsAdmin = false,
+                RunAsx86 = true,
+                RunAsx86Path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RunAsx86.exe"),
+                NunitAgentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NUnitAgent.exe"),
                 CopyMasks = args.CopyMasks,
                 CommandBeforeTestsRun = args.CommandBeforeTestsRun,
                 CopyToSeparateFolders = args.Clone,
@@ -134,7 +137,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                 TestDllPath = path,
                 OptimizeOrder = args.Prefetch,
                 Categories = args.Include ?? args.Exclude,
-                Type = TestsRunnerType.Internal,
+                Type = args.Mode,
                 IncludeCategories = args.Include != null && args.Exclude != null
             };
         }
@@ -147,7 +150,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                 new GroupUpdater(updater, totalCount);
         }
 
-        private static void PrintTotalInfo(ConsoleView view, string xmlReport, string outputReport, string path, string dir)
+        private static void PrintTotalInfo(IConsoleView view, string xmlReport, string outputReport, string path, string dir)
         {
             Directory.SetCurrentDirectory(dir);
             if (!string.IsNullOrEmpty(xmlReport)) view.GenerateReport(path, xmlReport);

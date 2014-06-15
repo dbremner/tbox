@@ -12,6 +12,7 @@
         public const string Sync = "-sync";
         public const string Prefetch = "-prefetch";
         public const string Teamcity = "-teamcity";
+        public const string Mode = "-mode=";
 
         public const string Include = "/include=";
         public const string Exclude = "/exclude=";

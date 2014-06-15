@@ -63,12 +63,14 @@
     <Compile Include="Contracts\IOrderOptimizationManager.cs" />
     <Compile Include="Contracts\ISynchronizer.cs" />
     <Compile Include="Contracts\ITestsDivider.cs" />
+    <Compile Include="Contracts\ITestsSummaryBuilder.cs" />
     <Compile Include="Contracts\TestsResults.cs" />
     <Compile Include="Contracts\TestsRunnerType.cs" />
     <Compile Include="Contracts\INUnitTestFacade.cs" />
     <Compile Include="Core\NUnitTestFacade.cs" />
     <Compile Include="Core\NUnitBase.cs" />
     <Compile Include="Contracts\ITestsMetricsCalculator.cs" />
+    <Compile Include="Core\TestsSummaryBuilder.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Contracts\ITestsExecutionFacade.cs" />
     <Compile Include="Contracts\ITestsExecutor.cs" />
@@ -77,7 +79,6 @@
     <Compile Include="Packages\Common\DirectoriesManipulator.cs" />
     <Compile Include="Contracts\ITestsUpdater.cs" />
     <Compile Include="Contracts\ITestsConfig.cs" />
-    <Compile Include="Contracts\ITestsView.cs" />
     <Compile Include="Packages\TestsFixture.cs" />
     <Compile Include="Packages\Common\TestsDivider.cs" />
     <Compile Include="Contracts\ITestsFixture.cs" />

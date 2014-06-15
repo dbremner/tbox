@@ -7,6 +7,7 @@ using LightInject;
 using Mnk.Library.Common.MT;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
+using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Packages.Common;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
@@ -18,6 +19,7 @@ public class NUnitTests : ISkyScript
 {
     private const string NunitAgentPath = "NUnitAgent.exe";
     private const string RunAsx86Path = "RunAsx86.exe";
+    private DateTimeOffset startTime = DateTime.UtcNow;
     [Directory]
     public string DataFolderPath { get; set; }
     [StringList("*.dll", "*.config", CanBeEmpty = false)]
@@ -107,19 +109,8 @@ public class NUnitTests : ISkyScript
         if (all.Any())
         {
             var tmc = new TestsMetricsCalculator(all);
-            sb.AppendFormat(
-                "Tests run: {0}, Errors: {1}, Failures: {2}, Inconclusive: {3}, Not run: {4}, Invalid: {5}, Ignored: {6}, Skipped: {7}",
-                tmc.Passed,
-                tmc.Errors,
-                tmc.Failures,
-                tmc.Inconclusive,
-                tmc.NotRun.Length,
-                tmc.Invalid,
-                tmc.Ignored,
-                tmc.Skipped
-                );
-            PrintArray("Errors and Failures:", tmc.Failed, true, sb);
-            PrintArray("Tests Not Run:", tmc.NotRun, false, sb);
+            var builder = new TestsSummaryBuilder();
+            sb.AppendLine(builder.Build(tmc, startTime));
         }
         var failed = results.Where(x => x.IsFailed).ToArray();
         if (failed.Any())
@@ -128,23 +119,6 @@ public class NUnitTests : ISkyScript
             sb.AppendLine(string.Join(Environment.NewLine, failed.Select(x => x.Report)));
         }
         return sb.ToString();
-    }
-
-    private static void PrintArray(string message, Result[] items, bool stackTrace, StringBuilder sb)
-    {
-        if (items.Length == 0) return;
-        sb.AppendLine();
-        sb.AppendLine(message);
-        var i = 0;
-        foreach (var r in items)
-        {
-            sb.AppendLine();
-            sb.AppendFormat("{0}) {1} : {2}{3}{4}", ++i, r.State, r.FullName,
-            string.IsNullOrEmpty(r.Message) ? string.Empty : ("\n   " + r.Message),
-            stackTrace ? ("\n" + r.StackTrace + "\n") : string.Empty
-            );
-        }
-        sb.AppendLine();
     }
 
     public string AgentExecute(string workingDirectory, string agentData, ISkyContext context)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using Mnk.Library.ParallelNUnit.Contracts;
@@ -114,13 +115,58 @@ namespace Mnk.Library.ParallelNUnit.Core
         private static void Map(Result item, Result i)
         {
             item.AssertCount = i.AssertCount;
-            item.Executed = i.Executed;
             item.Description = i.Description;
             item.Message = i.Message;
-            item.StackTrace = i.StackTrace;
+            item.StackTrace = Filter(i.StackTrace);
             item.Output = i.Output;
             item.State = i.State;
+            item.FailureSite = i.FailureSite;
             item.Refresh();
+        }
+
+        public static string Filter(string stack)
+        {
+            if (stack == null) return null;
+            using (var sw = new StringWriter())
+            {
+                using (var sr = new StringReader(stack))
+                {
+                    try
+                    {
+                        string line;
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            if (!FilterLine(line))
+                            {
+                                sw.WriteLine(line.Trim());
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return stack;
+                    }
+                    return sw.ToString();
+                }
+            }
+        }
+
+        static bool FilterLine(string line)
+        {
+            var patterns = new[]
+			{
+				"NUnit.Core.TestCase",
+				"NUnit.Core.ExpectedExceptionTestCase",
+				"NUnit.Core.TemplateTestCase",
+				"NUnit.Core.TestResult",
+				"NUnit.Core.TestSuite",
+				"NUnit.Framework.Assertion", 
+				"NUnit.Framework.Assert",
+                "System.Reflection.MonoMethod",
+                "Mnk.Library.ParallelNunit",
+			};
+
+            return patterns.Any(t => line.IndexOf(t, StringComparison.Ordinal) > 0);
         }
 
         private static bool IsFailed(Result i)

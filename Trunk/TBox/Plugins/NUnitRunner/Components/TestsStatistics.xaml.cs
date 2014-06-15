@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Controls;
 using Mnk.Library.ParallelNUnit.Contracts;
+using Mnk.TBox.Plugins.NUnitRunner.Code;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {

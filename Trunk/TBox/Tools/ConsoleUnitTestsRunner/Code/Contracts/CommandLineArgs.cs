@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Mnk.Library.ParallelNUnit.Contracts;
 
 namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
 {
@@ -17,6 +18,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
         public string DirToCloneTests { get; set; }
         public string CommandBeforeTestsRun { get; set; }
         public int StartDelay { get; set; }
+        public string Mode { get; set; }
 
         //NUnit
         public string[] Include { get; set; }
@@ -45,6 +47,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
             Wait = false;
             Teamcity = false;
             Paths = new List<string>();
+            Mode = TestsRunnerType.Internal;
         }
 
         public CommandLineArgs(IEnumerable<string> args) : this()
@@ -98,6 +101,10 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code.Contracts
             else if (Equals(arg, CommandLineConstants.Teamcity))
             {
                 Teamcity = true;
+            }
+            else if (Starts(arg, CommandLineConstants.Mode))
+            {
+                Mode = arg.Substring(CommandLineConstants.Mode.Length);
             }
             //NUnit arguments
             else if (Starts(arg, CommandLineConstants.Include))

@@ -1,4 +1,6 @@
-﻿namespace Mnk.Library.ParallelNUnit.Contracts
+﻿using Mnk.Library.ParallelNUnit.Contracts;
+
+namespace Mnk.TBox.Plugins.NUnitRunner.Code
 {
     public interface ITestsView
     {

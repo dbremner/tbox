@@ -11,6 +11,7 @@ using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.WpfControls;
 using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
+using Mnk.TBox.Plugins.NUnitRunner.Code;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {

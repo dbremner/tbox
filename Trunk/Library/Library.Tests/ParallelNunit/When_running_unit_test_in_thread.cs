@@ -20,7 +20,6 @@ namespace Mnk.Library.Tests.ParallelNunit
         public static readonly string[] Frameworks = { "net-4.0" };
         private IServiceContainer container;
         private TestsConfig config;
-        private ITestsView view;
         private ITestsUpdater updater;
         private ITestsFixture testsFixture;
 
@@ -32,7 +31,6 @@ namespace Mnk.Library.Tests.ParallelNunit
                 DirToCloneTests = Path.GetTempPath(),
                 Type = TestsRunnerType.Internal
             };
-            view = MockRepository.GenerateStub<ITestsView>();
             updater = new SimpleUpdater(new ConsoleUpdater());
             container = ServicesRegistrar.Register();
             testsFixture = container.GetInstance<ITestsFixture>();

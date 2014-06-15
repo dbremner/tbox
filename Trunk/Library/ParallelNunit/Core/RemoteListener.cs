@@ -82,9 +82,9 @@ namespace Mnk.Library.ParallelNUnit.Core
                     Message = result.Message,
                     StackTrace = result.StackTrace,
                     State = result.ResultState,
+                    FailureSite = result.FailureSite,
                     Time = result.Time,
                     Type = result.Test.TestType,
-                    Executed = result.Executed,
                     AssertCount = result.AssertCount,
                     Output = Output.ToString(),
                 });

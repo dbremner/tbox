@@ -33,9 +33,9 @@ namespace Mnk.Library.ParallelNUnit.Packages.Common
             foreach (var i in items)
             {
                 i.State = ResultState.NotRunnable;
+                i.FailureSite = FailureSite.Test;
                 i.Message = i.StackTrace = i.Description = string.Empty;
                 i.Time = i.AssertCount = 0;
-                i.Executed = false;
                 i.Output = string.Empty;
                 i.Refresh();
             }

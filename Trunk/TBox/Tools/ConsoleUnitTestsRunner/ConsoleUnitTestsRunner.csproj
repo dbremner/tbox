@@ -57,6 +57,7 @@
     <Compile Include="Code\Contracts\IReportBuilder.cs" />
     <Compile Include="Code\Contracts\ITestsExecutor.cs" />
     <Compile Include="Code\Executor.cs" />
+    <Compile Include="Code\Contracts\IConsoleView.cs" />
     <Compile Include="Code\InfoView.cs" />
     <Compile Include="Code\ServicesRegistrar.cs" />
     <Compile Include="Code\TeamcityUpdater.cs" />

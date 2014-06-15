@@ -1,4 +1,5 @@
-﻿using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
+﻿using System;
+using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
 using Mnk.Library.Common.SaveLoad;
 using NUnit.Framework;
 

@@ -21,11 +21,11 @@ namespace Mnk.Library.ParallelNUnit
             container.Register<IDirectoriesManipulator, DirectoriesManipulator>(new PerContainerLifetime());
             container.Register<IOrderOptimizationManager, OrderOptimizationManager>(new PerContainerLifetime());
 
-            container.Register<ITestsExecutionFacade, InternalTestsExecutionFacade>(TestsRunnerType.Internal, new PerContainerLifetime());
-            container.Register<ITestsExecutionFacade, ProcessTestsExecutionFacade>(TestsRunnerType.Process, new PerContainerLifetime());
+            container.Register<ITestsExecutionFacade, InternalTestsExecutionFacade>(TestsRunnerType.Internal.ToLower(), new PerContainerLifetime());
+            container.Register<ITestsExecutionFacade, ProcessTestsExecutionFacade>(TestsRunnerType.Process.ToLower(), new PerContainerLifetime());
             
-            container.RegisterInstance(typeof(Func<string, ITestsExecutionFacade>), 
-                new Func<string, ITestsExecutionFacade>( container.GetInstance<ITestsExecutionFacade>));
+            container.RegisterInstance(typeof(Func<string, ITestsExecutionFacade>),
+                new Func<string, ITestsExecutionFacade>(name => container.GetInstance<ITestsExecutionFacade>(name.ToLower())));
 
             container.Register<ITestsFixture, TestsFixture>(new PerContainerLifetime());
         }
