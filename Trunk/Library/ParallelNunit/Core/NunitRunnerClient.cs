@@ -32,13 +32,13 @@ namespace Mnk.Library.ParallelNUnit.Core
             Collection = new Result[0];
         }
 
-        public void PrepareToRun(ISynchronizer sync, ITestsUpdater u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , ITestsMetricsCalculator metricsCalculator, ITestsConfig testConfig)
+        public void PrepareToRun(ISynchronizer synchro, ITestsUpdater u, TestRunConfig config, IList<IList<Result>> packages, IList<Result> allTests , ITestsMetricsCalculator metricsCalculator, ITestsConfig testConfig)
         {
             testsConfig = testConfig;
             runConfig = config;
             allTestsCount = metricsCalculator.Total;
             allTestsResults.Clear();
-            synchronizer = sync;
+            synchronizer = synchro;
             progress = u;
             foreach (var package in packages)
             {
@@ -67,6 +67,17 @@ namespace Mnk.Library.ParallelNUnit.Core
             {
                 if (runConfig == null)
                     throw new ArgumentNullException("TestRunConfig can't be null. Did you forget to execute PrepareToRun?");
+                if (string.Equals(testsConfig.Type, TestsRunnerType.MultiProcess))
+                {
+                    if (runConfig.DllPaths.Count > 1)
+                    {
+                        var cfg = new TestRunConfig(new[] {runConfig.DllPaths[0]});
+                        cfg.TestsToRun.Add(runConfig.TestsToRun[0]);
+                        runConfig.DllPaths.RemoveAt(0);
+                        runConfig.TestsToRun.RemoveAt(0);
+                        return JsonSerializer.SerializeToString(cfg);
+                    }
+                }
                 var ret = JsonSerializer.SerializeToString(runConfig);
                 runConfig = null;
                 return ret;

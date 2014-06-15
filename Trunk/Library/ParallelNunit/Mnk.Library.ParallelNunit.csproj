@@ -79,6 +79,7 @@
     <Compile Include="Packages\Common\DirectoriesManipulator.cs" />
     <Compile Include="Contracts\ITestsUpdater.cs" />
     <Compile Include="Contracts\ITestsConfig.cs" />
+    <Compile Include="Packages\Excecution\MultiProcessTestsExecutionFacade.cs" />
     <Compile Include="Packages\TestsFixture.cs" />
     <Compile Include="Packages\Common\TestsDivider.cs" />
     <Compile Include="Contracts\ITestsFixture.cs" />

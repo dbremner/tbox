@@ -17,12 +17,12 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             return new TestsResults(client.Collection);
         }
 
-        public void Run(ITestsConfig config, string handle)
+        public virtual void Run(ITestsConfig config, string handle)
         {
             Execute(()=>Create(config, handle, config.NeedSynchronizationForTests ? TestsCommands.Test : TestsCommands.FastTest));
         }
 
-        private static void Execute(Func<Process> operation)
+        protected static void Execute(Func<Process> operation)
         {
             Process context = null;
             try
@@ -39,7 +39,7 @@ namespace Mnk.Library.ParallelNUnit.Packages.Excecution
             }
         }
 
-        private static Process Create(ITestsConfig config, string handle, string command)
+        protected static Process Create(ITestsConfig config, string handle, string command)
         {
             var fileName = config.NunitAgentPath;
             var args = string.Format(CultureInfo.InvariantCulture, "{0} \"{1}\" {2} {3}", handle, config.TestDllPath, command, config.RuntimeFramework ?? string.Empty);

@@ -85,7 +85,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
             Console.WriteLine("-startDelay=N    - delay before test starts, by default 0");
             Console.WriteLine("-prefetch        - use test run time statistic to optimize tests separation, by default false");
             Console.WriteLine("-teamcity        - teamcity inteagration: will show test progress, by default false");
-            Console.WriteLine("-mode=mode       - Execution mode: Internal, Process, by default Internal");
+            Console.WriteLine("-mode=mode       - Execution mode: Internal, Process, MultiProcess, by default Internal");
             Console.WriteLine("NUnit compatible arguments:");
             Console.WriteLine("/include=a1[;a2] - include only tests with specified categories");
             Console.WriteLine("/exclude=a1[;a2] - exclude all tests with specified categories");

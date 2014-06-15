@@ -24,21 +24,28 @@ namespace Mnk.Library.ParallelNUnit.Core
             {
                 var str = cl.Instance.GiveMeConfig();
                 var cfg = JsonSerializer.DeserializeFromString<TestRunConfig>(str);
-                if (cfg == null)
+                if (cfg == null || cfg.TestsToRun.Count == 0)
                     throw new ArgumentNullException("Can't deserialize config: " + str);
-                Parallel.For(0, cfg.TestsToRun.Count, i =>
+                Execute(config, handle, cfg, 0);
+                if (cfg.TestsToRun.Count > 1)
                 {
-                    var path = cfg.DllPaths[i];
-                    var items = cfg.TestsToRun[i].ToArray();
-                    if (i > 0 && cfg.StartDelay > 0)
+                    Parallel.For(1, cfg.TestsToRun.Count, i =>
                     {
-                        Thread.Sleep(i * cfg.StartDelay);
-                    }
-                    Run(handle, path, items, !config.NeedSynchronizationForTests,
-                        config.NeedOutput, config.RuntimeFramework);
-                });
+                        if (cfg.StartDelay > 0)
+                        {
+                            Thread.Sleep(i * cfg.StartDelay);
+                        }
+                        Execute(config, handle, cfg, i);
+                    });
+                }
             }
             return 1;
+        }
+
+        private void Execute(ITestsConfig config, string handle, TestRunConfig cfg, int i)
+        {
+            Run(handle, cfg.DllPaths[i], cfg.TestsToRun[i].ToArray(), !config.NeedSynchronizationForTests,
+                config.NeedOutput, config.RuntimeFramework);
         }
 
         public int Run(string handle, string path, int[] items, bool fast, bool needOutput, string runtimeFramework)

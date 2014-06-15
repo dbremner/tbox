@@ -23,6 +23,7 @@ namespace Mnk.Library.ParallelNUnit
 
             container.Register<ITestsExecutionFacade, InternalTestsExecutionFacade>(TestsRunnerType.Internal.ToLower(), new PerContainerLifetime());
             container.Register<ITestsExecutionFacade, ProcessTestsExecutionFacade>(TestsRunnerType.Process.ToLower(), new PerContainerLifetime());
+            container.Register<ITestsExecutionFacade, MultiProcessTestsExecutionFacade>(TestsRunnerType.MultiProcess.ToLower(), new PerContainerLifetime());
             
             container.RegisterInstance(typeof(Func<string, ITestsExecutionFacade>),
                 new Func<string, ITestsExecutionFacade>(name => container.GetInstance<ITestsExecutionFacade>(name.ToLower())));
