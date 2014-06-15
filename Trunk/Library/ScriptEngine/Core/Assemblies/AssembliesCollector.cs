@@ -35,21 +35,24 @@ namespace Mnk.Library.ScriptEngine.Core.Assemblies
 	        {
 	            path = Path.GetFullPath(path + "/..");
 	        }
-            foreach (var dir in new[] { "Libraries", "Localization" })
+	        if (Directory.Exists(Path.Combine(path, "Libraries")))
 	        {
-	            foreach (var file in Directory.EnumerateFiles(Path.Combine(path, dir),"*.dll"))
-	            {
-	                Assembly a;
-	                try
-	                {
-	                    a = Assembly.LoadFile(file);
-	                }
-	                catch (Exception)
-	                {
-	                    continue;
-	                }
-	                yield return a;
-	            }
+                foreach (var dir in new[] { "Libraries", "Localization" })
+                {
+                    foreach (var file in Directory.EnumerateFiles(Path.Combine(path, dir), "*.dll"))
+                    {
+                        Assembly a;
+                        try
+                        {
+                            a = Assembly.LoadFile(file);
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                        yield return a;
+                    }
+                }
 	        }
 	    }
 
