@@ -10,7 +10,6 @@ using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit.Packages.Common;
 using Mnk.Library.ScriptEngine;
-using Mnk.TBox.Plugins.BookletPagesGenerator.Code;
 using Mnk.TBox.Tools.SkyNet.Common;
 using ServiceStack.Text;
 using Result = Mnk.Library.ParallelNUnit.Core.Result;
@@ -86,8 +85,8 @@ public class NUnitTests : ISkyScript
             Categories = Categories,
             IncludeCategories = Categories.Length > 0 ? (bool?)IncludeCategories : null,
             RunAsx86 = RunAsx86,
-            RunAsx86Path = RunAsx86Path,
-            NunitAgentPath = NunitAgentPath,
+            RunAsx86Path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, RunAsx86Path),
+            NunitAgentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, NunitAgentPath),
             RunAsAdmin = false,
             Mode = TestsRunnerMode.Process,
         };
