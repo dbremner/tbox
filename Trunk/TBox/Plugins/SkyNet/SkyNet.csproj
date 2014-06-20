@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\..\..\Libs\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
+      <HintPath>..\..\..\Libs\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="LightInject">

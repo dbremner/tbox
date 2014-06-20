@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\..\..\Libs\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
+      <HintPath>..\..\..\Libs\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
