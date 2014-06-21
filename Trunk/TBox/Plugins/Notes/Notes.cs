@@ -47,7 +47,7 @@ namespace Mnk.TBox.Plugins.Notes
          
         private void ShowDialog(Profile p, Window owner)
         {
-            dialog.Do(Context.DoSync, d => d.ShowDialog(p, owner), ConfigManager.Config.States);
+            dialog.Do(Context.DoSync, d => d.ShowDialog(p, Context, owner), ConfigManager.Config.States);
         }
 
         protected override Settings CreateSettings()

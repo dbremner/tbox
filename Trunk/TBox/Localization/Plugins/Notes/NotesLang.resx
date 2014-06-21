@@ -144,4 +144,7 @@
   <data name="ProfilesList" xml:space="preserve">
     <value>Configure list of the profiles</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>
