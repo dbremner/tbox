@@ -12,7 +12,13 @@ namespace Mnk.Library.Common.Communications
         {
             Instance = ChannelFactory<T>.
                 CreateChannel(
-                    new NetNamedPipeBinding(NetNamedPipeSecurityMode.None) { MaxReceivedMessageSize = int.MaxValue },
+                    new NetNamedPipeBinding(NetNamedPipeSecurityMode.None)
+                    {
+                        MaxReceivedMessageSize = int.MaxValue,
+                        CloseTimeout = TimeSpan.FromMinutes(10),
+                        SendTimeout = TimeSpan.FromMinutes(10),
+                        ReceiveTimeout = TimeSpan.MaxValue
+                    },
                     new EndpointAddress(string.Format(CultureInfo.InvariantCulture, "net.pipe://{0}/{1}", Environment.MachineName, handle)));
         }
 
