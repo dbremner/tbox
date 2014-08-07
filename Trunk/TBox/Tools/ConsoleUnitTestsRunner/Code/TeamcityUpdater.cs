@@ -40,7 +40,7 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
                     {
                         Console.WriteLine("##teamcity[testFailed name='{0}' message='{1}' details='{2}']", name, Escape(result.Message), Escape(result.StackTrace));
                     }
-                    Console.WriteLine("##teamcity[testFinished name='{0}' duration='{1}']", name, result.Time);
+                    Console.WriteLine("##teamcity[testFinished name='{0}' duration='{1}']", name, result.Time*1000);
                 }
             }
         }
