@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="ZetaLongPaths">
-      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0\lib\ZetaLongPaths.dll</HintPath>
+      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.6\lib\net40-full\ZetaLongPaths.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
