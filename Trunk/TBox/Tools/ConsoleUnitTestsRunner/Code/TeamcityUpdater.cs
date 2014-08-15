@@ -48,13 +48,13 @@ namespace Mnk.TBox.Tools.ConsoleUnitTestsRunner.Code
         private static string Escape(string text)
         {
             return text != null ? text
+                .Replace("|", "||") 
                 .Replace("'", "|'")
                 .Replace("\n", "|n")
                 .Replace("\r", "|r")
                 .Replace("\u0085", "|x")
                 .Replace("\u2028", "|l")
                 .Replace("\u2029", "|p")
-                .Replace("|", "||") 
                 .Replace("[", "|[")
                 .Replace("]", "|]")
                : null;
