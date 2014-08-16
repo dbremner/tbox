@@ -22,10 +22,17 @@ namespace Mnk.TBox.Plugins.TextGenerator
 				new UMenuItem{Header = TextGeneratorLang.GenerateText, OnClick = o=>GenerateText(string.Empty)},
 				new UMenuItem{Header = TextGeneratorLang.GenerateGuid, OnClick = o=>GenerateGuid()},
 				new UMenuItem{Header = TextGeneratorLang.CalcClipboardTextLength, OnClick = o=>CalcClipboardTextLength()},
+				new UMenuItem{Header = TextGeneratorLang.SortLines, OnClick = o=>SortLines()},
 			};
 		}
 
-		private static void CalcClipboardTextLength()
+	    private static void SortLines()
+	    {
+	        var lines =  (Clipboard.GetText() ?? string.Empty).Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+            Clipboard.SetText(string.Join(Environment.NewLine, lines.OrderBy(x=>x)));
+	    }
+
+	    private static void CalcClipboardTextLength()
 		{
 			MessageBox.Show(TextGeneratorLang.LengthOfTheClipboardText + " = " + Clipboard.GetText().Length.ToString(), TextGeneratorLang.PluginName,
 			                MessageBoxButton.OK, MessageBoxImage.Information);

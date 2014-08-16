@@ -153,6 +153,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="SortLines" xml:space="preserve">
+    <value>Отсортировать строки</value>
+  </data>
   <data name="TextReplacing" xml:space="preserve">
     <value>Замена текста</value>
   </data>
