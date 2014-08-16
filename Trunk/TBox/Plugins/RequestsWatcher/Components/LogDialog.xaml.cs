@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Mnk.Library.Common.Network;
+using Mnk.Library.Common.Tools;
 using Mnk.TBox.Core.PluginsShared.Watcher;
 using Mnk.Library.WpfControls.Components.Drawings.DirectionsTable;
 using Mnk.Library.WpfControls.Dialogs;
-using Mnk.Library.WpfControls.Tools;
-using Request = Mnk.TBox.Plugins.RequestsWatcher.Code.Request;
 
 namespace Mnk.TBox.Plugins.RequestsWatcher.Components
 {
@@ -93,7 +91,7 @@ namespace Mnk.TBox.Plugins.RequestsWatcher.Components
 
 		public void Write(string caption, string value)
 		{
-			table.Add(ServiceStack.Text.JsonSerializer.DeserializeFromString<Code.Request>(value) );
+			table.Add(JsonSerializer.DeserializeFromString<Code.Request>(value) );
 			needRedraw = true;
 		}
 

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
+using DocumentFormat.OpenXml;
+using Color = System.Drawing.Color;
 
 namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
 {
@@ -22,25 +24,37 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
             var newFile = new FileInfo(fileName);
             if(newFile.Exists)newFile.Delete();
             var color = Color.FromArgb(0xb0, 0xc4, 0xdd );
-            using (var pck = new ExcelPackage(newFile))
+            using (var doc = SpreadsheetDocument.Create(fileName, SpreadsheetDocumentType.Workbook))
             {
-                var ws = pck.Workbook.Worksheets.Add(TeamManagerLang.Report);
-                ws.DefaultColWidth = 24;
-                var row = 1; 
+                doc.AddWorkbookPart().AddNewPart<WorksheetPart>().Worksheet = new Worksheet(new SheetData());
+                doc.WorkbookPart.Workbook =
+                    new Workbook(
+                        new Sheets(
+                            new Sheet
+                            {
+                                Id = doc.WorkbookPart.GetIdOfPart(doc.WorkbookPart.WorksheetParts.First()),
+                                SheetId = 1,
+                                Name = TeamManagerLang.Report,
+                            }));
+                doc.WorkbookPart.WorksheetParts.First().Worksheet.AppendChild(new SheetData());
+
+                var sheet = doc.WorkbookPart.WorksheetParts.First().Worksheet.First();
                 foreach (var p in items)
                 {
-                    var oldRow = row;
-                    PrintLine(ws, p.Columns, color, ref row);
+                    PrintLine(sheet, p.Columns, color);
                     foreach (var day in p.Days)
                     {
-                        PrintLine(ws, new[] { day.Name }.Concat(day.Columns).ToArray(), GetColor(day), ref row);
+                        PrintLine(sheet, new[] { day.Name }.Concat(day.Columns).ToArray(), GetColor(day));
                     }
-                    PrintLine(ws, p.Summaries, color, ref row);
-                    var nameCell = ws.Cells[oldRow, 1, row - 1, 1];
+                    PrintLine(sheet, p.Summaries, color);
+                    /*
+                    var nameCell = ws.Cells[oldRowNo, 1, rowNo - 1, 1];
                     PrepareCell(nameCell, p.Name, color);
                     nameCell.Merge = true;
+                     */
                 }
-                pck.Save();
+
+                doc.WorkbookPart.Workbook.Save();
             }
         }
 
@@ -56,19 +70,25 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
             return Color.White;
         }
 
-        private static void PrintLine(ExcelWorksheet ws, IList<string> items, Color color, ref int row)
+        private static void PrintLine(OpenXmlElement ws, IList<string> items, Color color)
         {
-            for (var i = 0; i < items.Count; ++i)
+            var row = new Row();
+            ws.AppendChild(row);
+            row.AppendChild(new Cell());
+            row.AppendChild(new Cell());
+
+            foreach (var t in items)
             {
-                var cell = ws.Cells[row, i + 2];
-                PrepareCell(cell, items[i], color);
+                var cell = new Cell{DataType = CellValues.String};
+                row.AppendChild(cell);
+                PrepareCell(cell, t, color);
             }
-            ++row;
         }
 
-        private static void PrepareCell(ExcelRange cell, string value, Color color)
+        private static void PrepareCell(Cell cell, string value, Color color)
         {
-            cell.Value = value;
+            cell.CellValue = new CellValue(value);
+            /*
             cell.Style.Border.Top.Style = ExcelBorderStyle.Medium;
             cell.Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
             cell.Style.Border.Left.Style = ExcelBorderStyle.Medium;
@@ -78,6 +98,7 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
             cell.Style.WrapText = true;
             cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
             cell.Style.Fill.BackgroundColor.SetColor(color);
+             */
         }
     }
 }

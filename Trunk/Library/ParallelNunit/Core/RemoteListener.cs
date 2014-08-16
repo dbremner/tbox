@@ -7,18 +7,17 @@ using System.Threading;
 using Mnk.Library.Common.Communications;
 using Mnk.Library.ParallelNUnit.Contracts;
 using NUnit.Core;
-using ServiceStack.Text;
-
+using Mnk.Library.Common.Tools;
 namespace Mnk.Library.ParallelNUnit.Core
 {
     [Serializable]
     public sealed class RemoteListener : EventListener
     {
-        public StringBuilder Output { get; private set; }
+        private StringBuilder Output { get; set; }
         public static bool ShouldStop = false;
-        public string Handle { get; set; }
-        public bool Fast { get; set; }
-        public bool Needoutput { get; set; }
+        public string Handle { private get; set; }
+        public bool Fast { private get; set; }
+        public bool Needoutput { private get; set; }
 
         private int time = Environment.TickCount;
         private InterprocessClient<INunitRunnerClient> client;

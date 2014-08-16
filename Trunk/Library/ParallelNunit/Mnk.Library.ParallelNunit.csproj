@@ -37,6 +37,10 @@
       <HintPath>..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Libs\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\..\Libs\NUnit.2.6.3\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -48,10 +52,6 @@
     <Reference Include="nunit.util">
       <HintPath>..\..\Libs\NUnit.2.6.3\lib\nunit.util.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

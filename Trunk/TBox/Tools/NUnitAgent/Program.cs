@@ -8,7 +8,7 @@ using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.TBox.Core.Contracts;
-using ServiceStack.Text;
+using Mnk.Library.Common.Tools;
 
 namespace Mnk.TBox.Tools.NUnitAgent
 {

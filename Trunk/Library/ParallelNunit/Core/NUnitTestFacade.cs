@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -9,8 +10,7 @@ using Mnk.Library.Common.Log;
 using Mnk.Library.ParallelNUnit.Contracts;
 using NUnit.Core;
 using NUnit.Util;
-using ServiceStack.Text;
-
+using Mnk.Library.Common.Tools;
 namespace Mnk.Library.ParallelNUnit.Core
 {
     public sealed class NUnitTestFacade : INUnitTestFacade
@@ -38,7 +38,7 @@ namespace Mnk.Library.ParallelNUnit.Core
                         config.NeedOutput, config.RuntimeFramework);
                 });
             }
-            return 1;
+            return 0;
         }
 
         public int Run(string handle, string path, int[] items, bool fast, bool needOutput, string runtimeFramework)

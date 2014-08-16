@@ -4,7 +4,8 @@ using System.IO;
 using System.Linq;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Tools.SkyNet.Common;
-using ServiceStack.Text;
+using Mnk.Library.WpfControls.Tools;
+using Mnk.Library.Common.Tools;
 using System.Numerics;
 
 public class Factorial : ISkyScript

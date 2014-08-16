@@ -42,9 +42,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack.Text, Version=3.9.70.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\ServiceStack.Text.3.9.70\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\Libs\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System">
     </Reference>
@@ -117,6 +117,7 @@
     <Compile Include="Tools\DirectoryExtensions.cs" />
     <Compile Include="Tools\FileExtensions.cs" />
     <Compile Include="Tools\ICopyDirGenerator.cs" />
+    <Compile Include="Tools\JsonSerializer.cs" />
     <Compile Include="Tools\StringArray.cs" />
     <Compile Include="Tools\StringExtensions.cs" />
     <Compile Include="Tools\StringTemplate.cs" />

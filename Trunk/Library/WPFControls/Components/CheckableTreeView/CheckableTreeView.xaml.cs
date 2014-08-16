@@ -106,12 +106,12 @@ namespace Mnk.Library.WpfControls.Components.CheckableTreeView
         {
             foreach (var node in items.Where(x=>x.IsChecked != false))
             {
-                node.Data.Children.Clear();
+                var data = node.Data.Create();
                 foreach (var child in CollectNodes(node.Children))
                 {
-                    node.Data.Children.Add(child);
+                    data.Children.Add(child);
                 }
-                yield return node.Data;
+                yield return data;
             }
         }
 

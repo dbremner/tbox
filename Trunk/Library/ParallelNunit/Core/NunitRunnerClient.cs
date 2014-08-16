@@ -5,7 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using Mnk.Library.ParallelNUnit.Contracts;
 using NUnit.Core;
-using ServiceStack.Text;
+using Mnk.Library.Common.Tools;
 
 namespace Mnk.Library.ParallelNUnit.Core
 {
@@ -135,7 +135,7 @@ namespace Mnk.Library.ParallelNUnit.Core
             item.Refresh();
         }
 
-        public static string Filter(string stack)
+        private static string Filter(string stack)
         {
             if (stack == null) return null;
             using (var sw = new StringWriter())
@@ -175,6 +175,7 @@ namespace Mnk.Library.ParallelNUnit.Core
 				"NUnit.Framework.Assert",
                 "System.Reflection.MonoMethod",
                 "Mnk.Library.ParallelNunit",
+                "Mnk.Library.Common"
 			};
 
             return patterns.Any(t => line.IndexOf(t, StringComparison.Ordinal) > 0);

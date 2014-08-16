@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
-using ServiceStack.Text;
+using Mnk.Library.Common.Tools;
 
 namespace Mnk.TBox.Plugins.LocalizationTool.Code.Translate
 {
