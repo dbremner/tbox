@@ -10,6 +10,7 @@ using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.ParallelNUnit;
 using Mnk.Library.WpfControls;
+using Mnk.Library.WpfControls.Components.CheckableTreeView;
 using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 using Mnk.TBox.Plugins.NUnitRunner.Code;
 
@@ -75,14 +76,12 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         public IList<Result> GetCheckedTests()
         {
-            return results.GetChecked().Cast<Result>()
-                .SelectMany(x=>x.Collect())
-                .ToList();
+            return results.GetChecked().Cast<Result>().Where(x=>!x.Children.Any()).ToList();
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            results.OnMouseLeftButtonDown(sender, e);
+            CheckableTreeView.OnMouseLeftButtonDown(sender, e);
         }
     }
 }

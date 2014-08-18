@@ -106,12 +106,11 @@ namespace Mnk.Library.WpfControls.Components.CheckableTreeView
         {
             foreach (var node in items.Where(x=>x.IsChecked != false))
             {
-                var data = node.Data.Create();
                 foreach (var child in CollectNodes(node.Children))
                 {
-                    data.Children.Add(child);
+                    yield return child;
                 }
-                yield return data;
+                yield return node.Data;
             }
         }
 
@@ -131,7 +130,7 @@ namespace Mnk.Library.WpfControls.Components.CheckableTreeView
             return node;
         }
 
-        public void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public static void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var currentCheckBox = (CheckBox)sender;
             CheckBoxId.checkBoxId = currentCheckBox.Uid;

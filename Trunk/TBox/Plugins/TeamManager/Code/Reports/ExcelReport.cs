@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Wordprocessing;
 using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Mnk.TBox.Plugins.TeamManager.Code.Reports.Contracts;
 using DocumentFormat.OpenXml;
-using Color = System.Drawing.Color;
 
 namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
 {
@@ -23,7 +22,7 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
         {
             var newFile = new FileInfo(fileName);
             if(newFile.Exists)newFile.Delete();
-            var color = Color.FromArgb(0xb0, 0xc4, 0xdd );
+            var color = "FFb0c4dd";
             using (var doc = SpreadsheetDocument.Create(fileName, SpreadsheetDocumentType.Workbook))
             {
                 doc.AddWorkbookPart().AddNewPart<WorksheetPart>().Worksheet = new Worksheet(new SheetData());
@@ -37,16 +36,25 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
                                 Name = TeamManagerLang.Report,
                             }));
                 doc.WorkbookPart.WorksheetParts.First().Worksheet.AppendChild(new SheetData());
+                var stylesPart = doc.WorkbookPart.AddNewPart<WorkbookStylesPart>();
+                stylesPart.Stylesheet = new Stylesheet
+                {
+                    Fills = new Fills { Count = 0 }, 
+                    Borders = new Borders { Count = 0 }, 
+                    CellFormats = new CellFormats{Count = 0}
+                };
 
-                var sheet = doc.WorkbookPart.WorksheetParts.First().Worksheet.First();
+                var book = doc.WorkbookPart;
+                var sheet = book.WorksheetParts.First();
+                var rowNo = 0;
                 foreach (var p in items)
                 {
-                    PrintLine(sheet, p.Columns, color);
+                    PrintLine(book, sheet, p.Columns, ++rowNo, color);
                     foreach (var day in p.Days)
                     {
-                        PrintLine(sheet, new[] { day.Name }.Concat(day.Columns).ToArray(), GetColor(day));
+                        PrintLine(book, sheet, new[] { day.Name }.Concat(day.Columns).ToArray(), ++rowNo, GetColor(day));
                     }
-                    PrintLine(sheet, p.Summaries, color);
+                    PrintLine(book, sheet, p.Summaries, ++rowNo, color);
                     /*
                     var nameCell = ws.Cells[oldRowNo, 1, rowNo - 1, 1];
                     PrepareCell(nameCell, p.Name, color);
@@ -58,47 +66,149 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Reports
             }
         }
 
-        private static Color GetColor(ReportDay day)
+        private static string GetColor(ReportDay day)
         {
             switch (day.Status)
             {
                 case "holyday":
-                    return Color.FromArgb(0xe6, 0xe6, 0xe6);
+                    return "FFe6e6xe6";
                 case "error":
-                    return Color.FromArgb(0xf8, 0x49, 0x35);
+                    return "FFf84935";
             }
-            return Color.White;
+            return "FFFFFFFF";
         }
 
-        private static void PrintLine(OpenXmlElement ws, IList<string> items, Color color)
+        private static void PrintLine(WorkbookPart workbookPart, WorksheetPart workSheetPart, IList<string> items, int rowNo, string color)
         {
-            var row = new Row();
-            ws.AppendChild(row);
-            row.AppendChild(new Cell());
-            row.AppendChild(new Cell());
-
+            var col = 1;
             foreach (var t in items)
             {
-                var cell = new Cell{DataType = CellValues.String};
-                row.AppendChild(cell);
-                PrepareCell(cell, t, color);
+                var colId = ((char) ((int) 'A' + (++col))).ToString(CultureInfo.InvariantCulture);
+                PrepareCell(workbookPart, workSheetPart, colId, rowNo, t, color);
             }
         }
 
-        private static void PrepareCell(Cell cell, string value, Color color)
+        private static void PrepareCell(WorkbookPart workbookPart, WorksheetPart workSheetPart, string colId, int rowNo, string value, string color)
         {
+            var cell = InsertCellInWorksheet(colId, rowNo, workSheetPart);
             cell.CellValue = new CellValue(value);
+            cell.DataType = CellValues.String;
+
+            var cellFormat = cell.StyleIndex != null ? (CellFormat)GetCellFormat(workbookPart, cell.StyleIndex).CloneNode(true) : new CellFormat();
+            cellFormat.FillId = InsertFill(workbookPart, GenerateFill(color));
+            cellFormat.BorderId = InsertBorder(workbookPart, GenerateBorder());
+
+            cell.StyleIndex = InsertCellFormat(workbookPart, cellFormat);
+
             /*
             cell.Style.Border.Top.Style = ExcelBorderStyle.Medium;
             cell.Style.Border.Bottom.Style = ExcelBorderStyle.Medium;
             cell.Style.Border.Left.Style = ExcelBorderStyle.Medium;
             cell.Style.Border.Right.Style = ExcelBorderStyle.Medium;
+            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+            cell.Style.Fill.BackgroundColor.SetColor(color);
+            
             cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
             cell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
             cell.Style.WrapText = true;
-            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
-            cell.Style.Fill.BackgroundColor.SetColor(color);
              */
+        }
+        private static Border GenerateBorder()
+        {
+            var border = new Border();
+
+            var leftBorder = new LeftBorder { Style = BorderStyleValues.Medium };
+            var rightBorder = new RightBorder { Style = BorderStyleValues.Medium };
+            var topBorder = new TopBorder{ Style = BorderStyleValues.Medium };
+            var bottomBorder = new BottomBorder{ Style = BorderStyleValues.Medium };
+
+            border.Append(new OpenXmlElement[]{
+                leftBorder,
+                rightBorder,
+                topBorder,
+                bottomBorder
+            });
+            return border;
+        }
+
+        private static Fill GenerateFill(string color)
+        {
+            var fill = new Fill();
+
+            var patternFill = new PatternFill { PatternType = PatternValues.Solid };
+            var backgroundColor1 = new BackgroundColor { Rgb = color};
+
+            patternFill.Append(new OpenXmlElement[]{backgroundColor1});
+
+            fill.Append(new OpenXmlElement[]{patternFill});
+
+            return fill;
+        }
+
+        private static uint InsertBorder(WorkbookPart workbookPart, Border border)
+        {
+            var borders = workbookPart.WorkbookStylesPart.Stylesheet.Elements<Borders>().First();
+            borders.Append(new OpenXmlElement[]{border});
+            return borders.Count++;
+        }
+
+        private static uint InsertFill(WorkbookPart workbookPart, Fill fill)
+        {
+            var fills = workbookPart.WorkbookStylesPart.Stylesheet.Elements<Fills>().First();
+            fills.Append(new OpenXmlElement[]{fill});
+            return fills.Count++;
+        }
+
+        private static CellFormat GetCellFormat(WorkbookPart workbookPart, uint styleIndex)
+        {
+            return workbookPart.WorkbookStylesPart.Stylesheet.Elements<CellFormats>().First().Elements<CellFormat>().ElementAt((int)styleIndex);
+        }
+
+        private static uint InsertCellFormat(WorkbookPart workbookPart, CellFormat cellFormat)
+        {
+            var cellFormats = workbookPart.WorkbookStylesPart.Stylesheet.Elements<CellFormats>().First();
+            cellFormats.Append(new OpenXmlElement[]{cellFormat});
+            return (uint)cellFormats.Count++;
+        }
+
+        private static Cell InsertCellInWorksheet(string columnName, int rowIndex, WorksheetPart worksheetPart)
+        {
+            var worksheet = worksheetPart.Worksheet;
+            var sheetData = worksheet.GetFirstChild<SheetData>();
+            var cellReference = columnName + rowIndex;
+
+            // If the worksheet does not contain a row with the specified row index, insert one.
+            Row row;
+            if (sheetData.Elements<Row>().Count(r => r.RowIndex == rowIndex) != 0)
+            {
+                row = sheetData.Elements<Row>().First(r => r.RowIndex == rowIndex);
+            }
+            else
+            {
+                row = new Row{ RowIndex = (uint)rowIndex };
+                sheetData.Append(new OpenXmlElement[]{row});
+            }
+
+            if (row.Elements<Cell>().Any(c => c.CellReference.Value == columnName + rowIndex))
+            {
+                return row.Elements<Cell>().First(c => c.CellReference.Value == cellReference);
+            }
+            // Cells must be in sequential order according to CellReference. Determine where to insert the new cell.
+            Cell refCell = null;
+            foreach (var cell in row.Elements<Cell>())
+            {
+                if (string.Compare(cell.CellReference.Value, cellReference, true) > 0)
+                {
+                    refCell = cell;
+                    break;
+                }
+            }
+
+            var newCell = new Cell { CellReference = cellReference };
+            row.InsertBefore(newCell, refCell);
+
+            worksheet.Save();
+            return newCell;
         }
     }
 }

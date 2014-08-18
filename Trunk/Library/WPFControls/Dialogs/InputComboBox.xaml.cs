@@ -64,6 +64,7 @@ namespace Mnk.Library.WpfControls.Dialogs
         {
             if (string.IsNullOrEmpty(value)) return;
             var items = itemsSource;
+            if(items.IsReadOnly)return;
             var id = items.IndexOf(value);
             if (id == 0) return;
             if (id != -1)

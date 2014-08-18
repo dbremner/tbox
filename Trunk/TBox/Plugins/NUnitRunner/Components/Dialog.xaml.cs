@@ -180,7 +180,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                         .CheckedItems.Select(x => x.Key)
                         .ToArray();
             });
-            results = testsFixture.Run(packageConfig, results, new SimpleUpdater(updater), items);
+            results = testsFixture.Run(packageConfig, new TestsResults(items), new SimpleUpdater(updater), items);
             Mt.Do(this, () =>
                 {
                     View.SetItems(results);

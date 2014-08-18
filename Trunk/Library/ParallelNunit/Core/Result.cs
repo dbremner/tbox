@@ -24,19 +24,6 @@ namespace Mnk.Library.ParallelNUnit.Core
         public int AssertCount { get; set; }
         [JsonProperty(ItemTypeNameHandling = TypeNameHandling.All)]
         public IList<IHasChildren> Children { get; set; }
-        public IHasChildren Create()
-        {
-            return new Result
-            {
-                Categories = Categories,
-                Children =  new List<IHasChildren>(),
-                Description = Description,
-                FullName = FullName,
-                Id = Id,
-                Key = Key,
-                Type = Type,
-            };
-        }
 
         public string Output { get; set; }
         public event Action OnRefresh;
