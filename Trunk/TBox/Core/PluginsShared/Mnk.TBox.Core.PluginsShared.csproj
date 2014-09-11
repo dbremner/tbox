@@ -70,7 +70,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RibbonControlsLibrary">
-      <HintPath>..\..\..\Libs\Ribbon\RibbonControlsLibrary.dll</HintPath>
+        <HintPath>..\..\..\Libs\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
