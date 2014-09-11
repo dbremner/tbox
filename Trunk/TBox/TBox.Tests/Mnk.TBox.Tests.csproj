@@ -101,8 +101,6 @@
   <ItemGroup>
     <Compile Include="Common\Shared.cs" />
     <Compile Include="PlugingsShared\Automator\When_using_script_runner.cs" />
-    <Compile Include="PlugingsShared\ParallelNunit\When_running_unit_test_in_multi_process.cs" />
-    <Compile Include="PlugingsShared\ParallelNunit\When_running_unit_test_in_process.cs" />
     <Compile Include="PlugingsShared\ReportGenerator\When_using_validators.cs" />
     <Compile Include="PlugingsShared\ReportGenerator\When_using_script_runner.cs" />
     <Compile Include="PlugingsShared\SkyNet\When_using_script_runner.cs" />
