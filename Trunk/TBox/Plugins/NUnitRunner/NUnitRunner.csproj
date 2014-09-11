@@ -40,6 +40,29 @@
       <HintPath>..\..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Mnk.Library.Common, Version=1.0.5367.23486, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.ParallelNUnit">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.ParallelNUnit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfControls, Version=1.0.5367.23490, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfControls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfSyntaxHighlighter">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfSyntaxHighlighter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfWinForms, Version=1.0.5367.23487, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfWinForms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.core.interfaces">
       <HintPath>..\..\..\Libs\NUnit.2.6.3\lib\nunit.core.interfaces.dll</HintPath>
       <Private>False</Private>
@@ -99,39 +122,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
-      <Project>{edfb8b45-08b4-4ea4-906a-2ec50b3cf582}</Project>
-      <Name>Mnk.Library.ParallelNunit</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
-      <Project>{6c4f391f-69bd-44b0-bc18-99414493a885}</Project>
-      <Name>Mnk.Library.WpfControls</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\Mnk.Library.WpfSyntaxHighlighter.csproj">
-      <Project>{8A2CF1DC-BCD6-4A63-8CF7-B9EA4F297ACD}</Project>
-      <Name>Mnk.Library.WpfSyntaxHighlighter</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WpfWinForms.csproj">
-      <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>Mnk.Library.WpfWinForms</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
       <Name>Mnk.TBox.Core.Contracts</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
-      <Project>{bcdbe777-304f-40ac-8c5f-31b3a6be4341}</Project>
-      <Name>Mnk.TBox.Core.PluginsShared</Name>
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\..\Localization\Mnk.TBox.Locales.Localization.csproj">

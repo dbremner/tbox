@@ -70,22 +70,22 @@
       <HintPath>..\..\..\Libs\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Mnk.Library.Common, Version=1.0.5367.23486, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.ScriptEngine, Version=1.0.5367.23487, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.ScriptEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
-      <Project>{D1313F72-4F78-4CD1-852C-2ED0929A1AF7}</Project>
-      <Name>Mnk.Library.ScriptEngine</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\PluginsShared\Mnk.TBox.Core.PluginsShared.csproj">
       <Project>{BCDBE777-304F-40AC-8C5F-31B3A6BE4341}</Project>
       <Name>Mnk.TBox.Core.PluginsShared</Name>

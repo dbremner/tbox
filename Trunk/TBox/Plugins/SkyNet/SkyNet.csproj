@@ -40,17 +40,35 @@
       <HintPath>..\..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Mnk.Library.Common, Version=1.0.5367.23486, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.ScriptEngine">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.ScriptEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfControls, Version=1.0.5367.23490, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfControls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfSyntaxHighlighter">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfSyntaxHighlighter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfWinForms, Version=1.0.5367.23487, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfWinForms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -81,31 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
-      <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>
-      <Name>Mnk.Library.ScriptEngine</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
-      <Project>{6c4f391f-69bd-44b0-bc18-99414493a885}</Project>
-      <Name>Mnk.Library.WpfControls</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\Mnk.Library.WpfSyntaxHighlighter.csproj">
-      <Project>{8a2cf1dc-bcd6-4a63-8cf7-b9ea4f297acd}</Project>
-      <Name>Mnk.Library.WpfSyntaxHighlighter</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WpfWinForms.csproj">
-      <Project>{c00d3ff6-4d09-4a1b-af2d-a6fbac950e3a}</Project>
-      <Name>Mnk.Library.WpfWinForms</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
       <Name>Mnk.TBox.Core.Contracts</Name>

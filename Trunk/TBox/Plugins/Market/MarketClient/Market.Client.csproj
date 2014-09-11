@@ -35,6 +35,14 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mnk.Library.Common">
+      <HintPath>..\..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfControls">
+      <HintPath>..\..\..\..\Libs\Mnk.Library\Mnk.Library.WpfControls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -88,16 +96,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
-      <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>Mnk.Library.WpfControls</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
       <Name>Mnk.TBox.Core.Contracts</Name>

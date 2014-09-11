@@ -45,8 +45,28 @@
       <HintPath>..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mnk.Library.Common, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.ParallelNUnit, Version=1.0.5285.11031, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.ParallelNUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.ScriptEngine, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.ScriptEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfControls, Version=1.0.5367.23490, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.WpfControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfWinForms, Version=1.0.5367.23487, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.WpfWinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\Libs\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Libs\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\..\Libs\NUnit.2.6.3\lib\nunit.core.dll</HintPath>
@@ -102,7 +122,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlugingsShared\When_using_json_parser.cs" />
     <Compile Include="Common\ScriptsFixture.cs" />
-    <Compile Include="Tools\ConsoleUnitTestsRunner\When_using_command_line_args.cs" />
     <Compile Include="Tools\SkyNet\SkyNet.Common\When_using_data_packer.cs" />
     <Compile Include="Tools\SkyNet\SkyNet.Agent\When_using_file_downloader.cs" />
     <Compile Include="Tools\SkyNet\SkyNet.Agent\When_using_services_registrator.cs" />
@@ -115,30 +134,6 @@
     <Compile Include="Tools\SkyNet\SkyNet.Server\When_using_worker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{B31E5C48-0863-473C-937A-363D9F5D36C8}</Project>
-      <Name>Mnk.Library.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
-      <Project>{EDFB8B45-08B4-4EA4-906A-2EC50B3CF582}</Project>
-      <Name>Mnk.Library.ParallelNunit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\LibsLocalization\Mnk.Library.Localization.csproj">
-      <Project>{E9990049-B8DB-4CC4-B22D-823D400633C0}</Project>
-      <Name>Mnk.Library.Localization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
-      <Project>{D1313F72-4F78-4CD1-852C-2ED0929A1AF7}</Project>
-      <Name>Mnk.Library.ScriptEngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
-      <Project>{6C4F391F-69BD-44B0-BC18-99414493A885}</Project>
-      <Name>Mnk.Library.WpfControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Library\WPFWinForms\Mnk.Library.WpfWinForms.csproj">
-      <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>Mnk.Library.WpfWinForms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core\Empty\Mnk.TBox.Core.Empty.csproj">
       <Project>{C7ED2917-A1DA-4A17-9748-8E7FDCFC4923}</Project>
       <Name>Mnk.TBox.Core.Empty</Name>
@@ -171,10 +166,6 @@
     <ProjectReference Include="..\Plugins\TeamManager\TeamManager.csproj">
       <Project>{548CA550-22C0-4CF3-A473-8C52AD6A5B5E}</Project>
       <Name>TeamManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tools\ConsoleUnitTestsRunner\ConsoleUnitTestsRunner.csproj">
-      <Project>{DD07582B-45F8-4257-A5B2-031F2E10BCB9}</Project>
-      <Name>ConsoleUnitTestsRunner</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tools\SkyNet.Agent\SkyNet.Agent.csproj">
       <Project>{54B9D773-6032-42E8-A835-8A539055F148}</Project>

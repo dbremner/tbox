@@ -45,9 +45,36 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Libs\Microsoft.Windows.Shell\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="Mnk.Library.Common, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.Localization">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.ParallelNUnit, Version=1.0.5285.11031, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.ParallelNUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.ScriptEngine, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.ScriptEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfControls, Version=1.0.5285.11377, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfSyntaxHighlighter, Version=1.0.5285.11377, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfSyntaxHighlighter.dll</HintPath>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfWinForms, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfWinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Libs\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\..\..\Libs\NUnit.2.6.3\lib\nunit.core.dll</HintPath>
@@ -85,12 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\ParallelNunit\Mnk.Library.ParallelNunit.csproj">
-      <Project>{EDFB8B45-08B4-4EA4-906A-2EC50B3CF582}</Project>
-      <Name>Mnk.Library.ParallelNunit</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

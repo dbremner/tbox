@@ -35,6 +35,14 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mnk.Library.Common">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.ScriptEngine">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.ScriptEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="WindowsBase" />
@@ -48,16 +56,6 @@
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\ScriptEngine\Mnk.Library.ScriptEngine.csproj">
-      <Project>{d1313f72-4f78-4cd1-852c-2ed0929a1af7}</Project>
-      <Name>Mnk.Library.ScriptEngine</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
       <Name>Mnk.TBox.Core.Contracts</Name>

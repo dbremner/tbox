@@ -33,16 +33,31 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mnk.Library.Common, Version=1.0.5367.23486, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfControls, Version=1.0.5367.23490, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfControls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfSyntaxHighlighter">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfSyntaxHighlighter.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mnk.Library.WpfWinForms, Version=1.0.5367.23487, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.WpfWinForms.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -65,31 +80,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\LibsLocalization\Mnk.Library.Localization.csproj">
-      <Project>{e9990049-b8db-4cc4-b22d-823d400633c0}</Project>
-      <Name>Mnk.Library.Localization</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFControls\Mnk.Library.WpfControls.csproj">
-      <Project>{6c4f391f-69bd-44b0-bc18-99414493a885}</Project>
-      <Name>Mnk.Library.WpfControls</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFSyntaxHighlighter\Mnk.Library.WpfSyntaxHighlighter.csproj">
-      <Project>{8a2cf1dc-bcd6-4a63-8cf7-b9ea4f297acd}</Project>
-      <Name>Mnk.Library.WpfSyntaxHighlighter</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Library\WPFWinForms\Mnk.Library.WpfWinForms.csproj">
-      <Project>{C00D3FF6-4D09-4A1B-AF2D-A6FBAC950E3A}</Project>
-      <Name>Mnk.Library.WpfWinForms</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848BF1-7A98-4F7F-B124-8B6C99A4712C}</Project>
       <Name>Mnk.TBox.Core.Contracts</Name>

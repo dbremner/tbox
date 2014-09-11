@@ -348,12 +348,6 @@
       <LastGenOutput>TBoxLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Library\LibsLocalization\Mnk.Library.Localization.csproj">
-      <Project>{E9990049-B8DB-4CC4-B22D-823D400633C0}</Project>
-      <Name>Mnk.Library.Localization</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

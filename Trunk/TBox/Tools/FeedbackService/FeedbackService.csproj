@@ -54,6 +54,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mnk.Library.Common">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
@@ -89,11 +93,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Common\Mnk.Library.Common.csproj">
-      <Project>{b31e5c48-0863-473c-937a-363d9f5d36c8}</Project>
-      <Name>Mnk.Library.Common</Name>
-      <Private>False</Private>
-    </ProjectReference>
     <ProjectReference Include="..\..\Core\Contracts\Mnk.TBox.Core.Contracts.csproj">
       <Project>{17848bf1-7a98-4f7f-b124-8b6c99a4712c}</Project>
       <Name>Mnk.TBox.Core.Contracts</Name>

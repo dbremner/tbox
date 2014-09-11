@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:components="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
-                      xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
                               xmlns:r="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
                             xmlns:controls2="clr-namespace:Mnk.TBox.Core.PluginsShared.Controls;assembly=Mnk.TBox.Core.PluginsShared"
                               xmlns:tools="clr-namespace:Mnk.Library.WpfControls.Tools;assembly=Mnk.Library.WPFControls"
