@@ -36,11 +36,12 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
 
         public void ShowDialog(Operation o, IScriptConfigurator c, Window owner)
         {
-            Owner = null;
+            Owner = owner;
             DataContext = Config = o;
             configurator = c;
-            ShowAndActivate();
             Dispatcher.BeginInvoke(new Action(() => ReloadClick(null, null)));
+            if(owner!=null)SafeShowDialog();
+            else ShowAndActivate();
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using Mnk.Library.Localization.WPFControls;
 using Mnk.Library.WpfControls.Dialogs;
@@ -23,7 +24,7 @@ namespace Mnk.Library.WpfControls
 		{
 			if (!IsValueCreated)
 			{
-				DialogsCache.ShowProgress(u => syncronizer(()=>action(Value)), WPFControlsLang.CreateDialog, null);
+				ThreadPool.QueueUserWorkItem(o => syncronizer(()=>action(Value)));
 			}
 			else action(Value);
 		}
