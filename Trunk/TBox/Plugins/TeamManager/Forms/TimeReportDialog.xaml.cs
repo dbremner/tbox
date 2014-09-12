@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -10,7 +9,6 @@ using Mnk.Library.Common.Tools;
 using Mnk.Library.WpfControls;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
-using Microsoft.Win32;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 using Mnk.Library.ScriptEngine.Core;
 using Mnk.TBox.Plugins.TeamManager.Code;
@@ -58,6 +56,7 @@ namespace Mnk.TBox.Plugins.TeamManager.Forms
                 Validators.ItemsSource = GetFiles(validatorsFolder, "*.cs");
                 DataContext = profile = p;
                 Persons.ItemsSource = p.Persons;
+                Operations.ItemsSource = p.Operations;
                 PrintReport(fullReport);
                 ValueChanged(null, null);
                 if (autoRun)
@@ -135,9 +134,7 @@ namespace Mnk.TBox.Plugins.TeamManager.Forms
                 htmlReport = string.Empty;
                 log.Write(ex, TeamManagerLang.UnexpectedException);
             }
-            btnToEmail.IsEnabled = btnRefresh.IsEnabled = 
-                btnToExcel.IsEnabled = btnCopy.IsEnabled = 
-                    report != null;
+            btnToEmail.IsEnabled = btnRefresh.IsEnabled = btnCopy.IsEnabled = report != null;
             SetHtml(htmlReport);
         }
 
@@ -203,29 +200,6 @@ namespace Mnk.TBox.Plugins.TeamManager.Forms
             catch (Exception ex)
             {
                 log.Write(ex, "Can't export data to clipboard");
-            }
-        }
-
-        private void ToExcelClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var dialog = new SaveFileDialog {FileName = profile.Report.ExcelFilePath, Title = TeamManagerLang.ChooseFileToSaveReport, DefaultExt = "*.xlsx"};
-                if (dialog.ShowDialog(this) != true) return;
-                var xls = new ExcelReport(dialog.FileName);
-                xls.Print(BuildInfo(fullReport), fullReport.Time, profile.Report.Links.CheckedItems.Select(x=>x.Key).ToArray());
-                using (Process.Start(new ProcessStartInfo
-                    {
-                        FileName = dialog.FileName,
-                        CreateNoWindow = true,
-                        UseShellExecute = true
-                    }))
-                {
-                }
-            }
-            catch (Exception ex)
-            {
-                log.Write(ex, "Can't export data to excel");
             }
         }
 

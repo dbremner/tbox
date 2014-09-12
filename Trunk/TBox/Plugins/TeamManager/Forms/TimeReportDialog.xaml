@@ -57,7 +57,6 @@
                 </r:RibbonGroup>
                 <r:RibbonGroup Header="{loc:Tr Export}">
                     <r:RibbonButton Label="{loc:Tr CopyToClipboard}" Click="CopyClick"  x:Name="btnCopy" IsEnabled="False"/>
-                    <r:RibbonButton Label="{loc:Tr ToExcel}" Click="ToExcelClick"  x:Name="btnToExcel" IsEnabled="False"/>
                     <r:RibbonButton Label="{loc:Tr ToEmail}" Click="ToEmailClick"  x:Name="btnToEmail" IsEnabled="False"/>
                 </r:RibbonGroup>
             </r:RibbonTab>

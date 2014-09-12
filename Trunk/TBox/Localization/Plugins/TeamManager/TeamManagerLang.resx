@@ -264,9 +264,6 @@
   <data name="Style" xml:space="preserve">
     <value>Style</value>
   </data>
-  <data name="ToExcel" xml:space="preserve">
-    <value>Export to Excel</value>
-  </data>
   <data name="WorkingHoursPerDay" xml:space="preserve">
     <value>Working hours per day</value>
   </data>

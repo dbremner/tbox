@@ -78,7 +78,6 @@
           </Component>
         </Directory>
         <Component Id="Libraries" Guid="A7042115-AEAB-4632-A691-38B8AF4D7CC7">
-          <File Name='DocumentFormat.OpenXml.dll'/>
           <File Name='Ionic.Zip.dll'/>
           <File Name='LightInject.dll'/>
           <File Name='Microsoft.Exchange.WebServices.dll'/>
