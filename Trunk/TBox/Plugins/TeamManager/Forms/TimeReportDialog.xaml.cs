@@ -56,8 +56,8 @@ namespace Mnk.TBox.Plugins.TeamManager.Forms
                 StylesList.ItemsSource = GetFiles(stylesFolder, "*.css");
                 validatorsFolder = Path.Combine(context.DataProvider.ReadOnlyDataPath, "Validators");
                 Validators.ItemsSource = GetFiles(validatorsFolder, "*.cs");
-                DataContext = null;
                 DataContext = profile = p;
+                Persons.ItemsSource = p.Persons;
                 PrintReport(fullReport);
                 ValueChanged(null, null);
                 if (autoRun)
