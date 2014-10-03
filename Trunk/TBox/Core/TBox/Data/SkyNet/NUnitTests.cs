@@ -12,6 +12,7 @@ using Mnk.Library.ParallelNUnit.Packages.Common;
 using Mnk.Library.ScriptEngine;
 using Mnk.TBox.Tools.SkyNet.Common;
 using Mnk.Library.Common.Tools;
+using ServiceStack.Text;
 using Result = Mnk.Library.ParallelNUnit.Core.Result;
 
 public class NUnitTests : ISkyScript
