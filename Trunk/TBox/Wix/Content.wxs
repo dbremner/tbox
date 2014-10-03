@@ -91,12 +91,12 @@
           <File Name='Mnk.TBox.Core.Contracts.dll'/>
           <File Name='Mnk.TBox.Core.PluginsShared.dll'/>
           <File Name='Mnk.TBox.Tools.SkyNet.Common.dll'/>
-          <File Name='Newtonsoft.Json.dll'/>
           <File Name='nunit.core.dll'/>
           <File Name='nunit.core.interfaces.dll'/>
           <File Name='nunit.util.dll'/>
           <File Name='Ookii.Dialogs.Wpf.dll'/>
           <File Name='RibbonControlsLibrary.dll'/>
+          <File Name='ServiceStack.Text.dll'/>
           <File Name='ScintillaNet.dll'/>
           <File Name='ZetaLongPaths.dll'/>
         </Component>
