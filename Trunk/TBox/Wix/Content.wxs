@@ -67,16 +67,6 @@
         </Directory>
       </Directory>
       <Directory Id="Libraries" Name="Libraries">
-        <Directory Id="Libx86" Name="x86">
-          <Component Id="Libx86" Guid="18AF302D-0A39-4047-884E-3E7762A15E71">
-            <File Name='SciLexer.dll'/>
-          </Component>
-        </Directory>
-        <Directory Id="Libx64" Name="x64">
-          <Component Id="Libx64" Guid="8F1074D8-23F1-4C53-B40F-704461AE62D8">
-            <File Name='SciLexer64.dll'/>
-          </Component>
-        </Directory>
         <Component Id="Libraries" Guid="A7042115-AEAB-4632-A691-38B8AF4D7CC7">
           <File Name='Ionic.Zip.dll'/>
           <File Name='LightInject.dll'/>
@@ -166,6 +156,8 @@
       <Component Id="Binaries" Guid="0439B8A8-E960-4D96-808A-052940992E18">
         <File Name='changelog.txt'/>
         <File Name='License.rtf'/>
+        <File Name='SciLexer64.dll'/>
+        <File Name='SciLexer.dll'/>
         <File Name='TBox.exe' Id='Application.exe' KeyPath='yes'/>
         <File Name='TBox.exe.config'/>
         <File Name='TBox32.exe'/>

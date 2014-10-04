@@ -311,11 +311,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\Libs\ScintillaNet\SciLexer.dll">
-      <Link>Libraries\x86\SciLexer.dll</Link>
+      <Link>SciLexer.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\..\Libs\ScintillaNet\SciLexer64.dll">
-      <Link>Libraries\x64\SciLexer64.dll</Link>
+      <Link>SciLexer64.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="changelog.txt">

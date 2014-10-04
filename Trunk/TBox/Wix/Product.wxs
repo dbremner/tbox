@@ -47,8 +47,6 @@
       <ComponentRef Id="TeamManagerStyles" />
       <ComponentRef Id="TeamManagerValidators" />
       <ComponentRef Id="Libraries" />
-      <ComponentRef Id="Libx86" />
-      <ComponentRef Id="Libx64" />
       <ComponentRef Id="Localization" />
       <ComponentRef Id="LocalizationRu" />
       <ComponentRef Id="Plugins" />

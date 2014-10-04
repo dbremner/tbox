@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.WpfControls;
-using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.Library.WpfControls.Localization;
 using Mnk.Library.WpfWinForms;
 
@@ -21,22 +16,12 @@ namespace Mnk.TBox.Core.Application
 	/// </summary>
 	public partial class App
 	{
-		private readonly ILog Log = LogManager.GetLogger<App>();
+		private readonly ILog log = LogManager.GetLogger<App>();
 		private static bool handled = false;
-
-		[DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-		private static extern bool SetDllDirectory(string path);
 
 		public App()
 		{
 			Translator.Culture = new CultureInfo("en");
-			var unmanagedLibsFolder = 
-				Path.Combine(
-					AppDomain.CurrentDomain.BaseDirectory,
-					"Libraries",
-					(IntPtr.Size == 8 ? "x64" : "x86")
-				);
-			SetDllDirectory(unmanagedLibsFolder);
 
 			ShutdownMode = ShutdownMode.OnMainWindowClose;
 			FormsStyles.Enable();
@@ -76,9 +61,9 @@ namespace Mnk.TBox.Core.Application
 				"Sorry, unhandled exception occured. Application will be terminated.\nPlease contact with author to fix this issue.\nYou can try restart application to continue working...";
 			if(ex is Exception)
 			{
-				Log.Write((Exception)ex, message);
+				log.Write((Exception)ex, message);
 			}
-			else Log.Write(message);
+			else log.Write(message);
 			ExceptionsHelper.HandleException(DoExit, x=>{});
 			;
 			Shutdown(-1);
