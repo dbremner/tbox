@@ -72,6 +72,7 @@
           <File Name='LightInject.dll'/>
           <File Name='Microsoft.Exchange.WebServices.dll'/>
           <File Name='Microsoft.Windows.Shell.dll'/>
+          <File Name='Mnk.Library.CodePlex.dll'/>
           <File Name='Mnk.Library.Common.dll'/>
           <File Name='Mnk.Library.ParallelNUnit.dll'/>
           <File Name='Mnk.Library.ScriptEngine.dll'/>

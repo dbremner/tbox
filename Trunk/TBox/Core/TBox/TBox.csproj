@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="Mnk.Library.CodePlex">
       <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.CodePlex.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mnk.Library.Common">
       <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
