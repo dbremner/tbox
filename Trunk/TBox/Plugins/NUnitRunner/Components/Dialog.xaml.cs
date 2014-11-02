@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using LightInject;
+using Mnk.Library.Common.Models;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
@@ -86,7 +87,8 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 NeedSynchronizationForTests = config.NeedSynchronizationForTests && config.ProcessCount > 1,
                 StartDelay = config.StartDelay,
                 NeedOutput = true,
-                Mode = config.Mode
+                Mode = config.Mode,
+                SkipChildrenOnCalculateTests = true
             };
             container = ServicesRegistrar.Register();
             testsFixture = container.GetInstance<ITestsFixture>();
@@ -143,7 +145,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             });
         }
 
-        public CheckableDataCollection<CheckableData> GetCategories()
+        public IEnumerable<CheckableData> GetCategories()
         {
             return new CheckableDataCollection<CheckableData>(
                 results.Metrics.Tests
@@ -174,13 +176,13 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             IList<Result> items = null;
             Mt.Do(this, ()=>
             {
-                items = View.GetCheckedTests();
+                items = View.GetTests();
                 packageConfig.Categories =
                     ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
                         .CheckedItems.Select(x => x.Key)
                         .ToArray();
             });
-            results = testsFixture.Run(packageConfig, new TestsResults(items), new SimpleUpdater(updater), items);
+            results = testsFixture.Run(packageConfig, new TestsResults(items,true), new SimpleUpdater(updater), items.Where(x => !x.Children.Any()).ToList());
             Mt.Do(this, () =>
                 {
                     View.SetItems(results);

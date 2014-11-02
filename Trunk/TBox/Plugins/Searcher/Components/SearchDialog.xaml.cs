@@ -396,5 +396,19 @@ namespace Mnk.TBox.Plugins.Searcher.Components
         {
             Close();
         }
+
+        private void ContextMenuGoToFile(object sender, RoutedEventArgs e)
+        {
+            var path = GetSelectedFilePath();
+            if(string.IsNullOrEmpty(path))return;
+            using (Process.Start("explorer.exe", "/select, " + path))
+            {
+            }
+        }
+
+        private void ContextMenuEdit(object sender, RoutedEventArgs e)
+        {
+            LvResultMouseDoubleClick(sender, null);
+        }
     }
 }

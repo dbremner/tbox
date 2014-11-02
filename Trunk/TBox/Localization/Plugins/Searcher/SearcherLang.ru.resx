@@ -270,4 +270,10 @@
   <data name="SearchableSymbols" xml:space="preserve">
     <value>Символы, по которым возможен поиск</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="GoToFile" xml:space="preserve">
+    <value>Перейти к файлу</value>
+  </data>
 </root>

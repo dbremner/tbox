@@ -5,10 +5,9 @@ using System.Linq;
 using System.Windows;
 using System.Collections.Generic;
 using Mnk.Library.ScriptEngine;
+using ServiceStack.Text;
 using Mnk.TBox.Core.PluginsShared.ReportsGenerator;
 using Mnk.Library.WpfControls.Tools;
-using Mnk.Library.Common.Tools;
-using ServiceStack.Text;
 
 namespace TBox.Data.TeamManager
 {
@@ -95,9 +94,19 @@ namespace TBox.Data.TeamManager
             return dateFrom.ToString(DateTimeFormat);
         }
 
+        private class MyWebClient : WebClient
+        {
+            protected override WebRequest GetWebRequest(Uri uri)
+            {
+                WebRequest w = base.GetWebRequest(uri);
+                w.Timeout = 20 * 60 * 1000;
+                return w;
+            }
+        }
+
         private WebClient CreateClient()
         {
-            var cl = new WebClient { Credentials = new NetworkCredential(Login, GetPassword()) };
+            var cl = new MyWebClient { Credentials = new NetworkCredential(Login, GetPassword()) };
             cl.Headers.Add("Content-Type", "application/json");
             return cl;
         }

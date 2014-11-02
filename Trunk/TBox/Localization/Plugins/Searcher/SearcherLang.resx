@@ -270,4 +270,10 @@
   <data name="SearchableSymbols" xml:space="preserve">
     <value>Searchable symbols</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="GoToFile" xml:space="preserve">
+    <value>Go To File</value>
+  </data>
 </root>

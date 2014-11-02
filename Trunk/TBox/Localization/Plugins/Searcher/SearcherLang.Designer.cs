@@ -160,6 +160,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.Searcher {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string ErrorCaption {
@@ -282,6 +291,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.Searcher {
         public static string Go {
             get {
                 return ResourceManager.GetString("Go", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go To File.
+        /// </summary>
+        public static string GoToFile {
+            get {
+                return ResourceManager.GetString("GoToFile", resourceCulture);
             }
         }
         

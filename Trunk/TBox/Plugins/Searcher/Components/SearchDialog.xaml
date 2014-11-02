@@ -58,7 +58,14 @@
                 <RowDefinition Height="5"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <DataGrid Name="lvResult" DockPanel.Dock="Top" AutoGenerateColumns="True" DataContext="{Binding}" MouseDoubleClick="LvResultMouseDoubleClick" SelectionChanged="LvResultSelectedIndexChanged" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" IsReadOnly="True" ColumnWidth="*"/>
+            <DataGrid Name="lvResult" DockPanel.Dock="Top" AutoGenerateColumns="True" DataContext="{Binding}" MouseDoubleClick="LvResultMouseDoubleClick" SelectionChanged="LvResultSelectedIndexChanged" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" IsReadOnly="True" ColumnWidth="*">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{loc:Tr Edit}" Click="ContextMenuEdit"/>
+                        <MenuItem Header="{loc:Tr GoToFile}" Click="ContextMenuGoToFile"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
             <GridSplitter Grid.Row="1" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
             <WPFSyntaxHighlighter:SyntaxHighlighter Grid.Row="2" Name="edText" IsReadOnly="True"/>
         </Grid>

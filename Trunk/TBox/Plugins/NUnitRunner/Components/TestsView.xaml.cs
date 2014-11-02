@@ -74,9 +74,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             SelectedTestChanged(null, null);
         }
 
-        public IList<Result> GetCheckedTests()
+        public IList<Result> GetTests()
         {
-            return results.GetChecked().Cast<Result>().Where(x=>!x.Children.Any()).ToList();
+            return results.GetChecked().Cast<Result>().ToArray();
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
