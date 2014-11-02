@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 using System.Windows.Media;
+using Mnk.Library.CodePlex;
+using Mnk.Library.CodePlex.Controls;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Tools;
@@ -14,7 +16,6 @@ using Mnk.TBox.Core.Contracts;
 using LightInject;
 using Mnk.TBox.Locales.Localization.TBox;
 using Mnk.TBox.Core.Application.Code;
-using Mnk.TBox.Core.Application.Code.ErrorsSender;
 using Mnk.TBox.Core.Application.Code.FastStart;
 using Mnk.TBox.Core.Application.Code.Menu;
 using Mnk.TBox.Core.Application.Code.Objects;
@@ -124,12 +125,8 @@ namespace Mnk.TBox.Core.Application
         {
             var cfg = configManager.Config.Update;
             if (!cfg.ShowChanglog) return;
-            var file = new FileInfo("changelog.txt");
-            if (!file.Exists) return;
-            if (file.Length <= cfg.LastChanglogPosition + 10) return;
             changesLogDialog = new ChangesLogDialog();
-            changesLogDialog.ShowDialog(file.ReadBegin((int)(file.Length - cfg.LastChanglogPosition)));
-            cfg.LastChanglogPosition = file.Length;
+            cfg.LastChanglogPosition = changesLogDialog.ShowChangeLog(cfg.LastChanglogPosition);
         }
 
         private static string GetCaption()
@@ -173,10 +170,7 @@ namespace Mnk.TBox.Core.Application
                     configManager.Config.DialogState = this.GetState();
                 });
                 ShowProgress(TBoxLang.ProgressExit, u => engine.Close(u, criticalError), false);
-                if (configManager.Config.ErrorReports.AllowSend)
-                {
-                    container.GetInstance<LogsSender>().SendIfNeed(configManager.Config.ErrorReports.Directory);
-                }
+                container.GetInstance<ILogsSender>().SendIfNeed();
                 Mt.Do(this, () => engine.Dispose());
             }
             Close();
@@ -224,7 +218,7 @@ namespace Mnk.TBox.Core.Application
             configManager.Config.FeedBackMessage = r.Value;
             DialogsCache.ShowProgress(u =>
             {
-                if (!new FeedbackSender().Send("feedback", configManager.Config.FeedBackMessage))
+                if (!container.GetInstance<IFeedbackSender>().Send("feedback", configManager.Config.FeedBackMessage))
                 {
                     Dispatcher.BeginInvoke(new Action(() => Feedback.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent))));
                 }

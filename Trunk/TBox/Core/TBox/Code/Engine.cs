@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Mnk.Library.CodePlex;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.Plugins;
 using Mnk.Library.WpfControls;
@@ -266,8 +267,9 @@ namespace Mnk.TBox.Core.Application.Code
 
         public void CheckUpdates(bool silent)
         {
-            if (appUpdater.TryUpdate(true)) return;
-            if (!silent) MessageBox.Show(TBoxLang.MessageNoUpdatesFound, TBoxLang.AppName, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            var result = appUpdater.TryUpdate(true);
+            if (result == true) return;
+            if (!silent && result!=null) MessageBox.Show(TBoxLang.MessageNoUpdatesFound, TBoxLang.AppName, MessageBoxButton.OK, MessageBoxImage.Asterisk);
         }
     }
 }

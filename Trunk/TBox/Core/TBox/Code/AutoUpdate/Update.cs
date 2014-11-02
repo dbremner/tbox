@@ -3,21 +3,19 @@ using Mnk.Library.Common.AutoUpdate;
 
 namespace Mnk.TBox.Core.Application.Code.AutoUpdate
 {
-	[Serializable]
-	public class Update
-	{
-		public UpdateInterval Interval { get; set; }
-		public string Directory { get; set; }
-		public DateTime Last { get; set; }
-		public bool ShowChanglog { get; set; }
-		public long LastChanglogPosition { get; set; }
+    [Serializable]
+    public class Update
+    {
+        public UpdateInterval Interval { get; set; }
+        public DateTime Last { get; set; }
+        public bool ShowChanglog { get; set; }
+        public long LastChanglogPosition { get; set; }
 
-		public Update()
-		{
-			Interval = UpdateInterval.Startup;
-			Directory = @"\\tboxserver\Updates\TBox\";
-			ShowChanglog = true;
-			LastChanglogPosition = 0;
-		}
-	}
+        public Update()
+        {
+            Interval = UpdateInterval.Startup;
+            ShowChanglog = true;
+            LastChanglogPosition = 0;
+        }
+    }
 }

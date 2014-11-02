@@ -35,6 +35,9 @@
       <HintPath>..\..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Mnk.Library.CodePlex">
+      <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.CodePlex.dll</HintPath>
+    </Reference>
     <Reference Include="Mnk.Library.Common">
       <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
       <Private>False</Private>
@@ -91,10 +94,6 @@
     <None Include="Data\TeamManager\Styles\default.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Page Include="Forms\ChangesLogDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Forms\FastStartDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,28 +118,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\AutoUpdate\CodePlexUpdater.cs" />
-    <Compile Include="Code\AutoUpdate\IAutoUpdater.cs" />
-    <Compile Include="Code\AutoUpdate\LocalFolderUpdater.cs" />
+    <Compile Include="Code\AutoUpdate\PartatabilityProvider.cs" />
     <Compile Include="Code\Configs\ConfigManager.cs" />
     <Compile Include="Code\Configs\Configuration.cs" />
     <Compile Include="Code\Configs\IConfigsManager.cs" />
     <Compile Include="Code\Configs\Profile.cs" />
-    <Compile Include="Code\ErrorsSender\ErrorReports.cs" />
     <Compile Include="Code\AutoUpdate\ApplicationUpdater.cs" />
-    <Compile Include="Code\ErrorsSender\LogsSender.cs" />
     <Compile Include="Code\FastStart\FastStartShower.cs" />
     <Compile Include="Code\FastStart\RecentItemsCollector.cs" />
     <Compile Include="Code\FastStart\Settings\MenuItemsSequence.cs" />
     <Compile Include="Code\FastStart\Settings\MenuItemStatistic.cs" />
     <Compile Include="Code\FastStart\UserActionsManager.cs" />
-    <Compile Include="Code\FeedbackSender.cs" />
     <Compile Include="Code\Localization\TranslateExtension.cs" />
     <Compile Include="Code\Menu\IMenuItemsProvider.cs" />
     <Compile Include="Code\Menu\IMenuRunHandler.cs" />
     <Compile Include="Code\Menu\MenuItemsProvider.cs" />
     <Compile Include="Code\Objects\DataProvider.cs" />
-    <Compile Include="Code\AutoUpdate\SharedFolderUpdater.cs" />
     <Compile Include="Code\FastStart\Settings\FastStartConfig.cs" />
     <Compile Include="Code\Menu\MenuCallsVisitor.cs" />
     <Compile Include="Code\Managers\WarmingUpManager.cs" />
@@ -151,8 +144,6 @@
     <Compile Include="Code\Objects\ExtButtonInfo.cs" />
     <Compile Include="Code\ServicesRegistrar.cs" />
     <Compile Include="Code\Shelduler\SchedulerManager.cs" />
-    <Compile Include="Code\SingletonLifetime.cs" />
-    <Compile Include="Code\Themes\ThemesManager.cs" />
     <Compile Include="Code\Shelduler\SchedulerRunContext.cs" />
     <Compile Include="Code\Objects\PluginContext.cs" />
     <Compile Include="Code\Objects\PluginMenuUpdater.cs" />
@@ -239,9 +230,6 @@
     <None Include="Data\SkyNet\Factorial.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Compile Include="Forms\ChangesLogDialog.xaml.cs">
-      <DependentUpon>ChangesLogDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FastStartDialog.xaml.cs">
       <DependentUpon>FastStartDialog.xaml</DependentUpon>
     </Compile>

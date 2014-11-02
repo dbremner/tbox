@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Mnk.TBox.Core.Application.Code.AutoUpdate;
 using Mnk.TBox.Core.Application.Code.Configs;
-using Mnk.TBox.Core.Application.Code.ErrorsSender;
 using Mnk.TBox.Core.Application.Code.FastStart.Settings;
 using Mnk.TBox.Core.Application.Code.HotKeys.Settings;
 using Mnk.TBox.Core.Application.Code.Shelduler.Settings;
@@ -25,7 +24,6 @@ namespace Mnk.TBox.Core.Application.Code
 		public HotkeyTasks HotKeys { get; set; }
 		public SchedulerTasks SchedulerTasks { get; set; }
 		public List<string> DisabledItems { get; set; }
-		public ErrorReports ErrorReports { get; set; }
 		public DialogState DialogState { get; set; }
 		public FastStartConfig FastStartConfig { get; set; }
 		public bool UpdateFromSharedlFolder { get; set; }
@@ -43,7 +41,6 @@ namespace Mnk.TBox.Core.Application.Code
 			HotKeys = new HotkeyTasks();
 			SchedulerTasks  = new SchedulerTasks();
 			DisabledItems = new List<string>();
-			ErrorReports = new ErrorReports();
 			FastStartConfig = new FastStartConfig();
 			Theme = "Default.xaml";
 			Language = "en";

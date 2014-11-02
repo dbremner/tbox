@@ -53,14 +53,6 @@
                             <CheckBox IsChecked="{Binding Update.ShowChanglog}" Content="{loc:Tr ShowChangelogOnUpdate}" Margin="5"/>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="{loc:Tr TeamWorkSettings}" Margin="5" Padding="5">
-                        <StackPanel>
-                            <CheckBox IsChecked="{Binding UpdateFromSharedlFolder}" Content="{loc:Tr UpdateFromSharedFolder}" Name="UpdateFromSharedlFolder" Margin="5,5,5,0" />
-                            <captioned2:CaptionedEditPath Caption="{loc:Tr PathToTheMirrorDirectory}" Margin="5" Value="{Binding Update.Directory}" PathGetterType="Folder" IsEnabled="{Binding ElementName=UpdateFromSharedlFolder, Path=IsChecked}"/>
-                            <CheckBox Name="AllowErrorReports" Content="{loc:Tr SendErrorReports}" IsChecked="{Binding ErrorReports.AllowSend}" Margin="5"/>
-                            <captioned2:CaptionedEditPath Caption="{loc:Tr PathToTheErrorsDirectory}" Margin="5" Value="{Binding ErrorReports.Directory}" PathGetterType="Folder" IsEnabled="{Binding IsChecked, ElementName=AllowErrorReports}"/>
-                        </StackPanel>
-                    </GroupBox>
                     <GroupBox Header="{loc:Tr FastStart}" Margin="5" Padding="5">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <captioned2:CaptionedNumericUpDown Caption="{loc:Tr MaxItemsInHistory}" Minimum="0" Maximum="100" Value="{Binding FastStartConfig.MaxCount}" />
