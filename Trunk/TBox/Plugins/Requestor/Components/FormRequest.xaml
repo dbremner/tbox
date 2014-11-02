@@ -27,10 +27,10 @@
             <TabItem Header="{loc:Tr Request}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="48"/>
-                        <RowDefinition Height="160"/>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="48" MinHeight="48"/>
+                        <RowDefinition Height="160" MinHeight="64"/>
+                        <RowDefinition Height="5" />
+                        <RowDefinition MinHeight="64"/>
                     </Grid.RowDefinitions>
                     <DockPanel>
                         <captioned2:CaptionedEnumDropDownList Caption="{loc:Tr Method}" SourceEnumType="network:HttpMethod" Value="{Binding Request.Method}" Margin="5" Width="108" DockPanel.Dock="Left" />

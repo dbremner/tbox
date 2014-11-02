@@ -24,9 +24,9 @@
         </StackPanel>
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*" MinHeight="64"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" MinHeight="64"/>
             </Grid.RowDefinitions>
             <wpfSyntaxHighlighter:SyntaxHighlighter Name="Source" Format="cs" Grid.Row="0" IsEnabled="{Binding Path=IsEnabled, ElementName=Files}" TextChanged="SourcesChanged"/>
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />

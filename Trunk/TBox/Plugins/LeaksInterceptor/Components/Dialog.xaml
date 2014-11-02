@@ -21,9 +21,9 @@
             <TabItem Header="{loc:Tr StandartCounters}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*" MinWidth="128"/>
                         <ColumnDefinition Width="5"/>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" MinWidth="128"/>
                     </Grid.ColumnDefinitions>
                     <DockPanel Margin="5">
                         <Label Content="{loc:Tr Processes}" DockPanel.Dock="Top" Padding="5,0"/>

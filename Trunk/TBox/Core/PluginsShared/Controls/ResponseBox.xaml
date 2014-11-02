@@ -9,9 +9,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>
-            <RowDefinition />
+            <RowDefinition MinHeight="64"/>
             <RowDefinition Height="5"/>
-            <RowDefinition/>
+            <RowDefinition MinHeight="64"/>
         </Grid.RowDefinitions>
         <DockPanel>
             <Label Content="{loc:Tr Format}" VerticalContentAlignment="Center"/>

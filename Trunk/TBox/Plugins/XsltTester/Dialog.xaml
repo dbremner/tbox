@@ -36,12 +36,12 @@
             </Grid.RowDefinitions>
             <DockPanel Grid.Row="0">
                 <Label Content="{loc:Tr Xml}" DockPanel.Dock="Top" Padding="5,0"/>
-                <wpfSyntaxHighlighter:SyntaxHighlighter Name="Xml" Text="{Binding Xml}" IsWordWrap="True" Format="xml" TextChanged="OnTextChanged" />
+                <wpfSyntaxHighlighter:SyntaxHighlighter Name="Xml" Text="{Binding Xml}" IsWordWrap="{Binding ElementName=Results, Path=IsWordWrap}" IsWhiteSpaces="{Binding ElementName=Results, Path=IsWhiteSpaces}" Format="{Binding ElementName=Results, Path=Format}" TextChanged="OnTextChanged" IsStatusBarVisible="False"/>
             </DockPanel>
             <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1"/>
             <DockPanel Grid.Row="2">
                 <Label Content="{loc:Tr Xslt}" DockPanel.Dock="Top" Padding="5,0"/>
-                <wpfSyntaxHighlighter:SyntaxHighlighter Name="Xslt" Text="{Binding Xslt}" IsWordWrap="True" Format="xml" TextChanged="OnTextChanged" />
+                <wpfSyntaxHighlighter:SyntaxHighlighter Name="Xslt" Text="{Binding Xslt}" IsWordWrap="{Binding ElementName=Results, Path=IsWordWrap}" IsWhiteSpaces="{Binding ElementName=Results, Path=IsWhiteSpaces}" Format="{Binding ElementName=Results, Path=Format}" TextChanged="OnTextChanged" IsStatusBarVisible="False" />
             </DockPanel>
             <GridSplitter HorizontalAlignment="Stretch" Grid.Row="3"/>
             <DockPanel Grid.Row="4">

@@ -399,8 +399,8 @@ namespace Mnk.TBox.Plugins.Searcher.Components
 
         private void ContextMenuGoToFile(object sender, RoutedEventArgs e)
         {
+            if (lvResult.SelectedItem == null) return;
             var path = GetSelectedFilePath();
-            if(string.IsNullOrEmpty(path))return;
             using (Process.Start("explorer.exe", "/select, " + path))
             {
             }

@@ -25,9 +25,9 @@
         </DockPanel>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="160"/>
+                <RowDefinition Height="160" MinHeight="64"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition/>
+                <RowDefinition MinHeight="64"/>
             </Grid.RowDefinitions>
             <wpfSyntaxHighlighter:SyntaxHighlighter x:Name="Source" IsWordWrap="{Binding ElementName=Result, Path=IsWordWrap}" IsWhiteSpaces="{Binding ElementName=Result, Path=IsWhiteSpaces}" Format="{Binding ElementName=Result, Path=Format}" IsStatusBarVisible="False" TextChanged="Source_OnTextChanged" Text="{Binding SourceText}"/>
             <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1"/>

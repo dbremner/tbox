@@ -9,11 +9,21 @@
                       xmlns:Components="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
                             xmlns:Settings="clr-namespace:Mnk.TBox.Plugins.Searcher.Code.Settings"
                       xmlns:captioned2="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
+                      xmlns:components="clr-namespace:Mnk.TBox.Plugins.Searcher.Components"
                       mc:Ignorable="d" 
             ShowInTaskbar="True" Title="{loc:Tr PluginName}"
             Width="512" Height="400"
             MinWidth="480" MinHeight="320"
             Icon="/Mnk.TBox.Plugins.Searcher;component/Resources/Icon.ico">
+    <Dialogs:DialogWindow.Resources>
+        <ContextMenu  x:Key="RowMenu" >
+            <MenuItem Header="{loc:Tr Edit}" Click="ContextMenuEdit"/>
+            <MenuItem Header="{loc:Tr GoToFile}" Click="ContextMenuGoToFile"/>
+        </ContextMenu>
+        <Style x:Key="DefaultRowStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />
+        </Style>
+    </Dialogs:DialogWindow.Resources>
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="{loc:Tr SearchTime}"/>
@@ -54,18 +64,11 @@
         </DockPanel>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition MinHeight="64"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition/>
+                <RowDefinition MinHeight="64"/>
             </Grid.RowDefinitions>
-            <DataGrid Name="lvResult" DockPanel.Dock="Top" AutoGenerateColumns="True" DataContext="{Binding}" MouseDoubleClick="LvResultMouseDoubleClick" SelectionChanged="LvResultSelectedIndexChanged" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" IsReadOnly="True" ColumnWidth="*">
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="{loc:Tr Edit}" Click="ContextMenuEdit"/>
-                        <MenuItem Header="{loc:Tr GoToFile}" Click="ContextMenuGoToFile"/>
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
-            </DataGrid>
+            <DataGrid Name="lvResult" DockPanel.Dock="Top" AutoGenerateColumns="True" DataContext="{Binding}" MouseDoubleClick="LvResultMouseDoubleClick" SelectionChanged="LvResultSelectedIndexChanged" CanUserResizeColumns="True" CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" IsReadOnly="True" ColumnWidth="*" RowStyle="{StaticResource DefaultRowStyle}" />
             <GridSplitter Grid.Row="1" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
             <WPFSyntaxHighlighter:SyntaxHighlighter Grid.Row="2" Name="edText" IsReadOnly="True"/>
         </Grid>

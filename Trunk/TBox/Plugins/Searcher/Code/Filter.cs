@@ -12,8 +12,18 @@ namespace Mnk.TBox.Plugins.Searcher.Code
         public Filter(IEnumerable<string> fileMasksToExclude)
         {
             filter = fileMasksToExclude
-                .Select(x => new Regex(x.Replace(".", "[.]").Replace("*", ".*").Replace("?", ".").Replace("\\", "\\\\"), RegexOptions.Compiled))
+                .Select(x => new Regex(BuildReqexp(x), RegexOptions.Compiled))
                 .ToArray();
+        }
+
+        private static string BuildReqexp(string x)
+        {
+            return x
+                .Replace(".", "[.]")
+                .Replace("*", ".*")
+                .Replace("?", ".")
+                .Replace("\\", "\\\\")
+                + "$";
         }
 
         public bool CheckAttribute(FileAttributes a)

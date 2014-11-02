@@ -18,9 +18,9 @@
         </StackPanel>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition MinHeight="64"/>
                 <RowDefinition Height="5"/>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="200" MinHeight="64"/>
             </Grid.RowDefinitions>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="scrollView">
                 
