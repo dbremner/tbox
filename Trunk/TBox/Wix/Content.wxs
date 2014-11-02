@@ -132,6 +132,7 @@
           <File Name='Mnk.TBox.Plugins.TeamManager.dll'/>
           <File Name='Mnk.TBox.Plugins.Templates.dll'/>
           <File Name='Mnk.TBox.Plugins.TextGenerator.dll'/>
+          <File Name='Mnk.TBox.Plugins.XsltTester.dll'/>
         </Component>
       </Directory>
       <Directory Id="Themes" Name="Themes">

@@ -189,6 +189,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TextGeneratorLang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\XsltTester\XsltTesterLang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XsltTesterLang.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TBox\TBoxLang.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -344,6 +349,11 @@
     <EmbeddedResource Include="Plugins\TextGenerator\TextGeneratorLang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TextGeneratorLang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\XsltTester\XsltTesterLang.ru.resx" />
+    <EmbeddedResource Include="Plugins\XsltTester\XsltTesterLang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>XsltTesterLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="TBox\TBoxLang.ru.resx" />
     <EmbeddedResource Include="TBox\TBoxLang.resx">

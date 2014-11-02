@@ -1,4 +1,6 @@
-﻿30/05/2014 Add beta version of the SkyNet. Now ConsoleNunitRunner support multiply assemblies, thanks to DanielRose. Add ability to specify characters to the Searcher.
+﻿2/11/2014 Add XsltTester plugin, Add ability to go to folder to searcher, Fix Ui issues in NunitTestsRunner. Add XsltTester plugin
+
+30/05/2014 Add beta version of the SkyNet. Now ConsoleNunitRunner support multiply assemblies, thanks to DanielRose. Add ability to specify characters to the Searcher.
 
 17/05/2014 Add LocalizationTool plugin. Fix some issues.
 

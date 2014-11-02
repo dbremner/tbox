@@ -149,6 +149,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notes", "Plugins\Notes\Note
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordsStorage", "Plugins\PasswordsStorage\PasswordsStorage.csproj", "{7D2521E7-F85A-4988-8B61-CC753293AA36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XsltTester", "Plugins\XsltTester\XsltTester.csproj", "{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -489,6 +491,14 @@ Global
 		{7D2521E7-F85A-4988-8B61-CC753293AA36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D2521E7-F85A-4988-8B61-CC753293AA36}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7D2521E7-F85A-4988-8B61-CC753293AA36}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -538,5 +548,6 @@ Global
 		{461301D0-790A-4C7F-A79D-1BDF38BDB79F} = {A0E5A5EC-65D5-4261-A6E1-FB7ACDC89DDA}
 		{A67AFF0D-0C64-4C74-B441-2F4DED497F67} = {C705849B-E909-41CE-93C5-4BA2FA09D999}
 		{7D2521E7-F85A-4988-8B61-CC753293AA36} = {C705849B-E909-41CE-93C5-4BA2FA09D999}
+		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2} = {C705849B-E909-41CE-93C5-4BA2FA09D999}
 	EndGlobalSection
 EndGlobal

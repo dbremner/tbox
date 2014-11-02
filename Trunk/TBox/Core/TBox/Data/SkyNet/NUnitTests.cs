@@ -110,7 +110,7 @@ public class NUnitTests : ISkyScript
         {
             var tmc = new TestsMetricsCalculator(all);
             var builder = new TestsSummaryBuilder();
-            sb.AppendLine(builder.Build(tmc, startTime));
+            sb.AppendLine(builder.Build(tmc, (DateTime.UtcNow - startTime).Ticks));
         }
         var failed = results.Where(x => x.IsFailed).ToArray();
         if (failed.Any())
