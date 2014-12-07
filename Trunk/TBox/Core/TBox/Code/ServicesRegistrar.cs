@@ -52,7 +52,7 @@ namespace Mnk.TBox.Core.Application.Code
             container.RegisterInstance<IApplicationUpdater>(new CodePlexApplicationUpdater("tbox"));
             container.Register<IAutoUpdater, ApplicationUpdater>(new PerContainerLifetime());
             container.Register<IThemesManager, ThemesManager>(new PerContainerLifetime());
-            container.RegisterInstance<IFeedbackSender>(new FeedbackSender(TBoxLang.AppName));
+            container.RegisterInstance<IFeedbackSender>(new FeedbackSender(TBoxLang.AppName, "http://mnk92.cloudapp.net:61234"));
             container.RegisterInstance<ILogsSender>(new LogsSender(ErrorsLogsPath, container.GetInstance<IFeedbackSender>()));
 
             return container;

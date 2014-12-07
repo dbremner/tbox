@@ -8,6 +8,7 @@ using Mnk.Library.Common.Log;
 using Mnk.Library.WpfControls.Components.Captioned;
 using Mnk.Library.WpfControls.Tools;
 using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Plugins.PasswordsStorage.Code;
 using Mnk.TBox.Plugins.PasswordsStorage.Code.Settings;
 
 namespace Mnk.TBox.Plugins.PasswordsStorage.Components
@@ -17,22 +18,28 @@ namespace Mnk.TBox.Plugins.PasswordsStorage.Components
     /// </summary>
     public partial class Dialog
     {
+        private readonly IPasswordGenerator passwordGenerator;
         private readonly ILog log = LogManager.GetLogger<Dialog>();
         private IPluginContext pluginContext;
         private IConfigManager<Config> cm;
-        public Dialog()
+        public Dialog(IPasswordGenerator passwordGenerator)
         {
+            this.passwordGenerator = passwordGenerator;
             InitializeComponent();
         }
 
         public void ShowDialog(IConfigManager<Config> cm, Profile p, IPluginContext context, Window owner)
         {
-            this.cm = cm;
-            Title = p.Key;
-            DataContext = null;
-            DataContext = p;
-            Owner = owner;
-            pluginContext = context;
+            if (!IsVisible)
+            {
+                this.cm = cm;
+                Title = p.Key;
+                DataContext = null;
+                DataContext = p;
+                Owner = owner;
+                pluginContext = context;
+                IsReadOnly.IsChecked = true;
+            }
             ShowAndActivate();
         }
 
@@ -73,10 +80,8 @@ namespace Mnk.TBox.Plugins.PasswordsStorage.Components
             try
             {
                 var info = GetLoginInfo(sender);
-                var password = Membership.GeneratePassword(cm.Config.PasswordLength,
-                    cm.Config.PasswordNonAlphaCharacters);
-                info.Password = password.EncryptPassword();
-                Clipboard.SetText(password);
+                info.Password = passwordGenerator
+                    .Generate(cm.Config.PasswordLength, cm.Config.PasswordNonAlphaCharacters);
                 Passwords.Items.Items.Refresh();
             }
             catch (Exception ex)

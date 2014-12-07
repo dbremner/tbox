@@ -12,7 +12,7 @@ namespace Mnk.TBox.Plugins.Searcher.Code
         public Filter(IEnumerable<string> fileMasksToExclude)
         {
             filter = fileMasksToExclude
-                .Select(x => new Regex(BuildReqexp(x), RegexOptions.Compiled))
+                .Select(x => new Regex(BuildReqexp(x), RegexOptions.Compiled|RegexOptions.IgnoreCase))
                 .ToArray();
         }
 

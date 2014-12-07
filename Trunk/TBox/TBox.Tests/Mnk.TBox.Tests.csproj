@@ -36,9 +36,9 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\..\Libs\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="LightInject, Version=3.0.1.6, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LightInject, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libs\LightInject.3.0.1.7\lib\net40\LightInject.dll</HintPath>
+      <HintPath>..\..\Libs\LightInject.3.0.2.0\lib\net40\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mnk.Library.Common, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">

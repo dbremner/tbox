@@ -227,29 +227,29 @@
         </member>
         <member name="M:LightInject.IServiceRegistry.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},LightInject.ILifetime)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
             describes the dependencies of the service. 
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
         <member name="M:LightInject.IServiceRegistry.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},System.String)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
             describes the dependencies of the service. 
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
             <param name="serviceName">The name of the service.</param>        
         </member>
         <member name="M:LightInject.IServiceRegistry.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},System.String,LightInject.ILifetime)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
             describes the dependencies of the service. 
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
             <param name="serviceName">The name of the service.</param>        
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
@@ -323,6 +323,12 @@
             Registers services from the given <typeparamref name="TCompositionRoot"/> type.
             </summary>
             <typeparam name="TCompositionRoot">The type of <see cref="T:LightInject.ICompositionRoot"/> to register from.</typeparam>
+        </member>
+        <member name="M:LightInject.IServiceRegistry.RegisterAssembly(System.String)">
+            <summary>
+            Registers composition roots from assemblies in the base directory that matches the <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern used to filter the assembly files.</param>
         </member>
         <member name="M:LightInject.IServiceRegistry.Decorate(System.Type,System.Type,System.Func{LightInject.ServiceRegistration,System.Boolean})">
             <summary>
@@ -730,11 +736,11 @@
             Represents a class that builds a <see cref="T:LightInject.ConstructionInfo"/> instance based on the implementing <see cref="T:System.Type"/>.
             </summary>
         </member>
-        <member name="M:LightInject.ITypeConstructionInfoBuilder.Execute(System.Type)">
+        <member name="M:LightInject.ITypeConstructionInfoBuilder.Execute(LightInject.Registration)">
             <summary>
-            Analyzes the <paramref name="implementingType"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
+            Analyzes the <paramref name="registration"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
             </summary>
-            <param name="implementingType">The <see cref="T:System.Type"/> to analyze.</param>
+            <param name="registration">The <see cref="T:LightInject.Registration"/> that represents the implementing type to analyze.</param>
             <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance.</returns>
         </member>
         <member name="T:LightInject.IConstructorSelector">
@@ -749,6 +755,18 @@
             <param name="implementingType">The <see cref="T:System.Type"/> for which to return a <see cref="T:LightInject.ConstructionInfo"/>.</param>
             <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance that represents the constructor to be used
             when creating a new instance of the <paramref name="implementingType"/>.</returns>
+        </member>
+        <member name="T:LightInject.IAssemblyLoader">
+            <summary>
+            Represents a class that is responsible loading a set of assemblies based on the given search pattern.
+            </summary>
+        </member>
+        <member name="M:LightInject.IAssemblyLoader.Load(System.String)">
+            <summary>
+            Loads a set of assemblies based on the given <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern to use.</param>
+            <returns>A list of assemblies based on the given <paramref name="searchPattern"/>.</returns>
         </member>
         <member name="T:LightInject.IAssemblyScanner">
             <summary>
@@ -784,7 +802,7 @@
         </member>
         <member name="T:LightInject.IEmitter">
             <summary>
-            Represents an abstraction of the <see cref="T:LightInject.ILGenerator"/> class that provides information 
+            Represents an abstraction of the <see cref="T:System.Reflection.Emit.ILGenerator"/> class that provides information 
             about the <see cref="T:System.Type"/> currently on the stack.
             </summary>
         </member>
@@ -800,13 +818,6 @@
             </summary>
             <param name="code">The MSIL instruction to be put onto the stream.</param>
             <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,System.String)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given string.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="arg">The String to be emitted.</param>
         </member>
         <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,System.SByte)">
             <summary>
@@ -836,7 +847,7 @@
             <param name="code">The MSIL instruction to be emitted onto the stream.</param>
             <param name="constructor">A <see cref="T:System.Reflection.ConstructorInfo"/> representing a constructor.</param>
         </member>
-        <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,LightInject.LocalBuilder)">
+        <member name="M:LightInject.IEmitter.Emit(System.Reflection.Emit.OpCode,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the index of the given local variable.
             </summary>
@@ -885,15 +896,6 @@
             <param name="delegateType">A delegate type whose signature matches that of the dynamic method.</param>
             <returns>A delegate of the specified type, which can be used to execute the dynamic method.</returns>
         </member>
-        <member name="M:LightInject.IMethodSkeleton.CreateDelegate(System.Type,System.Object)">
-            <summary>
-            Completes the dynamic method and creates a delegate that can be used to execute it, 
-            specifying the delegate type and an object the delegate is bound to.
-            </summary>
-            <param name="delegateType">A delegate type whose signature matches that of the dynamic method, minus the first parameter.</param>
-            <param name="target">An object the delegate is bound to. Must be of the same type as the first parameter of the dynamic method.</param>
-            <returns>A delegate of the specified type, which can be used to execute the dynamic method with the specified target object.</returns>
-        </member>
         <member name="T:LightInject.IScopeManagerProvider">
             <summary>
             Represents a class that is capable of providing the current <see cref="T:LightInject.ScopeManager"/>.
@@ -904,6 +906,18 @@
             Returns the <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.
             </summary>
             <returns>The <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.</returns>
+        </member>
+        <member name="T:LightInject.ExpressionExtensions">
+            <summary>
+            Extends the <see cref="T:System.Linq.Expressions.Expression"/> class.
+            </summary>
+        </member>
+        <member name="M:LightInject.ExpressionExtensions.AsEnumerable(System.Linq.Expressions.Expression)">
+            <summary>
+            Flattens the <paramref name="expression"/> into an <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            </summary>
+            <param name="expression">The target <see cref="T:System.Linq.Expressions.Expression"/>.</param>
+            <returns>The <see cref="T:System.Linq.Expressions.Expression"/> represented as a list of sub expressions.</returns>
         </member>
         <member name="T:LightInject.ImmutableHashTreeExtensions">
             <summary>
@@ -990,12 +1004,12 @@
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
             <param name="constructorInfo">The <see cref="T:LightInject.ConstructionInfo"/> that represent the object to be created.</param>
         </member>
-        <member name="M:LightInject.EmitterExtensions.Push(LightInject.IEmitter,LightInject.LocalBuilder)">
+        <member name="M:LightInject.EmitterExtensions.Push(LightInject.IEmitter,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Pushes the given <paramref name="localBuilder"/> onto the stack.
             </summary>
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
-            <param name="localBuilder">The <see cref="T:LightInject.LocalBuilder"/> to be pushed onto the stack.</param>
+            <param name="localBuilder">The <see cref="T:System.Reflection.Emit.LocalBuilder"/> to be pushed onto the stack.</param>
         </member>
         <member name="M:LightInject.EmitterExtensions.PushArgument(LightInject.IEmitter,System.Int32)">
             <summary>
@@ -1004,19 +1018,12 @@
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
             <param name="index">The index of the argument to be pushed onto the stack.</param>
         </member>
-        <member name="M:LightInject.EmitterExtensions.Store(LightInject.IEmitter,LightInject.LocalBuilder)">
+        <member name="M:LightInject.EmitterExtensions.Store(LightInject.IEmitter,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Stores the value currently on top of the stack in the given <paramref name="localBuilder"/>.
             </summary>
             <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
-            <param name="localBuilder">The <see cref="T:LightInject.LocalBuilder"/> for which the value is to be stored.</param>
-        </member>
-        <member name="M:LightInject.EmitterExtensions.Push(LightInject.IEmitter,System.String)">
-            <summary>
-            Pushes a string value onto the stack.
-            </summary>
-            <param name="emitter">The target <see cref="T:LightInject.IEmitter"/>.</param>
-            <param name="value">The <see cref="T:System.String"/> value to be pushed onto the stack.</param>
+            <param name="localBuilder">The <see cref="T:System.Reflection.Emit.LocalBuilder"/> for which the value is to be stored.</param>
         </member>
         <member name="M:LightInject.EmitterExtensions.PushNewArray(LightInject.IEmitter,System.Type)">
             <summary>
@@ -1083,11 +1090,11 @@
         </member>
         <member name="M:LightInject.ServiceContainer.Register``1(System.Linq.Expressions.Expression{System.Func{LightInject.IServiceFactory,``0}},System.String,LightInject.ILifetime)">
             <summary>
-            Registers the <typeparamref name="TService"/> with the <paramref name="expression"/> that 
+            Registers the <typeparamref name="TService"/> with the <paramref name="factory"/> that 
             describes the dependencies of the service. 
             </summary>
             <typeparam name="TService">The service type to register.</typeparam>
-            <param name="expression">The lambdaExpression that describes the dependencies of the service.</param>
+            <param name="factory">The lambdaExpression that describes the dependencies of the service.</param>
             <param name="serviceName">The name of the service.</param>        
             <param name="lifetime">The <see cref="T:LightInject.ILifetime"/> instance that controls the lifetime of the registered service.</param>
         </member>
@@ -1161,6 +1168,12 @@
             Registers services from the given <typeparamref name="TCompositionRoot"/> type.
             </summary>
             <typeparam name="TCompositionRoot">The type of <see cref="T:LightInject.ICompositionRoot"/> to register from.</typeparam>
+        </member>
+        <member name="M:LightInject.ServiceContainer.RegisterAssembly(System.String)">
+            <summary>
+            Registers composition roots from assemblies in the base directory that matches the <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern used to filter the assembly files.</param>
         </member>
         <member name="M:LightInject.ServiceContainer.Decorate(System.Type,System.Type,System.Func{LightInject.ServiceRegistration,System.Boolean})">
             <summary>
@@ -1637,6 +1650,11 @@
             Disposes any services registered using the <see cref="T:LightInject.PerContainerLifetime"/>.
             </summary>
         </member>
+        <member name="M:LightInject.ServiceContainer.Invalidate">
+            <summary>
+            Invalidates the container and causes the compiler to "recompile".
+            </summary>
+        </member>
         <member name="P:LightInject.ServiceContainer.ScopeManagerProvider">
             <summary>
             Gets or sets the <see cref="T:LightInject.IScopeManagerProvider"/> that is responsible 
@@ -1664,6 +1682,11 @@
         <member name="P:LightInject.ServiceContainer.AssemblyScanner">
             <summary>
             Gets or sets the <see cref="T:LightInject.IAssemblyScanner"/> instance that is responsible for scanning assemblies.
+            </summary>
+        </member>
+        <member name="P:LightInject.ServiceContainer.AssemblyLoader">
+            <summary>
+            Gets or sets the <see cref="T:LightInject.IAssemblyLoader"/> instance that is responsible for loading assemblies during assembly scanning. 
             </summary>
         </member>
         <member name="P:LightInject.ServiceContainer.AvailableServices">
@@ -1700,151 +1723,6 @@
             Returns the <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.
             </summary>
             <returns>The <see cref="T:LightInject.ScopeManager"/> that is responsible for managing scopes.</returns>
-        </member>
-        <member name="T:LightInject.DynamicMethod">
-            <summary>
-            Defines and represents a dynamic method that can be compiled and executed.
-            </summary>    
-        </member>
-        <member name="M:LightInject.DynamicMethod.#ctor(System.Type,System.Type[])">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.DynamicMethod"/> class.
-            </summary>
-            <param name="returnType">A <see cref="T:System.Type"/> object that specifies the return type of the dynamic method.</param>
-            <param name="parameterTypes">An array of <see cref="T:System.Type"/> objects specifying the types of the parameters of the dynamic method, or null if the method has no parameters.</param>
-        </member>
-        <member name="M:LightInject.DynamicMethod.CreateDelegate(System.Type)">
-            <summary>
-            Completes the dynamic method and creates a delegate that can be used to execute it
-            </summary>
-            <param name="delegateType">A delegate type whose signature matches that of the dynamic method.</param>
-            <returns>A delegate of the specified type, which can be used to execute the dynamic method.</returns>
-        </member>
-        <member name="M:LightInject.DynamicMethod.CreateDelegate(System.Type,System.Object)">
-            <summary>
-            Completes the dynamic method and creates a delegate that can be used to execute it, specifying the delegate type and an object the delegate is bound to.
-            </summary>
-            <param name="delegateType">A delegate type whose signature matches that of the dynamic method, minus the first parameter.</param>
-            <param name="target">An object the delegate is bound to. Must be of the same type as the first parameter of the dynamic method.</param>
-            <returns>A delegate of the specified type, which can be used to execute the dynamic method with the specified target object.</returns>
-        </member>
-        <member name="M:LightInject.DynamicMethod.GetILGenerator">
-            <summary>
-            Returns a <see cref="T:LightInject.ILGenerator"/> for the method
-            </summary>
-            <returns>An <see cref="T:LightInject.ILGenerator"/> object for the method.</returns>
-        </member>
-        <member name="T:LightInject.ILGenerator">
-            <summary>
-            A generator that transforms <see cref="T:System.Reflection.Emit.OpCodes"/> into an expression tree.
-            </summary>
-        </member>
-        <member name="M:LightInject.ILGenerator.#ctor(System.Linq.Expressions.ParameterExpression[])">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.ILGenerator"/> class.
-            </summary>
-            <param name="parameters">An array of parameters used by the target <see cref="T:LightInject.DynamicMethod"/>.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Reflection.ConstructorInfo)">
-            <summary>
-            Puts the specified instruction and metadata token for the specified constructor onto the Microsoft intermediate language (MSIL) stream of instructions.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="constructor">A <see cref="T:System.Reflection.ConstructorInfo"/> representing a constructor.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode)">
-            <summary>
-            Puts the specified instruction onto the stream of instructions.
-            </summary>
-            <param name="code">The Microsoft Intermediate Language (MSIL) instruction to be put onto the stream.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,LightInject.LocalBuilder)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the index of the given local variable.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="localBuilder">A local variable.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Int32)">
-            <summary>
-            Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.SByte)">
-            <summary>
-            Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Byte)">
-            <summary>
-            Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.String)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given string.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="arg">The String to be emitted.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.DeclareLocal(System.Type)">
-            <summary>
-            Declares a local variable of the specified type.
-            </summary>
-            <param name="type">A <see cref="T:System.Type"/> object that represents the type of the local variable.</param>
-            <returns>The declared local variable.</returns>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Type)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given type.
-            </summary>
-            <param name="code">The MSIL instruction to be put onto the stream.</param>
-            <param name="type">A <see cref="T:System.Type"/>.</param>
-        </member>
-        <member name="M:LightInject.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Reflection.MethodInfo)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given method.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="methodInfo">A <see cref="T:System.Reflection.MethodInfo"/> representing a method.</param>
-        </member>
-        <member name="P:LightInject.ILGenerator.CurrentExpression">
-            <summary>
-            Gets the current expression based the emitted <see cref="T:System.Reflection.Emit.OpCodes"/>. 
-            </summary>
-        </member>
-        <member name="T:LightInject.LocalBuilder">
-            <summary>
-            Represents a local variable within a method or constructor.
-            </summary>
-        </member>
-        <member name="M:LightInject.LocalBuilder.#ctor(System.Type,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:LightInject.LocalBuilder"/> class.
-            </summary>
-            <param name="type">The <see cref="T:System.Type"/> of the variable that this <see cref="T:LightInject.LocalBuilder"/> represents.</param>
-            <param name="localIndex">The zero-based index of the local variable within the method body.</param> 
-        </member>
-        <member name="P:LightInject.LocalBuilder.Variable">
-            <summary>
-            Gets the <see cref="T:System.Linq.Expressions.ParameterExpression"/> that represents the variable.
-            </summary>
-        </member>
-        <member name="P:LightInject.LocalBuilder.LocalType">
-            <summary>
-            Gets the type of the local variable.
-            </summary>
-        </member>
-        <member name="P:LightInject.LocalBuilder.LocalIndex">
-            <summary>
-            Gets the zero-based index of the local variable within the method body.
-            </summary>
         </member>
         <member name="T:LightInject.MostResolvableConstructorSelector">
             <summary>
@@ -1927,11 +1805,11 @@
             <param name="propertyDependencySelector">The <see cref="T:LightInject.IPropertyDependencySelector"/> that is responsible
             for selecting the property dependencies for a given <see cref="T:System.Type"/>.</param>
         </member>
-        <member name="M:LightInject.TypeConstructionInfoBuilder.Execute(System.Type)">
+        <member name="M:LightInject.TypeConstructionInfoBuilder.Execute(LightInject.Registration)">
             <summary>
-            Analyzes the <paramref name="implementingType"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
+            Analyzes the <paramref name="registration"/> and returns a <see cref="T:LightInject.ConstructionInfo"/> instance.
             </summary>
-            <param name="implementingType">The <see cref="T:System.Type"/> to analyze.</param>
+            <param name="registration">The <see cref="T:LightInject.Registration"/> that represents the implementing type to analyze.</param>
             <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance.</returns>
         </member>
         <member name="T:LightInject.ConstructionInfoProvider">
@@ -1995,45 +1873,6 @@
             <param name="lambdaExpression">The <see cref="T:System.Linq.Expressions.LambdaExpression"/> to parse.</param>
             <returns>A <see cref="T:LightInject.ConstructionInfo"/> instance.</returns>
         </member>
-        <member name="T:LightInject.LambdaExpressionValidator">
-            <summary>
-            Inspects the body of a <see cref="T:System.Linq.Expressions.LambdaExpression"/> and determines if the expression can be parsed.
-            </summary>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.CanParse(System.Linq.Expressions.LambdaExpression)">
-            <summary>
-            Determines if the <paramref name="lambdaExpression"/> can be parsed.
-            </summary>
-            <param name="lambdaExpression">The <see cref="T:System.Linq.Expressions.LambdaExpression"/> to validate.</param>
-            <returns><b>true</b>, if the expression can be parsed, otherwise <b>false</b>.</returns>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.VisitLambda``1(System.Linq.Expressions.Expression{``0})">
-            <summary>
-            Visits the children of the <see cref="T:System.Linq.Expressions.Expression`1"/>.
-            </summary>
-            <returns>
-            The modified expression, if it or any sub-expression was modified; otherwise, returns the original expression.
-            </returns>
-            <param name="node">The expression to visit.</param><typeparam name="T">The type of the delegate.</typeparam>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.VisitUnary(System.Linq.Expressions.UnaryExpression)">
-            <summary>
-            Visits the children of the <see cref="T:System.Linq.Expressions.UnaryExpression"/>.
-            </summary>
-            <returns>
-            The modified expression, if it or any sub-expression was modified; otherwise, returns the original expression.
-            </returns>
-            <param name="node">The expression to visit.</param>
-        </member>
-        <member name="M:LightInject.LambdaExpressionValidator.VisitNewArray(System.Linq.Expressions.NewArrayExpression)">
-            <summary>
-            Visits the children of the <see cref="T:System.Linq.Expressions.NewArrayExpression"/>.
-            </summary>
-            <returns>
-            The modified expression, if it or any sub-expression was modified; otherwise, returns the original expression.
-            </returns>
-            <param name="node">The expression to visit.</param>
-        </member>
         <member name="T:LightInject.ServiceRequest">
             <summary>
             Contains information about a service request that originates from a rule based service registration.
@@ -2070,6 +1909,11 @@
         <member name="P:LightInject.Registration.ServiceType">
             <summary>
             Gets or sets the service <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="P:LightInject.Registration.IgnoreConstructorDependencies">
+            <summary>
+            Gets or sets a value indicating whether constructor dependencies should be ignored.
             </summary>
         </member>
         <member name="P:LightInject.Registration.ImplementingType">
@@ -2507,6 +2351,25 @@
             <param name="propertyInfo">The <see cref="T:System.Reflection.PropertyInfo"/> that describes the target property.</param>
             <returns><b>true</b> if the property is injectable, otherwise <b>false</b>.</returns>
         </member>
+        <member name="T:LightInject.AssemblyLoader">
+            <summary>
+            Loads all assemblies from the application base directory that matches the given search pattern.
+            </summary>
+        </member>
+        <member name="M:LightInject.AssemblyLoader.Load(System.String)">
+            <summary>
+            Loads a set of assemblies based on the given <paramref name="searchPattern"/>.
+            </summary>
+            <param name="searchPattern">The search pattern to use.</param>
+            <returns>A list of assemblies based on the given <paramref name="searchPattern"/>.</returns>
+        </member>
+        <member name="M:LightInject.AssemblyLoader.CanLoad(System.String)">
+            <summary>
+            Indicates if the current <paramref name="fileName"/> represent a file that can be loaded.
+            </summary>
+            <param name="fileName">The name of the target file.</param>
+            <returns><b>true</b> if the file can be loaded, otherwise <b>false</b>.</returns>
+        </member>
         <member name="T:LightInject.KeyValue`2">
             <summary>
             Defines an immutable representation of a key and a value.  
@@ -2645,12 +2508,12 @@
             Represents an MSIL instruction to be emitted into a dynamic method.
             </summary>
         </member>
-        <member name="M:LightInject.Instruction.#ctor(System.Reflection.Emit.OpCode,System.Action{LightInject.ILGenerator})">
+        <member name="M:LightInject.Instruction.#ctor(System.Reflection.Emit.OpCode,System.Action{System.Reflection.Emit.ILGenerator})">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.Instruction"/> class.
             </summary>
             <param name="code">The <see cref="T:System.Reflection.Emit.OpCode"/> to be emitted.</param>
-            <param name="emitAction">The action to be performed against an <see cref="T:LightInject.ILGenerator"/>
+            <param name="emitAction">The action to be performed against an <see cref="T:System.Reflection.Emit.ILGenerator"/>
             when this <see cref="T:LightInject.Instruction"/> is emitted.</param>
         </member>
         <member name="M:LightInject.Instruction.ToString">
@@ -2666,7 +2529,7 @@
         </member>
         <member name="P:LightInject.Instruction.Emit">
             <summary>
-            Gets the action to be performed against an <see cref="T:LightInject.ILGenerator"/>
+            Gets the action to be performed against an <see cref="T:System.Reflection.Emit.ILGenerator"/>
             when this <see cref="T:LightInject.Instruction"/> is emitted.
             </summary>
         </member>
@@ -2676,13 +2539,13 @@
             </summary>
             <typeparam name="T">The type of argument used in this instruction.</typeparam>
         </member>
-        <member name="M:LightInject.Instruction`1.#ctor(System.Reflection.Emit.OpCode,`0,System.Action{LightInject.ILGenerator})">
+        <member name="M:LightInject.Instruction`1.#ctor(System.Reflection.Emit.OpCode,`0,System.Action{System.Reflection.Emit.ILGenerator})">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.Instruction`1"/> class.
             </summary>
             <param name="code">The <see cref="T:System.Reflection.Emit.OpCode"/> to be emitted.</param>
             <param name="argument">The argument be passed along with the given <paramref name="code"/>.</param>
-            <param name="emitAction">The action to be performed against an <see cref="T:LightInject.ILGenerator"/>
+            <param name="emitAction">The action to be performed against an <see cref="T:System.Reflection.Emit.ILGenerator"/>
             when this <see cref="T:LightInject.Instruction"/> is emitted.</param>
         </member>
         <member name="M:LightInject.Instruction`1.ToString">
@@ -2698,15 +2561,15 @@
         </member>
         <member name="T:LightInject.Emitter">
             <summary>
-            An abstraction of the <see cref="T:LightInject.ILGenerator"/> class that provides information 
+            An abstraction of the <see cref="T:System.Reflection.Emit.ILGenerator"/> class that provides information 
             about the <see cref="T:System.Type"/> currently on the stack.
             </summary>
         </member>
-        <member name="M:LightInject.Emitter.#ctor(LightInject.ILGenerator,System.Type[])">
+        <member name="M:LightInject.Emitter.#ctor(System.Reflection.Emit.ILGenerator,System.Type[])">
             <summary>
             Initializes a new instance of the <see cref="T:LightInject.Emitter"/> class.
             </summary>
-            <param name="generator">The <see cref="T:LightInject.ILGenerator"/> used to emit MSIL instructions.</param>
+            <param name="generator">The <see cref="T:System.Reflection.Emit.ILGenerator"/> used to emit MSIL instructions.</param>
             <param name="parameterTypes">The list of parameter types used by the current dynamic method.</param>
         </member>
         <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode)">
@@ -2721,13 +2584,6 @@
             </summary>
             <param name="code">The MSIL instruction to be put onto the stream.</param>
             <param name="arg">The numerical argument pushed onto the stream immediately after the instruction.</param>
-        </member>
-        <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,System.String)">
-            <summary>
-            Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given string.
-            </summary>
-            <param name="code">The MSIL instruction to be emitted onto the stream.</param>
-            <param name="arg">The String to be emitted.</param>
         </member>
         <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,System.SByte)">
             <summary>
@@ -2757,7 +2613,7 @@
             <param name="code">The MSIL instruction to be emitted onto the stream.</param>
             <param name="constructor">A <see cref="T:System.Reflection.ConstructorInfo"/> representing a constructor.</param>
         </member>
-        <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,LightInject.LocalBuilder)">
+        <member name="M:LightInject.Emitter.Emit(System.Reflection.Emit.OpCode,System.Reflection.Emit.LocalBuilder)">
             <summary>
             Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the index of the given local variable.
             </summary>

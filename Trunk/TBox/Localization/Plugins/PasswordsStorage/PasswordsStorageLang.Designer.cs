@@ -106,6 +106,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.PasswordsStorage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Readonly.
+        /// </summary>
+        public static string IsReadOnly {
+            get {
+                return ResourceManager.GetString("IsReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         public static string Key {

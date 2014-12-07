@@ -18,9 +18,10 @@
         </StatusBar>
         <DockPanel DockPanel.Dock="Bottom" >
             <Button Content="{loc:Tr CopySelected}" Click="CopyAll" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
-            <Button Content="{loc:Tr NewPassword}" Click="NewPassword" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
-            <Button Content="Save" IsDefault="True" IsCancel="True" Margin="20 10" Click="SaveClick" DockPanel.Dock="Right" />
+            <Button Content="{loc:Tr NewPassword}" Click="NewPassword" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}" />
+            <Button Content="Save" IsDefault="True" IsCancel="True" Margin="20 10" Click="SaveClick" DockPanel.Dock="Right"/>
             <Label/>
+            <CheckBox Name="IsReadOnly" VerticalAlignment="Center" Content="{loc:Tr IsReadOnly}" Margin="20 10"/>
         </DockPanel>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Margin="55 0 5 0">
             <Grid.ColumnDefinitions>
@@ -45,9 +46,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Key}" FontWeight="Bold" Grid.Column="0" Padding="2" Margin="5" VerticalAlignment="Center"/>
-                        <TextBox Text="{Binding Login}" Grid.Column="1" Padding="2" Margin="5" VerticalAlignment="Center" GotFocus="CellClick"/>
-                        <captioned:CaptionedPasswordBox Value="{Binding Password}" Grid.Column="2" Margin="5" VerticalAlignment="Stretch" GotFocus="CellClick" Click="CellClick"/>
-                        <TextBox Text="{Binding Comment}" Grid.Column="3" Padding="2" Margin="5" VerticalAlignment="Center" GotFocus="CellClick"/>
+                        <TextBox Text="{Binding Login}" Grid.Column="1" Padding="2" Margin="5" VerticalAlignment="Center" GotFocus="CellClick" IsReadOnlyCaretVisible="True" IsReadOnly="{Binding ElementName=IsReadOnly, Path=IsChecked}"/>
+                        <captioned:CaptionedPasswordBox Value="{Binding Password}" Grid.Column="2" Margin="5" VerticalAlignment="Stretch" GotFocus="CellClick" Click="CellClick" IsReadOnly="{Binding ElementName=IsReadOnly, Path=IsChecked}"/>
+                        <TextBox Text="{Binding Comment}" Grid.Column="3" Padding="2" Margin="5" VerticalAlignment="Center" GotFocus="CellClick" IsReadOnlyCaretVisible="True" IsReadOnly="{Binding ElementName=IsReadOnly, Path=IsChecked}"/>
                     </Grid>
                 </DataTemplate>
             </units:ListBoxUnit.ItemTemplate>
