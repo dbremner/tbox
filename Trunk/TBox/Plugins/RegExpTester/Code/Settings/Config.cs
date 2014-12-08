@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Mnk.Library.Common.UI.Model;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.TBox.Core.Contracts;
 
-namespace Mnk.TBox.Plugins.Notes.Code.Settings
+namespace Mnk.TBox.Plugins.RegExpTester.Code.Settings
 {
     [Serializable]
     public class Config : IConfigWithDialogStates
@@ -16,19 +15,17 @@ namespace Mnk.TBox.Plugins.Notes.Code.Settings
 
         public Config()
         {
+            States = new Dictionary<string, DialogState>();
             Profiles = new ObservableCollection<Profile>
             {
                 new Profile
                 {
                     Key = "Default",
-                    Notes = new ObservableCollection<Data<string>>
-                    {
-                        new Data<string>{Key = "Hello", Value = "world"}
-                    }
+                    RegExp = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b",
+                    Text = "192.168.1.1"
                 }
             };
-            States = new Dictionary<string, DialogState>();
+            SelectedProfile = "Default";
         }
-
     }
 }

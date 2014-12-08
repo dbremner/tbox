@@ -120,6 +120,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ConfigureProfile" xml:space="preserve">
+    <value>Configure profile</value>
+  </data>
   <data name="Count" xml:space="preserve">
     <value>Count:</value>
   </data>

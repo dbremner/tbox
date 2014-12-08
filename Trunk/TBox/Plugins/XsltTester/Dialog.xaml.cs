@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using System.Xml.Xsl;
 using Mnk.Library.Common;
 using Mnk.Library.WpfControls.Tools;
+using Mnk.TBox.Plugins.XsltTester.Code.Settings;
 
 namespace Mnk.TBox.Plugins.XsltTester
 {
@@ -15,7 +16,7 @@ namespace Mnk.TBox.Plugins.XsltTester
     /// </summary>
     public partial class Dialog
     {
-        private readonly Stopwatch sw = new Stopwatch();
+        private readonly Stopwatch stopwatch = new Stopwatch();
         public Dialog()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace Mnk.TBox.Plugins.XsltTester
         {
             sbError.Visibility = sbErrorCaption.Visibility = Visibility.Hidden;
             Results.Clear();
-            sw.Restart();
+            stopwatch.Restart();
             ExceptionsHelper.HandleException(
                 () => Execute(Xslt.Text, Xml.Text),
                 ex =>
@@ -80,6 +81,7 @@ namespace Mnk.TBox.Plugins.XsltTester
                     catch { }
                 }
                 Results.Text = str;
+                sbTime.Content = stopwatch.ElapsedMilliseconds;
             }
         }
     }

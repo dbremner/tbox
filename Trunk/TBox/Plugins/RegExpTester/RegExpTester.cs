@@ -1,6 +1,7 @@
 ﻿using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.RegExpTester;
 using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.TBox.Plugins.RegExpTester.Code.Settings;
 
 namespace Mnk.TBox.Plugins.RegExpTester
 {

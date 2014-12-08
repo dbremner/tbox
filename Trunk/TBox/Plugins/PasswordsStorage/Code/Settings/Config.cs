@@ -22,7 +22,7 @@ namespace Mnk.TBox.Plugins.PasswordsStorage.Code.Settings
             {
                 new Profile
                 {
-                    Key = "Sample",
+                    Key = "Default",
                     LoginInfos = new ObservableCollection<LoginInfo>
                     {
                         new LoginInfo{Key = "Hello", Login = "world", Password = ""}

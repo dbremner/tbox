@@ -60,7 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Localization\TrExtension.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Code\Settings\Config.cs" />
+    <Compile Include="Code\Settings\Profile.cs" />
     <Compile Include="Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>

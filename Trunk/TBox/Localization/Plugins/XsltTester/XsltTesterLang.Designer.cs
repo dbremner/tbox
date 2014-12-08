@@ -79,6 +79,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.XsltTester {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configure profile.
+        /// </summary>
+        public static string ConfigureProfile {
+            get {
+                return ResourceManager.GetString("ConfigureProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error:.
         /// </summary>
         public static string Error {

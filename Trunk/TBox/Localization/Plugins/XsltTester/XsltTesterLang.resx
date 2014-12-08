@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ConfigureProfile" xml:space="preserve">
+    <value>Configure profile</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error:</value>
   </data>

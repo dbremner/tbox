@@ -8,13 +8,16 @@
                 xmlns:wpfSyntaxHighlighter="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
                       xmlns:regularExpressions="clr-namespace:System.Text.RegularExpressions;assembly=System"
                       xmlns:components="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
-                mc:Ignorable="d" 
+                      xmlns:units="clr-namespace:Mnk.Library.WpfControls.Components.Units;assembly=Mnk.Library.WpfControls"
+                      mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              ShowInTaskbar="True" Title="{loc:Tr PluginName}"
              Width="640" Height="480"
              FocusManager.FocusedElement="{Binding ElementName=RegExp}"
              MinWidth="640" MinHeight="480">
     <DockPanel>
+        <units:ComboBoxUnit ItemsSource="{Binding Profiles}" Name="Profiles" UnitType="Text" Title="{loc:Tr ConfigureProfile}" DockPanel.Dock="Top" ValueCaption="{Binding SelectedProfile}" />
+        <DockPanel Name="Data" Margin="5" DataContext="{Binding ElementName=Profiles, Path=SelectedValue }" IsEnabled="{Binding ElementName=Profiles,Path=IsSelected}">
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="{loc:Tr Count}"/>
             <StatusBarItem Name="sbCount"/>
@@ -59,5 +62,6 @@
                 <TreeView Name="Results" HorizontalContentAlignment="Stretch"/>
             </DockPanel>
         </Grid>
+        </DockPanel>
     </DockPanel>
 </dialogs:DialogWindow>

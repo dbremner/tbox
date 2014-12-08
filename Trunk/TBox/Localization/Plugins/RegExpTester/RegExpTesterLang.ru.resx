@@ -120,6 +120,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="ConfigureProfile" xml:space="preserve">
+    <value>Настройка профиля</value>
+  </data>
   <data name="Count" xml:space="preserve">
     <value>Количество:</value>
   </data>
