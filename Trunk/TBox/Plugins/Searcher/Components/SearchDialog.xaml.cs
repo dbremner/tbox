@@ -410,5 +410,12 @@ namespace Mnk.TBox.Plugins.Searcher.Components
         {
             LvResultMouseDoubleClick(sender, null);
         }
+
+        private void ContextMenuCopyFilePath(object sender, RoutedEventArgs e)
+        {
+            if (lvResult.SelectedItem == null) return;
+            var path = GetSelectedFilePath();
+            Clipboard.SetText(path);
+        }
     }
 }

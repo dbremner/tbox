@@ -276,4 +276,7 @@
   <data name="GoToFile" xml:space="preserve">
     <value>Go To File</value>
   </data>
+  <data name="CopyFilePath" xml:space="preserve">
+    <value>Copy file path</value>
+  </data>
 </root>

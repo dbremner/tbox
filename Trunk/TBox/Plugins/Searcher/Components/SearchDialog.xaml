@@ -19,6 +19,7 @@
         <ContextMenu  x:Key="RowMenu" >
             <MenuItem Header="{loc:Tr Edit}" Click="ContextMenuEdit"/>
             <MenuItem Header="{loc:Tr GoToFile}" Click="ContextMenuGoToFile"/>
+            <MenuItem Header="{loc:Tr CopyFilePath}" Click="ContextMenuCopyFilePath"/>
         </ContextMenu>
         <Style x:Key="DefaultRowStyle" TargetType="{x:Type DataGridRow}">
             <Setter Property="ContextMenu" Value="{StaticResource RowMenu}" />

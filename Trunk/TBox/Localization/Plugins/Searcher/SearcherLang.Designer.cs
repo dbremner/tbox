@@ -133,6 +133,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.Searcher {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy file path.
+        /// </summary>
+        public static string CopyFilePath {
+            get {
+                return ResourceManager.GetString("CopyFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create indexes...
         /// </summary>
         public static string CreateIndexes {
