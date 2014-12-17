@@ -276,7 +276,7 @@
         </member>
         <member name="M:LightInject.IServiceRegistry.RegisterAssembly(System.Reflection.Assembly)">
             <summary>
-            Registers services from the given <paramref name="assembly"/>.
+            Registers composition roots from the given <paramref name="assembly"/>.
             </summary>
             <param name="assembly">The assembly to be scanned for services.</param>        
             <remarks>
@@ -581,6 +581,21 @@
             </summary>
             <typeparam name="TService">The type of services to resolve.</typeparam>
             <returns>A list that contains all implementations of the <typeparamref name="TService"/> type.</returns>
+        </member>
+        <member name="M:LightInject.IServiceFactory.Create``1">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <typeparam name="TService">The type of class for which to create an instance.</typeparam>
+            <returns>An instance of <typeparamref name="TService"/>.</returns>
+            <remarks>The concrete type will be registered if not already registered with the container.</remarks>
+        </member>
+        <member name="M:LightInject.IServiceFactory.Create(System.Type)">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <param name="serviceType">The type of class for which to create an instance.</param>
+            <returns>An instance of the <paramref name="serviceType"/>.</returns>
         </member>
         <member name="T:LightInject.IServiceContainer">
             <summary>
@@ -1103,7 +1118,7 @@
         </member>
         <member name="M:LightInject.ServiceContainer.RegisterAssembly(System.Reflection.Assembly)">
             <summary>
-            Registers services from the given <paramref name="assembly"/>.
+            Registers composition roots from the given <paramref name="assembly"/>.
             </summary>
             <param name="assembly">The assembly to be scanned for services.</param>        
             <remarks>
@@ -1620,6 +1635,21 @@
             </summary>
             <typeparam name="TService">The type of services to resolve.</typeparam>
             <returns>A list that contains all implementations of the <typeparamref name="TService"/> type.</returns>
+        </member>
+        <member name="M:LightInject.ServiceContainer.Create``1">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <typeparam name="TService">The type of class for which to create an instance.</typeparam>
+            <returns>An instance of <typeparamref name="TService"/>.</returns>
+            <remarks>The concrete type will be registered if not already registered with the container.</remarks>
+        </member>
+        <member name="M:LightInject.ServiceContainer.Create(System.Type)">
+            <summary>
+            Creates an instance of a concrete class.
+            </summary>
+            <param name="serviceType">The type of class for which to create an instance.</param>
+            <returns>An instance of the <paramref name="serviceType"/>.</returns>
         </member>
         <member name="M:LightInject.ServiceContainer.Dispose">
             <summary>

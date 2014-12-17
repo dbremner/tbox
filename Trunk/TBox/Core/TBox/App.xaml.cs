@@ -19,19 +19,21 @@ namespace Mnk.TBox.Core.Application
 		private readonly ILog log = LogManager.GetLogger<App>();
 		private static bool handled = false;
 
-		public App()
-		{
-			Translator.Culture = new CultureInfo("en");
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
 
-			ShutdownMode = ShutdownMode.OnMainWindowClose;
-			FormsStyles.Enable();
-			AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
-			DispatcherUnhandledException += CurrentDispatcherUnhandledException;
-			Dispatcher.UnhandledException += DispatcherOnUnhandledException;
-			TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+            Translator.Culture = new CultureInfo("en");
 
-			OneInstance.App.Init(this);
-		}
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
+            FormsStyles.Enable();
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
+            DispatcherUnhandledException += CurrentDispatcherUnhandledException;
+            Dispatcher.UnhandledException += DispatcherOnUnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskSchedulerOnUnobservedTaskException;
+
+            OneInstance.App.Init(this);
+        }
 
 		private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
 		{

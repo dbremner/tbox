@@ -18,7 +18,7 @@
         <TabItem Header="{loc:Tr TabsEnabledPlugins}">
             <DockPanel>
                 <my:PanelToICheckable Name="PanelButtons" PanelHorizontalAlignment="Left" DockPanel.Dock="Bottom"/>
-                <my:CheckableListBox Name="Panel" Margin="5,0,5,5" HorizontalContentAlignment="Left" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <my:CheckableListBox AllowDrop="False" Name="Panel" Margin="5,0,5,5" HorizontalContentAlignment="Left" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
                     <my:CheckableListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type objects:EnginePluginInfo}">
                             <Grid>

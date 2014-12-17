@@ -71,7 +71,7 @@
             <Label/>
         </DockPanel>
         <ContentControl Name="PluginsBack" Margin="5,2,5,5">
-            <buttonsView:GroupedList Name="View" Margin="0" Padding="0"/>
+            <buttonsView:GroupedList AllowDrop="False" Name="View" Margin="0" Padding="0"/>
         </ContentControl>
     </DockPanel>
 </Dialogs:DialogWindow>

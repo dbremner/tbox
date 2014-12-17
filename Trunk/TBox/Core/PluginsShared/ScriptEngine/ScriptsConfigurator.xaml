@@ -19,7 +19,7 @@
             <Button Content="{loc:Tr Cancel}" IsCancel="True" Click="CancelClick"/>
         </StackPanel>
         <Label Content="{loc:Tr ScriptsPackageParameters}" Margin="0" Padding="0" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-        <components:ExtListBox Name="Parameters" ScrollViewer.CanContentScroll="False" >
+        <components:ExtListBox AllowDrop="False" Name="Parameters" ScrollViewer.CanContentScroll="False" >
             <components:ExtListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type params2:Parameter}">
                     <DockPanel Margin="5">
