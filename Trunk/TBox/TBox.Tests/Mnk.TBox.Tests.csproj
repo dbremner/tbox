@@ -45,6 +45,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Mnk.Library.Localization, Version=1.0.5464.40046, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.Localization.dll</HintPath>
+    </Reference>
     <Reference Include="Mnk.Library.ParallelNUnit, Version=1.0.5285.11031, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.ParallelNUnit.dll</HintPath>
