@@ -13,7 +13,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl >
         <TabItem Header="{loc:Tr ErrorsAndFailures}">
-            <components1:ExtListBox Name="ErrorsAndFailures" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
+            <components1:ExtListBox AllowDrop="False" Name="ErrorsAndFailures" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
                 <components1:ExtListBox.ItemTemplate>
                     <DataTemplate DataType="core:Result">
                         <StackPanel>

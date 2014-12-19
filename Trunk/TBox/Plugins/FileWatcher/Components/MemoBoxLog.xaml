@@ -22,7 +22,7 @@
             </StackPanel>
             <Label/>
         </DockPanel>
-        <Components:ExtListBox x:Name="output" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
+        <Components:ExtListBox x:Name="output" AllowDrop="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False">
             <Components:ExtListBox.ItemTemplate>
                 <DataTemplate DataType="Components2:CaptionedEntity">
                     <StackPanel>

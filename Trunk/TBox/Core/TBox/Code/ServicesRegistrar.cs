@@ -20,6 +20,7 @@ namespace Mnk.TBox.Core.Application.Code
 {
     static class ServicesRegistrar
     {
+        private static IServiceContainer container;
         private static readonly string LogsFolder = Path.Combine(Folders.UserRootFolder, "Logs");
         private static readonly string ErrorsLogsPath = Path.Combine(LogsFolder, "TBox.Errors.log");
 
@@ -34,7 +35,7 @@ namespace Mnk.TBox.Core.Application.Code
 
         public static IServiceContainer Register()
         {
-            var container = new ServiceContainer();
+            container = new ServiceContainer();
             var cm = new ConfigManager();
             container.RegisterInstance<IConfigManager<Config>>(cm);
             container.RegisterInstance<IConfigsManager>(cm);
@@ -57,5 +58,7 @@ namespace Mnk.TBox.Core.Application.Code
 
             return container;
         }
+
+        public static IServiceContainer Container { get { return container; } }
     }
 }

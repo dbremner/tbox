@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -174,7 +175,6 @@ namespace Mnk.TBox.Core.Application
                 Mt.Do(this, () => engine.Dispose());
             }
             Close();
-            container.Dispose();
         }
 
         private void CreateEngine(IUpdater updater)

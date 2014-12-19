@@ -3,11 +3,13 @@ using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using LightInject;
 using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.WpfControls;
 using Mnk.Library.WpfControls.Localization;
 using Mnk.Library.WpfWinForms;
+using Mnk.TBox.Core.Application.Code;
 
 namespace Mnk.TBox.Core.Application
 {
@@ -19,10 +21,8 @@ namespace Mnk.TBox.Core.Application
 		private readonly ILog log = LogManager.GetLogger<App>();
 		private static bool handled = false;
 
-        protected override void OnStartup(StartupEventArgs e)
+	    public App()
         {
-            base.OnStartup(e);
-
             Translator.Culture = new CultureInfo("en");
 
             ShutdownMode = ShutdownMode.OnMainWindowClose;
@@ -35,7 +35,16 @@ namespace Mnk.TBox.Core.Application
             OneInstance.App.Init(this);
         }
 
-		private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+	    protected override void OnExit(ExitEventArgs e)
+	    {
+	        base.OnExit(e);
+	        if (ServicesRegistrar.Container != null)
+	        {
+	            ServicesRegistrar.Container.Dispose();
+	        }
+	    }
+
+	    private void TaskSchedulerOnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
 		{
 			LogException(e.Exception);
 		}
@@ -67,7 +76,6 @@ namespace Mnk.TBox.Core.Application
 			}
 			else log.Write(message);
 			ExceptionsHelper.HandleException(DoExit, x=>{});
-			;
 			Shutdown(-1);
 		}
 
