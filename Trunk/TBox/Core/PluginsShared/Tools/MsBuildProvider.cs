@@ -29,7 +29,7 @@ namespace Mnk.TBox.Core.PluginsShared.Tools
 			Cmd.Start(GetCmdPath("build_build"), Log, string.Format("\"{0}\" \"{1}\" \"{2}\"", PathToMsBuild, path, args), false);
 		}
 
-		public void Build(string mode, string path, bool waitEnd = false)
+		public void BuildSlnFile(string mode, string path, bool waitEnd = false)
 		{
 			Cmd.Start(GetCmdPath("build_project"), Log, string.Format("\"{0}\" \"{1}\" \"{2}\"", PathToMsBuild, path, mode), waitEnd);
 		}

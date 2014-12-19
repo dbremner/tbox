@@ -72,7 +72,7 @@ namespace Mnk.TBox.Plugins.ProjectMan.Code
         private void AppendBuildItem(string caption, string path, string mode)
         {
             AppendItem(string.Format("{0} - {1}", caption, mode),
-                o => projectContext.MsBuildProvider.Build(mode, path),
+                o => projectContext.MsBuildProvider.BuildSlnFile(mode, path),
                 pluginContext.GetIcon(projectContext.MsBuildProvider.PathToMsBuild, 0)
                 );
         }

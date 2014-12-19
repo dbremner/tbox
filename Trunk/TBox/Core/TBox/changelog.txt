@@ -1,4 +1,6 @@
-﻿3/11/2014 Bugfixing. Add ability to send logs to the developers. Fix some win8 issues.
+﻿19/12/2014 Add Reordering for ListBoxes. Refactor group operations for ProjectMan, according Cyberix suggestion.
+
+3/11/2014 Bugfixing. Add ability to send logs to the developers. Fix some win8 issues.
 
 2/11/2014 Add XsltTester plugin, Add ability to go to folder to searcher, Fix Ui issues in NunitTestsRunner. Add XsltTester plugin
 

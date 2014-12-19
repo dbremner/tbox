@@ -30,7 +30,7 @@ namespace Mnk.TBox.Plugins.ProjectMan
 			}
 			var paths = items.Select(x => x.Key).ToArray();
 			var menu = list.OrderBy(x => x.Key).Select(x => x.Value).ToList();
-			groupOperations.Append(menu, projectContext, Context, paths, Icon.ToImageSource());
+			groupOperations.Append(menu, projectContext, Context, paths);
 			svnStatisticOperations.Append(menu, projectContext, Context, Config.SvnUserName);
 			Menu = menu.ToArray();
 		}

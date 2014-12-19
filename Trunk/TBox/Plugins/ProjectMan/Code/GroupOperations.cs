@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Media;
 using Mnk.Library.Common.MT;
 using Mnk.TBox.Core.Contracts;
@@ -13,7 +14,7 @@ namespace Mnk.TBox.Plugins.ProjectMan.Code
 {
     class GroupOperations
     {
-        public void Append(IList<UMenuItem> menu, ProjectContext context, IPluginContext pluginContext, string[] paths, ImageSource icon)
+        public void Append(IList<UMenuItem> menu, ProjectContext context, IPluginContext pluginContext, string[] paths)
         {
             var enabled = menu.Count > 0;
             menu.Add(new USeparator());
@@ -22,75 +23,57 @@ namespace Mnk.TBox.Plugins.ProjectMan.Code
                 IsEnabled = enabled,
                 Header = ProjectManLang.UpdateAll,
                 Icon = pluginContext.GetIcon(context.SvnProvider.Path, 3),
-                OnClick = o => Run(u => Update(context, paths, u), icon)
+                OnClick = o => Run(() => Update(context, paths))
             });
             menu.Add(new UMenuItem
             {
                 IsEnabled = enabled,
                 Header = ProjectManLang.RebuildAllInRelease,
                 Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-                OnClick = o => Run(u => Rebuild(context, "Release", paths, u), icon)
+                OnClick = o => Run(() => Rebuild(context, "Release", paths))
             });
             menu.Add(new UMenuItem
             {
                 IsEnabled = enabled,
                 Header = ProjectManLang.RebuildAllInDebug,
                 Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-                OnClick = o => Run(u => Rebuild(context, "Debug", paths, u), icon)
+                OnClick = o => Run(() => Rebuild(context, "Debug", paths))
             });
             menu.Add(new UMenuItem
             {
                 IsEnabled = enabled,
                 Header = ProjectManLang.UpdateAndRebuildAllInDebug,
                 Icon = pluginContext.GetIcon(context.MsBuildProvider.PathToMsBuild, 0),
-                OnClick = o => Run(u => UpdateAndBuid(context, paths, u), icon)
+                OnClick = o => Run(() => UpdateAndBuid(context, paths))
             });
         }
 
-        private void UpdateAndBuid(ProjectContext context, IList<string> paths, IUpdater u)
+        private void UpdateAndBuid(ProjectContext context, IList<string> paths)
         {
-            Do(x =>
-            {
-                context.SvnProvider.Do("update", x, true);
-                if (u.UserPressClose) return;
-                ReBuild(context, "Debug", x);
-            }, paths, u);
+            Update(context, paths);
+            Rebuild(context, "Debug", paths);
         }
 
-        private static void Rebuild(ProjectContext context, string mode, IList<string> paths, IUpdater u)
+        private static void Rebuild(ProjectContext context, string mode, IList<string> paths)
         {
-            Do(x => ReBuild(context, mode, x), paths, u);
+            ReBuild(context, mode, paths);
         }
 
-        private static void Update(ProjectContext context, IList<string> paths, IUpdater u)
+        private static void Update(ProjectContext context, IEnumerable<string> paths)
         {
-            Do(x => context.SvnProvider.Do("update", x, true), paths, u);
+            context.SvnProvider.Do("update", string.Join("*", paths), true);
         }
 
-        private static void Do(Action<string> action, IList<string> paths, IUpdater u)
+        private static void ReBuild(ProjectContext context, string mode, IEnumerable<string> paths)
         {
-            for (var i = 0; i < paths.Count; i++)
-            {
-                if (u.UserPressClose) break;
-                var path = paths[i];
-                u.Update(path, i / (float)paths.Count);
-                action(path);
-            }
-        }
-
-        private static void ReBuild(ProjectContext context, string mode, string path)
-        {
-            var slnFiles = Directory.GetFiles(path, "*.sln");
+            var slnFiles = paths.SelectMany(x => Directory.GetFiles(x, "*.sln")).ToArray();
             if (!slnFiles.Any()) return;
-            foreach (var file in slnFiles)
-            {
-                context.MsBuildProvider.Build(mode, file, true);
-            }
+            context.MsBuildProvider.BuildSlnFile(mode, string.Join("*", slnFiles), true);
         }
 
-        private static void Run(Action<IUpdater> task, ImageSource icon)
+        private static void Run(Action task)
         {
-            DialogsCache.ShowProgress(task, ProjectManLang.ProjectManagerProcessProjects, null, icon: icon, showInTaskBar: true);
+            ThreadPool.QueueUserWorkItem(o => task());
         }
     }
 }
