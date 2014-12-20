@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -16,6 +17,7 @@ using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.WpfControls;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfWinForms.Icons;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 using Mnk.TBox.Plugins.NUnitRunner.Code;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
@@ -30,16 +32,18 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
     sealed partial class Dialog
     {
         private readonly ITestsConfigurator testsConfigurator;
+        private readonly IPathResolver pathResolver;
         private IServiceContainer container;
         private IList<TestsConfig> testsConfigs;
         private IMultiTestsFixture testsFixture;
         private IList<ExecutionContext> results;
         private TestSuiteConfig suiteConfig;
-        public Dialog(ITestsConfigurator testsConfigurator)
+        public Dialog(ITestsConfigurator testsConfigurator, IPathResolver pathResolver)
         {
             this.testsConfigurator = testsConfigurator;
+            this.pathResolver = pathResolver;
             InitializeComponent();
-            Framework.ItemsSource = new[] { "", "net-2.0", "net-4.0", "net-4.5" };
+            Framework.ItemsSource = new[] { "", "net-1.1", "net-2.0", "net-3.5", "net-4.0", "net-4.5" };
             Mode.ItemsSource = new[] { TestsRunnerMode.Process, TestsRunnerMode.MultiProcess };
             Progress.OnStartClick += StartClick;
             //load icons
@@ -57,6 +61,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                 ShowAndActivate();
                 return;
             }
+            Progress.IsEnabled = false;
             Tabs.SelectedIndex = 1;
             suiteConfig = cfg;
             DataContext = suiteConfig;
@@ -104,8 +109,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             RecreatePackage();
             View.Clear();
             Statistics.Clear();
-            if (!EnsureTestsExists())
+            if (!EnsureTestsExists() || !EnsureAllFilesExists())
             {
+                Progress.IsEnabled = false;
                 return;
             }
             DialogsCache.ShowProgress(u => DoRefresh(Environment.TickCount, exists), suiteConfig.Key, this, false);
@@ -116,6 +122,23 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             if (!suiteConfig.FilePathes.CheckedItems.Any())
             {
                 MessageBox.Show(NUnitRunnerLang.CantRefreshUnitTests, Title, MessageBoxButton.OK, MessageBoxImage.Stop);
+                return false;
+            }
+            return true;
+        }
+
+
+        private bool EnsureAllFilesExists()
+        {
+            var notExists = suiteConfig.FilePathes.CheckedItems
+                .Where(x => !File.Exists(pathResolver.Resolve(x.Key)))
+                .ToArray();
+            if (notExists.Any())
+            {
+                MessageBox.Show(
+                    NUnitRunnerLang.FilesNotExists + Environment.NewLine 
+                      + string.Join(Environment.NewLine, notExists.Select(x=>pathResolver.Resolve(x.Key))), 
+                    Title, MessageBoxButton.OK, MessageBoxImage.Stop);
                 return false;
             }
             return true;
@@ -140,13 +163,18 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
             Mt.Do(this, () =>
             {
-                if (!results.Any(x=>x.Results==null || x.Results.IsFailed))
+                if (!results.Any(x => x.Results == null || x.Results.IsFailed))
                 {
                     var items = new TestsResults(results.SelectMany(x => x.Results.Items).ToArray());
                     View.SetItems(items);
                     Statistics.SetItems(items);
                     Categories.ItemsSource = GetCategories();
                     RefreshView(time);
+                    Progress.IsEnabled = true;
+                }
+                else
+                {
+                    Progress.IsEnabled = false;
                 }
             });
         }
@@ -165,6 +193,11 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void StartClick(object sender, RoutedEventArgs e)
         {
+            if (testsFixture == null || !EnsureTestsExists() || !EnsureAllFilesExists())
+            {
+                Progress.IsEnabled = false;
+                return;
+            }
             var time = Environment.TickCount;
             PrepareUiToRun(false);
             Progress.Start(
