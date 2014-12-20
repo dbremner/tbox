@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
 using LightInject;
-using Mnk.Library.Common.Models;
 using Mnk.Library.Common.MT;
 using Mnk.Library.Common.UI.Model;
 using Mnk.Library.Common.UI.ModelsContainers;
@@ -16,11 +14,13 @@ using Mnk.Library.ParallelNUnit;
 using Mnk.Library.ParallelNUnit.Contracts;
 using Mnk.Library.ParallelNUnit.Core;
 using Mnk.Library.WpfControls;
+using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfWinForms.Icons;
+using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 using Mnk.TBox.Plugins.NUnitRunner.Code;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
-using Mnk.Library.WpfControls.Dialogs;
-using Mnk.TBox.Core.Contracts;
+using NUnit.Core;
+using ExecutionContext = Mnk.Library.ParallelNUnit.Packages.ExecutionContext;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
@@ -29,21 +29,17 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
     /// </summary>
     sealed partial class Dialog
     {
-        private readonly string nunitAgentPath;
-        private readonly string runAsx86Path;
-        private readonly IPathResolver pathResolver;
+        private readonly ITestsConfigurator testsConfigurator;
         private IServiceContainer container;
-        private TestsConfig packageConfig;
-        private ITestsFixture testsFixture;
-        private TestsResults results;
-        private TestConfig config;
-        public Dialog(string nunitAgentPath, string runAsx86Path, IPathResolver pathResolver)
+        private IList<TestsConfig> testsConfigs;
+        private IMultiTestsFixture testsFixture;
+        private IList<ExecutionContext> results;
+        private TestSuiteConfig suiteConfig;
+        public Dialog(ITestsConfigurator testsConfigurator)
         {
-            this.nunitAgentPath = nunitAgentPath;
-            this.runAsx86Path = runAsx86Path;
-            this.pathResolver = pathResolver;
+            this.testsConfigurator = testsConfigurator;
             InitializeComponent();
-            Framework.ItemsSource = new[] {"net-2.0", "net-4.0"};
+            Framework.ItemsSource = new[] { "", "net-2.0", "net-4.0", "net-4.5" };
             Mode.ItemsSource = new[] { TestsRunnerMode.Process, TestsRunnerMode.MultiProcess };
             Progress.OnStartClick += StartClick;
             //load icons
@@ -54,56 +50,43 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             }
         }
 
-        public void ShowDialog(TestConfig cfg)
+        public void ShowDialog(TestSuiteConfig cfg)
         {
             if (IsVisible)
             {
                 ShowAndActivate();
                 return;
             }
-            config = cfg;
-            DataContext = config;
-            Title = Path.GetFileName(pathResolver.Resolve(config.Key));
+            Tabs.SelectedIndex = 1;
+            suiteConfig = cfg;
+            DataContext = suiteConfig;
+            Title = suiteConfig.Key;
             ShowAndActivate();
             Dispatcher.BeginInvoke(new Action(() => RefreshClick(this, null)));
         }
 
         private void RecreatePackage()
         {
-            var items = (results == null) ? null : results.Items;
             DisposePackage();
-            packageConfig = new TestsConfig
-            {
-                NunitAgentPath = nunitAgentPath,
-                RunAsx86Path = runAsx86Path,
-                TestDllPath = pathResolver.Resolve(config.Key),
-                RunAsx86 = config.RunAsx86,
-                RunAsAdmin = config.RunAsAdmin,
-                DirToCloneTests = config.DirToCloneTests,
-                CommandBeforeTestsRun = config.CommandBeforeTestsRun,
-                RuntimeFramework = config.RuntimeFramework,
-                ProcessCount = config.ProcessCount,
-                OptimizeOrder = config.UsePrefetch,
-                IncludeCategories = config.UseCategories ? (bool?)config.IncludeCategories : null,
-                CopyToSeparateFolders = config.CopyToSeparateFolders,
-                CopyMasks = config.CopyMasks.CheckedItems.Select(x => x.Key).ToArray(),
-                NeedSynchronizationForTests = config.NeedSynchronizationForTests && config.ProcessCount > 1,
-                StartDelay = config.StartDelay,
-                NeedOutput = true,
-                Mode = config.Mode,
-                SkipChildrenOnCalculateTests = true
-            };
+            testsConfigs = suiteConfig.FilePathes
+                .Select(x => testsConfigurator.CreateConfig(x.Key, suiteConfig))
+                .ToArray(); 
             container = ServicesRegistrar.Register();
-            testsFixture = container.GetInstance<ITestsFixture>();
-            if (items != null) results = new TestsResults(items);
+            testsFixture = container.GetInstance<IMultiTestsFixture>();
         }
 
         private void DisposePackage()
         {
-            if (container != null)
+            if (container == null) return;
+            container.Dispose();
+            container = null;
+            if (results != null)
             {
-                container.Dispose();
-                container = null;
+                foreach (var result in results)
+                {
+                    result.Dispose();
+                }
+                results = null;
                 testsFixture = null;
             }
         }
@@ -115,33 +98,53 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void RefreshClick(object sender, RoutedEventArgs e)
         {
+            var exists = (results == null) ? null : 
+                results.ToDictionary(x=>x.Config.TestDllPath, x=>x.Results.Items);
+            results = null;
             RecreatePackage();
-            if (testsFixture!=null && !testsFixture.EnsurePathIsValid(packageConfig))
-            {
-                Close();
-                return;
-            }
-            var time = Environment.TickCount;
             View.Clear();
             Statistics.Clear();
-            var caption = Path.GetFileName(pathResolver.Resolve(config.Key));
-            DialogsCache.ShowProgress(u => DoRefresh(time), caption, this, false);
+            if (!EnsureTestsExists())
+            {
+                return;
+            }
+            DialogsCache.ShowProgress(u => DoRefresh(Environment.TickCount, exists), suiteConfig.Key, this, false);
         }
 
-        private void DoRefresh(int time)
+        private bool EnsureTestsExists()
         {
-            results = testsFixture.Refresh(packageConfig);
-            
+            if (!suiteConfig.FilePathes.CheckedItems.Any())
+            {
+                MessageBox.Show(NUnitRunnerLang.CantRefreshUnitTests, Title, MessageBoxButton.OK, MessageBoxImage.Stop);
+                return false;
+            }
+            return true;
+        }
+
+        private void DoRefresh(int time, IDictionary<string, IList<Result>> exists)
+        {
+            results = testsFixture.Refresh(testsConfigs, suiteConfig.AssembliesCount);
+
+            if (exists != null)
+            {
+                foreach (var item in exists)
+                {
+                    var exist = results.FirstOrDefault(
+                        x => string.Equals(x.Config.TestDllPath, item.Key, StringComparison.OrdinalIgnoreCase));
+                    if (exist != null)
+                    {
+                        exist.Results = new TestsResults(item.Value);
+                    }
+                }
+            }
+
             Mt.Do(this, () =>
             {
-                if (results.IsFailed)
+                if (!results.Any(x=>x.Results==null || x.Results.IsFailed))
                 {
-                    Close();
-                }
-                else
-                {
-                    View.SetItems(results);
-                    Statistics.SetItems(results);
+                    var items = new TestsResults(results.SelectMany(x => x.Results.Items).ToArray());
+                    View.SetItems(items);
+                    Statistics.SetItems(items);
                     Categories.ItemsSource = GetCategories();
                     RefreshView(time);
                 }
@@ -151,7 +154,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         public IEnumerable<CheckableData> GetCategories()
         {
             return new CheckableDataCollection<CheckableData>(
-                results.Metrics.Tests
+                results.SelectMany(x => x.Results.Metrics.Tests)
                 .SelectMany(x => x.Categories)
                 .Distinct()
                 .OrderBy(x => x)
@@ -162,13 +165,8 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void StartClick(object sender, RoutedEventArgs e)
         {
-            RecreatePackage();
-            if (!testsFixture.EnsurePathIsValid(packageConfig))
-            {
-                return;
-            }
-            PrepareUiToRun(false);
             var time = Environment.TickCount;
+            PrepareUiToRun(false);
             Progress.Start(
                 u => DoStart(time, u)
                 );
@@ -180,26 +178,55 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             Mt.Do(this, ()=>
             {
                 items = View.GetTests();
-                packageConfig.Categories =
-                    ((CheckableDataCollection<CheckableData>)Categories.ItemsSource)
-                        .CheckedItems.Select(x => x.Key)
-                        .ToArray();
+                var categories = ((CheckableDataCollection<CheckableData>) Categories.ItemsSource)
+                    .CheckedItems.Select(x => x.Key)
+                    .ToArray();
+                foreach (var testsConfig in testsConfigs)
+                {
+                    testsConfigurator.UpdateConfig(testsConfig, suiteConfig);
+                    testsConfig.Categories = categories;
+                }
+                foreach (var result in items)
+                {
+                    result.State = ResultState.NotRunnable;
+                    result.Refresh();
+                }
             });
-            results = testsFixture.Run(packageConfig, new TestsResults(items,true), new SimpleUpdater(updater), items.Where(x => !x.Children.Any()).ToList());
+            var checkedTests = items.Where(x => !x.Children.Any()).ToArray();
+            testsFixture.Run(testsConfigs, 
+                suiteConfig.AssembliesCount,
+                results.Select(x=>CopyExecutionContext(x, items)).ToArray(), 
+                new GroupUpdater(updater, checkedTests.Length),
+                checkedTests: checkedTests);
             Mt.Do(this, () =>
                 {
-                    View.SetItems(results);
-                    Statistics.SetItems(results);
+                    var result = new TestsResults(checkedTests, true);
+                    View.SetItems(result);
+                    Statistics.SetItems(result);
                     RefreshView(time);
                     PrepareUiToRun(true);
                 }
             );
         }
 
+        private static ExecutionContext CopyExecutionContext(ExecutionContext source, IList<Result> exists)
+        {
+            return new ExecutionContext
+            {
+                Config = source.Config,
+                Container = source.Container,
+                Path = source.Path,
+                RetValue = source.RetValue,
+                StartTime = source.StartTime,
+                TestsFixture = source.TestsFixture,
+                Results = new TestsResults(source.Results.Items)
+            };
+        }
+
         private void PrepareUiToRun(bool enable)
         {
-            Tabs.SelectedIndex = 0;
-            Settings.IsEnabled = enable;
+            Tabs.SelectedIndex = 1;
+            SettingsTab.IsEnabled = FilePathesTab.IsEnabled = enable;
             btnCancel.IsEnabled = enable;
             btnRefresh.IsEnabled = enable;
         }

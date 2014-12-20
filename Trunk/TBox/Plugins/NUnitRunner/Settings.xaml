@@ -8,8 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <TabControl>
-        <TabItem Header="{loc:Tr ConfigureLibrariesWithUnitTests}">
-            <Units:CheckableFileListBoxUnit ItemsSource="{Binding DllPaths}" UnitType="FilePath" Title="{loc:Tr ConfigureNunitTestDlls}" PathGetterType="File"/>
+        <TabItem Header="{loc:Tr ConfigureTestSuites}">
+            <Units:CheckableListBoxUnit ItemsSource="{Binding TestSuites}" UnitType="Text" Title="{loc:Tr ConfigureTestSuites}"/>
         </TabItem>
     </TabControl>
 </UserControl>

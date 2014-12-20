@@ -150,9 +150,6 @@
   <data name="ConfigureLibrariesWithUnitTests" xml:space="preserve">
     <value>Configure libraries with unit tests</value>
   </data>
-  <data name="ConfigureNunitTestDlls" xml:space="preserve">
-    <value>Configure nunit test dlls</value>
-  </data>
   <data name="CopyDeep" xml:space="preserve">
     <value>Copy deep</value>
   </data>
@@ -308,5 +305,14 @@
   </data>
   <data name="ProcessMode" xml:space="preserve">
     <value>Process mode</value>
+  </data>
+  <data name="ConfigureTestSuites" xml:space="preserve">
+    <value>Configure test suites</value>
+  </data>
+  <data name="CantRefreshUnitTests" xml:space="preserve">
+    <value>Can't refresh unit tests, please specify libraries to test</value>
+  </data>
+  <data name="Timeout" xml:space="preserve">
+    <value>Timeout</value>
   </data>
 </root>

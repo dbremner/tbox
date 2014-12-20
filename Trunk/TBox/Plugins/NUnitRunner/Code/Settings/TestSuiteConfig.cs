@@ -8,12 +8,14 @@ using Mnk.Library.ParallelNUnit.Contracts;
 namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
 {
     [Serializable]
-    public class TestConfig : CheckableData
+    public class TestSuiteConfig : CheckableData
     {
         public bool Multithreaded { get; set; }
         public bool CopyToSeparateFolders { get; set; }
         public int ProcessCount { get; set; }
+        public int AssembliesCount { get; set; }
         public CheckableDataCollection<CheckableData> CopyMasks { get; set; }
+        public CheckableDataCollection<CheckableData> FilePathes { get; set; }
         public bool RunAsx86 { get; set; }
         public bool RunAsAdmin { get; set; }
         public bool NeedSynchronizationForTests { get; set; }
@@ -23,13 +25,16 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
         public bool IncludeCategories { get; set; }
         public bool UsePrefetch { get; set; }
         public int StartDelay { get; set; }
+        public int Timeout { get; set; }
         public string RuntimeFramework { get; set; }
         public string Mode { get; set; }
 
-        public TestConfig()
+        public TestSuiteConfig()
         {
             CopyToSeparateFolders = false;
             ProcessCount = 1;
+            AssembliesCount = 1;
+            FilePathes = new CheckableDataCollection<CheckableData>();
             CopyMasks = new CheckableDataCollection<CheckableData>
             {
                 new CheckableData { Key = "*.dll" }, 
@@ -43,20 +48,23 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
             UseCategories = false;
             IncludeCategories = true;
             StartDelay = 0;
+            Timeout = 120;
             UsePrefetch = false;
-            RuntimeFramework = "net-4.0";
+            RuntimeFramework = "";
             Mode = TestsRunnerMode.Process;
         }
 
         public override object Clone()
         {
-            return new TestConfig
+            return new TestSuiteConfig
             {
                 IsChecked = IsChecked,
                 Key = Key,
                 CopyToSeparateFolders = CopyToSeparateFolders,
                 ProcessCount = ProcessCount,
+                AssembliesCount = AssembliesCount,
                 CopyMasks = CopyMasks.Clone(),
+                FilePathes = FilePathes.Clone(),
                 RunAsx86 = RunAsx86,
                 RunAsAdmin = RunAsAdmin,
                 NeedSynchronizationForTests = NeedSynchronizationForTests,
@@ -66,6 +74,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code.Settings
                 UseCategories = UseCategories,
                 IncludeCategories = IncludeCategories,
                 StartDelay = StartDelay,
+                Timeout = Timeout,
                 UsePrefetch = UsePrefetch,
                 RuntimeFramework = RuntimeFramework
             };

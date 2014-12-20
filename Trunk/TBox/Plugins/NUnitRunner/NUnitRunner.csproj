@@ -77,10 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\CachedIcons.cs" />
+    <Compile Include="Code\TestsConfigurator.cs" />
+    <Compile Include="Code\ITestsConfigurator.cs" />
     <Compile Include="Code\ITestsView.cs" />
     <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\Settings\Config.cs" />
-    <Compile Include="Code\Settings\TestConfig.cs" />
+    <Compile Include="Code\Settings\TestSuiteConfig.cs" />
     <Compile Include="Components\BoolToVisibilityConverter.cs" />
     <Compile Include="Components\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>

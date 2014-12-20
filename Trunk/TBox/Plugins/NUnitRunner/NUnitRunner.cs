@@ -11,6 +11,7 @@ using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
+using Mnk.TBox.Plugins.NUnitRunner.Code;
 
 namespace Mnk.TBox.Plugins.NUnitRunner
 {
@@ -26,7 +27,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
 
         private Dialog CreateDialog()
         {
-            return new Dialog(NUnitAgentPath, RunAsx86Path, Context.PathResolver)
+            return new Dialog(new TestsConfigurator(NUnitAgentPath, RunAsx86Path, Context.PathResolver))
             {
                 Icon = Icon.ToImageSource()
             };
@@ -35,7 +36,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
         public override void OnRebuildMenu()
         {
             base.OnRebuildMenu();
-            Menu = Config.DllPaths.CheckedItems
+            Menu = Config.TestSuites.CheckedItems
                          .Select(x => new UMenuItem
                          {
                              Header = Path.GetFileName(Context.PathResolver.Resolve(x.Key)),
@@ -44,9 +45,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner
                          .ToArray();
         }
 
-        private void Run(TestConfig config)
+        private void Run(TestSuiteConfig suiteConfig)
         {
-            runner.Do(Context.DoSync, x => x.ShowDialog(config), Config.States);
+            runner.Do(Context.DoSync, x => x.ShowDialog(suiteConfig), Config.States);
         }
 
         private string NUnitAgentPath

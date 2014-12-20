@@ -1,4 +1,8 @@
-﻿19/12/2014 Add Reordering for ListBoxes. Refactor group operations for ProjectMan, according Cyberix suggestion.
+﻿21/12/2014 Add ability to execute multiply tests assemblies in parallel
+
+20/12/2014 Add aliases for file pathes, according to the MeL suggestion.
+
+19/12/2014 Add Reordering for ListBoxes. Refactor group operations for ProjectMan, according Cyberix suggestion.
 
 3/11/2014 Bugfixing. Add ability to send logs to the developers. Fix some win8 issues.
 

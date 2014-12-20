@@ -150,9 +150,6 @@
   <data name="ConfigureLibrariesWithUnitTests" xml:space="preserve">
     <value>Конфигурация библиотек для тестов</value>
   </data>
-  <data name="ConfigureNunitTestDlls" xml:space="preserve">
-    <value>Конфигурация библиотек для тестов</value>
-  </data>
   <data name="CopyDeep" xml:space="preserve">
     <value>Глубина копирования</value>
   </data>
@@ -308,5 +305,14 @@
   </data>
   <data name="ProcessMode" xml:space="preserve">
     <value>Режим выполнения</value>
+  </data>
+  <data name="ConfigureTestSuites" xml:space="preserve">
+    <value>Настройка сборок тестов</value>
+  </data>
+  <data name="CantRefreshUnitTests" xml:space="preserve">
+    <value>Не могу обновить список тестов, укажите пожалуйста список библиотек для тестирования.</value>
+  </data>
+  <data name="Timeout" xml:space="preserve">
+    <value>Макс время теста (сек)</value>
   </data>
 </root>

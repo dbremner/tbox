@@ -28,10 +28,27 @@
             <updater:IntegratedProgress Margin="0" Name="Progress" VerticalAlignment="Stretch"/>
         </DockPanel>
         <TabControl DockPanel.Dock="Top" Name="Tabs">
+            <TabItem Header="{loc:Tr ConfigureLibrariesWithUnitTests}" Name="FilePathesTab">
+                <DockPanel>
+                    <GroupBox Margin="5" Header="{loc:Tr Categories}" VerticalContentAlignment="Stretch" DockPanel.Dock="Bottom">
+                        <DockPanel>
+                            <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding UseCategories}" DockPanel.Dock="Top" Margin="5"/>
+                            <DockPanel Margin="10 2 2 2" IsEnabled="{Binding UseCategories}">
+                                <StackPanel DockPanel.Dock="Top" >
+                                    <RadioButton Content="{loc:Tr Include}" IsChecked="{Binding IncludeCategories}" GroupName="Category" Margin="2"/>
+                                    <RadioButton Content="{loc:Tr Exclude}" IsChecked="{Binding IncludeCategories, Converter={StaticResource BoolInverterConverter}}" GroupName="Category" Margin="2"/>
+                                </StackPanel>
+                                <components:CheckableListBox Name="Categories" Margin="2"/>
+                            </DockPanel>
+                        </DockPanel>
+                    </GroupBox>
+                    <units:CheckableFileListBoxUnit ItemsSource="{Binding FilePathes}" UnitType="FilePath" PathGetterType="File"  Title="{loc:Tr ConfigureLibrariesWithUnitTests}"/>
+                </DockPanel>
+            </TabItem>
             <TabItem Header="{loc:Tr Tests}">
                 <components1:TestsView x:Name="View"/>
             </TabItem>
-            <TabItem Header="{loc:Tr Settings}" Name="Settings">
+            <TabItem Header="{loc:Tr Settings}" Name="SettingsTab">
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -48,37 +65,32 @@
                     <DockPanel Grid.Column="0">
                         <GroupBox Margin="5" Header="{loc:Tr Configuration}" DockPanel.Dock="Top">
                             <StackPanel >
-                                <DockPanel>
-                                    <components:ExtCheckBox Content="{loc:Tr SynchronizeTestsAgents}" IsChecked="{Binding NeedSynchronizationForTests}" Margin="5" DockPanel.Dock="Top"/>
-                                    <StackPanel DockPanel.Dock="Left" >
-                                        <components:ExtCheckBox Content="{loc:Tr RunAsx86}" IsChecked="{Binding RunAsx86}" Margin="5"/>
-                                        <components:ExtCheckBox Content="{loc:Tr RunAsAdmin}" IsChecked="{Binding RunAsAdmin}" Margin="5"/>
-                                        <captioned1:CaptionedComboBox Caption="{loc:Tr Framework}" Value="{Binding RuntimeFramework}" Margin="5" IsEditable="True" Name="Framework"/>
+                                <StackPanel DockPanel.Dock="Top" >
+                                    <components:ExtCheckBox Content="{loc:Tr RunAsx86}" IsChecked="{Binding RunAsx86}" Margin="5"/>
+                                    <components:ExtCheckBox Content="{loc:Tr RunAsAdmin}" IsChecked="{Binding RunAsAdmin}" Margin="5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <captioned1:CaptionedComboBox Caption="{loc:Tr Framework}" Value="{Binding RuntimeFramework}" Margin="5" IsEditable="False" Name="Framework"/>
                                         <captioned1:CaptionedComboBox Caption="{loc:Tr ProcessMode}" Value="{Binding Mode}" Margin="5" IsEditable="False" Name="Mode"/>
+                                        <captioned1:CaptionedNumericUpDown Caption="{loc:Tr Timeout}" Value="{Binding Timeout}" Minimum="0" Maximum="3600" Margin="5" />
                                     </StackPanel>
-                                    <GroupBox Margin="5" Header="{loc:Tr Multithreading}">
-                                        <StackPanel>
-                                            <captioned1:CaptionedNumericUpDown Caption="{loc:Tr StartDelay}" Value="{Binding StartDelay}" Minimum="0" Maximum="60" Margin="5"/>
-                                            <captioned1:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16" Margin="5"/>
-                                            <components:ExtCheckBox Content="{loc:Tr UsePrefetch}" IsChecked="{Binding UsePrefetch}" Margin="5"/>
-                                        </StackPanel>
-                                    </GroupBox>
-                                </DockPanel>
-                                <captioned1:CaptionedEditPath Caption="{loc:Tr CommandToRunBeforeTests}" Value="{Binding CommandBeforeTestsRun}" PathGetterType="File" Margin="5"/>
+                                </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Margin="5" Header="{loc:Tr Categories}" VerticalContentAlignment="Stretch">
-                            <DockPanel>
-                                <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding UseCategories}" DockPanel.Dock="Top" Margin="5"/>
-                                <DockPanel Margin="10 2 2 2" IsEnabled="{Binding UseCategories}">
-                                    <StackPanel DockPanel.Dock="Top" >
-                                        <RadioButton Content="{loc:Tr Include}" IsChecked="{Binding IncludeCategories}" GroupName="Category" Margin="2"/>
-                                        <RadioButton Content="{loc:Tr Exclude}" IsChecked="{Binding IncludeCategories, Converter={StaticResource BoolInverterConverter}}" GroupName="Category" Margin="2"/>
-                                    </StackPanel>
-                                    <components:CheckableListBox Name="Categories" Margin="2"/>
-                                </DockPanel>
-                            </DockPanel>
+                        <GroupBox Margin="5" Header="{loc:Tr Multithreading}" DockPanel.Dock="Top">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <captioned1:CaptionedNumericUpDown Name="ProcessCount" Caption="{loc:Tr ProcessCount}" Value="{Binding ProcessCount}" Minimum="1" Maximum="16" Margin="5"/>
+                                    <captioned1:CaptionedNumericUpDown Name="AssembliesCount" Caption="{loc:Tr AssembliesCount}" Value="{Binding AssembliesCount}" Minimum="1" Maximum="16" Margin="5"/>
+                                </StackPanel>
+                                <captioned1:CaptionedNumericUpDown Caption="{loc:Tr StartDelay}" Value="{Binding StartDelay}" Minimum="0" Maximum="60" Margin="5" HorizontalAlignment="Left"/>
+                                <StackPanel HorizontalAlignment="Stretch">
+                                    <captioned1:CaptionedEditPath Caption="{loc:Tr CommandToRunBeforeTests}" Value="{Binding CommandBeforeTestsRun}" PathGetterType="File" Margin="5"/>
+                                    <components:ExtCheckBox Content="{loc:Tr SynchronizeTestsAgents}" IsChecked="{Binding NeedSynchronizationForTests}" Margin="5" DockPanel.Dock="Top"/>
+                                    <components:ExtCheckBox Content="{loc:Tr UsePrefetch}" IsChecked="{Binding UsePrefetch}" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
                         </GroupBox>
+                        <Label/>
                     </DockPanel>
                 </Grid>
             </TabItem>

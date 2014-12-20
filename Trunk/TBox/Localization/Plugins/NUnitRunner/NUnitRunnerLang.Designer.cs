@@ -97,6 +97,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t refresh unit tests, please specify libraries to test.
+        /// </summary>
+        public static string CantRefreshUnitTests {
+            get {
+                return ResourceManager.GetString("CantRefreshUnitTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string Categories {
@@ -160,11 +169,11 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Configure nunit test dlls.
+        ///   Looks up a localized string similar to Configure test suites.
         /// </summary>
-        public static string ConfigureNunitTestDlls {
+        public static string ConfigureTestSuites {
             get {
-                return ResourceManager.GetString("ConfigureNunitTestDlls", resourceCulture);
+                return ResourceManager.GetString("ConfigureTestSuites", resourceCulture);
             }
         }
         
@@ -588,6 +597,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         public static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timeout.
+        /// </summary>
+        public static string Timeout {
+            get {
+                return ResourceManager.GetString("Timeout", resourceCulture);
             }
         }
         
