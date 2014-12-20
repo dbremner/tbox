@@ -14,25 +14,25 @@ using Mnk.TBox.Plugins.DevServerRunner.Code.Settings;
 
 namespace Mnk.TBox.Plugins.DevServerRunner
 {
-	[PluginInfo(typeof(DevServerRunnerLang), typeof(Properties.Resources), PluginGroup.Web)]
-	public sealed class DevServerRunner : ConfigurablePlugin<Settings, Config>
-	{
-		private CassiniRunner runner = null;
+    [PluginInfo(typeof(DevServerRunnerLang), typeof(Properties.Resources), PluginGroup.Web)]
+    public sealed class DevServerRunner : ConfigurablePlugin<Settings, Config>
+    {
+        private CassiniRunner runner = null;
 
-		public override void OnRebuildMenu()
-		{
-			base.OnRebuildMenu();
-			if(runner==null)
-				runner = new CassiniRunner();
-			var selected = Config.ServerInfos.CheckedItems.ToArray();
-			Menu = selected.Select(
-				x=>new UMenuItem
-					   {
-						   Header = Path.GetFileName(x.Key),
-						   OnClick = o => ProcessFolder(x)
-					   }
-				).Concat(
-				new[]
+        public override void OnRebuildMenu()
+        {
+            base.OnRebuildMenu();
+            if (runner == null)
+                runner = new CassiniRunner();
+            var selected = Config.ServerInfos.CheckedItems.ToArray();
+            Menu = selected.Select(
+                x => new UMenuItem
+                {
+                    Header = Path.GetFileName(Context.PathResolver.Resolve(x.Key)),
+                    OnClick = o => ProcessFolder(x)
+                }
+                ).Concat(
+                new[]
 					{
 						new USeparator(), 
 						new UMenuItem{
@@ -51,43 +51,43 @@ namespace Mnk.TBox.Plugins.DevServerRunner
 							OnClick = o=>RestartAll()
 						}
 					}
-				).ToArray();
-		}
+                ).ToArray();
+        }
 
-		private void RestartAll()
-		{
-			StopAll();
-			StartAll();
-		}
+        private void RestartAll()
+        {
+            StopAll();
+            StartAll();
+        }
 
-		private void StopAll()
-		{
-			runner.StopAll(Config.PathToDevServer);
-		}
+        private void StopAll()
+        {
+            runner.StopAll(Config.PathToDevServer);
+        }
 
-		private void StartAll()
-		{
+        private void StartAll()
+        {
             DialogsCache.ShowProgress(
-                StartAll, 
-                DevServerRunnerLang.RunAll, null, icon: Icon.ToImageSource(), showInTaskBar:true );
-		}
+                StartAll,
+                DevServerRunnerLang.RunAll, null, icon: Icon.ToImageSource(), showInTaskBar: true);
+        }
 
-	    private void StartAll(IUpdater u)
-	    {
-	        var i = 0;
-	        var items = Config.ServerInfos.CheckedItems.ToArray();
-	        foreach (var info in items)
-	        {
-	            ProcessFolder(info);
-                u.Update(info.Key, ++i/(float)items.Length);
-	        }
-	    }
+        private void StartAll(IUpdater u)
+        {
+            var i = 0;
+            var items = Config.ServerInfos.CheckedItems.ToArray();
+            foreach (var info in items)
+            {
+                ProcessFolder(info);
+                u.Update(info.Key, ++i / (float)items.Length);
+            }
+        }
 
-	    private void ProcessFolder(ServerInfo info)
-		{
-			runner.Run(
-				info.Key, info.Port, info.VPath, info.AdminPrivilegies, 
-				Config.PathToDevServer, Config.PathToBrowser, Config.RunBrowser);
-		}
-	}
+        private void ProcessFolder(ServerInfo info)
+        {
+            runner.Run(
+                Context.PathResolver.Resolve(info.Key), info.Port, info.VPath, info.AdminPrivilegies,
+                Config.PathToDevServer, Config.PathToBrowser, Config.RunBrowser);
+        }
+    }
 }

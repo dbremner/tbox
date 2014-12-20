@@ -133,6 +133,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.Searcher {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy file name.
+        /// </summary>
+        public static string CopyFileName {
+            get {
+                return ResourceManager.GetString("CopyFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy file path.
         /// </summary>
         public static string CopyFilePath {

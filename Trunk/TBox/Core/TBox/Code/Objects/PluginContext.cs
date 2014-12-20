@@ -11,10 +11,12 @@ namespace Mnk.TBox.Core.Application.Code.Objects
         private readonly Action onSave;
 
         public IDataProvider DataProvider { get; private set; }
-        public PluginContext(IDataProvider dataProvider, Action onMenuChanged, PluginsContextShared pluginsContextShared, Action onSave)
+        public IPathResolver PathResolver { get; private set; }
+        public PluginContext(IDataProvider dataProvider, IPathResolver pathResolver, Action onMenuChanged, PluginsContextShared pluginsContextShared, Action onSave)
         {
-            this.onMenuChanged = onMenuChanged;
             DataProvider = dataProvider;
+            PathResolver = pathResolver;
+            this.onMenuChanged = onMenuChanged;
             this.pluginsContextShared = pluginsContextShared;
             this.onSave = onSave;
         }

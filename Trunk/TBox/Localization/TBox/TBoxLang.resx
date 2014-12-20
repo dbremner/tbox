@@ -405,4 +405,10 @@
   <data name="PortableMode" xml:space="preserve">
     <value>Store configuration files in the TBox folder</value>
   </data>
+  <data name="Aliases" xml:space="preserve">
+    <value>Aliases</value>
+  </data>
+  <data name="ConfigureAlias" xml:space="preserve">
+    <value>Configure alias</value>
+  </data>
 </root>

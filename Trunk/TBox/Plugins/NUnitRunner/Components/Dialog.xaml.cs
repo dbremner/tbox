@@ -20,6 +20,7 @@ using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Plugins.NUnitRunner.Code;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
 using Mnk.Library.WpfControls.Dialogs;
+using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Components
 {
@@ -30,15 +31,17 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
     {
         private readonly string nunitAgentPath;
         private readonly string runAsx86Path;
+        private readonly IPathResolver pathResolver;
         private IServiceContainer container;
         private TestsConfig packageConfig;
         private ITestsFixture testsFixture;
         private TestsResults results;
         private TestConfig config;
-        public Dialog(string nunitAgentPath, string runAsx86Path)
+        public Dialog(string nunitAgentPath, string runAsx86Path, IPathResolver pathResolver)
         {
             this.nunitAgentPath = nunitAgentPath;
             this.runAsx86Path = runAsx86Path;
+            this.pathResolver = pathResolver;
             InitializeComponent();
             Framework.ItemsSource = new[] {"net-2.0", "net-4.0"};
             Mode.ItemsSource = new[] { TestsRunnerMode.Process, TestsRunnerMode.MultiProcess };
@@ -60,7 +63,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             }
             config = cfg;
             DataContext = config;
-            Title = Path.GetFileName(config.Key);
+            Title = Path.GetFileName(pathResolver.Resolve(config.Key));
             ShowAndActivate();
             Dispatcher.BeginInvoke(new Action(() => RefreshClick(this, null)));
         }
@@ -73,7 +76,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             {
                 NunitAgentPath = nunitAgentPath,
                 RunAsx86Path = runAsx86Path,
-                TestDllPath = config.Key,
+                TestDllPath = pathResolver.Resolve(config.Key),
                 RunAsx86 = config.RunAsx86,
                 RunAsAdmin = config.RunAsAdmin,
                 DirToCloneTests = config.DirToCloneTests,
@@ -121,7 +124,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             var time = Environment.TickCount;
             View.Clear();
             Statistics.Clear();
-            var caption = Path.GetFileName(config.Key);
+            var caption = Path.GetFileName(pathResolver.Resolve(config.Key));
             DialogsCache.ShowProgress(u => DoRefresh(time), caption, this, false);
         }
 

@@ -61,6 +61,15 @@ namespace Mnk.TBox.Locales.Localization.TBox {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aliases.
+        /// </summary>
+        public static string Aliases {
+            get {
+                return ResourceManager.GetString("Aliases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TBox.
         /// </summary>
         public static string AppName {
@@ -219,6 +228,15 @@ namespace Mnk.TBox.Locales.Localization.TBox {
         public static string Configuration {
             get {
                 return ResourceManager.GetString("Configuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure alias.
+        /// </summary>
+        public static string ConfigureAlias {
+            get {
+                return ResourceManager.GetString("ConfigureAlias", resourceCulture);
             }
         }
         

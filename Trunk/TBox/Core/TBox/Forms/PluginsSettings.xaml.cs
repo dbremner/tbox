@@ -153,5 +153,10 @@ namespace Mnk.TBox.Core.Application.Forms
         private void LanguageChanged(object sender, RoutedEventArgs e)
         {
         }
+
+        private void AliasesCheckChanged(object sender, RoutedEventArgs e)
+        {
+            Aliases.OnCheckChangedEvent(sender,e);
+        }
     }
 }

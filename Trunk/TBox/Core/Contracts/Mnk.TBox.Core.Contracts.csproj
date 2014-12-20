@@ -57,6 +57,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPathResolver.cs" />
     <Compile Include="PluginInfoAttribute.cs" />
     <Compile Include="ConfigManager.cs" />
     <Compile Include="Folders.cs" />

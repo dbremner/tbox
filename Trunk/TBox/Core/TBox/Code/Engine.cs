@@ -129,6 +129,7 @@ namespace Mnk.TBox.Core.Application.Code
             plg.Init(
                 new PluginContext(
                     new DataProvider(toolsDataFolder, Path.Combine(pluginsReadOnlyDataFolder, name), Path.Combine(pluginsStoreDataFolder, name)),
+                    container.GetInstance<IPathResolver>(),
                     pmu.Do,
                     pluginsContextShared,
                     ()=>SaveConfig(name)));

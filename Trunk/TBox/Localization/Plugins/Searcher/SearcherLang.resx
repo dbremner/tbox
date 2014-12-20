@@ -279,4 +279,7 @@
   <data name="CopyFilePath" xml:space="preserve">
     <value>Copy file path</value>
   </data>
+  <data name="CopyFileName" xml:space="preserve">
+    <value>Copy file name</value>
+  </data>
 </root>

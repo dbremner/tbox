@@ -22,6 +22,7 @@ using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
 using Mnk.TBox.Plugins.Searcher.Code.Finders.Search;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
 using Mnk.Library.WpfControls.Tools;
+using Mnk.TBox.Core.Contracts;
 using ZetaLongPaths;
 
 namespace Mnk.TBox.Plugins.Searcher.Components
@@ -69,13 +70,13 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             disableSearch = false;
         }
 
-        internal void ShowDialog(SearchEngine engine)
+        internal void ShowDialog(SearchEngine engine, IPathResolver pathResolver)
         {
             disableSearch = true;
             if (!IsVisible)
             {
                 ExceptionsHelper.HandleException(
-                    FillFolderFilter,
+                    ()=>FillFolderFilter(pathResolver),
                     () => "Can't enumerate directories",
                     Log
                     );
@@ -92,14 +93,14 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             }
         }
 
-        private void FillFolderFilter()
+        private void FillFolderFilter(IPathResolver pathResolver)
         {
             FoldersFilter.Items.Clear();
             FoldersFilter.Items.Add(string.Empty);
-            foreach (var folder in config.Index.FileNames.CheckedItems.Where(folder => ZlpIOHelper.DirectoryExists(folder.Key)))
+            foreach (var folder in config.Index.FileNames.CheckedItems.Select(x=>pathResolver.Resolve(x.Key)).Where(folder => ZlpIOHelper.DirectoryExists(folder)))
             {
-                AddPath(folder.Key);
-                foreach (var subFolder in new ZlpDirectoryInfo(folder.Key).SafeEnumerateDirectories(Log))
+                AddPath(folder);
+                foreach (var subFolder in new ZlpDirectoryInfo(folder).SafeEnumerateDirectories(Log))
                 {
                     AddPath(subFolder.FullName);
                 }
@@ -416,6 +417,13 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             if (lvResult.SelectedItem == null) return;
             var path = GetSelectedFilePath();
             Clipboard.SetText(path);
+        }
+
+        private void ContextMenuCopyFileName(object sender, RoutedEventArgs e)
+        {
+            if (lvResult.SelectedItem == null) return;
+            var path = GetSelectedFilePath();
+            Clipboard.SetText(Path.GetFileName(path));
         }
     }
 }

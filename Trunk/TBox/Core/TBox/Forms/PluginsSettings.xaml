@@ -132,27 +132,31 @@
                     <units:CheckableListBoxUnit.ItemTemplate>
                         <DataTemplate DataType="{x:Type settings:MenuItemsSequence}" >
                             <DockPanel>
-                                <Button Content="..." VerticalAlignment="Center" Width="32" Margin="2" Click="BtnEditUserActionClick" DockPanel.Dock="Right"/>
+                                <Button Content="..." VerticalAlignment="Center" Width="32" Margin="2" Click="BtnEditUserActionClick" DockPanel.Dock="Right"  IsEnabled="{Binding IsChecked}"/>
                                 <my:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="UserActionsCheckChanged" VerticalAlignment="Center" DockPanel.Dock="Left"/>
                                 <TextBlock Text="{Binding Key}" Padding="0" Margin="2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
                             </DockPanel>
                         </DataTemplate>
                     </units:CheckableListBoxUnit.ItemTemplate>
-                    <units:CheckableListBoxUnit.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <Setter Property="AllowDrop" Value="True" />
-                        </Style>
-                    </units:CheckableListBoxUnit.ItemContainerStyle>
                 </units:CheckableListBoxUnit>
             </DockPanel>
         </TabItem>
-        <TabItem Header="{loc:Tr Configuration}" IsEnabled="False">
+        <TabItem Header="{loc:Tr Configuration}" >
             <DockPanel>
-                <GroupBox Header="{loc:Tr Profile}" DockPanel.Dock="Top">
-                    <units:ComboBoxUnit Name="Profile" ValueCaption="{Binding Configuration.SelectedProfile}" ItemsSource="{Binding Configuration.Profiles}" UnitType="Text" Title="{loc:Tr Profile}" />
-                </GroupBox>
-                <GroupBox  Header="{loc:Tr AssociatedPlugins}" IsEnabled="{Binding ElementName=Profile,Path=IsSelected}" DataContext="{Binding ElementName=Profile, Path=SelectedValue}">
-                    <units:CheckableListBoxUnit ItemsSource="{Binding Selected}" UnitType="Text" Title="{loc:Tr SelectAssociatedPlugins}"/>
+                <GroupBox  Header="{loc:Tr Aliases}" >
+                    <units:CheckableListBoxUnit Name="Aliases" ItemsSource="{Binding Configuration.Aliases}" UnitType="Text" Title="{loc:Tr ConfigureAlias}">
+                        <units:CheckableListBoxUnit.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <my:ExtCheckBox IsChecked="{Binding IsChecked}" ValueChanged="AliasesCheckChanged" VerticalAlignment="Top" DockPanel.Dock="Left" Margin="2"/>
+                                    <StackPanel HorizontalAlignment="Stretch">
+                                        <TextBlock Text="{Binding Key}" FontWeight="Bold" Padding="0" Margin="2" TextTrimming="CharacterEllipsis"/>
+                                        <TextBox Text="{Binding Value}" Padding="0" Margin="2"  IsEnabled="{Binding IsChecked}" />
+                                    </StackPanel>
+                                </DockPanel>
+                            </DataTemplate>
+                        </units:CheckableListBoxUnit.ItemTemplate>
+                    </units:CheckableListBoxUnit>
                 </GroupBox>
             </DockPanel>
         </TabItem>

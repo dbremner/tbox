@@ -37,7 +37,7 @@ namespace Mnk.TBox.Plugins.FileWatcher
 		{
 			base.Init(context);
 			worker = new Lazy<Worker<LogDialog>>(
-				() => new Worker<LogDialog>(dialog = new LogDialog(Icon.ToImageSource()), new DataParser(), FileWatcherLang.PluginName, Config)); 
+				() => new Worker<LogDialog>(dialog = new LogDialog(Icon.ToImageSource()), new DataParser(), FileWatcherLang.PluginName, Config, Context.PathResolver)); 
 		}
 
 		private void OnClear()

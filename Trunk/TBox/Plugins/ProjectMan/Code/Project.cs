@@ -26,7 +26,7 @@ namespace Mnk.TBox.Plugins.ProjectMan.Code
 
         public Project(ProjectInfo projectInfo, ProjectContext projectContext, IPluginContext pluginContext)
         {
-            info = new DirectoryInfo(projectInfo.Key);
+            info = new DirectoryInfo(pluginContext.PathResolver.Resolve(projectInfo.Key));
             this.projectInfo = projectInfo;
             this.projectContext = projectContext;
             this.pluginContext = pluginContext;

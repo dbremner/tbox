@@ -123,6 +123,7 @@
     <Compile Include="Code\Configs\ConfigManager.cs" />
     <Compile Include="Code\Configs\Configuration.cs" />
     <Compile Include="Code\Configs\IConfigsManager.cs" />
+    <Compile Include="Code\Configs\PathResolver.cs" />
     <Compile Include="Code\Configs\Profile.cs" />
     <Compile Include="Code\AutoUpdate\ApplicationUpdater.cs" />
     <Compile Include="Code\FastStart\FastStartShower.cs" />

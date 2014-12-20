@@ -26,7 +26,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
 
         private Dialog CreateDialog()
         {
-            return new Dialog(NUnitAgentPath, RunAsx86Path)
+            return new Dialog(NUnitAgentPath, RunAsx86Path, Context.PathResolver)
             {
                 Icon = Icon.ToImageSource()
             };
@@ -38,7 +38,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
             Menu = Config.DllPaths.CheckedItems
                          .Select(x => new UMenuItem
                          {
-                             Header = Path.GetFileName(x.Key),
+                             Header = Path.GetFileName(Context.PathResolver.Resolve(x.Key)),
                              OnClick = o => Run(x)
                          })
                          .ToArray();

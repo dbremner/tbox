@@ -6,6 +6,7 @@ namespace Mnk.TBox.Core.Contracts
     public interface IPluginContext
     {
         IDataProvider DataProvider { get; }
+        IPathResolver PathResolver { get; }
         void RebuildMenu();
         void SaveConfig();
         Icon GetIcon(string path, int id);

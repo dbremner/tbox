@@ -405,4 +405,10 @@
   <data name="RestartNeeded" xml:space="preserve">
     <value>Для применения изменений необходим перезапуск TBox</value>
   </data>
+  <data name="Aliases" xml:space="preserve">
+    <value>Псевдонимы</value>
+  </data>
+  <data name="ConfigureAlias" xml:space="preserve">
+    <value>Настройка псевдонима</value>
+  </data>
 </root>

@@ -39,6 +39,7 @@ namespace Mnk.TBox.Core.Application.Code
             var cm = new ConfigManager();
             container.RegisterInstance<IConfigManager<Config>>(cm);
             container.RegisterInstance<IConfigsManager>(cm);
+            container.RegisterInstance<IPathResolver>(new PathResolver(cm));
             container.Register<IMenuItemsProvider, MenuItemsProvider>(new PerContainerLifetime());
             container.Register<MenuCallsVisitor>(new PerContainerLifetime());
             container.Register<RecentItemsCollector>(new PerContainerLifetime());
