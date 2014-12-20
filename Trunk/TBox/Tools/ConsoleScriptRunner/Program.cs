@@ -34,7 +34,8 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
                 loader.Load(rootPath);
                 var worker = new Worker(
                     GetConfigsPath(),
-                    rootPath);
+                    rootPath,
+                    new CopyPathResolver());
                 foreach (var s in args)
                 {
                     Console.WriteLine("Execute: " + s);

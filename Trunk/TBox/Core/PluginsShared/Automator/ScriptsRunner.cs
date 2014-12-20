@@ -6,14 +6,18 @@ using Mnk.TBox.Locales.Localization.PluginsShared;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine.Core;
 using Mnk.Library.WpfControls.Dialogs;
+using Mnk.TBox.Core.Contracts;
 using ScriptEngine.Core.Params;
 
 namespace Mnk.TBox.Core.PluginsShared.Automator
 {
     public class ScriptsRunner : MultiFileScriptConfigurator
     {
-        public ScriptsRunner()
+        private readonly IPathResolver pathResolver;
+
+        public ScriptsRunner(IPathResolver pathResolver)
         {
+            this.pathResolver = pathResolver;
             btnAction.Content = PluginsSharedLang.Run;
         }
 
@@ -49,7 +53,7 @@ namespace Mnk.TBox.Core.PluginsShared.Automator
         {
             var i = 0;
             var compiler = new ScriptCompiler<IScript>();
-            var ctx = new ScriptContext{Updater = u,Sync = a=>Mt.Do(this, a)};
+            var ctx = new ScriptContext(pathResolver){Updater = u,Sync = a=>Mt.Do(this, a)};
             foreach (var context in ScriptsPackages)
             {
                 if (u.UserPressClose) return;

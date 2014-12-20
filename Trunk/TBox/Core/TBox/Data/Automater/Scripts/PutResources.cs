@@ -6,6 +6,7 @@ using Ionic.Zip;
 using Mnk.TBox.Core.PluginsShared.Automator;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.WpfControls.Dialogs;
+using Mnk.TBox.Core.Contracts;
 
 namespace Solution.Scripts
 {
@@ -35,7 +36,7 @@ namespace Solution.Scripts
                 MessageBox.Show("Can't find any package in folder: " + PathToDirectoryWithPackage, PackageMask);
                 return;
             }
-            if (UnpackPackage(package))
+            if (UnpackPackage(package, context.PathResolver))
             {
                 if (RemoveAfterUnpack) package.Delete();
             }
@@ -48,7 +49,7 @@ namespace Solution.Scripts
         private FileInfo GetPackage(IScriptContext context, out bool exist)
         {
             exist = false;
-            var packages = new DirectoryInfo(PathToDirectoryWithPackage)
+            var packages = new DirectoryInfo(context.PathResolver.Resolve(PathToDirectoryWithPackage))
                 .EnumerateFiles(PackageMask)
                 .OrderBy(x => x.CreationTime)
                 .Reverse()
@@ -68,7 +69,7 @@ namespace Solution.Scripts
             return package;
         }
 
-        private bool UnpackPackage(FileInfo package)
+        private bool UnpackPackage(FileInfo package, IPathResolver pathResolver)
         {
             var count = 0;
             using (var zf = ZipFile.Read(package.FullName))
@@ -80,15 +81,15 @@ namespace Solution.Scripts
                     var alias = Aliases.FirstOrDefault(x => directory.StartsWith(x.Key));
                     if (string.IsNullOrEmpty(alias.Key)) continue;
                     ++count;
-                    Save(entry, alias.Value + entry.FileName.Substring(alias.Key.Length));
+                    Save(entry, alias.Value + entry.FileName.Substring(alias.Key.Length), pathResolver);
                 }
             }
             return count > 0;
         }
 
-        private void Save(ZipEntry entry, string name)
+        private void Save(ZipEntry entry, string name, IPathResolver pathResolver)
         {
-            foreach (var path in TargetPathes)
+            foreach (var path in TargetPathes.Select(pathResolver.Resolve))
             {
                 var dir = Path.GetDirectoryName(name);
                 var targetDir = Path.GetFullPath(Path.Combine(path, dir));

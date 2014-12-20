@@ -16,10 +16,12 @@ namespace Solution.Scripts
             var i = 0;
             foreach (var file in Files)
             {
-                s.Updater.Update(file.Key, i++/(float)Files.Count);
-                var doc = XDocument.Load(file.Key, LoadOptions.PreserveWhitespace);
-                AddTracingToConfig(doc.Root, file.Value);
-                doc.Save(file.Key);
+                var source = s.PathResolver.Resolve(file.Key);
+                var target = s.PathResolver.Resolve(file.Value);
+                s.Updater.Update(source, i++ / (float)Files.Count);
+                var doc = XDocument.Load(source, LoadOptions.PreserveWhitespace);
+                AddTracingToConfig(doc.Root, target);
+                doc.Save(source);
             }
         }
 

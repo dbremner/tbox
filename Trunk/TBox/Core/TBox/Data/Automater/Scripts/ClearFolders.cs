@@ -25,7 +25,7 @@ namespace Solution.Scripts
         {
             var errors = new List<string>();
             var i = 0;
-            foreach (var dir in RootDirectories.Select(x => new DirectoryInfo(x)))
+            foreach (var dir in RootDirectories.Select(x => new DirectoryInfo(s.PathResolver.Resolve(x))))
             {
                 s.Updater.Update(dir.FullName, i++/(float)RootDirectories.Count);
                 foreach (var subdir in FindSubDir(dir))

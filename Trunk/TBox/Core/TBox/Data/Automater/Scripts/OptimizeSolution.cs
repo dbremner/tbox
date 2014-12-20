@@ -35,7 +35,7 @@ namespace Solution.Scripts
 
 		public void Run(IScriptContext context)
 		{
-            if (!Solutions.Aggregate(false, (current, path) => ProcessSolution(path) || current))
+            if (!Solutions.Aggregate(false, (current, path) => ProcessSolution(context.PathResolver.Resolve(path)) || current))
             {
                 Log.Write("Nothing to optimize");
             }

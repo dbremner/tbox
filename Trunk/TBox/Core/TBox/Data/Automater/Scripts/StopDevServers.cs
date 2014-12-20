@@ -4,14 +4,14 @@ using Mnk.Library.ScriptEngine;
 
 namespace Solution.Scripts
 {
-	public class StopDevServers : IScript
-	{
-		[File("c:/")]
-		public string PathToDevServer { get; set; }
+    public class StopDevServers : IScript
+    {
+        [File("c:/")]
+        public string PathToDevServer { get; set; }
 
-		public void Run(IScriptContext context)
-		{
-			new CassiniRunner().StopAll(PathToDevServer);
-		}
-	}
+        public void Run(IScriptContext context)
+        {
+            new CassiniRunner().StopAll(PathToDevServer);
+        }
+    }
 }

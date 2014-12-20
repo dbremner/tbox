@@ -7,6 +7,7 @@ using Ionic.Zip;
 using Mnk.TBox.Core.PluginsShared.Automator;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.WpfControls.Dialogs;
+using Mnk.TBox.Core.Contracts;
 
 namespace Solution.Scripts
 {
@@ -36,14 +37,14 @@ namespace Solution.Scripts
                 MessageBox.Show("Can't find any package in folder: " + PathToDirectoryWithPackage, PackageMask);
                 return;
             }
-            UnpackPackage(package);
+            UnpackPackage(package, context.PathResolver);
             if (RemoveAfterUnpack) package.Delete();
         }
 
         private FileInfo GetPackage(IScriptContext context, out bool exist)
         {
             exist = false;
-            var packages = new DirectoryInfo(PathToDirectoryWithPackage)
+            var packages = new DirectoryInfo(context.PathResolver.Resolve(PathToDirectoryWithPackage))
                 .EnumerateFiles(PackageMask)
                 .OrderBy(x => x.CreationTime)
                 .Reverse()
@@ -63,20 +64,20 @@ namespace Solution.Scripts
             return package;
         }
 
-        private void UnpackPackage(FileInfo package)
+        private void UnpackPackage(FileInfo package, IPathResolver pathResolver)
         {
             using (var zf = ZipFile.Read(package.FullName))
             {
                 foreach (var entry in zf.Where(entry => CanUnpack(entry.FileName)))
                 {
-                    Save(entry);
+                    Save(entry, pathResolver);
                 }
             }
         }
 
-        private void Save(ZipEntry entry)
+        private void Save(ZipEntry entry, IPathResolver pathResolver )
         {
-            foreach (var path in TargetPathes)
+            foreach (var path in TargetPathes.Select(pathResolver.Resolve))
             {
                 var targetDir = Path.Combine(path, Path.GetFileNameWithoutExtension(entry.FileName));
                 if (!Directory.Exists(targetDir)) continue;

@@ -7,6 +7,7 @@ using Mnk.Library.Common.Tools;
 using Mnk.TBox.Core.PluginsShared.Automator;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.ScriptEngine.Core;
+using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Tools.ConsoleScriptRunner.Settings;
 
 namespace Mnk.TBox.Tools.ConsoleScriptRunner
@@ -16,11 +17,13 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
 		private static readonly ILog Log = LogManager.GetLogger<Worker>();
 		private readonly ConfigurationSerializer<Config> serializer;
 		private readonly string rootPath;
+	    private readonly IPathResolver pathResolver;
 
-		public Worker(string cfgPath, string rootPath)
+	    public Worker(string cfgPath, string rootPath, IPathResolver pathResolver)
 		{
 			this.rootPath = rootPath;
-			serializer = new ConfigurationSerializer<Config>(Path.Combine(cfgPath, "Config/Automater.config"));
+	        this.pathResolver = pathResolver;
+	        serializer = new ConfigurationSerializer<Config>(Path.Combine(cfgPath, "Config/Automater.config"));
 		}
 
 		public void Run(string profileToRun)
@@ -38,7 +41,7 @@ namespace Mnk.TBox.Tools.ConsoleScriptRunner
 				return;
 			}
 			var compiler = new ScriptCompiler<IScript>();
-		    var context = new ScriptContext {Updater = new ConsoleUpdater()};
+		    var context = new ScriptContext(pathResolver) {Updater = new ConsoleUpdater()};
 
 			foreach (var op in profile.Operations)
 			{

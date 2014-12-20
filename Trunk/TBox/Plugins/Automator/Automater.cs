@@ -4,19 +4,18 @@ using System.IO;
 using System.Linq;
 using Mnk.Library.Common.Log;
 using Mnk.Library.Common.MT;
-using Mnk.Library.WpfControls;
-using Mnk.TBox.Core.Contracts;
-using Mnk.TBox.Locales.Localization.Plugins.Automator;
-using Mnk.TBox.Core.PluginsShared.Automator;
-using Mnk.TBox.Core.PluginsShared.ScriptEngine;
 using Mnk.Library.ScriptEngine;
 using Mnk.Library.ScriptEngine.Core;
-using Mnk.Library.WpfControls.Code;
+using Mnk.Library.WpfControls;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfSyntaxHighlighter;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
+using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Core.PluginsShared.Automator;
+using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.TBox.Locales.Localization.Plugins.Automator;
 using Mnk.TBox.Plugins.Automator.Code;
 using Mnk.TBox.Plugins.Automator.Code.Settings;
 
@@ -25,12 +24,13 @@ namespace Mnk.TBox.Plugins.Automator
     [PluginInfo(typeof(AutomatorLang), 12, PluginGroup.Development)]
     public sealed class Automater : ConfigurablePlugin<Settings, Config>, IDisposable
     {
-        private readonly ScriptRunner scriptRunner = new ScriptRunner();
+        private readonly Lazy<ScriptRunner> scriptRunner;
         private readonly LazyDialog<EditorDialog> editorDialog;
         private readonly LazyDialog<ScriptsRunner> runnerDialog;
         private static readonly ILog Log = LogManager.GetLogger<Automater>();
         public Automater()
         {
+            scriptRunner = new Lazy<ScriptRunner>(()=> new ScriptRunner(Context.PathResolver));
             editorDialog = new LazyDialog<EditorDialog>(CreateEditor);
             runnerDialog = new LazyDialog<ScriptsRunner>(CreateRunner);
         }
@@ -48,7 +48,7 @@ namespace Mnk.TBox.Plugins.Automator
 
         private ScriptsRunner CreateRunner()
         {
-            return new ScriptsRunner { Context = Context, Icon = Icon.ToImageSource() };
+            return new ScriptsRunner(Context.PathResolver) { Context = Context, Icon = Icon.ToImageSource() };
         }
 
         public override void Init(IPluginContext context)
@@ -100,7 +100,7 @@ namespace Mnk.TBox.Plugins.Automator
             var folder = Context.DataProvider.ReadOnlyDataPath;
             foreach (var op in operations)
             {
-                var r = new ScriptRunner();
+                var r = new ScriptRunner(Context.PathResolver);
                 foreach (var path in op.Pathes.CheckedItems)
                 {
                     if (u.UserPressClose) return;
@@ -134,7 +134,7 @@ namespace Mnk.TBox.Plugins.Automator
 
         private void ShowIde(object o)
         {
-            editorDialog.Do(Context.DoSync, x => x.ShowDialog(GetPaths(), scriptRunner), Config.States);
+            editorDialog.Do(Context.DoSync, x => x.ShowDialog(GetPaths(), scriptRunner.Value), Config.States);
         }
 
         private void DoWork(MultiFileOperation operation, object context)
@@ -145,7 +145,7 @@ namespace Mnk.TBox.Plugins.Automator
             }
             else
             {
-                runnerDialog.Do(Context.DoSync, x => x.ShowDialog(operation, scriptRunner, null), Config.States);
+                runnerDialog.Do(Context.DoSync, x => x.ShowDialog(operation, scriptRunner.Value, null), Config.States);
             }
         }
 
