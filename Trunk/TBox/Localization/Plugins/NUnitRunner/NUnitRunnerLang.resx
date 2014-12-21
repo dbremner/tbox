@@ -318,4 +318,7 @@
   <data name="FilesNotExistsOrInvalid" xml:space="preserve">
     <value>Files not exists or invalid:</value>
   </data>
+  <data name="TestLibrariesFileMasks" xml:space="preserve">
+    <value>Test library (*.dll)|*.dll</value>
+  </data>
 </root>

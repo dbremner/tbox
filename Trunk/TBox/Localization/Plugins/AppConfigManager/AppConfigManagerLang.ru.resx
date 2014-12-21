@@ -132,6 +132,9 @@
   <data name="DefaultValue" xml:space="preserve">
     <value>Значение по умолчанию:</value>
   </data>
+  <data name="FileMasks" xml:space="preserve">
+    <value>Файлы конфигурации (*.config)|*.config|Все (*.*)|*.*</value>
+  </data>
   <data name="Files" xml:space="preserve">
     <value>Файлы</value>
   </data>

@@ -42,7 +42,7 @@
                             </DockPanel>
                         </DockPanel>
                     </GroupBox>
-                    <units:CheckableFileListBoxUnit ItemsSource="{Binding FilePathes}" UnitType="FilePath" PathGetterType="File"  Title="{loc:Tr ConfigureLibrariesWithUnitTests}"/>
+                    <units:CheckableFileListBoxUnit ItemsSource="{Binding FilePathes}" UnitType="FilePath" PathGetterType="File"  Title="{loc:Tr ConfigureLibrariesWithUnitTests}" PathGetterFilter="{loc:Tr TestLibrariesFileMasks}"/>
                 </DockPanel>
             </TabItem>
             <TabItem Header="{loc:Tr Tests}">

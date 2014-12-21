@@ -14,8 +14,8 @@
         </TabItem>
         <TabItem Header="{loc:Tr BuildToolsPaths}">
             <StackPanel>
-                <captioned1:CaptionedEditPath Value="{Binding PathToSvn}" Caption="{loc:Tr PathToSvn}" PathGetterType="File" Margin="5"/>
-                <captioned1:CaptionedEditPath Value="{Binding PathToMsBuild}" Caption="{loc:Tr PathToMSBuild}" PathGetterType="File" Margin="5"/>
+                <captioned1:CaptionedEditPath Value="{Binding PathToSvn}" Caption="{loc:Tr PathToSvn}" PathGetterType="File" Margin="5" PathGetterFilter="{loc:Tr ExecutableFileMasks}"/>
+                <captioned1:CaptionedEditPath Value="{Binding PathToMsBuild}" Caption="{loc:Tr PathToMSBuild}" PathGetterType="File" Margin="5" PathGetterFilter="{loc:Tr ExecutableFileMasks}"/>
                 <captioned1:CaptionedTextBox Value="{Binding SvnUserName}" Caption="{loc:Tr UserName}" Margin="5"/>
             </StackPanel>
         </TabItem>

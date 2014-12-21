@@ -147,6 +147,9 @@
   <data name="CreatePatch" xml:space="preserve">
     <value>Создать патч</value>
   </data>
+  <data name="ExecutableFileMasks" xml:space="preserve">
+    <value>Исполняемые файлы (*.exe)|*.config|Все файлы(*.*)|*.*</value>
+  </data>
   <data name="Export" xml:space="preserve">
     <value>Экспорт</value>
   </data>

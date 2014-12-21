@@ -123,6 +123,9 @@
   <data name="ConfigureProjectsDirectories" xml:space="preserve">
     <value>Настройка папок проектов</value>
   </data>
+  <data name="ExecutableFileMasks" xml:space="preserve">
+    <value>Исполняемые файлы (*.exe)|*.config|Все файлы(*.*)|*.*</value>
+  </data>
   <data name="PathToBrowser" xml:space="preserve">
     <value>Путь к браузеру:</value>
   </data>

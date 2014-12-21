@@ -147,6 +147,9 @@
   <data name="CreatePatch" xml:space="preserve">
     <value>Create patch</value>
   </data>
+  <data name="ExecutableFileMasks" xml:space="preserve">
+    <value>Executable (*.exe)|*.config|All (*.*)|*.*</value>
+  </data>
   <data name="Export" xml:space="preserve">
     <value>Export</value>
   </data>

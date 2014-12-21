@@ -1,4 +1,6 @@
-﻿21/12/2014 Add ability to execute multiply tests assemblies in parallel
+﻿21/12/2014 Add File Masks for path getters
+
+21/12/2014 Add ability to execute multiply tests assemblies in parallel
 
 20/12/2014 Add aliases for file pathes, according to the MeL suggestion.
 

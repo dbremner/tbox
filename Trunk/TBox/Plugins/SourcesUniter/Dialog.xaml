@@ -13,7 +13,7 @@
     <StackPanel>
         <captioned1:CaptionedEditPath Caption="{loc:Tr TargetFolder}" PathGetterType="Folder" Value="{Binding Path}" Margin="5"/>
         <captioned1:CaptionedTextBox Caption="{loc:Tr Extensions}" Value="{Binding Extensions}" Margin="5"/>
-        <captioned1:CaptionedEditPath Caption="{loc:Tr TextEditor}" PathGetterType="File" Value="{Binding Editor}" Margin="5"/>
+        <captioned1:CaptionedEditPath Caption="{loc:Tr TextEditor}" PathGetterType="File" Value="{Binding Editor}" Margin="5"  PathGetterFilter="{loc:Tr ExecutableFileMasks}"/>
         <CheckBox Content="{loc:Tr RemoveEmptyLines}" Margin="5" IsChecked="{Binding RemoveEmptyLines}"/>
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center">
             <Button Content="{loc:Tr Start}" Click="OnStartClick" Width="64" Margin="10" IsDefault="True"/>

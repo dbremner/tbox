@@ -123,6 +123,9 @@
   <data name="ConfigureProjectsDirectories" xml:space="preserve">
     <value>Configure projects directories</value>
   </data>
+  <data name="ExecutableFileMasks" xml:space="preserve">
+    <value>Executable (*.exe)|*.config|All (*.*)|*.*</value>
+  </data>
   <data name="PathToBrowser" xml:space="preserve">
     <value>Path to browser:</value>
   </data>

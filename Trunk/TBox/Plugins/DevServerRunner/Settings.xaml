@@ -36,10 +36,10 @@
         </TabItem>
         <TabItem Header="{loc:Tr Advanced}">
             <StackPanel>
-                <captioned1:CaptionedEditPath Caption="{loc:Tr PathToDevServer}" Value="{Binding PathToDevServer}" PathGetterType="File" Margin="5"/>
+                <captioned1:CaptionedEditPath Caption="{loc:Tr PathToDevServer}" Value="{Binding PathToDevServer}" PathGetterType="File" Margin="5" PathGetterFilter="{loc:Tr ExecutableFileMasks}"/>
                 <StackPanel>
                     <CheckBox Content="{loc:Tr RunBrowser}" IsChecked="{Binding RunBrowser}" Name="RunBrowser" Margin="5,5,0,0" />
-                    <captioned1:CaptionedEditPath Caption="{loc:Tr PathToBrowser}" Value="{Binding PathToBrowser}" PathGetterType="File" Margin="5" IsEnabled="{Binding ElementName=RunBrowser, Path=IsChecked}"/>
+                    <captioned1:CaptionedEditPath Caption="{loc:Tr PathToBrowser}" Value="{Binding PathToBrowser}" PathGetterType="File" Margin="5" IsEnabled="{Binding ElementName=RunBrowser, Path=IsChecked}" PathGetterFilter="{loc:Tr ExecutableFileMasks}"/>
                 </StackPanel>
             </StackPanel>
         </TabItem>

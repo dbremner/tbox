@@ -120,6 +120,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ExecutableFileMasks" xml:space="preserve">
+    <value>Executable (*.exe)|*.config|All (*.*)|*.*</value>
+  </data>
   <data name="Extensions" xml:space="preserve">
     <value>Extensions:</value>
   </data>

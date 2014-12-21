@@ -34,7 +34,7 @@
                 </DockPanel>
             </TabItem>
             <TabItem Header="{loc:Tr ConfigurationFiles}">
-                <Units:CheckableFileListBoxUnit ItemsSource="{Binding Files}" UnitType="FilePath" Title="{loc:Tr Files}" PathGetterType="File"/>
+                <Units:CheckableFileListBoxUnit ItemsSource="{Binding Files}" UnitType="FilePath" Title="{loc:Tr Files}" PathGetterType="File" PathGetterFilter="{loc:Tr FileMasks}" />
             </TabItem>
         </TabControl>
     </DockPanel>

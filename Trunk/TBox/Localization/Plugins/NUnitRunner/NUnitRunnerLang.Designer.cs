@@ -547,6 +547,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Test library (*.dll)|*.dll.
+        /// </summary>
+        public static string TestLibrariesFileMasks {
+            get {
+                return ResourceManager.GetString("TestLibrariesFileMasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tests.
         /// </summary>
         public static string Tests {

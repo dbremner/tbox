@@ -205,6 +205,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.Searcher {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Executable (*.exe)|*.config|All (*.*)|*.*.
+        /// </summary>
+        public static string ExecutableFileMasks {
+            get {
+                return ResourceManager.GetString("ExecutableFileMasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executable path:.
         /// </summary>
         public static string ExecutablePath {

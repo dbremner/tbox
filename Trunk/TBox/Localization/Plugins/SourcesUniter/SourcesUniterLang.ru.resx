@@ -120,6 +120,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="ExecutableFileMasks" xml:space="preserve">
+    <value>Исполняемые файлы (*.exe)|*.config|Все файлы(*.*)|*.*</value>
+  </data>
   <data name="Extensions" xml:space="preserve">
     <value>Расширения:</value>
   </data>

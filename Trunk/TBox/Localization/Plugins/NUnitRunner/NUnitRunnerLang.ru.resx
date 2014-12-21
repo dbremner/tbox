@@ -318,4 +318,7 @@
   <data name="FilesNotExistsOrInvalid" xml:space="preserve">
     <value>Файлы не существуют или не подходят:</value>
   </data>
+  <data name="TestLibrariesFileMasks" xml:space="preserve">
+    <value>Библиотека тестов (*.dll)|*.dll</value>
+  </data>
 </root>

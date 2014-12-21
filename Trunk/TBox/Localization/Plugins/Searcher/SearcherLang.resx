@@ -282,4 +282,7 @@
   <data name="CopyFileName" xml:space="preserve">
     <value>Copy file name</value>
   </data>
+  <data name="ExecutableFileMasks" xml:space="preserve">
+    <value>Executable (*.exe)|*.config|All (*.*)|*.*</value>
+  </data>
 </root>

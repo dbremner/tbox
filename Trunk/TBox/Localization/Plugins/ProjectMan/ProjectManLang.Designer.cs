@@ -151,6 +151,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.ProjectMan {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Executable (*.exe)|*.config|All (*.*)|*.*.
+        /// </summary>
+        public static string ExecutableFileMasks {
+            get {
+                return ResourceManager.GetString("ExecutableFileMasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string Export {
