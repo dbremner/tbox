@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Mnk.TBox.Core.Contracts;
 
 namespace Mnk.TBox.Core.Application.Code.Configs
@@ -26,7 +27,7 @@ namespace Mnk.TBox.Core.Application.Code.Configs
                         .Insert(id, aliase.Value);
                 }
             }
-            return path;
+            return Path.GetFullPath(path);
         }
     }
 }

@@ -315,7 +315,7 @@
   <data name="Timeout" xml:space="preserve">
     <value>Макс время теста (сек)</value>
   </data>
-  <data name="FilesNotExists" xml:space="preserve">
-    <value>Файлы не существуют:</value>
+  <data name="FilesNotExistsOrInvalid" xml:space="preserve">
+    <value>Файлы не существуют или не подходят:</value>
   </data>
 </root>

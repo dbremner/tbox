@@ -268,11 +268,11 @@ namespace Mnk.TBox.Locales.Localization.Plugins.NUnitRunner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Files not exists:.
+        ///   Looks up a localized string similar to Files not exists or invalid:.
         /// </summary>
-        public static string FilesNotExists {
+        public static string FilesNotExistsOrInvalid {
             get {
-                return ResourceManager.GetString("FilesNotExists", resourceCulture);
+                return ResourceManager.GetString("FilesNotExistsOrInvalid", resourceCulture);
             }
         }
         

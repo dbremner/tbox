@@ -27,7 +27,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner
 
         private Dialog CreateDialog()
         {
-            return new Dialog(new TestsConfigurator(NUnitAgentPath, RunAsx86Path, Context.PathResolver), Context.PathResolver)
+            return new Dialog(new TestsConfigurator(NUnitAgentPath, RunAsx86Path), Context.PathResolver)
             {
                 Icon = Icon.ToImageSource()
             };

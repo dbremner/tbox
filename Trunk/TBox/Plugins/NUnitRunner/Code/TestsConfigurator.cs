@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Mnk.Library.ParallelNUnit;
-using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
 
 namespace Mnk.TBox.Plugins.NUnitRunner.Code
@@ -9,11 +8,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code
     {
         private readonly string nunitAgentPath;
         private readonly string runAsx86Path;
-        private readonly IPathResolver pathResolver;
 
-        public TestsConfigurator(string nunitAgentPath, string runAsx86Path, IPathResolver pathResolver)
+        public TestsConfigurator(string nunitAgentPath, string runAsx86Path)
         {
-            this.pathResolver = pathResolver;
             this.nunitAgentPath = nunitAgentPath;
             this.runAsx86Path = runAsx86Path;
         }
@@ -24,7 +21,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Code
             {
                 NunitAgentPath = nunitAgentPath,
                 RunAsx86Path = runAsx86Path,
-                TestDllPath = pathResolver.Resolve(path),
+                TestDllPath = path,
             };
             UpdateConfig(config, suiteConfig);
             return config;

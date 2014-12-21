@@ -73,8 +73,10 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private void RecreatePackage()
         {
             DisposePackage();
-            testsConfigs = suiteConfig.FilePathes
-                .Select(x => testsConfigurator.CreateConfig(x.Key, suiteConfig))
+            testsConfigs = suiteConfig.FilePathes.CheckedItems
+                .Select(x=>pathResolver.Resolve(x.Key))
+                .GroupBy(x=>x.ToLower())
+                .Select(x => testsConfigurator.CreateConfig(x.First(), suiteConfig))
                 .ToArray(); 
             container = ServicesRegistrar.Register();
             testsFixture = container.GetInstance<IMultiTestsFixture>();
@@ -131,13 +133,14 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         private bool EnsureAllFilesExists()
         {
             var notExists = suiteConfig.FilePathes.CheckedItems
-                .Where(x => !File.Exists(pathResolver.Resolve(x.Key)))
+                .Select(x => pathResolver.Resolve(x.Key))
+                .Where(x => string.IsNullOrEmpty(x) || !File.Exists(x) || !string.Equals((Path.GetExtension(x)??string.Empty).ToLower(), ".dll") )
                 .ToArray();
             if (notExists.Any())
             {
                 MessageBox.Show(
-                    NUnitRunnerLang.FilesNotExists + Environment.NewLine 
-                      + string.Join(Environment.NewLine, notExists.Select(x=>pathResolver.Resolve(x.Key))), 
+                    NUnitRunnerLang.FilesNotExistsOrInvalid + Environment.NewLine 
+                      + string.Join(Environment.NewLine, notExists), 
                     Title, MessageBoxButton.OK, MessageBoxImage.Stop);
                 return false;
             }
@@ -148,23 +151,23 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
         {
             results = testsFixture.Refresh(testsConfigs, suiteConfig.AssembliesCount);
 
-            if (exists != null)
-            {
-                foreach (var item in exists)
-                {
-                    var exist = results.FirstOrDefault(
-                        x => string.Equals(x.Config.TestDllPath, item.Key, StringComparison.OrdinalIgnoreCase));
-                    if (exist != null)
-                    {
-                        exist.Results = new TestsResults(item.Value);
-                    }
-                }
-            }
-
             Mt.Do(this, () =>
             {
                 if (!results.Any(x => x.Results == null || x.Results.IsFailed))
                 {
+                    if (exists != null)
+                    {
+                        foreach (var item in exists)
+                        {
+                            var exist = results.FirstOrDefault(
+                                x => string.Equals(x.Config.TestDllPath, item.Key, StringComparison.OrdinalIgnoreCase));
+                            if (exist != null)
+                            {
+                                exist.Results = new TestsResults(item.Value);
+                            }
+                        }
+                    }
+
                     var items = new TestsResults(results.SelectMany(x => x.Results.Items).ToArray());
                     View.SetItems(items);
                     Statistics.SetItems(items);
