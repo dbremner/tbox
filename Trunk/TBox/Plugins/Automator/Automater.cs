@@ -30,7 +30,7 @@ namespace Mnk.TBox.Plugins.Automator
         private static readonly ILog Log = LogManager.GetLogger<Automater>();
         public Automater()
         {
-            scriptRunner = new Lazy<ScriptRunner>(()=> new ScriptRunner(Context.PathResolver));
+            scriptRunner = new Lazy<ScriptRunner>(() => new ScriptRunner(Context.PathResolver));
             editorDialog = new LazyDialog<EditorDialog>(CreateEditor);
             runnerDialog = new LazyDialog<ScriptsRunner>(CreateRunner);
         }
@@ -60,32 +60,51 @@ namespace Mnk.TBox.Plugins.Automator
         public override void OnRebuildMenu()
         {
             base.OnRebuildMenu();
-            Menu = Config.Profiles.Where(x => x.Operations.Count > 0)
-                .Select(p => new UMenuItem
+            Menu = FillMenu(Config.Profiles.Where(x => x.Operations.Count > 0).ToArray())
+                .Concat(new[]
+					{
+						new USeparator(), 
+						new UMenuItem{Header = AutomatorLang.Editor, OnClick = ShowIde}
+					})
+                .ToArray();
+        }
+
+        private IEnumerable<UMenuItem> FillMenu(IList<Profile> ops)
+        {
+            if (ops.Count == 1)
+            {
+                var p = ops.First();
+                return new[]
                 {
-                    Header = p.Key,
-                    Items = p.Operations.Select(o => new UMenuItem
+                    new UMenuItem{Header = p.Key, IsEnabled = false}, 
+                }
+                .Concat(FillOperationMenu(p));
+            }
+
+            return ops.Select(p => new UMenuItem
+            {
+                Header = p.Key,
+                Items = FillOperationMenu(p)
+            });
+        }
+
+        private UMenuItem[] FillOperationMenu(Profile p)
+        {
+            return p.Operations.Select(o => new UMenuItem
+            {
+                Header = o.Key,
+                OnClick = x => DoWork(o, x)
+            })
+                .Concat(new[]
+                {
+                    new USeparator(), 
+                    new UMenuItem
                     {
-                        Header = o.Key,
-                        OnClick = x => DoWork(o, x)
-                    })
-                        .Concat(new[]
-								{
-									new USeparator(), 
-									new UMenuItem
-										{
-											Header = AutomatorLang.RunAll,
-											OnClick = x=>RunAll(p)
-										}
-								})
-                        .ToArray()
+                        Header = AutomatorLang.RunAll,
+                        OnClick = x=>RunAll(p)
+                    }
                 })
-                    .Concat(new[]
-						{
-							new USeparator(), 
-							new UMenuItem{Header = AutomatorLang.Editor, OnClick = ShowIde}
-						})
-                    .ToArray();
+                .ToArray();
         }
 
         private void RunAll(Profile profile)

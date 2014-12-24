@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Mnk.Library.WpfControls;
@@ -51,34 +52,54 @@ namespace Mnk.TBox.Plugins.SqlRunner
             {
                 loadTester.OnConfigUpdated(Config);
             }
-            Menu = Config.Profiles
-                .Select(p => new UMenuItem
-                {
-                    Header = p.Key,
-                    Items = p.Ops
-                        .Select(o => new UMenuItem
-                        {
-                            Header = o.Key,
-                            OnClick = x => executor.Value.Execute(Application.Current.MainWindow, o, Config.ConnectionString, Config, ()=>CloseIfNeed(x), Icon.ToImageSource())
-                        })
-                        .Concat(
-                        new[]
-                            {
-                                new USeparator(), 
-                                new UMenuItem{
-                                    IsEnabled = p.Ops.Count>0,
-                                    Header = SqlRunnerLang.Ddos, 
-                                    OnClick = x=>RunDdos(p)
-                                }, 
-                                new UMenuItem{
-                                    IsEnabled = p.Ops.Count>0,
-                                    Header = SqlRunnerLang.Batch, 
-                                    OnClick = x=>RunBatch(p)
-                                },
-                            }
-                        ).ToArray()
-                }).ToArray();
+            Menu = FillMenu(Config.Profiles).ToArray(); 
         }
+
+        private UMenuItem[] FillOperationsMenu(Profile p)
+        {
+            return p.Ops
+                .Select(o => new UMenuItem
+                {
+                    Header = o.Key,
+                    OnClick = x => executor.Value.Execute(Application.Current.MainWindow, o, Config.ConnectionString, Config, ()=>CloseIfNeed(x), Icon.ToImageSource())
+                })
+                .Concat(
+                    new[]
+                    {
+                        new USeparator(), 
+                        new UMenuItem{
+                            IsEnabled = p.Ops.Count>0,
+                            Header = SqlRunnerLang.Ddos, 
+                            OnClick = x=>RunDdos(p)
+                        }, 
+                        new UMenuItem{
+                            IsEnabled = p.Ops.Count>0,
+                            Header = SqlRunnerLang.Batch, 
+                            OnClick = x=>RunBatch(p)
+                        },
+                    }
+                ).ToArray();
+        }
+
+        private IEnumerable<UMenuItem> FillMenu(IList<Profile> ops)
+        {
+            if (ops.Count == 1)
+            {
+                var p = ops.First();
+                return new[]
+                {
+                    new UMenuItem{Header = p.Key, IsEnabled = false}, 
+                }
+                .Concat(FillOperationsMenu(p));
+            }
+
+            return ops.Select(p => new UMenuItem
+            {
+                Header = p.Key,
+                Items = FillOperationsMenu(p)
+            });
+        }
+
 
         private void CloseIfNeed(object o)
         {
