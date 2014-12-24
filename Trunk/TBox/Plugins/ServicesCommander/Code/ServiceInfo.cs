@@ -2,10 +2,15 @@
 
 namespace Mnk.TBox.Plugins.ServicesCommander.Code
 {
-	public class ServiceInfo : CheckableData
-	{
-		public ServiceInfo()
-		{
-		}
-	}
+    public class ServiceInfo : CheckableData
+    {
+        public override object Clone()
+        {
+            return new ServiceInfo
+            {
+                IsChecked = IsChecked,
+                Key = Key
+            };
+        }
+    }
 }

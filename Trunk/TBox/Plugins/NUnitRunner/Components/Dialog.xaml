@@ -31,7 +31,7 @@
             <TabItem Header="{loc:Tr ConfigureLibrariesWithUnitTests}" Name="FilePathesTab">
                 <DockPanel>
                     <GroupBox Margin="5" Header="{loc:Tr Categories}" VerticalContentAlignment="Stretch" DockPanel.Dock="Bottom">
-                        <DockPanel>
+                        <DockPanel Height="200">
                             <CheckBox Content="{loc:Tr UseCategories}" IsChecked="{Binding UseCategories}" DockPanel.Dock="Top" Margin="5"/>
                             <DockPanel Margin="10 2 2 2" IsEnabled="{Binding UseCategories}">
                                 <StackPanel DockPanel.Dock="Top" >

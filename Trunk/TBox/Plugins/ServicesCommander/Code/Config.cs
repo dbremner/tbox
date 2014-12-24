@@ -4,16 +4,16 @@ using Mnk.Library.Common.UI.ModelsContainers;
 
 namespace Mnk.TBox.Plugins.ServicesCommander.Code
 {
-	[Serializable]
-	public class Config
-	{
-		public string SelectedProfile { get; set; }
-		public ObservableCollection<Profile> Profiles { get; set; }
+    [Serializable]
+    public class Config
+    {
+        public string SelectedProfile { get; set; }
+        public ObservableCollection<Profile> Profiles { get; set; }
 
-		public Config()
-		{
-			SelectedProfile = "Sample";
-			Profiles = new ObservableCollection<Profile>
+        public Config()
+        {
+            SelectedProfile = "Sample";
+            Profiles = new ObservableCollection<Profile>
 				{
 					new Profile
 						{
@@ -28,6 +28,6 @@ namespace Mnk.TBox.Plugins.ServicesCommander.Code
 								}
 						}
 				};
-		}
-	}
+        }
+    }
 }
