@@ -35,7 +35,7 @@
       <HintPath>..\..\..\Libs\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.2.1\lib\net40\LightInject.dll</HintPath>
+      <HintPath>..\..\..\Libs\LightInject.3.0.2.6\lib\net40\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -97,9 +97,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZetaLongPaths, Version=1.0.0.6, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
+    <Reference Include="ZetaLongPaths, Version=1.0.0.7, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.6\lib\net40-full\ZetaLongPaths.dll</HintPath>
+      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

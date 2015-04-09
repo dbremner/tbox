@@ -35,7 +35,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Exchange.WebServices">
-      <HintPath>..\..\..\Libs\Microsoft.Exchange.WebServices.1.2\lib\Microsoft.Exchange.WebServices.dll</HintPath>
+      <HintPath>..\..\..\Libs\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices.Auth">
+      <HintPath>..\..\..\Libs\Microsoft.Exchange.WebServices.2.2\lib\40\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
     </Reference>
     <Reference Include="Mnk.Library.Common, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -75,9 +78,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="ZetaLongPaths, Version=1.0.0.6, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
+    <Reference Include="ZetaLongPaths, Version=1.0.0.7, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.6\lib\net40-full\ZetaLongPaths.dll</HintPath>
+      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
