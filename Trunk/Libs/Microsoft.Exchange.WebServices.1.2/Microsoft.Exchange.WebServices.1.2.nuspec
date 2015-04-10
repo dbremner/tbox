@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Exchange.WebServices</id>
+    <version>1.2</version>
+    <title>Microsoft Exchange WebServices 1.2</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://msdn.microsoft.com/en-us/library/dd633624(v=exchg.80).aspx</licenseUrl>
+    <projectUrl>http://msdn.microsoft.com/en-us/library/dd633709(v=exchg.80).aspx</projectUrl>
+    <iconUrl>http://obieosobalu.files.wordpress.com/2011/08/ms-exchange.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Microsoft Exchange Web Services (EWS) Managed API 1.2 provides an intuitive API for developing Exchange Web Services clients.n</description>
+    <summary>Exchange Web Services Managed API 1.2 SDK (x86)</summary>
+    <releaseNotes>Microsoft Exchange Server 2010 Service Pack 2 (SP2) is now the targeted version.</releaseNotes>
+    <copyright>Copyright 2012, Microsoft. All rights reserved.</copyright>
+    <language />
+    <tags>Microsoft Exchange Web Services EWS Managed API 1.2</tags>
+  </metadata>
+</package>
