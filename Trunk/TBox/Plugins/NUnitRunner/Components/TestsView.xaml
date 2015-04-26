@@ -9,6 +9,7 @@
              xmlns:components1="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
              xmlns:core="clr-namespace:Mnk.Library.ParallelNUnit.Core;assembly=Mnk.Library.ParallelNUnit"
              xmlns:local="clr-namespace:Mnk.Library.WpfControls.Components.CheckableTreeView;assembly=Mnk.Library.WPFControls"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>

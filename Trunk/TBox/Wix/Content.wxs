@@ -90,6 +90,7 @@
           <File Name='ServiceStack.Text.dll'/>
           <File Name='ScintillaNet.dll'/>
           <File Name='ZetaLongPaths.dll'/>
+          <File Name='WpfAnimatedGif.dll'/>
         </Component>
       </Directory>
       <Directory Id='Localization' Name='Localization'>

@@ -10,8 +10,8 @@
              xmlns:captioned="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
              mc:Ignorable="d" 
              Title="{Binding Key}" ShowActivated="True" WindowStartupLocation="CenterOwner" ShowInTaskbar="True"
-             MinWidth="480" MinHeight="320"
-             Width="480" Height="320" >
+             MinWidth="540" MinHeight="320"
+             Width="540" Height="320" >
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Content="{loc:Tr ClickOnCellToCopyPassword}" HorizontalAlignment="Right"/>

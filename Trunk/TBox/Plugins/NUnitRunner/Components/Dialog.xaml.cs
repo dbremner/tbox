@@ -50,6 +50,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             foreach (DictionaryEntry res in Properties.Resources.ResourceManager.GetResourceSet(Thread.CurrentThread.CurrentUICulture, true, true))
             {
                 var icon = res.Value as Icon;
+                if(icon==null)continue;
                 CachedIcons.Icons[res.Key.ToString()] = icon.ToImageSource();
             }
         }

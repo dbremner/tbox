@@ -321,4 +321,7 @@
   <data name="TestLibrariesFileMasks" xml:space="preserve">
     <value>Test library (*.dll)|*.dll</value>
   </data>
+  <data name="AssembliesCount" xml:space="preserve">
+    <value>Assemblies in parallel</value>
+  </data>
 </root>
