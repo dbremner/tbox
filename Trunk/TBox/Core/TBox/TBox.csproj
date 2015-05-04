@@ -232,6 +232,9 @@
     <None Include="Data\SkyNet\Factorial.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Data\Automater\Scripts\ExecuteCommands.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="Forms\FastStartDialog.xaml.cs">
       <DependentUpon>FastStartDialog.xaml</DependentUpon>
     </Compile>

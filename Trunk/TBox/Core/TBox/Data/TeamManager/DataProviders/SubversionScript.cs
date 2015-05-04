@@ -22,6 +22,7 @@ namespace TBox.Data.TeamManager
         [File("svn.exe")]
         public string Executable { get; set; }
 
+        public IDictionary<string, string> Aliases { get; set; }
 
 	    public void Run(IReportScriptContext context)
 	    {
@@ -52,7 +53,7 @@ namespace TBox.Data.TeamManager
 					{
 						line = s.ReadLine();
 						if (string.IsNullOrEmpty(line) || !line.StartsWith("#")) continue;
-                        if (context.Persons.Contains(email))
+                        if (!string.IsNullOrEmpty(email))
 						{
 							context.AddResult(new LoggedInfo
 							{
@@ -67,12 +68,25 @@ namespace TBox.Data.TeamManager
 			}
 		}
 
-	    private static string GetEmail(string email, IList<string> emails)
+        private string GetAlias(string name)
+        {
+            return Aliases.ContainsKey(name) ? Aliases[name] : name;
+        }
+
+	    private string GetEmail(string email, IList<string> emails)
 	    {
+	        email = GetAlias(email);
 	        if (emails.Contains(email))
 	            return email;
-            email = email.Replace(".", "_");
-	        return emails.FirstOrDefault(x => (x.Split('@').FirstOrDefault()??string.Empty).StartsWith(email, StringComparison.InvariantCultureIgnoreCase));
+            return TryGetEmail(email, emails);
+	    }
+
+	    private string TryGetEmail(string email, IList<string> emails)
+	    {
+            return emails.FirstOrDefault(x =>
+                (x.Split('@').FirstOrDefault() ?? string.Empty)
+                .Replace("_", ".")
+                .StartsWith(email, StringComparison.InvariantCultureIgnoreCase));
 	    }
 
 	    private static int ParseInt(string text)

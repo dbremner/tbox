@@ -10,6 +10,7 @@
               <File Name='AddTracing.cs'/>
               <File Name='ClearFolders.cs'/>
               <File Name='EnableFeatures.cs'/>
+              <File Name='ExecuteCommands.cs'/>
               <File Name='OptimizeSolution.cs'/>
               <File Name='params.cs'/>
               <File Name='PutObjects.cs'/>
