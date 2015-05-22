@@ -38,8 +38,8 @@ namespace Mnk.TBox.Core.Application.Data.Automater.Scripts
                 FileName = "cmd",
                 Arguments = "/c " + command,
                 WorkingDirectory = workingDirectory,
-                CreateNoWindow = true,
-                UseShellExecute = false
+                CreateNoWindow = false,
+                UseShellExecute = false,
             });
         }
     }
