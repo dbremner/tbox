@@ -33,11 +33,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\..\..\Libs\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+      <HintPath>..\..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.2.6\lib\net40\LightInject.dll</HintPath>
+      <HintPath>..\..\packages\LightInject.3.0.2.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mnk.Library.Common, Version=1.0.5367.23486, Culture=neutral, processorArchitecture=MSIL">
@@ -66,7 +66,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

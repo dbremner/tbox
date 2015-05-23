@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Exchange.WebServices">
-      <HintPath>..\..\..\Libs\Microsoft.Exchange.WebServices.1.2\lib\Microsoft.Exchange.WebServices.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.Exchange.WebServices.1.2\lib\Microsoft.Exchange.WebServices.dll</HintPath>
     </Reference>
     <Reference Include="Mnk.Library.Common, Version=1.0.5285.11023, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -65,7 +65,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RibbonControlsLibrary">
-      <HintPath>..\..\..\Libs\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
+      <HintPath>..\..\packages\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,7 +77,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="ZetaLongPaths, Version=1.0.0.7, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
+      <HintPath>..\..\packages\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

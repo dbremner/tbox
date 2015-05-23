@@ -70,7 +70,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="ZetaLongPaths">
-      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
+      <HintPath>..\..\packages\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

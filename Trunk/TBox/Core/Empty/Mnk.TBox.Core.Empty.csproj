@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
-      <HintPath>..\..\..\Libs\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
+      <HintPath>..\..\packages\DotNetZip.1.9.3\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.2.6\lib\net40\LightInject.dll</HintPath>
+      <HintPath>..\..\packages\LightInject.3.0.2.7\lib\net40\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -78,17 +78,17 @@
       <HintPath>..\..\..\Libs\NUnit\nunit.util.dll</HintPath>
     </Reference>
     <Reference Include="Ookii.Dialogs.Wpf">
-      <HintPath>..\..\..\Libs\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
+      <HintPath>..\..\packages\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
+      <HintPath>..\..\packages\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
     </Reference>
     <Reference Include="ScintillaNet">
       <HintPath>..\..\..\Libs\ScintillaNet\ScintillaNet.dll</HintPath>
     </Reference>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -103,7 +103,7 @@
     </Reference>
     <Reference Include="ZetaLongPaths, Version=1.0.0.7, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libs\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
+      <HintPath>..\..\packages\ZetaLongPaths.1.0.0.7\lib\net40-full\ZetaLongPaths.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

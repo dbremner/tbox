@@ -55,7 +55,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RibbonControlsLibrary">
-      <HintPath>..\..\..\Libs\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
+      <HintPath>..\..\packages\RibbonControlsLibrary.4.0.0\lib\net40\RibbonControlsLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />

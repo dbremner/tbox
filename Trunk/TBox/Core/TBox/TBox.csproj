@@ -32,8 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.2.6\lib\net40\LightInject.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\packages\LightInject.3.0.2.7\lib\net40\LightInject.dll</HintPath>
     </Reference>
     <Reference Include="Mnk.Library.CodePlex">
       <HintPath>..\..\..\Libs\Mnk.Library\Mnk.Library.CodePlex.dll</HintPath>

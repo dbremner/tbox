@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LightInject">
-      <HintPath>..\..\..\Libs\LightInject.3.0.2.6\lib\net40\LightInject.dll</HintPath>
+      <HintPath>..\..\packages\LightInject.3.0.2.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mnk.Library.Common">
@@ -59,7 +59,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\..\Libs\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+      <HintPath>..\..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
