@@ -81,7 +81,7 @@ namespace Mnk.TBox.Core.PluginsShared.ScriptEngine
             }
             catch (Exception ex)
             {
-                Mt.SetText(Output, ExceptionsHelper.Expand(ex) + time());
+                Mt.SetText(Output, ExceptionPrinter.Print(ex) + time());
             }
         }
 
