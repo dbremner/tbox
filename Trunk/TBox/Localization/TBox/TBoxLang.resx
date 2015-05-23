@@ -181,7 +181,7 @@
     <value>TBox - feedback</value>
   </data>
   <data name="FeedbackMessage" xml:space="preserve">
-    <value>Write some words or ideas about how to improve TBox.</value>
+    <value>Write some words or ideas about how to improve TBox. If you want to receive answer, please add your email :)</value>
   </data>
   <data name="FeedbackProgress" xml:space="preserve">
     <value>Sending feedback</value>

@@ -37,6 +37,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             Ignored.Content = tmc.Ignored;
             Skipped.Content = tmc.Skipped;
             Time.Content = time.FormatTimeInSec();
+            results.Refresh();
         }
 
         private void SelectedTestChanged(object sender, RoutedPropertyChangedEventArgs<object> routedPropertyChangedEventArgs)
@@ -58,6 +59,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         public void SetItems(TestsResults r)
         {
+            TestsStateSingleton.Clear();
             if (results.IsEmpty)
             {
                 results.SetItems(r.Items);
@@ -74,7 +76,9 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         public IList<Result> GetTests()
         {
-            return results.GetChecked().Cast<Result>().ToArray();
+            var items = results.GetChecked().Cast<Result>().ToArray();
+            TestsStateSingleton.SetItems(items);
+            return items;
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

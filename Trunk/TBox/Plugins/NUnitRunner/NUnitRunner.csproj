@@ -74,24 +74,28 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="WpfAnimatedGif">
-      <HintPath>..\..\..\Libs\WpfAnimatedGif.1.4.12\lib\net\WpfAnimatedGif.dll</HintPath>
+    <Reference Include="WpfAnimatedGif, Version=1.4.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WpfAnimatedGif.1.4.13\lib\net\WpfAnimatedGif.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\CachedIcons.cs" />
+    <Compile Include="Code\ExtendedGroupUpdater.cs" />
     <Compile Include="Code\TestsConfigurator.cs" />
     <Compile Include="Code\ITestsConfigurator.cs" />
     <Compile Include="Code\ITestsView.cs" />
     <Compile Include="Code\Localization\TrExtension.cs" />
     <Compile Include="Code\Settings\Config.cs" />
     <Compile Include="Code\Settings\TestSuiteConfig.cs" />
+    <Compile Include="Code\TestsStateSingleton.cs" />
+    <Compile Include="Components\TestResultToVisibilityConverter.cs" />
     <Compile Include="Components\BoolToVisibilityConverter.cs" />
     <Compile Include="Components\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\ResultStateToIconConverter.cs" />
+    <Compile Include="Components\TestResultToVisibilityRevertedConverter.cs" />
     <Compile Include="Components\TestsStatistics.xaml.cs">
       <DependentUpon>TestsStatistics.xaml</DependentUpon>
     </Compile>

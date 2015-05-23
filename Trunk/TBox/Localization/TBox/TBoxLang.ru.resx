@@ -181,7 +181,7 @@
     <value>TBox - отзыв</value>
   </data>
   <data name="FeedbackMessage" xml:space="preserve">
-    <value>Напишите несколько слов о том, как можно улучшить TBox.</value>
+    <value>Напишите несколько слов о том, как можно улучшить TBox. Если вы хотите получить ответ,пожалуйста укажите свой емэйл.</value>
   </data>
   <data name="FeedbackProgress" xml:space="preserve">
     <value>Отправка отзыва</value>

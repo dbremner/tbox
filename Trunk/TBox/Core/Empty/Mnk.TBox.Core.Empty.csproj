@@ -98,8 +98,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WpfAnimatedGif">
-      <HintPath>..\..\..\Libs\WpfAnimatedGif.1.4.12\lib\net\WpfAnimatedGif.dll</HintPath>
+    <Reference Include="WpfAnimatedGif, Version=1.4.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WpfAnimatedGif.1.4.13\lib\net\WpfAnimatedGif.dll</HintPath>
     </Reference>
     <Reference Include="ZetaLongPaths, Version=1.0.0.7, Culture=neutral, PublicKeyToken=b764f59068f31f38, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

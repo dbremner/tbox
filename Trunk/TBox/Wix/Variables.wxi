@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
   <?define ProductName="TBox" ?>
-  <?define ProductVersion="1.33" ?>
+  <?define ProductVersion="1.34" ?>
   <?define UpgradeCode="84F0440E-CEF4-4F65-9FE9-2075995C19E5"?>
   <?define Manufacturer="Mnk"?>
   <?define RegistryPath="Software\Mnk\TBox"?>

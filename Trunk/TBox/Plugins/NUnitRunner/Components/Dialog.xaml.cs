@@ -150,6 +150,7 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
 
         private void DoRefresh(int time, IDictionary<string, IList<Result>> exists)
         {
+            TestsStateSingleton.Clear();
             results = testsFixture.Refresh(testsConfigs, suiteConfig.AssembliesCount);
 
             Mt.Do(this, () =>
@@ -168,7 +169,6 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
                             }
                         }
                     }
-
                     var items = new TestsResults(results.SelectMany(x => x.Results.Items).ToArray());
                     View.SetItems(items);
                     Statistics.SetItems(items);
@@ -233,11 +233,12 @@ namespace Mnk.TBox.Plugins.NUnitRunner.Components
             testsFixture.Run(testsConfigs, 
                 suiteConfig.AssembliesCount,
                 results.Select(x=>CopyExecutionContext(x, items)).ToArray(), 
-                new GroupUpdater(updater, checkedTests.Length),
+                new ExtendedGroupUpdater(updater, checkedTests.Length),
                 checkedTests: checkedTests);
             Mt.Do(this, () =>
                 {
                     var result = new TestsResults(checkedTests, true);
+                    TestsStateSingleton.Clear();
                     View.SetItems(result);
                     Statistics.SetItems(result);
                     RefreshView(time);
