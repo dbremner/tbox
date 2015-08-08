@@ -22,7 +22,7 @@ using Mnk.TBox.Plugins.Automator.Code.Settings;
 namespace Mnk.TBox.Plugins.Automator
 {
     [PluginInfo(typeof(AutomatorLang), 12, PluginGroup.Development)]
-    public sealed class Automater : ConfigurablePlugin<Settings, Config>, IDisposable
+    public sealed class Automater : ConfigurablePlugin<Settings, Config>
     {
         private readonly Lazy<ScriptRunner> scriptRunner;
         private readonly LazyDialog<EditorDialog> editorDialog;
@@ -31,14 +31,8 @@ namespace Mnk.TBox.Plugins.Automator
         public Automater()
         {
             scriptRunner = new Lazy<ScriptRunner>(() => new ScriptRunner(Context.PathResolver));
-            editorDialog = new LazyDialog<EditorDialog>(CreateEditor);
-            runnerDialog = new LazyDialog<ScriptsRunner>(CreateRunner);
-        }
-
-        public void Dispose()
-        {
-            runnerDialog.Dispose();
-            editorDialog.Dispose();
+            Dialogs.Add(editorDialog = new LazyDialog<EditorDialog>(CreateEditor));
+            Dialogs.Add(runnerDialog = new LazyDialog<ScriptsRunner>(CreateRunner));
         }
 
         private EditorDialog CreateEditor()
@@ -166,14 +160,6 @@ namespace Mnk.TBox.Plugins.Automator
             {
                 runnerDialog.Do(Context.DoSync, x => x.ShowDialog(operation, scriptRunner.Value, null), Config.States);
             }
-        }
-
-        public override void Save(bool autoSaveOnExit)
-        {
-            base.Save(autoSaveOnExit);
-            if (!autoSaveOnExit) return;
-            runnerDialog.SaveState(Config.States);
-            editorDialog.SaveState(Config.States);
         }
 
         protected override Settings CreateSettings()

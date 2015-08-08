@@ -4,11 +4,11 @@ using Mnk.TBox.Plugins.SourcesUniter.Code;
 
 namespace Mnk.TBox.Plugins.SourcesUniter
 {
-	[PluginInfo(typeof(SourcesUniterLang), 68, PluginGroup.Other)]
-	public sealed class SourcesUniter : SingleDialogPlugin<Config, Dialog>
-	{
-		public SourcesUniter() : base(SourcesUniterLang.Unite)
-		{
-		}
-	}
+    [PluginInfo(typeof(SourcesUniterLang), 68, PluginGroup.Other)]
+    public sealed class SourcesUniter : SingleDialogPlugin<Config, Dialog>
+    {
+        public SourcesUniter() : base(SourcesUniterLang.Unite)
+        {
+        }
+    }
 }

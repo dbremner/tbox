@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Mnk.Library.WpfControls;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Core.Contracts;
-using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Mnk.TBox.Core.PluginsShared.ScriptEngine;
+using Mnk.TBox.Locales.Localization.Plugins.TeamManager;
 using Mnk.TBox.Plugins.TeamManager.Code;
 using Mnk.TBox.Plugins.TeamManager.Code.Scripts;
 using Mnk.TBox.Plugins.TeamManager.Code.Settings;
 using Mnk.TBox.Plugins.TeamManager.Forms;
-using Mnk.Library.WpfControls.Code;
-using Mnk.Library.WpfControls.Dialogs.StateSaver;
-using Mnk.Library.WpfWinForms;
-using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.TeamManager
 {
     [PluginInfo(typeof(TeamManagerLang), 160, PluginGroup.Development)]
-    public class TeamManager : ConfigurablePlugin<Settings, Config>, IDisposable
+    public class TeamManager : ConfigurablePlugin<Settings, Config>
     {
         private const string DataProvidersFolder = "DataProviders";
         private const string ValidatorsFolder = "Validators";
@@ -31,12 +30,12 @@ namespace Mnk.TBox.Plugins.TeamManager
         public TeamManager()
         {
             timeReportDialog = new LazyDialog<TimeReportDialog>(() => new TimeReportDialog(receiver) { Icon = Icon.ToImageSource() });
-            dataProvidersEditorDialog = new LazyDialog<EditorDialog>(CreateEditor);
+            Dialogs.Add(dataProvidersEditorDialog = new LazyDialog<EditorDialog>(CreateEditor));
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
-            dataProvidersEditorDialog.Dispose();
+            base.Dispose();
             timeReportDialog.Dispose();
         }
 
@@ -44,19 +43,15 @@ namespace Mnk.TBox.Plugins.TeamManager
         {
             base.Load();
             timeReportDialog.Hide();
-            dataProvidersEditorDialog.Hide();
         }
 
         public override void Save(bool autoSaveOnExit)
         {
             base.Save(autoSaveOnExit);
             timeReportDialog.Hide();
-            dataProvidersEditorDialog.Hide();
             if (!autoSaveOnExit) return;
             timeReportDialog.SaveState(Config.States);
-            dataProvidersEditorDialog.SaveState(Config.States);
         }
-
 
         private EditorDialog CreateEditor()
         {
@@ -138,6 +133,5 @@ namespace Mnk.TBox.Plugins.TeamManager
                 .Select(x => x.FullName.Substring(length))
                 .ToArray();
         }
-
     }
 }

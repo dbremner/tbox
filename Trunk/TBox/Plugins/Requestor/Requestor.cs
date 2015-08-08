@@ -4,29 +4,28 @@ using System.Linq;
 using System.Windows;
 using Mnk.Library.Common.Tools;
 using Mnk.Library.WpfControls;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.LoadTesting.Components;
 using Mnk.TBox.Locales.Localization.Plugins.Requestor;
 using Mnk.TBox.Plugins.Requestor.Code;
 using Mnk.TBox.Plugins.Requestor.Code.Settings;
 using Mnk.TBox.Plugins.Requestor.Components;
-using Mnk.Library.WpfControls.Code;
-using Mnk.Library.WpfControls.Dialogs.StateSaver;
-using Mnk.Library.WpfSyntaxHighlighter;
-using Mnk.Library.WpfWinForms;
-using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.Requestor
 {
     [PluginInfo(typeof(RequestorLang), 13, PluginGroup.Web)]
-    public sealed class Requestor : ConfigurablePlugin<Settings, Config>, IDisposable
+    public sealed class Requestor : ConfigurablePlugin<Settings, Config>
     {
         private readonly LazyDialog<FormLoadTesting> formDdos;
         private readonly Lazy<Executor> executor;
 
         public Requestor()
         {
-            formDdos = new LazyDialog<FormLoadTesting>(CreateForm);
+            Dialogs.Add(formDdos = new LazyDialog<FormLoadTesting>(CreateForm));
             executor = new Lazy<Executor>(() => new Executor());
         }
 
@@ -88,10 +87,10 @@ namespace Mnk.TBox.Plugins.Requestor
             formDdos.Do(Context.DoSync, d => d.ShowDialog(profile), Config.States);
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             if (executor.IsValueCreated) executor.Value.Dispose();
-            formDdos.Dispose();
         }
 
         public override void Init(IPluginContext context)
@@ -128,7 +127,6 @@ namespace Mnk.TBox.Plugins.Requestor
         {
             base.Save(autoSaveOnExit);
             if (!autoSaveOnExit) return;
-            formDdos.SaveState(Config.States);
             if (executor.IsValueCreated) executor.Value.Save(Config);
         }
 

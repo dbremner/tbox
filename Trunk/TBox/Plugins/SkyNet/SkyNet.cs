@@ -19,7 +19,7 @@ using Mnk.TBox.Plugins.SkyNet.Forms;
 namespace Mnk.TBox.Plugins.SkyNet
 {
     [PluginInfo(typeof(SkyNetLang), 18, PluginGroup.Development)]
-    public class SkyNet : ConfigurablePlugin<Settings, Config>, IDisposable
+    public class SkyNet : ConfigurablePlugin<Settings, Config>
     {
         private IServiceContainer container;
 
@@ -27,6 +27,8 @@ namespace Mnk.TBox.Plugins.SkyNet
         {
             base.Init(context);
             container = ServicesRegistrar.Register(context, ()=>Icon.ToImageSource());
+            Dialogs.Add(container.GetInstance<LazyDialog<EditorDialog>>());
+            Dialogs.Add(container.GetInstance<LazyDialog<TaskDialog>>());
         }
 
         public override void OnRebuildMenu()
@@ -70,18 +72,10 @@ namespace Mnk.TBox.Plugins.SkyNet
         {
             return (Settings)container.GetInstance<ISettings>();
         }
-
-        public override void Save(bool autoSaveOnExit)
+        
+        public override void Dispose()
         {
-            base.Save(autoSaveOnExit);
-            if (!autoSaveOnExit) return;
-            container.GetInstance<LazyDialog<EditorDialog>>().SaveState(ConfigManager.Config.States);
-            container.GetInstance<LazyDialog<TaskDialog>>().SaveState(ConfigManager.Config.States);
-        }
-
-
-        public void Dispose()
-        {
+            base.Dispose();
             container.Dispose();
         }
     }

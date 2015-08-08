@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Mnk.Library.WpfControls;
+using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Library.WpfSyntaxHighlighter;
+using Mnk.Library.WpfWinForms;
+using Mnk.Library.WpfWinForms.Icons;
 using Mnk.TBox.Core.Contracts;
 using Mnk.TBox.Core.PluginsShared.LoadTesting.Components;
 using Mnk.TBox.Locales.Localization.Plugins.SqlRunner;
 using Mnk.TBox.Plugins.SqlRunner.Code;
 using Mnk.TBox.Plugins.SqlRunner.Code.Settings;
 using Mnk.TBox.Plugins.SqlRunner.Components;
-using Mnk.Library.WpfControls.Code;
-using Mnk.Library.WpfControls.Dialogs.StateSaver;
-using Mnk.Library.WpfSyntaxHighlighter;
-using Mnk.Library.WpfWinForms;
-using Mnk.Library.WpfWinForms.Icons;
 
 namespace Mnk.TBox.Plugins.SqlRunner
 {
     [PluginInfo(typeof(SqlRunnerLang), 8, PluginGroup.Database)]
-    public sealed class SqlRunner : ConfigurablePlugin<Settings, Config>, IDisposable
+    public sealed class SqlRunner : ConfigurablePlugin<Settings, Config>
     {
         private LoadTester loadTester;
         private readonly LazyDialog<FormLoadTesting> formDdos;
@@ -27,8 +26,8 @@ namespace Mnk.TBox.Plugins.SqlRunner
 
         public SqlRunner()
         {
-            formDdos = new LazyDialog<FormLoadTesting>(CreateDdosForm);
-            formBatch = new LazyDialog<FormBatch>(CreateBatchForm);
+            Dialogs.Add(formDdos = new LazyDialog<FormLoadTesting>(CreateDdosForm));
+            Dialogs.Add(formBatch = new LazyDialog<FormBatch>(CreateBatchForm));
             executor = new Lazy<Executor>(() => new Executor());
         }
 
@@ -119,10 +118,9 @@ namespace Mnk.TBox.Plugins.SqlRunner
             formDdos.Do(Context.DoSync, d => d.ShowDialog(profile), Config.States);
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
-            formDdos.Dispose();
-            formBatch.Dispose();
+            base.Dispose();
             if (executor.IsValueCreated) executor.Value.Dispose();
         }
 
@@ -136,8 +134,6 @@ namespace Mnk.TBox.Plugins.SqlRunner
         {
             base.Save(autoSaveOnExit);
             if (!autoSaveOnExit) return;
-            formDdos.SaveState(Config.States);
-            formBatch.SaveState(Config.States);
             if (formBatch.IsValueCreated)
             {
                 formBatch.Value.Save(Config);

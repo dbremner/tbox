@@ -13,11 +13,11 @@ using Mnk.Library.WpfWinForms.Icons;
 namespace Mnk.TBox.Plugins.RequestsWatcher
 {
     [PluginInfo(typeof(RequestsWatcherLang), 14, PluginGroup.Web)]
-    public sealed class RequestsWatcher : ConfigurablePlugin<Settings, Config>, IDisposable
+    public sealed class RequestsWatcher : ConfigurablePlugin<Settings, Config>
     {
         private Lazy<Worker<LogDialog>> worker;
         private readonly DataParser parser = new DataParser();
-        private static readonly string[] StartStop = new[] { RequestsWatcherLang.Start, RequestsWatcherLang.Stop };
+        private static readonly string[] StartStop = { RequestsWatcherLang.Start, RequestsWatcherLang.Stop };
         public RequestsWatcher()
         {
             Menu = new[]{
@@ -113,8 +113,9 @@ namespace Mnk.TBox.Plugins.RequestsWatcher
             OnStartStop();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             if (!worker.IsValueCreated) return;
             worker.Value.Log.Dispose();
             worker.Value.Dispose();

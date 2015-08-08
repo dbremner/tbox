@@ -2,27 +2,26 @@
 using System.IO;
 using System.Linq;
 using Mnk.Library.WpfControls;
-using Mnk.TBox.Core.Contracts;
-using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
-using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
-using Mnk.TBox.Plugins.NUnitRunner.Components;
-using Mnk.Library.WpfControls.Code;
-using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
+using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Locales.Localization.Plugins.NUnitRunner;
 using Mnk.TBox.Plugins.NUnitRunner.Code;
+using Mnk.TBox.Plugins.NUnitRunner.Code.Settings;
+using Mnk.TBox.Plugins.NUnitRunner.Components;
+using Mnk.TBox.Plugins.NUnitRunner.Properties;
 
 namespace Mnk.TBox.Plugins.NUnitRunner
 {
-    [PluginInfo(typeof(NUnitRunnerLang), typeof(Properties.Resources), PluginGroup.Development)]
-    public sealed class NUnitRunner : ConfigurablePlugin<Settings, Config>, IDisposable
+    [PluginInfo(typeof(NUnitRunnerLang), typeof(Resources), PluginGroup.Development)]
+    public sealed class NUnitRunner : ConfigurablePlugin<Settings, Config>
     {
         private readonly LazyDialog<Dialog> runner;
 
         public NUnitRunner()
         {
-            runner = new LazyDialog<Dialog>(CreateDialog);
+            Dialogs.Add(runner = new LazyDialog<Dialog>(CreateDialog));
         }
 
         private Dialog CreateDialog()
@@ -58,19 +57,6 @@ namespace Mnk.TBox.Plugins.NUnitRunner
         private string RunAsx86Path
         {
             get { return Path.Combine(Context.DataProvider.ToolsPath, "RunAsx86.exe"); }
-        }
-
-
-        public override void Save(bool autoSaveOnExit)
-        {
-            base.Save(autoSaveOnExit);
-            if (!autoSaveOnExit) return;
-            runner.SaveState(Config.States);
-        }
-
-        public void Dispose()
-        {
-            runner.Dispose();
         }
     }
 }

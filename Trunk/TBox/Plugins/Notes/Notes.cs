@@ -19,7 +19,7 @@ namespace Mnk.TBox.Plugins.Notes
 
         public Notes()
         {
-            dialog = new LazyDialog<Dialog>(CreateDialog);
+            Dialogs.Add(dialog = new LazyDialog<Dialog>(CreateDialog));
         }
 
         private Dialog CreateDialog()
@@ -54,17 +54,6 @@ namespace Mnk.TBox.Plugins.Notes
             var s = base.CreateSettings();
             s.EditHandler += p => ShowDialog(p, Application.Current.MainWindow);
             return s;
-        }
-
-        public override void Save(bool autoSaveOnExit)
-        {
-            base.Save(autoSaveOnExit);
-            if (autoSaveOnExit) dialog.SaveState(ConfigManager.Config.States);
-        }
-
-        public virtual void Dispose()
-        {
-            dialog.Dispose();
         }
     }
 }

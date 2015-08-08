@@ -1,20 +1,18 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Windows;
 using Mnk.Library.Common.MT;
-using Mnk.Library.Common.Tools;
-using Mnk.TBox.Core.Contracts;
-using Mnk.TBox.Locales.Localization.Plugins.DevServerRunner;
-using Mnk.TBox.Core.PluginsShared.Tools;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
+using Mnk.TBox.Core.Contracts;
+using Mnk.TBox.Core.PluginsShared.Tools;
+using Mnk.TBox.Locales.Localization.Plugins.DevServerRunner;
 using Mnk.TBox.Plugins.DevServerRunner.Code.Settings;
+using Mnk.TBox.Plugins.DevServerRunner.Properties;
 
 namespace Mnk.TBox.Plugins.DevServerRunner
 {
-    [PluginInfo(typeof(DevServerRunnerLang), typeof(Properties.Resources), PluginGroup.Web)]
+    [PluginInfo(typeof(DevServerRunnerLang), typeof(Resources), PluginGroup.Web)]
     public sealed class DevServerRunner : ConfigurablePlugin<Settings, Config>
     {
         private CassiniRunner runner = null;

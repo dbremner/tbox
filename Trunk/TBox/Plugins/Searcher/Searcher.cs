@@ -92,8 +92,9 @@ namespace Mnk.TBox.Plugins.Searcher
             worker.Value.ShowSearchDialog();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             if (worker.IsValueCreated)
                 worker.Value.Dispose();
         }

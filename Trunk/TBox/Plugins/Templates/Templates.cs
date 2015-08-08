@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -19,15 +18,15 @@ using Mnk.TBox.Plugins.Templates.Properties;
 namespace Mnk.TBox.Plugins.Templates
 {
     [PluginInfo(typeof(TemplatesLang), typeof(Resources), PluginGroup.Development)]
-    public sealed class Templates : ConfigurablePlugin<Settings, Config>, IDisposable
+    public sealed class Templates : ConfigurablePlugin<Settings, Config>
     {
         private readonly LazyDialog<FileDialog> fileDialog;
         private readonly LazyDialog<StringDialog> stringDialog;
 
         public Templates()
         {
-            fileDialog = new LazyDialog<FileDialog>(CreateDialog<FileDialog>);
-            stringDialog = new LazyDialog<StringDialog>(CreateDialog<StringDialog>);
+            Dialogs.Add(fileDialog = new LazyDialog<FileDialog>(CreateDialog<FileDialog>));
+            Dialogs.Add(stringDialog = new LazyDialog<StringDialog>(CreateDialog<StringDialog>));
         }
 
         private T CreateDialog<T>()
@@ -104,20 +103,6 @@ namespace Mnk.TBox.Plugins.Templates
                     data.Value = exist.Value;
                 }
             }
-        }
-
-        public override void Save(bool autoSaveOnExit)
-        {
-            base.Save(autoSaveOnExit);
-            if (!autoSaveOnExit) return;
-            fileDialog.SaveState(Config.States);
-            stringDialog.SaveState(Config.States);
-        }
-
-        public void Dispose()
-        {
-            fileDialog.Dispose();
-            stringDialog.Dispose();
         }
     }
 }

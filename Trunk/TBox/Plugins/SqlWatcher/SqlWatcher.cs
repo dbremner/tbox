@@ -109,8 +109,9 @@ namespace Mnk.TBox.Plugins.SqlWatcher
             OnStartStop();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
+            base.Dispose();
             if (!worker.IsValueCreated) return;
             worker.Value.Log.Dialog.Close();
             worker.Value.Dispose();
