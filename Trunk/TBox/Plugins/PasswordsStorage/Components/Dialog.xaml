@@ -17,11 +17,15 @@
             <StatusBarItem Content="{loc:Tr ClickOnCellToCopyPassword}" HorizontalAlignment="Right"/>
         </StatusBar>
         <DockPanel DockPanel.Dock="Bottom" >
-            <Button Content="{loc:Tr CopySelected}" Click="CopyAll" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
-            <Button Content="{loc:Tr NewPassword}" Click="NewPassword" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}" />
-            <Button Content="Save" IsDefault="True" IsCancel="True" Margin="20 10" Click="SaveClick" DockPanel.Dock="Right"/>
-            <Label/>
-            <CheckBox Name="IsReadOnly" VerticalAlignment="Center" Content="{loc:Tr IsReadOnly}" Margin="20 10"/>
+            <DockPanel DockPanel.Dock="Top" >
+                <Button Content="{loc:Tr CopySelected}" Click="CopyAll" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}"/>
+                <Button Content="{loc:Tr NewPassword}" Click="NewPassword" Margin="20 10" DockPanel.Dock="Left" IsEnabled="{Binding ElementName=Passwords, Path=IsSelected}" DataContext="{Binding ElementName=Passwords, Path=SelectedValue}" />
+                <Button Content="Save" IsDefault="True" IsCancel="True" Margin="20 10" Click="SaveClick" DockPanel.Dock="Right"/>
+            </DockPanel>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <CheckBox Name="IsReadOnly" VerticalAlignment="Center" Content="{loc:Tr IsReadOnly}" Margin="20 10" DockPanel.Dock="Left"/>
+            <TextBlock Text="{loc:Tr PasswordExistanceWarning}" TextWrapping="Wrap" Margin="0" Padding="0"/>
         </DockPanel>
         <Grid HorizontalAlignment="Stretch" DockPanel.Dock="Top" Margin="55 0 5 0">
             <Grid.ColumnDefinitions>

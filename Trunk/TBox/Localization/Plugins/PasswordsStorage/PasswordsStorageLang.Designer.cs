@@ -169,6 +169,15 @@ namespace Mnk.TBox.Locales.Localization.Plugins.PasswordsStorage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are able to read password only for the currect user. Passwords will be lost on OS reinstall..
+        /// </summary>
+        public static string PasswordExistanceWarning {
+            get {
+                return ResourceManager.GetString("PasswordExistanceWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password generation.
         /// </summary>
         public static string PasswordGeneration {
