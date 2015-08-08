@@ -16,7 +16,7 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
         public string Style { get; set; }
         public string DayStatusStrategy { get; set; }
         public string ExcelFilePath { get; set; }
-        public bool GenerateForCurrentWeek { get; set; }
+        public bool AutoGenerate { get; set; }
         public CheckableDataCollection<CheckableData> Links { get; set; }
 
 
@@ -30,7 +30,7 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
             Style = "default.css";
             DayStatusStrategy = "Default.cs";
             ExcelFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "default.xlsx");
-            GenerateForCurrentWeek = false;
+            AutoGenerate = true;
             Links = new CheckableDataCollection<CheckableData>();
         }
 
@@ -46,7 +46,7 @@ namespace Mnk.TBox.Plugins.TeamManager.Code.Settings
                     Style = Style,
                     DayStatusStrategy = DayStatusStrategy,
                     ExcelFilePath = ExcelFilePath,
-                    GenerateForCurrentWeek = GenerateForCurrentWeek,
+                    AutoGenerate = AutoGenerate,
                     Links = Links.Clone(),
                 };
         }

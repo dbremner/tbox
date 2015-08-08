@@ -157,13 +157,18 @@ namespace Mnk.TBox.Plugins.TeamManager.Forms
             }
             var compiler = new ScriptCompiler<IDayStatusStrategy>();
             var validator = compiler.Compile(File.ReadAllText(Path.Combine(validatorsFolder, profile.Report.DayStatusStrategy)));
-            var reportBuilder = new ReportsBuilder(profile.Report.WorkingHoursPerDay, validator, new DayTypeProvider(specialDays));
+            var reportBuilder = new ReportsBuilder(profile.Report.WorkingHoursPerDay, validator, BuildDayTypeProvider());
             var info = reportBuilder.BuildLoggedTimeReport(report);
             if (profile.Report.FilterResultsByErrors)
             {
                 info = info.Where(x => x.Days.Any(o => string.Equals( o.Status, DayTypes.Error) )).ToList();
             }
             return info;
+        }
+
+        private DayTypeProvider BuildDayTypeProvider()
+        {
+            return new DayTypeProvider(specialDays);
         }
 
         private void SetHtml(string value)
@@ -173,11 +178,19 @@ namespace Mnk.TBox.Plugins.TeamManager.Forms
 
         private void ValueChanged(object sender, RoutedEventArgs e)
         {
-            if (profile.Report.GenerateForCurrentWeek)
+            if (profile.Report.AutoGenerate)
             {
                 var date = DateTime.Now;
-                DateFrom.Value = date.GetFirstDayOfWeek().Normalize();
-                DateTo.Value = date.GetLastDayOfWeek().Normalize();
+                if (MonthReportNeeded(date))
+                {
+                    DateFrom.Value = date.GetFirstDayOfMonth().Normalize();
+                    DateTo.Value = date.GetLastDayOfMonth().Normalize();
+                }
+                else
+                {
+                    DateFrom.Value = date.GetFirstDayOfWeek().Normalize();
+                    DateTo.Value = date.GetLastDayOfWeek().Normalize();
+                }
             }
             btnGenerate.IsEnabled =
                 DateFrom.Value.HasValue && DateTo.Value.HasValue &&
@@ -185,6 +198,17 @@ namespace Mnk.TBox.Plugins.TeamManager.Forms
                 Persons.Items.Count > 0 &&
                 profile.Persons.CheckedValuesCount > 0 &&
                 profile.Operations.CheckedValuesCount > 0;
+        }
+
+        private bool MonthReportNeeded(DateTime date)
+        {
+            var dayTypeProvider = BuildDayTypeProvider();
+            var last = date.GetLastDayOfMonth();
+            while (dayTypeProvider.IsHoliday(last))
+            {
+                last = last.AddDays(-1);
+            }
+            return (last - date).Days == 0;
         }
 
         private void CopyClick(object sender, RoutedEventArgs e)

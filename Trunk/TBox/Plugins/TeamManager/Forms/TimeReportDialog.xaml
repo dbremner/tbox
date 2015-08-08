@@ -28,10 +28,10 @@
                 </r:RibbonGroup>
                 <r:RibbonGroup Header="{loc:Tr Dates}">
                     <StackPanel Orientation="Horizontal">
-                        <captioned2:CaptionedDatePicker Caption="{loc:Tr DateFrom}" Value="{Binding Report.DateFrom}" DockPanel.Dock="Bottom" Margin="5 0" ValueChanged="ValueChanged" Name="DateFrom" IsEnabled="{Binding ElementName=GenerateForCurrentWeek,Path=IsChecked, Converter={StaticResource BoolInverterConverter}}" />
-                        <captioned2:CaptionedDatePicker Caption="{loc:Tr DateTo}" Value="{Binding Report.DateTo}" DockPanel.Dock="Bottom" Margin="5 0" ValueChanged="ValueChanged" Name="DateTo" IsEnabled="{Binding ElementName=GenerateForCurrentWeek,Path=IsChecked, Converter={StaticResource BoolInverterConverter}}" />
+                        <captioned2:CaptionedDatePicker Caption="{loc:Tr DateFrom}" Value="{Binding Report.DateFrom}" DockPanel.Dock="Bottom" Margin="5 0" ValueChanged="ValueChanged" Name="DateFrom" IsEnabled="{Binding ElementName=AutoGenerate,Path=IsChecked, Converter={StaticResource BoolInverterConverter}}" />
+                        <captioned2:CaptionedDatePicker Caption="{loc:Tr DateTo}" Value="{Binding Report.DateTo}" DockPanel.Dock="Bottom" Margin="5 0" ValueChanged="ValueChanged" Name="DateTo" IsEnabled="{Binding ElementName=AutoGenerate,Path=IsChecked, Converter={StaticResource BoolInverterConverter}}" />
                     </StackPanel>
-                    <r:RibbonCheckBox IsChecked="{Binding Report.GenerateForCurrentWeek}" Name="GenerateForCurrentWeek" Label="{loc:Tr GenerateForCurrentWeek}" Checked="ValueChanged"/>
+                    <r:RibbonCheckBox IsChecked="{Binding Report.AutoGenerate}" Name="AutoGenerate" Label="{loc:Tr AutoGenerate}" Checked="ValueChanged"/>
                 </r:RibbonGroup>
                 <r:RibbonGroup Header="{loc:Tr Operations}">
                     <DockPanel>

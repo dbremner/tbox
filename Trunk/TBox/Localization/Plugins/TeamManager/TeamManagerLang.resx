@@ -324,8 +324,8 @@
   <data name="MembersEmails" xml:space="preserve">
     <value>Emails of the team members</value>
   </data>
-  <data name="GenerateForCurrentWeek" xml:space="preserve">
-    <value>Report for current week</value>
+  <data name="AutoGenerate" xml:space="preserve">
+    <value>Auto</value>
   </data>
   <data name="PleaseSpecifyScriptPath" xml:space="preserve">
     <value>Please, specify script path, before set paramters</value>

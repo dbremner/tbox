@@ -327,8 +327,8 @@
   <data name="MembersEmails" xml:space="preserve">
     <value>Емэйлы работников</value>
   </data>
-  <data name="GenerateForCurrentWeek" xml:space="preserve">
-    <value>Отчёт за текущую неделю</value>
+  <data name="AutoGenerate" xml:space="preserve">
+    <value>Авто определение</value>
   </data>
   <data name="PleaseSpecifyScriptPath" xml:space="preserve">
     <value>Пожалуйста, укажите скрипт перед установкой параметов</value>
