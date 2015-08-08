@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Mnk.Library.Common;
 using Mnk.Library.Common.Log;
 using Mnk.Library.WpfControls;
-using Mnk.Library.WpfControls.Code;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
 using Mnk.Library.WpfWinForms;
 using Mnk.Library.WpfWinForms.Icons;
@@ -21,10 +21,12 @@ namespace Mnk.TBox.Plugins.PasswordsStorage
         private readonly ILog log = LogManager.GetLogger<PasswordsStorage>();
         private readonly LazyDialog<Dialog> dialog;
         private readonly IPasswordGenerator passwordGenerator;
+        private readonly IPasswordsExporter passwordsExporter;
 
         public PasswordsStorage()
         {
             passwordGenerator = new PasswordGenerator();
+            passwordsExporter = new PasswordsExporter();
             dialog = new LazyDialog<Dialog>(CreateDialog);
         }
 
@@ -49,16 +51,43 @@ namespace Mnk.TBox.Plugins.PasswordsStorage
                     {
                         Header = PasswordsStorageLang.NewPassword,
                         OnClick = o=>NewPassword()
-                    }, 
+                    },
+                    new USeparator(),
+                    new UMenuItem
+                    {
+                        Header = PasswordsStorageLang.Export,
+                        OnClick = o=>DoExport()
+                    },
+                    new UMenuItem
+                    {
+                        Header = PasswordsStorageLang.Import,
+                        OnClick = o=>DoImport()
+                    },
                 })
                 .ToArray();
         }
 
         private void NewPassword()
         {
+            SafeDo(()=> passwordGenerator.Generate(Config.PasswordLength, Config.PasswordNonAlphaCharacters));
+        }
+
+        private void DoImport()
+        {
+            SafeDo(() => passwordsExporter.Import(ConfigManager));
+        }
+
+        private void DoExport()
+        {
+            SafeDo(() => passwordsExporter.Export(ConfigManager));
+            Context.SaveConfig();
+        }
+
+        private void SafeDo(Action action)
+        {
             try
             {
-                passwordGenerator.Generate(Config.PasswordLength, Config.PasswordNonAlphaCharacters);
+                action();
             }
             catch (Exception ex)
             {
