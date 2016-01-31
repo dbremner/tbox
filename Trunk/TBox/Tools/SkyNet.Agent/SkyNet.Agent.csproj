@@ -46,7 +46,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LightInject">
+    <Reference Include="LightInject, Version=3.0.2.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\LightInject.3.0.2.7\lib\net40\LightInject.dll</HintPath>
       <Private>False</Private>
     </Reference>

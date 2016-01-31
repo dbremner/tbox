@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Mnk.TBox.Core.Contracts;
 using Mnk.Library.WpfControls.Dialogs.StateSaver;
+using Mnk.Rat.Settings;
 
 namespace Mnk.TBox.Plugins.Searcher.Code.Settings
 {

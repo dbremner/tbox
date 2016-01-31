@@ -16,12 +16,13 @@ using Mnk.Library.WpfControls;
 using Mnk.Library.WpfControls.Dialogs;
 using Mnk.TBox.Core.PluginsShared.LongPaths;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
-using Mnk.TBox.Plugins.Searcher.Code;
-using Mnk.TBox.Plugins.Searcher.Code.Checkers;
-using Mnk.TBox.Plugins.Searcher.Code.Finders.Parsers;
-using Mnk.TBox.Plugins.Searcher.Code.Finders.Search;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
 using Mnk.Library.WpfControls.Tools;
+using Mnk.Rat;
+using Mnk.Rat.Checkers;
+using Mnk.Rat.Finders.Parsers;
+using Mnk.Rat.Finders.Search;
+using Mnk.Rat.Settings;
 using Mnk.TBox.Core.Contracts;
 using ZetaLongPaths;
 
@@ -30,12 +31,12 @@ namespace Mnk.TBox.Plugins.Searcher.Components
     /// <summary>
     /// Interaction logic for SearchDialog.xaml
     /// </summary>
-    sealed partial class SearchDialog : IDisposable
+    sealed partial class SearchDialog 
     {
         private static readonly ILog Log = LogManager.GetLogger<SearchDialog>();
         private Config config;
         private readonly DataTable filesTable = new DataTable();
-        private SearchEngine searchEngine;
+        private ISearchEngine searchEngine;
         private bool disableSearch = false;
         private readonly Stopwatch sw = new Stopwatch();
 
@@ -70,7 +71,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             disableSearch = false;
         }
 
-        internal void ShowDialog(SearchEngine engine, IPathResolver pathResolver)
+        internal void ShowDialog(ISearchEngine engine, IPathResolver pathResolver)
         {
             disableSearch = true;
             if (!IsVisible)
@@ -97,7 +98,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
         {
             FoldersFilter.Items.Clear();
             FoldersFilter.Items.Add(string.Empty);
-            foreach (var folder in config.Index.FileNames.CheckedItems.Select(x=>pathResolver.Resolve(x.Key)).Where(folder => ZlpIOHelper.DirectoryExists(folder)))
+            foreach (var folder in config.Index.FileNames.CheckedItems.Select(x=>pathResolver.Resolve(x.Key)).Where(ZlpIOHelper.DirectoryExists))
             {
                 AddPath(folder);
                 foreach (var subFolder in new ZlpDirectoryInfo(folder).SafeEnumerateDirectories(Log))

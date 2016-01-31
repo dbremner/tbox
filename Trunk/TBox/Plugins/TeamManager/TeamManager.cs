@@ -47,7 +47,6 @@ namespace Mnk.TBox.Plugins.TeamManager
         public override void Save(bool autoSaveOnExit)
         {
             base.Save(autoSaveOnExit);
-            timeReportDialog.Hide();
             if (!autoSaveOnExit) return;
             timeReportDialog.SaveState(Config.States);
         }

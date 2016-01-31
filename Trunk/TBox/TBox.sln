@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9B9ACAB0-5B34-4037-B5DE-22595BED6441}"
 	ProjectSection(SolutionItems) = preProject
@@ -150,6 +150,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordsStorage", "Plugins\PasswordsStorage\PasswordsStorage.csproj", "{7D2521E7-F85A-4988-8B61-CC753293AA36}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XsltTester", "Plugins\XsltTester\XsltTester.csproj", "{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mnk.Rat", "Searcher\Mnk.Rat.csproj", "{C4833EAD-C718-4485-B858-1E2190DD3B58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -499,6 +501,14 @@ Global
 		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C4833EAD-C718-4485-B858-1E2190DD3B58}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -549,5 +559,6 @@ Global
 		{A67AFF0D-0C64-4C74-B441-2F4DED497F67} = {C705849B-E909-41CE-93C5-4BA2FA09D999}
 		{7D2521E7-F85A-4988-8B61-CC753293AA36} = {C705849B-E909-41CE-93C5-4BA2FA09D999}
 		{7E1112B6-3DB2-4E1D-AEC7-31A61907C7A2} = {C705849B-E909-41CE-93C5-4BA2FA09D999}
+		{C4833EAD-C718-4485-B858-1E2190DD3B58} = {9B9ACAB0-5B34-4037-B5DE-22595BED6441}
 	EndGlobalSection
 EndGlobal
