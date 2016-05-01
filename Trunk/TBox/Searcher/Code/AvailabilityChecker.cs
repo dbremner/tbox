@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mnk.Rat
+namespace Mnk.Rat.Code
 {
     sealed class AvailabilityChecker : IAvailabilityChecker
     {
@@ -59,7 +59,7 @@ namespace Mnk.Rat
         private void ExecuteEvent()
         {
             var e = OnChanged;
-            if (e != null) e();
+            e?.Invoke();
         }
 
     }

@@ -69,7 +69,7 @@ namespace Mnk.TBox.Core.Application
 			if(handled)return;
 			handled = true;
 			const string message =
-				"Sorry, unhandled exception occured. Application will be terminated.\nPlease contact with author to fix this issue.\nYou can try restart application to continue working...";
+				"Sorry, an unhandled exception occurred. Application will be terminated.\nPlease contact with author to fix this issue.\nYou can try restart application to continue working...";
 			if(ex is Exception)
 			{
 				log.Write((Exception)ex, message);

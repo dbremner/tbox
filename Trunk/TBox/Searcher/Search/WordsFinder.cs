@@ -7,7 +7,7 @@ using Mnk.Rat.Finders;
 
 namespace Mnk.Rat.Search
 {
-    class WordsFinder : IWordsFinder
+    sealed class WordsFinder : IWordsFinder
     {
         private IDictionary<string, int[]> fileWords;
         private readonly IFileInformer informer;
@@ -66,7 +66,7 @@ namespace Mnk.Rat.Search
 
         public void Clear()
         {
-            if (fileWords != null) fileWords.Clear();
+            fileWords?.Clear();
         }
     }
 }

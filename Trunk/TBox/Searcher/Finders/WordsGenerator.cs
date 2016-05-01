@@ -4,7 +4,7 @@ using Mnk.Rat.Common;
 
 namespace Mnk.Rat.Finders
 {
-    class WordsGenerator : IWordsGenerator
+    sealed class WordsGenerator : IWordsGenerator
     {
         public IDictionary<string, HashSet<int>> FileWords { get; private set; }
 

@@ -3,7 +3,7 @@ using Mnk.Rat.Checkers;
 
 namespace Mnk.Rat.Search
 {
-    public interface IFileInformer
+    interface IFileInformer
     {
         bool Find(ISet<string> types, IFileChecker checker, int maxFiles, ICollection<int> list);
         string GetFilePath(int id);

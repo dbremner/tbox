@@ -8,7 +8,7 @@ using Mnk.Rat.Finders.Search;
 
 namespace Mnk.Rat.Search
 {
-    class FileInformer : IFileInformer
+    sealed class FileInformer : IFileInformer
     {
         private readonly IIndexContextBuilder contextBuilder;
         private string[] dirs;

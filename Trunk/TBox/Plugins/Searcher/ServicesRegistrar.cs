@@ -11,13 +11,14 @@ namespace Mnk.TBox.Plugins.Searcher
     {
         public static IServiceContainer Register(IConfigManager<Config> cm, IPluginContext context)
         {
-            var container = Rat.ServicesRegistrar.Register();
+            var container = new ServiceContainer();
             container.RegisterInstance(cm);
             container.RegisterInstance(context.PathResolver);
-            container.Register<IDataProvider, IDataProvider>(new PerContainerLifetime());
+            container.Register<IDataProvider, DataProvider>(new PerContainerLifetime());
             container.Register<Rat.IIndexContextBuilder, IndexContextBuilder>(new PerContainerLifetime());
             container.Register<IFilter, Filter>(new PerContainerLifetime());
             container.Register<SearchManager>(new PerContainerLifetime());
+            Rat.ServicesRegistrar.Register(container);
             return container;
         }
     }

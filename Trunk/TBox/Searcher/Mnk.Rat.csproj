@@ -45,10 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvailabilityChecker.cs" />
+    <Compile Include="Code\AvailabilityChecker.cs" />
     <Compile Include="Checkers\Checkers.cs" />
     <Compile Include="Finders\IWordsGenerator.cs" />
-    <Compile Include="Finders\Parsers\IAdder.cs" />
     <Compile Include="Finders\Parsers\IParser.cs" />
     <Compile Include="Finders\Parsers\Parser.cs" />
     <Compile Include="Finders\Scanner\AddInfo.cs" />
@@ -62,18 +61,23 @@
     <Compile Include="Common\Folders.cs" />
     <Compile Include="IIndexContextBuilder.cs" />
     <Compile Include="ISearchEngine.cs" />
-    <Compile Include="IndexContext.cs" />
-    <Compile Include="SearchEngine.cs" />
+    <Compile Include="ISearcher.cs" />
+    <Compile Include="Code\SearchContext.cs" />
+    <Compile Include="Code\SearchEngine.cs" />
     <Compile Include="IAvailabilityChecker.cs" />
     <Compile Include="IDataProvider.cs" />
+    <Compile Include="Code\Searcher.cs" />
+    <Compile Include="SearchResult.cs" />
+    <Compile Include="SearchState.cs" />
     <Compile Include="Search\FileInformer.cs" />
     <Compile Include="Search\IFileInformer.cs" />
     <Compile Include="Search\IWordsFinder.cs" />
     <Compile Include="Search\WordsFinder.cs" />
     <Compile Include="ServicesRegistrar.cs" />
-    <Compile Include="Settings\CompareType.cs" />
-    <Compile Include="Settings\SearchConfig.cs" />
-    <Compile Include="Settings\SearchMode.cs" />
+    <Compile Include="CompareType.cs" />
+    <Compile Include="IndexContext.cs" />
+    <Compile Include="SearchConfig.cs" />
+    <Compile Include="SearchMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +89,7 @@
       <Name>Mnk.TBox.Locales.Localization</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

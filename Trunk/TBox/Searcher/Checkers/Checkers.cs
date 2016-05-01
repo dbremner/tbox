@@ -1,21 +1,20 @@
 ﻿using System;
-using Mnk.Rat.Settings;
 
 namespace Mnk.Rat.Checkers
 {
-    public interface IFileChecker
+    interface IFileChecker
     {
         bool Check(string text);
     }
 
-    public interface IName
+    interface IName
     {
         bool Compare(string name);
         bool ContainMe(string name);
         int Length();
     }
 
-    public sealed class NameCaseComparer : IName
+    sealed class NameCaseComparer : IName
     {
         private readonly string name;
         public NameCaseComparer(string name) { this.name = name; }
@@ -24,7 +23,7 @@ namespace Mnk.Rat.Checkers
         public int Length() { return name.Length; }
     }
 
-    public sealed class NameNoCaseComparer : IName
+    sealed class NameNoCaseComparer : IName
     {
         private readonly string name;
         public NameNoCaseComparer(string name) { this.name = name; }
@@ -33,7 +32,7 @@ namespace Mnk.Rat.Checkers
         public int Length() { return name.Length; }
     }
 
-    public class FileCheckByNameExactMatch : IFileChecker
+    class FileCheckByNameExactMatch : IFileChecker
     {
         private readonly IName name;
         public FileCheckByNameExactMatch(IName name) { this.name = name; }
@@ -43,7 +42,7 @@ namespace Mnk.Rat.Checkers
         }
     }
 
-    public class FileCheckByNameBeginFrom : IFileChecker
+    class FileCheckByNameBeginFrom : IFileChecker
     {
         private readonly IName name;
         public FileCheckByNameBeginFrom(IName name) { this.name = name; }
@@ -54,7 +53,8 @@ namespace Mnk.Rat.Checkers
             return name.Compare(text.Substring(0, name.Length()));
         }
     }
-    public class FileCheckByNameEnds : IFileChecker
+
+    class FileCheckByNameEnds : IFileChecker
     {
         private readonly IName name;
         public FileCheckByNameEnds(IName name) { this.name = name; }
@@ -66,7 +66,7 @@ namespace Mnk.Rat.Checkers
         }
     }
 
-    public class FileCheckByNameContains : IFileChecker
+    class FileCheckByNameContains : IFileChecker
     {
         private readonly IName name;
         public FileCheckByNameContains(IName name) { this.name = name; }
@@ -76,7 +76,7 @@ namespace Mnk.Rat.Checkers
         }
     }
 
-    public static class FileCheckerFactory
+    static class FileCheckerFactory
     {
         public static IName GetNameComparer(string name, bool needMathCase)
         {

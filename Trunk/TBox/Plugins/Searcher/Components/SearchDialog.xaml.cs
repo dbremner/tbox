@@ -4,7 +4,6 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,10 +18,6 @@ using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 using Mnk.TBox.Plugins.Searcher.Code.Settings;
 using Mnk.Library.WpfControls.Tools;
 using Mnk.Rat;
-using Mnk.Rat.Checkers;
-using Mnk.Rat.Finders.Parsers;
-using Mnk.Rat.Finders.Search;
-using Mnk.Rat.Settings;
 using Mnk.TBox.Core.Contracts;
 using ZetaLongPaths;
 
@@ -176,7 +171,7 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             filesTable.Rows.Clear();
             if (files.Count != 0)
             {
-                var results = files.Select(i => searchEngine.FileInformer.GetFilePath(i));
+                var results = files.Select(i => searchEngine.Searcher.GetFilePath(i));
                 if (FoldersFilter.SelectedValue != null)
                 {
                     var folder = FoldersFilter.SelectedValue.ToString();
@@ -219,7 +214,6 @@ namespace Mnk.TBox.Plugins.Searcher.Components
         private void SafeSearch()
         {
             sw.Restart();
-            var searchText = SearchText.Text.Trim();
             Title = "Searcher";
             edText.Text = string.Empty;
             sbiFiles.Content = string.Empty;
@@ -227,126 +221,25 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             sbiFillResultsTime.Content = string.Empty;
             sbiWords.Content = string.Empty;
             sbiLoadFileTime.Content = string.Empty;
-            var files = new HashSet<int>();
-            if (!string.IsNullOrWhiteSpace(searchText))
+
+            var text = SearchText.Text;
+            DialogsCache.ShowProgress(
+                u => HandleSearch(text, u),
+                SearcherLang.FullTextSearch,
+                this, icon: Icon);
+        }
+
+        private void HandleSearch(string text, IUpdater u)
+        {
+            var result = searchEngine.Searcher.Search(text, config.Search, u);
+            switch (result.State)
             {
-                var searchAdder = new SearchAdder();
-                if (config.Search.SearchMode == SearchMode.FileNames)
-                {
-                    searchAdder.Words.Add(searchText);
-                }
-                else
-                {
-                    var parser = new Parser(searchAdder, config.Index);
-                    parser.ParseFileData(searchText, 0);
-                }
-                if (!searchAdder.Words.Any())
-                {
+                case SearchState.TextDontContainSearchableSymbols:
                     MessageBox.Show(SearcherLang.TextDontContainSearchableSymbols, Title, MessageBoxButton.OK, MessageBoxImage.Hand);
                     return;
-                }
-                if (searchAdder.Words.Count < 2 && (!config.Search.FullTextSearch || config.Search.SearchMode == SearchMode.FileNames))
-                {
-                    Search(searchAdder.Words.FirstOrDefault(), files, config.Search.FileCount);
-                }
-                else
-                {
-                    var firstWord = true;
-                    foreach (var word in searchAdder.Words)
-                    {
-                        var tmp = new HashSet<int>();
-                        Search(word, tmp, int.MaxValue);
-                        if (firstWord)
-                        {
-                            files = tmp;
-                            firstWord = false;
-                        }
-                        else
-                        {
-                            files.IntersectWith(tmp);
-                        }
-                    }
-                    var items = (IEnumerable<int>)files;
-                    if (config.Search.FullTextSearch && config.Search.SearchMode == SearchMode.FileData)
-                    {
-                        DialogsCache.ShowProgress(
-                            u => DoFullTextSearch(files, u, searchText), 
-                            SearcherLang.FullTextSearch, 
-                            this, icon: Icon);
-                        return;
-                    }
-                    PrintResults(items.Take(config.Search.FileCount).ToArray());
-                    return;
-                }
             }
-            PrintResults(files);
-        }
-
-        private void DoFullTextSearch(HashSet<int> files, IUpdater u, string searchText)
-        {
-            var count = (float)Math.Min(files.Count, config.Search.FileCount);
-            var i = 0;
-            var founded = files.AsParallel()
-                .Where(x => CheckFile(u, searchText, x, count, ref i))
-                .Take(config.Search.FileCount)
-                .ToArray();
             if (u.UserPressClose) return;
-            Mt.Do(this, () => PrintResults(founded));
-        }
-
-        private bool CheckFile(IUpdater u, string searchText, int x, float count, ref int i)
-        {
-            if (u.UserPressClose || !FileContains(x, searchText)) return false;
-            u.Update(++i/count);
-            return true;
-        }
-
-        private bool FileContains(int i, string searchText)
-        {
-            try
-            {
-                var path = searchEngine.FileInformer.GetFilePath(i);
-                if (!ZlpIOHelper.FileExists(path)) return false;
-                var comparationType = config.Search.MatchCase ?
-                    StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
-                using (var f = LongPathExtensions.OpenRead(path))
-                {
-                    using (var s = new StreamReader(f, Encoding.UTF8))
-                    {
-                        while (!s.EndOfStream)
-                        {
-                            var line = s.ReadLine();
-                            if (!string.IsNullOrEmpty(line) && line.IndexOf(searchText, comparationType) > -1)
-                            {
-                                return true;
-                            }
-                        }
-                        return false;
-                    } 
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        private void Search(string searchText, HashSet<int> files, int fileCount)
-        {
-            var checker = CreateChecker(searchText);
-            switch (config.Search.SearchMode)
-            {
-                case SearchMode.FileNames:
-                    searchEngine.FileInformer.Find(
-                        GetTypes(), checker, fileCount, files);
-                    break;
-                case SearchMode.FileData:
-                    searchEngine.WordsFinder.Find(
-                        GetTypes(), checker, fileCount, files);
-                    break;
-                default:
-                    throw new ArgumentException("Unknown search mode: " + config.Search.SearchMode);
-            }
+            Mt.Do(this, ()=> PrintResults(result.Files));
         }
 
         private void DoSearch()
@@ -363,17 +256,6 @@ namespace Mnk.TBox.Plugins.Searcher.Components
             {
                 SearchClick(sender, e);
             }
-        }
-
-        private IFileChecker CreateChecker(string searchText)
-        {
-            return FileCheckerFactory.Create(
-                config.Search.CompareType, config.Search.MatchCase, searchText);
-        }
-
-        private ISet<string> GetTypes()
-        {
-            return new HashSet<string>(config.Index.FileTypes.CheckedItems.Select(x => x.Key));
         }
 
         public void Clear()

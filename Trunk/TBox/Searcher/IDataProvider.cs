@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Mnk.Rat
@@ -11,5 +12,6 @@ namespace Mnk.Rat
         string GetDirName(string path);
         int GetAllDirectoriesCount(IList<string> targetDirectories);
         Stream Read(string path);
+        bool Contains(string path, string searchText, StringComparison comparationType);
     }
 }

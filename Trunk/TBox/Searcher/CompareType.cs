@@ -1,4 +1,4 @@
-﻿namespace Mnk.Rat.Settings
+﻿namespace Mnk.Rat
 {
     public enum CompareType
     {

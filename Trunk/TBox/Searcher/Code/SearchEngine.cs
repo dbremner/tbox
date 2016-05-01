@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +11,7 @@ using Mnk.Rat.Finders.Scanner;
 using Mnk.Rat.Search;
 using Mnk.TBox.Locales.Localization.Plugins.Searcher;
 
-namespace Mnk.Rat
+namespace Mnk.Rat.Code
 {
     sealed class SearchEngine : ISearchEngine
     {
@@ -25,7 +24,9 @@ namespace Mnk.Rat
         public IFileInformer FileInformer { get; private set; }
         public IWordsFinder WordsFinder { get; private set; }
 
-        public SearchEngine(IFileInformer fileInformer, IWordsFinder wordsFinder, IWordsGenerator wordsGenerator, IParser parser, IScanner scanner, IIndexContextBuilder contextBuilder)
+        public ISearcher Searcher { get; private set; }
+        
+        public SearchEngine(IFileInformer fileInformer, IWordsFinder wordsFinder, IWordsGenerator wordsGenerator, IParser parser, IScanner scanner, IIndexContextBuilder contextBuilder, ISearcher searcher)
         {
             FileInformer = fileInformer;
             WordsFinder = wordsFinder;
@@ -33,6 +34,7 @@ namespace Mnk.Rat
             this.parser = parser;
             this.scanner = scanner;
             this.contextBuilder = contextBuilder;
+            this.Searcher = searcher;
         }
 
         /*
@@ -53,8 +55,7 @@ namespace Mnk.Rat
 
             var time = Environment.TickCount;
             Unload();
-
-            scanner.ScanDirectory(updater);
+            scanner.ScanDirectory(wordsGenerator, updater);
             Exception ex = null;
             ClearFolder(folderPath);
             Parallel.Invoke(

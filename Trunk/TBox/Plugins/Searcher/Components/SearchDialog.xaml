@@ -7,7 +7,7 @@
              xmlns:WPFSyntaxHighlighter="clr-namespace:Mnk.Library.WpfSyntaxHighlighter;assembly=Mnk.Library.WPFSyntaxHighlighter"
              xmlns:Dialogs="clr-namespace:Mnk.Library.WpfControls.Dialogs;assembly=Mnk.Library.WPFControls"
                       xmlns:Components="clr-namespace:Mnk.Library.WpfControls.Components;assembly=Mnk.Library.WPFControls"
-                            xmlns:Settings="clr-namespace:Mnk.TBox.Plugins.Searcher.Code.Settings"
+                            xmlns:Settings="clr-namespace:Mnk.Rat;assembly=Mnk.Rat"
                       xmlns:captioned2="clr-namespace:Mnk.Library.WpfControls.Components.Captioned;assembly=Mnk.Library.WPFControls"
                       xmlns:components="clr-namespace:Mnk.TBox.Plugins.Searcher.Components"
                       mc:Ignorable="d" 

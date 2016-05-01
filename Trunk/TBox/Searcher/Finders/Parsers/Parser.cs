@@ -6,17 +6,15 @@ using Mnk.Rat.Finders.Scanner;
 
 namespace Mnk.Rat.Finders.Parsers
 {
-    public sealed class Parser : IParser
+    sealed class Parser : IParser
     {
         private readonly ILog log = LogManager.GetLogger<Parser>();
-        private readonly IWordsGenerator adder;
         private readonly IDataProvider dataProvider;
         private readonly IIndexContextBuilder contextBuilder;
         private readonly char[] whiteSpaces = { ' ', '\t', '\r', '\n' };
 
-        public Parser(IWordsGenerator adder, IDataProvider dataProvider, IIndexContextBuilder contextBuilder)
+        public Parser(IDataProvider dataProvider, IIndexContextBuilder contextBuilder)
         {
-            this.adder = adder;
             this.dataProvider = dataProvider;
             this.contextBuilder = contextBuilder;
         }
@@ -71,7 +69,7 @@ namespace Mnk.Rat.Finders.Parsers
             return ch == '\'' || ch == '"';
         }
 
-        private void DecodeString(string word, int begin, int fileId)
+        private void DecodeString(IWordsGenerator adder, string word, int begin, int fileId)
         {
             var id = 0;
             do
@@ -87,7 +85,7 @@ namespace Mnk.Rat.Finders.Parsers
             } while (true);
         }
 
-        private bool ExtractString(string file, int fileId, ref int i)
+        private bool ExtractString(IWordsGenerator adder, string file, int fileId, ref int i)
         {
             var strId = file[i];
             if (!IsString(file[i])) return false;
@@ -96,7 +94,7 @@ namespace Mnk.Rat.Finders.Parsers
             while (i < file.Length && (strId != file[i])) { i++; }
             if (i != begin)
             {
-                DecodeString(file.Substring(begin, i - begin), begin, fileId);
+                DecodeString(adder, file.Substring(begin, i - begin), begin, fileId);
                 i++;
                 return true;
             }
@@ -109,7 +107,7 @@ namespace Mnk.Rat.Finders.Parsers
             return contextBuilder.Context.SearchableCharacters.Contains(ch);
         }
 
-        private bool ExtractWord(string file, int fileId, ref int i)
+        private bool ExtractWord(IWordsGenerator adder, string file, int fileId, ref int i)
         {
             if (i >= file.Length || !IsWord(file[i])) return false;
             var begin = i;
@@ -119,7 +117,7 @@ namespace Mnk.Rat.Finders.Parsers
             return true;
         }
 
-        public bool Parse(AddInfo info)
+        public bool Parse(IWordsGenerator adder, AddInfo info)
         {
             try
             {
@@ -129,7 +127,7 @@ namespace Mnk.Rat.Finders.Parsers
                     {
                         while (!s.EndOfStream)
                         {
-                            ParseFileData(s.ReadLine(), info.Id);
+                            ParseFileData(adder, s.ReadLine(), info.Id);
                         }
                     }
                 }
@@ -142,7 +140,7 @@ namespace Mnk.Rat.Finders.Parsers
             return true;
         }
 
-        public void ParseFileData(string data, int fileId)
+        public void ParseFileData(IWordsGenerator adder, string data, int fileId)
         {
             var i = 0;
             while (i < data.Length)
@@ -150,9 +148,9 @@ namespace Mnk.Rat.Finders.Parsers
                 GoFirstNoSpace(data, ref i);
                 if (i >= data.Length) continue;
                 if (contextBuilder.Context.SkipComments && SkipComments(data, ref i)) continue;
-                if (contextBuilder.Context.DecodeStrings && ExtractString(data, fileId, ref i))
+                if (contextBuilder.Context.DecodeStrings && ExtractString(adder, data, fileId, ref i))
                     continue;
-                if (ExtractWord(data, fileId, ref i))
+                if (ExtractWord(adder, data, fileId, ref i))
                     continue;
                 i++;
             }

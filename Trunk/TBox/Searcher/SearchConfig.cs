@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace Mnk.Rat.Settings
+namespace Mnk.Rat
 {
     [Serializable]
     public sealed class SearchConfig

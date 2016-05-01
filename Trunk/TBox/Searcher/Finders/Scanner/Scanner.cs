@@ -26,14 +26,14 @@ namespace Mnk.Rat.Finders.Scanner
         private long readedSize;
         private int calcDirsTime;
 
-        internal Scanner(IParser parser, IDataProvider dataProvider, IIndexContextBuilder contextBuilder)
+        public Scanner(IParser parser, IDataProvider dataProvider, IIndexContextBuilder contextBuilder)
         {
             this.parser = parser;
             this.dataProvider = dataProvider;
             this.contextBuilder = contextBuilder;
         }
 
-        public void ScanDirectory(IUpdater upd)
+        public void ScanDirectory(IWordsGenerator adder, IUpdater upd)
         {
             calcDirsTime = Environment.TickCount;
             updater = upd;
@@ -46,15 +46,15 @@ namespace Mnk.Rat.Finders.Scanner
                 contextBuilder.Context.Files.Add(s, new FilesList());
             }
             calcDirsTime = (Environment.TickCount - calcDirsTime) / 1000;
-            Parallel.ForEach(Scan(), Parse);
+            Parallel.ForEach(Scan(), x=>Parse(adder,x));
             updater.Update(dirsCount);
         }
 
-        private void Parse(AddInfo info)
+        private void Parse(IWordsGenerator adder, AddInfo info)
         {
             try
             {
-                parser.Parse(info);
+                parser.Parse(adder, info);
             }
             catch (Exception ex)
             {

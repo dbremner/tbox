@@ -2,8 +2,9 @@
 
 namespace Mnk.Rat.Finders.Parsers
 {
-    public interface IParser
+    interface IParser
     {
-        bool Parse(AddInfo info);
+        bool Parse(IWordsGenerator adder, AddInfo info);
+        void ParseFileData(IWordsGenerator adder, string data, int fileId);
     }
 }

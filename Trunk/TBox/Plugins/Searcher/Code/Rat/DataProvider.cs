@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Mnk.Library.Common.Log;
 using Mnk.Rat;
 using Mnk.TBox.Core.PluginsShared.LongPaths;
@@ -59,6 +61,33 @@ namespace Mnk.TBox.Plugins.Searcher.Code.Rat
             return 1 + info.SafeEnumerateDirectories(log)
                 .Where(x => filter.CheckAttribute(x.Attributes))
                 .Sum(GetSubdirsCount);
+        }
+
+        public bool Contains(string path, string searchText, StringComparison comparationType)
+        {
+            try
+            {
+                if (!ZlpIOHelper.FileExists(path)) return false;
+                using (var f = LongPathExtensions.OpenRead(path))
+                {
+                    using (var s = new StreamReader(f, Encoding.UTF8))
+                    {
+                        while (!s.EndOfStream)
+                        {
+                            var line = s.ReadLine();
+                            if (!string.IsNullOrEmpty(line) && line.IndexOf(searchText, comparationType) > -1)
+                            {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
     }
