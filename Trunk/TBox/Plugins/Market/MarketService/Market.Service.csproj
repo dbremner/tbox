@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Mnk.TBox.Plugins.Market.Service</RootNamespace>
     <AssemblyName>Mnk.TBox.Plugins.Market.Service</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -96,7 +96,7 @@
     <ProjectReference Include="..\MarketInterfaces\Market.Interfaces.csproj">
       <Project>{A7A80514-254B-42C8-AE86-5A1B299A82F5}</Project>
       <Name>Market.Interfaces</Name>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
