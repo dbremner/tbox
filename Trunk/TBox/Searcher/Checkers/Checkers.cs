@@ -14,22 +14,38 @@ namespace Mnk.Rat.Checkers
         int Length();
     }
 
-    sealed class NameCaseComparer : IName
+    class NameComparer : IName
     {
         private readonly string name;
-        public NameCaseComparer(string name) { this.name = name; }
-        public bool Compare(string val) { return string.Equals(name, val, StringComparison.Ordinal); }
-        public bool ContainMe(string val) { return val.IndexOf(name, StringComparison.Ordinal) >= 0; }
-        public int Length() { return name.Length; }
+        private readonly StringComparison comparison;
+
+        protected NameComparer(string name, StringComparison comparison)
+        {
+            this.name = name;
+            this.comparison = comparison;
+        }
+
+        public bool Compare(string val) => string.Equals(name, val, comparison);
+
+        public bool ContainMe(string val) => val.IndexOf(name, comparison) >= 0;
+
+        public int Length() => name.Length;
     }
 
-    sealed class NameNoCaseComparer : IName
+    sealed class NameCaseComparer : NameComparer
     {
-        private readonly string name;
-        public NameNoCaseComparer(string name) { this.name = name; }
-        public bool Compare(string val) { return string.Equals(name, val, StringComparison.OrdinalIgnoreCase); }
-        public bool ContainMe(string val) { return val.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0; }
-        public int Length() { return name.Length; }
+        public NameCaseComparer(string name)
+            : base(name, StringComparison.Ordinal)
+        {
+        }
+    }
+
+    sealed class NameNoCaseComparer : NameComparer
+    {
+        public NameNoCaseComparer(string name)
+            : base(name, StringComparison.OrdinalIgnoreCase)
+        {
+        }
     }
 
     class FileCheckByNameExactMatch : IFileChecker
