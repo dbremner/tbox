@@ -32,10 +32,9 @@
   <ItemGroup>
     <Reference Include="LightInject, Version=4.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LightInject.4.0.9\lib\net46\LightInject.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Mnk.Library.Common">
-      <HintPath>..\..\..\..\happyba\trunk\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
+      <HintPath>..\..\Libs\Mnk.Library\Mnk.Library.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
